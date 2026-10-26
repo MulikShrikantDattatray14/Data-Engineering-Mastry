@@ -2,7 +2,7 @@
 
 This track has **205 distinct practice prompts**: 100 from the PrepNPlaced interview book, 100 from the advanced SQL volume, and five extra product-rating prompts in the bundle README. The ZIP includes a duplicate copy of the interview PDF, so that book is indexed once.
 
-Open a topic's foundation note, then choose a question below. The practice files contain the original tasks and schemas; your solutions remain pending until we work through them together. The [source materials](<Source Materials/README.md>) include the original books, dataset, and answer files.
+Open a topic's foundation note, then choose a question below. The practice files contain the original tasks and schemas; your solutions and the supplied official answers remain pending until you have completely solved each question. The [source materials](<Source Materials/README.md>) include the original books, dataset, and answer files.
 
 The two books use different schemas and dialects: the PrepNPlaced interview book uses an eight-table PostgreSQL dataset; the advanced volume uses a seven-table MySQL example schema. The notes distinguish them.
 

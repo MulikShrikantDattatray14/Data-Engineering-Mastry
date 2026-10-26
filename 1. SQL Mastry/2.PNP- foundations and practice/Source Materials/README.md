@@ -1,6 +1,6 @@
 # PNP source materials
 
-These are the three supplied originals and the complete extracted ZIP. The original PDFs and ZIP contain answers; the topic practice files keep answers pending until an attempt.
+These are the three supplied originals and the complete extracted ZIP. The original PDFs and ZIP contain answers; the topic practice files keep answers pending until you have completely solved each question.
 
 ## Supplied originals
 
@@ -31,4 +31,4 @@ The ZIP's copy of the interview PDF has the same SHA-256 as the standalone updat
 
 The extracted bundle includes eight CSV tables, a PostgreSQL loader, an Excel schema, an all-solutions SQL script, and an instructor data-quality key. Read the [bundle README](<PrepNPlaced_SQL_100_v2/README.md>) for the supplied load steps and expected row counts. The loader is PostgreSQL-specific and must be run from the extracted `data` directory. The advanced volume supplies its seven-table schema in the PDF but no corresponding CSV dataset.
 
-The instructor key and solution files are preserved here as source material. Open them after attempting the relevant questions.
+The instructor key and solution files are preserved here as source material. Open them after you have completely solved the relevant questions.
