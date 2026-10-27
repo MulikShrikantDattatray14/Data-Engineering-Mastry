@@ -1,11 +1,11 @@
 # PNP — foundations and practice
 
 <!-- practice-progress:start -->
-**Progress:** 2 of 205 questions solved.
+**Progress:** 3 of 205 questions solved.
 
 **Status:** ![SOLVED](<../_badges/solved.svg>) has a completed SQLite solution; ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) is pending.
 **Difficulty:** ![EASY](<../_badges/easy.svg>) ![MEDIUM](<../_badges/medium.svg>) ![HARD](<../_badges/hard.svg>) come from the supplied material or an explicitly named practice tier. ![UNRATED](<../_badges/unrated.svg>) means no level was supplied.
-**Date note:** Solved dates show the first Git record containing a completed SQLite solution, in India time. The original study day may have been earlier.
+**Date note:** Solved dates record when a completed solution was saved in these notes, in India time. Older dates were recovered from Git history and may be later than the original study day.
 <!-- practice-progress:end -->
 
 This track has **205 distinct practice prompts**: 100 from the PrepNPlaced interview book, 100 from the advanced SQL volume, and five extra product-rating prompts in the bundle README. The ZIP includes a duplicate copy of the interview PDF, so that book is indexed once.
@@ -50,7 +50,7 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 
 - [PNP Q001 — Brand directory](<1. Select and Filtering/P001. Brand directory.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-26
 - [PNP Q002 — Ten highest-priced products](<1. Select and Filtering/P002. Ten highest-priced products.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-26
-- [PNP Q003 — Customers in metro cities](<1. Select and Filtering/P003. Customers in metro cities.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
+- [PNP Q003 — Customers in metro cities](<1. Select and Filtering/P003. Customers in metro cities.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
 - [PNP Q004 — Customer emails that cannot be delivered](<1. Select and Filtering/P004. Customer emails that cannot be delivered.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
 - [PNP Q005 — Orders placed in Q1 2025](<1. Select and Filtering/P005. Orders placed in Q1 2025.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
 - [PNP Q007 — Discount amount and percentage per product](<1. Select and Filtering/P007. Discount amount and percentage per product.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
