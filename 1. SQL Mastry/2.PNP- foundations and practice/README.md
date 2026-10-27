@@ -10,6 +10,8 @@
 
 This track has **205 distinct practice prompts**: 100 from the PrepNPlaced interview book, 100 from the advanced SQL volume, and five extra product-rating prompts in the bundle README. The ZIP includes a duplicate copy of the interview PDF, so that book is indexed once.
 
+**Numbering:** `P006` means question 6 in the PrepNPlaced book; `10. NULL Logic` is topic folder 10. Question numbers remain in source order even when their topic folders are elsewhere. Some advanced-volume comparison exercises stay with their source chapter while practicing an alternate technique.
+
 Open a topic's foundation note, then choose a question below. Every question file includes sample input and expected output. Examples added where the source supplied no sample rows are labeled illustrative. The practice files contain the original tasks and schemas; solution sections remain pending until you have completely solved each question. The [source materials](<Source Materials/README.md>) include the original books, dataset, and answer files.
 
 The two books use different schemas and dialects: the PrepNPlaced interview book uses an eight-table PostgreSQL dataset; the advanced volume uses a seven-table MySQL example schema. The notes distinguish them.
@@ -20,9 +22,9 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 |---|---|---:|
 | [0. Dataset and SQL Basics](#0-dataset-and-sql-basics) | [Open foundation](<0. Dataset and SQL Basics/0. Foundation Notes.md>) | 3 |
 | [1. Select and Filtering](#1-select-and-filtering) | [Open foundation](<1. Select and Filtering/0. Foundation Notes.md>) | 8 |
-| [2. Joins](#2-joins) | [Open foundation](<2. Joins/0. Foundation Notes.md>) | 27 |
+| [2. Joins](#2-joins) | [Open foundation](<2. Joins/0. Foundation Notes.md>) | 26 |
 | [3. Aggregation and Pivoting](#3-aggregation-and-pivoting) | [Open foundation](<3. Aggregation and Pivoting/0. Foundation Notes.md>) | 34 |
-| [4. Subqueries and Set Operations](#4-subqueries-and-set-operations) | [Open foundation](<4. Subqueries and Set Operations/0. Foundation Notes.md>) | 19 |
+| [4. Subqueries and Set Operations](#4-subqueries-and-set-operations) | [Open foundation](<4. Subqueries and Set Operations/0. Foundation Notes.md>) | 20 |
 | [5. CTEs](#5-ctes) | [Open foundation](<5. CTEs/0. Foundation Notes.md>) | 7 |
 | [6. Recursive CTEs](#6-recursive-ctes) | [Open foundation](<6. Recursive CTEs/0. Foundation Notes.md>) | 5 |
 | [7. Window Functions](#7-window-functions) | [Open foundation](<7. Window Functions/0. Foundation Notes.md>) | 45 |
@@ -83,7 +85,6 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 - [Advanced Q004 — List customers who have never placed an order.](<2. Joins/A004. List customers who have never placed an order.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q005 — Find delivered orders that have no payment row.](<2. Joins/A005. Find delivered orders that have no payment row.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q006 — MySQL has no FULL OUTER JOIN. Emulate one between customers and orders.](<2. Joins/A006. MySQL has no FULL OUTER JOIN. Emulate one between customers and or.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
-- [Advanced Q007 — Product IDs that exist in products but were never ordered — set-operator version.](<2. Joins/A007. Product IDs that exist in products but were never ordered — set-op.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q008 — Build a complete date × category grid so empty combinations still appear.](<2. Joins/A008. Build a complete date × category grid so empty combinations still.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q009 — Bucket every product into a price band using a non-equi join.](<2. Joins/A009. Bucket every product into a price band using a non-equi join.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q010 — Find every employee who earns more than their own manager.](<2. Joins/A010. Find every employee who earns more than their own manager.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
@@ -160,6 +161,7 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 
 ### Advanced SQL 100 Query Questions
 
+- [Advanced Q007 — Product IDs that exist in products but were never ordered — set-operator version.](<4. Subqueries and Set Operations/A007. Product IDs that exist in products but were never ordered — set-op.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q028 — Employees paid above the average of their own department.](<4. Subqueries and Set Operations/A028. Employees paid above the average of their own department.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q029 — The most recent order for every customer, ties allowed.](<4. Subqueries and Set Operations/A029. The most recent order for every customer, ties allowed.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q030 — Products priced above their category average.](<4. Subqueries and Set Operations/A030. Products priced above their category average.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
