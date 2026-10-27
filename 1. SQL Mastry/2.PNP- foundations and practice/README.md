@@ -1,7 +1,7 @@
 # PNP — foundations and practice
 
 <!-- practice-progress:start -->
-**Progress:** 5 of 205 questions solved.
+**Progress:** 6 of 205 questions solved.
 
 **Status:** ![SOLVED](<../_badges/solved.svg>) has a completed SQLite solution; ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) is pending.
 **Difficulty:** ![EASY](<../_badges/easy.svg>) ![MEDIUM](<../_badges/medium.svg>) ![HARD](<../_badges/hard.svg>) come from the supplied material or an explicitly named practice tier. ![UNRATED](<../_badges/unrated.svg>) means no level was supplied.
@@ -313,7 +313,7 @@ Begin with the commerce dataset and an introductory SELECT question. For more SE
 
 ### 100 SQL Interview Questions
 
-- [PNP Q006 — Most expensive products that are never discounted](<10. NULL Logic/P006. Most expensive products that are never discounted.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
+- [PNP Q006 — Most expensive products that are never discounted](<10. NULL Logic/P006. Most expensive products that are never discounted.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
 - [PNP Q024 — Suppliers outside India or with no email](<10. NULL Logic/P024. Suppliers outside India or with no email.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
 
 ### Advanced SQL 100 Query Questions
