@@ -1,13 +1,15 @@
 # PNP — foundations and practice
 
 <!-- practice-progress:start -->
-**Progress:** 10 of 205 questions solved.
+**Progress:** 11 of 205 questions solved.
 
 **Status:** ![SOLVED](<../_badges/solved.svg>) means a completed solution is saved; ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) means the question is pending. Solved dates are recorded in India time.
 **Difficulty:** ![EASY](<../_badges/easy.svg>) → ![MEDIUM](<../_badges/medium.svg>) → ![HARD](<../_badges/hard.svg>) → ![EXPERT](<../_badges/expert.svg>). P-question levels come from the PrepNPlaced source; A and X levels are editorial estimates for study order. ![UNRATED](<../_badges/unrated.svg>) is a fallback when a rating is missing.
 <!-- practice-progress:end -->
 
 This track has **205 standalone questions**: 100 from the PrepNPlaced interview book, 100 from the advanced SQL volume, and 5 bundle extras. Each topic has a foundation note. Source question IDs stay unchanged.
+
+Pending question pages show the task, sample input and output, and schema without technique hints. Add method notes and interview follow-ups with the completed solution when moving to the next question.
 
 **Study order:** Finish Easy, then Medium, Hard, and Expert within the current topic before moving to the next topic. Use the links below to follow that order.
 
@@ -21,7 +23,7 @@ The PrepNPlaced book uses a PostgreSQL commerce dataset; the advanced volume use
 |---|---|---:|
 | [0. SQL basics](#topic-0) | [Open foundation](<0. SQL basics/0. Foundation Notes.md>) | 1 / 1 |
 | [1. Intro to SQL and Advanced Select](#topic-1) | [Open foundation](<1. Intro to SQL and Advanced Select/0. Foundation Notes.md>) | 5 / 5 |
-| [2. Joins](#topic-2) | [Open foundation](<2. Joins/0. Foundation Notes.md>) | 2 / 25 |
+| [2. Joins](#topic-2) | [Open foundation](<2. Joins/0. Foundation Notes.md>) | 3 / 25 |
 | [3. Sorting and Grouping](#topic-3) | [Open foundation](<3. Sorting and Grouping/0. Foundation Notes.md>) | 0 / 13 |
 | [4. Aggregation](#topic-4) | [Open foundation](<4. Aggregation/0. Foundation Notes.md>) | 0 / 20 |
 | [5. CTEs](#topic-5) | [Open foundation](<5. CTEs/0. Foundation Notes.md>) | 0 / 7 |
@@ -67,7 +69,7 @@ The PrepNPlaced book uses a PostgreSQL commerce dataset; the advanced volume use
 
 - [PNP Q015. Product count for every category](<2. Joins/P015. Product count for every category.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
 - [PNP Q016. December 2025 orders with customer names](<2. Joins/P016. December 2025 orders with customer names.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
-- [PNP Q017. Orders with payment type and shipper](<2. Joins/P017. Orders with payment type and shipper.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
+- [PNP Q017. Orders with payment type and shipper](<2. Joins/P017. Orders with payment type and shipper.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
 - [PNP Q018. Customers with no order in the last 90 days](<2. Joins/P018. Customers with no order in the last 90 days.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
 - [PNP Q019. Units sold per product](<2. Joins/P019. Units sold per product.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
 - [Advanced Q001. Count employees per department, keeping departments that have none.](<2. Joins/A001. Count employees per department, keeping departments that have none.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
