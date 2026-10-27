@@ -1,7 +1,7 @@
 # PNP — foundations and practice
 
 <!-- practice-progress:start -->
-**Progress:** 7 of 205 questions solved.
+**Progress:** 8 of 205 questions solved.
 
 **Status:** ![SOLVED](<../_badges/solved.svg>) has a completed SQLite solution; ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) is pending.
 **Difficulty:** ![EASY](<../_badges/easy.svg>) ![MEDIUM](<../_badges/medium.svg>) ![HARD](<../_badges/hard.svg>) come from the supplied material or an explicitly named practice tier. ![UNRATED](<../_badges/unrated.svg>) means no level was supplied.
@@ -55,7 +55,7 @@ Begin with the commerce dataset and an introductory SELECT question. For more SE
 - [PNP Q004 — Customer emails that cannot be delivered](<1. Select and Filtering/P004. Customer emails that cannot be delivered.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
 - [PNP Q005 — Orders placed in Q1 2025](<1. Select and Filtering/P005. Orders placed in Q1 2025.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
 - [PNP Q007 — Discount amount and percentage per product](<1. Select and Filtering/P007. Discount amount and percentage per product.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
-- [PNP Q008 — Price band labels](<1. Select and Filtering/P008. Price band labels.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
+- [PNP Q008 — Price band labels](<1. Select and Filtering/P008. Price band labels.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
 - [PNP Q023 — Chocolate or cookie products under 250, excluding sugar-free](<1. Select and Filtering/P023. Chocolate or cookie products under 250, excluding sugar-free.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
 
 ## 2. Joins
