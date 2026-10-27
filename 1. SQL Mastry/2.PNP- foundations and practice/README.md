@@ -8,7 +8,7 @@
 **Date note:** Solved dates record when a completed solution was saved in these notes, in India time. Older dates were recovered from Git history and may be later than the original study day.
 <!-- practice-progress:end -->
 
-This track has **205 distinct practice prompts**: 100 from the PrepNPlaced interview book, 100 from the advanced SQL volume, and five extra product-rating prompts in the bundle README. The ZIP includes a duplicate copy of the interview PDF, so that book is indexed once.
+This track has **205 standalone question files**: 100 from the PrepNPlaced interview book, 100 from the advanced SQL volume, and five extra product-rating prompts in the bundle README. Each of the 100 PrepNPlaced book files also includes its Step 9 interview follow-up prompt. The advanced volume has a few optional rewrite drills beside its numbered questions. The ZIP includes a duplicate copy of the interview PDF, so that book is indexed once.
 
 **Numbering:** `P006` means question 6 in the PrepNPlaced book; `10. NULL Logic` is topic folder 10. Question numbers remain in source order even when their topic folders are elsewhere. Some advanced-volume comparison exercises stay with their source chapter while practicing an alternate technique.
 

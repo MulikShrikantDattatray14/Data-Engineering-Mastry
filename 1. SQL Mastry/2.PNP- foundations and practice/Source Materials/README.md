@@ -10,7 +10,7 @@ These are the three supplied originals and the complete extracted ZIP. The origi
 | [Updated_100_SQL_Interview_Questions.pdf](<Updated_100_SQL_Interview_Questions.pdf>) | 100-question interview book | `904F8DAB7D34543BFFB9514ED6E042696AEFE8001CC9AE02EA783D69F0FC684C` |
 | [Advanced_SQL_100_Query_Questions_Vol1 (2).pdf](<Advanced_SQL_100_Query_Questions_Vol1 (2).pdf>) | 100-question advanced SQL volume | `0026D2BD80DBED088B0C01FFAB81C183BFD302232BD39B8BE586BE4BEC4712CE` |
 
-The ZIP's copy of the interview PDF has the same SHA-256 as the standalone updated PDF. Its 100 questions therefore have one set of practice files. The ZIP README contributes five more prompts, giving **205 distinct prompts** in total.
+The ZIP's copy of the interview PDF has the same SHA-256 as the standalone updated PDF. Its 100 questions therefore have one set of practice files. The ZIP README contributes five more standalone prompts, giving **205 question files** in total. Each of the 100 interview-book question files also includes the PDF's Step 9 follow-up prompt.
 
 ## Complete extracted ZIP inventory
 
