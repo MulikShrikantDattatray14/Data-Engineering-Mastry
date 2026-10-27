@@ -20,14 +20,14 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 
 | Topic | Foundation notes | Questions |
 |---|---|---:|
-| [0. Dataset and SQL Basics](#0-dataset-and-sql-basics) | [Open foundation](<0. Dataset and SQL Basics/0. Foundation Notes.md>) | 3 |
-| [1. Select and Filtering](#1-select-and-filtering) | [Open foundation](<1. Select and Filtering/0. Foundation Notes.md>) | 8 |
+| [0. Dataset and SQL Basics](#0-dataset-and-sql-basics) | [Open foundation](<0. Dataset and SQL Basics/0. Foundation Notes.md>) | 1 |
+| [1. Select and Filtering](#1-select-and-filtering) | [Open foundation](<1. Select and Filtering/0. Foundation Notes.md>) | 7 |
 | [2. Joins](#2-joins) | [Open foundation](<2. Joins/0. Foundation Notes.md>) | 26 |
-| [3. Aggregation and Pivoting](#3-aggregation-and-pivoting) | [Open foundation](<3. Aggregation and Pivoting/0. Foundation Notes.md>) | 34 |
-| [4. Subqueries and Set Operations](#4-subqueries-and-set-operations) | [Open foundation](<4. Subqueries and Set Operations/0. Foundation Notes.md>) | 20 |
+| [3. Aggregation and Pivoting](#3-aggregation-and-pivoting) | [Open foundation](<3. Aggregation and Pivoting/0. Foundation Notes.md>) | 35 |
+| [4. Subqueries and Set Operations](#4-subqueries-and-set-operations) | [Open foundation](<4. Subqueries and Set Operations/0. Foundation Notes.md>) | 21 |
 | [5. CTEs](#5-ctes) | [Open foundation](<5. CTEs/0. Foundation Notes.md>) | 7 |
 | [6. Recursive CTEs](#6-recursive-ctes) | [Open foundation](<6. Recursive CTEs/0. Foundation Notes.md>) | 5 |
-| [7. Window Functions](#7-window-functions) | [Open foundation](<7. Window Functions/0. Foundation Notes.md>) | 45 |
+| [7. Window Functions](#7-window-functions) | [Open foundation](<7. Window Functions/0. Foundation Notes.md>) | 46 |
 | [8. Gaps and Islands](#8-gaps-and-islands) | [Open foundation](<8. Gaps and Islands/0. Foundation Notes.md>) | 6 |
 | [9. Data Quality and Deduplication](#9-data-quality-and-deduplication) | [Open foundation](<9. Data Quality and Deduplication/0. Foundation Notes.md>) | 17 |
 | [10. NULL Logic](#10-null-logic) | [Open foundation](<10. NULL Logic/0. Foundation Notes.md>) | 7 |
@@ -38,11 +38,11 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 
 [Foundation notes](<0. Dataset and SQL Basics/0. Foundation Notes.md>)
 
-### Advanced SQL 100 Query Questions
+Begin with the commerce dataset and an introductory SELECT question. For more SELECT syntax, use the [Select and Filtering foundation notes](<1. Select and Filtering/0. Foundation Notes.md>).
 
-- [Advanced Q001 — Count employees per department, keeping departments that have none.](<0. Dataset and SQL Basics/A001. Count employees per department, keeping departments that have none.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
-- [Advanced Q002 — Second highest salary, no LIMIT and no window function.](<0. Dataset and SQL Basics/A002. Second highest salary, no LIMIT and no window function.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
-- [Advanced Q003 — Third highest distinct salary, ties collapsed.](<0. Dataset and SQL Basics/A003. Third highest distinct salary, ties collapsed.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
+### 100 SQL Interview Questions
+
+- [PNP Q001 — Brand directory](<0. Dataset and SQL Basics/P001. Brand directory.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-26
 
 ## 1. Select and Filtering
 
@@ -50,7 +50,6 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 
 ### 100 SQL Interview Questions
 
-- [PNP Q001 — Brand directory](<1. Select and Filtering/P001. Brand directory.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-26
 - [PNP Q002 — Ten highest-priced products](<1. Select and Filtering/P002. Ten highest-priced products.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-26
 - [PNP Q003 — Customers in metro cities](<1. Select and Filtering/P003. Customers in metro cities.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
 - [PNP Q004 — Customer emails that cannot be delivered](<1. Select and Filtering/P004. Customer emails that cannot be delivered.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
@@ -82,6 +81,7 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 
 ### Advanced SQL 100 Query Questions
 
+- [Advanced Q001 — Count employees per department, keeping departments that have none.](<2. Joins/A001. Count employees per department, keeping departments that have none.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q004 — List customers who have never placed an order.](<2. Joins/A004. List customers who have never placed an order.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q005 — Find delivered orders that have no payment row.](<2. Joins/A005. Find delivered orders that have no payment row.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q006 — MySQL has no FULL OUTER JOIN. Emulate one between customers and orders.](<2. Joins/A006. MySQL has no FULL OUTER JOIN. Emulate one between customers and or.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
@@ -92,7 +92,6 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 - [Advanced Q012 — Managers with three or more direct reports.](<2. Joins/A012. Managers with three or more direct reports.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q013 — Customers who bought product 101 but never product 202.](<2. Joins/A013. Customers who bought product 101 but never product 202.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q014 — Employees who manage nobody (the leaves of the org tree).](<2. Joins/A014. Employees who manage nobody (the leaves of the org tree).md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
-- [Advanced Q015 — Show each employee next to their department average, without collapsing rows.](<2. Joins/A015. Show each employee next to their department average, without colla.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 
 ### Bundle extras
 
@@ -139,6 +138,7 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 - [Advanced Q025 — Customers who ordered in both 2025 and 2026.](<3. Aggregation and Pivoting/A025. Customers who ordered in both 2025 and 2026.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q026 — Unpivot: turn three metric columns of a summary table into label/value rows.](<3. Aggregation and Pivoting/A026. Unpivot turn three metric columns of a summary table into labelval.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q027 — First order, last order and active lifespan per customer.](<3. Aggregation and Pivoting/A027. First order, last order and active lifespan per customer.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
+- [Advanced Q039 — Products bought by more than 10 distinct customers.](<3. Aggregation and Pivoting/A039. Products bought by more than 10 distinct customers.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 
 ### Bundle extras
 
@@ -161,6 +161,7 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 
 ### Advanced SQL 100 Query Questions
 
+- [Advanced Q002 — Second highest salary, no LIMIT and no window function.](<4. Subqueries and Set Operations/A002. Second highest salary, no LIMIT and no window function.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q007 — Product IDs that exist in products but were never ordered — set-operator version.](<4. Subqueries and Set Operations/A007. Product IDs that exist in products but were never ordered — set-op.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q028 — Employees paid above the average of their own department.](<4. Subqueries and Set Operations/A028. Employees paid above the average of their own department.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q029 — The most recent order for every customer, ties allowed.](<4. Subqueries and Set Operations/A029. The most recent order for every customer, ties allowed.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
@@ -173,7 +174,7 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 - [Advanced Q036 — Departments with at least one employee earning above 100,000.](<4. Subqueries and Set Operations/A036. Departments with at least one employee earning above 100,000.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q037 — Orders that contain any Electronics product.](<4. Subqueries and Set Operations/A037. Orders that contain any Electronics product.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q038 — Customers who have bought every product in the Audio category (relational division).](<4. Subqueries and Set Operations/A038. Customers who have bought every product in the Audio category (rel.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
-- [Advanced Q039 — Products bought by more than 10 distinct customers.](<4. Subqueries and Set Operations/A039. Products bought by more than 10 distinct customers.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
+- [Advanced Q078 — Top 3 salaries per department without any window function.](<4. Subqueries and Set Operations/A078. Top 3 salaries per department without any window function.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 
 ## 5. CTEs
 
@@ -228,6 +229,8 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 
 ### Advanced SQL 100 Query Questions
 
+- [Advanced Q003 — Third highest distinct salary, ties collapsed.](<7. Window Functions/A003. Third highest distinct salary, ties collapsed.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
+- [Advanced Q015 — Show each employee next to their department average, without collapsing rows.](<7. Window Functions/A015. Show each employee next to their department average, without colla.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q051 — Show ROW_NUMBER, RANK and DENSE_RANK together and explain the difference.](<7. Window Functions/A051. Show ROW_NUMBER, RANK and DENSE_RANK together and explain the diff.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q052 — Rank employees by salary inside each department.](<7. Window Functions/A052. Rank employees by salary inside each department.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q053 — The highest-paid employee per department, ties broken by earliest hire date.](<7. Window Functions/A053. The highest-paid employee per department, ties broken by earliest.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
@@ -255,7 +258,6 @@ The two books use different schemas and dialects: the PrepNPlaced interview book
 - [Advanced Q075 — The latest payment row for every order.](<7. Window Functions/A075. The latest payment row for every order.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q076 — Top 2 customers by spend in each city.](<7. Window Functions/A076. Top 2 customers by spend in each city.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q077 — Each customer's second most recent order.](<7. Window Functions/A077. Each customer's second most recent order.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
-- [Advanced Q078 — Top 3 salaries per department without any window function.](<7. Window Functions/A078. Top 3 salaries per department without any window function.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 - [Advanced Q079 — Most recent order per customer, returning the whole row, no CTE.](<7. Window Functions/A079. Most recent order per customer, returning the whole row, no CTE.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![UNRATED](<../_badges/unrated.svg>)
 
 ### Bundle extras
