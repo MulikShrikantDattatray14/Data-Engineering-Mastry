@@ -1,7 +1,7 @@
 # PNP — foundations and practice
 
 <!-- practice-progress:start -->
-**Progress:** 19 of 205 questions solved.
+**Progress:** 20 of 205 questions solved.
 
 **Status:** ![SOLVED](<../_badges/solved.svg>) means a completed solution is saved; ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) means the question is pending. Solved dates are recorded in India time.
 **Difficulty:** ![EASY](<../_badges/easy.svg>) → ![MEDIUM](<../_badges/medium.svg>) → ![HARD](<../_badges/hard.svg>) → ![EXPERT](<../_badges/expert.svg>). P-question levels come from the PrepNPlaced source; A and X levels are editorial estimates for study order. ![UNRATED](<../_badges/unrated.svg>) is a fallback when a rating is missing.
@@ -23,7 +23,7 @@ The PrepNPlaced book uses a PostgreSQL commerce dataset; the advanced volume use
 |---|---|---:|
 | [0. SQL basics](#topic-0) | [Open foundation](<0. SQL basics/0. Foundation Notes.md>) | 1 / 1 |
 | [1. Intro to SQL and Advanced Select](#topic-1) | [Open foundation](<1. Intro to SQL and Advanced Select/0. Foundation Notes.md>) | 5 / 5 |
-| [2. Joins](#topic-2) | [Open foundation](<2. Joins/0. Foundation Notes.md>) | 11 / 25 |
+| [2. Joins](#topic-2) | [Open foundation](<2. Joins/0. Foundation Notes.md>) | 12 / 25 |
 | [3. Sorting and Grouping](#topic-3) | [Open foundation](<3. Sorting and Grouping/0. Foundation Notes.md>) | 0 / 13 |
 | [4. Aggregation](#topic-4) | [Open foundation](<4. Aggregation/0. Foundation Notes.md>) | 0 / 20 |
 | [5. CTEs](#topic-5) | [Open foundation](<5. CTEs/0. Foundation Notes.md>) | 0 / 7 |
@@ -81,7 +81,7 @@ The PrepNPlaced book uses a PostgreSQL commerce dataset; the advanced volume use
 
 ### Medium
 
-- [PNP Q026. List-price value by category](<2. Joins/P026. List-price value by category.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![MEDIUM](<../_badges/medium.svg>)
+- [PNP Q026. List-price value by category](<2. Joins/P026. List-price value by category.md>) ![SOLVED](<../_badges/solved.svg>) ![MEDIUM](<../_badges/medium.svg>) · Solved (recorded): 2026-10-28
 - [PNP Q027. Average order value by customer state](<2. Joins/P027. Average order value by customer state.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![MEDIUM](<../_badges/medium.svg>)
 - [PNP Q029. Order value and units by shipper without double counting](<2. Joins/P029. Order value and units by shipper without double counting.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![MEDIUM](<../_badges/medium.svg>)
 - [PNP Q038. Products from inactive categories that still sold in the latest year](<2. Joins/P038. Products from inactive categories that still sold in the latest ye.md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![MEDIUM](<../_badges/medium.svg>)
