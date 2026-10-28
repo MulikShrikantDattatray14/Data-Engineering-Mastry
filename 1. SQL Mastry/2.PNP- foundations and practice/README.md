@@ -1,7 +1,7 @@
 # PNP — foundations and practice
 
 <!-- practice-progress:start -->
-**Progress:** 18 of 205 questions solved.
+**Progress:** 19 of 205 questions solved.
 
 **Status:** ![SOLVED](<../_badges/solved.svg>) means a completed solution is saved; ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) means the question is pending. Solved dates are recorded in India time.
 **Difficulty:** ![EASY](<../_badges/easy.svg>) → ![MEDIUM](<../_badges/medium.svg>) → ![HARD](<../_badges/hard.svg>) → ![EXPERT](<../_badges/expert.svg>). P-question levels come from the PrepNPlaced source; A and X levels are editorial estimates for study order. ![UNRATED](<../_badges/unrated.svg>) is a fallback when a rating is missing.
@@ -23,7 +23,7 @@ The PrepNPlaced book uses a PostgreSQL commerce dataset; the advanced volume use
 |---|---|---:|
 | [0. SQL basics](#topic-0) | [Open foundation](<0. SQL basics/0. Foundation Notes.md>) | 1 / 1 |
 | [1. Intro to SQL and Advanced Select](#topic-1) | [Open foundation](<1. Intro to SQL and Advanced Select/0. Foundation Notes.md>) | 5 / 5 |
-| [2. Joins](#topic-2) | [Open foundation](<2. Joins/0. Foundation Notes.md>) | 10 / 25 |
+| [2. Joins](#topic-2) | [Open foundation](<2. Joins/0. Foundation Notes.md>) | 11 / 25 |
 | [3. Sorting and Grouping](#topic-3) | [Open foundation](<3. Sorting and Grouping/0. Foundation Notes.md>) | 0 / 13 |
 | [4. Aggregation](#topic-4) | [Open foundation](<4. Aggregation/0. Foundation Notes.md>) | 0 / 20 |
 | [5. CTEs](#topic-5) | [Open foundation](<5. CTEs/0. Foundation Notes.md>) | 0 / 7 |
@@ -77,7 +77,7 @@ The PrepNPlaced book uses a PostgreSQL commerce dataset; the advanced volume use
 - [Advanced Q005. Find delivered orders that have no payment row.](<2. Joins/A005. Find delivered orders that have no payment row.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-27
 - [Advanced Q010. Find every employee who earns more than their own manager.](<2. Joins/A010. Find every employee who earns more than their own manager.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-28
 - [Advanced Q012. Managers with three or more direct reports.](<2. Joins/A012. Managers with three or more direct reports.md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-28
-- [Advanced Q014. Employees who manage nobody (the leaves of the org tree).](<2. Joins/A014. Employees who manage nobody (the leaves of the org tree).md>) ![NOT SOLVED YET](<../_badges/not-solved-yet.svg>) ![EASY](<../_badges/easy.svg>)
+- [Advanced Q014. Employees who manage nobody (the leaves of the org tree).](<2. Joins/A014. Employees who manage nobody (the leaves of the org tree).md>) ![SOLVED](<../_badges/solved.svg>) ![EASY](<../_badges/easy.svg>) · Solved (recorded): 2026-10-28
 
 ### Medium
 
