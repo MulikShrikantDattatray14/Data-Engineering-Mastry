@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline, local practice runner for Part 1 of Python Mastry."""
+"""Offline, local practice runner for all seven parts of Python Mastry."""
 
 from __future__ import annotations
 
@@ -21,7 +21,16 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parent
-LESSON_DIR = ROOT / "1. Python from Zero"
+PART_DIRS = {
+    "0": ROOT,
+    "1": ROOT / "1. Python from Zero",
+    "2": ROOT / "2. Python Foundations",
+    "3": ROOT / "3. Advanced Python",
+    "4": ROOT / "4. DSA and Complexity",
+    "5": ROOT / "5. Coding Round Patterns",
+    "6": ROOT / "6. Python for Data Engineering",
+    "7": ROOT / "7. Practice Prep Flow and Revision",
+}
 DATASET_DIR = ROOT / "python_de_dataset"
 HOST = "127.0.0.1"
 PORT = 8765
@@ -49,13 +58,16 @@ FENCE_OPEN = re.compile(
     re.IGNORECASE,
 )
 FILE_LABEL = re.compile(r"^\s*#\s*([A-Za-z_][A-Za-z_0-9]*\.py)\s*$")
-LESSON_NAME = re.compile(r"^(0[1-9]|1[0-9]|20)\. .+\.md$")
+LESSON_NAME = re.compile(r"^([0-9]{2})\. .+\.md$")
 
 
-def lesson_files() -> dict[str, Path]:
+def lesson_files(part: str = "1") -> dict[str, Path]:
+    directory = PART_DIRS.get(part)
+    if directory is None:
+        raise ValueError("Unknown part")
     return {
         path.name[:2]: path
-        for path in LESSON_DIR.glob("*.md")
+        for path in directory.glob("*.md")
         if LESSON_NAME.fullmatch(path.name)
     }
 
@@ -91,8 +103,8 @@ def code_blocks(path: Path) -> tuple[str, list[dict[str, str]]]:
     return title, blocks
 
 
-def example(lesson: str, snippet: int) -> tuple[Path, str, list[dict[str, str]]]:
-    path = lesson_files().get(lesson)
+def example(part: str, lesson: str, snippet: int) -> tuple[Path, str, list[dict[str, str]]]:
+    path = lesson_files(part).get(lesson)
     if path is None:
         raise ValueError("Unknown lesson")
     title, blocks = code_blocks(path)
@@ -107,8 +119,8 @@ def named_file(code: str) -> str | None:
     return match.group(1) if match else None
 
 
-def practice_directory(lesson: str) -> Path:
-    directory = Path(WORKSPACE.name) / lesson
+def practice_directory(part: str, lesson: str) -> Path:
+    directory = Path(WORKSPACE.name) / f"{part}-{lesson}"
     if not directory.exists():
         directory.mkdir(parents=True)
         if DATASET_DIR.is_dir():
@@ -204,14 +216,14 @@ def capture(command: list[str], directory: Path, user_input: str) -> dict[str, o
     }
 
 
-def run_example(lesson: str, snippet: int, edited_code: str, user_input: str) -> dict[str, object]:
+def run_example(part: str, lesson: str, snippet: int, edited_code: str, user_input: str) -> dict[str, object]:
     if len(edited_code) > MAX_CODE:
         raise ValueError("Code is too long")
     if len(user_input) > MAX_STDIN:
         raise ValueError("Input is too long")
-    _path, _title, blocks = example(lesson, snippet)
+    _path, _title, blocks = example(part, lesson, snippet)
     with RUN_LOCK:
-        directory = practice_directory(lesson)
+        directory = practice_directory(part, lesson)
         prepare_named_files(blocks, snippet, directory)
         filename = named_file(edited_code)
         if filename:
@@ -219,8 +231,8 @@ def run_example(lesson: str, snippet: int, edited_code: str, user_input: str) ->
             source = edited_code
         else:
             script = directory / "__practice_current__.py"
-            prerequisites = AUTO_SETUP.get(lesson, {}).get(snippet, ())
-            if lesson == "04" and snippet == 3:
+            prerequisites = AUTO_SETUP.get(lesson, {}).get(snippet, ()) if part == "1" else ()
+            if part == "1" and lesson == "04" and snippet == 3:
                 # Only the earlier status assignment is needed; avoid replaying
                 # its unrelated print statements in this example's output.
                 source = 'status = "  Delivered  "\n\n'
@@ -232,7 +244,7 @@ def run_example(lesson: str, snippet: int, edited_code: str, user_input: str) ->
         script.write_text(source, encoding="utf-8")
         result = capture([sys.executable, "-u", str(script)], directory, user_input)
         result["saved_file"] = filename
-        result["setup_examples"] = list(AUTO_SETUP.get(lesson, {}).get(snippet, ()))
+        result["setup_examples"] = list(AUTO_SETUP.get(lesson, {}).get(snippet, ())) if part == "1" else []
         return result
 
 
@@ -276,7 +288,7 @@ textarea:focus { box-shadow: inset 0 0 0 2px #77aaff; }
 </head>
 <body>
 <header>
-<strong>Python Mastry · Part 1 practice</strong>
+<strong>Python Mastry · Practice</strong>
 <p>Run and change an editable copy. Your lesson's original code stays untouched.</p>
 </header>
 <main>
@@ -307,6 +319,7 @@ textarea:focus { box-shadow: inset 0 0 0 2px #77aaff; }
 "use strict";
 const token = document.querySelector('meta[name="practice-token"]').content;
 const query = new URLSearchParams(location.search);
+const part = query.get("part") || "1";
 const lesson = query.get("lesson") || "01";
 const snippet = Number(query.get("snippet") || "1");
 const el = (id) => document.getElementById(id);
@@ -319,6 +332,7 @@ let sourceHash = "";
 function goTo(number) {
   if (number < 1 || number > count) return;
   const target = new URL(location.href);
+  target.searchParams.set("part", part);
   target.searchParams.set("lesson", lesson);
   target.searchParams.set("snippet", String(number));
   location.href = target.href;
@@ -326,15 +340,17 @@ function goTo(number) {
 
 async function loadExample() {
   try {
-    const response = await fetch("/api/snippet?lesson=" + encodeURIComponent(lesson)
+    const response = await fetch("/api/snippet?part=" + encodeURIComponent(part)
+      + "&lesson=" + encodeURIComponent(lesson)
       + "&snippet=" + encodeURIComponent(snippet));
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Could not load the example.");
     original = data.code;
     sourceHash = data.source_hash;
     count = data.count;
-    draftKey = "python-mastry-draft:" + lesson + ":" + snippet;
-    inputKey = "python-mastry-input:" + lesson + ":" + snippet;
+    const lessonKey = part === "1" ? lesson : part + ":" + lesson;
+    draftKey = "python-mastry-draft:" + lessonKey + ":" + snippet;
+    inputKey = "python-mastry-input:" + lessonKey + ":" + snippet;
     el("title").textContent = data.heading;
     el("source").textContent = data.lesson_title + " · " + data.source;
     el("progress").textContent = "Example " + snippet + " of " + count;
@@ -401,7 +417,7 @@ el("run").addEventListener("click", async () => {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-Practice-Token": token },
       body: JSON.stringify({
-        lesson: lesson, snippet: snippet,
+        part: part, lesson: lesson, snippet: snippet,
         code: el("editor").value, stdin: el("input").value
       })
     });
@@ -463,12 +479,14 @@ class Handler(BaseHTTPRequestHandler):
             return
         if url.path == "/api/snippet":
             params = parse_qs(url.query)
+            part = params.get("part", ["1"])[0]
             lesson = params.get("lesson", [""])[0]
             try:
                 snippet = int(params.get("snippet", [""])[0])
-                path, title, blocks = example(lesson, snippet)
+                path, title, blocks = example(part, lesson, snippet)
                 block = blocks[snippet - 1]
                 self.send_json(200, {
+                    "part": part,
                     "lesson": lesson,
                     "snippet": snippet,
                     "count": len(blocks),
@@ -502,15 +520,16 @@ class Handler(BaseHTTPRequestHandler):
             if length <= 0 or length > MAX_REQUEST:
                 raise ValueError("Request is too large or empty")
             payload = json.loads(self.rfile.read(length))
+            part = payload.get("part", "1")
             lesson = payload["lesson"]
             snippet = payload["snippet"]
             code = payload["code"]
             user_input = payload.get("stdin", "")
-            if not isinstance(lesson, str) or not isinstance(snippet, int):
+            if not isinstance(part, str) or not isinstance(lesson, str) or not isinstance(snippet, int):
                 raise ValueError("Invalid example")
             if not isinstance(code, str) or not isinstance(user_input, str):
                 raise ValueError("Code and input must be text")
-            result = run_example(lesson, snippet, code, user_input)
+            result = run_example(part, lesson, snippet, code, user_input)
             self.send_json(200, result)
         except (KeyError, ValueError, TypeError, json.JSONDecodeError) as error:
             self.send_json(400, {"error": str(error)})
