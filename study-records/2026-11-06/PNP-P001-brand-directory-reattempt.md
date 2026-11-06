@@ -237,3 +237,14 @@ Executed separately in SQLite 3.46.1 against the same 8-row illustrative Product
 - Existing source-labeled provider key (selects raw `p.Brand`): `' Nike '`, `Adidas`, `Nike`, `Puma` — 4 rows. This confirms the stored source key and the independently worded normalized-output question differ on this deliberately space-padded example. Do not claim that provider's original key satisfies the normalized sample as stated; don't alter the source key.
 
 **Question closure still pending the user's optional Yes/No insight.**
+
+
+## Learner's optional learning capture — completed
+
+**Prompt:** Did you learn anything new from PNP P001?
+
+**Learner's exact response:** `No new learning.`
+
+**Recorded result:** No newly learned rule is claimed and no extra revision-bank entry is created. The independently corrected third SQLite attempt remains verified. This is one completed **reattempt** of previously solved PNP P001, not a newly completed PNP source ID. The full question, illustrative sample input/output and explanation, verbatim submissions, executed result differences, progressive review, assistant SQLite/T-SQL references and previously saved source-key comparison are preserved above.
+
+**Status:** Reviewed, independently corrected and ready for formal question-closing checkpoint. Further unseen-case practice may strengthen mastery.
