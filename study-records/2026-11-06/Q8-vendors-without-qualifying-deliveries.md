@@ -93,3 +93,14 @@ Vendor 8 has no delivery.
 ## Learning and completion integrity
 
 Optional new learning capture: pending. No Q8 source/diagnostic completion credit or mastery claim. Commit and cross-link the final reviewed material in both repositories after the student finishes the question.
+
+
+## Step 1 — Learner's initial reasoning (verbatim)
+
+```text
+i can solve it using sub query and joins concept
+
+so first lets start with subquery
+```
+
+**Review:** Valid as a supplementary learning approach: start by identifying qualifying vendor IDs in an inner query. The problem's original JOIN-only constraint remains mandatory for the final diagnostic, so the student will also independently solve using JOINs. The learner has not submitted SQL yet. **Next:** Ask for the independently written inner SQLite query only; do not reveal the query or its answer. No completion credit.
