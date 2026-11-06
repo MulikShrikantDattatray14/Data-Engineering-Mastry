@@ -144,3 +144,35 @@ left join deliveries as d on v.vendor_id=d.vendor_id
 **Why:** After the last selected expression `d.service`, the learner placed a comma immediately before `FROM`, so SQLite expects another expression. The table aliases `d` and `v` are now qualified correctly, and the `LEFT JOIN` key condition is correct. No output table exists for this attempt; do not fabricate rows.
 
 **Next:** Learner removes the trailing comma independently, resubmits only the corrected Step 1, then the assistant executes it and shows the actual result. No status or amount conditions and no Q8 reference solution are to be revealed yet.
+
+
+## Step 1 — Student's independently corrected LEFT JOIN query (executed successfully)
+
+**Original submitted SQLite text, preserved exactly:**
+
+```sql
+select d.delivery_id	, d.vendor_id,	v.vendor_name,	v.region, d.status,	d.amount,	d.service
+from vendors as v
+left join deliveries as d on v.vendor_id=d.vendor_id
+```
+
+**Execution method:** The exact submitted SQL was executed in SQLite against the Q8 sample fixture (8 vendors, 9 deliveries).
+
+**Actual column order:** `delivery_id`, `vendor_id`, `vendor_name`, `region`, `status`, `amount`, `service`.
+
+| delivery_id | vendor_id | vendor_name | region | status | amount | service |
+|---:|---:|---|---|---|---:|---|
+| 301 | 1 | Atlas | West | delivered | 800 | standard |
+| 302 | 1 | Atlas | West | pending | 2200 | express |
+| 303 | 2 | Birch | North | delivered | 1700 | standard |
+| 304 | 3 | Coral | West | delivered | 1900 | express |
+| 305 | 3 | Coral | West | delivered | 400 | standard |
+| 306 | 4 | Drift | South | delivered | NULL | express |
+| 307 | 5 | Ember | North | failed | 3000 | express |
+| 308 | 6 | Fern | West | delivered | 1200 | standard |
+| 309 | 7 | Grove | South | delivered | 1400 | express |
+| NULL | NULL | Haven | East | NULL | NULL | NULL |
+
+**Review:** Correct foundational LEFT JOIN. Ten result rows: Atlas and Coral occur twice because each has two delivery records; Haven is preserved without any delivery and receives NULL for each `d.` field, including `d.vendor_id`. The vendor ID in the left table for Haven remains 8 but is not selected. Drift has an actual delivery with a NULL amount, unlike Haven's entirely absent delivery. Without ORDER BY, the observed sequence is not guaranteed. This is an exploratory step, **not** the final anti-join answer.
+
+**Next learner task:** Explain Step 2 reasoning only; no new SQL clauses or reference solution should be supplied before the independent attempt. Question 8 is not yet solved; closing commits pending.
