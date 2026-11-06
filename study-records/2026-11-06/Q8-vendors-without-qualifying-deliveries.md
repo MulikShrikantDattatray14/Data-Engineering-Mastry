@@ -287,3 +287,49 @@ order by d.vendor_id asc
 | 8 | Haven | East |
 
 **Review:** Correct five vendor names, correct three-column shape and valid anti-join matching logic. Wrong vendor ID values because `SELECT d.vendor_id` selects the same right-side field required to be NULL by `WHERE d.vendor_id IS NULL`. `ORDER BY d.vendor_id` orders by an all-NULL key and therefore does not ensure ascending real vendor IDs. Learner must independently repair displayed ID source and sorting expression before the final answer can be verified. Do not reveal complete reference SQL yet. **Status:** Final attempt needs independent correction; Q8 remains in progress.
+
+
+## Step 5 — Independently corrected final SQLite submission (VERIFIED)
+
+**Learner's final submission preserved verbatim:**
+
+```sql
+select v.vendor_id, v.vendor_name, v.region
+from vendors as v
+left join deliveries as d on v.vendor_id=d.vendor_id and d.status='delivered' and d.amount > 1000 and (v.region = 'West' or d.service='express')
+where d.vendor_id is null
+order by v.vendor_id asc
+```
+
+**Actual execution:** Ran this exact SQL using Python's `sqlite3` in-memory SQLite engine against the original Q8 fixture containing eight vendor rows and nine delivery rows. Execution succeeded without error.
+
+**Actual SQLite output (five rows, three columns):**
+
+| vendor_id | vendor_name | region |
+|---:|---|---|
+| 1 | Atlas | West |
+| 2 | Birch | North |
+| 4 | Drift | South |
+| 5 | Ember | North |
+| 8 | Haven | East |
+
+**Expected output:** Exactly the five rows above, with the three columns in the displayed order.
+
+**Verification:**
+- Correct five vendor IDs, names and regions: **PASS**.
+- Correct column names and order (`vendor_id`, `vendor_name`, `region`): **PASS**.
+- Exactly five rows, no duplicates: **PASS**.
+- Explicit ascending vendor-ID sorting: **PASS**.
+- Includes no-delivery Haven and other nonqualifying vendors; excludes Coral, Fern and Grove: **PASS**.
+- Final JOIN-based SQLite diagnostic requirement: **PASS**.
+
+**Independent debugging history:** Student initially used ambiguous `vendor_id`, then an extraneous trailing comma, later correct ON predicates, correct right-side anti-match test, and finally independently changed the SELECT/ORDER BY from `d.vendor_id` (all NULL) to `v.vendor_id`. Their final corrected submission is genuinely their own and was verified, **not a first-try correct answer**.
+
+**Explanation of correction:** The unmatched right-side `d.vendor_id` must be NULL for every retained vendor, while `v.vendor_id` from the left preserved vendor row contains the vendor's true ID. Sorting on `v.vendor_id` establishes the requested order.
+
+**Reference solution status:** No separate assistant-provided reference has been presented yet. A SQL Server/T-SQL conversion is not executed or student-authored. An authentic third-party official solution is not applicable because Q8 is tutor-created.
+
+**Optional learner-identified new learning:** Pending Yes/No capture and learner's exact wording.  
+**Mastery:** Independent successful correction on this fixture; transfer to new cases untested.  
+**PNP source credit:** 0; this is a tutor-authored diagnostic.  
+**Question closing checkpoint:** Pending optional insight capture and full review. This is an intermediate evidence archive, not the formal question-closing commit.
