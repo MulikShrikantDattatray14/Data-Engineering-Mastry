@@ -69,3 +69,17 @@ Eight customer rows are expected in exact five-column order; output city values 
 ## Mirrored record links
 
 [Journey P003 reattempt](https://github.com/MulikShrikantDattatray14/data-engineering-journey/blob/main/study-records/2026-11-06/PNP-P003-customers-in-metro-cities-reattempt.md) · [Mastry P003 reattempt](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/main/study-records/2026-11-06/PNP-P003-customers-in-metro-cities-reattempt.md).
+
+
+## Third independent attempt — executed SQLite output
+
+Student's exact query:
+
+```sql
+select `CustomerID`, `FirstName`, `LastName`, trim(City), `State`
+from Customers
+where lower(trim(City)) in  ('bangalore','bengaluru','bombay','mumbai','new delhi','delhi','chennai','hyderabad')
+order by trim(City) asc , CustomerID asc
+```
+
+SQLite 3.46.1 on the nine sample customers returned 8 rows (ID order 14,7,12,6,9,3,5,8), matching expected values and observed row order. The actual fourth column name is `trim(City)`, not `City`. Sorting by `trim(City)` is case-sensitive by default and does not guarantee the requested case-insensitive behavior for new input. Student must independently correct both remaining requirements. No verified P003 reattempt credit yet.
