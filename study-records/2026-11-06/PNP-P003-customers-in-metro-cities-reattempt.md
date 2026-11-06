@@ -83,3 +83,19 @@ order by trim(City) asc , CustomerID asc
 ```
 
 SQLite 3.46.1 on the nine sample customers returned 8 rows (ID order 14,7,12,6,9,3,5,8), matching expected values and observed row order. The actual fourth column name is `trim(City)`, not `City`. Sorting by `trim(City)` is case-sensitive by default and does not guarantee the requested case-insensitive behavior for new input. Student must independently correct both remaining requirements. No verified P003 reattempt credit yet.
+
+
+## Step 4 — Identical final-shaped submission, no correction
+
+**Exact learner query (verbatim):**
+
+```sql
+select `CustomerID`, `FirstName`, `LastName`, trim(City), `State`
+from Customers
+where lower(trim(City)) in  ('bangalore','bengaluru','bombay','mumbai','new delhi','delhi','chennai','hyderabad')
+order by trim(City) asc , CustomerID asc
+```
+
+**Actual execution:** SQLite 3.46.1 in memory against the nine-row illustrative Customers fixture. The query executes without error and returns eight rows in customer ID order: 14, 7, 12, 6, 9, 3, 5, 8. Actual column names: `CustomerID`, `FirstName`, `LastName`, `trim(City)`, `State`. All row values match the eight-row expected output on this particular fixture.
+
+**Review:** This submitted SQL is unchanged from the learner's third attempt. The fourth output heading still fails the required `City` alias. The ordering is on case-sensitive `trim(City)` rather than normalized case-insensitive city, so the sorting contract is not robust despite matching this fixture's observed order. Independent correction pending, no P003 reattempt completion credit. Previous student attempts are retained separately. No full reference SQL is revealed.
