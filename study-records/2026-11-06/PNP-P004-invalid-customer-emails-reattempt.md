@@ -66,3 +66,10 @@ This is an **illustrative format check**, not a production-grade email validator
 The first submitted SQL was executed in SQLite 3.46.1. On the four provided sample customers it returned exactly Asha (Missing), Ben (Contains a space), and Cia (Not in name@domain.tld form), in ID order, with five correct column headings.
 
 Additional cases demonstrated limitations: blank and whitespace-only emails were marked invalid format rather than Missing; a valid address ending in `.org` was rejected; and embedded spaces after @ or within the domain could be missed. The complete verbatim query, actual sample output and extended test results are archived in the cross-linked Journey study record. This is a reviewed but not yet independently corrected P004 reattempt. No new PNP source completion credit.
+
+
+## Current full-query submission — malformed paste and incomplete CASE
+
+Learner's new attempt correctly included the Missing condition (`Email IS NULL OR LENGTH(TRIM(Email)) = 0`) and the space condition (`Email LIKE '% %'`) in CASE, with corresponding WHERE checks. The third `WHEN Email NOT LIKE ...` was corrupted by composer formatting, included stray wildcard/escape characters and was missing a `THEN` label before `END`. The pasted text also contained formatting marks around `END` / `FROM`.
+
+**Execution of readable SQL preserving the missing THEN:** Python sqlite3 returned `OperationalError: near "end": syntax error`. No result rows were produced. This is a parsing failure, not a negative sample-result comparison. Prior individual-format tests had succeeded; the full query remains independently unverified. Student needs to resubmit a clean SQLite code block and supply the third CASE branch with a valid THEN label. No reference solution has been revealed or P004 credited.
