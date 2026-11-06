@@ -237,3 +237,10 @@ The existing P003 source file links an instructor answer key. It uses `LOWER(TRI
 - **Actual study minutes:** Unrecorded.
 - **New learning Yes/No:** Pending user response. If Yes, preserve exact wording; if No, record “No new learning” and do not invent a rule.
 - **Question-closing checkpoint:** Pending; do not move to P004 before closing.
+
+
+## Learning capture — No new learning
+
+**Learner's exact response:** `No new learning.`
+
+No new SQL concept is credited or invented. The final SQLite reattempt was independently corrected and verified against the nine-row illustrative sample. P003 was already included in the 20 previously solved PNP questions; it is an independently verified reattempt, not a new source question completion. The formal question-closing checkpoint follows separately.
