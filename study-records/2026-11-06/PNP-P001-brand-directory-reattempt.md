@@ -79,3 +79,43 @@ order by trim(brand) asc
 **Review:** `DISTINCT TRIM(brand)` correctly collapses repeated and space-padded brands; `IS NOT NULL` excludes Product 3 but does not exclude `''` or whitespace-only brands because `TRIM('   ')` returns `''`, which is not NULL in SQLite. The two empty cleaned strings become one extraneous output row after DISTINCT. The student independently solved trimming, deduplication and ordering, but the empty-value requirement remains unmet. **No solution or reference answer is revealed.** Ask for a revised SQLite submission that eliminates the empty row while retaining the three expected brands.
 
 **Status:** Attempted; correction pending. Previously solved baseline PNP P001 is unchanged. New verified *reattempt* credit: 0.
+
+
+## Step 2 — Learner's independently corrected attempt (verbatim)
+
+```sql
+select distinct trim(brand) as Brand
+from Products
+where trim(brand) is not null and length(brand)>0
+order by trim(brand) asc
+```
+
+**Actual execution:** SQLite 3.46.1 in memory using the exact 8-row illustrative P001 `Products` fixture documented above. SQL ran successfully.
+
+**Actual result (4 rows, `Brand` column):**
+
+| Brand |
+|---|
+| `''` (empty string) |
+| Adidas |
+| Nike |
+| Puma |
+
+**Expected result (3 rows):**
+
+| Brand |
+|---|
+| Adidas |
+| Nike |
+| Puma |
+
+**Why the extra row persists:** `LENGTH(Brand)>0` measures original text. Product 4's empty string has length 0 and is rejected, but Product 5's three-space brand has length 3, passes the WHERE filter, and is then trimmed to the empty string in SELECT. `DISTINCT` leaves one empty output entry. The correct reasoning is to validate the normalized/trimmed value rather than the raw one. No assistant/provider reference solution has been revealed; user needs an independent second correction.
+
+**Per-product validation:**
+
+| ProductID | Brand | LENGTH(Brand) | TRIM(Brand) | LENGTH(TRIM(Brand)) |
+|---:|---|---:|---|---:|
+| 4 | `''` | 0 | `''` | 0 |
+| 5 | `'   '` | 3 | `''` | 0 |
+
+**Progress status:** P001 is still a pending reattempt; 0 verified new PNP reattempts credited at this stage. Original baseline source completion is unchanged.
