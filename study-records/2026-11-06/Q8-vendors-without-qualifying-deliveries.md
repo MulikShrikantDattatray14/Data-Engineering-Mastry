@@ -250,3 +250,40 @@ where d.vendor_id is null
 | 8 | Haven | East |
 
 **Review of student's approach:** Correctly identifies all five vendors without qualifying deliveries. The ON clause restricts delivery matches to delivered, amount > 1000, and (West region OR express service); the WHERE null-check retains those without matching qualifying deliveries. Coral/Fern/Grove excluded; Atlas/Birch/Drift/Ember/Haven included. **Not yet the full final solution:** the query selects seven columns instead of three; its selected `d.vendor_id` is NULL for every unmatched vendor rather than the true vendor ID from the left table; and no explicit ORDER BY guarantees vendor order. Do not label mastered or completed. **Next:** Learner's Step 4 reasoning about closing the gap to required output; then an independently authored final query, run/review, reference walk-through and closing commits in both repositories. No final-answer code revealed.
+
+
+## Step 4 — Learner's first final-shaped query (executed; correction needed)
+
+**Learner's exact submitted SQLite query (verbatim):**
+
+```sql
+select d.vendor_id,	v.vendor_name,	v.region
+from vendors as v
+left join deliveries as d on v.vendor_id=d.vendor_id and d.status='delivered' and d.amount > 1000 and (v.region = 'West' or d.service='express')
+where d.vendor_id is null
+order by d.vendor_id asc
+```
+
+**SQLite execution:** successful using the Q8 fixture; returned 5 rows / 3 columns.
+
+**Actual output:**
+
+| vendor_id | vendor_name | region |
+|---|---|---|
+| NULL | Atlas | West |
+| NULL | Birch | North |
+| NULL | Drift | South |
+| NULL | Ember | North |
+| NULL | Haven | East |
+
+**Expected final output:**
+
+| vendor_id | vendor_name | region |
+|---:|---|---|
+| 1 | Atlas | West |
+| 2 | Birch | North |
+| 4 | Drift | South |
+| 5 | Ember | North |
+| 8 | Haven | East |
+
+**Review:** Correct five vendor names, correct three-column shape and valid anti-join matching logic. Wrong vendor ID values because `SELECT d.vendor_id` selects the same right-side field required to be NULL by `WHERE d.vendor_id IS NULL`. `ORDER BY d.vendor_id` orders by an all-NULL key and therefore does not ensure ascending real vendor IDs. Learner must independently repair displayed ID source and sorting expression before the final answer can be verified. Do not reveal complete reference SQL yet. **Status:** Final attempt needs independent correction; Q8 remains in progress.
