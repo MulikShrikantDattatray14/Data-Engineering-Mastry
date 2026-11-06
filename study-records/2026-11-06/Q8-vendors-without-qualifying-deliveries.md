@@ -104,3 +104,27 @@ so first lets start with subquery
 ```
 
 **Review:** Valid as a supplementary learning approach: start by identifying qualifying vendor IDs in an inner query. The problem's original JOIN-only constraint remains mandatory for the final diagnostic, so the student will also independently solve using JOINs. The learner has not submitted SQL yet. **Next:** Ask for the independently written inner SQLite query only; do not reveal the query or its answer. No completion credit.
+
+
+## Step 1 — Learner switches to JOIN approach: first SQLite query
+
+**Student's accompanying statement (verbatim):**
+```text
+so lets start with  joins apporach directly
+```
+
+**Original learner SQLite query (verbatim):**
+
+```sql
+select vendor_id
+from vendors as v
+left join deliveries as d on v.vendor_id=d.vendor_id
+```
+
+**Actual SQLite execution using the Q8 vendors/deliveries sample:** `OperationalError: ambiguous column name: vendor_id`. The original query was executed and failed; it produced **no result set**, not a valid empty table.
+
+**Reason:** Both joined tables define `vendor_id`; the selected column must be qualified with the intended table alias. The LEFT JOIN direction and ON key equality are otherwise correct. Do not reveal the final Q8 solution.
+
+**Student correction:** Pending. **Step 2 reasoning:** Pending until Step 1 independently corrected and executed.
+
+**Checkpoint status:** Intermediate archive only; no Q8 question-closing commit or completion credit.
