@@ -214,3 +214,39 @@ left join deliveries as d on v.vendor_id=d.vendor_id and d.status='delivered' an
 | 8 | Haven | East |
 
 **Student status:** Correct intermediate JOIN filter. Final selection, exactly three columns, and explicit sorting still pending. **Do not reveal next SQL clause**; request learner's Step 3 reasoning only. No Q8 closing/mastery credit.
+
+
+## Step 3 — Learner independently filters LEFT JOIN to unmatched qualifying deliveries
+
+**Exact learner SQLite submission (verbatim):**
+
+```sql
+select d.delivery_id	, d.vendor_id,	v.vendor_name,	v.region, d.status,	d.amount,	d.service
+from vendors as v
+left join deliveries as d on v.vendor_id=d.vendor_id and d.status='delivered' and d.amount > 1000 and (v.region = 'West' or d.service='express')
+where d.vendor_id is null
+```
+
+**Executed in Python's actual SQLite runtime against Q8's original 8 vendors / 9 deliveries sample fixture.** No SQLite errors.
+
+**Actual output:** 5 rows and 7 columns:
+
+| delivery_id | vendor_id | vendor_name | region | status | amount | service |
+|---:|---:|---|---|---|---|---|
+| NULL | NULL | Atlas | West | NULL | NULL | NULL |
+| NULL | NULL | Birch | North | NULL | NULL | NULL |
+| NULL | NULL | Drift | South | NULL | NULL | NULL |
+| NULL | NULL | Ember | North | NULL | NULL | NULL |
+| NULL | NULL | Haven | East | NULL | NULL | NULL |
+
+**Expected final output:** 5 rows and exactly 3 columns:
+
+| vendor_id | vendor_name | region |
+|---:|---|---|
+| 1 | Atlas | West |
+| 2 | Birch | North |
+| 4 | Drift | South |
+| 5 | Ember | North |
+| 8 | Haven | East |
+
+**Review of student's approach:** Correctly identifies all five vendors without qualifying deliveries. The ON clause restricts delivery matches to delivered, amount > 1000, and (West region OR express service); the WHERE null-check retains those without matching qualifying deliveries. Coral/Fern/Grove excluded; Atlas/Birch/Drift/Ember/Haven included. **Not yet the full final solution:** the query selects seven columns instead of three; its selected `d.vendor_id` is NULL for every unmatched vendor rather than the true vendor ID from the left table; and no explicit ORDER BY guarantees vendor order. Do not label mastered or completed. **Next:** Learner's Step 4 reasoning about closing the gap to required output; then an independently authored final query, run/review, reference walk-through and closing commits in both repositories. No final-answer code revealed.
