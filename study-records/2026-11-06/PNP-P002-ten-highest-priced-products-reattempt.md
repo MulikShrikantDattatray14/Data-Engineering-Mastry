@@ -155,3 +155,10 @@ The original P002 repository file includes the source-labelled instructor query.
 - **New PNP source ID completion:** None (P002 was already in baseline).
 - **Learner-identified new learning:** Optional Yes/No not yet asked/recorded.
 - **Formal question-closing commits in both repos:** Pending learning capture. Do not move to P003 before closing checkpoint.
+
+
+## Learning capture — No new learning
+
+**User's exact response:** `No new learning.`
+
+No new concept is credited to the SQL rules bank, and no learner insight is invented. The P002 source reattempt was independently correct on the first submitted query and matched the 13-row illustrative sample's expected 10-row output. It remains an already-solved PNP baseline ID, **not a new source completion**. Formal question-closing checkpoint follows separately.
