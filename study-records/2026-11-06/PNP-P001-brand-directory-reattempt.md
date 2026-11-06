@@ -227,3 +227,13 @@ ORDER BY p.Brand;
 - **First-attempt correctness:** No (this reattempt took 3 submissions).
 - **Focus minutes:** Not provided; no time credited.
 - **New learning Yes/No:** **Pending learner response.** Preserve any Yes wording exactly, then make the question-closing commits in both repositories before continuing.
+
+### Independent reference-run check
+
+Executed separately in SQLite 3.46.1 against the same 8-row illustrative Products fixture:
+
+- Learner final query: `Adidas`, `Nike`, `Puma` — 3 rows.
+- Assistant-reviewed SQLite reference (without redundant `IS NOT NULL`): `Adidas`, `Nike`, `Puma` — 3 rows.
+- Existing source-labeled provider key (selects raw `p.Brand`): `' Nike '`, `Adidas`, `Nike`, `Puma` — 4 rows. This confirms the stored source key and the independently worded normalized-output question differ on this deliberately space-padded example. Do not claim that provider's original key satisfies the normalized sample as stated; don't alter the source key.
+
+**Question closure still pending the user's optional Yes/No insight.**
