@@ -128,3 +128,19 @@ left join deliveries as d on v.vendor_id=d.vendor_id
 **Student correction:** Pending. **Step 2 reasoning:** Pending until Step 1 independently corrected and executed.
 
 **Checkpoint status:** Intermediate archive only; no Q8 question-closing commit or completion credit.
+
+## JOIN Step 1 — Second original attempt (column list corrected, trailing comma)
+
+**Learner submission preserved verbatim:**
+
+```sql
+select d.delivery_id	, d.vendor_id,	v.vendor_name,	v.region, d.status,	d.amount,	d.service,
+from vendors as v
+left join deliveries as d on v.vendor_id=d.vendor_id
+```
+
+**Actual SQLite execution:** `OperationalError: near "from": syntax error`.
+
+**Why:** After the last selected expression `d.service`, the learner placed a comma immediately before `FROM`, so SQLite expects another expression. The table aliases `d` and `v` are now qualified correctly, and the `LEFT JOIN` key condition is correct. No output table exists for this attempt; do not fabricate rows.
+
+**Next:** Learner removes the trailing comma independently, resubmits only the corrected Step 1, then the assistant executes it and shows the actual result. No status or amount conditions and no Q8 reference solution are to be revealed yet.
