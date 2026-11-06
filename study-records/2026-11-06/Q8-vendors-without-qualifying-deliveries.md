@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-06 · **Day 1 / Slot 1 / Question 8**  
 **Type:** Tutor-created diagnostic (not a PNP source question)  
-**Dialect for learner:** SQLite · **Status:** Unattempted; Step 1 reasoning pending  
+**Dialect for learner:** SQLite · **Status:** Final SQLite verified after independent revisions; detailed review completed  
 **Source learning journal:** [Day 1 Slot 1](https://github.com/MulikShrikantDattatray14/data-engineering-journey/blob/main/10-learning-journal/sessions/2026-11-06/slot-01-sql.md)  
 **Cross-repository record:** [Main learning repo](https://github.com/MulikShrikantDattatray14/data-engineering-journey/blob/main/study-records/2026-11-06/Q8-vendors-without-qualifying-deliveries.md) · [Source/practice repo](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/main/study-records/2026-11-06/Q8-vendors-without-qualifying-deliveries.md)
 
@@ -329,7 +329,247 @@ order by v.vendor_id asc
 
 **Reference solution status:** No separate assistant-provided reference has been presented yet. A SQL Server/T-SQL conversion is not executed or student-authored. An authentic third-party official solution is not applicable because Q8 is tutor-created.
 
-**Optional learner-identified new learning:** Pending Yes/No capture and learner's exact wording.  
+**Optional learner-identified new learning:** Yes — exact statement: `anti join pattern concept` and learner's exact wording.  
 **Mastery:** Independent successful correction on this fixture; transfer to new cases untested.  
 **PNP source credit:** 0; this is a tutor-authored diagnostic.  
-**Question closing checkpoint:** Pending optional insight capture and full review. This is an intermediate evidence archive, not the formal question-closing commit.
+**Question closing checkpoint:** Awaiting distinct remote question-closing checkpoint commits. This is an intermediate evidence archive, not the formal question-closing commit.
+
+
+---
+
+# Q8 — Completed learning review and progressive reference
+
+**Review date:** 2026-11-06 (Asia/Kolkata)  
+**Outcome:** Learner independently corrected their JOIN-based final SQLite query; all expected rows/columns/order verified. The problem was not solved correctly on the first try. **This is tutor-authored practice, NOT a PNP/Bosscoder completion and NOT proof of mastery on unseen datasets.**
+
+## Exact learner-reported new learning — preserve verbatim
+
+**Asked:** “Did you learn anything new from Q8?”  
+**Learner:** Yes.
+
+```text
+anti join pattern concept
+```
+
+This exact wording is the learner's statement; the technical explanations below are assistant-authored clarifications, not quotes from the learner.
+
+## Complete problem and fixture
+
+See the first part of this record for the full original tutor-authored question, both `vendors` / `deliveries` sample input tables, five-row required output and inclusion/exclusion reasons. No third-party official key exists for this original diagnostic.
+
+## Executable SQLite fixture (assistant-prepared, executed)
+
+```sql
+CREATE TABLE vendors (
+    vendor_id INTEGER PRIMARY KEY,
+    vendor_name TEXT NOT NULL,
+    region TEXT NOT NULL
+);
+CREATE TABLE deliveries (
+    delivery_id INTEGER PRIMARY KEY,
+    vendor_id INTEGER,
+    status TEXT,
+    amount INTEGER,
+    service TEXT
+);
+INSERT INTO vendors (vendor_id,vendor_name,region) VALUES
+ (1,'Atlas','West'),(2,'Birch','North'),(3,'Coral','West'),
+ (4,'Drift','South'),(5,'Ember','North'),(6,'Fern','West'),
+ (7,'Grove','South'),(8,'Haven','East');
+INSERT INTO deliveries (delivery_id,vendor_id,status,amount,service) VALUES
+ (301,1,'delivered',800,'standard'),
+ (302,1,'pending',2200,'express'),
+ (303,2,'delivered',1700,'standard'),
+ (304,3,'delivered',1900,'express'),
+ (305,3,'delivered',400,'standard'),
+ (306,4,'delivered',NULL,'express'),
+ (307,5,'failed',3000,'express'),
+ (308,6,'delivered',1200,'standard'),
+ (309,7,'delivered',1400,'express');
+```
+
+**Execution environment:** Python `sqlite3`, SQLite 3.46.1, in-memory database. The outputs below come from actual SQL executions against the fixture. Assistant reference stages introduce explicit `ORDER BY` for deterministic inspection; these are not misrepresented as student-authored SQL.
+
+## Stage A — Show every vendor and every delivery
+
+**Assistant's exploratory query (executed):**
+
+```sql
+SELECT v.vendor_id, v.vendor_name, v.region,
+       d.delivery_id, d.status, d.amount, d.service
+FROM vendors AS v
+LEFT JOIN deliveries AS d
+    ON v.vendor_id = d.vendor_id
+ORDER BY v.vendor_id, d.delivery_id;
+```
+
+**Actual 10 rows:**
+
+| vendor_id | vendor_name | region | delivery_id | status | amount | service |
+|---:|---|---|---:|---|---:|---|
+| 1 | Atlas | West | 301 | delivered | 800 | standard |
+| 1 | Atlas | West | 302 | pending | 2200 | express |
+| 2 | Birch | North | 303 | delivered | 1700 | standard |
+| 3 | Coral | West | 304 | delivered | 1900 | express |
+| 3 | Coral | West | 305 | delivered | 400 | standard |
+| 4 | Drift | South | 306 | delivered | NULL | express |
+| 5 | Ember | North | 307 | failed | 3000 | express |
+| 6 | Fern | West | 308 | delivered | 1200 | standard |
+| 7 | Grove | South | 309 | delivered | 1400 | express |
+| 8 | Haven | East | NULL | NULL | NULL | NULL |
+
+**Why:** A LEFT JOIN keeps every vendor. Atlas and Coral produce two rows each because each has two deliveries. Haven produces a NULL-extended right-side row because it has none. **Drift's real delivery with NULL amount is not the same as Haven's absent delivery.**
+
+## Stage B — Match only deliveries satisfying every qualifying condition
+
+**Assistant's progressively extended exploratory query (executed):**
+
+```sql
+SELECT v.vendor_id, v.vendor_name, v.region,
+       d.delivery_id, d.status, d.amount, d.service
+FROM vendors AS v
+LEFT JOIN deliveries AS d
+    ON v.vendor_id = d.vendor_id
+   AND d.status = 'delivered'
+   AND d.amount > 1000
+   AND (v.region = 'West' OR d.service = 'express')
+ORDER BY v.vendor_id, d.delivery_id;
+```
+
+**Actual 8 rows:**
+
+| vendor_id | vendor_name | region | matched_delivery_id | status | amount | service |
+|---:|---|---|---:|---|---:|---|
+| 1 | Atlas | West | NULL | NULL | NULL | NULL |
+| 2 | Birch | North | NULL | NULL | NULL | NULL |
+| 3 | Coral | West | 304 | delivered | 1900 | express |
+| 4 | Drift | South | NULL | NULL | NULL | NULL |
+| 5 | Ember | North | NULL | NULL | NULL | NULL |
+| 6 | Fern | West | 308 | delivered | 1200 | standard |
+| 7 | Grove | South | 309 | delivered | 1400 | express |
+| 8 | Haven | East | NULL | NULL | NULL | NULL |
+
+**Why:** Moving the qualifying conditions into `ON` restricts which right-side rows are matched, **not** which vendors survive. Coral, Fern and Grove have qualifying matches; every other vendor is preserved with NULL delivery fields. The extra low/pending/failed deliveries disappear from matched results. Note that 8 rows is fixture-specific; multiple qualifying deliveries for one vendor could still produce multiple rows.
+
+**Condition precedence:** `AND` combines the three requirements, while the parenthesized `OR` permits either West region **or** express service. Without the parentheses, an `OR` branch might bypass other requirements. For Drift, `NULL > 1000` is UNKNOWN, never TRUE for an `ON` match.
+
+## Stage C — Remove vendors that have qualifying matches
+
+**Assistant's stage query (executed):**
+
+```sql
+SELECT v.vendor_id, v.vendor_name, v.region
+FROM vendors AS v
+LEFT JOIN deliveries AS d
+    ON v.vendor_id = d.vendor_id
+   AND d.status = 'delivered'
+   AND d.amount > 1000
+   AND (v.region = 'West' OR d.service = 'express')
+WHERE d.vendor_id IS NULL
+ORDER BY v.vendor_id ASC;
+```
+
+**Actual final 5 rows:**
+
+| vendor_id | vendor_name | region |
+|---:|---|---|
+| 1 | Atlas | West |
+| 2 | Birch | North |
+| 4 | Drift | South |
+| 5 | Ember | North |
+| 8 | Haven | East |
+
+**Why:** `d.vendor_id IS NULL` means *no qualifying matching delivery survived the ON conditions*. This is a vendor-level absence test, not a test for whether any nonqualifying delivery exists. Here the right-hand join key is a reliable NULL marker for unmatched rows because it equals a non-NULL left vendor key when a row matches. For schemas that permit nullable join keys in other patterns, prefer a known non-nullable right-side primary key, such as `d.delivery_id IS NULL`.
+
+## Stage D — Positive control (who *does* have qualifying deliveries)
+
+This supplementary query is assistant-authored and **executed**; it is a check, not the requested output:
+
+```sql
+SELECT v.vendor_id, v.vendor_name, d.delivery_id
+FROM vendors AS v
+JOIN deliveries AS d
+    ON v.vendor_id = d.vendor_id
+   AND d.status = 'delivered'
+   AND d.amount > 1000
+   AND (v.region = 'West' OR d.service = 'express')
+ORDER BY v.vendor_id;
+```
+
+| vendor_id | vendor_name | delivery_id |
+|---:|---|---:|
+| 3 | Coral | 304 |
+| 6 | Fern | 308 |
+| 7 | Grove | 309 |
+
+Those three vendors are exactly the ones absent from the five-row anti-join result.
+
+## Learner's own final SQLite answer (verified)
+
+The following is **learner-authored**, not a reference silently attributed to the student:
+
+```sql
+select v.vendor_id, v.vendor_name, v.region
+from vendors as v
+left join deliveries as d on v.vendor_id=d.vendor_id and d.status='delivered' and d.amount > 1000 and (v.region = 'West' or d.service='express')
+where d.vendor_id is null
+order by v.vendor_id asc
+```
+
+**Actual:** Five correct rows, exactly the three requested columns, all expected values, sorted ascending. Student correctly changed `SELECT`/`ORDER BY` from `d.vendor_id` (always NULL after the anti-match filter) to `v.vendor_id`.
+
+## Assistant-verified SQLite reference (not official/provider)
+
+This is the assistant's independently formatted reference. It is logically equivalent to the learner's final answer, and the query was actually executed above as Stage C.
+
+```sql
+SELECT v.vendor_id, v.vendor_name, v.region
+FROM vendors AS v
+LEFT JOIN deliveries AS d
+    ON d.vendor_id = v.vendor_id
+   AND d.status = 'delivered'
+   AND d.amount > 1000
+   AND (v.region = 'West' OR d.service = 'express')
+WHERE d.delivery_id IS NULL
+ORDER BY v.vendor_id ASC;
+```
+
+**Proof:** Every matched `deliveries` row has a non-null primary key `delivery_id`. If none matches, `d.delivery_id` is NULL in the preserved vendor row. This returns the same five rows for the sample. This last `delivery_id` variant is a logically validated reference; the actually executed Stage C used `d.vendor_id IS NULL`.
+
+## SQL Server / T-SQL reference (assistant-converted; NOT executed on SQL Server)
+
+```sql
+SELECT v.vendor_id, v.vendor_name, v.region
+FROM dbo.vendors AS v
+LEFT JOIN dbo.deliveries AS d
+    ON d.vendor_id = v.vendor_id
+   AND d.status = 'delivered'
+   AND d.amount > 1000
+   AND (v.region = 'West' OR d.service = 'express')
+WHERE d.delivery_id IS NULL
+ORDER BY v.vendor_id ASC;
+```
+
+**Dialect note:** The LEFT JOIN, ON filters, IS NULL and ORDER BY semantics are portable between SQLite and T-SQL; `dbo.` is a common SQL Server schema prefix, **not** a claim about the user's actual database schema. No SQL Server runtime was used. In actual SQL Server, substitute your real schema/table names.
+
+## Mistakes, edge cases and production considerations
+
+1. **Ambiguous `vendor_id`:** Both tables have the column; always qualify the selected column with `v.` or `d.`.
+2. **Trailing SELECT comma:** A dangling comma before FROM causes SQLite syntax error; check the exact original learner submission preserved above.
+3. **Incorrect `d.vendor_id` in projection/sort:** Because the anti-join WHERE condition retains NULL `d.vendor_id`, all final IDs become NULL. Display/order by `v.vendor_id`.
+4. **Moving qualifying predicates to WHERE:** A NULL-rejecting WHERE predicate would remove no-delivery vendors and change the meaning of the LEFT JOIN.
+5. **One-to-many:** A vendor with multiple qualifying deliveries yields multiple Stage B matched rows; the Stage C anti-match returns the vendor zero times, which is correct. A vendor with multiple *nonqualifying* deliveries still produces one NULL-extended row when no qualifying record is joined.
+6. **NULLs:** Amount NULL does not satisfy >1000. A genuine matched row with nullable attributes should not be confused with a missing match; use `d.delivery_id` (non-null PK) to test.
+7. **Boundary amount:** Exactly 1000 does **not** qualify, as the condition is `> 1000`, not `>= 1000`.
+8. **Real DE use cases:** Identify suppliers with no valid shipments, users without successful events, accounts without settled payments, entities missing required source records. Consider indexes on the join key and selectivity of filtering predicates on large tables; validate using query plans before claiming performance benefits.
+9. **Alternative approach:** `NOT EXISTS` is often a clear anti-match alternative; it was not required for Q8's JOIN-only diagnostic and is not attributed to the learner.
+
+## Outcome and next practice
+
+- Learner's exact new insight: **"anti join pattern concept"**.
+- Status: **Q8 final independently corrected, executed and fully verified on supplied SQLite fixture**.
+- Correct first attempt: **No**.
+- PNP IDs credited: **Zero**.
+- Python pages credited: **Zero**.
+- Official provider solution: **Not applicable** (tutor-created question).
+- Follow-up retrieval: repeat anti-join patterns under different predicates, NULLs, mixed OR/AND logic and vendors with multiple qualifying deliveries.
