@@ -119,3 +119,111 @@ order by trim(brand) asc
 | 5 | `'   '` | 3 | `''` | 0 |
 
 **Progress status:** P001 is still a pending reattempt; 0 verified new PNP reattempts credited at this stage. Original baseline source completion is unchanged.
+
+
+## Step 3 — Independently corrected final SQLite reattempt (verified)
+
+**Learner's exact third SQL submission (verbatim):**
+
+```sql
+select distinct trim(brand) as Brand
+from Products
+where trim(brand) is not null and length(TRIM(Brand))>0
+order by trim(brand) asc
+```
+
+**Execution:** Actual Python `sqlite3` SQLite version **3.46.1**, in memory, with exactly the eight illustrative `Products(ProductID, Brand)` rows in this problem record. Query executed without errors.
+
+**Actual result:**
+
+| Brand |
+|---|
+| Adidas |
+| Nike |
+| Puma |
+
+**Expected result:** Exactly the same three rows, one column called `Brand`, alphabetical ordering. **PASS.** The query removes NULL, empty and whitespace-only brands; trims leading/trailing whitespace; combines duplicate normalized brand names and sorts correctly.
+
+**Independent debugging:** Initial attempt checked only `TRIM(Brand) IS NOT NULL`, which allowed one empty output entry. The next learner-authored attempt added `LENGTH(Brand)>0`, but the original three-space value still passed. The final learner-authored change to `LENGTH(TRIM(Brand))>0` validates the *cleaned* value and passes. **Not a first-try success.**
+
+## Progressive post-attempt walkthrough (assistant-authored)
+
+**Reusable fixture (SQLite):**
+
+```sql
+CREATE TABLE Products (ProductID INTEGER, Brand TEXT);
+INSERT INTO Products (ProductID, Brand) VALUES
+(1,'Nike'),(2,' Nike '),(3,NULL),(4,''),(5,'   '),
+(6,'Adidas'),(7,'Puma'),(8,'Adidas');
+```
+
+**Stage A — inspect cleaned values (executed):**
+
+```sql
+SELECT ProductID, Brand, TRIM(Brand) AS Clean_Brand,
+       LENGTH(TRIM(Brand)) AS Clean_Length
+FROM Products
+ORDER BY ProductID;
+```
+
+| ProductID | Brand | Clean_Brand | Clean_Length |
+|---:|---|---|---:|
+| 1 | Nike | Nike | 4 |
+| 2 | `' Nike '` | Nike | 4 |
+| 3 | NULL | NULL | NULL |
+| 4 | `''` | `''` | 0 |
+| 5 | `'   '` | `''` | 0 |
+| 6 | Adidas | Adidas | 6 |
+| 7 | Puma | Puma | 4 |
+| 8 | Adidas | Adidas | 6 |
+
+**Meaning:** TRIM removes surrounding spaces, but does not turn empty strings into NULL in SQLite. `LENGTH(NULL)` is NULL; `LENGTH('')` is 0.
+
+**Stage B — filter valid normalized values:** `TRIM(Brand) IS NOT NULL AND LENGTH(TRIM(Brand)) > 0` eliminates Products 3, 4 and 5. The five remaining cleaned rows before DISTINCT are `Nike, Nike, Adidas, Puma, Adidas`. (This five-value stage is a direct consequence of the executed fixture; the final learner query was independently executed.)
+
+**Stage C — deduplicate and sort:** DISTINCT produces one row each for `Nike`, `Adidas`, and `Puma`; `ORDER BY TRIM(Brand) ASC` returns `Adidas, Nike, Puma`. The independently executed learner final query proves this output.
+
+**Boundary cases:** A NULL brand is not an empty string; spaces-only become empty under TRIM; duplicates that differ only by surrounding spaces normalize to one name. SQLite `TRIM` by default strips ordinary spaces, not all possible Unicode whitespace. If business rules include tabs or other whitespace characters, define the normalization contract explicitly rather than assuming this query handles every kind. On very large data, function-based predicates and DISTINCT sorting may affect indexes; inspect a query plan before optimizing.
+
+## Assistant-reviewed SQLite reference (not student authored; not an official source key)
+
+```sql
+SELECT DISTINCT TRIM(Brand) AS Brand
+FROM Products
+WHERE LENGTH(TRIM(Brand)) > 0
+ORDER BY Brand ASC;
+```
+
+Because `LENGTH(NULL)` is NULL and a WHERE keeps only TRUE predicates, the explicit `IS NOT NULL` test in the student's solution is logically optional. Keeping it is valid and clear. **Reference is derived and reviewed**, while the student's own full query above is the directly executed verified submission.
+
+## SQL Server/T-SQL reference (assistant-converted; not executed in SQL Server)
+
+```sql
+SELECT DISTINCT TRIM(Brand) AS Brand
+FROM dbo.Products
+WHERE LEN(TRIM(Brand)) > 0
+ORDER BY Brand ASC;
+```
+
+In SQL Server, `LEN` is the usual equivalent to the SQLite `LENGTH` check (with its own trailing-space behavior), and `dbo` is illustrative. Requires an SQL Server version supporting `TRIM`; **T-SQL reference has not been executed**.
+
+## Existing source-provided solution — source comparison, not a current learner submission
+
+The already-saved [PNP P001 source record](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/main/1.%20SQL%20Mastery/1.%20SQL%20Mastry/2.PNP-%20foundations%20and%20practice/0.%20SQL%20basics/P001.%20Brand%20directory.md) labels this provider-key solution:
+
+```sql
+SELECT DISTINCT p.Brand
+FROM Products AS p
+WHERE NULLIF(TRIM(p.Brand), '') IS NOT NULL
+ORDER BY p.Brand;
+```
+
+**Important qualification:** It filters using cleaned `TRIM(p.Brand)`, but selects raw `p.Brand`. Thus `Nike` and `' Nike '` remain distinct in the illustrative sample: the provider-key SQL **does not produce the same normalized output** as this reattempt's specified example. The original reference is preserved verbatim in its source repo. It is neither silently corrected nor attributed to the learner. The learner's submitted SQL satisfies the current illustrative problem specification.
+
+## Completion and insight capture
+
+- **Current attempt:** Verified correct after independent corrections; **source reattempt P001 = 1/6 minimum** in today's planned reattempt work.
+- **New PNP solved source IDs:** Zero (P001 already included in the earlier baseline of 20).
+- **First-attempt correctness:** No (this reattempt took 3 submissions).
+- **Focus minutes:** Not provided; no time credited.
+- **New learning Yes/No:** **Pending learner response.** Preserve any Yes wording exactly, then make the question-closing commits in both repositories before continuing.
