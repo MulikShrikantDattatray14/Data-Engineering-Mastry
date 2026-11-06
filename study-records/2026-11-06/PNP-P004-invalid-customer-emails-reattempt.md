@@ -59,3 +59,10 @@ This is an **illustrative format check**, not a production-grade email validator
 
 - [Journey P004](https://github.com/MulikShrikantDattatray14/data-engineering-journey/blob/main/study-records/2026-11-06/PNP-P004-invalid-customer-emails-reattempt.md)
 - [Mastry P004](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/main/study-records/2026-11-06/PNP-P004-invalid-customer-emails-reattempt.md)
+
+
+## First independent attempt — execution check
+
+The first submitted SQL was executed in SQLite 3.46.1. On the four provided sample customers it returned exactly Asha (Missing), Ben (Contains a space), and Cia (Not in name@domain.tld form), in ID order, with five correct column headings.
+
+Additional cases demonstrated limitations: blank and whitespace-only emails were marked invalid format rather than Missing; a valid address ending in `.org` was rejected; and embedded spaces after @ or within the domain could be missed. The complete verbatim query, actual sample output and extended test results are archived in the cross-linked Journey study record. This is a reviewed but not yet independently corrected P004 reattempt. No new PNP source completion credit.
