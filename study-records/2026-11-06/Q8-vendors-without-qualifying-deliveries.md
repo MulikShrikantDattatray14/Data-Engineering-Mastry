@@ -573,3 +573,8 @@ ORDER BY v.vendor_id ASC;
 - Python pages credited: **Zero**.
 - Official provider solution: **Not applicable** (tutor-created question).
 - Follow-up retrieval: repeat anti-join patterns under different predicates, NULLs, mixed OR/AND logic and vendors with multiple qualifying deliveries.
+
+
+### Post-review SQLite reference verification addendum
+
+The assistant-reference variant using `WHERE d.delivery_id IS NULL` was **also subsequently executed** in the same SQLite 3.46.1 fixture (8 vendors / 9 deliveries). It returned exactly `[(1, 'Atlas', 'West'), (2, 'Birch', 'North'), (4, 'Drift', 'South'), (5, 'Ember', 'North'), (8, 'Haven', 'East')]`. This confirms the separate assistant SQLite reference independently of the learner's original `WHERE d.vendor_id IS NULL` query. SQL Server/T-SQL remains **not executed**. This addendum supersedes the earlier provisional 'not executed' reference-stage note.
