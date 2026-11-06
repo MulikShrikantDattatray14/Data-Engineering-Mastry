@@ -99,3 +99,141 @@ order by trim(City) asc , CustomerID asc
 **Actual execution:** SQLite 3.46.1 in memory against the nine-row illustrative Customers fixture. The query executes without error and returns eight rows in customer ID order: 14, 7, 12, 6, 9, 3, 5, 8. Actual column names: `CustomerID`, `FirstName`, `LastName`, `trim(City)`, `State`. All row values match the eight-row expected output on this particular fixture.
 
 **Review:** This submitted SQL is unchanged from the learner's third attempt. The fourth output heading still fails the required `City` alias. The ordering is on case-sensitive `trim(City)` rather than normalized case-insensitive city, so the sorting contract is not robust despite matching this fixture's observed order. Independent correction pending, no P003 reattempt completion credit. Previous student attempts are retained separately. No full reference SQL is revealed.
+
+
+## Step 5 — Learner's independently corrected final SQLite (verified)
+
+**Exact final learner submission (verbatim):**
+
+```sql
+select `CustomerID`, `FirstName`, `LastName`, trim(City) as City, `State`
+from Customers
+where lower(trim(City)) in  ('bangalore','bengaluru','bombay','mumbai','new delhi','delhi','chennai','hyderabad')
+order by lower(trim(City)) asc , CustomerID asc
+```
+
+**Execution:** Executed exactly as submitted in Python `sqlite3` **SQLite 3.46.1**, in-memory, against the 9-row illustrative `Customers` fixture in this record. No error.
+
+**Actual output, complete (8 rows / 5 correctly named columns):**
+
+| CustomerID | FirstName | LastName | City | State |
+|---:|---|---|---|---|
+| 14 | Isha | Kumar | Bangalore | Karnataka |
+| 7 | Mira | Das | Bengaluru | Karnataka |
+| 12 | Asha | Rao | Bengaluru | Karnataka |
+| 6 | Omar | Khan | Bombay | Maharashtra |
+| 9 | Farah | Ali | Chennai | Tamil Nadu |
+| 3 | Dev | Kumar | Delhi | Delhi |
+| 5 | Nisha | Shah | MUMBAI | Maharashtra |
+| 8 | Lea | Singh | New Delhi | Delhi |
+
+**Exact expected-vs-actual comparison:** PASS — every row and value, 5 exact column names and order, correct exclusion of Pune, inclusive metro spelling variants, preserved original capitalization, trimmed display, case-insensitive city ordering and ascending CustomerID tie-break.
+
+**Independent debugging history:** First learner query produced zero rows because `UPPER(TRIM(City))` was compared with lowercase/mixed-case literals; metro spellings were missing. Second corrected the comparison case but omitted Chennai/Hyderabad and alias/sort requirements (7 rows). Third added the two metros (8 rows), but still lacked the `City` alias and normalized sorting. The next resubmission was identical. **This independently authored final revision** added `AS City` and `ORDER BY LOWER(TRIM(City)) ASC, CustomerID ASC`. Not correct on the first attempt.
+
+## Detailed post-attempt review — progressively executed reference
+
+**Exact reproducible SQLite fixture:**
+
+```sql
+CREATE TABLE Customers (
+    CustomerID INTEGER, FirstName TEXT, LastName TEXT, City TEXT, State TEXT
+);
+INSERT INTO Customers VALUES
+(12,'Asha','Rao',' Bengaluru ','Karnataka'),
+(5,'Nisha','Shah','MUMBAI','Maharashtra'),
+(21,'Riya','Patil','Pune','Maharashtra'),
+(3,'Dev','Kumar','Delhi','Delhi'),
+(7,'Mira','Das','Bengaluru','Karnataka'),
+(9,'Farah','Ali',' Chennai ','Tamil Nadu'),
+(14,'Isha','Kumar','Bangalore','Karnataka'),
+(6,'Omar','Khan',' Bombay ','Maharashtra'),
+(8,'Lea','Singh','New Delhi','Delhi');
+```
+
+### Stage A — compare entered, cleaned and normalized city (executed)
+
+```sql
+SELECT CustomerID, City AS entered_city, TRIM(City) AS cleaned_city,
+       LOWER(TRIM(City)) AS normalized_city
+FROM Customers ORDER BY CustomerID;
+```
+
+| CustomerID | entered_city | cleaned_city | normalized_city |
+|---:|---|---|---|
+| 3 | Delhi | Delhi | delhi |
+| 5 | MUMBAI | MUMBAI | mumbai |
+| 6 | `' Bombay '` | Bombay | bombay |
+| 7 | Bengaluru | Bengaluru | bengaluru |
+| 8 | New Delhi | New Delhi | new delhi |
+| 9 | `' Chennai '` | Chennai | chennai |
+| 12 | `' Bengaluru '` | Bengaluru | bengaluru |
+| 14 | Bangalore | Bangalore | bangalore |
+| 21 | Pune | Pune | pune |
+
+**Why:** `TRIM` removes surrounding ordinary spaces, while `LOWER` produces a comparison key. Neither changes the stored `City`. We display the cleaned value but use the normalized value when matching and sorting.
+
+### Stage B — keep accepted metro spellings (executed)
+
+```sql
+SELECT CustomerID, TRIM(City) AS City FROM Customers
+WHERE LOWER(TRIM(City)) IN
+ ('bangalore','bengaluru','bombay','mumbai','new delhi','delhi','chennai','hyderabad')
+ORDER BY CustomerID;
+```
+
+| CustomerID | City |
+|---:|---|
+| 3 | Delhi |
+| 5 | MUMBAI |
+| 6 | Bombay |
+| 7 | Bengaluru |
+| 8 | New Delhi |
+| 9 | Chennai |
+| 12 | Bengaluru |
+| 14 | Bangalore |
+
+**Why:** The target is eight *allowed spellings* covering five metro areas. Pune is excluded; no Hyderabad row happens to exist in this sample, but Hyderabad is still a required accepted value.
+
+### Stage C — return required columns and deterministic case-insensitive sort (executed)
+
+**Learner's final submission** above was executed and returned the exact expected eight rows, in the required order. The sort key is `LOWER(TRIM(City))`, with `CustomerID` ascending as a tie-break for Bengaluru IDs 7 and 12.
+
+**Pitfalls:** `TRIM(City)` without `AS City` returns an expression-derived column name; `ORDER BY TRIM(City)` may sort capitalized variants differently under case-sensitive collations; `UPPER(...)` compared with lowercase literals yields no matches in default SQLite. SQL does not automatically group synonyms like Bombay and Mumbai unless those spellings appear in the accepted list or a mapping table is used. In production, a normalized city dimension / alias map is safer than a continually expanding hard-coded list.
+
+## Assistant-reviewed SQLite reference (AFTER learner attempt; not provider-official)
+
+```sql
+SELECT CustomerID, FirstName, LastName, TRIM(City) AS City, State
+FROM Customers
+WHERE LOWER(TRIM(City)) IN
+ ('bangalore','bengaluru','bombay','mumbai','new delhi','delhi','chennai','hyderabad')
+ORDER BY LOWER(TRIM(City)), CustomerID;
+```
+
+Equivalent to the learner's independently executed SQLite solution; the explicit `ASC` is optional as ascending is the default.
+
+## SQL Server / T-SQL assistant reference (NOT executed on SQL Server)
+
+```sql
+SELECT CustomerID, FirstName, LastName, TRIM(City) AS City, State
+FROM dbo.Customers
+WHERE LOWER(TRIM(City)) IN
+ ('bangalore','bengaluru','bombay','mumbai','new delhi','delhi','chennai','hyderabad')
+ORDER BY LOWER(TRIM(City)) ASC, CustomerID ASC;
+```
+
+**Note:** This requires a SQL Server version supporting `TRIM`. `dbo` is an illustrative schema prefix. No T-SQL runtime was used and the assistant version is not attributed to the student.
+
+## Source provider answer — attribution and differences
+
+The existing P003 source file links an instructor answer key. It uses `LOWER(TRIM(City))` for filtering and displays `TRIM(City)`; its sorting is on `TRIM(City)` rather than a fully case-normalized sort. Consequently its ordering is dependent on collation, whereas this independent reattempt's expected output explicitly requires case-insensitive city ordering. The source answer file remains unchanged. Do not confuse a source-labelled official key with a new student attempt or claim that the source key is verified against a different normalization contract.
+
+## Progress and learning capture
+
+- **P003 source reattempt:** Fully and independently corrected on the illustrative SQLite sample; **provisional 3/6 verified reattempts** pending Yes/No learning capture and distinct question-closing commits.
+- **Newly solved PNP source IDs today:** 0; P003 already belongs to the previous 20-question solved baseline.
+- **First-attempt correctness:** No.
+- **Actual study minutes:** Unrecorded.
+- **New learning Yes/No:** Pending user response. If Yes, preserve exact wording; if No, record “No new learning” and do not invent a rule.
+- **Question-closing checkpoint:** Pending; do not move to P004 before closing.
