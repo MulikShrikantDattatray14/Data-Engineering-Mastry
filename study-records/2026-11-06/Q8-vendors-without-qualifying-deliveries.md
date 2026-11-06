@@ -176,3 +176,41 @@ left join deliveries as d on v.vendor_id=d.vendor_id
 **Review:** Correct foundational LEFT JOIN. Ten result rows: Atlas and Coral occur twice because each has two delivery records; Haven is preserved without any delivery and receives NULL for each `d.` field, including `d.vendor_id`. The vendor ID in the left table for Haven remains 8 but is not selected. Drift has an actual delivery with a NULL amount, unlike Haven's entirely absent delivery. Without ORDER BY, the observed sequence is not guaranteed. This is an exploratory step, **not** the final anti-join answer.
 
 **Next learner task:** Explain Step 2 reasoning only; no new SQL clauses or reference solution should be supplied before the independent attempt. Question 8 is not yet solved; closing commits pending.
+
+
+## Step 2 — Learner's qualifying-delivery LEFT JOIN
+
+**Learner's exact submitted SQLite (verbatim):**
+
+```sql
+select d.delivery_id	, d.vendor_id,	v.vendor_name,	v.region, d.status,	d.amount,	d.service
+from vendors as v
+left join deliveries as d on v.vendor_id=d.vendor_id and d.status='delivered' and d.amount > 1000 and (v.region = 'West' or d.service='express')
+```
+
+**Executed in SQLite against the Q8 eight-vendor/nine-delivery fixture.** Status: **successful**, 8 rows, 7 columns, with no explicit ordering guarantee.
+
+| delivery_id | vendor_id | vendor_name | region | status | amount | service |
+|---:|---:|---|---|---|---:|---|
+| NULL | NULL | Atlas | West | NULL | NULL | NULL |
+| NULL | NULL | Birch | North | NULL | NULL | NULL |
+| 304 | 3 | Coral | West | delivered | 1900 | express |
+| NULL | NULL | Drift | South | NULL | NULL | NULL |
+| NULL | NULL | Ember | North | NULL | NULL | NULL |
+| 308 | 6 | Fern | West | delivered | 1200 | standard |
+| 309 | 7 | Grove | South | delivered | 1400 | express |
+| NULL | NULL | Haven | East | NULL | NULL | NULL |
+
+**Interpretation:** The ON clause matches only delivered, amount > 1000, and (West vendor OR express service). Atlas, Birch, Drift, Ember and Haven remain from the left table without qualifying matches. Coral, Fern and Grove each have a qualifying match. The SELECT uses `d.vendor_id`, so unmatched vendor ID values show NULL although their `v.vendor_id` values exist. The previous unfiltered join returned 10 rows; this query returns 8. The record displays one row for each vendor in this fixture, but more than one qualifying delivery per vendor could produce multiple joined rows.
+
+**Expected final Q8 output (unchanged; not this intermediate result):**
+
+| vendor_id | vendor_name | region |
+|---:|---|---|
+| 1 | Atlas | West |
+| 2 | Birch | North |
+| 4 | Drift | South |
+| 5 | Ember | North |
+| 8 | Haven | East |
+
+**Student status:** Correct intermediate JOIN filter. Final selection, exactly three columns, and explicit sorting still pending. **Do not reveal next SQL clause**; request learner's Step 3 reasoning only. No Q8 closing/mastery credit.
