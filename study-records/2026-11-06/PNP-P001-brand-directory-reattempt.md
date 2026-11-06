@@ -44,3 +44,38 @@ The source record contains the whole dataset schema; this reattempt uses the exi
 **Post-attempt assistant T-SQL reference:** Withheld.  
 **Provider's official answer from existing source:** Withheld until after learner submission; do not misattribute the source repository's earlier solution to the current attempt.  
 **Progress:** Baseline source P001 already previously solved; no reattempt credit until newly verified.
+
+
+## Step 1 — learner's original independent SQLite attempt (verbatim)
+
+```sql
+select distinct trim(brand) as Brand
+from Products
+where trim(brand) is not null
+order by trim(brand) asc
+```
+
+**Executed with SQLite 3.46.1**, in memory, against the eight-row *illustrative* Products fixture documented above. The learner-submitted query ran without syntax errors.
+
+**Actual columns:** `Brand`.
+
+**Actual result, in returned order (4 rows):**
+
+| Brand |
+|---|
+| `''` (empty string) |
+| Adidas |
+| Nike |
+| Puma |
+
+**Expected (3 rows):**
+
+| Brand |
+|---|
+| Adidas |
+| Nike |
+| Puma |
+
+**Review:** `DISTINCT TRIM(brand)` correctly collapses repeated and space-padded brands; `IS NOT NULL` excludes Product 3 but does not exclude `''` or whitespace-only brands because `TRIM('   ')` returns `''`, which is not NULL in SQLite. The two empty cleaned strings become one extraneous output row after DISTINCT. The student independently solved trimming, deduplication and ordering, but the empty-value requirement remains unmet. **No solution or reference answer is revealed.** Ask for a revised SQLite submission that eliminates the empty row while retaining the three expected brands.
+
+**Status:** Attempted; correction pending. Previously solved baseline PNP P001 is unchanged. New verified *reattempt* credit: 0.
