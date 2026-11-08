@@ -1,5 +1,8 @@
 # Python Mastry
 
+> **Quick revision / canonical foundation notes:** [Open numbered Python foundation folders](<0. Foundation Notes/README.md>). Each topic has one concise `0. Foundation Notes.md` with beginner explanations, runnable examples and JavaScript comparisons. The full 80-page PDF and existing detailed lessons below remain unchanged as source references; **no new practice question files or source-completion credit are created by these notes**.
+
+
 A continuous path through all 80 pages of the [original Python for Data Engineering PDF](<Source/1793477658005.pdf>). Its 7 parts contain 76 lesson, practice, and revision entries. The [Start Here notes](<00. Start Here.md>) cover the opening pages and introduce the store dataset used throughout.
 
 The PDF is the main source. These notes explain its concepts with small original examples and expected output. Relevant [W3Schools Python topics](https://www.w3schools.com/python/) appear at the end of matching lessons, with direct source links. The 36 topics you first supplied remain in Part 1; later lessons add relevant W3Schools extensions.
