@@ -35,6 +35,7 @@ This index is a **source coverage map**, **not** a claim that pages 1–80 were 
 
 ## Bosscoder and mentorship alignment
 
+- The [seven-lecture Bosscoder PDF coverage and gap audit](https://github.com/MulikShrikantDattatray14/data-engineering-journey/blob/main/02-python/bosscoder/README-PDF-VERIFICATION-2026-11-06.md) tracks all supplied lecture PDFs separately. **Do not copy all lecture text into the same notes**; consolidate only distinct concepts and retain lecture-specific references when needed.
 - The [Bosscoder Python Refresher 1 topic checklist](https://github.com/MulikShrikantDattatray14/data-engineering-journey/blob/main/02-python/bosscoder/python-refresher-1-coverage.md) remains an **independent source**. Cross-check it topic-by-topic instead of duplicating lecture notes.
 - For the 80-page mentorship PDF, preserve the original file and all 7 section references above. Link its matched topic from the canonical notes; add a *new* explanation only if the existing note misses an important concept.
 - Practice problems belong in separate numbered files **only after actual independent problem solving**, not because a foundation example, quiz, or sample code was discussed.
