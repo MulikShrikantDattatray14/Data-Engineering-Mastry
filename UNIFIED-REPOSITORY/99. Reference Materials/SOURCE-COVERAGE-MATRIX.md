@@ -26,7 +26,7 @@ This register distinguishes **source preserved** from **concept audited** and **
 | Section | Original PDF pages | Reference status | Canonical note |
 |---|---:|---|---|
 | Introduction / dataset | 1–4 | Preserved | Python basics; deeper audit pending |
-| Python from Zero | 5–24 | 20 lesson files preserved | Basics, conditions, loops, lists, tuples; remaining unique concepts pending |
+| Python from Zero | 5–24 | 20 lesson files preserved | Introductory notes through tuples plus dictionaries/functions/files preview; remaining page-by-page audit pending |
 | Python Foundations | 25–34 | 10 lesson files preserved | Consolidation pending |
 | Advanced Python | 35–40 | 6 lesson files preserved | Consolidation pending |
 | DSA and Complexity | 41–57 | 17 lesson files preserved | Consolidation pending |
@@ -44,4 +44,4 @@ This register distinguishes **source preserved** from **concept audited** and **
 6. Do not delete original PDFs, datasets, lecture notes, question files or previous repositories.
 7. Validate example outputs, Markdown links, SVG assets and source mapping before publishing to the final repository.
 
-**Migration stage:** source copy and exemplar consolidation complete; full subject-wide consolidation, final repo creation/renaming and dashboard cutover remain pending.
+**Migration stage:** source integrity verified (744/744) and additional Python dictionaries, functions, modules/files and SQL joins foundation notes added. The remaining source-by-source consolidation, new repo creation and dashboard cutover are **not complete**. Specific W3Schools dictionaries, file handling and SQL joins pages were verified from the official site on November 8, 2026.

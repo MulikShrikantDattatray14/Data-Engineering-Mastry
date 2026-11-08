@@ -22,7 +22,7 @@
 - [x] Both source trees inventoried.
 - [x] Staging branch created in existing repository (original main untouched).
 - [x] All 192 Journey files snapshotted, with exact path/blob SHA reconciliation (192/192).
-- [ ] Every canonical topic linked/mapped to all four sources and unique gaps merged (five Python introductory foundation chapters and a SQL NULL example are currently staged).
+- [ ] Every canonical topic linked/mapped to all four sources and unique gaps merged (eight Python canonical foundation chapters and SQL NULL/Joins foundation examples are currently staged).
 - [ ] Full functional links, code snippets and visual checks (canonical relative links and sample SQL/Python outputs validated; full interactive dashboard deploy validation pending).
 - [ ] Repository created/renamed to `Data-Engineering-Mastry-Journey` (requires capability currently unavailable to this GitHub connection).
 - [ ] GitHub Pages moved or configured at new repository location.
