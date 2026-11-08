@@ -45,3 +45,13 @@ This register distinguishes **source preserved** from **concept audited** and **
 7. Validate example outputs, Markdown links, SVG assets and source mapping before publishing to the final repository.
 
 **Migration stage:** source integrity verified (744/744) and additional Python dictionaries, functions, modules/files and SQL joins foundation notes added. The remaining source-by-source consolidation, new repo creation and dashboard cutover are **not complete**. Specific W3Schools dictionaries, file handling and SQL joins pages were verified from the official site on November 8, 2026.
+
+## Verified topic and question ID indexes
+
+The [topic-and-problem source index](TOPIC-AND-PROBLEM-INDEX.json) now records:
+
+- **76/76** Python lesson entries with a one-to-one link to source PDF pages **5–80**, with pages **1–4** separately identified as introduction/dataset. This is a complete source-*index*, not a completed learning or content-dedup audit.
+- **205/205** unique PNP SQL question IDs (P/A/X), retaining each original topic folder, source path and blob SHA. The existing baseline 20 previously solved questions are labeled; only P001–P006 have independently verified source reattempts documented in the study journey.
+- A source pointer for Bosscoder lecture audits and official W3Schools Python/SQL tutorials.
+
+The consolidated canonical notes currently include Python basics, operators, loops, slicing, tuples/sets, dictionaries, functions and file-handling previews, plus SQL joins and NULL logic and one fully worked SQL problem. **Remaining unique-source conceptual coverage and all unsolved problem sets are not yet audited.**
