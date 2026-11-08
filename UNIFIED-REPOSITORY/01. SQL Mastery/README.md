@@ -1,0 +1,13 @@
+# SQL Mastery
+
+**Canonical source:** [Bosscoder SQL foundation notes and numbered practice](../../1.%20SQL%20Mastery/1.%20SQL%20Mastry/1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/) + [PNP 205-question source](../../1.%20SQL%20Mastery/1.%20SQL%20Mastry/2.PNP-%20foundations%20and%20practice/). These source files are preserved; they are not repeated as second copies.
+
+| Foundation topic | Existing canonical notes | Numbered practice |
+|---|---|---|
+| SQL basics | [0. Foundation Notes](../../1.%20SQL%20Mastery/1.%20SQL%20Mastry/1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/0.%20SQL%20basics/0.%20Foundation%20Notes.md) | [Source topic](../../1.%20SQL%20Mastery/1.%20SQL%20Mastry/1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/0.%20SQL%20basics/) |
+| Joins | [0. Foundation Notes](../../1.%20SQL%20Mastery/1.%20SQL%20Mastry/1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/2.%20Joins/0.%20Foundation%20Notes.md) | [Numbered problems](../../1.%20SQL%20Mastery/1.%20SQL%20Mastry/1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/2.%20Joins/) |
+| Sorting/grouping | [0. Foundation Notes](../../1.%20SQL%20Mastery/1.%20SQL%20Mastry/1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/3.%20Sorting%20and%20Grouping/0.%20Foundation%20Notes.md) | [Numbered problems](../../1.%20SQL%20Mastery/1.%20SQL%20Mastry/1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/3.%20Sorting%20and%20Grouping/) |
+
+**Problem format:** Full task and schema → example data/expected output/explanation → first independent SQLite attempt → tested SQLite → SQL Server translation → cited official solution if permitted → step-by-step intermediate rows and edge-case checks. Every problem has a distinct ID and status; no fake official results.
+
+[Official W3Schools SQL concepts](https://www.w3schools.com/sql/).
