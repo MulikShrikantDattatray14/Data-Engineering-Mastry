@@ -21,9 +21,13 @@
 
 - [x] Both source trees inventoried.
 - [x] Staging branch created in existing repository (original main untouched).
-- [ ] All 192 Journey files snapshotted, with count reconciliation.
-- [ ] Every canonical topic linked/mapped to all four sources and unique gaps merged.
-- [ ] Full functional links, code snippets and visual checks.
+- [x] All 192 Journey files snapshotted, with exact path/blob SHA reconciliation (192/192).
+- [ ] Every canonical topic linked/mapped to all four sources and unique gaps merged (five Python introductory foundation chapters and a SQL NULL example are currently staged).
+- [ ] Full functional links, code snippets and visual checks (canonical relative links and sample SQL/Python outputs validated; full interactive dashboard deploy validation pending).
 - [ ] Repository created/renamed to `Data-Engineering-Mastry-Journey` (requires capability currently unavailable to this GitHub connection).
 - [ ] GitHub Pages moved or configured at new repository location.
 - [ ] User-approved final switchover after verification.
+
+## Integrity result
+
+A source-to-snapshot audit verified **552/552 original Mastry** blobs unchanged and **192/192 Journey** blobs identical to their source. The [source inventory](<99. Reference Materials/SOURCE-INVENTORY.json>) records paths and SHA hashes. The migration is not production-ready until the full 4-source topic mapping and final repository cutover are verified.
