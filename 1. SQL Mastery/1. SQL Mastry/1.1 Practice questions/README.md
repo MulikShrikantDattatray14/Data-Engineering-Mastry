@@ -6,6 +6,19 @@ Save one file per verified solution, immediately after the question is complete.
 
 Practice topics in the original Bosscoder assignment order. Within each topic, practice PNP questions from Easy to Medium to Hard. Reattempt matching Bosscoder assignments after dinner. Count each PNP source ID once toward the 205-question restart and track Bosscoder separately.
 
+## Practice question index
+
+### SQL Basics
+
+| ID | Question | Set | Difficulty |
+| --- | --- | --- | --- |
+| P001 | [Brand directory](SQL%20Basics/easy/PNP-P001.md) | PNP | `Easy` |
+| P002 | [Ten highest-priced products](SQL%20Basics/easy/PNP-P002.md) | PNP | `Easy` |
+| P003 | [Customers in metro cities](SQL%20Basics/easy/PNP-P003.md) | PNP | `Easy` |
+| P004 | [Customer emails that cannot be delivered](SQL%20Basics/easy/PNP-P004.md) | PNP | `Easy` |
+
+Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
+
 ## Difficulty rubric
 
 | Rating | Criteria |
