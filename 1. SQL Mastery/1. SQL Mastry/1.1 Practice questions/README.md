@@ -21,6 +21,7 @@ Practice topics in the original Bosscoder assignment order. Within each topic, p
 | P007 | [Discount amount and percentage per product](SQL%20Basics/easy/PNP-P007.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P008 | [Price band labels](SQL%20Basics/easy/PNP-P008.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P009 | [Check how Active and Allowed are encoded](SQL%20Basics/easy/PNP-P009.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P010 | [Headline order KPIs](SQL%20Basics/easy/PNP-P010.md) | PNP | ![EASY](../_badges/easy.svg) |
 
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
