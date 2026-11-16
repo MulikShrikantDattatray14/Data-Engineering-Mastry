@@ -2,7 +2,7 @@
 
 **Topic:** Aggregation  
 **Difficulty:** Easy  
-**Status:** Guided walkthrough verified in SQLite. Final learner submission pending.
+**Status:** Final learner submission verified in SQLite.
 
 ## Question
 
@@ -33,7 +33,31 @@ Return **one row per `CategoryID`** from `Products`, sorted by `CategoryID` asce
 
 The two products are discounted by **20%** and **0%**, so their average discount is **10.00%**.
 
-## Guided walkthrough
+## Learner solution — SQLite
+
+```sql
+SELECT
+    CategoryID,
+    COUNT(ProductID) AS products,
+    MIN(Sale_Price) AS min_price,
+    MAX(Sale_Price) AS max_price,
+    ROUND(AVG(Sale_Price), 2) AS avg_price,
+    SUM(CASE
+        WHEN Market_Price = Sale_Price THEN 1
+        ELSE 0
+    END) AS full_price_products,
+    ROUND(AVG(CASE
+        WHEN Market_Price IS NOT NULL AND Market_Price != 0
+        THEN (Market_Price - Sale_Price) * 100.0 / Market_Price
+    END), 2) AS avg_discount_pct
+FROM Products
+GROUP BY CategoryID
+ORDER BY CategoryID ASC;
+```
+
+The sample and extended tests passed, including multiple categories, missing and zero market prices, a fractional discount, and a category with no usable discount percentage. COUNT(ProductID) counts every product when ProductID is non-NULL, as with a primary key.
+
+## Step-by-step walkthrough
 
 Start by asking what one output row represents and which products should contribute to each metric. Use one extended example throughout. It includes the original sample, a zero market price, and a second category with a missing market price.
 
@@ -52,7 +76,7 @@ Start by asking what one output row represents and which products should contrib
 **Why.** Each input row is a product and each output row is a category. All the fields come from Products, so this query reads a single table.
 
 ```sql
-SELECT CategoryID, COUNT(*) AS products
+SELECT CategoryID, COUNT(ProductID) AS products
 FROM Products
 GROUP BY CategoryID
 ORDER BY CategoryID;
@@ -72,7 +96,7 @@ The grouping gives each category its own product count. ORDER BY sorts the two f
 **Why.** These metrics use the sale price. Products 3 and 5 have usable sale prices and still contribute even though their market prices are zero or missing.
 
 ```sql
-SELECT CategoryID, COUNT(*) AS products,
+SELECT CategoryID, COUNT(ProductID) AS products,
        MIN(Sale_Price) AS min_price,
        MAX(Sale_Price) AS max_price,
        ROUND(AVG(Sale_Price), 2) AS avg_price
@@ -122,18 +146,23 @@ Product 2 contributes a real zero to the average and a one to the full-price cou
 **Why.** The flags count products when added. Each eligible product contributes one percentage to the average.
 
 ```sql
-SELECT CategoryID, COUNT(*) AS products,
-       MIN(Sale_Price) AS min_price,
-       MAX(Sale_Price) AS max_price,
-       ROUND(AVG(Sale_Price), 2) AS avg_price,
-       SUM(CASE WHEN Sale_Price = Market_Price THEN 1 ELSE 0 END) AS full_price_products,
-       ROUND(AVG(CASE
-           WHEN Market_Price IS NOT NULL AND Market_Price != 0
-           THEN (Market_Price - Sale_Price) * 100.0 / Market_Price
-       END), 2) AS avg_discount_pct
+SELECT
+    CategoryID,
+    COUNT(ProductID) AS products,
+    MIN(Sale_Price) AS min_price,
+    MAX(Sale_Price) AS max_price,
+    ROUND(AVG(Sale_Price), 2) AS avg_price,
+    SUM(CASE
+        WHEN Market_Price = Sale_Price THEN 1
+        ELSE 0
+    END) AS full_price_products,
+    ROUND(AVG(CASE
+        WHEN Market_Price IS NOT NULL AND Market_Price != 0
+        THEN (Market_Price - Sale_Price) * 100.0 / Market_Price
+    END), 2) AS avg_discount_pct
 FROM Products
 GROUP BY CategoryID
-ORDER BY CategoryID;
+ORDER BY CategoryID ASC;
 ```
 
 | CategoryID | products | min_price | max_price | avg_price | full_price_products | avg_discount_pct |
@@ -154,7 +183,31 @@ Category 10 averages 20% and 0%. Category 20 counts both products, and only prod
 
 For this question, a WHERE filter on market price would remove products 3 and 5 from all metrics. In category 10 that would change the count from 3 to 2 and the minimum from 30 to 80.
 
-All four stages were checked in SQLite on the extended example. The final guided query also matches the original sample.
+All four stages were checked in SQLite on the extended example. The submitted query also matches the original sample.
+
+## Learner solution — SQL Server
+
+```sql
+SELECT
+    CategoryID,
+    COUNT(ProductID) AS products,
+    MIN(Sale_Price) AS min_price,
+    MAX(Sale_Price) AS max_price,
+    ROUND(AVG(CAST(Sale_Price AS DECIMAL(28, 6))), 2) AS avg_price,
+    SUM(CASE
+        WHEN Market_Price = Sale_Price THEN 1
+        ELSE 0
+    END) AS full_price_products,
+    ROUND(AVG(CASE
+        WHEN Market_Price IS NOT NULL AND Market_Price != 0
+        THEN (Market_Price - Sale_Price) * 100.0 / Market_Price
+    END), 2) AS avg_discount_pct
+FROM Products
+GROUP BY CategoryID
+ORDER BY CategoryID ASC;
+```
+
+Casting Sale_Price before AVG preserves fractional averages for integer inputs. Reviewed by inspection.
 
 ## Official solution
 
