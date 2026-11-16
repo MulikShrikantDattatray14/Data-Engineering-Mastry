@@ -12,10 +12,10 @@ Practice topics in the original Bosscoder assignment order. Within each topic, p
 
 | ID | Question | Set | Difficulty |
 | --- | --- | --- | --- |
-| P001 | [Brand directory](SQL%20Basics/easy/PNP-P001.md) | PNP | `Easy` |
-| P002 | [Ten highest-priced products](SQL%20Basics/easy/PNP-P002.md) | PNP | `Easy` |
-| P003 | [Customers in metro cities](SQL%20Basics/easy/PNP-P003.md) | PNP | `Easy` |
-| P004 | [Customer emails that cannot be delivered](SQL%20Basics/easy/PNP-P004.md) | PNP | `Easy` |
+| P001 | [Brand directory](SQL%20Basics/easy/PNP-P001.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P002 | [Ten highest-priced products](SQL%20Basics/easy/PNP-P002.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P003 | [Customers in metro cities](SQL%20Basics/easy/PNP-P003.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P004 | [Customer emails that cannot be delivered](SQL%20Basics/easy/PNP-P004.md) | PNP | ![EASY](../_badges/easy.svg) |
 
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
@@ -23,8 +23,8 @@ Add each verified question to its topic, in difficulty order (Easy, Medium, Hard
 
 | Rating | Criteria |
 | --- | --- |
-| Easy | One core SQL concept, a direct query, and straightforward output rules. |
-| Medium | Combines concepts or requires careful reasoning about joins, grouping, query stages, or common edge cases. |
-| Hard | Requires several dependent steps, advanced SQL patterns, or subtle handling of row grain, ties, NULLs, duplicates, or boundaries. |
+| ![EASY](../_badges/easy.svg) | One core SQL concept, a direct query, and straightforward output rules. |
+| ![MEDIUM](../_badges/medium.svg) | Combines concepts or requires careful reasoning about joins, grouping, query stages, or common edge cases. |
+| ![HARD](../_badges/hard.svg) | Requires several dependent steps, advanced SQL patterns, or subtle handling of row grain, ties, NULLs, duplicates, or boundaries. |
 
 Rate the reasoning required for a correct solution based on the question and its edge cases. Time spent and query length alone do not determine difficulty.
