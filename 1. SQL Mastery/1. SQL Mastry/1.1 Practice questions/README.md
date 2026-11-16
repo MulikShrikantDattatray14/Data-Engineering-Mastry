@@ -36,6 +36,7 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 | ID | Question | Set | Difficulty |
 | --- | --- | --- | --- |
 | P011 | [How much of the catalogue has ever sold?](Aggregation/easy/PNP-P011.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P012 | [Price and discount statistics per category](Aggregation/easy/PNP-P012.md) | PNP | ![EASY](../_badges/easy.svg) |
 
 ### Sorting and Grouping
 
