@@ -6,6 +6,8 @@ Save one file per verified solution, immediately after the question is complete.
 
 Practice topics in the original Bosscoder assignment order. Within each topic, practice PNP questions from Easy to Medium to Hard. Reattempt matching Bosscoder assignments after dinner. Count each PNP source ID once toward the 205-question restart and track Bosscoder separately.
 
+Copy the full question exactly as presented in the study chat, including requirements, sample input, expected output, and the sample explanation. Apply this to every PNP and Bosscoder write-up. Keep the learner solution, walkthrough, and official answer below the complete prompt.
+
 ## Practice question index
 
 ### SQL Basics

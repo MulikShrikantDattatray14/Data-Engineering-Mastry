@@ -5,26 +5,32 @@
 
 ## Question
 
-Return customers with missing or improperly formatted emails from `Customers(CustomerID, FirstName, LastName, Email)`. Apply the first matching rule: NULL or empty emails are `Missing`, emails containing a literal space are `Contains a space`, and emails without the shape name@domain.tld are `Not in name@domain.tld form`. Require at least one character in each part of that shape. Return the email as stored, name the label column `issue`, and sort by customer ID ascending.
+Marketing wants to catch obviously invalid email addresses before sending a campaign. From `Customers`, return only customers whose email fails the exercise’s validation rules. Label the issue using the first applicable rule in this order:
+
+1. `Missing` if `Email` is `NULL` or empty.
+2. `Contains a space` if `Email` contains a space.
+3. `Not in name@domain.tld form` if `Email` fails the required shape. The shape requires at least one character before `@`, at least one between `@` and the dot, and at least one after the dot.
+
+Return `CustomerID`, `FirstName`, `LastName`, `Email`, and `issue`. Show `Email` as stored and sort by `CustomerID` ascending.
 
 ### Sample input
 
 | CustomerID | FirstName | LastName | Email |
 | ---: | --- | --- | --- |
 | 1 | Asha | Rao | `NULL` |
-| 2 | Ben | Das | ben das@example.com |
-| 3 | Cia | Sen | cia.example.com |
-| 4 | Dev | Roy | dev@example.com |
+| 2 | Ben | Das | `ben das@example.com` |
+| 3 | Cia | Sen | `cia.example.com` |
+| 4 | Dev | Roy | `dev@example.com` |
 
 ### Expected output
 
 | CustomerID | FirstName | LastName | Email | issue |
 | ---: | --- | --- | --- | --- |
 | 1 | Asha | Rao | `NULL` | Missing |
-| 2 | Ben | Das | ben das@example.com | Contains a space |
-| 3 | Cia | Sen | cia.example.com | Not in name@domain.tld form |
+| 2 | Ben | Das | `ben das@example.com` | Contains a space |
+| 3 | Cia | Sen | `cia.example.com` | Not in name@domain.tld form |
 
-Dev's address passes all the exercise checks, so it is excluded.
+Dev’s address passes the exercise’s rules, so his row is excluded.
 
 ## Learner solution — SQLite
 

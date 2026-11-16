@@ -5,11 +5,9 @@
 
 ## Question
 
-The merchandising team needs ten products for the Premium picks carousel. Return the ten products with the highest sale prices, highest first. Exclude products with a NULL sale price. When prices tie, put the lower product ID first, including at the cutoff.
+The merchandising team needs ten products for its **Premium picks** carousel. From the `Products` table, return the ten products with the highest `Sale_Price`, highest first. Exclude products with a `NULL` price. If prices tie, the product with the lower `ProductID` comes first.
 
-### Schema
-
-The relevant columns in `Products` are `ProductID` (integer identifier), `Product` and `Brand` (text), and `Sale_Price` (nullable number). Return those four columns in that order.
+Return `ProductID`, `Product`, `Brand`, and `Sale_Price` in that order.
 
 ### Sample input
 
@@ -44,7 +42,11 @@ The relevant columns in `Products` are `ProductID` (integer identifier), `Produc
 | 109 | Lamp | Home | 150 |
 | 4 | Mug | Home | 100 |
 
-Nine products cost more than 100. Mug and Bottle both cost 100. Mug takes the tenth slot because its product ID, 4, is lower than Bottle's 20.
+In order, the returned `ProductID` values are `101, 102, 103, 104, 105, 106, 107, 108, 109, 4`. Each row includes all four requested columns. Mug takes the last slot because it ties with Bottle on price and has the lower ID.
+
+### Schema
+
+The relevant columns in `Products` are `ProductID` (integer identifier), `Product` and `Brand` (text), and `Sale_Price` (nullable number). Return those four columns in that order.
 
 ## Learner solution — SQLite
 

@@ -5,7 +5,16 @@
 
 ## Question
 
-Return every product with one price band based on `Sale_Price`. Label prices below 200 as Budget, prices from 200 inclusive to 700 exclusive as Mid, prices at or above 700 as Premium, and missing prices as Unknown. Return `ProductID`, `Product`, `Sale_Price`, and `price_band`, sorted by product ID ascending.
+Merchandising is adding a **Shop by budget** filter. Return every row from `Products` with exactly one label based on `Sale_Price`.
+
+| Price band | Rule |
+|---|---|
+| `Budget` | Below 200 |
+| `Mid` | At least 200 and below 700 |
+| `Premium` | 700 or above |
+| `Unknown` | `NULL` price |
+
+Return `ProductID`, `Product`, `Sale_Price`, and `price_band`, sorted by `ProductID` ascending.
 
 ### Sample input
 
@@ -27,7 +36,7 @@ Return every product with one price band based on `Sale_Price`. Label prices bel
 | 4 | Watch | 700 | Premium |
 | 5 | Mystery | `NULL` | Unknown |
 
-Book is Mid at 200 and Bag remains Mid at 699.50. Watch starts Premium at 700. Mystery stays in the output as Unknown.
+`699.50` is still Mid. Premium starts at exactly `700`.
 
 ## Learner solution — SQLite
 

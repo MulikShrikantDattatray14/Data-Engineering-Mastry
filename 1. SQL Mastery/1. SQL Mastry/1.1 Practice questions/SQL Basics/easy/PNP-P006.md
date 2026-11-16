@@ -5,7 +5,12 @@
 
 ## Question
 
-From `Products`, calculate the discount as `Market_Price - Sale_Price` and represent a zero discount as SQL NULL. Exclude products missing either price. Keep up to ten known full-price products, sorted by sale price descending and product ID ascending. Return the five sample columns and `discount_display` containing `Full price`.
+The promotions team needs up to ten of the most expensive products that currently sell at full price. Use the `Products` table.
+
+- Calculate the discount as `Market_Price - Sale_Price`. Represent a zero discount as `NULL`.
+- Exclude any product with a missing sale price or market price. Its discount is unknown.
+- Keep only full-price products and show `Full price` in `discount_display`.
+- Sort by `Sale_Price` descending, then `ProductID` ascending. Return up to ten rows.
 
 ### Sample input
 
@@ -23,7 +28,7 @@ From `Products`, calculate the discount as `Market_Price - Sale_Price` and repre
 | 2 | Lamp | Home | 150 | 150 | Full price |
 | 1 | Mug | Home | 100 | 100 | Full price |
 
-Lamp and Mug have equal sale and market prices. Lamp sells for more. Mystery has an unknown discount and Bottle has a discount of 10.
+Lamp comes first because it has the higher sale price. Mystery has a missing price, and Bottle has a discount. Only two rows qualify.
 
 ## Learner solution — SQLite
 

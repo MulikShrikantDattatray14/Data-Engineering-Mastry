@@ -5,11 +5,13 @@
 
 ## Question
 
-Return one result listing the distinct stored values in `Category.Active` and `Payments.Allowed` and the number of rows per value. Return `source_table`, `flag_column`, `raw_value`, and `row_count`. Display nonmissing flag values as text and retain SQL NULL as a group. Output order is flexible.
+The data team wants to see how two flag columns are stored before using them in filters. Return **one result** that lists each distinct value in `Category.Active` and `Payments.Allowed`, with the number of rows holding that value.
+
+Return four columns in this order: `source_table`, `flag_column`, `raw_value`, `row_count`. Show nonmissing values as text. Keep SQL `NULL` as its own group and count the rows in that group. Output order is flexible.
 
 ### Sample input
 
-**Category**
+**`Category`**
 
 | CategoryID | Active |
 | --- | --- |
@@ -18,7 +20,7 @@ Return one result listing the distinct stored values in `Category.Active` and `P
 | 3 | 0 |
 | 4 | `NULL` |
 
-**Payments**
+**`Payments`**
 
 | PaymentID | Allowed |
 | --- | --- |
@@ -30,13 +32,13 @@ Return one result listing the distinct stored values in `Category.Active` and `P
 
 | source_table | flag_column | raw_value | row_count |
 | --- | --- | --- | --- |
-| Category | Active | `NULL` | 1 |
-| Category | Active | `'0'` | 1 |
 | Category | Active | `'1'` | 2 |
-| Payments | Allowed | `'N'` | 2 |
+| Category | Active | `'0'` | 1 |
+| Category | Active | `NULL` | 1 |
 | Payments | Allowed | `'Y'` | 1 |
+| Payments | Allowed | `'N'` | 2 |
 
-Category's two rows with Active = 1 form one group. Its missing flag forms another group with a count of one. Payments has two N flags and one Y flag.
+Category has two rows with `Active = 1` and one with a missing flag, so those values get counts of 2 and 1.
 
 ## Learner solution — SQLite
 

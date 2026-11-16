@@ -5,7 +5,14 @@
 
 ## Question
 
-Return every row in `Products` with its discount amount and percentage of market price, rounded to two decimal places. When the market price is zero or NULL, both discount columns must be NULL. Sort by percentage descending, with NULLs last.
+The pricing team wants to see how much each product is discounted. Return **every product** from `Products` with these columns in order:
+
+`ProductID`, `Product`, `Market_Price`, `Sale_Price`, `discount_amount`, `discount_pct`
+
+- `discount_amount` is the market price minus the sale price.
+- `discount_pct` is the discount as a percentage of the market price, rounded to two decimal places.
+- If `Market_Price` is `NULL` or zero, return `NULL` for both calculated columns and keep the product in the result.
+- Sort by `discount_pct` highest first, with `NULL` values last.
 
 ### Sample input
 
@@ -23,7 +30,7 @@ Return every row in `Products` with its discount amount and percentage of market
 | 1 | Mug | 100 | 80 | 20 | 20.00 |
 | 2 | Sticker | 0 | 0 | `NULL` | `NULL` |
 
-Lamp has a discount of 50 on a market price of 200, so it is 25.00% off. Sticker has no usable market price.
+Lamp comes first because 50 is 25% of its market price. Sticker stays in the result, with both discount values unknown because its market price is zero.
 
 ## Learner solution — SQLite
 

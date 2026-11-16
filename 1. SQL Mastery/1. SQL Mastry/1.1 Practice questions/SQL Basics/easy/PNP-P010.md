@@ -5,7 +5,16 @@
 
 ## Question
 
-Return one summary row for the entire Orders table. Report the order count, distinct ordering customers, total value, average value rounded to two decimals, and earliest and latest order dates.
+Leadership needs **one summary row** for the entire `Orders` table. Every row counts as a placed order. Return these columns in order:
+
+| Column | What it should show |
+|---|---|
+| `total_orders` | Number of orders |
+| `ordering_customers` | Number of distinct customers who placed an order |
+| `total_order_value` | Sum of `Total_Order_Amount` |
+| `avg_order_value` | Average `Total_Order_Amount` per order, rounded to two decimal places |
+| `first_order_date` | Earliest `OrderDate` |
+| `last_order_date` | Latest `OrderDate` |
 
 ### Sample input
 
@@ -14,6 +23,14 @@ Return one summary row for the entire Orders table. Report the order count, dist
 | 1 | 10 | 2025-01-01 | 100 |
 | 2 | 10 | 2025-01-02 | 200 |
 | 3 | 20 | 2025-01-03 | 300 |
+
+### Expected output
+
+| total_orders | ordering_customers | total_order_value | avg_order_value | first_order_date | last_order_date |
+| ---: | ---: | ---: | ---: | --- | --- |
+| 3 | 2 | 600 | 200.00 | 2025-01-01 | 2025-01-03 |
+
+Customer `10` placed two orders and counts once toward `ordering_customers`. Both orders count toward the total and average order value.
 
 ## Step-by-step walkthrough
 

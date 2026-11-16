@@ -5,13 +5,13 @@
 
 ## Question
 
-Build an alphabetical list of brands for the catalogue's Shop by brand filter. Use `Products` and return one column named `Brand`. Return one row per clean brand name. Ignore surrounding spaces and exclude NULL, empty strings, and names consisting only of spaces.
+The catalogue team needs a list of brands for the app’s **Shop by brand** filter. Using the `Products` table, return one column named `Brand` with one row per clean brand name, sorted alphabetically.
 
-### Schema
-
-The exercise uses `Products`. The sample shows `ProductID` (integer) and `Brand` (nullable text). Only `Brand` is required to solve the problem.
+Treat surrounding spaces as insignificant, so `'Nike'` and `' Nike '` represent the same brand. Exclude `NULL`, empty strings, and values that contain only spaces.
 
 ### Sample input
+
+Only the relevant columns from `Products` are shown. Quotes make spaces visible and are used here to represent text values.
 
 | ProductID | Brand |
 | ---: | --- |
@@ -32,7 +32,11 @@ The exercise uses `Products`. The sample shows `ProductID` (integer) and `Brand`
 | Nike |
 | Puma |
 
-Products 1 and 2 represent the same brand after removing surrounding spaces. Products 6 and 8 share a brand. Products 3–5 have no usable brand.
+Products 1 and 2 represent the same brand. Products 6 and 8 both represent Adidas. Products 3–5 have no usable brand, so the filter contains three names in alphabetical order.
+
+### Schema
+
+The exercise uses `Products`. The sample shows `ProductID` (integer) and `Brand` (nullable text). Only `Brand` is required to solve the problem.
 
 ## Learner solution — SQLite
 

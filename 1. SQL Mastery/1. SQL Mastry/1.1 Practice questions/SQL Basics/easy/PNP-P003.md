@@ -5,11 +5,14 @@
 
 ## Question
 
-Marketing is launching same-day delivery in Bengaluru, Mumbai, Delhi, Hyderabad, and Chennai. Return the customers in those metros from `Customers`. Match city names regardless of letter case and surrounding spaces. Include Bangalore, Bombay, and New Delhi as alternate names for Bengaluru, Mumbai, and Delhi. Display the trimmed city with its original spelling and case. Sort alphabetically by trimmed city, ignoring case, then by customer ID ascending.
+Marketing is launching same-day delivery in **Bengaluru, Mumbai, Delhi, Hyderabad, and Chennai**. From `Customers`, return the customers who live in those cities.
 
-### Schema
+- Match city names regardless of letter case and surrounding spaces.
+- Include `Bangalore`, `Bombay`, and `New Delhi` as alternate names for Bengaluru, Mumbai, and Delhi.
+- Display `City` with surrounding spaces removed. Keep its original spelling and letter case.
+- Sort alphabetically by the displayed city, ignoring case, then by `CustomerID` ascending.
 
-The relevant columns are `CustomerID` (integer identifier), `FirstName`, `LastName`, `City`, and `State` (text). Return them in that order.
+Return `CustomerID`, `FirstName`, `LastName`, `City`, and `State` in that order.
 
 ### Sample input
 
@@ -40,7 +43,11 @@ Quotes make surrounding spaces visible.
 | 5 | Nisha | Shah | MUMBAI | Maharashtra |
 | 8 | Lea | Singh | New Delhi | Delhi |
 
-Pune falls outside the launch area. Bangalore, Bombay, and New Delhi qualify as alternate names. Customers 7 and 12 have the same cleaned city, so customer 7 comes first.
+Pune is outside the launch area. Both Bengaluru rows qualify, and customer 7 comes before customer 12 because they have the same displayed city.
+
+### Schema
+
+The relevant columns are `CustomerID` (integer identifier), `FirstName`, `LastName`, `City`, and `State` (text). Return them in that order.
 
 ## Learner solution — SQLite
 

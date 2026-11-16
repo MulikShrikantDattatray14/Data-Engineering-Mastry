@@ -5,7 +5,7 @@
 
 ## Question
 
-Return every order placed from January 1 through March 31, 2025, including all times on March 31. Each row in `Orders` counts as a placed order. Return `OrderID`, `CustomerID`, `OrderDate`, and `Total_Order_Amount`. Sort by `OrderDate` ascending, then by `OrderID` ascending.
+From `Orders`, return every order placed from **January 1 through March 31, 2025**, inclusive. Return `OrderID`, `CustomerID`, `OrderDate`, and `Total_Order_Amount`. Sort by `OrderDate` ascending, then by `OrderID` ascending.
 
 ### Sample input
 
@@ -23,7 +23,7 @@ Return every order placed from January 1 through March 31, 2025, including all t
 | 2 | 11 | 2025-01-01 | 100 |
 | 3 | 12 | 2025-03-31 | 200 |
 
-Orders 2 and 3 fall on the quarter boundaries. Orders 1 and 4 are outside Q1.
+Both boundary dates qualify. December 31 and April 1 fall outside the quarter.
 
 ## Learner solution — SQLite
 
