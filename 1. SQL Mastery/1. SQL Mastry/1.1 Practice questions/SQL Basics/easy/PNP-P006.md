@@ -104,6 +104,86 @@ ORDER BY Sale_Price DESC, ProductID ASC;
 
 The SQL Server adaptation uses `TOP (10)` and was reviewed by inspection.
 
+## Method 2 — Explicit CASE (SQLite)
+
+```sql
+select ProductID, Product, Brand,Sale_Price,Market_Price,
+(
+case when  (Sale_Price is not null and Market_Price is not null) and (Market_Price - Sale_Price)=0 then 'Full price'
+end 
+) as discount_display
+from Products
+where  (Sale_Price is not null and Market_Price is not null) and (
+    CASE
+        WHEN Market_Price - Sale_Price = 0 THEN NULL
+        ELSE Market_Price - Sale_Price
+    END
+) IS NULL
+order by Sale_Price desc , ProductID asc
+limit 10
+```
+
+### 1. Keep products with both prices
+
+The two price checks exclude Mystery. Otherwise a missing price would also yield a NULL discount and pass the later NULL test.
+
+```sql
+SELECT ProductID, Sale_Price, Market_Price FROM Products WHERE Sale_Price IS NOT NULL AND Market_Price IS NOT NULL ORDER BY ProductID;
+```
+
+| ProductID | Sale_Price | Market_Price |
+| ---: | ---: | ---: |
+| 1 | 100 | 100 |
+| 2 | 150 | 150 |
+| 4 | 90 | 100 |
+
+### 2. Calculate the discount and convert zero to NULL
+
+Mug and Lamp have equal prices, so their zero discounts become NULL. Bottle keeps its discount of 10.
+
+```sql
+SELECT ProductID, CASE WHEN Market_Price - Sale_Price = 0 THEN NULL
+                       ELSE Market_Price - Sale_Price END AS discount
+FROM Products
+WHERE Sale_Price IS NOT NULL AND Market_Price IS NOT NULL
+ORDER BY ProductID;
+```
+
+| ProductID | discount |
+| ---: | ---: |
+| 1 | `NULL` |
+| 2 | `NULL` |
+| 4 | 10 |
+
+### 3. Keep NULL discounts, label, and sort
+
+The final SQLite query above applies `IS NULL` to the computed discount. Bottle drops out. The SELECT expression labels the remaining rows `Full price`. Lamp sorts ahead of Mug, and the limit allows up to ten rows.
+
+| ProductID | Product | Brand | Sale_Price | Market_Price | discount_display |
+| --- | --- | --- | --- | --- | --- |
+| 2 | Lamp | Home | 150 | 150 | Full price |
+| 1 | Mug | Home | 100 | 100 | Full price |
+
+### Method 2 — SQL Server
+
+```sql
+SELECT TOP (10) ProductID, Product, Brand,Sale_Price,Market_Price,
+(
+case when  (Sale_Price is not null and Market_Price is not null) and (Market_Price - Sale_Price)=0 then 'Full price'
+end 
+) as discount_display
+from Products
+where  (Sale_Price is not null and Market_Price is not null) and (
+    CASE
+        WHEN Market_Price - Sale_Price = 0 THEN NULL
+        ELSE Market_Price - Sale_Price
+    END
+) IS NULL
+order by Sale_Price desc , ProductID asc;
+```
+
+This adaptation uses `TOP (10)` and was reviewed by inspection.
+
 ## Official solution
 
 The [PNP source notes](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/main/1.%20SQL%20Mastery/1.%20SQL%20Mastry/2.PNP-%20foundations%20and%20practice/11.%20NULL%20Logic/P006.%20Most%20expensive%20products%20that%20are%20never%20discounted.md) reproduce this PostgreSQL answer key query.
