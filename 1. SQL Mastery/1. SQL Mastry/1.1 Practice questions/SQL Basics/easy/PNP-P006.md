@@ -28,34 +28,44 @@ Lamp and Mug have equal sale and market prices. Lamp sells for more. Mystery has
 ## Learner solution — SQLite
 
 ```sql
-select ProductID, Product, Brand,Sale_Price,Market_Price,
-(
-case when  (Sale_Price is not null and Market_Price is not null) and (Market_Price - Sale_Price)=0 then 'Full price'
-end 
-) as discount_display
-from Products
-where  (Sale_Price is not null and Market_Price is not null) and (
-    CASE
-        WHEN Market_Price - Sale_Price = 0 THEN NULL
-        ELSE Market_Price - Sale_Price
-    END
-) IS NULL
-order by Sale_Price desc , ProductID asc
-limit 10
+SELECT ProductID, Product, Brand, Sale_Price, Market_Price,
+       'Full price' AS discount_display
+FROM Products
+WHERE Market_Price = Sale_Price
+ORDER BY Sale_Price DESC, ProductID ASC
+LIMIT 10;
 ```
 
-SQLite checks covered the sample, each missing-price case, a negative discount, ties, and the ten-row limit. The learner used an explicit `CASE` expansion after guidance on `NULLIF` and missing-price handling.
+The equality filter returns the requested rows directly. The original exercise also asks for an intermediate zero-to-NULL discount calculation, which is shown in the official solution below. SQLite checks covered the sample, missing prices, a sale price above market price, ties, and the ten-row limit.
 
 ## Step-by-step walkthrough
 
-### 1. Keep products with both prices
+### 1. Compare the two prices on each row
 
-Check both columns. Mystery drops out because its sale price is missing.
+This preview shows what SQLite evaluates for each product. It returns 1 for equal prices, 0 for unequal prices, and NULL when either price is missing.
+
+```sql
+SELECT ProductID, Product, Sale_Price, Market_Price,
+       Market_Price = Sale_Price AS prices_match
+FROM Products
+ORDER BY ProductID;
+```
+
+| ProductID | Product | Sale_Price | Market_Price | prices_match |
+| --- | --- | --- | --- | --- |
+| 1 | Mug | 100 | 100 | 1 |
+| 2 | Lamp | 150 | 150 | 1 |
+| 3 | Mystery | `NULL` | 100 | `NULL` |
+| 4 | Bottle | 90 | 100 | 0 |
+
+### 2. Keep products with equal prices
+
+The `WHERE` clause keeps only comparisons that are true. Mug and Lamp pass. Mystery drops out because its comparison is unknown, and Bottle drops out because its prices differ.
 
 ```sql
 SELECT ProductID, Product, Brand, Sale_Price, Market_Price
 FROM Products
-WHERE Sale_Price IS NOT NULL AND Market_Price IS NOT NULL
+WHERE Market_Price = Sale_Price
 ORDER BY ProductID;
 ```
 
@@ -63,47 +73,18 @@ ORDER BY ProductID;
 | --- | --- | --- | --- | --- |
 | 1 | Mug | Home | 100 | 100 |
 | 2 | Lamp | Home | 150 | 150 |
-| 4 | Bottle | Home | 90 | 100 |
 
-### 2. Calculate the discount and replace zero with NULL
+### 3. Label and rank the full-price products
 
-The subtraction is zero for Mug and Lamp. Bottle retains its discount of 10. At this stage every row has both prices, so a NULL discount means full price.
+Every remaining row qualifies for the constant `Full price` label. Sort by sale price descending and use product ID ascending for ties. Apply the ten-row limit after sorting. Only two rows qualify in this sample.
 
 ```sql
-SELECT ProductID,
-       CASE WHEN Market_Price - Sale_Price = 0 THEN NULL
-            ELSE Market_Price - Sale_Price
-       END AS discount
+SELECT ProductID, Product, Brand, Sale_Price, Market_Price,
+       'Full price' AS discount_display
 FROM Products
-WHERE Sale_Price IS NOT NULL AND Market_Price IS NOT NULL
-ORDER BY ProductID;
-```
-
-| ProductID | discount |
-| ---: | ---: |
-| 1 | `NULL` |
-| 2 | `NULL` |
-| 4 | 10 |
-
-### 3. Keep full-price rows, label them, and take the top ten
-
-Apply the learner's NULL filter and `CASE` label, then sort before applying the limit. Bottle drops out and Lamp comes before Mug.
-
-```sql
-select ProductID, Product, Brand,Sale_Price,Market_Price,
-(
-case when  (Sale_Price is not null and Market_Price is not null) and (Market_Price - Sale_Price)=0 then 'Full price'
-end 
-) as discount_display
-from Products
-where  (Sale_Price is not null and Market_Price is not null) and (
-    CASE
-        WHEN Market_Price - Sale_Price = 0 THEN NULL
-        ELSE Market_Price - Sale_Price
-    END
-) IS NULL
-order by Sale_Price desc , ProductID asc
-limit 10
+WHERE Market_Price = Sale_Price
+ORDER BY Sale_Price DESC, ProductID ASC
+LIMIT 10;
 ```
 
 | ProductID | Product | Brand | Sale_Price | Market_Price | discount_display |
@@ -114,22 +95,14 @@ limit 10
 ## Learner solution — SQL Server
 
 ```sql
-SELECT TOP (10) ProductID, Product, Brand,Sale_Price,Market_Price,
-(
-case when  (Sale_Price is not null and Market_Price is not null) and (Market_Price - Sale_Price)=0 then 'Full price'
-end 
-) as discount_display
-from Products
-where  (Sale_Price is not null and Market_Price is not null) and (
-    CASE
-        WHEN Market_Price - Sale_Price = 0 THEN NULL
-        ELSE Market_Price - Sale_Price
-    END
-) IS NULL
-order by Sale_Price desc , ProductID asc;
+SELECT TOP (10) ProductID, Product, Brand, Sale_Price, Market_Price,
+       'Full price' AS discount_display
+FROM Products
+WHERE Market_Price = Sale_Price
+ORDER BY Sale_Price DESC, ProductID ASC;
 ```
 
-The adaptation uses `TOP (10)` with the same ordering and was reviewed by inspection.
+The SQL Server adaptation uses `TOP (10)` and was reviewed by inspection.
 
 ## Official solution
 
@@ -150,4 +123,4 @@ ORDER BY p.Sale_Price DESC, p.ProductID
 LIMIT 10;
 ```
 
-The key uses `NULLIF` for the zero-to-NULL conversion. The learner expands that logic using `CASE`.
+The key uses `NULLIF` for the zero-to-NULL conversion. The learner uses equality directly to produce the same final rows.
