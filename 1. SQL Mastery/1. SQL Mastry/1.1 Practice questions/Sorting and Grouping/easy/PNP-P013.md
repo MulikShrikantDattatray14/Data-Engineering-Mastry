@@ -26,11 +26,14 @@ From `Customers`, count registered customers per state. Label missing states as 
 
 Karnataka meets the threshold exactly. Maharashtra has one customer, so it’s excluded.
 
-## Learner solution — SQLite
+## Learner solution — SQLite (CASE)
 
 ```sql
 select 
-COALESCE(State, 'Unknown') AS State
+CASE
+    WHEN State IS NOT NULL THEN State
+    ELSE 'Unknown'
+END AS State
 
 , count(CustomerID) as customer_count
 from Customers
@@ -64,13 +67,16 @@ SELECT State, COUNT(CustomerID) AS customer_count FROM Customers GROUP BY State 
 
 ### 2. Filter whole groups and label the missing state
 
-**What to do.** Use HAVING to apply the threshold after counting. Use COALESCE to display Unknown for the NULL group. It returns the stored state when present and falls back to Unknown for SQL NULL. In this preview, sort by state to inspect the labels.
+**What to do.** Use HAVING to apply the threshold after counting. Use CASE to display Unknown for the NULL group and keep the stored state for other groups. The COALESCE alternative below makes the same choice. In this preview, sort by state to inspect the labels.
 
 **Why.** The threshold is a condition on a whole group. Filtering missing states in WHERE would remove their rows before they can contribute to the Unknown group.
 
 ```sql
 select 
-COALESCE(State, 'Unknown') AS State
+CASE
+    WHEN State IS NOT NULL THEN State
+    ELSE 'Unknown'
+END AS State
 
 , count(CustomerID) as customer_count
 from Customers
@@ -99,7 +105,27 @@ Maharashtra drops out. Karnataka and Unknown both qualify at exactly five.
 | Karnataka | 5 |
 | Unknown | 5 |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server (CASE)
+
+```sql
+select 
+CASE
+    WHEN State IS NOT NULL THEN State
+    ELSE 'Unknown'
+END AS State
+
+, count(CustomerID) as customer_count
+from Customers
+group by state
+having count(CustomerID)>=5
+order by  count(CustomerID) desc, State asc;
+```
+
+This adaptation was reviewed by inspection.
+
+## Alternative — COALESCE (SQLite and SQL Server)
+
+`COALESCE` returns the first non-NULL value. It keeps a known state or uses `Unknown` for SQL NULL. The grouping, threshold, and sort are the same as in the CASE version.
 
 ```sql
 select 
@@ -110,9 +136,10 @@ from Customers
 group by state
 having count(CustomerID)>=5
 order by  count(CustomerID) desc, State asc;
+
 ```
 
-This adaptation was reviewed by inspection.
+Both expressions returned the same results in SQLite on the original and extended examples. The SQL Server versions were reviewed by inspection.
 
 ## Official solution
 
