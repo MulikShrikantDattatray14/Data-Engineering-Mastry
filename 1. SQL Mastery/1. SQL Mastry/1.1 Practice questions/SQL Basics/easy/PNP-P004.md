@@ -147,3 +147,43 @@ ORDER BY c.CustomerID;
 ```
 
 The official solution treats spaces-only emails as `Missing`. The learner solution labels them `Contains a space`, following the exercise's stated rule that NULL or empty values are missing.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT c.CustomerID,
+       c.FirstName,
+       c.LastName,
+       c.Email,
+       CASE WHEN c.Email IS NULL OR TRIM(c.Email) = '' THEN 'Missing'
+            WHEN c.Email LIKE '% %'                    THEN 'Contains a space'
+            ELSE 'Not in name@domain.tld form'
+       END AS issue
+FROM Customers AS c
+WHERE c.Email IS NULL
+   OR TRIM(c.Email) = ''
+   OR c.Email LIKE '% %'
+   OR c.Email NOT LIKE '%_@_%._%'
+ORDER BY c.CustomerID;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT c.CustomerID,
+       c.FirstName,
+       c.LastName,
+       c.Email,
+       CASE WHEN c.Email IS NULL OR TRIM(c.Email) = '' THEN 'Missing'
+            WHEN CHARINDEX(' ', c.Email) > 0                    THEN 'Contains a space'
+            ELSE 'Not in name@domain.tld form'
+       END AS issue
+FROM Customers AS c
+WHERE c.Email IS NULL
+   OR TRIM(c.Email) = ''
+   OR CHARINDEX(' ', c.Email) > 0
+   OR c.Email NOT LIKE '%_@_%._%'
+ORDER BY c.CustomerID;
+```
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

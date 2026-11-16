@@ -183,3 +183,37 @@ ORDER BY p.ProductID;
 ```
 
 The official solution checks NULL first and uses the ordering of the CASE branches to shorten the remaining comparisons. The learner's query expresses the ranges explicitly.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Sale_Price,
+       CASE
+           WHEN p.Sale_Price IS NULL THEN 'Unknown'
+           WHEN p.Sale_Price < 200   THEN 'Budget'
+           WHEN p.Sale_Price < 700   THEN 'Mid'
+           ELSE 'Premium'
+       END AS price_band
+FROM Products AS p
+ORDER BY p.ProductID;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Sale_Price,
+       CASE
+           WHEN p.Sale_Price IS NULL THEN 'Unknown'
+           WHEN p.Sale_Price < 200   THEN 'Budget'
+           WHEN p.Sale_Price < 700   THEN 'Mid'
+           ELSE 'Premium'
+       END AS price_band
+FROM Products AS p
+ORDER BY p.ProductID;
+```
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

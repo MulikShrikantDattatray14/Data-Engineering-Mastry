@@ -185,3 +185,32 @@ LIMIT 10;
 ```
 
 The source query uses table aliases and relies on ascending order as the default for `ProductID`. It produces the same ordering as the learner's explicit `ASC`.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Brand,
+       p.Sale_Price
+FROM Products AS p
+WHERE p.Sale_Price IS NOT NULL
+ORDER BY p.Sale_Price DESC,
+         p.ProductID
+LIMIT 10;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT TOP (10) p.ProductID,
+       p.Product,
+       p.Brand,
+       p.Sale_Price
+FROM Products AS p
+WHERE p.Sale_Price IS NOT NULL
+ORDER BY p.Sale_Price DESC,
+         p.ProductID;
+```
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

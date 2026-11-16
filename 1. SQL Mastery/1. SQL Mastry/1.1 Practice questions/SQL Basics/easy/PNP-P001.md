@@ -179,3 +179,25 @@ ORDER BY TRIM(Brand) ASC;
 | Adidas |
 | Nike |
 | Puma |
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT DISTINCT p.Brand
+FROM Products AS p
+WHERE NULLIF(TRIM(p.Brand), '') IS NOT NULL
+ORDER BY p.Brand;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT DISTINCT p.Brand
+FROM Products AS p
+WHERE NULLIF(TRIM(p.Brand), '') IS NOT NULL
+ORDER BY p.Brand;
+```
+
+The answer key returns the stored brand text. The learner query also trims the displayed brand, which affects the padded-Nike sample.
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

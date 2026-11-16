@@ -110,3 +110,31 @@ ORDER BY o.OrderDate, o.OrderID;
 ```
 
 The official solution uses typed date literals with the same inclusive start and exclusive end as the learner's query.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT o.OrderID,
+       o.CustomerID,
+       o.OrderDate,
+       o.Total_Order_Amount
+FROM Orders AS o
+WHERE o.OrderDate >= '2025-01-01'
+  AND o.OrderDate <  '2025-04-01'
+ORDER BY o.OrderDate, o.OrderID;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT o.OrderID,
+       o.CustomerID,
+       o.OrderDate,
+       o.Total_Order_Amount
+FROM Orders AS o
+WHERE o.OrderDate >= CONVERT(date, '20250101', 112)
+  AND o.OrderDate <  CONVERT(date, '20250401', 112)
+ORDER BY o.OrderDate, o.OrderID;
+```
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

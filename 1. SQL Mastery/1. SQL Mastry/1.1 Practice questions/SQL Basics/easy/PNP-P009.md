@@ -179,3 +179,49 @@ ORDER BY source_table, raw_value NULLS LAST;
 ```
 
 The answer key groups by the cast text and adds an explicit sort. The learner groups by the stored flag, then casts it for display. Both give the same groups on the sample.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT 'Category'                  AS source_table,
+       'Active'                    AS flag_column,
+       CAST(cat.Active AS TEXT) AS raw_value,
+       COUNT(*)                    AS row_count
+FROM Category AS cat
+GROUP BY CAST(cat.Active AS TEXT)
+UNION ALL
+SELECT 'Payments',
+       'Allowed',
+       CAST(pay.Allowed AS TEXT),
+       COUNT(*)
+FROM Payments AS pay
+GROUP BY CAST(pay.Allowed AS TEXT)
+ORDER BY source_table, raw_value NULLS LAST;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+WITH flag_counts AS (
+    SELECT 'Category'                  AS source_table,
+           'Active'                    AS flag_column,
+           CAST(cat.Active AS NVARCHAR(MAX)) AS raw_value,
+           COUNT(*)                    AS row_count
+    FROM Category AS cat
+    GROUP BY CAST(cat.Active AS NVARCHAR(MAX))
+    UNION ALL
+    SELECT 'Payments',
+           'Allowed',
+           CAST(pay.Allowed AS NVARCHAR(MAX)),
+           COUNT(*)
+    FROM Payments AS pay
+    GROUP BY CAST(pay.Allowed AS NVARCHAR(MAX))
+)
+SELECT source_table, flag_column, raw_value, row_count
+FROM flag_counts
+ORDER BY source_table, CASE WHEN raw_value IS NULL THEN 1 ELSE 0 END, raw_value;
+```
+
+The SQL Server outer sort keeps a missing flag after the nonmissing flags within each source.
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

@@ -129,3 +129,29 @@ FROM Orders AS o;
 ```
 
 The answer key uses COUNT(*) because the exercise counts every row as a placed order.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT COUNT(*)                            AS total_orders,
+       COUNT(DISTINCT o.CustomerID)        AS ordering_customers,
+       SUM(o.Total_Order_Amount)           AS total_order_value,
+       ROUND(AVG(o.Total_Order_Amount), 2) AS avg_order_value,
+       MIN(o.OrderDate)                    AS first_order_date,
+       MAX(o.OrderDate)                    AS last_order_date
+FROM Orders AS o;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT COUNT(*)                            AS total_orders,
+       COUNT(DISTINCT o.CustomerID)        AS ordering_customers,
+       SUM(o.Total_Order_Amount)           AS total_order_value,
+       ROUND(AVG(CAST(o.Total_Order_Amount AS DECIMAL(28, 6))), 2) AS avg_order_value,
+       MIN(o.OrderDate)                    AS first_order_date,
+       MAX(o.OrderDate)                    AS last_order_date
+FROM Orders AS o;
+```
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

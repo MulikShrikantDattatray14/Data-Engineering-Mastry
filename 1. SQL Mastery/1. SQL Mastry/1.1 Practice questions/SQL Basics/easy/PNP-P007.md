@@ -215,3 +215,35 @@ FROM Products AS p
 ORDER BY discount_pct DESC NULLS LAST,
          p.ProductID;
 ```
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Market_Price,
+       p.Sale_Price,
+       NULLIF(p.Market_Price, 0) - p.Sale_Price                                      AS discount_amount,
+       ROUND(100.0 * (p.Market_Price - p.Sale_Price) / NULLIF(p.Market_Price, 0), 2) AS discount_pct
+FROM Products AS p
+ORDER BY discount_pct DESC,
+         p.ProductID;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Market_Price,
+       p.Sale_Price,
+       NULLIF(p.Market_Price, 0) - p.Sale_Price                                      AS discount_amount,
+       ROUND(100.0 * (p.Market_Price - p.Sale_Price) / NULLIF(p.Market_Price, 0), 2) AS discount_pct
+FROM Products AS p
+ORDER BY discount_pct DESC,
+         p.ProductID;
+```
+
+Descending order places NULL percentages last in both target engines.
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

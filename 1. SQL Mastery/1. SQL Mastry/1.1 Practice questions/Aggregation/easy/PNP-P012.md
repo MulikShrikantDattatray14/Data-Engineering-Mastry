@@ -155,3 +155,57 @@ Category 10 averages 20% and 0%. Category 20 counts both products, and only prod
 For this question, a WHERE filter on market price would remove products 3 and 5 from all metrics. In category 10 that would change the count from 3 to 2 and the minimum from 30 to 80.
 
 All four stages were checked in SQLite on the extended example. The final guided query also matches the original sample.
+
+## Official solution
+
+[PNP answer key, Q12](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/8b55ca0d79972b02075f3e1b33289c310dd05862/1.%20SQL%20Mastery/1.%20SQL%20Mastry/2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql)
+
+```sql
+SELECT p.CategoryID,
+       COUNT(*)                                                  AS products,
+       MIN(p.Sale_Price)                                         AS min_price,
+       MAX(p.Sale_Price)                                         AS max_price,
+       ROUND(AVG(p.Sale_Price), 2)                               AS avg_price,
+       COUNT(*) FILTER (WHERE p.Sale_Price = p.Market_Price)     AS full_price_products,
+       ROUND(AVG(100.0 * (p.Market_Price - p.Sale_Price)
+                 / NULLIF(p.Market_Price, 0)), 2)                AS avg_discount_pct
+FROM Products AS p
+GROUP BY p.CategoryID
+ORDER BY p.CategoryID NULLS LAST;
+```
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT p.CategoryID,
+       COUNT(*)                                                  AS products,
+       MIN(p.Sale_Price)                                         AS min_price,
+       MAX(p.Sale_Price)                                         AS max_price,
+       ROUND(AVG(p.Sale_Price), 2)                               AS avg_price,
+       COUNT(*) FILTER (WHERE p.Sale_Price = p.Market_Price)     AS full_price_products,
+       ROUND(AVG(100.0 * (p.Market_Price - p.Sale_Price)
+                 / NULLIF(p.Market_Price, 0)), 2)                AS avg_discount_pct
+FROM Products AS p
+GROUP BY p.CategoryID
+ORDER BY p.CategoryID NULLS LAST;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT p.CategoryID,
+       COUNT(*)                                                  AS products,
+       MIN(p.Sale_Price)                                         AS min_price,
+       MAX(p.Sale_Price)                                         AS max_price,
+       ROUND(AVG(CAST(p.Sale_Price AS DECIMAL(28, 6))), 2)                               AS avg_price,
+       COUNT(CASE WHEN p.Sale_Price = p.Market_Price THEN 1 END)     AS full_price_products,
+       ROUND(AVG(100.0 * (p.Market_Price - p.Sale_Price)
+                 / NULLIF(p.Market_Price, 0)), 2)                AS avg_discount_pct
+FROM Products AS p
+GROUP BY p.CategoryID
+ORDER BY CASE WHEN p.CategoryID IS NULL THEN 1 ELSE 0 END, p.CategoryID;
+```
+
+SQLite supports the source FILTER and NULLS LAST clauses. The SQL Server adaptation uses a conditional COUNT and an explicit NULL sort key.
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

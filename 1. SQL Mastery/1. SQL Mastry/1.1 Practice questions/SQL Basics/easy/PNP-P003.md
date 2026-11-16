@@ -173,3 +173,35 @@ ORDER BY TRIM(c.City), c.CustomerID;
 ```
 
 The official query orders by the trimmed city using the database collation. The learner query explicitly normalizes case in the sort key to match the exercise's case-insensitive ordering.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT c.CustomerID,
+       c.FirstName,
+       c.LastName,
+       TRIM(c.City) AS City,
+       c.State
+FROM Customers AS c
+WHERE LOWER(TRIM(c.City)) IN ('bengaluru', 'bangalore', 'mumbai', 'bombay',
+                                'delhi', 'new delhi', 'hyderabad', 'chennai')
+ORDER BY TRIM(c.City), c.CustomerID;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT c.CustomerID,
+       c.FirstName,
+       c.LastName,
+       TRIM(c.City) AS City,
+       c.State
+FROM Customers AS c
+WHERE LOWER(TRIM(c.City)) IN ('bengaluru', 'bangalore', 'mumbai', 'bombay',
+                                'delhi', 'new delhi', 'hyderabad', 'chennai')
+ORDER BY TRIM(c.City), c.CustomerID;
+```
+
+These adaptations retain the answer key’s collation-dependent sort on the trimmed city. The learner query explicitly sorts case-insensitively.
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

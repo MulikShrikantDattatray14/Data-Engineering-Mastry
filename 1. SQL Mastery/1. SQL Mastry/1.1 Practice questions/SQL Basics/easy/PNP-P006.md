@@ -237,3 +237,38 @@ LIMIT 10;
 ```
 
 The key uses `NULLIF` for the zero-to-NULL conversion. The learner uses equality directly to produce the same final rows.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Brand,
+       p.Sale_Price,
+       p.Market_Price,
+       COALESCE(CAST(NULLIF(p.Market_Price - p.Sale_Price, 0) AS TEXT), 'Full price') AS discount_display
+FROM Products AS p
+WHERE p.Sale_Price IS NOT NULL
+  AND p.Market_Price IS NOT NULL
+  AND NULLIF(p.Market_Price - p.Sale_Price, 0) IS NULL
+ORDER BY p.Sale_Price DESC, p.ProductID
+LIMIT 10;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT TOP (10) p.ProductID,
+       p.Product,
+       p.Brand,
+       p.Sale_Price,
+       p.Market_Price,
+       COALESCE(CAST(NULLIF(p.Market_Price - p.Sale_Price, 0) AS NVARCHAR(100)), 'Full price') AS discount_display
+FROM Products AS p
+WHERE p.Sale_Price IS NOT NULL
+  AND p.Market_Price IS NOT NULL
+  AND NULLIF(p.Market_Price - p.Sale_Price, 0) IS NULL
+ORDER BY p.Sale_Price DESC, p.ProductID;
+```
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.

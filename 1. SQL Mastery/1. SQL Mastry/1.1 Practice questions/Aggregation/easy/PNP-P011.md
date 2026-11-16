@@ -152,3 +152,31 @@ LEFT JOIN OrderDetails AS od ON od.ProductID = p.ProductID;
 ```
 
 The answer key counts the order line ID for sale_lines. Counting the matched product ID gives the same result when order line IDs are non-NULL. Both approaches count distinct order-side product IDs for products_sold.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT COUNT(*)                                       AS rows_after_join,
+       COUNT(od.OrderDetailID)                        AS sale_lines,
+       COUNT(DISTINCT p.ProductID)                    AS listed_products,
+       COUNT(DISTINCT od.ProductID)                   AS products_sold,
+       ROUND(100.0 * COUNT(DISTINCT od.ProductID)
+             / NULLIF(COUNT(DISTINCT p.ProductID), 0), 2) AS pct_sold
+FROM Products AS p
+LEFT JOIN OrderDetails AS od ON od.ProductID = p.ProductID;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT COUNT(*)                                       AS rows_after_join,
+       COUNT(od.OrderDetailID)                        AS sale_lines,
+       COUNT(DISTINCT p.ProductID)                    AS listed_products,
+       COUNT(DISTINCT od.ProductID)                   AS products_sold,
+       ROUND(100.0 * COUNT(DISTINCT od.ProductID)
+             / NULLIF(COUNT(DISTINCT p.ProductID), 0), 2) AS pct_sold
+FROM Products AS p
+LEFT JOIN OrderDetails AS od ON od.ProductID = p.ProductID;
+```
+
+SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
