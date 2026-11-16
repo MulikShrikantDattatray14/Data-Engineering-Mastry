@@ -17,6 +17,7 @@ Practice topics in the original Bosscoder assignment order. Within each topic, p
 | P003 | [Customers in metro cities](SQL%20Basics/easy/PNP-P003.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P004 | [Customer emails that cannot be delivered](SQL%20Basics/easy/PNP-P004.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P005 | [Orders placed in Q1 2025](SQL%20Basics/easy/PNP-P005.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P006 | [Most expensive products sold at full price](SQL%20Basics/easy/PNP-P006.md) | PNP | ![EASY](../_badges/easy.svg) |
 
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
