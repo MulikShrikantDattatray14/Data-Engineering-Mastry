@@ -23,6 +23,12 @@ Practice topics in the original Bosscoder assignment order. Within each topic, p
 | P009 | [Check how Active and Allowed are encoded](SQL%20Basics/easy/PNP-P009.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P010 | [Headline order KPIs](SQL%20Basics/easy/PNP-P010.md) | PNP | ![EASY](../_badges/easy.svg) |
 
+### Aggregation
+
+| ID | Question | Set | Difficulty |
+| --- | --- | --- | --- |
+| P011 | [How much of the catalogue has ever sold?](Aggregation/easy/PNP-P011.md) | PNP | ![EASY](../_badges/easy.svg) |
+
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
 ## Difficulty rubric
