@@ -45,6 +45,12 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 | P013 | [States with at least five customers](Sorting%20and%20Grouping/easy/PNP-P013.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P014 | [Orders per month in 2025](Sorting%20and%20Grouping/easy/PNP-P014.md) | PNP | ![EASY](../_badges/easy.svg) |
 
+### Joins
+
+| ID | Question | Set | Difficulty |
+| --- | --- | --- | --- |
+| P015 | [Product count for every category](Joins/easy/PNP-P015.md) | PNP | ![EASY](../_badges/easy.svg) |
+
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
 ## Difficulty rubric
