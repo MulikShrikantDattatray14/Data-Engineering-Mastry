@@ -50,6 +50,7 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 | ID | Question | Set | Difficulty |
 | --- | --- | --- | --- |
 | P015 | [Product count for every category](Joins/easy/PNP-P015.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P016 | [December 2025 orders with customer names](Joins/easy/PNP-P016.md) | PNP | ![EASY](../_badges/easy.svg) |
 
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
