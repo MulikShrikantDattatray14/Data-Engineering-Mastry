@@ -43,6 +43,8 @@ Verified the sample, an order line for an unlisted product, a catalogue with no 
 
 ### 1. Join from the catalogue
 
+**Why `LEFT JOIN`?** The denominator is the entire catalogue, so every row from `Products` must survive even when no order line matches. An `INNER JOIN` would drop Cup, shrinking the denominator from three products to two and raising the sample percentage to 100%. A `FULL OUTER JOIN` could also retain order lines for products absent from the catalogue. `LEFT JOIN` keeps every catalogue product and attaches only its matching order lines.
+
 Pen matches two lines, Bag matches one, and Cup retains a row with NULLs on the order-line side.
 
 ```sql
