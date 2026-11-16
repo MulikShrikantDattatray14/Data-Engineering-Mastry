@@ -62,7 +62,15 @@ The exact submission passed in SQLite with double-quoted string literal compatib
 
 ## Step-by-step walkthrough
 
+**How to start.** Which city value is for display and which is for comparison?
+
+Use the same sample throughout and check the output after each step.
+
 ### 1. Check the displayed value and the matching value
+
+**What to do.** Check the displayed value and the matching value.
+
+**Why.** Case-insensitive matching can coexist with original display case.
 
 Use `TRIM(City)` for display and `TRIM(LOWER(City))` for comparison. This diagnostic query shows both values for each sample row. Mumbai illustrates the difference between preserving case for display and normalizing it for matching.
 
@@ -87,6 +95,10 @@ ORDER BY CustomerID;
 
 ### 2. Keep eligible cities
 
+**What to do.** Keep eligible cities.
+
+**Why.** Alternate names must still match the intended metros.
+
 Use the normalized value in the filter and return the trimmed display value. Pune is removed and all three alternate names are retained. This intermediate query still displays the rows in customer ID order for inspection.
 
 ```sql
@@ -108,6 +120,10 @@ order by CustomerID;
 | 14 | Isha | Kumar | Bangalore | Karnataka |
 
 ### 3. Apply the requested ordering
+
+**What to do.** Apply the requested ordering.
+
+**Why.** Matching case should not affect alphabetical placement.
 
 Use the normalized city as the first sort key and `CustomerID` as the second. The two Bengaluru rows now sit together, with customer 7 before customer 12.
 

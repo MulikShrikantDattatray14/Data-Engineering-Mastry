@@ -61,7 +61,15 @@ Verified the sample, the output column names and text types, and additional case
 
 ## Step-by-step walkthrough
 
+**How to start.** What is one output row?
+
+Use the same sample throughout and check the output after each step.
+
 ### 1. Summarize Category
+
+**What to do.** Summarize Category.
+
+**Why.** One group represents one Active value, including NULL.
 
 Group by Active and label every group with the table and flag names. Casting the flag as text preserves SQL NULL. COUNT(*) counts all rows in each group, including the missing flag row.
 
@@ -80,6 +88,10 @@ Group by Active
 
 ### 2. Summarize Payments
 
+**What to do.** Summarize Payments.
+
+**Why.** Apply the same output shape to Allowed.
+
 Apply the same four-column structure to Allowed. Two N flags produce one row with a count of two.
 
 ```sql
@@ -96,6 +108,10 @@ group by Allowed
 | Payments | Allowed | `'Y'` | 1 |
 
 ### 3. Combine both summaries
+
+**What to do.** Combine both summaries.
+
+**Why.** Appending keeps each source's groups visible.
 
 The first SELECT supplies the four output column names. UNION ALL appends the Payments summary to the Category summary. The table shows the observed SQLite output order.
 

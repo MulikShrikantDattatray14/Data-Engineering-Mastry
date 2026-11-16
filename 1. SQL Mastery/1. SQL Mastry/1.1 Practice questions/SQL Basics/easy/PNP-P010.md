@@ -34,7 +34,15 @@ Customer `10` placed two orders and counts once toward `ordering_customers`. Bot
 
 ## Step-by-step walkthrough
 
+**How to start.** Is this one row per customer or one for the entire table?
+
+Use the same sample throughout and check the output after each step.
+
 ### 1. Count orders and distinct customers
+
+**What to do.** Count orders and distinct customers.
+
+**Why.** Order volume and customer reach count different things.
 
 ```sql
 SELECT COUNT(OrderID) AS total_orders,
@@ -50,6 +58,10 @@ Customer 10 placed two orders and counts once as a customer. The learner's order
 
 ### 2. Compute order value metrics
 
+**What to do.** Compute order value metrics.
+
+**Why.** The sum and average use each order amount.
+
 ```sql
 SELECT SUM(Total_Order_Amount) AS total_order_value,
        ROUND(AVG(Total_Order_Amount), 2) AS avg_order_value
@@ -63,6 +75,10 @@ FROM Orders;
 All three order amounts contribute to the sum and average.
 
 ### 3. Add the first and last dates
+
+**What to do.** Add the first and last dates.
+
+**Why.** The date bounds must describe the entire set of orders.
 
 MIN and MAX find the earliest and latest ISO-formatted dates in this sample. All six aggregates operate on the whole table and produce one row.
 

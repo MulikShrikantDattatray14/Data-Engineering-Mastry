@@ -62,9 +62,17 @@ Verified in SQLite on the sample, with fewer than ten priced products including 
 
 ## Step-by-step walkthrough
 
+**How to start.** Which rows qualify before ranking?
+
+Use the same sample throughout and check the output after each step.
+
 Use the same sample throughout.
 
 ### 1. Exclude products without a price
+
+**What to do.** Exclude products without a price.
+
+**Why.** Unknown prices cannot take a slot.
 
 Only Mystery item has a NULL price. Sticker stays eligible at a price of zero. This diagnostic query sorts by product ID to make the remaining rows easy to find in the sample.
 
@@ -92,6 +100,10 @@ order by ProductID
 
 ### 2. Sort by price and break ties by product ID
 
+**What to do.** Sort by price and break ties by product ID.
+
+**Why.** The lower ID must win an equal-price tie.
+
 Switch to descending price, then ascending product ID for equal prices. Mug now appears immediately before Bottle at positions 10 and 11.
 
 ```sql
@@ -117,6 +129,10 @@ order by Sale_Price desc, ProductID asc
 | 30 | Sticker | Home | 0 |
 
 ### 3. Keep the first ten rows
+
+**What to do.** Keep the first ten rows.
+
+**Why.** Limiting after sorting selects the ten highest eligible rows.
 
 Apply the limit to the sorted result. Mug fills the last slot, while Bottle and Sticker fall below the cutoff.
 

@@ -62,7 +62,15 @@ Verified on the sample and additional cases covering missing prices, a zero sale
 
 ## Step-by-step walkthrough
 
+**How to start.** Does an unusable price affect the row or its metrics?
+
+Use the same sample throughout and check the output after each step.
+
 ### 1. Calculate the discount amount
+
+**What to do.** Calculate the discount amount.
+
+**Why.** Every product must remain in the output.
 
 Return every product. The first CASE sets Sticker's discount to NULL because its market price is zero.
 
@@ -89,6 +97,10 @@ order by ProductID
 | 3 | Lamp | 200 | 150 | 50 |
 
 ### 2. Calculate the percentage
+
+**What to do.** Calculate the percentage.
+
+**Why.** Real-valued division preserves fractional percentages before rounding.
 
 Multiply the difference by 100.0 before dividing by the market price. In SQLite this promotes the arithmetic to real division. Lamp's calculation is 50 × 100.0 ÷ 200, which rounds to 25.00. The preview is ordered by product ID.
 
@@ -123,6 +135,10 @@ order by ProductID
 | 3 | Lamp | 200 | 150 | 50 | 25.00 |
 
 ### 3. Sort the result
+
+**What to do.** Sort the result.
+
+**Why.** The largest measured discounts belong first.
 
 Order by discount percentage descending. SQLite puts the NULL percentages last in this order, so Lamp comes first and Sticker appears at the end.
 

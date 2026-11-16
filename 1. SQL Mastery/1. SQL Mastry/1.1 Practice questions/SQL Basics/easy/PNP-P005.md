@@ -38,7 +38,15 @@ The query passed the sample and additional checks for March 31 timestamps, April
 
 ## Step-by-step walkthrough
 
+**How to start.** Which dates begin this quarter and the next?
+
+Use the same sample throughout and check the output after each step.
+
 ### 1. Keep orders from the start of the quarter
+
+**What to do.** Keep orders from the start of the quarter.
+
+**Why.** The first day belongs to the quarter.
 
 The lower bound includes January 1 and removes order 1. Order 4 remains until the upper bound is applied. The preview uses the final ordering so the rows are easy to compare.
 
@@ -56,6 +64,10 @@ order by OrderDate asc , OrderID asc
 | 4 | 13 | 2025-04-01 | 300 |
 
 ### 2. Exclude the start of the next quarter
+
+**What to do.** Exclude the start of the next quarter.
+
+**Why.** The next quarter is excluded while all March 31 timestamps remain eligible.
 
 The exclusive April 1 boundary removes order 4 and keeps all of March 31, including timestamps such as `2025-03-31 15:00:00`. For orders with identical dates or timestamps, the lower order ID comes first.
 

@@ -51,7 +51,15 @@ The learner's query logic is preserved. The saved version removes chat escaping 
 
 ## Step-by-step walkthrough
 
+**How to start.** Which issue should win when several apply?
+
+Use the same sample throughout and check the output after each step.
+
 ### 1. Assign the issue to each customer
+
+**What to do.** Assign the issue to each customer.
+
+**Why.** Each customer needs the first applicable label.
 
 Run the `CASE` without the filter. Asha's missing email matches the first rule, Ben's space matches the second, and Cia's email fails the shape check. Dev's email matches none of the branches, so its issue is NULL.
 
@@ -74,6 +82,10 @@ ORDER BY CustomerID ASC;
 | 4 | Dev | Roy | dev@example.com | `NULL` |
 
 ### 2. Keep only rows that fail a check
+
+**What to do.** Keep only rows that fail a check.
+
+**Why.** The report includes only rows with an issue.
 
 Add the `WHERE` clause. Its alternatives keep a row when any issue applies. Dev drops out and the result remains in customer ID order.
 

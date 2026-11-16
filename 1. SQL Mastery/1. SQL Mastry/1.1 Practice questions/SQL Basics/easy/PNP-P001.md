@@ -76,9 +76,17 @@ The official query trims brand names for filtering and returns raw brand names. 
 
 ## Step-by-step walkthrough
 
+**How to start.** What counts as one brand?
+
+Use the same sample throughout and check the output after each step.
+
 **Starting data.** Use the eight rows in the sample input above. Each row represents one product. The quotes around text values make surrounding spaces visible.
 
 ### 1. Clean each brand name
+
+**What to do.** Clean each brand name.
+
+**Why.** Compare cleaned values so padding does not create separate brands.
 
 Use `TRIM` to remove spaces at the start and end. Keep `ProductID` and the original value visible so you can compare each product before and after cleaning.
 
@@ -103,6 +111,10 @@ Products 1 and 2 now have the same cleaned brand. Product 3 still has `NULL`, an
 
 ### 2. Keep only usable brands
 
+**What to do.** Keep only usable brands.
+
+**Why.** Blank values cannot create useful filter entries.
+
 Add the learner's two filter conditions. The null check excludes product 3. The length check excludes products 4 and 5 because their cleaned names have zero characters.
 
 ```sql
@@ -125,6 +137,10 @@ Five product rows remain. Nike and Adidas each still appear twice.
 
 ### 3. Return one row per clean brand
 
+**What to do.** Return one row per clean brand.
+
+**Why.** Repeated products should yield just one brand.
+
 Select just the cleaned brand and add `DISTINCT`. The output now represents brands instead of products.
 
 ```sql
@@ -143,6 +159,10 @@ WHERE TRIM(Brand) IS NOT NULL
 Products 1 and 2 contribute one Nike row, and products 6 and 8 contribute one Adidas row. This query can return the three rows in any order.
 
 ### 4. Sort the final brand list
+
+**What to do.** Sort the final brand list.
+
+**Why.** The output needs alphabetical order.
 
 Add `ORDER BY` on the cleaned brand so the result appears alphabetically. This completes the learner's SQLite query.
 

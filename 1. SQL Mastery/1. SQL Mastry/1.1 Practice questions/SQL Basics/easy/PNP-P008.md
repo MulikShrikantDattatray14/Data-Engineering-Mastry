@@ -59,7 +59,15 @@ The exact query passed in the tested SQLite configuration, which accepts double-
 
 ## Step-by-step walkthrough
 
+**How to start.** Which label owns each threshold?
+
+Use the same sample throughout and check the output after each step.
+
 ### 1. Label prices below 200
+
+**What to do.** Label prices below 200.
+
+**Why.** Budget ends immediately before 200.
 
 The first branch labels Pen. With only this branch and no ELSE, the other labels are NULL for now.
 
@@ -82,6 +90,10 @@ ORDER BY ProductID ASC;
 
 ### 2. Add the Mid range
 
+**What to do.** Add the Mid range.
+
+**Why.** Mid includes fractional prices below 700.
+
 Book and Bag satisfy both limits. The upper bound is exclusive, so Watch stays outside Mid.
 
 ```sql
@@ -103,6 +115,10 @@ ORDER BY ProductID ASC;
 | 5 | Mystery | `NULL` | `NULL` |
 
 ### 3. Complete the labels
+
+**What to do.** Complete the labels.
+
+**Why.** A missing price still needs its own label.
 
 The final query adds Premium for Watch. Mystery's NULL price makes all three numeric conditions unknown, so ELSE supplies Unknown. All five rows remain, sorted by product ID.
 

@@ -57,7 +57,15 @@ Verified the sample, an order line for an unlisted product, a catalogue with no 
 
 ## Step-by-step walkthrough
 
+**How to start.** Which population defines the denominator?
+
+Use the same sample throughout and check the output after each step.
+
 ### 1. Join from the catalogue
+
+**What to do.** Join from the catalogue.
+
+**Why.** Unsold items still belong to the catalogue.
 
 **Golden rule.** Ask “Out of what?” to find the denominator. For “What percentage of listed products have sold?”, the denominator is all distinct listed products, and the numerator is the distinct listed products with a sale.
 
@@ -83,6 +91,10 @@ ORDER BY P.ProductID, O.OrderDetailID;
 
 ### 2. Count rows, sale lines, and distinct products
 
+**What to do.** Count rows, sale lines, and distinct products.
+
+**Why.** Joined rows and distinct products answer different questions.
+
 COUNT(*) counts all four joined rows. COUNT(O.ProductID) counts the three matched lines. The distinct catalogue IDs are 1, 2, and 3. The distinct matched IDs are 1 and 2.
 
 ```sql
@@ -99,6 +111,10 @@ LEFT JOIN OrderDetails AS O ON P.ProductID = O.ProductID;
 | 4 | 3 | 3 | 2 |
 
 ### 3. Calculate the percentage
+
+**What to do.** Calculate the percentage.
+
+**Why.** The fraction measures sold products out of all listed products.
 
 Divide the distinct sold count by the distinct listed count. Multiplying by 100.0 before dividing preserves the fractional part. The complete SQLite query above computes 2 × 100.0 ÷ 3 and rounds it to 66.67.
 

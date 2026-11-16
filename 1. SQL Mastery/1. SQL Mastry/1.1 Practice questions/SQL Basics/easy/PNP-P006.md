@@ -45,7 +45,15 @@ The equality filter returns the requested rows directly. The original exercise a
 
 ## Step-by-step walkthrough
 
+**How to start.** What distinguishes an equal price from a missing price?
+
+Use the same sample throughout and check the output after each step.
+
 ### 1. Compare the two prices on each row
+
+**What to do.** Compare the two prices on each row.
+
+**Why.** The comparison can be true, false, or unknown.
 
 This preview shows what SQLite evaluates for each product. It returns 1 for equal prices, 0 for unequal prices, and NULL when either price is missing.
 
@@ -65,6 +73,10 @@ ORDER BY ProductID;
 
 ### 2. Keep products with equal prices
 
+**What to do.** Keep products with equal prices.
+
+**Why.** Only true comparisons qualify.
+
 The `WHERE` clause keeps only comparisons that are true. Mug and Lamp pass. Mystery drops out because its comparison is unknown, and Bottle drops out because its prices differ.
 
 ```sql
@@ -80,6 +92,10 @@ ORDER BY ProductID;
 | 2 | Lamp | Home | 150 | 150 |
 
 ### 3. Label and rank the full-price products
+
+**What to do.** Label and rank the full-price products.
+
+**Why.** Every retained product gets the same label before sorting and limiting.
 
 Every remaining row qualifies for the constant `Full price` label. Sort by sale price descending and use product ID ascending for ties. Apply the ten-row limit after sorting. Only two rows qualify in this sample.
 
@@ -130,6 +146,10 @@ limit 10
 
 ### 1. Keep products with both prices
 
+**What to do.** Keep products with both prices.
+
+**Why.** Missing prices could otherwise be mistaken for an encoded zero discount.
+
 The two price checks exclude Mystery. Otherwise a missing price would also yield a NULL discount and pass the later NULL test.
 
 ```sql
@@ -143,6 +163,10 @@ SELECT ProductID, Sale_Price, Market_Price FROM Products WHERE Sale_Price IS NOT
 | 4 | 90 | 100 |
 
 ### 2. Calculate the discount and convert zero to NULL
+
+**What to do.** Calculate the discount and convert zero to NULL.
+
+**Why.** The exercise explicitly asks for zero discounts to become NULL.
 
 Mug and Lamp have equal prices, so their zero discounts become NULL. Bottle keeps its discount of 10.
 
@@ -162,7 +186,11 @@ ORDER BY ProductID;
 
 ### 3. Keep NULL discounts, label, and sort
 
-The final SQLite query above applies `IS NULL` to the computed discount. Bottle drops out. The SELECT expression labels the remaining rows `Full price`. Lamp sorts ahead of Mug, and the limit allows up to ten rows.
+**What to do.** Keep NULL discounts, label, and sort.
+
+**Why.** The final filter keeps only known full-price products.
+
+The final SQLite query at the start of Method 2 applies `IS NULL` to the computed discount. Bottle drops out. The SELECT expression labels the remaining rows `Full price`. Lamp sorts ahead of Mug, and the limit allows up to ten rows.
 
 | ProductID | Product | Brand | Sale_Price | Market_Price | discount_display |
 | --- | --- | --- | --- | --- | --- |

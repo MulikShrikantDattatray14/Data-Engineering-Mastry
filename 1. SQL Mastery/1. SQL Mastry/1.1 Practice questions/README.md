@@ -8,6 +8,10 @@ Practice topics in the original Bosscoder assignment order. Within each topic, p
 
 Copy the full question exactly as presented in the study chat, including requirements, sample input, expected output, and the sample explanation. Apply this to every PNP and Bosscoder write-up. Keep the learner solution, walkthrough, and official answer below the complete prompt.
 
+### Walkthrough format
+
+Use the same step-by-step approach during practice and in each PNP or Bosscoder write-up. Identify what one output row represents, then build the query one part at a time using the same example. For each step, explain what to do and why, show the SQL and output, and explain what the output demonstrates. When a join is used, explain why it fits and which unmatched rows it keeps. Explain whether each condition affects input rows, output groups, or one metric.
+
 ## Practice question index
 
 ### SQL Basics
