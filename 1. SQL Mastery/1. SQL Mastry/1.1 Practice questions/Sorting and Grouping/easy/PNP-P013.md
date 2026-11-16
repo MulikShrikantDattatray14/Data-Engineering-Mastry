@@ -30,10 +30,7 @@ Karnataka meets the threshold exactly. Maharashtra has one customer, so it’s e
 
 ```sql
 select 
-CASE
-    WHEN State IS NOT NULL THEN State
-    ELSE 'Unknown'
-END AS State
+COALESCE(State, 'Unknown') AS State
 
 , count(CustomerID) as customer_count
 from Customers
@@ -67,16 +64,13 @@ SELECT State, COUNT(CustomerID) AS customer_count FROM Customers GROUP BY State 
 
 ### 2. Filter whole groups and label the missing state
 
-**What to do.** Use HAVING to apply the threshold after counting. Use CASE to display Unknown for the NULL group. In this preview, sort by state to inspect the labels.
+**What to do.** Use HAVING to apply the threshold after counting. Use COALESCE to display Unknown for the NULL group. It returns the stored state when present and falls back to Unknown for SQL NULL. In this preview, sort by state to inspect the labels.
 
 **Why.** The threshold is a condition on a whole group. Filtering missing states in WHERE would remove their rows before they can contribute to the Unknown group.
 
 ```sql
 select 
-CASE
-    WHEN State IS NOT NULL THEN State
-    ELSE 'Unknown'
-END AS State
+COALESCE(State, 'Unknown') AS State
 
 , count(CustomerID) as customer_count
 from Customers
@@ -109,10 +103,7 @@ Maharashtra drops out. Karnataka and Unknown both qualify at exactly five.
 
 ```sql
 select 
-CASE
-    WHEN State IS NOT NULL THEN State
-    ELSE 'Unknown'
-END AS State
+COALESCE(State, 'Unknown') AS State
 
 , count(CustomerID) as customer_count
 from Customers
