@@ -5,25 +5,41 @@
 
 ## Question
 
-Start with every product and join matching order lines by ProductID. Return one row containing the joined row count, matched sale lines, distinct listed products, distinct products sold, and the percentage of listed products that sold, rounded to two decimals.
+Start with every product in `Products` and attach its matching `OrderDetails` rows by `ProductID`. Keep products that have never sold. Return **one summary row** with these five metrics:
+
+| Column | What it should show |
+|---|---|
+| `rows_after_join` | Total rows after joining, including unsold products |
+| `sale_lines` | Number of order lines that matched a product |
+| `listed_products` | Number of distinct products in the catalogue |
+| `products_sold` | Number of distinct products with at least one matching order line |
+| `pct_sold` | Percentage of listed products that sold, rounded to two decimal places |
 
 ### Sample input
 
-**Products**
+**`Products`**
 
 | ProductID | Product |
-| ---: | --- |
+|---:|---|
 | 1 | Pen |
 | 2 | Bag |
 | 3 | Cup |
 
-**OrderDetails**
+**`OrderDetails`**
 
 | OrderDetailID | OrderID | ProductID |
-| ---: | ---: | ---: |
+|---:|---:|---:|
 | 1 | 10 | 1 |
 | 2 | 11 | 1 |
 | 3 | 11 | 2 |
+
+### Expected output
+
+| rows_after_join | sale_lines | listed_products | products_sold | pct_sold |
+|---:|---:|---:|---:|---:|
+| 4 | 3 | 3 | 2 | 66.67 |
+
+Pen contributes two joined rows, Bag contributes one, and the unsold Cup still contributes one. Two of the three listed products have sold.
 
 ## Learner solution — SQLite
 
