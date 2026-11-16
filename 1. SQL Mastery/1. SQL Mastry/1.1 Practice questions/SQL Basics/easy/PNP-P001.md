@@ -72,7 +72,86 @@ The official query trims brand names for filtering and returns raw brand names. 
 
 ## Step-by-step walkthrough
 
-1. Read `Brand` from `Products`. Use `TRIM(Brand)` as the cleaned value for both filtering and display. The padded Nike value in product 2 is now comparable to the Nike value in product 1.
-2. Build the `WHERE` condition using both `TRIM(Brand) IS NOT NULL` and `LENGTH(TRIM(Brand)) > 0`. The first condition handles product 3. The second removes products 4 and 5, whose cleaned names have length zero.
-3. Select `DISTINCT TRIM(Brand) AS Brand` so the duplicate check uses the cleaned text. Products 1 and 2 now count as one brand, and the same rule combines products 6 and 8.
-4. Add `ORDER BY TRIM(Brand) ASC`. The final output is the three rows in the expected output table.
+**Starting data.** Use the eight rows in the sample input above. Each row represents one product. The quotes around text values make surrounding spaces visible.
+
+### 1. Clean each brand name
+
+Use `TRIM` to remove spaces at the start and end. Keep `ProductID` and the original value visible so you can compare each product before and after cleaning.
+
+```sql
+SELECT ProductID, Brand, TRIM(Brand) AS CleanBrand
+FROM Products
+ORDER BY ProductID;
+```
+
+| ProductID | Brand | CleanBrand |
+| ---: | --- | --- |
+| 1 | `'Nike'` | `'Nike'` |
+| 2 | `' Nike '` | `'Nike'` |
+| 3 | `NULL` | `NULL` |
+| 4 | `''` | `''` |
+| 5 | `'   '` | `''` |
+| 6 | `'Adidas'` | `'Adidas'` |
+| 7 | `'Puma'` | `'Puma'` |
+| 8 | `'Adidas'` | `'Adidas'` |
+
+Products 1 and 2 now have the same cleaned brand. Product 3 still has `NULL`, and products 4 and 5 have empty strings.
+
+### 2. Keep only usable brands
+
+Add the learner's two filter conditions. The null check excludes product 3. The length check excludes products 4 and 5 because their cleaned names have zero characters.
+
+```sql
+SELECT ProductID, TRIM(Brand) AS Brand
+FROM Products
+WHERE TRIM(Brand) IS NOT NULL
+  AND LENGTH(TRIM(Brand)) > 0
+ORDER BY ProductID;
+```
+
+| ProductID | Brand |
+| ---: | --- |
+| 1 | Nike |
+| 2 | Nike |
+| 6 | Adidas |
+| 7 | Puma |
+| 8 | Adidas |
+
+Five product rows remain. Nike and Adidas each still appear twice.
+
+### 3. Return one row per clean brand
+
+Select just the cleaned brand and add `DISTINCT`. The output now represents brands instead of products.
+
+```sql
+SELECT DISTINCT TRIM(Brand) AS Brand
+FROM Products
+WHERE TRIM(Brand) IS NOT NULL
+  AND LENGTH(TRIM(Brand)) > 0;
+```
+
+| Brand |
+| --- |
+| Nike |
+| Adidas |
+| Puma |
+
+Products 1 and 2 contribute one Nike row, and products 6 and 8 contribute one Adidas row. This query can return the three rows in any order.
+
+### 4. Sort the final brand list
+
+Add `ORDER BY` on the cleaned brand so the result appears alphabetically. This completes the learner's SQLite query.
+
+```sql
+SELECT DISTINCT TRIM(Brand) AS Brand
+FROM Products
+WHERE TRIM(Brand) IS NOT NULL
+  AND LENGTH(TRIM(Brand)) > 0
+ORDER BY TRIM(Brand) ASC;
+```
+
+| Brand |
+| --- |
+| Adidas |
+| Nike |
+| Puma |
