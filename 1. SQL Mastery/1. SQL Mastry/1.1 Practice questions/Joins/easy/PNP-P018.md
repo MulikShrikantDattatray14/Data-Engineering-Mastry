@@ -35,29 +35,31 @@ Return `CustomerID`, `customer_name` (first and last name joined with a space), 
 
 Asha ordered within the window. Ben’s only order was before it, and Cia never ordered, so both qualify.
 
-## Learner submission — SQLite
+## Final learner submission — SQLite
 
 ```sql
 WITH reporting_window AS (
-    SELECT date(MAX(OrderDate)) AS latest_order_date,
-           date(MAX(OrderDate), '-89 days') AS window_start
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-89 days') AS window_start
     FROM Orders
 )
-SELECT Customers.CustomerID,
-       (Customers.FirstName || " " || Customers.LastName) AS customer_name,
-       Customers.Email,
-       Customers.DateEntered
-FROM Customers
-LEFT JOIN Orders
-    ON Orders.CustomerID = Customers.CustomerID
-   AND date(Orders.OrderDate) BETWEEN
+SELECT
+    c.CustomerID,
+    c.FirstName || ' ' || c.LastName AS customer_name,
+    c.Email,
+    c.DateEntered
+FROM Customers AS c
+LEFT JOIN Orders AS o
+    ON o.CustomerID = c.CustomerID
+   AND date(o.OrderDate) BETWEEN
        (SELECT window_start FROM reporting_window)
        AND (SELECT latest_order_date FROM reporting_window)
-WHERE Orders.OrderID IS NULL
-ORDER BY Customers.DateEntered, Customers.CustomerID ASC;
+WHERE o.OrderID IS NULL
+ORDER BY c.DateEntered ASC, c.CustomerID ASC;
 ```
 
-Guided submission. Chat markup and spacing were cleaned up. The tested SQLite configuration accepts the double-quoted space literal. Single quotes are the standard spelling.
+Guided submission. This final version uses table aliases and a single-quoted space. Verified on the sample, a first-day timestamp for a customer with an older order, and an empty Orders table.
 
 ## Step-by-step walkthrough
 
