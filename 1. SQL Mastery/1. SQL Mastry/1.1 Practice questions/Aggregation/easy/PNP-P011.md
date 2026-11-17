@@ -116,7 +116,17 @@ LEFT JOIN OrderDetails AS O ON P.ProductID = O.ProductID;
 
 **Why.** The fraction measures sold products out of all listed products.
 
-Divide the distinct sold count by the distinct listed count. Multiplying by 100.0 before dividing preserves the fractional part. The complete SQLite query above computes 2 × 100.0 ÷ 3 and rounds it to 66.67.
+Divide the distinct sold count by the distinct listed count. Multiplying by 100.0 before dividing preserves the fractional part. The final query computes 2 × 100.0 ÷ 3 and rounds it to 66.67.
+
+```sql
+SELECT COUNT(*) AS rows_after_join,
+       COUNT(O.ProductID) AS sale_lines,
+       COUNT(DISTINCT P.ProductID) AS listed_products,
+       COUNT(DISTINCT (O.ProductID)) AS products_sold,
+       ROUND(COUNT(DISTINCT O.ProductID) * 100.0 / COUNT(DISTINCT P.ProductID), 2) AS pct_sold
+FROM Products AS P
+LEFT JOIN OrderDetails AS O ON P.ProductID = O.ProductID;
+```
 
 | rows_after_join | sale_lines | listed_products | products_sold | pct_sold |
 | ---: | ---: | ---: | ---: | ---: |

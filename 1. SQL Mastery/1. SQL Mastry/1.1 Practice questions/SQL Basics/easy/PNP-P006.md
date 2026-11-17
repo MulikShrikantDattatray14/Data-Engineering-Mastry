@@ -192,6 +192,23 @@ ORDER BY ProductID;
 
 The final SQLite query at the start of Method 2 applies `IS NULL` to the computed discount. Bottle drops out. The SELECT expression labels the remaining rows `Full price`. Lamp sorts ahead of Mug, and the limit allows up to ten rows.
 
+```sql
+select ProductID, Product, Brand,Sale_Price,Market_Price,
+(
+case when  (Sale_Price is not null and Market_Price is not null) and (Market_Price - Sale_Price)=0 then 'Full price'
+end 
+) as discount_display
+from Products
+where  (Sale_Price is not null and Market_Price is not null) and (
+    CASE
+        WHEN Market_Price - Sale_Price = 0 THEN NULL
+        ELSE Market_Price - Sale_Price
+    END
+) IS NULL
+order by Sale_Price desc , ProductID asc
+limit 10
+```
+
 | ProductID | Product | Brand | Sale_Price | Market_Price | discount_display |
 | --- | --- | --- | --- | --- | --- |
 | 2 | Lamp | Home | 150 | 150 | Full price |

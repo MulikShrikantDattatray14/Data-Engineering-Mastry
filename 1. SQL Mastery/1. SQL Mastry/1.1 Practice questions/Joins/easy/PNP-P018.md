@@ -110,11 +110,61 @@ ORDER BY Customers.CustomerID;
 | 2 | NULL | NULL |
 | 3 | NULL | NULL |
 
-### 3. Keep customers with no recent match and sort
+### 3. Keep customers with no recent match
 
-**What to do.** Use WHERE to retain rows with a NULL order ID and apply the two ascending sort keys. Run the final SQLite query above.
+**What to do.** Add WHERE Orders.OrderID IS NULL to the preview.
+
+**Why.** Ben and Cia have no matching order inside the window, so their joined order IDs are NULL.
+
+```sql
+WITH reporting_window AS (
+    SELECT date(MAX(OrderDate)) AS latest_order_date,
+           date(MAX(OrderDate), '-89 days') AS window_start
+    FROM Orders
+)
+SELECT Customers.CustomerID, Orders.OrderID AS matched_order_id, Orders.OrderDate AS matched_order_date
+FROM Customers
+LEFT JOIN Orders
+    ON Orders.CustomerID = Customers.CustomerID
+   AND date(Orders.OrderDate) BETWEEN
+       (SELECT window_start FROM reporting_window)
+       AND (SELECT latest_order_date FROM reporting_window)
+WHERE Orders.OrderID IS NULL
+ORDER BY Customers.CustomerID;
+```
+
+| CustomerID | matched_order_id | matched_order_date |
+|---:|---|---|
+| 2 | NULL | NULL |
+| 3 | NULL | NULL |
+
+### 4. Select the customer details and sort
+
+**What to do.** Use WHERE to retain rows with a NULL order ID and apply the two ascending sort keys.
 
 **Why.** A NULL order ID indicates the recent-order join found no match. Testing whether an order is outside the window could let a customer with both an old and a recent order through. The customer ID breaks sign-up date ties.
+
+```sql
+WITH reporting_window AS (
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-89 days') AS window_start
+    FROM Orders
+)
+SELECT
+    c.CustomerID,
+    c.FirstName || ' ' || c.LastName AS customer_name,
+    c.Email,
+    c.DateEntered
+FROM Customers AS c
+LEFT JOIN Orders AS o
+    ON o.CustomerID = c.CustomerID
+   AND date(o.OrderDate) BETWEEN
+       (SELECT window_start FROM reporting_window)
+       AND (SELECT latest_order_date FROM reporting_window)
+WHERE o.OrderID IS NULL
+ORDER BY c.DateEntered ASC, c.CustomerID ASC;
+```
 
 | CustomerID | customer_name | Email | DateEntered |
 |---:|---|---|---|

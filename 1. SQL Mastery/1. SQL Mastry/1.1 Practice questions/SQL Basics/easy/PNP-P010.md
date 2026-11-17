@@ -82,6 +82,20 @@ All three order amounts contribute to the sum and average.
 
 MIN and MAX find the earliest and latest ISO-formatted dates in this sample. All six aggregates operate on the whole table and produce one row.
 
+```sql
+SELECT COUNT(OrderID) AS total_orders,
+       COUNT(DISTINCT CustomerID) AS ordering_customers,
+       SUM(Total_Order_Amount) AS total_order_value,
+       ROUND(AVG(Total_Order_Amount), 2) AS avg_order_value,
+       MIN(OrderDate) AS first_order_date,
+       MAX(OrderDate) AS last_order_date
+FROM Orders;
+```
+
+| total_orders | ordering_customers | total_order_value | avg_order_value | first_order_date | last_order_date |
+| ---: | ---: | ---: | ---: | --- | --- |
+| 3 | 2 | 600 | 200.00 | 2025-01-01 | 2025-01-03 |
+
 ## Learner solution — SQLite
 
 ```sql

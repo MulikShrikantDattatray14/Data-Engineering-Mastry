@@ -95,9 +95,23 @@ Maharashtra drops out. Karnataka and Unknown both qualify at exactly five.
 
 ### 3. Apply the requested sort
 
-**What to do.** Sort by count descending and break ties by the displayed state name ascending. Run the final SQLite query above.
+**What to do.** Sort by count descending and break ties by the displayed state name ascending.
 
 **Why.** Delhi has the highest count. Karnataka and Unknown tie, so Karnataka comes first alphabetically. The preview happened to display the same order on these rows.
+
+```sql
+select 
+CASE
+    WHEN State IS NOT NULL THEN State
+    ELSE 'Unknown'
+END AS State
+
+, count(CustomerID) as customer_count
+from Customers
+group by state
+having count(CustomerID)>=5
+order by  count(CustomerID) desc, State asc
+```
 
 | State | customer_count |
 |---|---:|

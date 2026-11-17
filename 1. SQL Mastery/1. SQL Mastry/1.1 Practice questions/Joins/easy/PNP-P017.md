@@ -125,9 +125,25 @@ ORDER BY o.OrderID;
 
 ### 4. Label missing values and sort newest first
 
-**What to do.** Apply COALESCE to each lookup label and sort by date descending, then ID descending. Run the final SQLite query above.
+**What to do.** Apply COALESCE to each lookup label and sort by date descending, then ID descending.
 
 **Why.** Missing lookups should be visible as Unknown. Order ID resolves a tie on OrderDate.
+
+```sql
+SELECT
+    o.OrderID,
+    o.OrderDate,
+    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
+    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE date(o.OrderDate) >= (
+    SELECT date(MAX(OrderDate), '-6 days')
+    FROM Orders
+)
+ORDER BY o.OrderDate DESC, o.OrderID DESC;
+```
 
 | OrderID | OrderDate | payment_type | shipper_name |
 |---:|---|---|---|
@@ -190,6 +206,16 @@ The example uses the three Orders rows above throughout. Step tables use order I
 
 **What to do.** Find the latest order date with MAX and subtract six days to get the start. **Why.** The latest date itself counts as one of the seven calendar days. The aggregate yields one row for the entire table, so every order uses the same boundaries.
 
+```sql
+WITH reporting_window AS (
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-6 days') AS window_start
+    FROM Orders
+)
+SELECT latest_order_date, window_start FROM reporting_window;
+```
+
 | latest_order_date | window_start |
 |---|---|
 | 2025-12-31 | 2025-12-25 |
@@ -197,6 +223,14 @@ The example uses the three Orders rows above throughout. Step tables use order I
 #### 2. Join the lookup tables
 
 **What to do.** Use the order's PaymentID to look up the payment type and its ShipperID to look up the company name. **Why these joins.** Each LEFT JOIN preserves orders with missing or unrecognized IDs. Both join conditions refer directly to Orders, so a missing payment cannot block a shipper match.
+
+```sql
+SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+ORDER BY o.OrderID;
+```
 
 | OrderID | OrderDate | PaymentType | CompanyName |
 |---:|---|---|---|
@@ -208,6 +242,24 @@ The example uses the three Orders rows above throughout. Step tables use order I
 
 **What to do.** Read each boundary from the CTE using a scalar subquery. Compare the order date with BETWEEN. **Why.** Each subquery returns one value and BETWEEN includes both endpoints. This query assumes ISO date-only text (YYYY-MM-DD), so the order date can be compared directly. With timestamps, use the earlier timestamp-safe version above.
 
+```sql
+WITH reporting_window AS (
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-6 days') AS window_start
+    FROM Orders
+)
+SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE (o.OrderDate) BETWEEN
+    (SELECT window_start FROM reporting_window)
+    AND
+    (SELECT latest_order_date FROM reporting_window)
+ORDER BY o.OrderID;
+```
+
 | OrderID | OrderDate | PaymentType | CompanyName |
 |---:|---|---|---|
 | 2 | 2025-12-25 | UPI | FastShip |
@@ -218,6 +270,28 @@ Order 1 falls before December 25. Orders 2 and 3 sit exactly on the two inclusiv
 #### 4. Label missing values and sort
 
 **What to do.** Apply COALESCE to each lookup label, then order by OrderDate descending and OrderID descending. **Why.** Unknown makes missing lookups visible, and the ID resolves ties on the order date.
+
+```sql
+WITH reporting_window AS (
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-6 days') AS window_start
+    FROM Orders
+)
+SELECT
+    o.OrderID,
+    o.OrderDate,
+    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
+    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE (o.OrderDate) BETWEEN
+    (SELECT window_start FROM reporting_window)
+    AND
+    (SELECT latest_order_date FROM reporting_window)
+ORDER BY o.OrderDate DESC, o.OrderID DESC;
+```
 
 | OrderID | OrderDate | payment_type | shipper_name |
 |---:|---|---|---|
