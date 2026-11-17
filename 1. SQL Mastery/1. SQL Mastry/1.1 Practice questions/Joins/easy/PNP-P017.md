@@ -40,7 +40,7 @@ Return `OrderID`, `OrderDate`, `payment_type`, and `shipper_name`. Use `Payments
 
 The latest order date is December 31, so the seven-day window is **December 25–31 inclusive**. Order 3 stays in the report even though both IDs are missing.
 
-## Learner submission — SQLite
+## Earlier learner solution — SQLite
 
 ```sql
 SELECT
@@ -134,7 +134,7 @@ ORDER BY o.OrderID;
 | 3 | 2025-12-31 | Unknown | Unknown |
 | 2 | 2025-12-25 | UPI | FastShip |
 
-## Learner submission — SQL Server adaptation
+## Earlier learner solution — SQL Server adaptation
 
 ```sql
 SELECT
@@ -154,7 +154,7 @@ ORDER BY o.OrderDate DESC, o.OrderID DESC;
 
 Uses DATEADD and a date cast. Reviewed by inspection.
 
-## 2026-11-17 guided reattempt — CTE and scalar subqueries
+## Final learner solution — CTE and scalar subqueries
 
 ### SQLite
 
@@ -182,9 +182,42 @@ ORDER BY o.OrderDate DESC, o.OrderID DESC;
 
 The learner selected the two LEFT JOINs, join keys, MAX, six-day offset, and CTE approach. The completed query incorporates help with SQLite syntax and connecting the CTE.
 
-1. **Calculate both dates in the CTE.** It returns one row. On the sample its latest date is 2025-12-31 and its window start is 2025-12-25.
-2. **Attach payment and shipper labels.** Both LEFT JOINs start from Orders so missing matches cannot remove eligible orders. COALESCE supplies Unknown independently for each lookup.
-3. **Filter and sort.** Each scalar subquery reads one boundary from the CTE. BETWEEN includes both dates. The query compares OrderDate directly because this version assumes ISO date-only text (YYYY-MM-DD). If the column includes times, the timestamp-safe version above compares calendar dates. Sort newest first and use OrderID to break ties.
+### Step-by-step walkthrough
+
+The example uses the three Orders rows above throughout. Step tables use order ID ascending for readability until the final sort.
+
+#### 1. Calculate the reporting window
+
+**What to do.** Find the latest order date with MAX and subtract six days to get the start. **Why.** The latest date itself counts as one of the seven calendar days. The aggregate yields one row for the entire table, so every order uses the same boundaries.
+
+| latest_order_date | window_start |
+|---|---|
+| 2025-12-31 | 2025-12-25 |
+
+#### 2. Join the lookup tables
+
+**What to do.** Use the order's PaymentID to look up the payment type and its ShipperID to look up the company name. **Why these joins.** Each LEFT JOIN preserves orders with missing or unrecognized IDs. Both join conditions refer directly to Orders, so a missing payment cannot block a shipper match.
+
+| OrderID | OrderDate | PaymentType | CompanyName |
+|---:|---|---|---|
+| 1 | 2025-12-24 | UPI | FastShip |
+| 2 | 2025-12-25 | UPI | FastShip |
+| 3 | 2025-12-31 | NULL | NULL |
+
+#### 3. Keep orders within the window
+
+**What to do.** Read each boundary from the CTE using a scalar subquery. Compare the order date with BETWEEN. **Why.** Each subquery returns one value and BETWEEN includes both endpoints. This query assumes ISO date-only text (YYYY-MM-DD), so the order date can be compared directly. With timestamps, use the earlier timestamp-safe version above.
+
+| OrderID | OrderDate | PaymentType | CompanyName |
+|---:|---|---|---|
+| 2 | 2025-12-25 | UPI | FastShip |
+| 3 | 2025-12-31 | NULL | NULL |
+
+Order 1 falls before December 25. Orders 2 and 3 sit exactly on the two inclusive boundaries.
+
+#### 4. Label missing values and sort
+
+**What to do.** Apply COALESCE to each lookup label, then order by OrderDate descending and OrderID descending. **Why.** Unknown makes missing lookups visible, and the ID resolves ties on the order date.
 
 | OrderID | OrderDate | payment_type | shipper_name |
 |---:|---|---|---|
