@@ -154,6 +154,71 @@ ORDER BY o.OrderDate DESC, o.OrderID DESC;
 
 Uses DATEADD and a date cast. Reviewed by inspection.
 
+## 2026-11-17 guided reattempt — CTE and scalar subqueries
+
+### SQLite
+
+```sql
+WITH reporting_window AS (
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-6 days') AS window_start
+    FROM Orders
+)
+SELECT
+    o.OrderID,
+    o.OrderDate,
+    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
+    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE (o.OrderDate) BETWEEN
+    (SELECT window_start FROM reporting_window)
+    AND
+    (SELECT latest_order_date FROM reporting_window)
+ORDER BY o.OrderDate DESC, o.OrderID DESC;
+```
+
+The learner selected the two LEFT JOINs, join keys, MAX, six-day offset, and CTE approach. The completed query incorporates help with SQLite syntax and connecting the CTE.
+
+1. **Calculate both dates in the CTE.** It returns one row. On the sample its latest date is 2025-12-31 and its window start is 2025-12-25.
+2. **Attach payment and shipper labels.** Both LEFT JOINs start from Orders so missing matches cannot remove eligible orders. COALESCE supplies Unknown independently for each lookup.
+3. **Filter and sort.** Each scalar subquery reads one boundary from the CTE. BETWEEN includes both dates. The query compares OrderDate directly because this version assumes ISO date-only text (YYYY-MM-DD). If the column includes times, the timestamp-safe version above compares calendar dates. Sort newest first and use OrderID to break ties.
+
+| OrderID | OrderDate | payment_type | shipper_name |
+|---:|---|---|---|
+| 3 | 2025-12-31 | Unknown | Unknown |
+| 2 | 2025-12-25 | UPI | FastShip |
+
+Verified in SQLite on the original sample and on date-only fixtures for the rolling window, missing matches, sort ties, and empty input.
+
+### SQL Server adaptation
+
+```sql
+;WITH reporting_window AS (
+    SELECT
+        CAST(MAX(OrderDate) AS date) AS latest_order_date,
+        DATEADD(day, -6, CAST(MAX(OrderDate) AS date)) AS window_start
+    FROM Orders
+)
+SELECT
+    o.OrderID,
+    o.OrderDate,
+    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
+    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE (o.OrderDate) BETWEEN
+    (SELECT window_start FROM reporting_window)
+    AND
+    (SELECT latest_order_date FROM reporting_window)
+ORDER BY o.OrderDate DESC, o.OrderID DESC;
+```
+
+Assumes a date-only OrderDate column. Reviewed by inspection.
+
 ## Official solution
 
 [PNP answer key, Q17](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/main/1.%20SQL%20Mastery/1.%20SQL%20Mastry/2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql)
