@@ -48,6 +48,7 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 | P013 | [States with at least five customers](Sorting%20and%20Grouping/easy/PNP-P013.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P014 | [Orders per month in 2025](Sorting%20and%20Grouping/easy/PNP-P014.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P022 | [Orders with more than eight line items](Sorting%20and%20Grouping/easy/PNP-P022.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P025 | [Customer sign-ups by year and quarter](Sorting%20and%20Grouping/easy/PNP-P025.md) | PNP | ![EASY](../_badges/easy.svg) |
 
 ### Joins
 
