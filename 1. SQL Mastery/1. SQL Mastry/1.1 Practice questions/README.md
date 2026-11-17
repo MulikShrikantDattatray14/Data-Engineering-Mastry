@@ -30,6 +30,7 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 | P008 | [Price band labels](SQL%20Basics/easy/PNP-P008.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P009 | [Check how Active and Allowed are encoded](SQL%20Basics/easy/PNP-P009.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P010 | [Headline order KPIs](SQL%20Basics/easy/PNP-P010.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P020 | [Days to ship and days to deliver](SQL%20Basics/easy/PNP-P020.md) | PNP | ![EASY](../_badges/easy.svg) |
 
 ### Aggregation
 
