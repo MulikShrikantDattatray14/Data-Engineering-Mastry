@@ -35,6 +35,7 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 | P024 | [Suppliers outside India or with no email](SQL%20Basics/easy/PNP-P024.md) | PNP | ![EASY](../_badges/easy.svg) |
 | B1.01 | [Find Customers With Positive Revenue This Year](SQL%20Basics/easy/Bosscoder-1.01.md) | Bosscoder | ![EASY](../_badges/easy.svg) |
 | B1.02 | [Calculate Special Bonus](SQL%20Basics/easy/Bosscoder-1.02.md) | Bosscoder | ![EASY](../_badges/easy.svg) |
+| B1.03 | [Binary Tree Nodes](SQL%20Basics/medium/Bosscoder-1.03.md) | Bosscoder | ![MEDIUM](../_badges/medium.svg) |
 
 ### Aggregation
 
