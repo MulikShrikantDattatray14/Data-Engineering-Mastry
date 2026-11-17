@@ -34,6 +34,7 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 | P023 | [Chocolate or cookie products under 250](SQL%20Basics/easy/PNP-P023.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P024 | [Suppliers outside India or with no email](SQL%20Basics/easy/PNP-P024.md) | PNP | ![EASY](../_badges/easy.svg) |
 | B1.01 | [Find Customers With Positive Revenue This Year](SQL%20Basics/easy/Bosscoder-1.01.md) | Bosscoder | ![EASY](../_badges/easy.svg) |
+| B1.02 | [Calculate Special Bonus](SQL%20Basics/easy/Bosscoder-1.02.md) | Bosscoder | ![EASY](../_badges/easy.svg) |
 
 ### Aggregation
 
