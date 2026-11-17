@@ -1,0 +1,160 @@
+# PNP P023 — Chocolate or cookie products under 250
+
+**Topic:** SQL Basics  
+**Difficulty:** Easy
+
+## Question
+
+From `Products`, return products that meet all three rules:
+
+- `Sub_Category` contains **`chocolate` or `cookie`**, ignoring case.
+- `Sale_Price` is **strictly below 250**.
+- The `Product` name doesn’t mark it as **sugar-free**.
+
+Return `ProductID`, `Product`, `Sub_Category`, and `Sale_Price`. Sort by `Sale_Price` ascending, then `ProductID` ascending.
+
+### Sample input · `Products`
+
+| ProductID | Product | Sub_Category | Sale_Price |
+|---:|---|---|---:|
+| 1 | Cocoa Cookie | Cookies | 200 |
+| 2 | Sugar-free Choc | Chocolate | 150 |
+| 3 | Tea Biscuit | Biscuits | 100 |
+| 4 | Dark Bar | CHOCOLATE | 249 |
+
+### Expected output
+
+| ProductID | Product | Sub_Category | Sale_Price |
+|---:|---|---|---:|
+| 1 | Cocoa Cookie | Cookies | 200 |
+| 4 | Dark Bar | CHOCOLATE | 249 |
+
+## Learner submission — SQLite
+
+```sql
+select `ProductID`,Product,Sub_Category,Sale_Price
+from Products
+where ( trim(lower(Sub_Category)) like "%cookie%" or  trim(lower(Sub_Category)) like "%chocolate%")  and `Sale_Price` < 250 and `Product` not like "%sugar-free%"
+order by `Sale_Price` asc, `ProductID` asc
+```
+
+Guided submission. Chat formatting was cleaned up. SQLite accepted the double-quoted patterns in the tested configuration. Single quotes are standard for string literals. The submitted sugar-free match uses SQLite's default case-insensitive ASCII LIKE behavior.
+
+## Step-by-step walkthrough
+
+One row represents one qualifying product. All data comes from Products.
+
+### 1. Find the two eligible subcategories
+
+**What to do.** Normalize case, use LIKE for each substring, and group the alternatives with parentheses.
+
+**Why.** Percent signs are wildcards in LIKE. The substring cookie also matches Cookies, and chocolate matches longer labels such as Dark Chocolate. Tea Biscuit drops out.
+
+```sql
+select `ProductID`,Product,Sub_Category,Sale_Price
+from Products
+where ( trim(lower(Sub_Category)) like "%cookie%" or  trim(lower(Sub_Category)) like "%chocolate%")
+order by ProductID;
+```
+
+| ProductID | Product | Sub_Category | Sale_Price |
+|---:|---|---|---:|
+| 1 | Cocoa Cookie | Cookies | 200 |
+| 2 | Sugar-free Choc | Chocolate | 150 |
+| 4 | Dark Bar | CHOCOLATE | 249 |
+
+### 2. Apply the price boundary
+
+**What to do.** Require a price strictly below 250 for both subcategory alternatives.
+
+**Why.** AND applies the price test to the entire parenthesized OR. All three remaining sample rows pass this check. A chocolate item priced exactly 250 fails.
+
+```sql
+select `ProductID`,Product,Sub_Category,Sale_Price
+from Products
+where ( trim(lower(Sub_Category)) like "%cookie%" or  trim(lower(Sub_Category)) like "%chocolate%")  and `Sale_Price` < 250
+order by ProductID;
+```
+
+| ProductID | Product | Sub_Category | Sale_Price |
+|---:|---|---|---:|
+| 1 | Cocoa Cookie | Cookies | 200 |
+| 2 | Sugar-free Choc | Chocolate | 150 |
+| 4 | Dark Bar | CHOCOLATE | 249 |
+
+### 3. Exclude sugar-free names and sort
+
+**What to do.** Add the product name filter and order by price, then ID.
+
+**Why.** Sugar-free Choc passes the category and price checks and must still be excluded. The product ID settles a price tie.
+
+```sql
+select `ProductID`,Product,Sub_Category,Sale_Price
+from Products
+where ( trim(lower(Sub_Category)) like "%cookie%" or  trim(lower(Sub_Category)) like "%chocolate%")  and `Sale_Price` < 250 and `Product` not like "%sugar-free%"
+order by `Sale_Price` asc, `ProductID` asc
+```
+
+| ProductID | Product | Sub_Category | Sale_Price |
+|---:|---|---|---:|
+| 1 | Cocoa Cookie | Cookies | 200 |
+| 4 | Dark Bar | CHOCOLATE | 249 |
+
+Verified in SQLite with the sample and additional rows for a singular Cookie label, mixed case, a price of 250, and tied prices.
+
+## Learner submission — SQL Server adaptation
+
+```sql
+select ProductID,Product,Sub_Category,Sale_Price
+from Products
+where ( trim(lower(Sub_Category)) like '%cookie%' or  trim(lower(Sub_Category)) like '%chocolate%')  and Sale_Price < 250 and LOWER(Product) not like '%sugar-free%'
+order by Sale_Price asc, ProductID asc;
+```
+
+Uses single quotes and explicitly lowers the product name to preserve case-insensitive matching for the hyphenated marker. Reviewed by inspection.
+
+## Official solution
+
+[PNP answer key, Q23](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/main/1.%20SQL%20Mastery/1.%20SQL%20Mastry/2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql)
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Sub_Category,
+       p.Sale_Price
+FROM Products AS p
+WHERE (p.Sub_Category ILIKE '%chocolate%' OR p.Sub_Category ILIKE '%cookie%')
+  AND p.Sale_Price < 250
+  AND p.Product NOT ILIKE '%sugar%free%'
+ORDER BY p.Sale_Price, p.ProductID;
+```
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Sub_Category,
+       p.Sale_Price
+FROM Products AS p
+WHERE (LOWER(p.Sub_Category) LIKE '%chocolate%' OR LOWER(p.Sub_Category) LIKE '%cookie%')
+  AND p.Sale_Price < 250
+  AND LOWER(p.Product) NOT LIKE '%sugar%free%'
+ORDER BY p.Sale_Price, p.ProductID;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Sub_Category,
+       p.Sale_Price
+FROM Products AS p
+WHERE (LOWER(p.Sub_Category) LIKE '%chocolate%' OR LOWER(p.Sub_Category) LIKE '%cookie%')
+  AND p.Sale_Price < 250
+  AND LOWER(p.Product) NOT LIKE '%sugar%free%'
+ORDER BY p.Sale_Price, p.ProductID;
+```
+
+The official answer's broader pattern also excludes `Sugar free bar` without the hyphen. The learner pattern excludes the literal hyphenated marker. Both versions match the supplied sample. The SQLite variants were checked on the unhyphenated example. The SQL Server variants were reviewed by inspection.
