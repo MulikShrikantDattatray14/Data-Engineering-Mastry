@@ -32,6 +32,7 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 | P010 | [Headline order KPIs](SQL%20Basics/easy/PNP-P010.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P020 | [Days to ship and days to deliver](SQL%20Basics/easy/PNP-P020.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P023 | [Chocolate or cookie products under 250](SQL%20Basics/easy/PNP-P023.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P024 | [Suppliers outside India or with no email](SQL%20Basics/easy/PNP-P024.md) | PNP | ![EASY](../_badges/easy.svg) |
 
 ### Aggregation
 
