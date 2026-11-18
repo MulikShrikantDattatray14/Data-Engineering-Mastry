@@ -68,13 +68,11 @@ Order `100` contains two Drinks lines and one Snacks line. It counts once for ea
 
 ## Visual walkthrough
 
-Blue (🟦) identifies `OrderDetails`, green (🟩) identifies `Products`, and coral (🟥) identifies `Category`. Each colored band names its table. Read across a joined row to see where each value came from, including a `NULL` on the unmatched side. Underlined fields show the two keys being compared. Gold marks a row in focus.
+🟦 **OrderDetails** supplies the sale lines. 🟩 **Products** supplies each product’s price and category reference. 🟥 **Category** supplies the catalogue names. The same colors identify those columns after every join, including any `NULL` cells. A violet (🟪) result combines sources. A double underline marks the join keys, and ▸ marks a row worth following.
 
-The four blue order-line columns stay on the left. The first join appends three green product columns. The next join appends two coral category columns and adds the unsold Stationery row. The reporting label and line value appear to the right of those same nine source columns. No row or group filter applies.
+Follow **line 5** to see why the first join must preserve sales. Follow **Stationery** to see why the second must also preserve unsold categories. In the grouping step, the two Drinks lines meet again under the same order ID. The aggregation step shows exactly which cells give Drinks **1 order, 3 units and 28 in list-price value**.
 
-At the aggregate step, follow the darker cells in the two Drinks rows. Blue order IDs `100, 100` yield **1 order**. Blue quantities `2, 1` yield **3 units**. Each green price pairs with the blue quantity on its own line, giving **10 × 2 + 8 × 1 = 28**. A one-table calculation keeps its source color. A calculation using multiple tables uses violet (🟪) and shows its contributing table aliases. Grouping changes the six joined rows into five result rows. The final sort rearranges those same five results.
-
-![Eight stages trace three consistently colored source tables from their inputs through the joins and calculations to the final five category totals.](../../assets/p026-from-inputs-to-result.svg)
+![Eight illustrated decisions trace five sale lines and an unsold category into five report rows. Each heading explains why the operation is needed. Source-colored keys, group membership, arithmetic and a final eleven-unit check connect the steps.](../../assets/p026-from-inputs-to-result.svg)
 
 [Open the full-size graphic](../../assets/p026-from-inputs-to-result.svg?raw=1)
 
@@ -111,7 +109,27 @@ ORDER BY list_price_value DESC NULLS LAST, category_name ASC;
 
 One result row represents a category. Before aggregating, keep enough detail to tell whether an order line, product and category actually matched.
 
-### 1. Start with each sale line and look for its product
+### 1. Why start with OrderDetails?
+
+Finance wants sold units to add back to the original sales. One row here represents a sale line. Order `100` spans three lines, each with its own product and quantity.
+
+```sql
+SELECT OrderDetailID, OrderID, ProductID, Quantity
+FROM OrderDetails
+ORDER BY OrderDetailID;
+```
+
+| 🟦 OrderDetailID | 🟦 OrderID | 🟦 ProductID | 🟦 Quantity |
+| ---: | ---: | ---: | ---: |
+| 1 | 100 | 10 | 2 |
+| 2 | 100 | 11 | 1 |
+| 3 | 100 | 20 | 1 |
+| 4 | 101 | 30 | 3 |
+| 5 | 102 | 999 | 4 |
+
+There are five sale lines and eleven units. These are the numbers we can check as the joins change the table.
+
+### 2. Why LEFT JOIN to Products?
 
 Finance wants every sold unit counted. Start with `OrderDetails`, where one row is one order line. A `LEFT JOIN` to `Products` keeps line 5 even though its product ID `999` has no match. The two product ID columns below distinguish the ID recorded on the order from the product actually found.
 
@@ -130,11 +148,11 @@ ORDER BY od.OrderDetailID;
 | 2 | 11 | 11 | 8 |
 | 3 | 20 | 20 | 5 |
 | 4 | 30 | 30 | 7 |
-| 🟨 5 | **999** | **`NULL`** | `NULL` |
+| ▸ 5 | **999** | **`NULL`** | `NULL` |
 
-### 2. Keep categories with no sales
+### 3. Why FULL OUTER JOIN to Category?
 
-Sales alone cannot supply a row for Stationery. The `FULL OUTER JOIN` keeps the sale lines from step 1 and adds any category with no matching sale. Follow the last three rows. They show a product with a broken category reference, a sale with no product match, and a category with no sales.
+Sales alone cannot supply a row for Stationery. The `FULL OUTER JOIN` keeps the sale lines from step 2 and adds any category with no matching sale. Follow the last three rows. They show a product with a broken category reference, a sale with no product match, and a category with no sales.
 
 ```sql
 SELECT od.OrderDetailID, p.ProductID AS matched_product_id,
@@ -152,11 +170,11 @@ ORDER BY od.OrderDetailID NULLS LAST;
 | 1 | 10 | 1 | Drinks |
 | 2 | 11 | 1 | Drinks |
 | 3 | 20 | 2 | Snacks |
-| 🟨 **4** | **30** | **`NULL`** | **`NULL`** |
-| 🟨 **5** | **`NULL`** | **`NULL`** | **`NULL`** |
-| 🟨 **`NULL`** | **`NULL`** | **3** | **Stationery** |
+| ▸ **4** | **30** | **`NULL`** | **`NULL`** |
+| ▸ **5** | **`NULL`** | **`NULL`** | **`NULL`** |
+| ▸ **`NULL`** | **`NULL`** | **3** | **Stationery** |
 
-### 3. Give each joined row its reporting label
+### 4. Why label missing matches before grouping?
 
 Use the catalogue name whenever the category exists. For a missing category, check the product lookup. A matched product earns `Unmapped`, and a missing product earns `Unknown product`. Stationery still has a category ID and retains its own name.
 
@@ -183,15 +201,55 @@ ORDER BY od.OrderDetailID NULLS LAST;
 | 1 | 1 | Drinks |
 | 2 | 1 | Drinks |
 | 3 | 2 | Snacks |
-| 🟨 4 | **`NULL`** | **Unmapped** |
-| 🟨 5 | **`NULL`** | **Unknown product** |
-| 🟨 `NULL` | **3** | **Stationery** |
+| ▸ 4 | **`NULL`** | **Unmapped** |
+| ▸ 5 | **`NULL`** | **Unknown product** |
+| ▸ `NULL` | **3** | **Stationery** |
 
-The two broken references both have a `NULL` category ID. Grouping by the category ID **and the calculated label** separates them. Keeping the ID also separates two real catalogue categories that happen to share a name.
+### 5. Why multiply price by quantity on each line?
 
-### 4. Count orders and add units within each category
+Drinks has two different prices within order `100`. Pair each price with its own line’s quantity while those values are still on the same row.
 
-Trace the two gold Drinks lines. They share order ID `100`, so Drinks gets one order. Both quantities contribute to units sold, giving `2 + 1 = 3`. Stationery has no matched quantity. `COALESCE` gives it zero units.
+```sql
+SELECT od.OrderDetailID, p.Sale_Price, od.Quantity,
+       p.Sale_Price * od.Quantity AS line_value
+FROM OrderDetails AS od
+LEFT JOIN Products AS p ON od.ProductID = p.ProductID
+FULL OUTER JOIN Category AS c ON c.CategoryID = p.CategoryID
+ORDER BY od.OrderDetailID NULLS LAST;
+```
+
+| 🟦 OrderDetailID | 🟩 Sale_Price | 🟦 Quantity | 🟪 line_value |
+| ---: | ---: | ---: | ---: |
+| ▸ 1 | **10** | **2** | **20** |
+| ▸ 2 | **8** | **1** | **8** |
+| 3 | 5 | 1 | 5 |
+| 4 | 7 | 3 | 21 |
+| 5 | `NULL` | 4 | `NULL` |
+| `NULL` | `NULL` | `NULL` | `NULL` |
+
+The final query uses this multiplication inside `SUM`. The `line_value` column here makes each contribution visible.
+
+### 6. Why group by the category ID and its label?
+
+The report needs one row per category. The category ID keeps two catalogue categories with the same name separate. The label keeps the two kinds of missing match separate when both have a `NULL` category ID.
+
+```sql
+GROUP BY c.CategoryID, category_name
+```
+
+These are the groups that clause forms from the same six rows. The last column shows which sale lines feed each group.
+
+| 🟥 CategoryID | 🟪 category_name | 🟦 Sale line IDs |
+| ---: | --- | --- |
+| 1 | Drinks | 1, 2 |
+| 2 | Snacks | 3 |
+| 3 | Stationery | No sale line |
+| `NULL` | Unknown product | 5 |
+| `NULL` | Unmapped | 4 |
+
+### 7. Why count orders once but add every unit?
+
+Trace the two marked Drinks lines. They share order ID `100`, so Drinks gets one order. Both quantities contribute to units sold, giving `2 + 1 = 3`. Stationery has no matched quantity. `COALESCE` gives it zero units.
 
 ![In the two highlighted Drinks rows the OrderID is 100.](../../assets/p026-orders-focus.svg)
 
@@ -218,13 +276,13 @@ ORDER BY category_name ASC;
 
 | 🟪 category_name | 🟦 orders | 🟦 units_sold |
 | --- | --- | --- |
-| 🟨 Drinks | **1** | **3** |
+| ▸ Drinks | **1** | **3** |
 | Snacks | 1 | 1 |
-| 🟨 Stationery | **0** | **0** |
+| ▸ Stationery | **0** | **0** |
 | Unknown product | 1 | 4 |
 | Unmapped | 1 | 3 |
 
-### 5. Value each line and distinguish an empty category from an unknown price
+#### Why does Stationery get a zero and Unknown product get NULL?
 
 Multiply quantity by the price on that line before summing. To decide whether zero is justified, count `od.OrderDetailID`. The outer join gives Stationery a placeholder with a `NULL` line ID, so its count is zero. For `Unknown product`, order line 5 exists. Multiplication by its missing price gives `NULL`, and its group has no priced line to add.
 
@@ -256,13 +314,13 @@ ORDER BY category_name ASC;
 | --- | --- | --- |
 | Drinks | 2 | 28 |
 | Snacks | 1 | 5 |
-| 🟨 Stationery | **0** | **0** |
-| 🟨 Unknown product | **1** | **`NULL`** |
+| ▸ Stationery | **0** | **0** |
+| ▸ Unknown product | **1** | **`NULL`** |
 | Unmapped | 1 | 21 |
 
 The zero check changes only `list_price_value`. The row for the unknown product still contributes one order and four units.
 
-### 6. Sort the report and reconcile the totals
+### 8. Why sort by value and check the units?
 
 Apply the following clause to the complete learner query. Highest known value comes first. Equal values sort by category name, and unknown values come last.
 
@@ -272,11 +330,11 @@ ORDER BY list_price_value DESC NULLS LAST, category_name ASC;
 
 | 🟪 category_name | 🟦 orders | 🟦 units_sold | 🟪 list_price_value |
 | --- | --- | --- | --- |
-| 🟨 Drinks | 1 | 3 | **28** |
+| ▸ Drinks | 1 | 3 | **28** |
 | Unmapped | 1 | 3 | 21 |
 | Snacks | 1 | 1 | 5 |
 | Stationery | 0 | 0 | 0 |
-| 🟨 Unknown product | 1 | 4 | **`NULL`** |
+| ▸ Unknown product | 1 | 4 | **`NULL`** |
 
 All **11 units** are accounted for. The five order lines contain `2 + 1 + 1 + 3 + 4 = 11` units. The output contains `3 + 3 + 1 + 0 + 4 = 11`.
 

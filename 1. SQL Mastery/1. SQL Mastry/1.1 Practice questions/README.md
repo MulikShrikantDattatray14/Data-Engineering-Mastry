@@ -29,13 +29,15 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 
 #### Table color key
 
-Give every input table its own labeled color. Keep that color on its headers, values, and unmatched `NULL` cells throughout the walkthrough. In P026, `OrderDetails` is blue, `Products` green, and `Category` coral. Identify source blocks by name or alias so the visual can also be read without color.
+Use strongly contrasting colors for input tables. In P026, 🟦 `OrderDetails` is blue, 🟩 `Products` is green and 🟥 `Category` is red. Use 🟨 yellow with dark lettering when a fourth table appears. Keep each source’s color on its headers, values and unmatched `NULL` cells throughout the question. Write the table name or alias above its columns so the visual can also be read without color.
 
 Start with all the sample input tables. At each join, keep the working columns in place and append the new table’s columns. Underline both join keys and connect their qualified names with an equals sign. Carry the preceding rows into the next stage, and mark which rows were added, removed, or repeated and why.
 
-Mark focus rows with a gold rail or 🟨. For each aggregate, deepen the existing source color only on the cells read in that group. Pair the source-colored operands with the calculation and its result. A single-table calculation retains its source hue and is marked as calculated. A calculation using several tables gets a distinct result color and names each contributing table. Show the change from input rows to groups, then show how sorting rearranges the result. Use the same convention in chat and in the saved walkthrough, with copyable data and SQL.
+Give each step a heading that asks why this operation belongs here. Answer in one plain-English sentence using the question’s requirement, then point to a sample row that demonstrates the choice. Show row counts before and after a join or grouping. Use a neutral ▸ pointer for focus and a double underline for the two join keys.
 
-![Two gold-marked Drinks lines both have the blue OrderDetails.OrderID value 100.](assets/p026-orders-focus.svg)
+Show which rows form each group before calculating its measures. For each aggregate, deepen the source color on the cells it reads, explain why it counts or adds those values, and show their arithmetic next to the result. A single-source calculation keeps its source color. A multi-source calculation uses violet and names its contributing tables. Finish with the sorted output and, when the question supplies one, a check such as reconciling output units with input units. Apply this format in chat and in the saved walkthrough.
+
+![Why count distinct order IDs? Two marked Drinks lines both have OrderID 100 and contribute one order to the category.](assets/p026-orders-focus.svg)
 
 ## Practice question index
 
