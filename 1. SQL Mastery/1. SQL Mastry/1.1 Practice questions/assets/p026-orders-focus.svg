@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="178" viewBox="0 0 500 178" role="img" aria-labelledby="title description">
+  <title id="title">Order IDs for the Drinks category</title>
+  <desc id="description">The two highlighted Drinks rows, order lines 1 and 2, both have OrderID 100. A third row for Snacks also has OrderID 100 and is shown for context.</desc>
+  <style>
+    text { font-family: 'Inter', 'DejaVu Sans', sans-serif; }
+    .heading { font-size: 15px; font-weight: 600; }
+    .value { font-size: 18px; font-weight: 600; }
+    .number { font-size: 20px; font-weight: 700; }
+    .context { font-size: 16px; fill: #536078; }
+  </style>
+
+  <rect x="1" y="1" width="498" height="176" rx="14" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <g class="heading">
+    <text x="24" y="28" fill="#38465D">Order line</text>
+    <text x="164" y="28" fill="#6735A5">category_name</text>
+    <text x="381" y="28" fill="#124D94">OrderID</text>
+  </g>
+  <path d="M17 40 H483" stroke="#DCE3ED"/>
+
+  <g aria-label="Focus, line 1, Drinks, OrderID 100">
+    <rect x="13" y="47" width="474" height="38" rx="8" fill="#FFF4D3"/>
+    <rect x="13" y="51" width="5" height="30" rx="2.5" fill="#DC8C00"/>
+    <text x="26" y="72" class="value" fill="#754900">1</text>
+    <rect x="154" y="51" width="165" height="30" rx="7" fill="#EBDFFF"/>
+    <text x="165" y="72" class="value" fill="#54248E">Drinks</text>
+    <rect x="370" y="51" width="103" height="30" rx="7" fill="#1757AB"/>
+    <text x="421" y="73" text-anchor="middle" class="number" fill="#FFFFFF">100</text>
+  </g>
+  <g aria-label="Focus, line 2, Drinks, OrderID 100">
+    <rect x="13" y="90" width="474" height="38" rx="8" fill="#FFF4D3"/>
+    <rect x="13" y="94" width="5" height="30" rx="2.5" fill="#DC8C00"/>
+    <text x="26" y="115" class="value" fill="#754900">2</text>
+    <rect x="154" y="94" width="165" height="30" rx="7" fill="#EBDFFF"/>
+    <text x="165" y="115" class="value" fill="#54248E">Drinks</text>
+    <rect x="370" y="94" width="103" height="30" rx="7" fill="#1757AB"/>
+    <text x="421" y="116" text-anchor="middle" class="number" fill="#FFFFFF">100</text>
+  </g>
+  <g aria-label="Context, line 3, Snacks, OrderID 100" class="context">
+    <text x="26" y="155">3</text>
+    <text x="165" y="155">Snacks</text>
+    <text x="421" y="155" text-anchor="middle">100</text>
+  </g>
+</svg>
