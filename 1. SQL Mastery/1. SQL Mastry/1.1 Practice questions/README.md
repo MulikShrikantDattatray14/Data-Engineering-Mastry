@@ -29,13 +29,13 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 
 #### Table color key
 
-Trace one question at a time using the same example in chat and in the saved walkthrough. Show just the columns needed for the step. Use a gold band (🟨) for the rows to follow, blue (🟦) for the source values to compare, and purple (🟪) for a calculated label or result in focus. Keep context rows neutral and pair color with column names and bold values. Keep sample data and SQL copyable.
+Give every input table its own labeled color. Keep that color on its headers, values, and unmatched `NULL` cells throughout the walkthrough. In P026, `OrderDetails` is blue, `Products` green, and `Category` coral. Identify source blocks by name or alias so the visual can also be read without color.
 
-For each join, place its two table-qualified key names side by side. Give both key columns the same color in the input and joined tables, including the headers and values. Use a different color for the next key pair. Trace a matching row and any unmatched row that matters to the question.
+Start with all the sample input tables. At each join, keep the working columns in place and append the new table’s columns. Underline both join keys and connect their qualified names with an equals sign. Carry the preceding rows into the next stage, and mark which rows were added, removed, or repeated and why.
 
-For each aggregate, highlight the group’s rows in gold and just the cells the function reads in blue. Put the expression beside those sample values and the result in purple. For a calculation with several inputs, show which values come from the same row. Include the column used by any zero or missing-value check. Carry the same rows through filtering, grouping and the final sort in both the chat and the saved walkthrough.
+Mark focus rows with a gold rail or 🟨. For each aggregate, deepen the existing source color only on the cells read in that group. Pair the source-colored operands with the calculation and its result. A single-table calculation retains its source hue and is marked as calculated. A calculation using several tables gets a distinct result color and names each contributing table. Show the change from input rows to groups, then show how sorting rearranges the result. Use the same convention in chat and in the saved walkthrough, with copyable data and SQL.
 
-![Order lines 1 and 2 are highlighted for Drinks. Both show OrderID 100. Line 3 is shown for context.](assets/p026-orders-focus.svg)
+![Two gold-marked Drinks lines both have the blue OrderDetails.OrderID value 100.](assets/p026-orders-focus.svg)
 
 ## Practice question index
 

@@ -68,11 +68,13 @@ Order `100` contains two Drinks lines and one Snacks line. It counts once for ea
 
 ## Visual walkthrough
 
-The two blue product keys match `OrderDetails.ProductID` with `Products.ProductID`. The two green category keys match `Products.CategoryID` with `Category.CategoryID`. Follow the gold rows to see why sale line 5 survives the first join and Stationery enters at the second. No row or group filter applies.
+Blue (🟦) identifies `OrderDetails`, green (🟩) identifies `Products`, and coral (🟥) identifies `Category`. Each colored band names its table. Read across a joined row to see where each value came from, including a `NULL` on the unmatched side. Underlined fields show the two keys being compared. Gold marks a row in focus.
 
-In step 6, trace the exact inputs to each aggregate. For Drinks, the order IDs are `100, 100`, the quantities are `2, 1`, and the paired prices are `10, 8`. The results are **1 order**, **3 units** and **28 in list-price value**. Counting matched `OrderDetailID` values also distinguishes an unsold category from a real sale whose price is missing.
+The four blue order-line columns stay on the left. The first join appends three green product columns. The next join appends two coral category columns and adds the unsold Stationery row. The reporting label and line value appear to the right of those same nine source columns. No row or group filter applies.
 
-![Eight stages from the three input tables to the final report. Both columns of each join are highlighted in matching colors. The aggregate step traces the Drinks input cells to each total.](../../assets/p026-from-inputs-to-result.svg)
+At the aggregate step, follow the darker cells in the two Drinks rows. Blue order IDs `100, 100` yield **1 order**. Blue quantities `2, 1` yield **3 units**. Each green price pairs with the blue quantity on its own line, giving **10 × 2 + 8 × 1 = 28**. A one-table calculation keeps its source color. A calculation using multiple tables uses violet (🟪) and shows its contributing table aliases. Grouping changes the six joined rows into five result rows. The final sort rearranges those same five results.
+
+![Eight stages trace three consistently colored source tables from their inputs through the joins and calculations to the final five category totals.](../../assets/p026-from-inputs-to-result.svg)
 
 [Open the full-size graphic](../../assets/p026-from-inputs-to-result.svg?raw=1)
 
@@ -122,7 +124,7 @@ LEFT JOIN Products AS p
 ORDER BY od.OrderDetailID;
 ```
 
-| OrderDetailID | 🟦 ordered_product_id | 🟦 matched_product_id | Sale_Price |
+| 🟦 OrderDetailID | 🟦 ordered_product_id | 🟩 matched_product_id | 🟩 Sale_Price |
 | --- | --- | --- | --- |
 | 1 | 10 | 10 | 10 |
 | 2 | 11 | 11 | 8 |
@@ -145,7 +147,7 @@ FULL OUTER JOIN Category AS c
 ORDER BY od.OrderDetailID NULLS LAST;
 ```
 
-| 🟦 OrderDetailID | matched_product_id | 🟦 CategoryID | CategoryName |
+| 🟦 OrderDetailID | 🟩 matched_product_id | 🟥 CategoryID | 🟥 CategoryName |
 | --- | --- | --- | --- |
 | 1 | 10 | 1 | Drinks |
 | 2 | 11 | 1 | Drinks |
@@ -176,7 +178,7 @@ FULL OUTER JOIN Category AS c
 ORDER BY od.OrderDetailID NULLS LAST;
 ```
 
-| OrderDetailID | 🟦 CategoryID | 🟪 category_name |
+| 🟦 OrderDetailID | 🟥 CategoryID | 🟪 category_name |
 | --- | --- | --- |
 | 1 | 1 | Drinks |
 | 2 | 1 | Drinks |
@@ -214,7 +216,7 @@ GROUP BY c.CategoryID, category_name
 ORDER BY category_name ASC;
 ```
 
-| category_name | 🟪 orders | 🟪 units_sold |
+| 🟪 category_name | 🟦 orders | 🟦 units_sold |
 | --- | --- | --- |
 | 🟨 Drinks | **1** | **3** |
 | Snacks | 1 | 1 |
@@ -250,7 +252,7 @@ GROUP BY c.CategoryID, category_name
 ORDER BY category_name ASC;
 ```
 
-| category_name | 🟦 matching_lines | 🟪 list_price_value |
+| 🟪 category_name | 🟦 matching_lines | 🟪 list_price_value |
 | --- | --- | --- |
 | Drinks | 2 | 28 |
 | Snacks | 1 | 5 |
@@ -268,7 +270,7 @@ Apply the following clause to the complete learner query. Highest known value co
 ORDER BY list_price_value DESC NULLS LAST, category_name ASC;
 ```
 
-| category_name | orders | units_sold | 🟪 list_price_value |
+| 🟪 category_name | 🟦 orders | 🟦 units_sold | 🟪 list_price_value |
 | --- | --- | --- | --- |
 | 🟨 Drinks | 1 | 3 | **28** |
 | Unmapped | 1 | 3 | 21 |
