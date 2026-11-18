@@ -14,6 +14,10 @@ Use the same step-by-step approach during practice and in each PNP or Bosscoder 
 
 Preserve the official answer as supplied and add separate SQLite and SQL Server adaptations. Note dialect changes and verify executable versions when the engine is available.
 
+#### Table color key
+
+Use the same color key in chat and in saved step-by-step walkthroughs. Mark source columns with 🟦 and calculated columns with 🟪 in their headers. Put 🟨 beside the row or rows being traced and bold the values to compare. Pair each marker with a column name or row label. Keep SQL examples in plain code blocks so they can be copied and run.
+
 ## Practice question index
 
 ### SQL Basics
