@@ -62,6 +62,49 @@ The diagram keeps the original ten orders and adds examples from practice. Follo
 
 ## Final learner solution — SQLite
 
+### Single-query solution
+
+```sql
+SELECT
+    COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state,
+    COUNT(DISTINCT Orders.CustomerID) AS customers,
+    COUNT(Orders.OrderID) AS orders,
+    SUM(Orders.Total_Order_Amount) AS order_value,
+    AVG(Orders.Total_Order_Amount) AS avg_order_value
+FROM Orders
+LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID
+GROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown')
+HAVING COUNT(Orders.OrderID) >= 10
+ORDER BY avg_order_value DESC;
+```
+
+The join, counts, `SUM`, `AVG`, `HAVING` and descending sort follow the submitted query. The same state expression appears in `SELECT` and `GROUP BY` so orders that display the same state enter one group. The `TRIM` and `NULLIF` from the course answer also treat empty or all-space states as missing.
+
+<details>
+<summary>Submitted SQLite query and its result on the walkthrough</summary>
+
+The submitted query returns the expected Karnataka row on the original ten-order sample.
+
+```sql
+SELECT
+    COALESCE(Customers.State, 'Unknown') AS state,
+    COUNT(DISTINCT Orders.CustomerID) AS customers,
+    COUNT(Orders.OrderID) AS orders,
+    SUM(Orders.Total_Order_Amount) AS order_value,
+    AVG(Orders.Total_Order_Amount) AS avg_order_value
+FROM Orders
+LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID
+GROUP BY state
+HAVING COUNT(Orders.OrderID) >= 10
+ORDER BY avg_order_value DESC;
+```
+
+On the 49-order example, SQLite resolves `GROUP BY state` to `Customers.State`. The six orders with a raw `NULL` and the four with a stored `Unknown` form two groups. Both fall below ten, so the submitted query drops the `Unknown` row. Grouping by the displayed expression combines them. The corrected result for that state is three buyers, ten orders, 500 total value and 50 average order value.
+
+</details>
+
+### CTE version using `GROUP BY state`
+
 ```sql
 WITH labeled_orders AS (
     SELECT
@@ -262,6 +305,26 @@ ORDER BY avg_order_value DESC;
 The qualifying rows account for **40 orders**. Together with Goa’s nine excluded orders, they reconcile to the original **49**. Even though Maharashtra and Karnataka have the same total value, their different counts of known amounts put Maharashtra first.
 
 ## Learner solution — SQL Server
+
+### Single-query solution for SQL Server
+
+Casting the amount to a decimal preserves a fractional average when the input column contains integers.
+
+```sql
+SELECT
+    COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state,
+    COUNT(DISTINCT Orders.CustomerID) AS customers,
+    COUNT(Orders.OrderID) AS orders,
+    SUM(Orders.Total_Order_Amount) AS order_value,
+    AVG(CAST(Orders.Total_Order_Amount AS DECIMAL(19, 2))) AS avg_order_value
+FROM Orders
+LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID
+GROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown')
+HAVING COUNT(Orders.OrderID) >= 10
+ORDER BY avg_order_value DESC;
+```
+
+### CTE version for SQL Server
 
 The outer query uses the same grouping key. The CTE supplies a decimal amount so that integer-valued input columns also produce a fractional average. The source dataset defines amounts with two decimal places.
 
