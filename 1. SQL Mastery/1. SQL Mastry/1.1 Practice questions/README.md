@@ -93,6 +93,12 @@ Show which rows form each group before calculating its measures. For each aggreg
 | P026 | [List-price value by category](Joins/medium/PNP-P026.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
 | P027 | [Average order value by customer state](Joins/medium/PNP-P027.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
 
+### Subqueries
+
+| ID | Question | Set | Difficulty |
+| --- | --- | --- | --- |
+| P028 | [Payment mix by order count and order value](Subqueries/medium/PNP-P028.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
+
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
 ## Difficulty rubric
