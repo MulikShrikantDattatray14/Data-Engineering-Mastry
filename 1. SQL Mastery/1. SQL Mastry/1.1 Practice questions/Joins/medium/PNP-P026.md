@@ -68,9 +68,11 @@ Order `100` contains two Drinks lines and one Snacks line. It counts once for ea
 
 ## Visual walkthrough
 
-Follow all five original order lines through the two joins. The full category join adds an unsold category, and grouping turns the six joined rows into five report rows. No row or group filter applies. The zero-value check belongs to the value calculation.
+The two blue product keys match `OrderDetails.ProductID` with `Products.ProductID`. The two green category keys match `Products.CategoryID` with `Category.CategoryID`. Follow the gold rows to see why sale line 5 survives the first join and Stationery enters at the second. No row or group filter applies.
 
-![Seven steps from all three sample input tables to the sorted report. The Drinks lines combine to 28. Stationery has zero sales, and the missing product has four units with unknown value.](../../assets/p026-from-inputs-to-result.svg)
+In step 6, trace the exact inputs to each aggregate. For Drinks, the order IDs are `100, 100`, the quantities are `2, 1`, and the paired prices are `10, 8`. The results are **1 order**, **3 units** and **28 in list-price value**. Counting matched `OrderDetailID` values also distinguishes an unsold category from a real sale whose price is missing.
+
+![Eight stages from the three input tables to the final report. Both columns of each join are highlighted in matching colors. The aggregate step traces the Drinks input cells to each total.](../../assets/p026-from-inputs-to-result.svg)
 
 [Open the full-size graphic](../../assets/p026-from-inputs-to-result.svg?raw=1)
 
