@@ -16,7 +16,9 @@ Preserve the official answer as supplied and add separate SQLite and SQL Server 
 
 #### Table color key
 
-Use the same color key in chat and in saved step-by-step walkthroughs. Mark source columns with 🟦 and calculated columns with 🟪 in their headers. Put 🟨 beside the row or rows being traced and bold the values to compare. Pair each marker with a column name or row label. Keep SQL examples in plain code blocks so they can be copied and run.
+Trace one question at a time using the same example in chat and in the saved walkthrough. Show just the columns needed for the step. Use a gold band (🟨) for the rows to follow, blue (🟦) for the source values to compare, and purple (🟪) for a calculated label or result in focus. Keep context rows neutral and pair color with column names and bold values. Keep sample data and SQL copyable.
+
+![Order lines 1 and 2 are highlighted for Drinks. Both show OrderID 100. Line 3 is shown for context.](assets/p026-orders-focus.svg)
 
 ## Practice question index
 
