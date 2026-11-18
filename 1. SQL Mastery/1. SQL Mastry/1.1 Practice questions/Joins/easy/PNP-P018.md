@@ -35,6 +35,14 @@ Return `CustomerID`, `customer_name` (first and last name joined with a space), 
 
 Asha ordered within the window. Ben’s only order was before it, and Cia never ordered, so both qualify.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Ben has an old order and Cia has none. Should they reach the same result?
+
+![Customers with no order in the last 90 days. Ben (ID 2) signed up before Cia (ID 3). Both qualify even though their order histories differ.](../../assets/walkthroughs/p018.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p018.svg?raw=1)
+
 ## Final learner submission — SQLite
 
 ```sql

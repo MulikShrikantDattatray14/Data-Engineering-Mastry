@@ -30,6 +30,14 @@ Return `OrderID`, `OrderDate`, `customer_name`, `City`, and `Total_Order_Amount`
 |---:|---|---|---|---:|
 | 10 | 2025-12-01 | Anu Sen | Delhi | 100 |
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Both orders belong to Anu. Which operation removes the January order?
+
+![December 2025 orders with customer names. The remaining order displays Anu Sen, Delhi and 100. The query sorts by order date and ID.](../../assets/walkthroughs/p016.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p016.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

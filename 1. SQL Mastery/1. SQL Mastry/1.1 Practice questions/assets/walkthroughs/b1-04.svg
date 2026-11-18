@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1698" viewBox="0 0 1160 1698" role="img" aria-labelledby="title desc">
+<title id="title">B1.04 · Rearrange Products Table</title>
+<desc id="desc">One row per available product and store pair. Both products have a store1 price, 95 and 70. The quoted store name becomes data in the output. Only product 0 has a store2 price (100). Product 1&#x27;s missing price removes that pair. Both products supply a row: 105 for product 0 and 80 for product 1. 2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order.</desc>
+<rect width="1160" height="1698" fill="#f4f7f7"/>
+<rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
+<text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">BOSSCODER  1.04    /    SQL WALKTHROUGH</text>
+<text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Rearrange Products Table</text>
+<text x="32" y="124" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#405766">One row per available product and store pair.</text>
+<rect x="32" y="151" width="1096" height="74" rx="10" fill="#e6f1ec"/>
+<text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
+<text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Two products have three store columns each. Why do we get five price rows?</text>
+<text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Products  ·  2 rows</text>
+<rect x="68" y="333" width="277.914" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">product_id</text>
+<rect x="345.914" y="333" width="252.695" height="47" rx="0" fill="#194f7c"/>
+<text x="356.914" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="356.914" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">store1</text>
+<rect x="598.609" y="333" width="252.695" height="47" rx="0" fill="#194f7c"/>
+<text x="609.609" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="609.609" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">store2</text>
+<rect x="851.305" y="333" width="252.695" height="47" rx="0" fill="#194f7c"/>
+<text x="862.305" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="862.305" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">store3</text>
+<rect x="68" y="380" width="277.914" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M68 409L345.914 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.914" y="380" width="252.695" height="29" rx="0" fill="#edf4fb"/>
+<text x="356.914" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">95</text>
+<path d="M345.914 409L598.609 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.609" y="380" width="252.695" height="29" rx="0" fill="#edf4fb"/>
+<text x="609.609" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M598.609 409L851.305 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.305" y="380" width="252.695" height="29" rx="0" fill="#edf4fb"/>
+<text x="862.305" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
+<path d="M851.305 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 418.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="409" width="277.914" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 438L345.914 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.914" y="409" width="252.695" height="29" rx="0" fill="#ffffff"/>
+<text x="356.914" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70</text>
+<path d="M345.914 438L598.609 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.609" y="409" width="252.695" height="29" rx="0" fill="#ffffff"/>
+<text x="609.609" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M598.609 438L851.305 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.305" y="409" width="252.695" height="29" rx="0" fill="#ffffff"/>
+<text x="862.305" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">80</text>
+<path d="M851.305 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="462" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="492" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="472" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="491" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="52" y="527" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How does store1 become rows?</text>
+<text x="52" y="556" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Both products have a store1 price, 95 and 70. The quoted store name becomes data in the output.</text>
+<rect x="52" y="572" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="593" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT product_id, &#x27;store1&#x27; AS store, store1 AS price … WHERE store1 IS NOT NULL</text>
+<rect x="68" y="620" width="362.146" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="635" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="656" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">product_id</text>
+<rect x="430.146" y="620" width="336.927" height="47" rx="0" fill="#194f7c"/>
+<text x="441.146" y="635" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="441.146" y="656" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">store</text>
+<rect x="767.073" y="620" width="336.927" height="47" rx="0" fill="#194f7c"/>
+<text x="778.073" y="635" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="778.073" y="656" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">price</text>
+<rect x="68" y="667" width="362.146" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="686" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M68 696L430.146 696" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="667" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="686" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store1</text>
+<path d="M430.146 696L767.073 696" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="667" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="686" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">95</text>
+<path d="M767.073 696L1104 696" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 705.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="696" width="362.146" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="715" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 725L430.146 725" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="696" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="715" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store1</text>
+<path d="M430.146 725L767.073 725" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="696" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="715" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70</text>
+<path d="M767.073 725L1104 725" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="754" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="784" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1008.7" y="764" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1020.7" y="783" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 1 row</text>
+<text x="52" y="819" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which product is available at store2?</text>
+<text x="52" y="848" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Only product 0 has a store2 price (100). Product 1&#x27;s missing price removes that pair.</text>
+<rect x="52" y="864" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="885" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT product_id, &#x27;store2&#x27; AS store, store2 AS price … WHERE store2 IS NOT NULL</text>
+<rect x="68" y="912" width="362.146" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="927" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="948" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">product_id</text>
+<rect x="430.146" y="912" width="336.927" height="47" rx="0" fill="#194f7c"/>
+<text x="441.146" y="927" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="441.146" y="948" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">store</text>
+<rect x="767.073" y="912" width="336.927" height="47" rx="0" fill="#194f7c"/>
+<text x="778.073" y="927" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="778.073" y="948" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">price</text>
+<rect x="68" y="959" width="362.146" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="978" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M68 988L430.146 988" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="959" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="978" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store2</text>
+<path d="M430.146 988L767.073 988" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="959" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="978" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M767.073 988L1104 988" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1017" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1047" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1000.38" y="1027" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1046" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="52" y="1082" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which products are available at store3?</text>
+<text x="52" y="1111" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Both products supply a row: 105 for product 0 and 80 for product 1.</text>
+<rect x="52" y="1127" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1148" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT product_id, &#x27;store3&#x27; AS store, store3 AS price … WHERE store3 IS NOT NULL</text>
+<rect x="68" y="1175" width="362.146" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1190" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1211" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">product_id</text>
+<rect x="430.146" y="1175" width="336.927" height="47" rx="0" fill="#194f7c"/>
+<text x="441.146" y="1190" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="441.146" y="1211" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">store</text>
+<rect x="767.073" y="1175" width="336.927" height="47" rx="0" fill="#194f7c"/>
+<text x="778.073" y="1190" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="778.073" y="1211" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">price</text>
+<rect x="68" y="1222" width="362.146" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M68 1251L430.146 1251" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="1222" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store3</text>
+<path d="M430.146 1251L767.073 1251" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="1222" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
+<path d="M767.073 1251L1104 1251" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1260.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1251" width="362.146" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1280L430.146 1280" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="1251" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store3</text>
+<path d="M430.146 1280L767.073 1280" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="1251" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">80</text>
+<path d="M767.073 1280L1104 1280" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1309" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1339" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1319" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1338" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="1374" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why stack the three sets of rows?</text>
+<text x="52" y="1403" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order.</text>
+<rect x="52" y="1419" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1440" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">UNION ALL / ORDER BY store ASC</text>
+<rect x="68" y="1467" width="362.146" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1482" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1503" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">product_id</text>
+<rect x="430.146" y="1467" width="336.927" height="47" rx="0" fill="#194f7c"/>
+<text x="441.146" y="1482" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="441.146" y="1503" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">store</text>
+<rect x="767.073" y="1467" width="336.927" height="47" rx="0" fill="#194f7c"/>
+<text x="778.073" y="1482" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="778.073" y="1503" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">price</text>
+<rect x="68" y="1514" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M68 1543L430.146 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="1514" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store1</text>
+<path d="M430.146 1543L767.073 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="1514" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">95</text>
+<path d="M767.073 1543L1104 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1552.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1543" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1572L430.146 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="1543" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store1</text>
+<path d="M430.146 1572L767.073 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="1543" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70</text>
+<path d="M767.073 1572L1104 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1572" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M68 1601L430.146 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="1572" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store2</text>
+<path d="M430.146 1601L767.073 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="1572" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M767.073 1601L1104 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1601" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1620" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M68 1630L430.146 1630" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="1601" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="1620" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store3</text>
+<path d="M430.146 1630L767.073 1630" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="1601" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="1620" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
+<path d="M767.073 1630L1104 1630" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1639.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1630" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1649" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1659L430.146 1659" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="430.146" y="1630" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="441.146" y="1649" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store3</text>
+<path d="M430.146 1659L767.073 1659" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="767.073" y="1630" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
+<text x="778.073" y="1649" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">80</text>
+<path d="M767.073 1659L1104 1659" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+</svg>

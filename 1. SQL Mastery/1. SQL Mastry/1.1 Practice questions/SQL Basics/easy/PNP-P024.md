@@ -30,6 +30,14 @@ Return `SupplierID`, `CompanyName`, `Country`, `Email`, and `issue`. Preserve th
 
 Local Foods has neither issue. Global Goods is outside India and has no email. Mystery Supply has a missing country and a present email.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Supplier 2 has a foreign country and a missing email. How many issue labels should it get?
+
+![Suppliers outside India or with no email. The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing.](../../assets/walkthroughs/p024.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p024.svg?raw=1)
+
 ## My final solution · SQLite
 
 ```sql

@@ -40,6 +40,14 @@ Return four columns in this order: `source_table`, `flag_column`, `raw_value`, `
 
 Category has two rows with `Active = 1` and one with a missing flag, so those values get counts of 2 and 1.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Will a NULL Active value form a group? Can the two flag summaries be stacked?
+
+![Check how Active and Allowed are encoded. Three Category groups plus two Payments groups give five output rows. Their counts add to seven input rows. The query permits any row order.](../../assets/walkthroughs/p009.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p009.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

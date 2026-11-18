@@ -53,6 +53,14 @@ The question image was not supplied.
 
 `(customer_id, year)` is the primary key. Each row records one customer's revenue in one year; revenue may be negative.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Can a customer qualify using a positive amount from a different year?
+
+![Find Customers With Positive Revenue This Year. The qualifying IDs are 1 and 4. Each appears once because customer and year form the input key. Any output order is valid.](../../assets/walkthroughs/b1-01.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/b1-01.svg?raw=1)
+
 ## My solution — SQLite
 
 ```sql

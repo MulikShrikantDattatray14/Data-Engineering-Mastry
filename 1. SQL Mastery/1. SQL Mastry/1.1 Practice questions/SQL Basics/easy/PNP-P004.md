@@ -32,6 +32,14 @@ Return `CustomerID`, `FirstName`, `LastName`, `Email`, and `issue`. Show `Email`
 
 Dev’s address passes the exercise’s rules, so his row is excluded.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** What happens to a valid address when the CASE checks find no issue?
+
+![Customer emails that cannot be delivered. Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID.](../../assets/walkthroughs/p004.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p004.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

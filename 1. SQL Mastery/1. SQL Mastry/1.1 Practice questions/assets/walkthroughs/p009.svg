@@ -1,0 +1,259 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1721" viewBox="0 0 1160 1721" role="img" aria-labelledby="title desc">
+<title id="title">P009 · Check how Active and Allowed are encoded</title>
+<desc id="desc">One row per source table and distinct raw flag value. Active 1 occurs twice, 0 once and NULL once. COUNT(*) includes the row whose flag is NULL. Start again from Payments. Y appears once and N twice. These three payment rows form two groups. Three Category groups plus two Payments groups give five output rows. Their counts add to seven input rows. The query permits any row order.</desc>
+<rect width="1160" height="1721" fill="#f4f7f7"/>
+<rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
+<text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P009    /    SQL WALKTHROUGH</text>
+<text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Check how Active and Allowed are encoded</text>
+<text x="32" y="124" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#405766">One row per source table and distinct raw flag value.</text>
+<rect x="32" y="151" width="1096" height="74" rx="10" fill="#e6f1ec"/>
+<text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
+<text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Will a NULL Active value form a group? Can the two flag summaries be stacked?</text>
+<text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Category  ·  4 rows</text>
+<rect x="68" y="333" width="529.922" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CategoryID</text>
+<rect x="597.922" y="333" width="506.078" height="47" rx="0" fill="#194f7c"/>
+<text x="608.922" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
+<text x="608.922" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Active</text>
+<path d="M54 389.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="380" width="529.922" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 409L597.922 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.922" y="380" width="506.078" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.922" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M597.922 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 418.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="409" width="529.922" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 438L597.922 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.922" y="409" width="506.078" height="29" rx="0" fill="#ffffff"/>
+<text x="608.922" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M597.922 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="438" width="529.922" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 467L597.922 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.922" y="438" width="506.078" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.922" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M597.922 467L1104 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="467" width="529.922" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 496L597.922 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.922" y="467" width="506.078" height="29" rx="0" fill="#ffffff"/>
+<text x="608.922" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M597.922 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="68" y="527" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#205e45" font-weight="700">Payments  ·  3 rows</text>
+<rect x="68" y="536" width="522.852" height="47" rx="0" fill="#205e45"/>
+<text x="79" y="551" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="79" y="572" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentID</text>
+<rect x="590.852" y="536" width="513.148" height="47" rx="0" fill="#205e45"/>
+<text x="601.852" y="551" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="601.852" y="572" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Allowed</text>
+<rect x="68" y="583" width="522.852" height="29" rx="0" fill="#eff7f2"/>
+<text x="79" y="602" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M68 612L590.852 612" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="590.852" y="583" width="513.148" height="29" rx="0" fill="#eff7f2"/>
+<text x="601.852" y="602" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Y</text>
+<path d="M590.852 612L1104 612" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 621.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="612" width="522.852" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="631" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2</text>
+<path d="M68 641L590.852 641" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="590.852" y="612" width="513.148" height="29" rx="0" fill="#ffffff"/>
+<text x="601.852" y="631" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">N</text>
+<path d="M590.852 641L1104 641" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 650.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="641" width="522.852" height="29" rx="0" fill="#eff7f2"/>
+<text x="79" y="660" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">3</text>
+<path d="M68 670L590.852 670" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="590.852" y="641" width="513.148" height="29" rx="0" fill="#eff7f2"/>
+<text x="601.852" y="660" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">N</text>
+<path d="M590.852 670L1104 670" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="694" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="724" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="704" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="723" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
+<text x="52" y="759" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which raw values occur in Category?</text>
+<text x="52" y="788" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Active 1 occurs twice, 0 once and NULL once. COUNT(*) includes the row whose flag is NULL.</text>
+<rect x="52" y="804" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="825" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">FROM Category GROUP BY Active</text>
+<rect x="68" y="852" width="274.805" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="867" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
+<text x="79" y="888" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">source_table</text>
+<rect x="342.805" y="852" width="265.773" height="47" rx="0" fill="#194f7c"/>
+<text x="353.805" y="867" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
+<text x="353.805" y="888" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">flag_column</text>
+<rect x="608.578" y="852" width="247.711" height="47" rx="0" fill="#194f7c"/>
+<text x="619.578" y="867" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
+<text x="619.578" y="888" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">raw_value</text>
+<rect x="856.289" y="852" width="247.711" height="47" rx="0" fill="#194f7c"/>
+<text x="867.289" y="867" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
+<text x="867.289" y="888" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">row_count</text>
+<rect x="68" y="899" width="274.805" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="918" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Category</text>
+<path d="M68 928L342.805 928" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="899" width="265.773" height="29" rx="0" fill="#edf4fb"/>
+<text x="353.805" y="918" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Active</text>
+<path d="M342.805 928L608.578 928" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="899" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="619.578" y="918" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M608.578 928L856.289 928" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="899" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="867.289" y="918" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M856.289 928L1104 928" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="928" width="274.805" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="947" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Category</text>
+<path d="M68 957L342.805 957" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="928" width="265.773" height="29" rx="0" fill="#ffffff"/>
+<text x="353.805" y="947" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Active</text>
+<path d="M342.805 957L608.578 957" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="928" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="619.578" y="947" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M608.578 957L856.289 957" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="928" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="867.289" y="947" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M856.289 957L1104 957" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 966.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="957" width="274.805" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="976" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Category</text>
+<path d="M68 986L342.805 986" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="957" width="265.773" height="29" rx="0" fill="#edf4fb"/>
+<text x="353.805" y="976" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Active</text>
+<path d="M342.805 986L608.578 986" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="957" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="619.578" y="976" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M608.578 986L856.289 986" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="957" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="867.289" y="976" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M856.289 986L1104 986" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1015" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1045" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1025" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1044" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="1080" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which raw values occur in Payments?</text>
+<text x="52" y="1109" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Start again from Payments. Y appears once and N twice. These three payment rows form two groups.</text>
+<rect x="52" y="1125" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1146" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">FROM Payments GROUP BY Allowed</text>
+<rect x="68" y="1173" width="274.805" height="47" rx="0" fill="#205e45"/>
+<text x="79" y="1188" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="79" y="1209" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">source_table</text>
+<rect x="342.805" y="1173" width="265.773" height="47" rx="0" fill="#205e45"/>
+<text x="353.805" y="1188" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="353.805" y="1209" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">flag_column</text>
+<rect x="608.578" y="1173" width="247.711" height="47" rx="0" fill="#205e45"/>
+<text x="619.578" y="1188" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="619.578" y="1209" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">raw_value</text>
+<rect x="856.289" y="1173" width="247.711" height="47" rx="0" fill="#205e45"/>
+<text x="867.289" y="1188" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="867.289" y="1209" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">row_count</text>
+<path d="M54 1229.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1220" width="274.805" height="29" rx="0" fill="#eff7f2"/>
+<text x="79" y="1239" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Payments</text>
+<path d="M68 1249L342.805 1249" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="1220" width="265.773" height="29" rx="0" fill="#eff7f2"/>
+<text x="353.805" y="1239" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Allowed</text>
+<path d="M342.805 1249L608.578 1249" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1220" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
+<text x="619.578" y="1239" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">N</text>
+<path d="M608.578 1249L856.289 1249" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="1220" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
+<text x="867.289" y="1239" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2</text>
+<path d="M856.289 1249L1104 1249" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1249" width="274.805" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1268" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Payments</text>
+<path d="M68 1278L342.805 1278" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="1249" width="265.773" height="29" rx="0" fill="#ffffff"/>
+<text x="353.805" y="1268" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Allowed</text>
+<path d="M342.805 1278L608.578 1278" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1249" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
+<text x="619.578" y="1268" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Y</text>
+<path d="M608.578 1278L856.289 1278" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="1249" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
+<text x="867.289" y="1268" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M856.289 1278L1104 1278" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1307" width="1096" height="394" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1337" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1317" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1336" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="1372" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why stack the two summaries?</text>
+<text x="52" y="1401" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Three Category groups plus two Payments groups give five output rows. Their counts add to seven input rows. The</text>
+<text x="52" y="1426" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">query permits any row order.</text>
+<rect x="52" y="1442" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1463" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">UNION ALL</text>
+<rect x="68" y="1490" width="274.805" height="47" rx="0" fill="#63448c"/>
+<text x="79" y="1505" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Per source</text>
+<text x="79" y="1526" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">source_table</text>
+<rect x="342.805" y="1490" width="265.773" height="47" rx="0" fill="#63448c"/>
+<text x="353.805" y="1505" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Per source</text>
+<text x="353.805" y="1526" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">flag_column</text>
+<rect x="608.578" y="1490" width="247.711" height="47" rx="0" fill="#63448c"/>
+<text x="619.578" y="1505" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Per source</text>
+<text x="619.578" y="1526" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">raw_value</text>
+<rect x="856.289" y="1490" width="247.711" height="47" rx="0" fill="#63448c"/>
+<text x="867.289" y="1505" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Per source</text>
+<text x="867.289" y="1526" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">row_count</text>
+<rect x="68" y="1537" width="274.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1556" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Category</text>
+<path d="M68 1566L342.805 1566" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="1537" width="265.773" height="29" rx="0" fill="#edf4fb"/>
+<text x="353.805" y="1556" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Active</text>
+<path d="M342.805 1566L608.578 1566" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1537" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="619.578" y="1556" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M608.578 1566L856.289 1566" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="1537" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="867.289" y="1556" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M856.289 1566L1104 1566" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1566" width="274.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1585" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Category</text>
+<path d="M68 1595L342.805 1595" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="1566" width="265.773" height="29" rx="0" fill="#ffffff"/>
+<text x="353.805" y="1585" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Active</text>
+<path d="M342.805 1595L608.578 1595" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1566" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="619.578" y="1585" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M608.578 1595L856.289 1595" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="1566" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="867.289" y="1585" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M856.289 1595L1104 1595" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1604.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1595" width="274.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1614" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Category</text>
+<path d="M68 1624L342.805 1624" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="1595" width="265.773" height="29" rx="0" fill="#edf4fb"/>
+<text x="353.805" y="1614" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Active</text>
+<path d="M342.805 1624L608.578 1624" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1595" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="619.578" y="1614" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M608.578 1624L856.289 1624" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="1595" width="247.711" height="29" rx="0" fill="#d8e9f7"/>
+<text x="867.289" y="1614" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M856.289 1624L1104 1624" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1633.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1624" width="274.805" height="29" rx="0" fill="#d6ecdf"/>
+<text x="79" y="1643" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Payments</text>
+<path d="M68 1653L342.805 1653" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="1624" width="265.773" height="29" rx="0" fill="#ffffff"/>
+<text x="353.805" y="1643" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Allowed</text>
+<path d="M342.805 1653L608.578 1653" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1624" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
+<text x="619.578" y="1643" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">N</text>
+<path d="M608.578 1653L856.289 1653" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="1624" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
+<text x="867.289" y="1643" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2</text>
+<path d="M856.289 1653L1104 1653" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1653" width="274.805" height="29" rx="0" fill="#d6ecdf"/>
+<text x="79" y="1672" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Payments</text>
+<path d="M68 1682L342.805 1682" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="342.805" y="1653" width="265.773" height="29" rx="0" fill="#eff7f2"/>
+<text x="353.805" y="1672" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Allowed</text>
+<path d="M342.805 1682L608.578 1682" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1653" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
+<text x="619.578" y="1672" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Y</text>
+<path d="M608.578 1682L856.289 1682" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="856.289" y="1653" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
+<text x="867.289" y="1672" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M856.289 1682L1104 1682" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+</svg>

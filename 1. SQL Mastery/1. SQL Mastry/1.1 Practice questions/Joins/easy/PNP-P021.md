@@ -54,6 +54,14 @@ The CRM team wants to reward its most frequent buyers. Rank customers by **how m
 
 ID 99 placed three orders and has no customer record. ID 7 placed none. The fifth row has one order, so everyone tied at that count qualifies.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Customer 99 has three orders and no customer record. Can that ID come first?
+
+![Top five customers by number of orders. Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID.](../../assets/walkthroughs/p021.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p021.svg?raw=1)
+
 ## Final learner submission — SQLite
 
 ```sql

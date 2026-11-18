@@ -51,6 +51,14 @@ Node 5 has no parent, so it is the root. Nodes 2 and 8 have children and are inn
 
 BST has integer columns N and P. Each row describes one node N and its parent P.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Node 5 is both someone's parent and has no parent of its own. Which label takes precedence?
+
+![Binary Tree Nodes. Nodes 2 and 8 are inner nodes. One root + two inner nodes + four leaves = seven nodes, ordered by N.](../../assets/walkthroughs/b1-03.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/b1-03.svg?raw=1)
+
 ## My final solution · SQLite
 
 ```sql

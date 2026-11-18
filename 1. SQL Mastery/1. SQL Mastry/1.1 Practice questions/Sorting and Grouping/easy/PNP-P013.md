@@ -26,6 +26,14 @@ From `Customers`, count registered customers per state. Label missing states as 
 
 Karnataka meets the threshold exactly. Maharashtra has one customer, so it’s excluded.
 
+## Visual walkthrough
+
+The diagram follows the extended sample used in the step-by-step walkthrough. **Predict the result.** Five customers have no recorded state. Will their group meet the threshold?
+
+![States with at least five customers. Delhi's six come first. The two groups of five sort by the displayed labels Karnataka and Unknown.](../../assets/walkthroughs/p013.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p013.svg?raw=1)
+
 ## Learner solution — SQLite (CASE)
 
 ```sql

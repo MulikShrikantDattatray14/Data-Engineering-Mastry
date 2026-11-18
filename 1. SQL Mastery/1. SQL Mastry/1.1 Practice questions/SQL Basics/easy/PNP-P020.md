@@ -27,6 +27,14 @@ Keep orders with missing shipping or delivery dates. Return `NULL` for the corre
 | 1 | 2025-11-01 | 2025-11-03 | 2025-11-06 | 2 | 5 |
 | 2 | 2025-11-02 | `NULL` | `NULL` | `NULL` | `NULL` |
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** If an order has no ship date yet, what happens to its row and its day count?
+
+![Days to ship and days to deliver. For order 1, November 3 minus 1 = 2 days to ship and November 6 minus 1 = 5 to deliver. Order 2 keeps two NULLs.](../../assets/walkthroughs/p020.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p020.svg?raw=1)
+
 ## Learner submission — SQLite
 
 ```sql

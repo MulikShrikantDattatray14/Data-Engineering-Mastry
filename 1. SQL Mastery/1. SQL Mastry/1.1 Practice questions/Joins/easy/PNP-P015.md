@@ -32,6 +32,14 @@ Return `CategoryID`, `CategoryName`, and `product_count`. Sort by `product_count
 | 2 | Toys | 0 |
 | 1 | Snacks | 2 |
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Toys has no products. What would COUNT(*) return for its joined row?
+
+![Product count for every category. Sort by the computed count: Toys has 0, then Snacks has 2. Category ID breaks a tie.](../../assets/walkthroughs/p015.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p015.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

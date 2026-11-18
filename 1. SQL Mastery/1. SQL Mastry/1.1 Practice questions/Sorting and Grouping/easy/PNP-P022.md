@@ -39,6 +39,14 @@ Sort by `line_items` **descending**, then `OrderID` **ascending**.
 
 Order 10 qualifies because it has **9 lines**, even though product 1 appears twice and it has only **8 distinct products**. Order 11 has one line, so it’s excluded.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Order 10 has only eight distinct products. Can it still have more than eight lines?
+
+![Orders with more than eight line items. Order 10 qualifies with nine lines. Order 11 has one line and drops out. Exactly eight would miss the strict cutoff.](../../assets/walkthroughs/p022.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p022.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

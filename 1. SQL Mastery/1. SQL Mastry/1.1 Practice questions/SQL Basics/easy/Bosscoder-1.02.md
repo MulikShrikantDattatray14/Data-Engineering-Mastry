@@ -39,6 +39,14 @@ The question image was not supplied.
 
 Employees has integer employee_id (primary key), text name, and integer salary. Each row represents one employee.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Michael has an odd ID. Does that alone earn a bonus?
+
+![Calculate Special Bonus. IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order.](../../assets/walkthroughs/b1-02.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/b1-02.svg?raw=1)
+
 ## My final solution · SQLite
 
 ```sql

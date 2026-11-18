@@ -33,6 +33,14 @@ Return **one row per `CategoryID`** from `Products`, sorted by `CategoryID` asce
 
 The two products are discounted by **20%** and **0%**, so their average discount is **10.00%**.
 
+## Visual walkthrough
+
+The diagram follows the extended sample used in the step-by-step walkthrough. **Predict the result.** In category 10, should a zero market price remove the product from its sale-price average?
+
+![Price and discount statistics per category. Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five products still count.](../../assets/walkthroughs/p012.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p012.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

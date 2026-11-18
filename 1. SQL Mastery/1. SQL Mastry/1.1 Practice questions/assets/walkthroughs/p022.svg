@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1259" viewBox="0 0 1160 1259" role="img" aria-labelledby="title desc">
+<title id="title">P022 · Orders with more than eight line items</title>
+<desc id="desc">One row per order containing more than eight lines. Order 10 groups lines 1–9. Product 1 repeats on lines 1 and 9: nine lines, eight distinct products, nine units. Order 10 qualifies with nine lines. Order 11 has one line and drops out. Exactly eight would miss the strict cutoff.</desc>
+<rect width="1160" height="1259" fill="#f4f7f7"/>
+<rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
+<text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P022    /    SQL WALKTHROUGH</text>
+<text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Orders with more than eight line items</text>
+<text x="32" y="124" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#405766">One row per order containing more than eight lines.</text>
+<rect x="32" y="151" width="1096" height="74" rx="10" fill="#e6f1ec"/>
+<text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
+<text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Order 10 has only eight distinct products. Can it still have more than eight lines?</text>
+<text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">OrderDetails  ·  10 rows</text>
+<rect x="68" y="333" width="277.141" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDetailID</text>
+<rect x="345.141" y="333" width="252.953" height="47" rx="0" fill="#194f7c"/>
+<text x="356.141" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="356.141" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="598.094" y="333" width="252.953" height="47" rx="0" fill="#194f7c"/>
+<text x="609.094" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="609.094" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="851.047" y="333" width="252.953" height="47" rx="0" fill="#194f7c"/>
+<text x="862.047" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="862.047" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Quantity</text>
+<path d="M54 389.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="380" width="277.141" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 409L345.141 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="380" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="356.141" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M345.141 409L598.094 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="380" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="609.094" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M598.094 409L851.047 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="380" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="862.047" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 418.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="409" width="277.141" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 438L345.141 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="409" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="356.141" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M345.141 438L598.094 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="409" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="609.094" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M598.094 438L851.047 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="409" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="862.047" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 447.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="438" width="277.141" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 467L345.141 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="438" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="356.141" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M345.141 467L598.094 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="438" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="609.094" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M598.094 467L851.047 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="438" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="862.047" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 467L1104 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 476.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="467" width="277.141" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 496L345.141 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="467" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="356.141" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M345.141 496L598.094 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="467" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="609.094" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M598.094 496L851.047 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="467" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="862.047" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 505.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="496" width="277.141" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 525L345.141 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="496" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="356.141" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M345.141 525L598.094 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="496" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="609.094" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M598.094 525L851.047 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="496" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="862.047" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 525L1104 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 534.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="525" width="277.141" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="544" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M68 554L345.141 554" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="525" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="356.141" y="544" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M345.141 554L598.094 554" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="525" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="609.094" y="544" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M598.094 554L851.047 554" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="525" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="862.047" y="544" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 554L1104 554" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 563.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="554" width="277.141" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="573" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
+<path d="M68 583L345.141 583" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="554" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="356.141" y="573" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M345.141 583L598.094 583" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="554" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="609.094" y="573" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
+<path d="M598.094 583L851.047 583" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="554" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="862.047" y="573" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 583L1104 583" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 592.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="583" width="277.141" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="602" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M68 612L345.141 612" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="583" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="356.141" y="602" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M345.141 612L598.094 612" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="583" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="609.094" y="602" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M598.094 612L851.047 612" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="583" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="862.047" y="602" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 612L1104 612" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 621.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="612" width="277.141" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="631" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M68 641L345.141 641" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="612" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="356.141" y="631" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M345.141 641L598.094 641" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="612" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="609.094" y="631" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M598.094 641L851.047 641" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="612" width="252.953" height="29" rx="0" fill="#edf4fb"/>
+<text x="862.047" y="631" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 641L1104 641" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="641" width="277.141" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="660" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M68 670L345.141 670" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="345.141" y="641" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="356.141" y="660" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">11</text>
+<path d="M345.141 670L598.094 670" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="598.094" y="641" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="609.094" y="660" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M598.094 670L851.047 670" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.047" y="641" width="252.953" height="29" rx="0" fill="#ffffff"/>
+<text x="862.047" y="660" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M851.047 670L1104 670" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="694" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="724" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="990.641" y="704" width="117.359" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1002.64" y="723" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">10 → 2 rows</text>
+<text x="52" y="759" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which count defines a packing line?</text>
+<text x="52" y="788" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 10 groups lines 1–9. Product 1 repeats on lines 1 and 9: nine lines, eight distinct products, nine units.</text>
+<rect x="52" y="804" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="825" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY OrderID / COUNT(OrderID), COUNT(DISTINCT ProductID), SUM(Quantity)</text>
+<rect x="68" y="852" width="242.391" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="867" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="79" y="888" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="310.391" y="852" width="242.391" height="47" rx="0" fill="#194f7c"/>
+<text x="321.391" y="867" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="321.391" y="888" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">line_items</text>
+<rect x="552.781" y="852" width="302.703" height="47" rx="0" fill="#194f7c"/>
+<text x="563.781" y="867" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="563.781" y="888" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">distinct_products</text>
+<rect x="855.484" y="852" width="248.516" height="47" rx="0" fill="#194f7c"/>
+<text x="866.484" y="867" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="866.484" y="888" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">total_units</text>
+<path d="M54 908.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="899" width="242.391" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="918" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M68 928L310.391 928" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="310.391" y="899" width="242.391" height="29" rx="0" fill="#d8e9f7"/>
+<text x="321.391" y="918" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M310.391 928L552.781 928" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="552.781" y="899" width="302.703" height="29" rx="0" fill="#d8e9f7"/>
+<text x="563.781" y="918" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M552.781 928L855.484 928" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.484" y="899" width="248.516" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.484" y="918" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M855.484 928L1104 928" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="928" width="242.391" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="947" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">11</text>
+<path d="M68 957L310.391 957" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="310.391" y="928" width="242.391" height="29" rx="0" fill="#d8e9f7"/>
+<text x="321.391" y="947" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M310.391 957L552.781 957" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="552.781" y="928" width="302.703" height="29" rx="0" fill="#d8e9f7"/>
+<text x="563.781" y="947" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M552.781 957L855.484 957" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.484" y="928" width="248.516" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.484" y="947" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M855.484 957L1104 957" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="986" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1016" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1008.7" y="996" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1020.7" y="1015" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 1 row</text>
+<text x="52" y="1051" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which complete orders qualify?</text>
+<text x="52" y="1080" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 10 qualifies with nine lines. Order 11 has one line and drops out. Exactly eight would miss the strict cutoff.</text>
+<rect x="52" y="1096" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1117" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">HAVING COUNT(OrderID) &gt; 8</text>
+<rect x="68" y="1144" width="242.391" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1159" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="79" y="1180" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="310.391" y="1144" width="242.391" height="47" rx="0" fill="#194f7c"/>
+<text x="321.391" y="1159" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="321.391" y="1180" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">line_items</text>
+<rect x="552.781" y="1144" width="302.703" height="47" rx="0" fill="#194f7c"/>
+<text x="563.781" y="1159" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="563.781" y="1180" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">distinct_products</text>
+<rect x="855.484" y="1144" width="248.516" height="47" rx="0" fill="#194f7c"/>
+<text x="866.484" y="1159" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">OrderDetails</text>
+<text x="866.484" y="1180" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">total_units</text>
+<path d="M54 1200.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1191" width="242.391" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1210" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M68 1220L310.391 1220" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="310.391" y="1191" width="242.391" height="29" rx="0" fill="#d8e9f7"/>
+<text x="321.391" y="1210" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M310.391 1220L552.781 1220" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="552.781" y="1191" width="302.703" height="29" rx="0" fill="#edf4fb"/>
+<text x="563.781" y="1210" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M552.781 1220L855.484 1220" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.484" y="1191" width="248.516" height="29" rx="0" fill="#edf4fb"/>
+<text x="866.484" y="1210" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M855.484 1220L1104 1220" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+</svg>

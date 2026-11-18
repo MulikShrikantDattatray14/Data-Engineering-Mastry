@@ -40,6 +40,14 @@ Return `OrderID`, `OrderDate`, `payment_type`, and `shipper_name`. Use `Payments
 
 The latest order date is December 31, so the seven-day window is **December 25–31 inclusive**. Order 3 stays in the report even though both IDs are missing.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Order 3 has neither lookup key. At which step could an INNER JOIN lose it?
+
+![Orders with payment type and shipper. Order 3 appears first with Unknown in both fields. Order 2 follows with UPI and FastShip.](../../assets/walkthroughs/p017.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p017.svg?raw=1)
+
 ## Earlier learner solution — SQLite
 
 ```sql

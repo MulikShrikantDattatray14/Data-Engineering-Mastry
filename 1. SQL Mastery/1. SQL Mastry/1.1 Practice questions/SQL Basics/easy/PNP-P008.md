@@ -38,6 +38,14 @@ Return `ProductID`, `Product`, `Sale_Price`, and `price_band`, sorted by `Produc
 
 `699.50` is still Mid. Premium starts at exactly `700`.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Which band owns exactly 200? What about exactly 700?
+
+![Price band labels. The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay.](../../assets/walkthroughs/p008.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p008.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

@@ -44,6 +44,14 @@ Sort by `units_sold` **descending**, then `ProductID` **ascending**.
 
 Pen sold **5 units across 2 order lines and 2 distinct orders**. Cup has no order lines, so it doesn’t appear.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Pen has two order lines. Which values produce five sold units?
+
+![Units sold per product. Pen leads Bag, 5 units to 1. The output reconciles to 2 + 3 + 1 = 6 input units.](../../assets/walkthroughs/p019.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p019.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

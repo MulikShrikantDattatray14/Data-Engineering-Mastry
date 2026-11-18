@@ -38,6 +38,14 @@ Products 1 and 2 represent the same brand. Products 6 and 8 both represent Adida
 
 The exercise uses `Products`. The sample shows `ProductID` (integer) and `Brand` (nullable text). Only `Brand` is required to solve the problem.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Will product 2 create a second Nike entry if the stored name has spaces?
+
+![Brand directory. Alphabetical ordering gives Adidas, Nike and Puma. Each name appears once.](../../assets/walkthroughs/p001.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p001.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

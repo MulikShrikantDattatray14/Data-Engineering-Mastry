@@ -30,6 +30,14 @@ The promotions team needs up to ten of the most expensive products that currentl
 
 Lamp comes first because it has the higher sale price. Mystery has a missing price, and Bottle has a discount. Only two rows qualify.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Does a missing sale price prove the product was sold at full price?
+
+![Most expensive products sold at full price. Lamp costs 150 and Mug costs 100. Only two products qualify for the ten available places.](../../assets/walkthroughs/p006.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p006.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

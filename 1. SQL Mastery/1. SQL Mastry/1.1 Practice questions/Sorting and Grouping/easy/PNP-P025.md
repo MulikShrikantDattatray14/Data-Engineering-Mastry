@@ -38,6 +38,14 @@ Q1 is January–March, Q2 is April–June, Q3 is July–September, and Q4 is Oct
 
 January 1 and March 31 both fall in Q1 of 2025, so that row has a count of 2. April 1 starts Q2.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Where do March 31, April 1 and a missing sign-up date go?
+
+![Customer sign-ups by year and quarter. The three dated groups run chronologically, followed by NULL / NULL. Counts 1 + 2 + 1 + 1 recover all five customers.](../../assets/walkthroughs/p025.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p025.svg?raw=1)
+
 ## My final solution · SQLite
 
 ```sql

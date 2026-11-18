@@ -32,6 +32,14 @@ Leadership needs **one summary row** for the entire `Orders` table. Every row co
 
 Customer `10` placed two orders and counts once toward `ordering_customers`. Both orders count toward the total and average order value.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Three orders belong to two people. Which headline numbers should be 3 and 2?
+
+![Headline order KPIs. The earliest order is January 1 and the latest is January 3. All six metrics describe the same three orders.](../../assets/walkthroughs/p010.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p010.svg?raw=1)
+
 ## Step-by-step walkthrough
 
 **How to start.** Is this one row per customer or one for the entire table?

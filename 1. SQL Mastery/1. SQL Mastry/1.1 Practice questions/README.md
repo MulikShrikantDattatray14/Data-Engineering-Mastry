@@ -23,6 +23,10 @@ Rate the submitted approach out of 10 for coverage and correctness. Identify wha
 
 ### Walkthrough format
 
+Include the visual in the same commit as each newly verified PNP or Bosscoder solution. Embed a question-specific SVG in the question file under `## Visual walkthrough`, then link to its full-size view. Use relative paths and compare the diagram’s final rows with the saved query on the same sample. The written steps below the diagram provide the text version.
+
+For a join exercise, ask both questions in Step 1 alongside the row and column questions. Which table goes in `FROM`, and which table is added at each position? Which join connects each new table to the result so far, and which rows should survive a missing match?
+
 Use the same step-by-step approach during practice and in each PNP or Bosscoder write-up. Identify what one output row represents, then build the query one part at a time using the same example. For each step, explain what to do and why, show the SQL and output, and explain what the output demonstrates. When a join is used, explain why it fits and which unmatched rows it keeps. Explain whether each condition affects input rows, output groups, or one metric.
 
 Preserve the official answer as supplied and add separate SQLite and SQL Server adaptations. Note dialect changes and verify executable versions when the engine is available.

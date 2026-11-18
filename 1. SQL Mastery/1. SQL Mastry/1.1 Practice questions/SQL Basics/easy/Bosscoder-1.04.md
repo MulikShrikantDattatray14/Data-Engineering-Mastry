@@ -54,6 +54,14 @@ The question image was not supplied.
 
 `product_id` is the primary key. Each store column holds a price, or `NULL` if the product is unavailable at that store.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Two products have three store columns each. Why do we get five price rows?
+
+![Rearrange Products Table. 2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order.](../../assets/walkthroughs/b1-04.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/b1-04.svg?raw=1)
+
 ## My solution — SQLite
 
 ```sql

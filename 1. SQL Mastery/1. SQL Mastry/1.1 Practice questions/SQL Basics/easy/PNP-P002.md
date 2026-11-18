@@ -48,6 +48,14 @@ In order, the returned `ProductID` values are `101, 102, 103, 104, 105, 106, 107
 
 The relevant columns in `Products` are `ProductID` (integer identifier), `Product` and `Brand` (text), and `Sale_Price` (nullable number). Return those four columns in that order.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Mug and Bottle both cost 100. Which one gets the last place?
+
+![Ten highest-priced products. Mug takes place 10. Bottle is 11th and the zero-price Sticker is 12th.](../../assets/walkthroughs/p002.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p002.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

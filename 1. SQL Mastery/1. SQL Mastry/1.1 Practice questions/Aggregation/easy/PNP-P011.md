@@ -41,6 +41,14 @@ Start with every product in `Products` and attach its matching `OrderDetails` ro
 
 Pen contributes two joined rows, Bag contributes one, and the unsold Cup still contributes one. Two of the three listed products have sold.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Pen appears on two sale lines. Does that make two sold products?
+
+![How much of the catalogue has ever sold?. The two sold products are Pen and Bag. Divide by all three listed products to get 66.67%.](../../assets/walkthroughs/p011.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p011.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

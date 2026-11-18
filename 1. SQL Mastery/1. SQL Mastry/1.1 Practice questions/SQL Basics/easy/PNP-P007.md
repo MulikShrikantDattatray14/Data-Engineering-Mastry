@@ -32,6 +32,14 @@ The pricing team wants to see how much each product is discounted. Return **ever
 
 Lamp comes first because 50 is 25% of its market price. Sticker stays in the result, with both discount values unknown because its market price is zero.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Sticker has a market price of zero. Does the row survive? What goes in its discount columns?
+
+![Discount amount and percentage per product. Lamp's 25% leads Mug's 20%. SQLite places Sticker's NULL last in descending order.](../../assets/walkthroughs/p007.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p007.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

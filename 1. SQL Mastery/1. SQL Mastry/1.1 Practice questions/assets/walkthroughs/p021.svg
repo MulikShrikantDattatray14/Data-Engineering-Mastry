@@ -1,0 +1,503 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2670" viewBox="0 0 1160 2670" role="img" aria-labelledby="title desc">
+<title id="title">P021 · Top five customers by number of orders</title>
+<desc id="desc">One row per ranked buyer, including fifth-place ties. Nine order rows survive. Orders 17–19 retain ID 99 with NULL customer details. ID 7 has no orders and never enters the ranking. Nine orders form seven buyers. ID 99 contributes 3. IDs 1–6 contribute 1 each. The missing name becomes Unknown customer. Read the grouped buyers. Their counts are 3, 1, 1, 1, 1, 1, 1. The fifth value sets the cutoff at 1. Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID.</desc>
+<rect width="1160" height="2670" fill="#f4f7f7"/>
+<rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
+<text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P021    /    SQL WALKTHROUGH</text>
+<text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Top five customers by number of orders</text>
+<text x="32" y="124" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#405766">One row per ranked buyer, including fifth-place ties.</text>
+<rect x="32" y="151" width="1096" height="74" rx="10" fill="#e6f1ec"/>
+<text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
+<text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Customer 99 has three orders and no customer record. Can that ID come first?</text>
+<text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. Double underlines mark the matching keys. SQL excerpts use … for</text>
+<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">omitted clauses.</text>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  ·  9 rows</text>
+<rect x="68" y="356" width="504.453" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="371" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="572.453" y="356" width="531.547" height="47" rx="0" fill="#194f7c"/>
+<text x="583.453" y="371" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="583.453" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M583.453 395L673.766 395" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M583.453 398L673.766 398" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="68" y="403" width="504.453" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">11</text>
+<path d="M68 432L572.453 432" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.453" y="403" width="531.547" height="29" rx="0" fill="#edf4fb"/>
+<text x="583.453" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M572.453 432L1104 432" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="432" width="504.453" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="451" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
+<path d="M68 461L572.453 461" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.453" y="432" width="531.547" height="29" rx="0" fill="#ffffff"/>
+<text x="583.453" y="451" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M572.453 461L1104 461" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="461" width="504.453" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="480" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
+<path d="M68 490L572.453 490" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.453" y="461" width="531.547" height="29" rx="0" fill="#edf4fb"/>
+<text x="583.453" y="480" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M572.453 490L1104 490" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="490" width="504.453" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="509" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
+<path d="M68 519L572.453 519" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.453" y="490" width="531.547" height="29" rx="0" fill="#ffffff"/>
+<text x="583.453" y="509" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M572.453 519L1104 519" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="519" width="504.453" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="538" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">15</text>
+<path d="M68 548L572.453 548" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.453" y="519" width="531.547" height="29" rx="0" fill="#edf4fb"/>
+<text x="583.453" y="538" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M572.453 548L1104 548" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="548" width="504.453" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">16</text>
+<path d="M68 577L572.453 577" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.453" y="548" width="531.547" height="29" rx="0" fill="#ffffff"/>
+<text x="583.453" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M572.453 577L1104 577" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 586.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="577" width="504.453" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="596" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">17</text>
+<path d="M68 606L572.453 606" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.453" y="577" width="531.547" height="29" rx="0" fill="#edf4fb"/>
+<text x="583.453" y="596" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
+<path d="M572.453 606L1104 606" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 615.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="606" width="504.453" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">18</text>
+<path d="M68 635L572.453 635" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.453" y="606" width="531.547" height="29" rx="0" fill="#ffffff"/>
+<text x="583.453" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
+<path d="M572.453 635L1104 635" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 644.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="635" width="504.453" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="654" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">19</text>
+<path d="M68 664L572.453 664" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.453" y="635" width="531.547" height="29" rx="0" fill="#edf4fb"/>
+<text x="583.453" y="654" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
+<path d="M572.453 664L1104 664" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="68" y="695" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#205e45" font-weight="700">Customers  ·  7 rows</text>
+<rect x="68" y="704" width="352.385" height="47" rx="0" fill="#205e45"/>
+<text x="79" y="719" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="740" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M79 743L169.312 743" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M79 746L169.312 746" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="420.385" y="704" width="343.354" height="47" rx="0" fill="#205e45"/>
+<text x="431.385" y="719" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="431.385" y="740" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
+<rect x="763.74" y="704" width="340.26" height="47" rx="0" fill="#205e45"/>
+<text x="774.74" y="719" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="774.74" y="740" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
+<rect x="68" y="751" width="352.385" height="29" rx="0" fill="#eff7f2"/>
+<text x="79" y="770" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M68 780L420.385 780" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="420.385" y="751" width="343.354" height="29" rx="0" fill="#eff7f2"/>
+<text x="431.385" y="770" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Asha</text>
+<path d="M420.385 780L763.74 780" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="763.74" y="751" width="340.26" height="29" rx="0" fill="#eff7f2"/>
+<text x="774.74" y="770" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Rao</text>
+<path d="M763.74 780L1104 780" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="780" width="352.385" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="799" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2</text>
+<path d="M68 809L420.385 809" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="420.385" y="780" width="343.354" height="29" rx="0" fill="#ffffff"/>
+<text x="431.385" y="799" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ben</text>
+<path d="M420.385 809L763.74 809" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="763.74" y="780" width="340.26" height="29" rx="0" fill="#ffffff"/>
+<text x="774.74" y="799" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Das</text>
+<path d="M763.74 809L1104 809" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="809" width="352.385" height="29" rx="0" fill="#eff7f2"/>
+<text x="79" y="828" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">3</text>
+<path d="M68 838L420.385 838" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="420.385" y="809" width="343.354" height="29" rx="0" fill="#eff7f2"/>
+<text x="431.385" y="828" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Cia</text>
+<path d="M420.385 838L763.74 838" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="763.74" y="809" width="340.26" height="29" rx="0" fill="#eff7f2"/>
+<text x="774.74" y="828" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Sen</text>
+<path d="M763.74 838L1104 838" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="838" width="352.385" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="857" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">4</text>
+<path d="M68 867L420.385 867" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="420.385" y="838" width="343.354" height="29" rx="0" fill="#ffffff"/>
+<text x="431.385" y="857" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Dev</text>
+<path d="M420.385 867L763.74 867" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="763.74" y="838" width="340.26" height="29" rx="0" fill="#ffffff"/>
+<text x="774.74" y="857" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Roy</text>
+<path d="M763.74 867L1104 867" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="867" width="352.385" height="29" rx="0" fill="#eff7f2"/>
+<text x="79" y="886" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">5</text>
+<path d="M68 896L420.385 896" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="420.385" y="867" width="343.354" height="29" rx="0" fill="#eff7f2"/>
+<text x="431.385" y="886" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ena</text>
+<path d="M420.385 896L763.74 896" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="763.74" y="867" width="340.26" height="29" rx="0" fill="#eff7f2"/>
+<text x="774.74" y="886" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Jain</text>
+<path d="M763.74 896L1104 896" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="896" width="352.385" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="915" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">6</text>
+<path d="M68 925L420.385 925" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="420.385" y="896" width="343.354" height="29" rx="0" fill="#ffffff"/>
+<text x="431.385" y="915" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Farah</text>
+<path d="M420.385 925L763.74 925" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="763.74" y="896" width="340.26" height="29" rx="0" fill="#ffffff"/>
+<text x="774.74" y="915" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ali</text>
+<path d="M763.74 925L1104 925" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="925" width="352.385" height="29" rx="0" fill="#eff7f2"/>
+<text x="79" y="944" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">7</text>
+<path d="M68 954L420.385 954" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="420.385" y="925" width="343.354" height="29" rx="0" fill="#eff7f2"/>
+<text x="431.385" y="944" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Gita</text>
+<path d="M420.385 954L763.74 954" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="763.74" y="925" width="340.26" height="29" rx="0" fill="#eff7f2"/>
+<text x="774.74" y="944" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Shah</text>
+<path d="M763.74 954L1104 954" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="978" width="1096" height="510" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1008" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="988" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1007" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 → 9 rows</text>
+<text x="52" y="1043" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which population defines the ranking?</text>
+<text x="52" y="1072" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nine order rows survive. Orders 17–19 retain ID 99 with NULL customer details. ID 7 has no orders and never enters</text>
+<text x="52" y="1097" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">the ranking.</text>
+<rect x="52" y="1113" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1134" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Orders LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID</text>
+<rect x="68" y="1161" width="189.756" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1176" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1197" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="257.756" y="1161" width="216.85" height="47" rx="0" fill="#194f7c"/>
+<text x="268.756" y="1176" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="268.756" y="1197" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M268.756 1200L359.069 1200" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M268.756 1203L359.069 1203" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="474.606" y="1161" width="216.85" height="47" rx="0" fill="#205e45"/>
+<text x="485.606" y="1176" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="485.606" y="1197" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M485.606 1200L575.919 1200" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M485.606 1203L575.919 1203" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="691.456" y="1161" width="207.819" height="47" rx="0" fill="#205e45"/>
+<text x="702.456" y="1176" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="702.456" y="1197" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
+<rect x="899.275" y="1161" width="204.725" height="47" rx="0" fill="#205e45"/>
+<text x="910.275" y="1176" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="910.275" y="1197" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
+<rect x="68" y="1208" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1227" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">11</text>
+<path d="M68 1237L257.756 1237" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="257.756" y="1208" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
+<text x="268.756" y="1227" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M257.756 1237L474.606 1237" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="474.606" y="1208" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
+<text x="485.606" y="1227" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M474.606 1237L691.456 1237" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.456" y="1208" width="207.819" height="29" rx="0" fill="#eff7f2"/>
+<text x="702.456" y="1227" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Asha</text>
+<path d="M691.456 1237L899.275 1237" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="899.275" y="1208" width="204.725" height="29" rx="0" fill="#eff7f2"/>
+<text x="910.275" y="1227" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Rao</text>
+<path d="M899.275 1237L1104 1237" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1237" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1256" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
+<path d="M68 1266L257.756 1266" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="257.756" y="1237" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
+<text x="268.756" y="1256" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M257.756 1266L474.606 1266" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="474.606" y="1237" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
+<text x="485.606" y="1256" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2</text>
+<path d="M474.606 1266L691.456 1266" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.456" y="1237" width="207.819" height="29" rx="0" fill="#ffffff"/>
+<text x="702.456" y="1256" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ben</text>
+<path d="M691.456 1266L899.275 1266" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="899.275" y="1237" width="204.725" height="29" rx="0" fill="#ffffff"/>
+<text x="910.275" y="1256" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Das</text>
+<path d="M899.275 1266L1104 1266" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1266" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1285" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
+<path d="M68 1295L257.756 1295" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="257.756" y="1266" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
+<text x="268.756" y="1285" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M257.756 1295L474.606 1295" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="474.606" y="1266" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
+<text x="485.606" y="1285" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">3</text>
+<path d="M474.606 1295L691.456 1295" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.456" y="1266" width="207.819" height="29" rx="0" fill="#eff7f2"/>
+<text x="702.456" y="1285" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Cia</text>
+<path d="M691.456 1295L899.275 1295" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="899.275" y="1266" width="204.725" height="29" rx="0" fill="#eff7f2"/>
+<text x="910.275" y="1285" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Sen</text>
+<path d="M899.275 1295L1104 1295" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1295" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1314" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
+<path d="M68 1324L257.756 1324" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="257.756" y="1295" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
+<text x="268.756" y="1314" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M257.756 1324L474.606 1324" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="474.606" y="1295" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
+<text x="485.606" y="1314" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">4</text>
+<path d="M474.606 1324L691.456 1324" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.456" y="1295" width="207.819" height="29" rx="0" fill="#ffffff"/>
+<text x="702.456" y="1314" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Dev</text>
+<path d="M691.456 1324L899.275 1324" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="899.275" y="1295" width="204.725" height="29" rx="0" fill="#ffffff"/>
+<text x="910.275" y="1314" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Roy</text>
+<path d="M899.275 1324L1104 1324" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1324" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1343" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">15</text>
+<path d="M68 1353L257.756 1353" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="257.756" y="1324" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
+<text x="268.756" y="1343" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M257.756 1353L474.606 1353" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="474.606" y="1324" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
+<text x="485.606" y="1343" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">5</text>
+<path d="M474.606 1353L691.456 1353" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.456" y="1324" width="207.819" height="29" rx="0" fill="#eff7f2"/>
+<text x="702.456" y="1343" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ena</text>
+<path d="M691.456 1353L899.275 1353" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="899.275" y="1324" width="204.725" height="29" rx="0" fill="#eff7f2"/>
+<text x="910.275" y="1343" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Jain</text>
+<path d="M899.275 1353L1104 1353" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1353" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1372" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">16</text>
+<path d="M68 1382L257.756 1382" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="257.756" y="1353" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
+<text x="268.756" y="1372" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M257.756 1382L474.606 1382" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="474.606" y="1353" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
+<text x="485.606" y="1372" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">6</text>
+<path d="M474.606 1382L691.456 1382" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.456" y="1353" width="207.819" height="29" rx="0" fill="#ffffff"/>
+<text x="702.456" y="1372" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Farah</text>
+<path d="M691.456 1382L899.275 1382" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="899.275" y="1353" width="204.725" height="29" rx="0" fill="#ffffff"/>
+<text x="910.275" y="1372" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ali</text>
+<path d="M899.275 1382L1104 1382" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1391.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1382" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1401" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">17</text>
+<path d="M68 1411L257.756 1411" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="257.756" y="1382" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
+<text x="268.756" y="1401" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
+<path d="M257.756 1411L474.606 1411" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="474.606" y="1382" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
+<text x="485.606" y="1401" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M474.606 1411L691.456 1411" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.456" y="1382" width="207.819" height="29" rx="0" fill="#eff7f2"/>
+<text x="702.456" y="1401" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M691.456 1411L899.275 1411" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="899.275" y="1382" width="204.725" height="29" rx="0" fill="#eff7f2"/>
+<text x="910.275" y="1401" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M899.275 1411L1104 1411" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1420.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1411" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1430" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">18</text>
+<path d="M68 1440L257.756 1440" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="257.756" y="1411" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
+<text x="268.756" y="1430" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
+<path d="M257.756 1440L474.606 1440" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="474.606" y="1411" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
+<text x="485.606" y="1430" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M474.606 1440L691.456 1440" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.456" y="1411" width="207.819" height="29" rx="0" fill="#ffffff"/>
+<text x="702.456" y="1430" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M691.456 1440L899.275 1440" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="899.275" y="1411" width="204.725" height="29" rx="0" fill="#ffffff"/>
+<text x="910.275" y="1430" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M899.275 1440L1104 1440" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1449.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1440" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1459" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">19</text>
+<path d="M68 1469L257.756 1469" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="257.756" y="1440" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
+<text x="268.756" y="1459" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
+<path d="M257.756 1469L474.606 1469" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="474.606" y="1440" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
+<text x="485.606" y="1459" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M474.606 1469L691.456 1469" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.456" y="1440" width="207.819" height="29" rx="0" fill="#eff7f2"/>
+<text x="702.456" y="1459" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M691.456 1469L899.275 1469" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="899.275" y="1440" width="204.725" height="29" rx="0" fill="#eff7f2"/>
+<text x="910.275" y="1459" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M899.275 1469L1104 1469" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1498" width="1096" height="452" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1528" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1508" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1527" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 → 7 rows</text>
+<text x="52" y="1563" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What does one buyer contribute?</text>
+<text x="52" y="1592" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nine orders form seven buyers. ID 99 contributes 3. IDs 1–6 contribute 1 each. The missing name becomes</text>
+<text x="52" y="1617" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Unknown customer.</text>
+<rect x="52" y="1633" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1654" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY o.CustomerID, c.FirstName, c.LastName / COUNT(o.OrderID)</text>
+<rect x="68" y="1681" width="314.99" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1696" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1717" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M79 1720L169.312 1720" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M79 1723L169.312 1723" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="382.99" y="1681" width="378.927" height="47" rx="0" fill="#205e45"/>
+<text x="393.99" y="1696" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="393.99" y="1717" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_name</text>
+<rect x="761.917" y="1681" width="342.083" height="47" rx="0" fill="#194f7c"/>
+<text x="772.917" y="1696" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="772.917" y="1717" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">orders_placed</text>
+<path d="M54 1737.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1728" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1747" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
+<path d="M68 1757L382.99 1757" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="1728" width="378.927" height="29" rx="0" fill="#eff7f2"/>
+<text x="393.99" y="1747" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Unknown customer</text>
+<path d="M382.99 1757L761.917 1757" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="1728" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="1747" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M761.917 1757L1104 1757" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1757" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1776" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1786L382.99 1786" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="1757" width="378.927" height="29" rx="0" fill="#ffffff"/>
+<text x="393.99" y="1776" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Asha Rao</text>
+<path d="M382.99 1786L761.917 1786" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="1757" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="1776" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 1786L1104 1786" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1786" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1805" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1815L382.99 1815" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="1786" width="378.927" height="29" rx="0" fill="#eff7f2"/>
+<text x="393.99" y="1805" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ben Das</text>
+<path d="M382.99 1815L761.917 1815" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="1786" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="1805" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 1815L1104 1815" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1815" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1834" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1844L382.99 1844" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="1815" width="378.927" height="29" rx="0" fill="#ffffff"/>
+<text x="393.99" y="1834" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Cia Sen</text>
+<path d="M382.99 1844L761.917 1844" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="1815" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="1834" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 1844L1104 1844" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1844" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1863" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 1873L382.99 1873" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="1844" width="378.927" height="29" rx="0" fill="#eff7f2"/>
+<text x="393.99" y="1863" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Dev Roy</text>
+<path d="M382.99 1873L761.917 1873" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="1844" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="1863" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 1873L1104 1873" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1873" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1892" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 1902L382.99 1902" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="1873" width="378.927" height="29" rx="0" fill="#ffffff"/>
+<text x="393.99" y="1892" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ena Jain</text>
+<path d="M382.99 1902L761.917 1902" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="1873" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="1892" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 1902L1104 1902" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1902" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1921" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M68 1931L382.99 1931" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="1902" width="378.927" height="29" rx="0" fill="#eff7f2"/>
+<text x="393.99" y="1921" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Farah Ali</text>
+<path d="M382.99 1931L761.917 1931" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="1902" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="1921" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 1931L1104 1931" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1960" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1990" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1008.7" y="1970" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1020.7" y="1989" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 1 row</text>
+<text x="52" y="2025" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which count is in fifth place?</text>
+<text x="52" y="2054" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Read the grouped buyers. Their counts are 3, 1, 1, 1, 1, 1, 1. The fifth value sets the cutoff at 1.</text>
+<rect x="52" y="2070" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2091" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY orders_placed DESC LIMIT 1 OFFSET 4</text>
+<rect x="68" y="2118" width="1036" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="2133" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="2154" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">cutoff</text>
+<rect x="68" y="2165" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2184" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 2194L1104 2194" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="2223" width="1096" height="427" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="2253" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="2233" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="2252" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 7 rows</text>
+<text x="52" y="2288" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How many buyers meet that cutoff?</text>
+<text x="52" y="2317" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID.</text>
+<rect x="52" y="2333" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2354" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE orders_placed &gt;= COALESCE((…fifth-row count…), 0)</text>
+<rect x="68" y="2381" width="314.99" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="2396" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="2417" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M79 2420L169.312 2420" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M79 2423L169.312 2423" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="382.99" y="2381" width="378.927" height="47" rx="0" fill="#205e45"/>
+<text x="393.99" y="2396" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="393.99" y="2417" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_name</text>
+<rect x="761.917" y="2381" width="342.083" height="47" rx="0" fill="#194f7c"/>
+<text x="772.917" y="2396" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="772.917" y="2417" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">orders_placed</text>
+<path d="M54 2437.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="2428" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2447" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
+<path d="M68 2457L382.99 2457" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="2428" width="378.927" height="29" rx="0" fill="#eff7f2"/>
+<text x="393.99" y="2447" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Unknown customer</text>
+<path d="M382.99 2457L761.917 2457" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="2428" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="2447" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M761.917 2457L1104 2457" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2457" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2476" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 2486L382.99 2486" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="2457" width="378.927" height="29" rx="0" fill="#ffffff"/>
+<text x="393.99" y="2476" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Asha Rao</text>
+<path d="M382.99 2486L761.917 2486" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="2457" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="2476" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 2486L1104 2486" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2486" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2505" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 2515L382.99 2515" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="2486" width="378.927" height="29" rx="0" fill="#eff7f2"/>
+<text x="393.99" y="2505" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ben Das</text>
+<path d="M382.99 2515L761.917 2515" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="2486" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="2505" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 2515L1104 2515" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2515" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2534" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 2544L382.99 2544" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="2515" width="378.927" height="29" rx="0" fill="#ffffff"/>
+<text x="393.99" y="2534" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Cia Sen</text>
+<path d="M382.99 2544L761.917 2544" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="2515" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="2534" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 2544L1104 2544" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2544" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2563" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 2573L382.99 2573" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="2544" width="378.927" height="29" rx="0" fill="#eff7f2"/>
+<text x="393.99" y="2563" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Dev Roy</text>
+<path d="M382.99 2573L761.917 2573" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="2544" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="2563" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 2573L1104 2573" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2573" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2592" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 2602L382.99 2602" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="2573" width="378.927" height="29" rx="0" fill="#ffffff"/>
+<text x="393.99" y="2592" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ena Jain</text>
+<path d="M382.99 2602L761.917 2602" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="2573" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="2592" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 2602L1104 2602" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2602" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2621" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M68 2631L382.99 2631" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="382.99" y="2602" width="378.927" height="29" rx="0" fill="#eff7f2"/>
+<text x="393.99" y="2621" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Farah Ali</text>
+<path d="M382.99 2631L761.917 2631" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="761.917" y="2602" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
+<text x="772.917" y="2621" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M761.917 2631L1104 2631" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+</svg>

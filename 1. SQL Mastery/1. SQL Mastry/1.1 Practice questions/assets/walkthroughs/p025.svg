@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1688" viewBox="0 0 1160 1688" role="img" aria-labelledby="title desc">
+<title id="title">P025 · Customer sign-ups by year and quarter</title>
+<desc id="desc">One row per sign-up year and quarter. IDs 2 and 3 both map to 2025 Q1. ID 4 maps to Q2. ID 5 has NULL year and quarter. The five customer IDs form four groups. IDs 2 and 3 count together, and ID 5 contributes one to the missing-date group. The three dated groups run chronologically, followed by NULL / NULL. Counts 1 + 2 + 1 + 1 recover all five customers.</desc>
+<rect width="1160" height="1688" fill="#f4f7f7"/>
+<rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
+<text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P025    /    SQL WALKTHROUGH</text>
+<text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Customer sign-ups by year and quarter</text>
+<text x="32" y="124" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#405766">One row per sign-up year and quarter.</text>
+<rect x="32" y="151" width="1096" height="74" rx="10" fill="#e6f1ec"/>
+<text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
+<text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Where do March 31, April 1 and a missing sign-up date go?</text>
+<text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  ·  5 rows</text>
+<rect x="68" y="333" width="513.484" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<rect x="581.484" y="333" width="522.516" height="47" rx="0" fill="#194f7c"/>
+<text x="592.484" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="592.484" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DateEntered</text>
+<rect x="68" y="380" width="513.484" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 409L581.484 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="581.484" y="380" width="522.516" height="29" rx="0" fill="#edf4fb"/>
+<text x="592.484" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024-12-31</text>
+<path d="M581.484 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 418.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="409" width="513.484" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 438L581.484 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="581.484" y="409" width="522.516" height="29" rx="0" fill="#ffffff"/>
+<text x="592.484" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
+<path d="M581.484 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 447.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="438" width="513.484" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 467L581.484 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="581.484" y="438" width="522.516" height="29" rx="0" fill="#edf4fb"/>
+<text x="592.484" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-31</text>
+<path d="M581.484 467L1104 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="467" width="513.484" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 496L581.484 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="581.484" y="467" width="522.516" height="29" rx="0" fill="#ffffff"/>
+<text x="592.484" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-04-01</text>
+<path d="M581.484 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="496" width="513.484" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 525L581.484 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="581.484" y="496" width="522.516" height="29" rx="0" fill="#edf4fb"/>
+<text x="592.484" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M581.484 525L1104 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="549" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="579" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="559" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What quarter does each customer enter?</text>
+<text x="52" y="643" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 2 and 3 both map to 2025 Q1. ID 4 maps to Q2. ID 5 has NULL year and quarter.</text>
+<rect x="52" y="659" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="680" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CAST(strftime(&#x27;%Y&#x27;, DateEntered) AS INTEGER) / CASE WHEN … THEN 1 … END AS signup_quarter</text>
+<rect x="68" y="707" width="245.453" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<rect x="313.453" y="707" width="254.484" height="47" rx="0" fill="#194f7c"/>
+<text x="324.453" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="324.453" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DateEntered</text>
+<rect x="567.938" y="707" width="254.484" height="47" rx="0" fill="#194f7c"/>
+<text x="578.938" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="578.938" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_year</text>
+<rect x="822.422" y="707" width="281.578" height="47" rx="0" fill="#194f7c"/>
+<text x="833.422" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="833.422" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_quarter</text>
+<rect x="68" y="754" width="245.453" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 783L313.453 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.453" y="754" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.453" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024-12-31</text>
+<path d="M313.453 783L567.938 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="567.938" y="754" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="578.938" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024</text>
+<path d="M567.938 783L822.422 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="822.422" y="754" width="281.578" height="29" rx="0" fill="#d8e9f7"/>
+<text x="833.422" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M822.422 783L1104 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 792.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="783" width="245.453" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 812L313.453 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.453" y="783" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.453" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
+<path d="M313.453 812L567.938 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="567.938" y="783" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="578.938" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025</text>
+<path d="M567.938 812L822.422 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="822.422" y="783" width="281.578" height="29" rx="0" fill="#d8e9f7"/>
+<text x="833.422" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M822.422 812L1104 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 821.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="812" width="245.453" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 841L313.453 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.453" y="812" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.453" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-31</text>
+<path d="M313.453 841L567.938 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="567.938" y="812" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="578.938" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025</text>
+<path d="M567.938 841L822.422 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="822.422" y="812" width="281.578" height="29" rx="0" fill="#d8e9f7"/>
+<text x="833.422" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M822.422 841L1104 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="841" width="245.453" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="860" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 870L313.453 870" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.453" y="841" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.453" y="860" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-04-01</text>
+<path d="M313.453 870L567.938 870" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="567.938" y="841" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="578.938" y="860" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025</text>
+<path d="M567.938 870L822.422 870" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="822.422" y="841" width="281.578" height="29" rx="0" fill="#d8e9f7"/>
+<text x="833.422" y="860" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M822.422 870L1104 870" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="870" width="245.453" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="889" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 899L313.453 899" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.453" y="870" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.453" y="889" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M313.453 899L567.938 899" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="567.938" y="870" width="254.484" height="29" rx="0" fill="#d8e9f7"/>
+<text x="578.938" y="889" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M567.938 899L822.422 899" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="822.422" y="870" width="281.578" height="29" rx="0" fill="#d8e9f7"/>
+<text x="833.422" y="889" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M822.422 899L1104 899" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="928" width="1096" height="365" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="958" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="938" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="957" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 4 rows</text>
+<text x="52" y="993" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which keys must be grouped together?</text>
+<text x="52" y="1022" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The five customer IDs form four groups. IDs 2 and 3 count together, and ID 5 contributes one to the missing-date</text>
+<text x="52" y="1047" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">group.</text>
+<rect x="52" y="1063" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1084" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY signup_year, signup_quarter</text>
+<rect x="68" y="1111" width="330.281" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1126" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1147" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_year</text>
+<rect x="398.281" y="1111" width="357.375" height="47" rx="0" fill="#194f7c"/>
+<text x="409.281" y="1126" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="409.281" y="1147" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_quarter</text>
+<rect x="755.656" y="1111" width="348.344" height="47" rx="0" fill="#194f7c"/>
+<text x="766.656" y="1126" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="766.656" y="1147" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">new_customers</text>
+<rect x="68" y="1158" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1177" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M68 1187L398.281 1187" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="398.281" y="1158" width="357.375" height="29" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1177" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M398.281 1187L755.656 1187" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="755.656" y="1158" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1177" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M755.656 1187L1104 1187" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1187" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1206" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024</text>
+<path d="M68 1216L398.281 1216" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="398.281" y="1187" width="357.375" height="29" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1206" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M398.281 1216L755.656 1216" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="755.656" y="1187" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1206" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M755.656 1216L1104 1216" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1225.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1216" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1235" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025</text>
+<path d="M68 1245L398.281 1245" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="398.281" y="1216" width="357.375" height="29" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1235" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M398.281 1245L755.656 1245" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="755.656" y="1216" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1235" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M755.656 1245L1104 1245" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1245" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1264" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025</text>
+<path d="M68 1274L398.281 1274" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="398.281" y="1245" width="357.375" height="29" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1264" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M398.281 1274L755.656 1274" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="755.656" y="1245" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1264" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M755.656 1274L1104 1274" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1303" width="1096" height="365" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1333" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1313" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1332" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 4 rows</text>
+<text x="52" y="1368" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where should the missing-date group appear?</text>
+<text x="52" y="1397" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The three dated groups run chronologically, followed by NULL / NULL. Counts 1 + 2 + 1 + 1 recover all five</text>
+<text x="52" y="1422" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">customers.</text>
+<rect x="52" y="1438" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1459" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY signup_year ASC NULLS LAST, signup_quarter ASC NULLS LAST</text>
+<rect x="68" y="1486" width="330.281" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1501" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1522" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_year</text>
+<rect x="398.281" y="1486" width="357.375" height="47" rx="0" fill="#194f7c"/>
+<text x="409.281" y="1501" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="409.281" y="1522" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_quarter</text>
+<rect x="755.656" y="1486" width="348.344" height="47" rx="0" fill="#194f7c"/>
+<text x="766.656" y="1501" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="766.656" y="1522" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">new_customers</text>
+<rect x="68" y="1533" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1552" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024</text>
+<path d="M68 1562L398.281 1562" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="398.281" y="1533" width="357.375" height="29" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1552" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M398.281 1562L755.656 1562" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="755.656" y="1533" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1552" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M755.656 1562L1104 1562" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1571.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1562" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1581" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025</text>
+<path d="M68 1591L398.281 1591" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="398.281" y="1562" width="357.375" height="29" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1581" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M398.281 1591L755.656 1591" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="755.656" y="1562" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1581" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M755.656 1591L1104 1591" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1591" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1610" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025</text>
+<path d="M68 1620L398.281 1620" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="398.281" y="1591" width="357.375" height="29" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1610" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M398.281 1620L755.656 1620" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="755.656" y="1591" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1610" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M755.656 1620L1104 1620" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1620" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1639" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M68 1649L398.281 1649" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="398.281" y="1620" width="357.375" height="29" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1639" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M398.281 1649L755.656 1649" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="755.656" y="1620" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1639" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M755.656 1649L1104 1649" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+</svg>

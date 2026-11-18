@@ -25,6 +25,14 @@ From `Orders`, return every order placed from **January 1 through March 31, 2025
 
 Both boundary dates qualify. December 31 and April 1 fall outside the quarter.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Which side of the quarter boundary contains an order dated April 1?
+
+![Orders placed in Q1 2025. March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter's two orders.](../../assets/walkthroughs/p005.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p005.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

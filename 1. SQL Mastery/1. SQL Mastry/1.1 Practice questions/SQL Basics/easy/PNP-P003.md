@@ -49,6 +49,14 @@ Pune is outside the launch area. Both Bengaluru rows qualify, and customer 7 com
 
 The relevant columns are `CustomerID` (integer identifier), `FirstName`, `LastName`, `City`, and `State` (text). Return them in that order.
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** Two customers have Bengaluru with different spacing. How will their names be ordered?
+
+![Customers in metro cities. Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling.](../../assets/walkthroughs/p003.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p003.svg?raw=1)
+
 ## Learner solution — SQLite
 
 ```sql

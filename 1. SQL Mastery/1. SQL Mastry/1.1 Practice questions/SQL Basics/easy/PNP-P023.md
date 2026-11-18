@@ -29,6 +29,14 @@ Return `ProductID`, `Product`, `Sub_Category`, and `Sale_Price`. Sort by `Sale_P
 | 1 | Cocoa Cookie | Cookies | 200 |
 | 4 | Dark Bar | CHOCOLATE | 249 |
 
+## Visual walkthrough
+
+Follow the sample rows through each query step. **Predict the result.** A sugar-free chocolate costs 150. Which of the three filters removes it?
+
+![Chocolate or cookie products under 250. ID 2 passes the first two filters, then drops out on its name. Cocoa Cookie (200) precedes Dark Bar (249).](../../assets/walkthroughs/p023.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p023.svg?raw=1)
+
 ## Learner submission — SQLite
 
 ```sql
