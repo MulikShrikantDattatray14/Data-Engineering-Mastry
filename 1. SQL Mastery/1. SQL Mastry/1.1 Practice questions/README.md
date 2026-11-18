@@ -71,6 +71,7 @@ Trace one question at a time using the same example in chat and in the saved wal
 | P018 | [Customers with no order in the last 90 days](Joins/easy/PNP-P018.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P019 | [Units sold per product](Joins/easy/PNP-P019.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P021 | [Top five customers by number of orders](Joins/easy/PNP-P021.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P026 | [List-price value by category](Joins/medium/PNP-P026.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
 
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
