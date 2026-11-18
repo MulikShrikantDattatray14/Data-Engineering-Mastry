@@ -8,6 +8,19 @@ Practice topics in the original Bosscoder assignment order. Within each topic, p
 
 Copy the full question exactly as presented in the study chat, including requirements, sample input, expected output, and the sample explanation. Apply this to every PNP and Bosscoder write-up. Keep the learner solution, walkthrough, and official answer below the complete prompt.
 
+### Explain the approach before coding
+
+Start with the full question and its sample tables. The learner gives one plain-English plan covering the following decisions as they apply to the question.
+
+1. What one output row represents and which columns it must contain.
+2. Which tables and keys supply the data, how to join them, and which unmatched rows must survive.
+3. Which conditions affect all input rows, a group of rows, or just one calculated column.
+4. How to form each group and calculate each output, including how to count duplicates.
+5. What should happen with missing data, boundaries, ties and the final ordering.
+6. How a sample row or group travels from the inputs to its expected output.
+
+Rate the submitted approach out of 10 for coverage and correctness. Identify what the learner got right and the specific requirement behind any gap. Use color to trace the learner’s proposed approach across the full sample tables and highlight the first step where a result diverges. Let the learner revise the plan in plain English. When it covers every applicable requirement, confirm that it is ready, show the complete agreed progression, and invite the learner to write SQL. Save that progression with the verified solution.
+
 ### Walkthrough format
 
 Use the same step-by-step approach during practice and in each PNP or Bosscoder write-up. Identify what one output row represents, then build the query one part at a time using the same example. For each step, explain what to do and why, show the SQL and output, and explain what the output demonstrates. When a join is used, explain why it fits and which unmatched rows it keeps. Explain whether each condition affects input rows, output groups, or one metric.

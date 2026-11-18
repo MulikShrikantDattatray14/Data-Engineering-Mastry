@@ -66,6 +66,14 @@ Here, Stationery has no sales, product `30` points to a missing Category, produc
 
 Order `100` contains two Drinks lines and one Snacks line. It counts once for each of those categories. The two Drinks lines contribute `2 × 10 + 1 × 8 = 28`. Order `101` contributes `3 × 7 = 21` to `Unmapped`. Order `102` contributes four units to `Unknown product` and has no known price. Stationery has no sale lines.
 
+## Visual walkthrough
+
+Follow all five original order lines through the two joins. The full category join adds an unsold category, and grouping turns the six joined rows into five report rows. No row or group filter applies. The zero-value check belongs to the value calculation.
+
+![Seven steps from all three sample input tables to the sorted report. The Drinks lines combine to 28. Stationery has zero sales, and the missing product has four units with unknown value.](../../assets/p026-from-inputs-to-result.svg)
+
+[Open the full-size graphic](../../assets/p026-from-inputs-to-result.svg?raw=1)
+
 ## Final learner solution — SQLite
 
 Built from Shri’s submitted clauses with guidance on the category labels, the empty-category value, and the sort syntax.
