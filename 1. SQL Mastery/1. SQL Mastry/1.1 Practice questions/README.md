@@ -115,6 +115,7 @@ Show which rows form each group before calculating its measures. For each aggreg
 | P021 | [Top five customers by number of orders](Joins/easy/PNP-P021.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P026 | [List-price value by category](Joins/medium/PNP-P026.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
 | P027 | [Average order value by customer state](Joins/medium/PNP-P027.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
+| P029 | [Order value and units by shipper without double counting](Joins/medium/PNP-P029.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
 
 ### Subqueries
 
