@@ -65,16 +65,6 @@ When an address has multiple issues, the saved attempt gives priority to `Missin
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P004/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** What happens to a valid address when the CASE checks find no issue?
-
-![Customer emails that cannot be delivered. Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID.](../../assets/walkthroughs/p004.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p004.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -91,6 +81,16 @@ ORDER BY CustomerID ASC;
 ```
 
 The learner's query logic is preserved. The saved version removes chat escaping and link formatting, uses regular spaces in the issue text, and uses single quotes for SQL string literals. SQLite checks covered the sample, empty emails, incomplete address parts, and label precedence.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P004/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** What happens to a valid address when the CASE checks find no issue?
+
+![Customer emails that cannot be delivered. Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID.](../../assets/walkthroughs/p004.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p004.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -232,3 +232,7 @@ ORDER BY c.CustomerID;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P004/walkthrough.json). The column names and all 3 expected rows matched in the displayed order.

@@ -62,16 +62,6 @@ Ben’s only order was on December 1, 2024. Cia has no order in the sample. Both
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P018/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Ben has an old order and Cia has none. Should they reach the same result?
-
-![Customers with no order in the last 90 days. Ben (ID 2) signed up before Cia (ID 3). Both qualify even though their order histories differ.](../../assets/walkthroughs/p018.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p018.svg?raw=1)
-
 ## Final learner submission — SQLite
 
 ```sql
@@ -97,6 +87,16 @@ ORDER BY c.DateEntered ASC, c.CustomerID ASC;
 ```
 
 Guided submission. This final version uses table aliases and a single-quoted space. Verified on the sample, a first-day timestamp for a customer with an older order, and an empty Orders table.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P018/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Ben has an old order and Cia has none. Should they reach the same result?
+
+![Customers with no order in the last 90 days. Ben (ID 2) signed up before Cia (ID 3). Both qualify even though their order histories differ.](../../assets/walkthroughs/p018.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p018.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -282,3 +282,7 @@ ORDER BY c.DateEntered, c.CustomerID;
 ```
 
 The official version needs only a lower-bound check because its window ends on the latest order date in the same table. Its name formatting skips missing name parts. The SQLite adaptation was executed on the sample and extended fixtures. The SQL Server versions were reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P018/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

@@ -67,16 +67,6 @@ In 🟩 Payments, ID 1 stores Y and IDs 2 and 3 store N. Those two rows have cou
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P009/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Will a NULL Active value form a group? Can the two flag summaries be stacked?
-
-![Check how Active and Allowed are encoded. Three Category groups plus two Payments groups give five output rows. Their counts add to seven input rows. The query permits any row order.](../../assets/walkthroughs/p009.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p009.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -95,6 +85,16 @@ group by Allowed
 ```
 
 Verified the sample, the output column names and text types, and additional cases with two missing payment flags and a flag value shared by both sources. Chat formatting was removed when assembling the submitted SQL.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P009/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Will a NULL Active value form a group? Can the two flag summaries be stacked?
+
+![Check how Active and Allowed are encoded. Three Category groups plus two Payments groups give five output rows. Their counts add to seven input rows. The query permits any row order.](../../assets/walkthroughs/p009.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p009.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -256,3 +256,7 @@ ORDER BY source_table, CASE WHEN raw_value IS NULL THEN 1 ELSE 0 END, raw_value;
 The SQL Server outer sort keeps a missing flag after the nonmissing flags within each source.
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P009/walkthrough.json). The column names and all 5 expected rows matched as an unordered set of rows with duplicates retained.

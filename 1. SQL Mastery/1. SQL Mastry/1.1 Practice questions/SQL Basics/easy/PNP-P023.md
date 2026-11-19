@@ -56,16 +56,6 @@ One output row represents one qualifying chocolate or cookie product priced belo
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P023/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** A sugar-free chocolate costs 150. Which of the three filters removes it?
-
-![Chocolate or cookie products under 250. ID 2 passes the first two filters, then drops out on its name. Cocoa Cookie (200) precedes Dark Bar (249).](../../assets/walkthroughs/p023.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p023.svg?raw=1)
-
 ## Learner submission — SQLite
 
 ```sql
@@ -76,6 +66,16 @@ order by `Sale_Price` asc, `ProductID` asc
 ```
 
 Guided submission. Chat formatting was cleaned up. SQLite accepted the double-quoted patterns in the tested configuration. Single quotes are standard for string literals. The submitted sugar-free match uses SQLite's default case-insensitive ASCII LIKE behavior.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P023/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** A sugar-free chocolate costs 150. Which of the three filters removes it?
+
+![Chocolate or cookie products under 250. ID 2 passes the first two filters, then drops out on its name. Cocoa Cookie (200) precedes Dark Bar (249).](../../assets/walkthroughs/p023.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p023.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -197,3 +197,7 @@ ORDER BY p.Sale_Price, p.ProductID;
 ```
 
 The official answer's broader pattern also excludes `Sugar free bar` without the hyphen. The learner pattern excludes the literal hyphenated marker. Both versions match the supplied sample. The SQLite variants were checked on the unhyphenated example. The SQL Server variants were reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P023/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

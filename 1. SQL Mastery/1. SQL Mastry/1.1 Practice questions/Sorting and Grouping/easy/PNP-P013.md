@@ -53,16 +53,6 @@ One output row represents one state with at least five customers, with missing s
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P013/01.md)
-
-The diagram follows the extended sample used in the step-by-step walkthrough. **Predict the result.** Five customers have no recorded state. Will their group meet the threshold?
-
-![States with at least five customers. Delhi's six come first. The two groups of five sort by the displayed labels Karnataka and Unknown.](../../assets/walkthroughs/p013.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p013.svg?raw=1)
-
 ## Learner solution — SQLite (CASE)
 
 ```sql
@@ -80,6 +70,16 @@ order by  count(CustomerID) desc, State asc
 ```
 
 Verified on the original sample and the extended example below. The query assumes non-NULL customer IDs, as with a primary key.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P013/01.md)
+
+The diagram follows the extended sample used in the step-by-step walkthrough. **Predict the result.** Five customers have no recorded state. Will their group meet the threshold?
+
+![States with at least five customers. Delhi's six come first. The two groups of five sort by the displayed labels Karnataka and Unknown.](../../assets/walkthroughs/p013.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p013.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -230,3 +230,7 @@ ORDER BY customer_count DESC, State;
 ```
 
 The answer-key SQL runs unchanged in SQLite and works with SQL Server 2017 or later. Its grouping expression trims state names and maps NULL to Unknown before counting. The learner groups by the stored state and labels NULL for display. Both returned the same results on the original and extended examples. The SQL Server version was reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P013/walkthrough.json). The column names and all 1 expected row matched in the displayed order.

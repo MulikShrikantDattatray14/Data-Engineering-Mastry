@@ -61,16 +61,6 @@ One output row represents one order with more than eight detail lines.
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P022/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Order 10 has only eight distinct products. Can it still have more than eight lines?
-
-![Orders with more than eight line items. Order 10 qualifies with nine lines. Order 11 has one line and drops out. Exactly eight would miss the strict cutoff.](../../assets/walkthroughs/p022.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p022.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -81,6 +71,16 @@ group by OrderID
 having count(OrderID) > 8
 order by count(OrderID) desc ,OrderID asc
 ```
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P022/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Order 10 has only eight distinct products. Can it still have more than eight lines?
+
+![Orders with more than eight line items. Order 10 qualifies with nine lines. Order 11 has one line and drops out. Exactly eight would miss the strict cutoff.](../../assets/walkthroughs/p022.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p022.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -183,3 +183,7 @@ ORDER BY line_items DESC, od.OrderID;
 ```
 
 The official answer counts rows with COUNT(*). The learner uses COUNT(OrderID), which gives the same result when OrderID is non-NULL. The SQL Server versions were reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P022/walkthrough.json). The column names and all 1 expected row matched in the displayed order.

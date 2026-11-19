@@ -60,16 +60,6 @@ One output row represents one catalogue product, including products whose sale p
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P008/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Which band owns exactly 200? What about exactly 700?
-
-![Price band labels. The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay.](../../assets/walkthroughs/p008.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p008.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -88,6 +78,16 @@ order by ProductID asc
 ```
 
 The exact query passed in the tested SQLite configuration, which accepts double-quoted string literals. Checks covered the sample, output names and order, NULL, and fractional prices just below each threshold.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P008/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Which band owns exactly 200? What about exactly 700?
+
+![Price band labels. The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay.](../../assets/walkthroughs/p008.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p008.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -251,3 +251,7 @@ ORDER BY p.ProductID;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P008/walkthrough.json). The column names and all 5 expected rows matched in the displayed order.

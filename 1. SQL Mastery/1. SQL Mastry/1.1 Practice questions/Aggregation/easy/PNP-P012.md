@@ -57,16 +57,6 @@ One output row represents one category ID represented in the product catalogue.
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P012/01.md)
-
-The diagram follows the extended sample used in the step-by-step walkthrough. **Predict the result.** In category 10, should a zero market price remove the product from its sale-price average?
-
-![Price and discount statistics per category. Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five products still count.](../../assets/walkthroughs/p012.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p012.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -90,6 +80,16 @@ ORDER BY CategoryID ASC;
 ```
 
 The sample and extended tests passed, including multiple categories, missing and zero market prices, a fractional discount, and a category with no usable discount percentage. COUNT(ProductID) counts every product when ProductID is non-NULL, as with a primary key.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P012/01.md)
+
+The diagram follows the extended sample used in the step-by-step walkthrough. **Predict the result.** In category 10, should a zero market price remove the product from its sale-price average?
+
+![Price and discount statistics per category. Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five products still count.](../../assets/walkthroughs/p012.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p012.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -298,3 +298,7 @@ ORDER BY CASE WHEN p.CategoryID IS NULL THEN 1 ELSE 0 END, p.CategoryID;
 SQLite supports the source FILTER and NULLS LAST clauses. The SQL Server adaptation uses a conditional COUNT and an explicit NULL sort key.
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P012/walkthrough.json). The column names and all 1 expected row matched in the displayed order.

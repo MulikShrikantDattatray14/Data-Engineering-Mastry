@@ -58,16 +58,6 @@ One output row represents one sign-up year and quarter, with undated accounts in
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P025/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Where do March 31, April 1 and a missing sign-up date go?
-
-![Customer sign-ups by year and quarter. The three dated groups run chronologically, followed by NULL / NULL. Counts 1 + 2 + 1 + 1 recover all five customers.](../../assets/walkthroughs/p025.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p025.svg?raw=1)
-
 ## My final solution · SQLite
 
 ```sql
@@ -91,19 +81,15 @@ ORDER BY signup_year ASC NULLS LAST,
          signup_quarter ASC NULLS LAST;
 ```
 
-## My solution · SQL Server
+## Visual walkthrough
 
-Equivalent adaptation for non-NULL CustomerID values.
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P025/01.md)
 
-```sql
-SELECT YEAR(DateEntered) AS signup_year,
-       DATEPART(QUARTER, DateEntered) AS signup_quarter,
-       COUNT(CustomerID) AS new_customers
-FROM Customers
-GROUP BY YEAR(DateEntered), DATEPART(QUARTER, DateEntered)
-ORDER BY CASE WHEN YEAR(DateEntered) IS NULL THEN 1 ELSE 0 END,
-         signup_year, signup_quarter;
-```
+Follow the sample rows through each query step. **Predict the result.** Where do March 31, April 1 and a missing sign-up date go?
+
+![Customer sign-ups by year and quarter. The three dated groups run chronologically, followed by NULL / NULL. Counts 1 + 2 + 1 + 1 recover all five customers.](../../assets/walkthroughs/p025.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p025.svg?raw=1)
 
 ## Progressive walkthrough
 
@@ -192,6 +178,20 @@ Add ORDER BY signup_year ASC NULLS LAST, signup_quarter ASC NULLS LAST, as shown
 
 No WHERE or HAVING condition is needed because every customer and every resulting group is requested.
 
+## My solution · SQL Server
+
+Equivalent adaptation for non-NULL CustomerID values.
+
+```sql
+SELECT YEAR(DateEntered) AS signup_year,
+       DATEPART(QUARTER, DateEntered) AS signup_quarter,
+       COUNT(CustomerID) AS new_customers
+FROM Customers
+GROUP BY YEAR(DateEntered), DATEPART(QUARTER, DateEntered)
+ORDER BY CASE WHEN YEAR(DateEntered) IS NULL THEN 1 ELSE 0 END,
+         signup_year, signup_quarter;
+```
+
 ## Official solution · Source dialect
 
 ```sql
@@ -238,7 +238,6 @@ GROUP BY YEAR(DateEntered), DATEPART(QUARTER, DateEntered)
 ORDER BY CASE WHEN YEAR(DateEntered) IS NULL THEN 1 ELSE 0 END,
          signup_year, signup_quarter;
 ```
-
 
 ## Verification
 

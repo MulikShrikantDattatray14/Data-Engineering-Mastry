@@ -71,16 +71,6 @@ The saved attempt treats padded versions of the same brand as a single displayed
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P001/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Will product 2 create a second Nike entry if the stored name has spaces?
-
-![Brand directory. Alphabetical ordering gives Adidas, Nike and Puma. Each name appears once.](../../assets/walkthroughs/p001.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p001.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -92,30 +82,15 @@ order by trim(Brand) asc
 
 The exact query was run against all eight sample rows in SQLite. The column name and all three rows matched the expected output in order.
 
-## Learner solution — SQL Server
+## Visual walkthrough
 
-```sql
-SELECT DISTINCT TRIM(Brand) AS Brand
-FROM Products
-WHERE TRIM(Brand) IS NOT NULL
-  AND LEN(TRIM(Brand)) > 0
-ORDER BY Brand ASC;
-```
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P001/01.md)
 
-This adaptation uses SQL Server's `LEN` and sorts by the output alias. It was reviewed by inspection.
+Follow the sample rows through each query step. **Predict the result.** Will product 2 create a second Nike entry if the stored name has spaces?
 
-## Official solution
+![Brand directory. Alphabetical ordering gives Adidas, Nike and Puma. Each name appears once.](../../assets/walkthroughs/p001.svg)
 
-The [repository's PNP P001 source notes](<../../../2.PNP- foundations and practice/0. SQL basics/P001. Brand directory.md>) reproduce this query from the PNP answer key.
-
-```sql
-SELECT DISTINCT p.Brand
-FROM Products AS p
-WHERE NULLIF(TRIM(p.Brand), '') IS NOT NULL
-ORDER BY p.Brand;
-```
-
-The official query trims brand names for filtering and returns raw brand names. On the illustrative sample, it treats the two Nike spellings as distinct in SQLite.
+[Open the full-size walkthrough](../../assets/walkthroughs/p001.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -225,6 +200,31 @@ ORDER BY TRIM(Brand) ASC;
 | Nike |
 | Puma |
 
+## Learner solution — SQL Server
+
+```sql
+SELECT DISTINCT TRIM(Brand) AS Brand
+FROM Products
+WHERE TRIM(Brand) IS NOT NULL
+  AND LEN(TRIM(Brand)) > 0
+ORDER BY Brand ASC;
+```
+
+This adaptation uses SQL Server's `LEN` and sorts by the output alias. It was reviewed by inspection.
+
+## Official solution
+
+The [repository's PNP P001 source notes](<../../../2.PNP- foundations and practice/0. SQL basics/P001. Brand directory.md>) reproduce this query from the PNP answer key.
+
+```sql
+SELECT DISTINCT p.Brand
+FROM Products AS p
+WHERE NULLIF(TRIM(p.Brand), '') IS NOT NULL
+ORDER BY p.Brand;
+```
+
+The official query trims brand names for filtering and returns raw brand names. On the illustrative sample, it treats the two Nike spellings as distinct in SQLite.
+
 ### Official answer — SQLite adaptation
 
 ```sql
@@ -246,3 +246,7 @@ ORDER BY p.Brand;
 The answer key returns the stored brand text. The learner query also trims the displayed brand, which affects the padded-Nike sample.
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P001/walkthrough.json). The column names and all 3 expected rows matched in the displayed order.

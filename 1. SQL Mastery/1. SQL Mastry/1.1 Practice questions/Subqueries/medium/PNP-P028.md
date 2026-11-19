@@ -76,18 +76,6 @@ Suppose one more order arrives in 🟦 `Orders` with `PaymentID = 99`. The 🟩 
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P028/01.md)
-
-Use the original three orders and the two we added during practice. Order **13** carries payment ID **99** and an amount of **50**. Order **14** carries a missing payment ID and an amount of **150**. These five orders stay in view through the last step.
-
-🟦 **Orders** supplies IDs and amounts. 🟩 **Payments** supplies labels. The two join keys have a double underline. A ▸ marks a focus row, and darker cells show the inputs to the current calculation. The ƒ symbol identifies calculated columns in their source colors.
-
-![Eight illustrated steps follow five individual orders through the payment lookup, the Unknown label, three payment groups, two scalar subqueries and the final sorted report.](../../assets/p028-payment-mix-walkthrough.svg)
-
-[Open the full-size walkthrough](../../assets/p028-payment-mix-walkthrough.svg?raw=1)
-
 ## Final learner solution — SQLite
 
 ```sql
@@ -122,6 +110,18 @@ ORDER BY orders DESC;
 | How do we group and calculate? | Group by the displayed payment type. Count order IDs and add amounts inside each group. Read the overall count and overall value from Orders in two scalar subqueries. |
 | What about missing values and ties? | Missing payments share the Unknown label. A missing amount still belongs to a counted order. With the learner’s sort, equal order counts can appear in either order. |
 | Can we check one group by hand? | UPI contains orders 10 and 11. That is 2 of 5 orders and 300 of 800 in value. |
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P028/01.md)
+
+Use the original three orders and the two we added during practice. Order **13** carries payment ID **99** and an amount of **50**. Order **14** carries a missing payment ID and an amount of **150**. These five orders stay in view through the last step.
+
+🟦 **Orders** supplies IDs and amounts. 🟩 **Payments** supplies labels. The two join keys have a double underline. A ▸ marks a focus row, and darker cells show the inputs to the current calculation. The ƒ symbol identifies calculated columns in their source colors.
+
+![Eight illustrated steps follow five individual orders through the payment lookup, the Unknown label, three payment groups, two scalar subqueries and the final sorted report.](../../assets/p028-payment-mix-walkthrough.svg)
+
+[Open the full-size walkthrough](../../assets/p028-payment-mix-walkthrough.svg?raw=1)
 
 ## Step-by-step solution
 

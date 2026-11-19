@@ -63,16 +63,6 @@ The saved attempt compares countries without surrounding spaces or case differen
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P024/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Supplier 2 has a foreign country and a missing email. How many issue labels should it get?
-
-![Suppliers outside India or with no email. The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing.](../../assets/walkthroughs/p024.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p024.svg?raw=1)
-
 ## My final solution · SQLite
 
 ```sql
@@ -96,28 +86,15 @@ WHERE Country IS NULL
 ORDER BY SupplierID ASC;
 ```
 
-## My solution · SQL Server
+## Visual walkthrough
 
-```sql
-SELECT SupplierID, CompanyName, Country, Email,
-    CASE
-        WHEN Country IS NULL
-             AND (TRIM(Email) IS NULL OR LEN(TRIM(Email)) = 0)
-            THEN 'Country missing; No email'
-        WHEN TRIM(LOWER(Country)) != 'india'
-             AND (TRIM(Email) IS NULL OR LEN(TRIM(Email)) = 0)
-            THEN 'Outside India; No email'
-        WHEN Country IS NULL THEN 'Country missing'
-        WHEN TRIM(LOWER(Country)) != 'india' THEN 'Outside India'
-        WHEN TRIM(Email) IS NULL OR LEN(TRIM(Email)) = 0 THEN 'No email'
-    END AS issue
-FROM Suppliers
-WHERE Country IS NULL
-   OR TRIM(LOWER(Country)) != 'india'
-   OR TRIM(Email) IS NULL
-   OR LEN(TRIM(Email)) = 0
-ORDER BY SupplierID ASC;
-```
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P024/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Supplier 2 has a foreign country and a missing email. How many issue labels should it get?
+
+![Suppliers outside India or with no email. The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing.](../../assets/walkthroughs/p024.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p024.svg?raw=1)
 
 ## Walkthrough
 
@@ -149,6 +126,29 @@ Add `CASE` to the select list. SQLite returns the first matching branch, so chec
 ### 4. Sort and check the edge cases
 
 Add `ORDER BY SupplierID ASC` to guarantee the sample order of 2, then 3. The SQLite checks also covered a NULL country with a spaces-only email, a padded mixed-case India with an empty email, a padded foreign country with a present email, and a padded India with a present email.
+
+## My solution · SQL Server
+
+```sql
+SELECT SupplierID, CompanyName, Country, Email,
+    CASE
+        WHEN Country IS NULL
+             AND (TRIM(Email) IS NULL OR LEN(TRIM(Email)) = 0)
+            THEN 'Country missing; No email'
+        WHEN TRIM(LOWER(Country)) != 'india'
+             AND (TRIM(Email) IS NULL OR LEN(TRIM(Email)) = 0)
+            THEN 'Outside India; No email'
+        WHEN Country IS NULL THEN 'Country missing'
+        WHEN TRIM(LOWER(Country)) != 'india' THEN 'Outside India'
+        WHEN TRIM(Email) IS NULL OR LEN(TRIM(Email)) = 0 THEN 'No email'
+    END AS issue
+FROM Suppliers
+WHERE Country IS NULL
+   OR TRIM(LOWER(Country)) != 'india'
+   OR TRIM(Email) IS NULL
+   OR LEN(TRIM(Email)) = 0
+ORDER BY SupplierID ASC;
+```
 
 ## Official answer · Source dialect
 
@@ -214,3 +214,7 @@ ORDER BY s.SupplierID;
 ```
 
 The official SQL Server form uses `CONCAT_WS` and `TRIM`, available in SQL Server 2017 and later.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P024/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

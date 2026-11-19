@@ -83,16 +83,6 @@ One output row represents one product and store combination with a known price.
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.04/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Two products have three store columns each. Why do we get five price rows?
-
-![Rearrange Products Table. 2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order.](../../assets/walkthroughs/b1-04.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/b1-04.svg?raw=1)
-
 ## My solution — SQLite
 
 ```sql
@@ -121,7 +111,17 @@ WHERE store3 IS NOT NULL
 ORDER BY store ASC;
 ```
 
-### Step-by-step explanation with one example
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.04/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Two products have three store columns each. Why do we get five price rows?
+
+![Rearrange Products Table. 2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order.](../../assets/walkthroughs/b1-04.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/b1-04.svg?raw=1)
+
+## Step-by-step explanation with one example
 
 🟦 **Each branch · FROM Products** · All three store prices are already on each product row. Read one store column per branch so a product can contribute a separate row to every store that has a price.
 

@@ -68,18 +68,6 @@ All ten orders have an amount of 100. Their combined value is 🟦 `10 × 100 = 
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P027/01.md)
-
-🟦 **Orders** supplies the order IDs, buyer IDs and amounts. 🟩 **Customers** supplies the state. Each color stays with its source through the join, including any `NULL` cell. A double underline marks the join keys, ▸ marks a focus row, and ƒ marks a calculated column in its source color.
-
-The diagram keeps the original ten orders and adds examples from practice. Follow **order 11** through the missing customer lookup. Then follow **Maharashtra** through the two counts used in this report. Lists such as `12–16` show inclusive OrderID ranges. Each number is a separate order.
-
-![Eight illustrated decisions follow 49 orders through the customer lookup, normalized state, grouping, aggregates, ten-order cutoff and final AOV sort. Coloured cells show the values used at each step.](../../assets/p027-from-inputs-to-result.svg)
-
-[Open the full-size walkthrough](../../assets/p027-from-inputs-to-result.svg?raw=1)
-
 ## Final learner solution — SQLite
 
 ### Single-query solution
@@ -160,6 +148,18 @@ ORDER BY avg_order_value DESC;
 | What contributes to each measure? | Each ordering buyer counts once per state. Every order counts. Recorded amounts contribute to the sum and average. |
 | Which edge cases matter? | Missing customers and missing states share `Unknown`. A zero amount is known. A state with ten missing amounts qualifies with a `NULL` sum and average. |
 | How can I check the order? | Two states can each total 1,000. With five known amounts the AOV is 200, and with ten it is 100. The 200 row appears first. |
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P027/01.md)
+
+🟦 **Orders** supplies the order IDs, buyer IDs and amounts. 🟩 **Customers** supplies the state. Each color stays with its source through the join, including any `NULL` cell. A double underline marks the join keys, ▸ marks a focus row, and ƒ marks a calculated column in its source color.
+
+The diagram keeps the original ten orders and adds examples from practice. Follow **order 11** through the missing customer lookup. Then follow **Maharashtra** through the two counts used in this report. Lists such as `12–16` show inclusive OrderID ranges. Each number is a separate order.
+
+![Eight illustrated decisions follow 49 orders through the customer lookup, normalized state, grouping, aggregates, ten-order cutoff and final AOV sort. Coloured cells show the values used at each step.](../../assets/p027-from-inputs-to-result.svg)
+
+[Open the full-size walkthrough](../../assets/p027-from-inputs-to-result.svg?raw=1)
 
 ## Step-by-step walkthrough
 

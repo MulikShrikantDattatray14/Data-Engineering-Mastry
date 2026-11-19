@@ -58,16 +58,6 @@ One output row represents one full-price product in the ten most expensive. Both
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P006/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Does a missing sale price prove the product was sold at full price?
-
-![Most expensive products sold at full price. Lamp costs 150 and Mug costs 100. Only two products qualify for the ten available places.](../../assets/walkthroughs/p006.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p006.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -80,6 +70,16 @@ LIMIT 10;
 ```
 
 The equality filter returns the requested rows directly. The original exercise also asks for an intermediate zero-to-NULL discount calculation, which is shown in the official solution below. SQLite checks covered the sample, missing prices, a sale price above market price, ties, and the ten-row limit.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P006/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Does a missing sale price prove the product was sold at full price?
+
+![Most expensive products sold at full price. Lamp costs 150 and Mug costs 100. Only two products qualify for the ten available places.](../../assets/walkthroughs/p006.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p006.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -329,3 +329,7 @@ ORDER BY p.Sale_Price DESC, p.ProductID;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P006/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

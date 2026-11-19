@@ -78,16 +78,6 @@ BST has integer columns N and P. Each row describes one node N and its parent P.
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.03/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Node 5 is both someone's parent and has no parent of its own. Which label takes precedence?
-
-![Binary Tree Nodes. Nodes 2 and 8 are inner nodes. One root + two inner nodes + four leaves = seven nodes, ordered by N.](../../assets/walkthroughs/b1-03.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/b1-03.svg?raw=1)
-
 ## My final solution · SQLite
 
 ```sql
@@ -105,22 +95,15 @@ FROM BST
 ORDER BY N;
 ```
 
-## My final solution · SQL Server
+## Visual walkthrough
 
-```sql
-SELECT N,
-       CASE
-           WHEN P IS NULL THEN 'Root'
-           WHEN N NOT IN (
-               SELECT P
-               FROM BST
-               WHERE P IS NOT NULL
-           ) THEN 'Leaf'
-           ELSE 'Inner'
-       END AS NodeType
-FROM BST
-ORDER BY N;
-```
+[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.03/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Node 5 is both someone's parent and has no parent of its own. Which label takes precedence?
+
+![Binary Tree Nodes. Nodes 2 and 8 are inner nodes. One root + two inner nodes + four leaves = seven nodes, ordered by N.](../../assets/walkthroughs/b1-03.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/b1-03.svg?raw=1)
 
 ## Progressive walkthrough
 
@@ -233,6 +216,23 @@ ORDER BY N;
 | 9 | Leaf |
 
 Nodes 2 and 8 have parents and appear in the parent list, so both are Inner. All seven nodes remain in the output. No grouping is needed because each node is classified individually.
+
+## My final solution · SQL Server
+
+```sql
+SELECT N,
+       CASE
+           WHEN P IS NULL THEN 'Root'
+           WHEN N NOT IN (
+               SELECT P
+               FROM BST
+               WHERE P IS NOT NULL
+           ) THEN 'Leaf'
+           ELSE 'Inner'
+       END AS NodeType
+FROM BST
+ORDER BY N;
+```
 
 ## New learning · NOT IN and NULL
 

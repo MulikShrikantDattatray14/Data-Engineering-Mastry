@@ -58,16 +58,6 @@ One output row represents one catalogue product, including products with missing
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P007/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Sticker has a market price of zero. Does the row survive? What goes in its discount columns?
-
-![Discount amount and percentage per product. Lamp's 25% leads Mug's 20%. SQLite places Sticker's NULL last in descending order.](../../assets/walkthroughs/p007.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p007.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -95,6 +85,16 @@ order by discount_pct desc
 ```
 
 Verified on the sample and additional cases covering missing prices, a zero sale price, a sale price above market price, and a 3.33% discount. SQLite may display a numeric value like 25.00 as 25.0. The tables show two decimal places for readability.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P007/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Sticker has a market price of zero. Does the row survive? What goes in its discount columns?
+
+![Discount amount and percentage per product. Lamp's 25% leads Mug's 20%. SQLite places Sticker's NULL last in descending order.](../../assets/walkthroughs/p007.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p007.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -285,3 +285,7 @@ ORDER BY discount_pct DESC,
 Descending order places NULL percentages last in both target engines.
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P007/walkthrough.json). The column names and all 3 expected rows matched in the displayed order.

@@ -56,6 +56,24 @@ One output row represents one report covering every order in the input.
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
+## Learner solution — SQLite
+
+```sql
+SELECT COUNT(OrderID) AS total_orders,
+       COUNT(DISTINCT CustomerID) AS ordering_customers,
+       SUM(Total_Order_Amount) AS total_order_value,
+       ROUND(AVG(Total_Order_Amount), 2) AS avg_order_value,
+       MIN(OrderDate) AS first_order_date,
+       MAX(OrderDate) AS last_order_date
+FROM Orders;
+```
+
+| total_orders | ordering_customers | total_order_value | avg_order_value | first_order_date | last_order_date |
+| ---: | ---: | ---: | ---: | --- | --- |
+| 3 | 2 | 600 | 200.00 | 2025-01-01 | 2025-01-03 |
+
+Verified in SQLite with the sample and an additional order that makes the average 175.25. The submitted query's chat formatting and extra comma were cleaned up. SQLite may display 200.00 as 200.0.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P010/01.md)
@@ -132,24 +150,6 @@ FROM Orders;
 | ---: | ---: | ---: | ---: | --- | --- |
 | 3 | 2 | 600 | 200.00 | 2025-01-01 | 2025-01-03 |
 
-## Learner solution — SQLite
-
-```sql
-SELECT COUNT(OrderID) AS total_orders,
-       COUNT(DISTINCT CustomerID) AS ordering_customers,
-       SUM(Total_Order_Amount) AS total_order_value,
-       ROUND(AVG(Total_Order_Amount), 2) AS avg_order_value,
-       MIN(OrderDate) AS first_order_date,
-       MAX(OrderDate) AS last_order_date
-FROM Orders;
-```
-
-| total_orders | ordering_customers | total_order_value | avg_order_value | first_order_date | last_order_date |
-| ---: | ---: | ---: | ---: | --- | --- |
-| 3 | 2 | 600 | 200.00 | 2025-01-01 | 2025-01-03 |
-
-Verified in SQLite with the sample and an additional order that makes the average 175.25. The submitted query's chat formatting and extra comma were cleaned up. SQLite may display 200.00 as 200.0.
-
 ## Learner solution — SQL Server
 
 ```sql
@@ -205,3 +205,7 @@ FROM Orders AS o;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P010/walkthrough.json). The column names and all 1 expected row matched in the displayed order.

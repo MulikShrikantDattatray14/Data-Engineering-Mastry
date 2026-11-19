@@ -63,16 +63,6 @@ The denominator for catalogue coverage includes all three listed products. Pen a
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P011/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Pen appears on two sale lines. Does that make two sold products?
-
-![How much of the catalogue has ever sold?. The two sold products are Pen and Bag. Divide by all three listed products to get 66.67%.](../../assets/walkthroughs/p011.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p011.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -86,6 +76,16 @@ LEFT JOIN OrderDetails AS O ON P.ProductID = O.ProductID;
 ```
 
 Verified the sample, an order line for an unlisted product, a catalogue with no sales, and an empty catalogue. The submitted SQL was reformatted to remove chat markup.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P011/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Pen appears on two sale lines. Does that make two sold products?
+
+![How much of the catalogue has ever sold?. The two sold products are Pen and Bag. Divide by all three listed products to get 66.67%.](../../assets/walkthroughs/p011.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p011.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -222,3 +222,7 @@ LEFT JOIN OrderDetails AS od ON od.ProductID = p.ProductID;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P011/walkthrough.json). The column names and all 1 expected row matched in the displayed order.

@@ -56,16 +56,6 @@ One output row represents one order placed from 1 January through 31 March 2025,
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P005/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Which side of the quarter boundary contains an order dated April 1?
-
-![Orders placed in Q1 2025. March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter's two orders.](../../assets/walkthroughs/p005.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p005.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -76,6 +66,16 @@ order by OrderDate asc , OrderID asc
 ```
 
 The query passed the sample and additional checks for March 31 timestamps, April 1 at midnight, and equal timestamps ordered by order ID. The SQLite comparisons use ISO-formatted date and timestamp text.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P005/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Which side of the quarter boundary contains an order dated April 1?
+
+![Orders placed in Q1 2025. March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter's two orders.](../../assets/walkthroughs/p005.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p005.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -181,3 +181,7 @@ ORDER BY o.OrderDate, o.OrderID;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P005/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

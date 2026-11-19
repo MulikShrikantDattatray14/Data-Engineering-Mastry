@@ -62,16 +62,6 @@ Order 11 belongs to the same customer but was placed on 🟩 **2026-01-01**, out
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P016/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Both orders belong to Anu. Which operation removes the January order?
-
-![December 2025 orders with customer names. The remaining order displays Anu Sen, Delhi and 100. The query sorts by order date and ID.](../../assets/walkthroughs/p016.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p016.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -83,6 +73,16 @@ order by o.OrderDate asc,o.OrderID asc;
 ```
 
 The query was cleaned up to remove chat markup. It passed the sample, a same-date tie, an unmatched order, and the year and month boundaries. The tested SQLite configuration accepts double-quoted string literals. Single quotes are the standard form.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P016/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Both orders belong to Anu. Which operation removes the January order?
+
+![December 2025 orders with customer names. The remaining order displays Anu Sen, Delhi and 100. The query sorts by order date and ID.](../../assets/walkthroughs/p016.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p016.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -208,3 +208,7 @@ ORDER BY o.OrderDate, o.OrderID;
 ```
 
 The official answer uses a half-open date range and skips missing name parts. The SQLite adaptation preserves that behavior with CASE. With the learner's concatenation, either missing name part yields a NULL customer name. Both SQLite versions were checked on complete and missing names. The SQL Server versions were reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P016/walkthrough.json). The column names and all 1 expected row matched in the displayed order.

@@ -72,30 +72,6 @@ One output row represents one shipper represented on orders, including Unknown s
 2. Which source would you start from, and what does one row there represent? If you use other sources, in what order would you bring them in, and why?
 3. Would you use any joins? For each join you choose, what type would you use, and which columns would you match?
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P029/01.md)
-
-Follow order 10 from its two 🟥 quantities to one 🟦 amount of 100 in the 🟩 FastShip group. Two labeled checks follow an order with a missing shipper and an order with no detail lines.
-
-![Six stages trace order details, order amounts, both left joins, shipper groups and final totals. Two separate examples show how missing matches survive.](../../assets/walkthroughs/p029.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p029.svg?raw=1) · [Review the Step 1 join plan](../../assets/walkthroughs/p029-join-plan.svg?raw=1)
-
-## Current and expected output
-
-The pasted draft has two commas between `AS orders` and the next `SUM`. SQLite reports a syntax error there. Keep one comma and run the final `SELECT` in the same statement as `WITH OrderDetails_2 AS (...)` to see the draft’s result.
-
-FastShip and SlowShip are the two original sample rows. For this check only, add OtherShip with a single order, ID 16, worth 80 and with no detail rows. The current units column uses `SUM(od.total_units)`. The expected units column comes from the PNP reference query.
-
-| 🟩 `shipper_name` | 🟦 `orders` | 🟦 `order_value` | 🟥 Current `units_shipped` | 🟥 Expected `units_shipped` |
-| --- | ---: | ---: | ---: | ---: |
-| FastShip | 2 | 300 | 9 | 9 |
-| OtherShip | 1 | 80 | `NULL` | 0 |
-| SlowShip | 1 | 50 | 1 | 1 |
-
-The second `LEFT JOIN` keeps order 16 and supplies `NULL` for its missing units. `SUM` has no numeric units to add for OtherShip. `COALESCE(SUM(od.total_units), 0)` displays zero for that group.
-
 ## Final learner solution — SQLite
 
 Shri’s final SQLite solution uses the per-order CTE and both left joins. In the saved query, `COALESCE(SUM(od.total_units), 0)` gives OtherShip zero units when its only order has no detail rows.
@@ -123,6 +99,16 @@ ORDER BY order_value DESC;
 ### Review of the agreed approach
 
 The final approach after revision scored **10/10**. First, give each 🟥 order ID one units total. Then start the report with one 🟦 order per row and use two left joins to add the 🟩 name and 🟥 units. Group the orders by the displayed shipper name, total their amounts and units, and sort by total value. The last revision makes a group with zero recorded units display **0** even when every joined units value is `NULL`.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P029/01.md)
+
+Follow order 10 from its two 🟥 quantities to one 🟦 amount of 100 in the 🟩 FastShip group. Two labeled checks follow an order with a missing shipper and an order with no detail lines.
+
+![Six stages trace order details, order amounts, both left joins, shipper groups and final totals. Two separate examples show how missing matches survive.](../../assets/walkthroughs/p029.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p029.svg?raw=1) · [Review the Step 1 join plan](../../assets/walkthroughs/p029-join-plan.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -352,6 +338,20 @@ ORDER BY order_value DESC;
 FastShip comes first because 300 exceeds 50. The two rows account for all 3 orders, 350 in order value and 10 units.
 
 Only the units expression has this zero fallback. If every 🟦 amount in a shipper group is `NULL`, its `order_value` remains `NULL`. The exercise gives no secondary ordering for ties.
+
+## Current and expected output
+
+The pasted draft has two commas between `AS orders` and the next `SUM`. SQLite reports a syntax error there. Keep one comma and run the final `SELECT` in the same statement as `WITH OrderDetails_2 AS (...)` to see the draft’s result.
+
+FastShip and SlowShip are the two original sample rows. For this check only, add OtherShip with a single order, ID 16, worth 80 and with no detail rows. The current units column uses `SUM(od.total_units)`. The expected units column comes from the PNP reference query.
+
+| 🟩 `shipper_name` | 🟦 `orders` | 🟦 `order_value` | 🟥 Current `units_shipped` | 🟥 Expected `units_shipped` |
+| --- | ---: | ---: | ---: | ---: |
+| FastShip | 2 | 300 | 9 | 9 |
+| OtherShip | 1 | 80 | `NULL` | 0 |
+| SlowShip | 1 | 50 | 1 | 1 |
+
+The second `LEFT JOIN` keeps order 16 and supplies `NULL` for its missing units. `SUM` has no numeric units to add for OtherShip. `COALESCE(SUM(od.total_units), 0)` displays zero for that group.
 
 ## Learner solution — SQL Server
 

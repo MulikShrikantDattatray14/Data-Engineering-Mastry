@@ -64,16 +64,6 @@ Cup has no sale line. Pen comes first because 5 units exceeds 1. The output acco
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P019/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Pen has two order lines. Which values produce five sold units?
-
-![Units sold per product. Pen leads Bag, 5 units to 1. The output reconciles to 2 + 3 + 1 = 6 input units.](../../assets/walkthroughs/p019.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p019.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -83,6 +73,16 @@ left join Products as P on O.ProductID =P.ProductID
 group by O.ProductID
 order by sum (O.Quantity) desc , O.ProductID asc
 ```
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P019/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Pen has two order lines. Which values produce five sold units?
+
+![Units sold per product. Pen leads Bag, 5 units to 1. The output reconciles to 2 + 3 + 1 = 6 input units.](../../assets/walkthroughs/p019.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p019.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -204,3 +204,7 @@ ORDER BY units_sold DESC, p.ProductID;
 ```
 
 Descending order places NULL totals last in both engines. The SQLite adaptation passed the sample and extended fixture. The SQL Server adaptation was reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P019/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

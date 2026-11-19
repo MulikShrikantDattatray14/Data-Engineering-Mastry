@@ -66,16 +66,6 @@ Employees has integer employee_id (primary key), text name, and integer salary. 
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.02/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Michael has an odd ID. Does that alone earn a bonus?
-
-![Calculate Special Bonus. IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order.](../../assets/walkthroughs/b1-02.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/b1-02.svg?raw=1)
-
 ## My final solution · SQLite
 
 ```sql
@@ -88,19 +78,15 @@ FROM Employees
 ORDER BY employee_id ASC;
 ```
 
-## My final solution · SQL Server
+## Visual walkthrough
 
-```sql
-SELECT employee_id,
-       CASE
-           WHEN name NOT LIKE 'M%' AND employee_id % 2 = 1 THEN salary
-           ELSE 0
-       END AS bonus
-FROM Employees
-ORDER BY employee_id ASC;
-```
+[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.02/01.md)
 
-Text matching in SQL Server depends on collation. This version was reviewed and was not executed.
+Follow the sample rows through each query step. **Predict the result.** Michael has an odd ID. Does that alone earn a bonus?
+
+![Calculate Special Bonus. IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order.](../../assets/walkthroughs/b1-02.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/b1-02.svg?raw=1)
 
 ## Progressive walkthrough
 
@@ -163,6 +149,20 @@ ORDER BY employee_id ASC;
 | 9 | 7700 |
 
 Five employees produce five output rows. No grouping is required because the calculation applies to each employee individually.
+
+## My final solution · SQL Server
+
+```sql
+SELECT employee_id,
+       CASE
+           WHEN name NOT LIKE 'M%' AND employee_id % 2 = 1 THEN salary
+           ELSE 0
+       END AS bonus
+FROM Employees
+ORDER BY employee_id ASC;
+```
+
+Text matching in SQL Server depends on collation. This version was reviewed and was not executed.
 
 ## Official solution · As supplied
 

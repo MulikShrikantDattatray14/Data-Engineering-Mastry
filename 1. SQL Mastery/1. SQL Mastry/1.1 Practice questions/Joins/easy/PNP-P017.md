@@ -67,6 +67,34 @@ Order 2 falls on December 25. Payment ID 1 is 🟩 **UPI** and shipper ID 1 is �
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
+## Final learner solution — CTE and scalar subqueries
+
+### SQLite
+
+```sql
+WITH reporting_window AS (
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-6 days') AS window_start
+    FROM Orders
+)
+SELECT
+    o.OrderID,
+    o.OrderDate,
+    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
+    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE (o.OrderDate) BETWEEN
+    (SELECT window_start FROM reporting_window)
+    AND
+    (SELECT latest_order_date FROM reporting_window)
+ORDER BY o.OrderDate DESC, o.OrderID DESC;
+```
+
+The learner selected the two LEFT JOINs, join keys, MAX, six-day offset, and CTE approach. The completed query incorporates help with SQLite syntax and connecting the CTE.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P017/01.md)
@@ -76,6 +104,140 @@ Follow the sample rows through each query step. **Predict the result.** Order 3 
 ![Orders with payment type and shipper. Order 3 appears first with Unknown in both fields. Order 2 follows with UPI and FastShip.](../../assets/walkthroughs/p017.svg)
 
 [Open the full-size walkthrough](../../assets/walkthroughs/p017.svg?raw=1)
+
+## Selected query walkthrough
+
+<a name="step-by-step-walkthrough-1"></a>
+
+The example uses the three Orders rows above throughout. Step tables use order ID ascending for readability until the final sort.
+
+#### 1. Calculate the reporting window
+
+🟦 **Reporting window · FROM Orders** · The CTE reads order dates to produce one pair of bounds. The main query starts from individual orders because it needs one result per qualifying order. Subtract six days from the latest date to get seven inclusive calendar dates.
+
+```sql
+WITH reporting_window AS (
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-6 days') AS window_start
+    FROM Orders
+)
+SELECT latest_order_date, window_start FROM reporting_window;
+```
+
+| latest_order_date | window_start |
+|---|---|
+| 2025-12-31 | 2025-12-25 |
+
+#### 2. Join the lookup tables
+
+🟦 **First · FROM Orders** · The report needs an entry for each order in the date window, including orders with missing labels. Each order already carries both lookup IDs.
+
+🟩 **Second · LEFT JOIN Payments** · Look up `Orders.PaymentID` in Payments to get the payment type. A failed match leaves the order available for the shipper lookup.
+
+🟥 **Third · LEFT JOIN Shippers** · Match `Orders.ShipperID` to Shippers on the rows carried from step 1. A missing shipper leaves a NULL company name. Both lookups use separate order columns, so they can trade places.
+
+```sql
+SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+ORDER BY o.OrderID;
+```
+
+| OrderID | OrderDate | PaymentType | CompanyName |
+|---:|---|---|---|
+| 1 | 2025-12-24 | UPI | FastShip |
+| 2 | 2025-12-25 | UPI | FastShip |
+| 3 | 2025-12-31 | NULL | NULL |
+
+#### 3. Keep orders within the window
+
+**What to do.** Read each boundary from the CTE using a scalar subquery. Compare the order date with BETWEEN. **Why.** Each subquery returns one value and BETWEEN includes both endpoints. This query assumes ISO date-only text (YYYY-MM-DD), so the order date can be compared directly. With timestamps, use the earlier timestamp-safe version above.
+
+```sql
+WITH reporting_window AS (
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-6 days') AS window_start
+    FROM Orders
+)
+SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE (o.OrderDate) BETWEEN
+    (SELECT window_start FROM reporting_window)
+    AND
+    (SELECT latest_order_date FROM reporting_window)
+ORDER BY o.OrderID;
+```
+
+| OrderID | OrderDate | PaymentType | CompanyName |
+|---:|---|---|---|
+| 2 | 2025-12-25 | UPI | FastShip |
+| 3 | 2025-12-31 | NULL | NULL |
+
+Order 1 falls before December 25. Orders 2 and 3 sit exactly on the two inclusive boundaries.
+
+#### 4. Label missing values and sort
+
+**What to do.** Apply COALESCE to each lookup label, then order by OrderDate descending and OrderID descending. **Why.** Unknown makes missing lookups visible, and the ID resolves ties on the order date.
+
+```sql
+WITH reporting_window AS (
+    SELECT
+        date(MAX(OrderDate)) AS latest_order_date,
+        date(MAX(OrderDate), '-6 days') AS window_start
+    FROM Orders
+)
+SELECT
+    o.OrderID,
+    o.OrderDate,
+    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
+    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE (o.OrderDate) BETWEEN
+    (SELECT window_start FROM reporting_window)
+    AND
+    (SELECT latest_order_date FROM reporting_window)
+ORDER BY o.OrderDate DESC, o.OrderID DESC;
+```
+
+| OrderID | OrderDate | payment_type | shipper_name |
+|---:|---|---|---|
+| 3 | 2025-12-31 | Unknown | Unknown |
+| 2 | 2025-12-25 | UPI | FastShip |
+
+Verified in SQLite on the original sample and on date-only fixtures for the rolling window, missing matches, sort ties, and empty input.
+
+## SQL Server adaptation
+
+```sql
+;WITH reporting_window AS (
+    SELECT
+        CAST(MAX(OrderDate) AS date) AS latest_order_date,
+        DATEADD(day, -6, CAST(MAX(OrderDate) AS date)) AS window_start
+    FROM Orders
+)
+SELECT
+    o.OrderID,
+    o.OrderDate,
+    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
+    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE (o.OrderDate) BETWEEN
+    (SELECT window_start FROM reporting_window)
+    AND
+    (SELECT latest_order_date FROM reporting_window)
+ORDER BY o.OrderDate DESC, o.OrderID DESC;
+```
+
+Assumes a date-only OrderDate column. Reviewed by inspection.
 
 ## Earlier learner solution — SQLite
 
@@ -209,166 +371,6 @@ ORDER BY o.OrderDate DESC, o.OrderID DESC;
 
 Uses DATEADD and a date cast. Reviewed by inspection.
 
-## Final learner solution — CTE and scalar subqueries
-
-### SQLite
-
-```sql
-WITH reporting_window AS (
-    SELECT
-        date(MAX(OrderDate)) AS latest_order_date,
-        date(MAX(OrderDate), '-6 days') AS window_start
-    FROM Orders
-)
-SELECT
-    o.OrderID,
-    o.OrderDate,
-    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
-    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
-FROM Orders AS o
-LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
-LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
-WHERE (o.OrderDate) BETWEEN
-    (SELECT window_start FROM reporting_window)
-    AND
-    (SELECT latest_order_date FROM reporting_window)
-ORDER BY o.OrderDate DESC, o.OrderID DESC;
-```
-
-The learner selected the two LEFT JOINs, join keys, MAX, six-day offset, and CTE approach. The completed query incorporates help with SQLite syntax and connecting the CTE.
-
-### Step-by-step walkthrough
-
-The example uses the three Orders rows above throughout. Step tables use order ID ascending for readability until the final sort.
-
-#### 1. Calculate the reporting window
-
-🟦 **Reporting window · FROM Orders** · The CTE reads order dates to produce one pair of bounds. The main query starts from individual orders because it needs one result per qualifying order. Subtract six days from the latest date to get seven inclusive calendar dates.
-
-```sql
-WITH reporting_window AS (
-    SELECT
-        date(MAX(OrderDate)) AS latest_order_date,
-        date(MAX(OrderDate), '-6 days') AS window_start
-    FROM Orders
-)
-SELECT latest_order_date, window_start FROM reporting_window;
-```
-
-| latest_order_date | window_start |
-|---|---|
-| 2025-12-31 | 2025-12-25 |
-
-#### 2. Join the lookup tables
-
-🟦 **First · FROM Orders** · The report needs an entry for each order in the date window, including orders with missing labels. Each order already carries both lookup IDs.
-
-🟩 **Second · LEFT JOIN Payments** · Look up `Orders.PaymentID` in Payments to get the payment type. A failed match leaves the order available for the shipper lookup.
-
-🟥 **Third · LEFT JOIN Shippers** · Match `Orders.ShipperID` to Shippers on the rows carried from step 1. A missing shipper leaves a NULL company name. Both lookups use separate order columns, so they can trade places.
-
-```sql
-SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
-FROM Orders AS o
-LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
-LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
-ORDER BY o.OrderID;
-```
-
-| OrderID | OrderDate | PaymentType | CompanyName |
-|---:|---|---|---|
-| 1 | 2025-12-24 | UPI | FastShip |
-| 2 | 2025-12-25 | UPI | FastShip |
-| 3 | 2025-12-31 | NULL | NULL |
-
-#### 3. Keep orders within the window
-
-**What to do.** Read each boundary from the CTE using a scalar subquery. Compare the order date with BETWEEN. **Why.** Each subquery returns one value and BETWEEN includes both endpoints. This query assumes ISO date-only text (YYYY-MM-DD), so the order date can be compared directly. With timestamps, use the earlier timestamp-safe version above.
-
-```sql
-WITH reporting_window AS (
-    SELECT
-        date(MAX(OrderDate)) AS latest_order_date,
-        date(MAX(OrderDate), '-6 days') AS window_start
-    FROM Orders
-)
-SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
-FROM Orders AS o
-LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
-LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
-WHERE (o.OrderDate) BETWEEN
-    (SELECT window_start FROM reporting_window)
-    AND
-    (SELECT latest_order_date FROM reporting_window)
-ORDER BY o.OrderID;
-```
-
-| OrderID | OrderDate | PaymentType | CompanyName |
-|---:|---|---|---|
-| 2 | 2025-12-25 | UPI | FastShip |
-| 3 | 2025-12-31 | NULL | NULL |
-
-Order 1 falls before December 25. Orders 2 and 3 sit exactly on the two inclusive boundaries.
-
-#### 4. Label missing values and sort
-
-**What to do.** Apply COALESCE to each lookup label, then order by OrderDate descending and OrderID descending. **Why.** Unknown makes missing lookups visible, and the ID resolves ties on the order date.
-
-```sql
-WITH reporting_window AS (
-    SELECT
-        date(MAX(OrderDate)) AS latest_order_date,
-        date(MAX(OrderDate), '-6 days') AS window_start
-    FROM Orders
-)
-SELECT
-    o.OrderID,
-    o.OrderDate,
-    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
-    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
-FROM Orders AS o
-LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
-LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
-WHERE (o.OrderDate) BETWEEN
-    (SELECT window_start FROM reporting_window)
-    AND
-    (SELECT latest_order_date FROM reporting_window)
-ORDER BY o.OrderDate DESC, o.OrderID DESC;
-```
-
-| OrderID | OrderDate | payment_type | shipper_name |
-|---:|---|---|---|
-| 3 | 2025-12-31 | Unknown | Unknown |
-| 2 | 2025-12-25 | UPI | FastShip |
-
-Verified in SQLite on the original sample and on date-only fixtures for the rolling window, missing matches, sort ties, and empty input.
-
-### SQL Server adaptation
-
-```sql
-;WITH reporting_window AS (
-    SELECT
-        CAST(MAX(OrderDate) AS date) AS latest_order_date,
-        DATEADD(day, -6, CAST(MAX(OrderDate) AS date)) AS window_start
-    FROM Orders
-)
-SELECT
-    o.OrderID,
-    o.OrderDate,
-    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
-    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
-FROM Orders AS o
-LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
-LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
-WHERE (o.OrderDate) BETWEEN
-    (SELECT window_start FROM reporting_window)
-    AND
-    (SELECT latest_order_date FROM reporting_window)
-ORDER BY o.OrderDate DESC, o.OrderID DESC;
-```
-
-Assumes a date-only OrderDate column. Reviewed by inspection.
-
 ## Official solution
 
 [PNP answer key, Q17](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/main/1.%20SQL%20Mastery/1.%20SQL%20Mastry/2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql)
@@ -414,3 +416,7 @@ ORDER BY o.OrderDate DESC, o.OrderID DESC;
 ```
 
 The SQLite adaptation passed the sample and extended fixture. The SQL Server adaptations were reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P017/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

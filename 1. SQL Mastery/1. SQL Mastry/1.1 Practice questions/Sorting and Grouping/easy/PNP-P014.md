@@ -62,16 +62,6 @@ The saved attempt reports months that have at least one order.
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P014/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Would February appear if it had no orders?
-
-![Orders per month in 2025. January totals 100 + 50 = 150. March totals 200. No February group was present in the input.](../../assets/walkthroughs/p014.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p014.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -85,6 +75,16 @@ ORDER BY strftime('%m', OrderDate) ASC;
 ```
 
 The submitted query was reformatted to remove chat markup. Tested on the sample, December and January year boundaries, and a July order placed after day one.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P014/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Would February appear if it had no orders?
+
+![Orders per month in 2025. January totals 100 + 50 = 150. March totals 200. No February group was present in the input.](../../assets/walkthroughs/p014.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p014.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -236,3 +236,7 @@ ORDER BY order_month;
 ```
 
 The answer key uses a date range and groups by the full first-of-month date. The SQLite adaptation passed the same checks as the learner's final query. The SQL Server adaptation was reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P014/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

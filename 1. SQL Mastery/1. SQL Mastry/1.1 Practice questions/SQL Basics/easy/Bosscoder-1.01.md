@@ -80,6 +80,14 @@ One output row represents one customer with strictly positive 2021 revenue.
 
 </details>
 
+## My solution — SQLite
+
+```sql
+SELECT customer_id
+FROM Customers
+WHERE year = 2021 AND revenue > 0;
+```
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.01/01.md)
@@ -90,15 +98,7 @@ Follow the sample rows through each query step. **Predict the result.** Can a cu
 
 [Open the full-size walkthrough](../../assets/walkthroughs/b1-01.svg?raw=1)
 
-## My solution — SQLite
-
-```sql
-SELECT customer_id
-FROM Customers
-WHERE year = 2021 AND revenue > 0;
-```
-
-### Step-by-step explanation with one example
+## Step-by-step explanation with one example
 
 🟦 **FROM Customers · one table is enough** · The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and the customer ID to return.
 

@@ -83,16 +83,6 @@ The saved attempt keeps the displayed city’s original spelling and capitalizat
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P003/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Two customers have Bengaluru with different spacing. How will their names be ordered?
-
-![Customers in metro cities. Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling.](../../assets/walkthroughs/p003.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p003.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -103,6 +93,16 @@ order by trim(lower(City)) asc, CustomerID asc
 ```
 
 The exact submission passed in SQLite with double-quoted string literal compatibility enabled. Single quotes are the standard spelling for string literals and produce the same result in SQLite. The checks also covered a mixed-case city tied on the sort key, Hyderabad, NULL, and a spaces-only value.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P003/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Two customers have Bengaluru with different spacing. How will their names be ordered?
+
+![Customers in metro cities. Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling.](../../assets/walkthroughs/p003.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p003.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -251,3 +251,7 @@ ORDER BY TRIM(c.City), c.CustomerID;
 These adaptations retain the answer key’s collation-dependent sort on the trimmed city. The learner query explicitly sorts case-insensitively.
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P003/walkthrough.json). The column names and all 8 expected rows matched in the displayed order.

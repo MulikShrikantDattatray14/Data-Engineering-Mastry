@@ -57,16 +57,6 @@ One output row represents one order placed in November 2025, including orders wi
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P020/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** If an order has no ship date yet, what happens to its row and its day count?
-
-![Days to ship and days to deliver. For order 1, November 3 minus 1 = 2 days to ship and November 6 minus 1 = 5 to deliver. Order 2 keeps two NULLs.](../../assets/walkthroughs/p020.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p020.svg?raw=1)
-
 ## Learner submission — SQLite
 
 ```sql
@@ -79,6 +69,16 @@ ORDER BY OrderDate ASC, `OrderID` ASC;
 ```
 
 Guided submission. Chat formatting was cleaned up. The tested SQLite configuration accepts the double-quoted format strings. Single quotes are the standard spelling.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P020/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** If an order has no ship date yet, what happens to its row and its day count?
+
+![Days to ship and days to deliver. For order 1, November 3 minus 1 = 2 days to ship and November 6 minus 1 = 5 to deliver. Order 2 keeps two NULLs.](../../assets/walkthroughs/p020.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p020.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -187,3 +187,7 @@ ORDER BY o.OrderDate, o.OrderID;
 ```
 
 The official answer uses an inclusive November 1 lower bound and an exclusive December 1 upper bound. The SQLite adaptation was checked against the learner query on the sample and a boundary fixture. The SQL Server versions were reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P020/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

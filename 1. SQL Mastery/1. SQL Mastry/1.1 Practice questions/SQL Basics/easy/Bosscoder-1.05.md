@@ -73,16 +73,6 @@ TRIANGLES has integer columns A, B, C. Each input row supplies three side length
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.05/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Why must the 13, 14, 30 row face the triangle test before its side lengths get classified?
-
-![Type Of Triangle. 20,20,23 is Isosceles. The result has one label for each of the four input triples. The example follows input order.](../../assets/walkthroughs/b1-05.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/b1-05.svg?raw=1)
-
 ## My final solution · SQLite
 
 ```sql
@@ -102,24 +92,15 @@ SELECT
 FROM TRIANGLES;
 ```
 
-## My final solution · SQL Server
+## Visual walkthrough
 
-```sql
-SELECT
-    CASE
-        WHEN (A + B <= C) OR (A + C <= B) OR (B + C <= A)
-            THEN 'Not A Triangle'
-        WHEN A = B AND B = C AND C = A
-            THEN 'Equilateral'
-        WHEN A != B AND B != C AND C != A
-            THEN 'Scalene'
-        WHEN (A = B AND B != C)
-          OR (B = C AND C != A)
-          OR (C = A AND A != B)
-            THEN 'Isosceles'
-    END AS TriangleType
-FROM TRIANGLES;
-```
+[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.05/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Why must the 13, 14, 30 row face the triangle test before its side lengths get classified?
+
+![Type Of Triangle. 20,20,23 is Isosceles. The result has one label for each of the four input triples. The example follows input order.](../../assets/walkthroughs/b1-05.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/b1-05.svg?raw=1)
 
 ## Progressive walkthrough
 
@@ -219,6 +200,25 @@ FROM TRIANGLES;
 | Not A Triangle |
 
 No grouping is needed because each row is classified independently. The final SELECT returns only the requested TriangleType column.
+
+## My final solution · SQL Server
+
+```sql
+SELECT
+    CASE
+        WHEN (A + B <= C) OR (A + C <= B) OR (B + C <= A)
+            THEN 'Not A Triangle'
+        WHEN A = B AND B = C AND C = A
+            THEN 'Equilateral'
+        WHEN A != B AND B != C AND C != A
+            THEN 'Scalene'
+        WHEN (A = B AND B != C)
+          OR (B = C AND C != A)
+          OR (C = A AND A != B)
+            THEN 'Isosceles'
+    END AS TriangleType
+FROM TRIANGLES;
+```
 
 ## Official solution · As supplied
 

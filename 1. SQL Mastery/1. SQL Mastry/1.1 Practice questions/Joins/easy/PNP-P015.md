@@ -60,16 +60,6 @@ The report orders the counts from smallest to largest. That puts Toys first even
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P015/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Toys has no products. What would COUNT(*) return for its joined row?
-
-![Product count for every category. Sort by the computed count: Toys has 0, then Snacks has 2. Category ID breaks a tie.](../../assets/walkthroughs/p015.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p015.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -81,6 +71,16 @@ ORDER BY COUNT(p.ProductID) ASC, c.CategoryID ASC;
 ```
 
 Chat markup and formatting were cleaned up. The SQLite checks covered the sample, tied counts, categories sharing a name, and products without a matching category.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P015/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Toys has no products. What would COUNT(*) return for its joined row?
+
+![Product count for every category. Sort by the computed count: Toys has 0, then Snacks has 2. Category ID breaks a tie.](../../assets/walkthroughs/p015.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p015.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -196,3 +196,7 @@ ORDER BY product_count, cat.CategoryID;
 ```
 
 The answer key runs unchanged in SQLite and passed the extended test. The SQL Server version was reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P015/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.

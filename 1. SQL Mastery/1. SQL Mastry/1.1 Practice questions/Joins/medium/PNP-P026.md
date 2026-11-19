@@ -87,18 +87,6 @@ Return one row per catalogue category, including categories with no sales. Keep 
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P026/01.md)
-
-🟦 **OrderDetails** supplies the sale lines. 🟩 **Products** supplies each product’s price and category reference. 🟥 **Category** supplies the catalogue names. The same colors identify those columns after every join, including any `NULL` cells. A violet (🟪) result combines sources. A double underline marks the join keys, and ▸ marks a row worth following.
-
-Follow **line 5** to see why the first join must preserve sales. Follow **Stationery** to see why the second must also preserve unsold categories. In the grouping step, the two Drinks lines meet again under the same order ID. The aggregation step shows exactly which cells give Drinks **1 order, 3 units and 28 in list-price value**.
-
-![Eight illustrated decisions trace five sale lines and an unsold category into five report rows. Each heading explains why the operation is needed. Source-colored keys, group membership, arithmetic and a final eleven-unit check connect the steps.](../../assets/p026-from-inputs-to-result.svg)
-
-[Open the full-size graphic](../../assets/p026-from-inputs-to-result.svg?raw=1)
-
 ## Final learner solution — SQLite
 
 Built from Shri’s submitted clauses with guidance on the category labels, the empty-category value, and the sort syntax.
@@ -127,6 +115,18 @@ FULL OUTER JOIN Category AS c
 GROUP BY c.CategoryID, category_name
 ORDER BY list_price_value DESC NULLS LAST, category_name ASC;
 ```
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P026/01.md)
+
+🟦 **OrderDetails** supplies the sale lines. 🟩 **Products** supplies each product’s price and category reference. 🟥 **Category** supplies the catalogue names. The same colors identify those columns after every join, including any `NULL` cells. A violet (🟪) result combines sources. A double underline marks the join keys, and ▸ marks a row worth following.
+
+Follow **line 5** to see why the first join must preserve sales. Follow **Stationery** to see why the second must also preserve unsold categories. In the grouping step, the two Drinks lines meet again under the same order ID. The aggregation step shows exactly which cells give Drinks **1 order, 3 units and 28 in list-price value**.
+
+![Eight illustrated decisions trace five sale lines and an unsold category into five report rows. Each heading explains why the operation is needed. Source-colored keys, group membership, arithmetic and a final eleven-unit check connect the steps.](../../assets/p026-from-inputs-to-result.svg)
+
+[Open the full-size graphic](../../assets/p026-from-inputs-to-result.svg?raw=1)
 
 ## Step-by-step walkthrough
 

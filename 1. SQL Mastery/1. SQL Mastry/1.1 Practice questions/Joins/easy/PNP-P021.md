@@ -77,16 +77,6 @@ The fifth buyer in descending order has 🟦 **1 order**. All six one-order buye
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P021/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Customer 99 has three orders and no customer record. Can that ID come first?
-
-![Top five customers by number of orders. Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID.](../../assets/walkthroughs/p021.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p021.svg?raw=1)
-
 ## Final learner submission — SQLite
 
 ```sql
@@ -114,6 +104,16 @@ ORDER BY orders_placed DESC, CustomerID ASC;
 ```
 
 Guided submission. The learner chose grouping by customer ID, counting orders, and preserving unmatched customer IDs. The cutoff subquery was developed with guidance.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P021/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Customer 99 has three orders and no customer record. Can that ID come first?
+
+![Top five customers by number of orders. Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID.](../../assets/walkthroughs/p021.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p021.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -308,3 +308,7 @@ ORDER BY top5.orders_placed DESC, top5.CustomerID;
 ```
 
 The official versions distinguish unmatched customer IDs from matched customers with missing name parts. The SQLite adaptation was executed on the sample and boundary fixtures. SQL Server versions were reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P021/walkthrough.json). The column names and all 7 expected rows matched in the displayed order.

@@ -82,16 +82,6 @@ The relevant columns in `Products` are `ProductID` (integer identifier), `Produc
 
 </details>
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P002/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Mug and Bottle both cost 100. Which one gets the last place?
-
-![Ten highest-priced products. Mug takes place 10. Bottle is 11th and the zero-price Sticker is 12th.](../../assets/walkthroughs/p002.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p002.svg?raw=1)
-
 ## Learner solution — SQLite
 
 ```sql
@@ -103,6 +93,16 @@ limit 10
 ```
 
 Verified in SQLite on the sample, with fewer than ten priced products including a zero-price row, and with only NULL prices.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P002/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Mug and Bottle both cost 100. Which one gets the last place?
+
+![Ten highest-priced products. Mug takes place 10. Bottle is 11th and the zero-price Sticker is 12th.](../../assets/walkthroughs/p002.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p002.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -260,3 +260,7 @@ ORDER BY p.Sale_Price DESC,
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Verification
+
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P002/walkthrough.json). The column names and all 10 expected rows matched in the displayed order.
