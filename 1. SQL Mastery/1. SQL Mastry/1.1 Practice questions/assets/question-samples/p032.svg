@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" role="img" aria-labelledby="title desc" font-family="DejaVu Sans, Arial, sans-serif" height="496" viewBox="0 0 960 496">
+  <title id="title">P032. Products priced above their category average</title>
+  <desc id="desc">Four practice products are shown. The expected output is product 3, Juice, category 5009, price 300, category average 200.00.</desc>
+  <rect x="0" y="0" width="960" height="496" fill="#FFFFFF" />
+  <text x="36" y="36" font-size="15" font-weight="700" fill="#445E73" font-family="DejaVu Sans Mono, monospace">P032  /  SUBQUERIES  /  MEDIUM</text>
+  <text x="36" y="80" font-size="31" font-weight="700" fill="#14283A">Products priced above their category average</text>
+  <text x="36" y="117" font-size="21" font-weight="700" fill="#14283A">Practice input</text>
+  <rect x="36" y="134" width="888" height="26" fill="#15558D" />
+  <text x="46" y="152" font-size="14" font-weight="700" fill="#FFFFFF">Products</text>
+  <rect x="36" y="160" width="160" height="37" fill="#DBEBFA" />
+  <text x="46" y="183" font-size="15" font-weight="700" fill="#123B60">ProductID</text>
+  <rect x="196" y="160" width="255" height="37" fill="#DBEBFA" />
+  <text x="206" y="183" font-size="15" font-weight="700" fill="#123B60">Product</text>
+  <rect x="451" y="160" width="215" height="37" fill="#DBEBFA" />
+  <text x="461" y="183" font-size="15" font-weight="700" fill="#123B60">CategoryID</text>
+  <rect x="666" y="160" width="258" height="37" fill="#DBEBFA" />
+  <text x="676" y="183" font-size="15" font-weight="700" fill="#123B60">Sale_Price</text>
+  <rect x="36" y="197" width="160" height="28" fill="#F4F8FE" />
+  <text x="46" y="217" font-size="16" font-weight="400" fill="#123B60">1</text>
+  <rect x="196" y="197" width="255" height="28" fill="#F4F8FE" />
+  <text x="206" y="217" font-size="16" font-weight="400" fill="#123B60">Tea</text>
+  <rect x="451" y="197" width="215" height="28" fill="#F4F8FE" />
+  <text x="461" y="217" font-size="16" font-weight="400" fill="#123B60">5009</text>
+  <rect x="666" y="197" width="258" height="28" fill="#F4F8FE" />
+  <text x="676" y="217" font-size="16" font-weight="400" fill="#123B60">100</text>
+  <line x1="36" y1="225" x2="924" y2="225" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="225" width="160" height="28" fill="#FFFFFF" />
+  <text x="46" y="245" font-size="16" font-weight="400" fill="#123B60">2</text>
+  <rect x="196" y="225" width="255" height="28" fill="#FFFFFF" />
+  <text x="206" y="245" font-size="16" font-weight="400" fill="#123B60">Coffee</text>
+  <rect x="451" y="225" width="215" height="28" fill="#FFFFFF" />
+  <text x="461" y="245" font-size="16" font-weight="400" fill="#123B60">5009</text>
+  <rect x="666" y="225" width="258" height="28" fill="#FFFFFF" />
+  <text x="676" y="245" font-size="16" font-weight="400" fill="#123B60">200</text>
+  <line x1="36" y1="253" x2="924" y2="253" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="253" width="160" height="28" fill="#F4F8FE" />
+  <text x="46" y="273" font-size="16" font-weight="400" fill="#123B60">3</text>
+  <rect x="196" y="253" width="255" height="28" fill="#F4F8FE" />
+  <text x="206" y="273" font-size="16" font-weight="400" fill="#123B60">Juice</text>
+  <rect x="451" y="253" width="215" height="28" fill="#F4F8FE" />
+  <text x="461" y="273" font-size="16" font-weight="400" fill="#123B60">5009</text>
+  <rect x="666" y="253" width="258" height="28" fill="#F4F8FE" />
+  <text x="676" y="273" font-size="16" font-weight="400" fill="#123B60">300</text>
+  <line x1="36" y1="281" x2="924" y2="281" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="281" width="160" height="28" fill="#FFFFFF" />
+  <text x="46" y="301" font-size="16" font-weight="400" fill="#123B60">4</text>
+  <rect x="196" y="281" width="255" height="28" fill="#FFFFFF" />
+  <text x="206" y="301" font-size="16" font-weight="400" fill="#123B60">Bread</text>
+  <rect x="451" y="281" width="215" height="28" fill="#FFFFFF" />
+  <text x="461" y="301" font-size="16" font-weight="400" fill="#123B60">5010</text>
+  <rect x="666" y="281" width="258" height="28" fill="#FFFFFF" />
+  <text x="676" y="301" font-size="16" font-weight="400" fill="#123B60">500</text>
+  <line x1="36" y1="309" x2="924" y2="309" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="358" font-size="21" font-weight="700" fill="#14283A">Expected output</text>
+  <rect x="36" y="375" width="566" height="26" fill="#15558D" />
+  <text x="46" y="393" font-size="14" font-weight="700" fill="#FFFFFF">Products</text>
+  <rect x="602" y="375" width="322" height="26" fill="#15558D" />
+  <text x="612" y="393" font-size="14" font-weight="700" fill="#FFFFFF">Products · ƒ calculated</text>
+  <rect x="36" y="401" width="136" height="37" fill="#DBEBFA" />
+  <text x="46" y="424" font-size="15" font-weight="700" fill="#123B60">ProductID</text>
+  <rect x="172" y="401" width="134" height="37" fill="#DBEBFA" />
+  <text x="182" y="424" font-size="15" font-weight="700" fill="#123B60">Product</text>
+  <rect x="306" y="401" width="150" height="37" fill="#DBEBFA" />
+  <text x="316" y="424" font-size="15" font-weight="700" fill="#123B60">CategoryID</text>
+  <rect x="456" y="401" width="146" height="37" fill="#DBEBFA" />
+  <text x="466" y="424" font-size="15" font-weight="700" fill="#123B60">Sale_Price</text>
+  <rect x="602" y="401" width="322" height="37" fill="#DBEBFA" />
+  <text x="612" y="424" font-size="15" font-weight="700" fill="#123B60">category_avg_price</text>
+  <rect x="36" y="438" width="136" height="28" fill="#F4F8FE" />
+  <text x="46" y="458" font-size="16" font-weight="400" fill="#123B60">3</text>
+  <rect x="172" y="438" width="134" height="28" fill="#F4F8FE" />
+  <text x="182" y="458" font-size="16" font-weight="400" fill="#123B60">Juice</text>
+  <rect x="306" y="438" width="150" height="28" fill="#F4F8FE" />
+  <text x="316" y="458" font-size="16" font-weight="400" fill="#123B60">5009</text>
+  <rect x="456" y="438" width="146" height="28" fill="#F4F8FE" />
+  <text x="466" y="458" font-size="16" font-weight="400" fill="#123B60">300</text>
+  <rect x="602" y="438" width="322" height="28" fill="#F4F8FE" />
+  <text x="612" y="458" font-size="16" font-weight="400" fill="#123B60">200.00</text>
+  <line x1="36" y1="466" x2="924" y2="466" stroke="#C8D4DF" stroke-width="1" />
+</svg>

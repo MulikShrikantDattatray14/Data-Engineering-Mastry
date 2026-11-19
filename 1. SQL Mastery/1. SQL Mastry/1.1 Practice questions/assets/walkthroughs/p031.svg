@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" role="img" aria-labelledby="title desc" font-family="DejaVu Sans, Arial, sans-serif" height="2149" viewBox="0 0 960 2149">
+  <title id="title">P031. Why does only Asha qualify?</title>
+  <desc id="desc">The exact saved SQLite query starts with Orders and joins customer names. The customer totals are 300, 100, and 200. Their average is 200. Only Asha Rao passes the strict greater-than test and is 50 percent above average.</desc>
+  <rect x="0" y="0" width="960" height="2149" fill="#FFFFFF" />
+  <text x="36" y="36" font-size="15" font-weight="700" fill="#445E73" font-family="DejaVu Sans Mono, monospace">P031  /  SUBQUERIES  /  SQLITE</text>
+  <text x="36" y="84" font-size="37" font-weight="700" fill="#14283A">Why does only Asha qualify?</text>
+  <text x="36" y="119" font-size="18" font-weight="400" fill="#324D63">Follow the locked query from the order rows to one customer above the average.</text>
+  <rect x="36" y="141" width="14" height="14" fill="#15558D" rx="2" />
+  <text x="57" y="154" font-size="16" font-weight="700" fill="#14283A">Orders</text>
+  <rect x="165" y="141" width="14" height="14" fill="#17674F" rx="2" />
+  <text x="186" y="154" font-size="16" font-weight="700" fill="#14283A">Customers</text>
+  <text x="337" y="154" font-size="15" font-weight="400" fill="#324D63">ƒ  calculated field</text>
+  <text x="535" y="154" font-size="15" font-weight="400" fill="#324D63">Double underline = join key</text>
+  <line x1="36" y1="181" x2="924" y2="181" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="215" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">01</text>
+  <text x="81" y="215" font-size="24" font-weight="700" fill="#14283A">Which rows do we start with?</text>
+  <text x="81" y="243" font-size="16" font-weight="400" fill="#324D63">FROM Orders AS o starts with purchases. Customers supplies the names for the lookup.</text>
+  <rect x="36" y="259" width="422" height="26" fill="#15558D" />
+  <text x="46" y="277" font-size="14" font-weight="700" fill="#FFFFFF">Orders</text>
+  <rect x="36" y="285" width="91" height="37" fill="#DBEBFA" />
+  <text x="46" y="308" font-size="15" font-weight="700" fill="#123B60">OrderID</text>
+  <rect x="127" y="285" width="124" height="37" fill="#DBEBFA" />
+  <text x="137" y="308" font-size="15" font-weight="700" fill="#123B60">CustomerID</text>
+  <line x1="137" y1="311" x2="236.3125" y2="311" stroke="#123B60" stroke-width="1" />
+  <line x1="137" y1="314" x2="236.3125" y2="314" stroke="#123B60" stroke-width="1" />
+  <rect x="251" y="285" width="207" height="37" fill="#DBEBFA" />
+  <text x="261" y="308" font-size="15" font-weight="700" fill="#123B60">Total_Order_Amount</text>
+  <rect x="36" y="322" width="91" height="28" fill="#F4F8FE" />
+  <text x="46" y="342" font-size="16" font-weight="400" fill="#123B60">10</text>
+  <rect x="127" y="322" width="124" height="28" fill="#F4F8FE" />
+  <text x="137" y="342" font-size="16" font-weight="400" fill="#123B60">1</text>
+  <rect x="251" y="322" width="207" height="28" fill="#F4F8FE" />
+  <text x="261" y="342" font-size="16" font-weight="400" fill="#123B60">300</text>
+  <line x1="36" y1="350" x2="458" y2="350" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="350" width="91" height="28" fill="#FFFFFF" />
+  <text x="46" y="370" font-size="16" font-weight="400" fill="#123B60">11</text>
+  <rect x="127" y="350" width="124" height="28" fill="#FFFFFF" />
+  <text x="137" y="370" font-size="16" font-weight="400" fill="#123B60">2</text>
+  <rect x="251" y="350" width="207" height="28" fill="#FFFFFF" />
+  <text x="261" y="370" font-size="16" font-weight="400" fill="#123B60">100</text>
+  <line x1="36" y1="378" x2="458" y2="378" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="378" width="91" height="28" fill="#F4F8FE" />
+  <text x="46" y="398" font-size="16" font-weight="400" fill="#123B60">12</text>
+  <rect x="127" y="378" width="124" height="28" fill="#F4F8FE" />
+  <text x="137" y="398" font-size="16" font-weight="400" fill="#123B60">3</text>
+  <rect x="251" y="378" width="207" height="28" fill="#F4F8FE" />
+  <text x="261" y="398" font-size="16" font-weight="400" fill="#123B60">200</text>
+  <line x1="36" y1="406" x2="458" y2="406" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="492" y="259" width="432" height="26" fill="#17674F" />
+  <text x="502" y="277" font-size="14" font-weight="700" fill="#FFFFFF">Customers</text>
+  <rect x="492" y="285" width="142" height="37" fill="#D8EDE3" />
+  <text x="502" y="308" font-size="15" font-weight="700" fill="#164D3C">CustomerID</text>
+  <line x1="502" y1="311" x2="601.3125" y2="311" stroke="#164D3C" stroke-width="1" />
+  <line x1="502" y1="314" x2="601.3125" y2="314" stroke="#164D3C" stroke-width="1" />
+  <rect x="634" y="285" width="146" height="37" fill="#D8EDE3" />
+  <text x="644" y="308" font-size="15" font-weight="700" fill="#164D3C">FirstName</text>
+  <rect x="780" y="285" width="144" height="37" fill="#D8EDE3" />
+  <text x="790" y="308" font-size="15" font-weight="700" fill="#164D3C">LastName</text>
+  <rect x="492" y="322" width="142" height="28" fill="#F1F8F4" />
+  <text x="502" y="342" font-size="16" font-weight="400" fill="#164D3C">1</text>
+  <rect x="634" y="322" width="146" height="28" fill="#F1F8F4" />
+  <text x="644" y="342" font-size="16" font-weight="400" fill="#164D3C">Asha</text>
+  <rect x="780" y="322" width="144" height="28" fill="#F1F8F4" />
+  <text x="790" y="342" font-size="16" font-weight="400" fill="#164D3C">Rao</text>
+  <line x1="492" y1="350" x2="924" y2="350" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="492" y="350" width="142" height="28" fill="#FFFFFF" />
+  <text x="502" y="370" font-size="16" font-weight="400" fill="#164D3C">2</text>
+  <rect x="634" y="350" width="146" height="28" fill="#FFFFFF" />
+  <text x="644" y="370" font-size="16" font-weight="400" fill="#164D3C">Ben</text>
+  <rect x="780" y="350" width="144" height="28" fill="#FFFFFF" />
+  <text x="790" y="370" font-size="16" font-weight="400" fill="#164D3C">Das</text>
+  <line x1="492" y1="378" x2="924" y2="378" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="492" y="378" width="142" height="28" fill="#F1F8F4" />
+  <text x="502" y="398" font-size="16" font-weight="400" fill="#164D3C">3</text>
+  <rect x="634" y="378" width="146" height="28" fill="#F1F8F4" />
+  <text x="644" y="398" font-size="16" font-weight="400" fill="#164D3C">Cia</text>
+  <rect x="780" y="378" width="144" height="28" fill="#F1F8F4" />
+  <text x="790" y="398" font-size="16" font-weight="400" fill="#164D3C">Sen</text>
+  <line x1="492" y1="406" x2="924" y2="406" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="431" font-size="15" font-weight="400" fill="#324D63">Order 10 carries customer ID 1 and an amount of 300. The name for ID 1 is Asha Rao.</text>
+  <line x1="36" y1="456" x2="924" y2="456" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="490" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">02</text>
+  <text x="81" y="490" font-size="24" font-weight="700" fill="#14283A">How does each order get its customer name?</text>
+  <text x="81" y="518" font-size="16" font-weight="400" fill="#324D63">The LEFT JOIN keeps every order. On this sample, each order finds exactly one customer.</text>
+  <rect x="36" y="534" width="888" height="34" fill="#F1F4F7" rx="4" />
+  <rect x="36" y="534" width="3" height="34" fill="#687E90" />
+  <text x="48" y="556" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">LEFT JOIN Customers AS c ON o.CustomerID = c.CustomerID</text>
+  <rect x="36" y="580" width="442" height="26" fill="#15558D" />
+  <text x="46" y="598" font-size="14" font-weight="700" fill="#FFFFFF">Orders AS o</text>
+  <rect x="478" y="580" width="446" height="26" fill="#17674F" />
+  <text x="488" y="598" font-size="14" font-weight="700" fill="#FFFFFF">Customers AS c</text>
+  <rect x="36" y="606" width="96" height="37" fill="#DBEBFA" />
+  <text x="46" y="629" font-size="15" font-weight="700" fill="#123B60">OrderID</text>
+  <rect x="132" y="606" width="151" height="37" fill="#DBEBFA" />
+  <text x="142" y="629" font-size="15" font-weight="700" fill="#123B60">o.CustomerID</text>
+  <line x1="142" y1="632" x2="257.328125" y2="632" stroke="#123B60" stroke-width="1" />
+  <line x1="142" y1="635" x2="257.328125" y2="635" stroke="#123B60" stroke-width="1" />
+  <rect x="283" y="606" width="195" height="37" fill="#DBEBFA" />
+  <text x="293" y="629" font-size="15" font-weight="700" fill="#123B60">Total_Order_Amount</text>
+  <rect x="478" y="606" width="164" height="37" fill="#D8EDE3" />
+  <text x="488" y="629" font-size="15" font-weight="700" fill="#164D3C">c.CustomerID</text>
+  <line x1="488" y1="632" x2="601.90625" y2="632" stroke="#164D3C" stroke-width="1" />
+  <line x1="488" y1="635" x2="601.90625" y2="635" stroke="#164D3C" stroke-width="1" />
+  <rect x="642" y="606" width="138" height="37" fill="#D8EDE3" />
+  <text x="652" y="629" font-size="15" font-weight="700" fill="#164D3C">FirstName</text>
+  <rect x="780" y="606" width="144" height="37" fill="#D8EDE3" />
+  <text x="790" y="629" font-size="15" font-weight="700" fill="#164D3C">LastName</text>
+  <rect x="36" y="643" width="96" height="28" fill="#F4F8FE" />
+  <text x="46" y="663" font-size="16" font-weight="400" fill="#123B60">10</text>
+  <rect x="132" y="643" width="151" height="28" fill="#F4F8FE" />
+  <text x="142" y="663" font-size="16" font-weight="400" fill="#123B60">1</text>
+  <rect x="283" y="643" width="195" height="28" fill="#F4F8FE" />
+  <text x="293" y="663" font-size="16" font-weight="400" fill="#123B60">300</text>
+  <rect x="478" y="643" width="164" height="28" fill="#F1F8F4" />
+  <text x="488" y="663" font-size="16" font-weight="400" fill="#164D3C">1</text>
+  <rect x="642" y="643" width="138" height="28" fill="#F1F8F4" />
+  <text x="652" y="663" font-size="16" font-weight="400" fill="#164D3C">Asha</text>
+  <rect x="780" y="643" width="144" height="28" fill="#F1F8F4" />
+  <text x="790" y="663" font-size="16" font-weight="400" fill="#164D3C">Rao</text>
+  <line x1="36" y1="671" x2="924" y2="671" stroke="#C8D4DF" stroke-width="1" />
+  <polygon points="23,652 30,657 23,662" fill="#14283A" />
+  <rect x="36" y="671" width="96" height="28" fill="#FFFFFF" />
+  <text x="46" y="691" font-size="16" font-weight="400" fill="#123B60">11</text>
+  <rect x="132" y="671" width="151" height="28" fill="#FFFFFF" />
+  <text x="142" y="691" font-size="16" font-weight="400" fill="#123B60">2</text>
+  <rect x="283" y="671" width="195" height="28" fill="#FFFFFF" />
+  <text x="293" y="691" font-size="16" font-weight="400" fill="#123B60">100</text>
+  <rect x="478" y="671" width="164" height="28" fill="#FFFFFF" />
+  <text x="488" y="691" font-size="16" font-weight="400" fill="#164D3C">2</text>
+  <rect x="642" y="671" width="138" height="28" fill="#FFFFFF" />
+  <text x="652" y="691" font-size="16" font-weight="400" fill="#164D3C">Ben</text>
+  <rect x="780" y="671" width="144" height="28" fill="#FFFFFF" />
+  <text x="790" y="691" font-size="16" font-weight="400" fill="#164D3C">Das</text>
+  <line x1="36" y1="699" x2="924" y2="699" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="699" width="96" height="28" fill="#F4F8FE" />
+  <text x="46" y="719" font-size="16" font-weight="400" fill="#123B60">12</text>
+  <rect x="132" y="699" width="151" height="28" fill="#F4F8FE" />
+  <text x="142" y="719" font-size="16" font-weight="400" fill="#123B60">3</text>
+  <rect x="283" y="699" width="195" height="28" fill="#F4F8FE" />
+  <text x="293" y="719" font-size="16" font-weight="400" fill="#123B60">200</text>
+  <rect x="478" y="699" width="164" height="28" fill="#F1F8F4" />
+  <text x="488" y="719" font-size="16" font-weight="400" fill="#164D3C">3</text>
+  <rect x="642" y="699" width="138" height="28" fill="#F1F8F4" />
+  <text x="652" y="719" font-size="16" font-weight="400" fill="#164D3C">Cia</text>
+  <rect x="780" y="699" width="144" height="28" fill="#F1F8F4" />
+  <text x="790" y="719" font-size="16" font-weight="400" fill="#164D3C">Sen</text>
+  <line x1="36" y1="727" x2="924" y2="727" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="753" font-size="15" font-weight="400" fill="#324D63">3 order rows → 3 joined rows. For order 10, o.CustomerID = c.CustomerID = 1.</text>
+  <text x="36" y="775" font-size="15" font-weight="400" fill="#324D63">If ID 99 had no customer record, its order would keep its amount and the query would label it ‘Unknown’.</text>
+  <line x1="36" y1="801" x2="924" y2="801" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="835" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">03</text>
+  <text x="81" y="835" font-size="24" font-weight="700" fill="#14283A">What is one customer’s total spend?</text>
+  <text x="81" y="863" font-size="16" font-weight="400" fill="#324D63">Group by o.CustomerID, c.FirstName and c.LastName. SUM adds the amounts inside each group.</text>
+  <rect x="36" y="879" width="888" height="34" fill="#F1F4F7" rx="4" />
+  <rect x="36" y="879" width="3" height="34" fill="#687E90" />
+  <text x="48" y="901" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">SUM(o.Total_Order_Amount) AS total_spend</text>
+  <rect x="36" y="925" width="352" height="26" fill="#15558D" />
+  <text x="46" y="943" font-size="14" font-weight="700" fill="#FFFFFF">Orders</text>
+  <rect x="388" y="925" width="265" height="26" fill="#17674F" />
+  <text x="398" y="943" font-size="14" font-weight="700" fill="#FFFFFF">Customers · ƒ name</text>
+  <rect x="653" y="925" width="271" height="26" fill="#15558D" />
+  <text x="663" y="943" font-size="14" font-weight="700" fill="#FFFFFF">Orders · ƒ SUM</text>
+  <rect x="36" y="951" width="190" height="37" fill="#DBEBFA" />
+  <text x="46" y="974" font-size="15" font-weight="700" fill="#123B60">Order IDs in group</text>
+  <rect x="226" y="951" width="162" height="37" fill="#DBEBFA" />
+  <text x="236" y="974" font-size="15" font-weight="700" fill="#123B60">CustomerID</text>
+  <rect x="388" y="951" width="265" height="37" fill="#D8EDE3" />
+  <text x="398" y="974" font-size="15" font-weight="700" fill="#164D3C">customer_name</text>
+  <rect x="653" y="951" width="271" height="37" fill="#DBEBFA" />
+  <text x="663" y="974" font-size="15" font-weight="700" fill="#123B60">total_spend</text>
+  <rect x="36" y="988" width="190" height="28" fill="#F4F8FE" />
+  <text x="46" y="1008" font-size="16" font-weight="400" fill="#123B60">10</text>
+  <rect x="226" y="988" width="162" height="28" fill="#F4F8FE" />
+  <text x="236" y="1008" font-size="16" font-weight="400" fill="#123B60">1</text>
+  <rect x="388" y="988" width="265" height="28" fill="#F1F8F4" />
+  <text x="398" y="1008" font-size="16" font-weight="400" fill="#164D3C">Asha Rao</text>
+  <rect x="653" y="988" width="271" height="28" fill="#DBEBFA" />
+  <text x="663" y="1008" font-size="16" font-weight="700" fill="#123B60">300</text>
+  <line x1="36" y1="1016" x2="924" y2="1016" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="1016" width="190" height="28" fill="#FFFFFF" />
+  <text x="46" y="1036" font-size="16" font-weight="400" fill="#123B60">11</text>
+  <rect x="226" y="1016" width="162" height="28" fill="#FFFFFF" />
+  <text x="236" y="1036" font-size="16" font-weight="400" fill="#123B60">2</text>
+  <rect x="388" y="1016" width="265" height="28" fill="#FFFFFF" />
+  <text x="398" y="1036" font-size="16" font-weight="400" fill="#164D3C">Ben Das</text>
+  <rect x="653" y="1016" width="271" height="28" fill="#DBEBFA" />
+  <text x="663" y="1036" font-size="16" font-weight="700" fill="#123B60">100</text>
+  <line x1="36" y1="1044" x2="924" y2="1044" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="1044" width="190" height="28" fill="#F4F8FE" />
+  <text x="46" y="1064" font-size="16" font-weight="400" fill="#123B60">12</text>
+  <rect x="226" y="1044" width="162" height="28" fill="#F4F8FE" />
+  <text x="236" y="1064" font-size="16" font-weight="400" fill="#123B60">3</text>
+  <rect x="388" y="1044" width="265" height="28" fill="#F1F8F4" />
+  <text x="398" y="1064" font-size="16" font-weight="400" fill="#164D3C">Cia Sen</text>
+  <rect x="653" y="1044" width="271" height="28" fill="#DBEBFA" />
+  <text x="663" y="1064" font-size="16" font-weight="700" fill="#123B60">200</text>
+  <line x1="36" y1="1072" x2="924" y2="1072" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="1098" font-size="15" font-weight="400" fill="#324D63">customer_spend has 3 customer rows. Each customer has one order in this practice example.</text>
+  <text x="36" y="1120" font-size="15" font-weight="400" fill="#324D63">If Asha’s 300 were split into orders of 100 and 200, her group would still produce one total of 300.</text>
+  <line x1="36" y1="1146" x2="924" y2="1146" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="1180" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">04</text>
+  <text x="81" y="1180" font-size="24" font-weight="700" fill="#14283A">Why does the same average appear three times?</text>
+  <text x="81" y="1208" font-size="16" font-weight="400" fill="#324D63">The scalar subquery reads the totals in customer_spend. It returns one value for all three rows.</text>
+  <rect x="36" y="1224" width="888" height="34" fill="#F1F4F7" rx="4" />
+  <rect x="36" y="1224" width="3" height="34" fill="#687E90" />
+  <text x="48" y="1246" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">(SELECT AVG(total_spend) FROM customer_spend) AS avg_customer_spend</text>
+  <text x="36" y="1296" font-size="25" font-weight="700" fill="#123B60">(300 + 100 + 200) ÷ 3 = 200</text>
+  <rect x="36" y="1313" width="140" height="26" fill="#15558D" />
+  <text x="46" y="1331" font-size="14" font-weight="700" fill="#FFFFFF">Orders</text>
+  <rect x="176" y="1313" width="218" height="26" fill="#17674F" />
+  <text x="186" y="1331" font-size="14" font-weight="700" fill="#FFFFFF">Customers</text>
+  <rect x="394" y="1313" width="205" height="26" fill="#15558D" />
+  <text x="404" y="1331" font-size="14" font-weight="700" fill="#FFFFFF">Orders · ƒ SUM</text>
+  <rect x="599" y="1313" width="325" height="26" fill="#15558D" />
+  <text x="609" y="1331" font-size="14" font-weight="700" fill="#FFFFFF">Orders · ƒ scalar average</text>
+  <rect x="36" y="1339" width="140" height="37" fill="#DBEBFA" />
+  <text x="46" y="1362" font-size="15" font-weight="700" fill="#123B60">CustomerID</text>
+  <rect x="176" y="1339" width="218" height="37" fill="#D8EDE3" />
+  <text x="186" y="1362" font-size="15" font-weight="700" fill="#164D3C">customer_name</text>
+  <rect x="394" y="1339" width="205" height="37" fill="#DBEBFA" />
+  <text x="404" y="1362" font-size="15" font-weight="700" fill="#123B60">total_spend</text>
+  <rect x="599" y="1339" width="325" height="37" fill="#DBEBFA" />
+  <text x="609" y="1362" font-size="15" font-weight="700" fill="#123B60">avg_customer_spend</text>
+  <rect x="36" y="1376" width="140" height="28" fill="#F4F8FE" />
+  <text x="46" y="1396" font-size="16" font-weight="400" fill="#123B60">1</text>
+  <rect x="176" y="1376" width="218" height="28" fill="#F1F8F4" />
+  <text x="186" y="1396" font-size="16" font-weight="400" fill="#164D3C">Asha Rao</text>
+  <rect x="394" y="1376" width="205" height="28" fill="#F4F8FE" />
+  <text x="404" y="1396" font-size="16" font-weight="400" fill="#123B60">300</text>
+  <rect x="599" y="1376" width="325" height="28" fill="#DBEBFA" />
+  <text x="609" y="1396" font-size="16" font-weight="700" fill="#123B60">200.0</text>
+  <line x1="36" y1="1404" x2="924" y2="1404" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="1404" width="140" height="28" fill="#FFFFFF" />
+  <text x="46" y="1424" font-size="16" font-weight="400" fill="#123B60">2</text>
+  <rect x="176" y="1404" width="218" height="28" fill="#FFFFFF" />
+  <text x="186" y="1424" font-size="16" font-weight="400" fill="#164D3C">Ben Das</text>
+  <rect x="394" y="1404" width="205" height="28" fill="#FFFFFF" />
+  <text x="404" y="1424" font-size="16" font-weight="400" fill="#123B60">100</text>
+  <rect x="599" y="1404" width="325" height="28" fill="#DBEBFA" />
+  <text x="609" y="1424" font-size="16" font-weight="700" fill="#123B60">200.0</text>
+  <line x1="36" y1="1432" x2="924" y2="1432" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="1432" width="140" height="28" fill="#F4F8FE" />
+  <text x="46" y="1452" font-size="16" font-weight="400" fill="#123B60">3</text>
+  <rect x="176" y="1432" width="218" height="28" fill="#F1F8F4" />
+  <text x="186" y="1452" font-size="16" font-weight="400" fill="#164D3C">Cia Sen</text>
+  <rect x="394" y="1432" width="205" height="28" fill="#F4F8FE" />
+  <text x="404" y="1452" font-size="16" font-weight="400" fill="#123B60">200</text>
+  <rect x="599" y="1432" width="325" height="28" fill="#DBEBFA" />
+  <text x="609" y="1452" font-size="16" font-weight="700" fill="#123B60">200.0</text>
+  <line x1="36" y1="1460" x2="924" y2="1460" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="1486" font-size="15" font-weight="400" fill="#324D63">spend_with_avg still has 3 rows. Each customer contributes exactly once to the average.</text>
+  <line x1="36" y1="1512" x2="924" y2="1512" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="1546" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">05</text>
+  <text x="81" y="1546" font-size="24" font-weight="700" fill="#14283A">Who passes the strict comparison?</text>
+  <text x="81" y="1574" font-size="16" font-weight="400" fill="#324D63">The outer query starts with spend_with_avg. WHERE tests each total against the unrounded average.</text>
+  <rect x="36" y="1590" width="888" height="34" fill="#F1F4F7" rx="4" />
+  <rect x="36" y="1590" width="3" height="34" fill="#687E90" />
+  <text x="48" y="1612" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">WHERE total_spend &gt; avg_customer_spend</text>
+  <rect x="36" y="1636" width="280" height="26" fill="#17674F" />
+  <text x="46" y="1654" font-size="14" font-weight="700" fill="#FFFFFF">Customers</text>
+  <rect x="316" y="1636" width="310" height="26" fill="#15558D" />
+  <text x="326" y="1654" font-size="14" font-weight="700" fill="#FFFFFF">Orders · ƒ comparison</text>
+  <rect x="626" y="1636" width="298" height="26" fill="#405260" />
+  <text x="636" y="1654" font-size="14" font-weight="700" fill="#FFFFFF">Condition</text>
+  <rect x="36" y="1662" width="280" height="37" fill="#D8EDE3" />
+  <text x="46" y="1685" font-size="15" font-weight="700" fill="#164D3C">customer_name</text>
+  <rect x="316" y="1662" width="310" height="37" fill="#DBEBFA" />
+  <text x="326" y="1685" font-size="15" font-weight="700" fill="#123B60">total_spend &gt; average</text>
+  <rect x="626" y="1662" width="298" height="37" fill="#DEE6EB" />
+  <text x="636" y="1685" font-size="15" font-weight="700" fill="#283C4B">WHERE result</text>
+  <rect x="36" y="1699" width="280" height="28" fill="#F1F8F4" />
+  <text x="46" y="1719" font-size="16" font-weight="400" fill="#164D3C">Asha Rao</text>
+  <rect x="316" y="1699" width="310" height="28" fill="#F4F8FE" />
+  <text x="326" y="1719" font-size="16" font-weight="400" fill="#123B60">300 &gt; 200</text>
+  <rect x="626" y="1699" width="298" height="28" fill="#DEE6EB" />
+  <text x="636" y="1719" font-size="16" font-weight="700" fill="#283C4B">Keep</text>
+  <line x1="36" y1="1727" x2="924" y2="1727" stroke="#C8D4DF" stroke-width="1" />
+  <polygon points="23,1708 30,1713 23,1718" fill="#14283A" />
+  <rect x="36" y="1727" width="280" height="28" fill="#FFFFFF" />
+  <text x="46" y="1747" font-size="16" font-weight="400" fill="#164D3C">Ben Das</text>
+  <rect x="316" y="1727" width="310" height="28" fill="#FFFFFF" />
+  <text x="326" y="1747" font-size="16" font-weight="400" fill="#123B60">100 &gt; 200</text>
+  <rect x="626" y="1727" width="298" height="28" fill="#FFFFFF" />
+  <text x="636" y="1747" font-size="16" font-weight="400" fill="#283C4B">Exclude · below</text>
+  <line x1="36" y1="1755" x2="924" y2="1755" stroke="#C8D4DF" stroke-width="1" />
+  <rect x="36" y="1755" width="280" height="28" fill="#F1F8F4" />
+  <text x="46" y="1775" font-size="16" font-weight="400" fill="#164D3C">Cia Sen</text>
+  <rect x="316" y="1755" width="310" height="28" fill="#F4F8FE" />
+  <text x="326" y="1775" font-size="16" font-weight="400" fill="#123B60">200 &gt; 200</text>
+  <rect x="626" y="1755" width="298" height="28" fill="#F4F6F8" />
+  <text x="636" y="1775" font-size="16" font-weight="400" fill="#283C4B">Exclude · equal</text>
+  <line x1="36" y1="1783" x2="924" y2="1783" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="1809" font-size="15" font-weight="400" fill="#324D63">3 customer rows → 1 qualifying row. Cia is exactly at 200, so the strict &gt; excludes her.</text>
+  <line x1="36" y1="1835" x2="924" y2="1835" stroke="#C8D4DF" stroke-width="1" />
+  <text x="36" y="1869" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">06</text>
+  <text x="81" y="1869" font-size="24" font-weight="700" fill="#14283A">How far above average is Asha?</text>
+  <text x="81" y="1897" font-size="16" font-weight="400" fill="#324D63">Subtract the average, divide by that same average, then express the difference as a percentage.</text>
+  <rect x="36" y="1913" width="888" height="34" fill="#F1F4F7" rx="4" />
+  <rect x="36" y="1913" width="3" height="34" fill="#687E90" />
+  <text x="48" y="1935" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">100.0 * (total_spend - avg_customer_spend) / NULLIF(avg_customer_spend, 0)</text>
+  <text x="36" y="1983" font-size="24" font-weight="700" fill="#123B60">100.0 × (300 − 200) ÷ 200 = 50.0%</text>
+  <rect x="36" y="2000" width="126" height="26" fill="#15558D" />
+  <text x="46" y="2018" font-size="14" font-weight="700" fill="#FFFFFF">Orders</text>
+  <rect x="162" y="2000" width="190" height="26" fill="#17674F" />
+  <text x="172" y="2018" font-size="14" font-weight="700" fill="#FFFFFF">Customers</text>
+  <rect x="352" y="2000" width="572" height="26" fill="#15558D" />
+  <text x="362" y="2018" font-size="14" font-weight="700" fill="#FFFFFF">Orders · ƒ calculated</text>
+  <rect x="36" y="2026" width="126" height="37" fill="#DBEBFA" />
+  <text x="46" y="2049" font-size="15" font-weight="700" fill="#123B60">CustomerID</text>
+  <rect x="162" y="2026" width="190" height="37" fill="#D8EDE3" />
+  <text x="172" y="2049" font-size="15" font-weight="700" fill="#164D3C">customer_name</text>
+  <rect x="352" y="2026" width="158" height="37" fill="#DBEBFA" />
+  <text x="362" y="2049" font-size="15" font-weight="700" fill="#123B60">total_spend</text>
+  <rect x="510" y="2026" width="213" height="37" fill="#DBEBFA" />
+  <text x="520" y="2049" font-size="15" font-weight="700" fill="#123B60">avg_customer_spend</text>
+  <rect x="723" y="2026" width="201" height="37" fill="#DBEBFA" />
+  <text x="733" y="2049" font-size="15" font-weight="700" fill="#123B60">pct_above_avg</text>
+  <rect x="36" y="2063" width="126" height="28" fill="#F4F8FE" />
+  <text x="46" y="2083" font-size="16" font-weight="400" fill="#123B60">1</text>
+  <rect x="162" y="2063" width="190" height="28" fill="#F1F8F4" />
+  <text x="172" y="2083" font-size="16" font-weight="400" fill="#164D3C">Asha Rao</text>
+  <rect x="352" y="2063" width="158" height="28" fill="#F4F8FE" />
+  <text x="362" y="2083" font-size="16" font-weight="400" fill="#123B60">300</text>
+  <rect x="510" y="2063" width="213" height="28" fill="#F4F8FE" />
+  <text x="520" y="2083" font-size="16" font-weight="400" fill="#123B60">200.0</text>
+  <rect x="723" y="2063" width="201" height="28" fill="#DBEBFA" />
+  <text x="733" y="2083" font-size="16" font-weight="700" fill="#123B60">50.0</text>
+  <line x1="36" y1="2091" x2="924" y2="2091" stroke="#C8D4DF" stroke-width="1" />
+  <polygon points="23,2072 30,2077 23,2082" fill="#14283A" />
+  <text x="36" y="2117" font-size="15" font-weight="400" fill="#324D63">NULLIF guards against a zero denominator. ORDER BY total_spend DESC puts the highest spend first.</text>
+</svg>
