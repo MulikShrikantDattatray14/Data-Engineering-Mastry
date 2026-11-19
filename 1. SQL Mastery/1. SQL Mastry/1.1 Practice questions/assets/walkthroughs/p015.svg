@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1733" viewBox="0 0 1160 1733" role="img" aria-labelledby="title desc">
-<title id="title">P015 &#183; Product count for every category</title>
-<desc id="desc">One row per category, including categories with zero products. Two categories become three joined rows. Snacks repeats for products 10 and 11. Toys survives with NULL in both Products columns. Snacks reads product IDs 10 and 11 &#8594; 2. Toys reads NULL &#8594; 0. Counting its whole joined row would give 1. Sort by the computed count: Toys has 0, then Snacks has 2. Category ID breaks a tie. First &#183; FROM Category. The requested population is every category. Starting here gives Toys a row before looking for any products. Second &#183; LEFT JOIN Products. Attach products through the category ID already on the left. Snacks matches two products. The left join also retains Toys with a NULL product ID, which counts as zero products.</desc>
-<rect width="1160" height="1733" fill="#f4f7f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1944" viewBox="0 0 1160 1944" role="img" aria-labelledby="title desc">
+<title id="title">P015 · Product count for every category</title>
+<desc id="desc">One row per category, including categories with zero products. Two categories become three joined rows. Snacks repeats for products 10 and 11. Toys survives with NULL in both Products columns. Snacks reads product IDs 10 and 11 → 2. Toys reads NULL → 0. Counting its whole joined row would give 1. Sort by the computed count: Toys has 0, then Snacks has 2. Category ID breaks a tie. First · FROM Category. The requested population is every category. Starting here gives Toys a row before looking for any products. Second · LEFT JOIN Products. Attach products through the category ID already on the left. Snacks matches two products. The left join also retains Toys with a NULL product ID, which counts as zero products.</desc>
+<rect width="1160" height="1944" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P015    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Product count for every category</text>
@@ -10,202 +10,51 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Toys has no products. What would COUNT(*) return for its joined row?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. Double underlines mark the matching keys. SQL excerpts use &#8230; for</text>
-<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">omitted clauses.</text>
-<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Category  &#183;  2 rows</text>
-<rect x="68" y="356" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="371" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
-<rect x="68" y="377" width="508.969" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryID</text>
-<path d="M79 395L169.312 395" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<path d="M79 398L169.312 398" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<rect x="576.969" y="377" width="527.031" height="26" rx="0" fill="#d8e9f7"/>
-<text x="587.969" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryName</text>
-<rect x="68" y="403" width="508.969" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 432L576.969 432" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="576.969" y="403" width="527.031" height="29" rx="0" fill="#edf4fb"/>
-<text x="587.969" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Snacks</text>
-<path d="M576.969 432L1104 432" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 441.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="432" width="508.969" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="451" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 461L576.969 461" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="576.969" y="432" width="527.031" height="29" rx="0" fill="#ffffff"/>
-<text x="587.969" y="451" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Toys</text>
-<path d="M576.969 461L1104 461" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<text x="68" y="492" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#205e45" font-weight="700">Products  &#183;  2 rows</text>
-<rect x="68" y="501" width="1036" height="21" rx="0" fill="#205e45"/>
-<text x="79" y="516" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="522" width="513.484" height="26" rx="0" fill="#d6ecdf"/>
-<text x="79" y="537" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">ProductID</text>
-<rect x="581.484" y="522" width="522.516" height="26" rx="0" fill="#d6ecdf"/>
-<text x="592.484" y="537" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">CategoryID</text>
-<path d="M592.484 540L682.797 540" fill="none" stroke="#205e45" stroke-width="1.2"/>
-<path d="M592.484 543L682.797 543" fill="none" stroke="#205e45" stroke-width="1.2"/>
-<rect x="68" y="548" width="513.484" height="29" rx="0" fill="#eff7f2"/>
-<text x="79" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
-<path d="M68 577L581.484 577" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="581.484" y="548" width="522.516" height="29" rx="0" fill="#eff7f2"/>
-<text x="592.484" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M581.484 577L1104 577" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="577" width="513.484" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="596" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">11</text>
-<path d="M68 606L581.484 606" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="581.484" y="577" width="522.516" height="29" rx="0" fill="#ffffff"/>
-<text x="592.484" y="596" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M581.484 606L1104 606" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="630" width="1096" height="499" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="660" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
-<rect x="1000.38" y="640" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="659" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 3 rows</text>
-<text x="52" y="695" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which table gives every category a place?</text>
-<g role="group" aria-label="First &#183; FROM Category" data-decision="J1">
-<rect x="52" y="706" width="1052" height="62" rx="5" fill="#edf4fb"/>
-<rect x="52" y="711" width="4" height="52" rx="2" fill="#194f7c"/>
-<text x="66" y="728" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">First &#183; FROM Category</text>
-<text x="66" y="752" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The requested population is every category. Starting here gives Toys a row before looking for any products.</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. A dark source band spans its columns. ƒ marks a calculated value. Deeper cell colors mark the values to</text>
+<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">follow. Double underlines mark the matching keys. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Category  ·  2 rows</text>
+<g role="group" aria-label="Category" data-table="Category"><g data-fit="source" data-source="Category" data-first="0" data-last="1" aria-label="Category"><rect x="68.5" y="356" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="379" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Category</text></g><g data-fit="field" data-header="CategoryID" data-column="0" data-source="Category" aria-label="Category.CategoryID"><rect x="68.5" y="392" width="501.781" height="39" fill="#CEE3FF" /><text x="560.781" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CategoryID</text><line x1="466.047" x2="560.781" y1="418" y2="418" stroke="#10376B" stroke-width="1.15" /><line x1="466.047" x2="560.781" y1="421" y2="421" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="CategoryName" data-column="1" data-source="Category" aria-label="Category.CategoryName"><rect x="571.281" y="392" width="532.219" height="39" fill="#CEE3FF" /><text x="580.781" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">CategoryName</text></g><g data-fit="value" data-row="1" data-column="0" data-field="CategoryID" data-source="Category" data-value="1"><rect x="68.5" y="432" width="501.781" height="34" fill="#EAF3FF" /><text x="560.781" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CategoryName" data-source="Category" data-value="Snacks"><rect x="571.281" y="432" width="532.219" height="34" fill="#EAF3FF" /><text x="580.781" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Snacks</text></g><g data-fit="value" data-row="2" data-column="0" data-field="CategoryID" data-source="Category" data-value="2"><rect x="68.5" y="467" width="501.781" height="34" fill="#A8CEFF" /><text x="560.781" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CategoryName" data-source="Category" data-value="Toys"><rect x="571.281" y="467" width="532.219" height="34" fill="#EAF3FF" /><text x="580.781" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Toys</text></g><polygon points="55,479.0 63,484.0 55,489.0" fill="#263746" /></g>
+<text x="68" y="533" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#205e45" font-weight="700">Products  ·  2 rows</text>
+<g role="group" aria-label="Products" data-table="Products"><g data-fit="source" data-source="Products" data-first="0" data-last="1" aria-label="Products"><rect x="68.5" y="542" width="1035.0" height="35" fill="#087333" /><text x="78" y="565" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="field" data-header="ProductID" data-column="0" data-source="Products" aria-label="Products.ProductID"><rect x="68.5" y="578" width="511.734" height="39" fill="#C9ECCA" /><text x="570.734" y="600" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="end">ProductID</text></g><g data-fit="field" data-header="CategoryID" data-column="1" data-source="Products" aria-label="Products.CategoryID"><rect x="581.234" y="578" width="522.266" height="39" fill="#C9ECCA" /><text x="1094.0" y="600" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="end">CategoryID</text><line x1="999.266" x2="1094.0" y1="604" y2="604" stroke="#0B4A27" stroke-width="1.15" /><line x1="999.266" x2="1094.0" y1="607" y2="607" stroke="#0B4A27" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="ProductID" data-source="Products" data-value="10"><rect x="68.5" y="618" width="511.734" height="34" fill="#E5F6E8" /><text x="570.734" y="641" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">10</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CategoryID" data-source="Products" data-value="1"><rect x="581.234" y="618" width="522.266" height="34" fill="#E5F6E8" /><text x="1094.0" y="641" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="0" data-field="ProductID" data-source="Products" data-value="11"><rect x="68.5" y="653" width="511.734" height="34" fill="#E5F6E8" /><text x="570.734" y="676" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">11</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CategoryID" data-source="Products" data-value="1"><rect x="581.234" y="653" width="522.266" height="34" fill="#E5F6E8" /><text x="1094.0" y="676" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">1</text></g></g>
+<rect x="32" y="712" width="1096" height="546" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="742" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="722" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="741" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 3 rows</text>
+<text x="52" y="777" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which table gives every category a place?</text>
+<g role="group" aria-label="First · FROM Category" data-decision="J1">
+<rect x="52" y="788" width="1052" height="62" rx="5" fill="#edf4fb"/>
+<rect x="52" y="793" width="4" height="52" rx="2" fill="#194f7c"/>
+<text x="66" y="810" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">First · FROM Category</text>
+<text x="66" y="834" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The requested population is every category. Starting here gives Toys a row before looking for any products.</text>
 </g>
-<g role="group" aria-label="Second &#183; LEFT JOIN Products" data-decision="J1">
-<rect x="52" y="776" width="1052" height="85" rx="5" fill="#eff7f2"/>
-<rect x="52" y="781" width="4" height="75" rx="2" fill="#205e45"/>
-<text x="66" y="798" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#205e45" font-weight="700">Second &#183; LEFT JOIN Products</text>
-<text x="66" y="822" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Attach products through the category ID already on the left. Snacks matches two products. The left join also retains</text>
-<text x="66" y="845" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Toys with a NULL product ID, which counts as zero products.</text>
+<g role="group" aria-label="Second · LEFT JOIN Products" data-decision="J1">
+<rect x="52" y="858" width="1052" height="85" rx="5" fill="#eff7f2"/>
+<rect x="52" y="863" width="4" height="75" rx="2" fill="#205e45"/>
+<text x="66" y="880" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#205e45" font-weight="700">Second · LEFT JOIN Products</text>
+<text x="66" y="904" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Attach products through the category ID already on the left. Snacks matches two products. The left join also retains</text>
+<text x="66" y="927" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Toys with a NULL product ID, which counts as zero products.</text>
 </g>
-<text x="52" y="887" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Two categories become three joined rows. Snacks repeats for products 10 and 11. Toys survives with NULL in both</text>
-<text x="52" y="912" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Products columns.</text>
-<rect x="52" y="928" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="949" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Category LEFT JOIN Products ON Category.CategoryID = Products.CategoryID</text>
-<rect x="68" y="976" width="531.547" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="991" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
-<rect x="68" y="997" width="256.742" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1012" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryID</text>
-<path d="M79 1015L169.312 1015" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<path d="M79 1018L169.312 1018" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<rect x="324.742" y="997" width="274.805" height="26" rx="0" fill="#d8e9f7"/>
-<text x="335.742" y="1012" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryName</text>
-<rect x="599.547" y="976" width="504.453" height="21" rx="0" fill="#205e45"/>
-<text x="610.547" y="991" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="599.547" y="997" width="247.711" height="26" rx="0" fill="#d6ecdf"/>
-<text x="610.547" y="1012" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">ProductID</text>
-<rect x="847.258" y="997" width="256.742" height="26" rx="0" fill="#d6ecdf"/>
-<text x="858.258" y="1012" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">CategoryID</text>
-<path d="M858.258 1015L948.57 1015" fill="none" stroke="#205e45" stroke-width="1.2"/>
-<path d="M858.258 1018L948.57 1018" fill="none" stroke="#205e45" stroke-width="1.2"/>
-<rect x="68" y="1023" width="256.742" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1042" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1052L324.742 1052" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="324.742" y="1023" width="274.805" height="29" rx="0" fill="#edf4fb"/>
-<text x="335.742" y="1042" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Snacks</text>
-<path d="M324.742 1052L599.547 1052" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="599.547" y="1023" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
-<text x="610.547" y="1042" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
-<path d="M599.547 1052L847.258 1052" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="847.258" y="1023" width="256.742" height="29" rx="0" fill="#d6ecdf"/>
-<text x="858.258" y="1042" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M847.258 1052L1104 1052" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1052" width="256.742" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1081L324.742 1081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="324.742" y="1052" width="274.805" height="29" rx="0" fill="#ffffff"/>
-<text x="335.742" y="1071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Snacks</text>
-<path d="M324.742 1081L599.547 1081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="599.547" y="1052" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
-<text x="610.547" y="1071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">11</text>
-<path d="M599.547 1081L847.258 1081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="847.258" y="1052" width="256.742" height="29" rx="0" fill="#d6ecdf"/>
-<text x="858.258" y="1071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M847.258 1081L1104 1081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1090.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1081" width="256.742" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1100" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1110L324.742 1110" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="324.742" y="1081" width="274.805" height="29" rx="0" fill="#edf4fb"/>
-<text x="335.742" y="1100" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Toys</text>
-<path d="M324.742 1110L599.547 1110" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="599.547" y="1081" width="247.711" height="29" rx="0" fill="#d6ecdf"/>
-<text x="610.547" y="1100" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M599.547 1110L847.258 1110" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="847.258" y="1081" width="256.742" height="29" rx="0" fill="#d6ecdf"/>
-<text x="858.258" y="1100" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M847.258 1110L1104 1110" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1139" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1169" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="1149" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1168" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 2 rows</text>
-<text x="52" y="1204" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which column gives Toys a count of zero?</text>
-<text x="52" y="1233" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Snacks reads product IDs 10 and 11 &#8594; 2. Toys reads NULL &#8594; 0. Counting its whole joined row would give 1.</text>
-<rect x="52" y="1249" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY c.CategoryID / COUNT(p.ProductID)</text>
-<rect x="68" y="1297" width="678.625" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1312" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
-<rect x="68" y="1318" width="330.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1333" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryID</text>
-<path d="M79 1336L169.312 1336" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<path d="M79 1339L169.312 1339" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<rect x="398.281" y="1318" width="348.344" height="26" rx="0" fill="#d8e9f7"/>
-<text x="409.281" y="1333" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryName</text>
-<rect x="746.625" y="1297" width="357.375" height="21" rx="0" fill="#205e45"/>
-<text x="757.625" y="1312" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="746.625" y="1318" width="357.375" height="26" rx="0" fill="#d6ecdf"/>
-<text x="757.625" y="1333" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">product_count</text>
-<rect x="68" y="1344" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1363" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1373L398.281 1373" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="398.281" y="1344" width="348.344" height="29" rx="0" fill="#edf4fb"/>
-<text x="409.281" y="1363" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Snacks</text>
-<path d="M398.281 1373L746.625 1373" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="746.625" y="1344" width="357.375" height="29" rx="0" fill="#d6ecdf"/>
-<text x="757.625" y="1363" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2</text>
-<path d="M746.625 1373L1104 1373" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1382.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1373" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1392" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1402L398.281 1402" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="398.281" y="1373" width="348.344" height="29" rx="0" fill="#ffffff"/>
-<text x="409.281" y="1392" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Toys</text>
-<path d="M398.281 1402L746.625 1402" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="746.625" y="1373" width="357.375" height="29" rx="0" fill="#d6ecdf"/>
-<text x="757.625" y="1392" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">0</text>
-<path d="M746.625 1402L1104 1402" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1431" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1461" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1441" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1460" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 2 rows</text>
-<text x="52" y="1496" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why does Toys appear before Snacks?</text>
-<text x="52" y="1525" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Sort by the computed count: Toys has 0, then Snacks has 2. Category ID breaks a tie.</text>
-<rect x="52" y="1541" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY COUNT(p.ProductID), c.CategoryID</text>
-<rect x="68" y="1589" width="678.625" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1604" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Category</text>
-<rect x="68" y="1610" width="330.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1625" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryID</text>
-<path d="M79 1628L169.312 1628" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<path d="M79 1631L169.312 1631" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<rect x="398.281" y="1610" width="348.344" height="26" rx="0" fill="#d8e9f7"/>
-<text x="409.281" y="1625" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryName</text>
-<rect x="746.625" y="1589" width="357.375" height="21" rx="0" fill="#205e45"/>
-<text x="757.625" y="1604" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="746.625" y="1610" width="357.375" height="26" rx="0" fill="#d6ecdf"/>
-<text x="757.625" y="1625" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">product_count</text>
-<path d="M54 1645.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1636" width="330.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1655" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1665L398.281 1665" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="398.281" y="1636" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
-<text x="409.281" y="1655" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Toys</text>
-<path d="M398.281 1665L746.625 1665" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="746.625" y="1636" width="357.375" height="29" rx="0" fill="#d6ecdf"/>
-<text x="757.625" y="1655" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">0</text>
-<path d="M746.625 1665L1104 1665" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1665" width="330.281" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1684" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1694L398.281 1694" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="398.281" y="1665" width="348.344" height="29" rx="0" fill="#d8e9f7"/>
-<text x="409.281" y="1684" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Snacks</text>
-<path d="M398.281 1694L746.625 1694" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="746.625" y="1665" width="357.375" height="29" rx="0" fill="#d6ecdf"/>
-<text x="757.625" y="1684" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2</text>
-<path d="M746.625 1694L1104 1694" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="52" y="969" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Two categories become three joined rows. Snacks repeats for products 10 and 11. Toys survives with NULL in both</text>
+<text x="52" y="994" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Products columns.</text>
+<rect x="52" y="1010" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1031" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Category LEFT JOIN Products ON Category.CategoryID = Products.CategoryID</text>
+<g role="group" aria-label="P015 · Step J1" data-table="P015 · Step J1"><g data-fit="source" data-source="Category" data-first="0" data-last="1" aria-label="Category"><rect x="68.5" y="1058" width="537.484" height="35" fill="#075BCC" /><text x="78" y="1081" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Category</text></g><g data-fit="source" data-source="Products" data-first="2" data-last="3" aria-label="Products"><rect x="606.984" y="1058" width="496.516" height="35" fill="#087333" /><text x="616.484" y="1081" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="field" data-header="Category.CategoryID" data-column="0" data-source="Category" aria-label="Category.CategoryID"><rect x="68.5" y="1094" width="253.023" height="39" fill="#CEE3FF" /><text x="312.023" y="1116" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CategoryID</text><line x1="217.289" x2="312.023" y1="1120" y2="1120" stroke="#10376B" stroke-width="1.15" /><line x1="217.289" x2="312.023" y1="1123" y2="1123" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="Category.CategoryName" data-column="1" data-source="Category" aria-label="Category.CategoryName"><rect x="322.523" y="1094" width="283.461" height="39" fill="#CEE3FF" /><text x="332.023" y="1116" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">CategoryName</text></g><g data-fit="field" data-header="Products.ProductID" data-column="2" data-source="Products" aria-label="Products.ProductID"><rect x="606.984" y="1094" width="242.492" height="39" fill="#C9ECCA" /><text x="839.977" y="1116" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="end">ProductID</text><line x1="755.773" x2="839.977" y1="1120" y2="1120" stroke="#0B4A27" stroke-width="1.15" /></g><g data-fit="field" data-header="Products.CategoryID" data-column="3" data-source="Products" aria-label="Products.CategoryID"><rect x="850.477" y="1094" width="253.023" height="39" fill="#C9ECCA" /><text x="1094.0" y="1116" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="end">CategoryID</text><line x1="999.266" x2="1094.0" y1="1120" y2="1120" stroke="#0B4A27" stroke-width="1.15" /><line x1="999.266" x2="1094.0" y1="1123" y2="1123" stroke="#0B4A27" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="Category.CategoryID" data-source="Category" data-value="1"><rect x="68.5" y="1134" width="253.023" height="34" fill="#EAF3FF" /><text x="312.023" y="1157" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="Category.CategoryName" data-source="Category" data-value="Snacks"><rect x="322.523" y="1134" width="283.461" height="34" fill="#EAF3FF" /><text x="332.023" y="1157" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Snacks</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Products.ProductID" data-source="Products" data-value="10"><rect x="606.984" y="1134" width="242.492" height="34" fill="#E5F6E8" /><text x="839.977" y="1157" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">10</text></g><g data-fit="value" data-row="1" data-column="3" data-field="Products.CategoryID" data-source="Products" data-value="1"><rect x="850.477" y="1134" width="253.023" height="34" fill="#E5F6E8" /><text x="1094.0" y="1157" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="0" data-field="Category.CategoryID" data-source="Category" data-value="1"><rect x="68.5" y="1169" width="253.023" height="34" fill="#EAF3FF" /><text x="312.023" y="1192" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="1" data-field="Category.CategoryName" data-source="Category" data-value="Snacks"><rect x="322.523" y="1169" width="283.461" height="34" fill="#EAF3FF" /><text x="332.023" y="1192" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Snacks</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Products.ProductID" data-source="Products" data-value="11"><rect x="606.984" y="1169" width="242.492" height="34" fill="#E5F6E8" /><text x="839.977" y="1192" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">11</text></g><g data-fit="value" data-row="2" data-column="3" data-field="Products.CategoryID" data-source="Products" data-value="1"><rect x="850.477" y="1169" width="253.023" height="34" fill="#E5F6E8" /><text x="1094.0" y="1192" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">1</text></g><g data-fit="value" data-row="3" data-column="0" data-field="Category.CategoryID" data-source="Category" data-value="2"><rect x="68.5" y="1204" width="253.023" height="34" fill="#A8CEFF" /><text x="312.023" y="1227" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="3" data-column="1" data-field="Category.CategoryName" data-source="Category" data-value="Toys"><rect x="322.523" y="1204" width="283.461" height="34" fill="#EAF3FF" /><text x="332.023" y="1227" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Toys</text></g><g data-fit="value" data-row="3" data-column="2" data-field="Products.ProductID" data-source="Products" data-value="NULL"><rect x="606.984" y="1204" width="242.492" height="34" fill="#9CDD9D" /><text x="839.977" y="1227" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#0B4A27" text-anchor="end">NULL</text></g><g data-fit="value" data-row="3" data-column="3" data-field="Products.CategoryID" data-source="Products" data-value="NULL"><rect x="850.477" y="1204" width="253.023" height="34" fill="#9CDD9D" /><text x="1094.0" y="1227" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#0B4A27" text-anchor="end">NULL</text></g><polygon points="55,1216.0 63,1221.0 55,1226.0" fill="#263746" /></g>
+<rect x="32" y="1268" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1298" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1278" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1297" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="1333" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which column gives Toys a count of zero?</text>
+<text x="52" y="1362" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Snacks reads product IDs 10 and 11 → 2. Toys reads NULL → 0. Counting its whole joined row would give 1.</text>
+<rect x="52" y="1378" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1399" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY c.CategoryID / COUNT(p.ProductID)</text>
+<g role="group" aria-label="P015 · Step 2" data-table="P015 · Step 2"><g data-fit="source" data-source="Category" data-first="0" data-last="1" aria-label="Category"><rect x="68.5" y="1426" width="682.219" height="35" fill="#075BCC" /><text x="78" y="1449" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Category</text></g><g data-fit="source" data-source="Products" data-first="2" data-last="2" aria-label="Products calculated"><rect x="751.719" y="1426" width="351.781" height="35" fill="#087333" /><text x="761.219" y="1449" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="field" data-header="CategoryID" data-column="0" data-source="Category" aria-label="Category.CategoryID"><rect x="68.5" y="1462" width="325.391" height="39" fill="#CEE3FF" /><text x="384.391" y="1484" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CategoryID</text><line x1="289.656" x2="384.391" y1="1488" y2="1488" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="CategoryName" data-column="1" data-source="Category" aria-label="Category.CategoryName"><rect x="394.891" y="1462" width="355.828" height="39" fill="#CEE3FF" /><text x="404.391" y="1484" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">CategoryName</text></g><g data-fit="field" data-header="product_count" data-column="2" data-source="Products" aria-label="Products.product_count"><rect x="751.719" y="1462" width="351.781" height="39" fill="#C9ECCA" /><text x="1094.0" y="1484" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="end">product_count</text><line x1="972.875" x2="1094.0" y1="1488" y2="1488" stroke="#0B4A27" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="CategoryID" data-source="Category" data-value="1"><rect x="68.5" y="1502" width="325.391" height="34" fill="#EAF3FF" /><text x="384.391" y="1525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CategoryName" data-source="Category" data-value="Snacks"><rect x="394.891" y="1502" width="355.828" height="34" fill="#EAF3FF" /><text x="404.391" y="1525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Snacks</text></g><g data-fit="value" data-row="1" data-column="2" data-field="product_count" data-source="Products" data-value="2"><rect x="751.719" y="1502" width="351.781" height="34" fill="#E5F6E8" /><text x="1094.0" y="1525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="0" data-field="CategoryID" data-source="Category" data-value="2"><rect x="68.5" y="1537" width="325.391" height="34" fill="#A8CEFF" /><text x="384.391" y="1560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CategoryName" data-source="Category" data-value="Toys"><rect x="394.891" y="1537" width="355.828" height="34" fill="#EAF3FF" /><text x="404.391" y="1560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Toys</text></g><g data-fit="value" data-row="2" data-column="2" data-field="product_count" data-source="Products" data-value="0"><rect x="751.719" y="1537" width="351.781" height="34" fill="#9CDD9D" /><text x="1094.0" y="1560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#0B4A27" text-anchor="end">0</text></g><polygon points="55,1549.0 63,1554.0 55,1559.0" fill="#263746" /></g>
+<rect x="32" y="1601" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1631" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1611" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1630" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="52" y="1666" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why does Toys appear before Snacks?</text>
+<text x="52" y="1695" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Sort by the computed count: Toys has 0, then Snacks has 2. Category ID breaks a tie.</text>
+<rect x="52" y="1711" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1732" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY COUNT(p.ProductID), c.CategoryID</text>
+<g role="group" aria-label="P015 · Final output" data-table="P015 · Final output"><g data-fit="source" data-source="Category" data-first="0" data-last="1" aria-label="Category"><rect x="68.5" y="1759" width="682.219" height="35" fill="#075BCC" /><text x="78" y="1782" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Category</text></g><g data-fit="source" data-source="Products" data-first="2" data-last="2" aria-label="Products calculated"><rect x="751.719" y="1759" width="351.781" height="35" fill="#087333" /><text x="761.219" y="1782" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="field" data-header="CategoryID" data-column="0" data-source="Category" aria-label="Category.CategoryID"><rect x="68.5" y="1795" width="325.391" height="39" fill="#CEE3FF" /><text x="384.391" y="1817" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CategoryID</text></g><g data-fit="field" data-header="CategoryName" data-column="1" data-source="Category" aria-label="Category.CategoryName"><rect x="394.891" y="1795" width="355.828" height="39" fill="#CEE3FF" /><text x="404.391" y="1817" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">CategoryName</text><line x1="404.391" x2="529.562" y1="1821" y2="1821" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="product_count" data-column="2" data-source="Products" aria-label="Products.product_count"><rect x="751.719" y="1795" width="351.781" height="39" fill="#C9ECCA" /><text x="1094.0" y="1817" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="end">product_count</text><line x1="972.875" x2="1094.0" y1="1821" y2="1821" stroke="#0B4A27" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="CategoryID" data-source="Category" data-value="2"><rect x="68.5" y="1835" width="325.391" height="34" fill="#EAF3FF" /><text x="384.391" y="1858" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CategoryName" data-source="Category" data-value="Toys"><rect x="394.891" y="1835" width="355.828" height="34" fill="#A8CEFF" /><text x="404.391" y="1858" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">Toys</text></g><g data-fit="value" data-row="1" data-column="2" data-field="product_count" data-source="Products" data-value="0"><rect x="751.719" y="1835" width="351.781" height="34" fill="#9CDD9D" /><text x="1094.0" y="1858" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#0B4A27" text-anchor="end">0</text></g><polygon points="55,1847.0 63,1852.0 55,1857.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="CategoryID" data-source="Category" data-value="1"><rect x="68.5" y="1870" width="325.391" height="34" fill="#EAF3FF" /><text x="384.391" y="1893" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CategoryName" data-source="Category" data-value="Snacks"><rect x="394.891" y="1870" width="355.828" height="34" fill="#EAF3FF" /><text x="404.391" y="1893" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Snacks</text></g><g data-fit="value" data-row="2" data-column="2" data-field="product_count" data-source="Products" data-value="2"><rect x="751.719" y="1870" width="351.781" height="34" fill="#E5F6E8" /><text x="1094.0" y="1893" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">2</text></g></g>
 </svg>

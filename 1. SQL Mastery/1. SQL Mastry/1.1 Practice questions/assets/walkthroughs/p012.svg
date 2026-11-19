@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1957" viewBox="0 0 1160 1957" role="img" aria-labelledby="title desc">
-<title id="title">P012 &#183; Price and discount statistics per category</title>
-<desc id="desc">One row of price statistics per category. The extended example puts product IDs 1, 2, 3 in category 10 and IDs 4, 5 in category 20. Category 10 has prices 80, 100, 30. Its minimum is 30, maximum is 100 and average is 210 / 3 = 70. Read the products again. ID 2 contributes one full-price flag. IDs 3 and 5 have unusable market prices and contribute NULL percentages. Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five products still count. FROM Products &#183; one table is enough. The group key is the category ID already on each product. The same rows hold both price columns, so they supply the product count and every price statistic.</desc>
-<rect width="1160" height="1957" fill="#f4f7f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2221" viewBox="0 0 1160 2221" role="img" aria-labelledby="title desc">
+<title id="title">P012 · Price and discount statistics per category</title>
+<desc id="desc">One row of price statistics per category. The extended example puts product IDs 1, 2, 3 in category 10 and IDs 4, 5 in category 20. Category 10 has prices 80, 100, 30. Its minimum is 30, maximum is 100 and average is 210 / 3 = 70. Read the products again. ID 2 contributes one full-price flag. IDs 3 and 5 have unusable market prices and contribute NULL percentages. Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five products still count. FROM Products · one table is enough. The group key is the category ID already on each product. The same rows hold both price columns, so they supply the product count and every price statistic.</desc>
+<rect width="1160" height="2221" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P012    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Price and discount statistics per category</text>
@@ -9,315 +9,54 @@
 <rect x="32" y="151" width="1096" height="74" rx="10" fill="#e6f1ec"/>
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">In category 10, should a zero market price remove the product from its sale-price average?</text>
-<text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs  &#183;  extended example</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Products  &#183;  5 rows</text>
-<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="354" width="247.711" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
-<rect x="315.711" y="354" width="256.742" height="26" rx="0" fill="#d8e9f7"/>
-<text x="326.711" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryID</text>
-<rect x="572.453" y="354" width="256.742" height="26" rx="0" fill="#d8e9f7"/>
-<text x="583.453" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Sale_Price</text>
-<rect x="829.195" y="354" width="274.805" height="26" rx="0" fill="#d8e9f7"/>
-<text x="840.195" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Market_Price</text>
-<path d="M54 389.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="380" width="247.711" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 409L315.711 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="315.711" y="380" width="256.742" height="29" rx="0" fill="#edf4fb"/>
-<text x="326.711" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M315.711 409L572.453 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="380" width="256.742" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.453" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">80</text>
-<path d="M572.453 409L829.195 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="829.195" y="380" width="274.805" height="29" rx="0" fill="#edf4fb"/>
-<text x="840.195" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M829.195 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 418.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="409" width="247.711" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 438L315.711 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="315.711" y="409" width="256.742" height="29" rx="0" fill="#ffffff"/>
-<text x="326.711" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M315.711 438L572.453 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="409" width="256.742" height="29" rx="0" fill="#ffffff"/>
-<text x="583.453" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M572.453 438L829.195 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="829.195" y="409" width="274.805" height="29" rx="0" fill="#ffffff"/>
-<text x="840.195" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M829.195 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 447.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="438" width="247.711" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 467L315.711 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="315.711" y="438" width="256.742" height="29" rx="0" fill="#edf4fb"/>
-<text x="326.711" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M315.711 467L572.453 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="438" width="256.742" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.453" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M572.453 467L829.195 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="829.195" y="438" width="274.805" height="29" rx="0" fill="#edf4fb"/>
-<text x="840.195" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M829.195 467L1104 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="467" width="247.711" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 496L315.711 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="315.711" y="467" width="256.742" height="29" rx="0" fill="#ffffff"/>
-<text x="326.711" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M315.711 496L572.453 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="467" width="256.742" height="29" rx="0" fill="#ffffff"/>
-<text x="583.453" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M572.453 496L829.195 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="829.195" y="467" width="274.805" height="29" rx="0" fill="#ffffff"/>
-<text x="840.195" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M829.195 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="496" width="247.711" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 525L315.711 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="315.711" y="496" width="256.742" height="29" rx="0" fill="#edf4fb"/>
-<text x="326.711" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M315.711 525L572.453 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="496" width="256.742" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.453" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">120</text>
-<path d="M572.453 525L829.195 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="829.195" y="496" width="274.805" height="29" rx="0" fill="#edf4fb"/>
-<text x="840.195" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M829.195 525L1104 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="549" width="1096" height="375" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="579" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
-<rect x="1000.38" y="559" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 2 rows</text>
-<text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which products belong together?</text>
-<g role="group" aria-label="FROM Products &#183; one table is enough" data-decision="1">
-<rect x="52" y="625" width="1052" height="85" rx="5" fill="#edf4fb"/>
-<rect x="52" y="630" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products &#183; one table is enough</text>
-<text x="66" y="671" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The group key is the category ID already on each product. The same rows hold both price columns, so they supply the</text>
-<text x="66" y="694" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">product count and every price statistic.</text>
+<text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs  ·  extended example</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. A dark source band spans its columns. ƒ marks a calculated value. Deeper cell colors mark the values to</text>
+<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">follow. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Products  ·  5 rows</text>
+<g role="group" aria-label="Products" data-table="Products"><g data-fit="source" data-source="Products" data-first="0" data-last="3" aria-label="Products"><rect x="68.5" y="356" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="379" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="field" data-header="ProductID" data-column="0" data-source="Products" aria-label="Products.ProductID"><rect x="68.5" y="392" width="248.527" height="39" fill="#CEE3FF" /><text x="307.527" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">ProductID</text></g><g data-fit="field" data-header="CategoryID" data-column="1" data-source="Products" aria-label="Products.CategoryID"><rect x="318.027" y="392" width="259.059" height="39" fill="#CEE3FF" /><text x="567.586" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CategoryID</text></g><g data-fit="field" data-header="Sale_Price" data-column="2" data-source="Products" aria-label="Products.Sale_Price"><rect x="578.086" y="392" width="250.652" height="39" fill="#CEE3FF" /><text x="819.238" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">Sale_Price</text></g><g data-fit="field" data-header="Market_Price" data-column="3" data-source="Products" aria-label="Products.Market_Price"><rect x="829.738" y="392" width="273.762" height="39" fill="#CEE3FF" /><text x="1094.0" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">Market_Price</text></g><g data-fit="value" data-row="1" data-column="0" data-field="ProductID" data-source="Products" data-value="1"><rect x="68.5" y="432" width="248.527" height="34" fill="#EAF3FF" /><text x="307.527" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CategoryID" data-source="Products" data-value="10"><rect x="318.027" y="432" width="259.059" height="34" fill="#EAF3FF" /><text x="567.586" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Sale_Price" data-source="Products" data-value="80"><rect x="578.086" y="432" width="250.652" height="34" fill="#EAF3FF" /><text x="819.238" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">80</text></g><g data-fit="value" data-row="1" data-column="3" data-field="Market_Price" data-source="Products" data-value="100"><rect x="829.738" y="432" width="273.762" height="34" fill="#EAF3FF" /><text x="1094.0" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g><polygon points="55,444.0 63,449.0 55,454.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="ProductID" data-source="Products" data-value="2"><rect x="68.5" y="467" width="248.527" height="34" fill="#EAF3FF" /><text x="307.527" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CategoryID" data-source="Products" data-value="10"><rect x="318.027" y="467" width="259.059" height="34" fill="#EAF3FF" /><text x="567.586" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Sale_Price" data-source="Products" data-value="100"><rect x="578.086" y="467" width="250.652" height="34" fill="#EAF3FF" /><text x="819.238" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g><g data-fit="value" data-row="2" data-column="3" data-field="Market_Price" data-source="Products" data-value="100"><rect x="829.738" y="467" width="273.762" height="34" fill="#EAF3FF" /><text x="1094.0" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g><polygon points="55,479.0 63,484.0 55,489.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="ProductID" data-source="Products" data-value="3"><rect x="68.5" y="502" width="248.527" height="34" fill="#EAF3FF" /><text x="307.527" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="CategoryID" data-source="Products" data-value="10"><rect x="318.027" y="502" width="259.059" height="34" fill="#EAF3FF" /><text x="567.586" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="3" data-column="2" data-field="Sale_Price" data-source="Products" data-value="30"><rect x="578.086" y="502" width="250.652" height="34" fill="#EAF3FF" /><text x="819.238" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">30</text></g><g data-fit="value" data-row="3" data-column="3" data-field="Market_Price" data-source="Products" data-value="0"><rect x="829.738" y="502" width="273.762" height="34" fill="#EAF3FF" /><text x="1094.0" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><polygon points="55,514.0 63,519.0 55,524.0" fill="#263746" /><g data-fit="value" data-row="4" data-column="0" data-field="ProductID" data-source="Products" data-value="4"><rect x="68.5" y="537" width="248.527" height="34" fill="#EAF3FF" /><text x="307.527" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="1" data-field="CategoryID" data-source="Products" data-value="20"><rect x="318.027" y="537" width="259.059" height="34" fill="#EAF3FF" /><text x="567.586" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g><g data-fit="value" data-row="4" data-column="2" data-field="Sale_Price" data-source="Products" data-value="150"><rect x="578.086" y="537" width="250.652" height="34" fill="#EAF3FF" /><text x="819.238" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">150</text></g><g data-fit="value" data-row="4" data-column="3" data-field="Market_Price" data-source="Products" data-value="200"><rect x="829.738" y="537" width="273.762" height="34" fill="#EAF3FF" /><text x="1094.0" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">200</text></g><g data-fit="value" data-row="5" data-column="0" data-field="ProductID" data-source="Products" data-value="5"><rect x="68.5" y="572" width="248.527" height="34" fill="#EAF3FF" /><text x="307.527" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="1" data-field="CategoryID" data-source="Products" data-value="20"><rect x="318.027" y="572" width="259.059" height="34" fill="#EAF3FF" /><text x="567.586" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g><g data-fit="value" data-row="5" data-column="2" data-field="Sale_Price" data-source="Products" data-value="120"><rect x="578.086" y="572" width="250.652" height="34" fill="#EAF3FF" /><text x="819.238" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">120</text></g><g data-fit="value" data-row="5" data-column="3" data-field="Market_Price" data-source="Products" data-value="NULL"><rect x="829.738" y="572" width="273.762" height="34" fill="#EAF3FF" /><text x="1094.0" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="end">NULL</text></g></g>
+<rect x="32" y="631" width="1096" height="416" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="661" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="641" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="660" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 2 rows</text>
+<text x="52" y="696" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which products belong together?</text>
+<g role="group" aria-label="FROM Products · one table is enough" data-decision="1">
+<rect x="52" y="707" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="712" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="729" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products · one table is enough</text>
+<text x="66" y="753" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The group key is the category ID already on each product. The same rows hold both price columns, so they supply the</text>
+<text x="66" y="776" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">product count and every price statistic.</text>
 </g>
-<text x="52" y="736" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The extended example puts product IDs 1, 2, 3 in category 10 and IDs 4, 5 in category 20.</text>
-<rect x="52" y="752" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="773" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY CategoryID</text>
-<rect x="68" y="800" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="821" width="527.031" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryID</text>
-<rect x="595.031" y="821" width="508.969" height="26" rx="0" fill="#d8e9f7"/>
-<text x="606.031" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">products</text>
-<path d="M54 856.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="847" width="527.031" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M68 876L595.031 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="595.031" y="847" width="508.969" height="29" rx="0" fill="#d8e9f7"/>
-<text x="606.031" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M595.031 876L1104 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="876" width="527.031" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 905L595.031 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="595.031" y="876" width="508.969" height="29" rx="0" fill="#d8e9f7"/>
-<text x="606.031" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M595.031 905L1104 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="934" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="964" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="944" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="963" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 2 rows</text>
-<text x="52" y="999" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which prices feed the three price metrics?</text>
-<text x="52" y="1028" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Category 10 has prices 80, 100, 30. Its minimum is 30, maximum is 100 and average is 210 / 3 = 70.</text>
-<rect x="52" y="1044" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">MIN(Sale_Price), MAX(Sale_Price), AVG(Sale_Price)</text>
-<rect x="68" y="1092" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="1113" width="216.231" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryID</text>
-<rect x="284.231" y="1113" width="198.169" height="26" rx="0" fill="#d8e9f7"/>
-<text x="295.231" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">products</text>
-<rect x="482.4" y="1113" width="207.2" height="26" rx="0" fill="#d8e9f7"/>
-<text x="493.4" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">min_price</text>
-<rect x="689.6" y="1113" width="207.2" height="26" rx="0" fill="#d8e9f7"/>
-<text x="700.6" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">max_price</text>
-<rect x="896.8" y="1113" width="207.2" height="26" rx="0" fill="#d8e9f7"/>
-<text x="907.8" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">avg_price</text>
-<path d="M54 1148.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1139" width="216.231" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M68 1168L284.231 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="284.231" y="1139" width="198.169" height="29" rx="0" fill="#edf4fb"/>
-<text x="295.231" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M284.231 1168L482.4 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="482.4" y="1139" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="493.4" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M482.4 1168L689.6 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="689.6" y="1139" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="700.6" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M689.6 1168L896.8 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="896.8" y="1139" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="907.8" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70.00</text>
-<path d="M896.8 1168L1104 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1168" width="216.231" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 1197L284.231 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="284.231" y="1168" width="198.169" height="29" rx="0" fill="#ffffff"/>
-<text x="295.231" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M284.231 1197L482.4 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="482.4" y="1168" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="493.4" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">120</text>
-<path d="M482.4 1197L689.6 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="689.6" y="1168" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="700.6" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M689.6 1197L896.8 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="896.8" y="1168" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="907.8" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">135.00</text>
-<path d="M896.8 1197L1104 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1226" width="1096" height="394" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1256" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
-<rect x="1000.38" y="1236" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1255" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
-<text x="52" y="1291" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What can each product contribute to the discount?</text>
-<text x="52" y="1320" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Read the products again. ID 2 contributes one full-price flag. IDs 3 and 5 have unusable market prices and</text>
-<text x="52" y="1345" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">contribute NULL percentages.</text>
-<rect x="52" y="1361" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1382" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN Market_Price IS NOT NULL AND Market_Price != 0 THEN &#8230; END</text>
-<rect x="68" y="1409" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1424" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="1430" width="218.359" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1445" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
-<rect x="286.359" y="1430" width="227.391" height="26" rx="0" fill="#d8e9f7"/>
-<text x="297.359" y="1445" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryID</text>
-<rect x="513.75" y="1430" width="272.547" height="26" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1445" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">full_price_flag</text>
-<rect x="786.297" y="1430" width="317.703" height="26" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1445" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">product_discount_pct</text>
-<path d="M54 1465.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1456" width="218.359" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1485L286.359 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1456" width="227.391" height="29" rx="0" fill="#edf4fb"/>
-<text x="297.359" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M286.359 1485L513.75 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1456" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M513.75 1485L786.297 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1456" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20.00</text>
-<path d="M786.297 1485L1104 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1494.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1485" width="218.359" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1504" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1514L286.359 1514" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1485" width="227.391" height="29" rx="0" fill="#ffffff"/>
-<text x="297.359" y="1504" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M286.359 1514L513.75 1514" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1485" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1504" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M513.75 1514L786.297 1514" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1485" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1504" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0.00</text>
-<path d="M786.297 1514L1104 1514" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1523.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1514" width="218.359" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1543L286.359 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1514" width="227.391" height="29" rx="0" fill="#edf4fb"/>
-<text x="297.359" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M286.359 1543L513.75 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1514" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M513.75 1543L786.297 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1514" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M786.297 1543L1104 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1543" width="218.359" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1572L286.359 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1543" width="227.391" height="29" rx="0" fill="#ffffff"/>
-<text x="297.359" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M286.359 1572L513.75 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1543" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M513.75 1572L786.297 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1543" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">25.00</text>
-<path d="M786.297 1572L1104 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1572" width="218.359" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 1601L286.359 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1572" width="227.391" height="29" rx="0" fill="#edf4fb"/>
-<text x="297.359" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M286.359 1601L513.75 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1572" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M513.75 1601L786.297 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1572" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M786.297 1601L1104 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1630" width="1096" height="307" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1660" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1640" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1659" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 2 rows</text>
-<text x="52" y="1695" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which denominators belong to each category?</text>
-<text x="52" y="1724" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five</text>
-<text x="52" y="1749" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">products still count.</text>
-<rect x="52" y="1765" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SUM(full_price_flag), AVG(product_discount_pct) [using intermediate names]</text>
-<rect x="68" y="1813" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1828" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="1834" width="135.098" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CategoryID</text>
-<rect x="203.098" y="1834" width="117.036" height="26" rx="0" fill="#d8e9f7"/>
-<text x="214.098" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">products</text>
-<rect x="320.134" y="1834" width="126.067" height="26" rx="0" fill="#d8e9f7"/>
-<text x="331.134" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">min_price</text>
-<rect x="446.201" y="1834" width="126.067" height="26" rx="0" fill="#d8e9f7"/>
-<text x="457.201" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">max_price</text>
-<rect x="572.268" y="1834" width="126.067" height="26" rx="0" fill="#d8e9f7"/>
-<text x="583.268" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">avg_price</text>
-<rect x="698.335" y="1834" width="216.379" height="26" rx="0" fill="#d8e9f7"/>
-<text x="709.335" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">full_price_products</text>
-<rect x="914.714" y="1834" width="189.286" height="26" rx="0" fill="#d8e9f7"/>
-<text x="925.714" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">avg_discount_pct</text>
-<path d="M54 1869.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1860" width="135.098" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M68 1889L203.098 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="203.098" y="1860" width="117.036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="214.098" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M203.098 1889L320.134 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.134" y="1860" width="126.067" height="29" rx="0" fill="#edf4fb"/>
-<text x="331.134" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M320.134 1889L446.201 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="446.201" y="1860" width="126.067" height="29" rx="0" fill="#edf4fb"/>
-<text x="457.201" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M446.201 1889L572.268 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.268" y="1860" width="126.067" height="29" rx="0" fill="#d8e9f7"/>
-<text x="583.268" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70.00</text>
-<path d="M572.268 1889L698.335 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="698.335" y="1860" width="216.379" height="29" rx="0" fill="#d8e9f7"/>
-<text x="709.335" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M698.335 1889L914.714 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="914.714" y="1860" width="189.286" height="29" rx="0" fill="#d8e9f7"/>
-<text x="925.714" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10.00</text>
-<path d="M914.714 1889L1104 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1889" width="135.098" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 1918L203.098 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="203.098" y="1889" width="117.036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="214.098" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M203.098 1918L320.134 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.134" y="1889" width="126.067" height="29" rx="0" fill="#ffffff"/>
-<text x="331.134" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">120</text>
-<path d="M320.134 1918L446.201 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="446.201" y="1889" width="126.067" height="29" rx="0" fill="#ffffff"/>
-<text x="457.201" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M446.201 1918L572.268 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.268" y="1889" width="126.067" height="29" rx="0" fill="#d8e9f7"/>
-<text x="583.268" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">135.00</text>
-<path d="M572.268 1918L698.335 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="698.335" y="1889" width="216.379" height="29" rx="0" fill="#d8e9f7"/>
-<text x="709.335" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M698.335 1918L914.714 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="914.714" y="1889" width="189.286" height="29" rx="0" fill="#d8e9f7"/>
-<text x="925.714" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">25.00</text>
-<path d="M914.714 1918L1104 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="52" y="818" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The extended example puts product IDs 1, 2, 3 in category 10 and IDs 4, 5 in category 20.</text>
+<rect x="52" y="834" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="855" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY CategoryID</text>
+<g role="group" aria-label="P012 · Step 1" data-table="P012 · Step 1"><g data-fit="source" data-source="Products" data-first="0" data-last="0" aria-label="Products"><rect x="68.5" y="882" width="520.945" height="35" fill="#075BCC" /><text x="78" y="905" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="1" data-last="1" aria-label="Products calculated"><rect x="590.445" y="882" width="513.055" height="35" fill="#075BCC" /><text x="599.945" y="905" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="field" data-header="CategoryID" data-column="0" data-source="Products" aria-label="Products.CategoryID"><rect x="68.5" y="918" width="520.945" height="39" fill="#CEE3FF" /><text x="579.945" y="940" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CategoryID</text><line x1="485.211" x2="579.945" y1="944" y2="944" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="products" data-column="1" data-source="Products" aria-label="Products.products"><rect x="590.445" y="918" width="513.055" height="39" fill="#CEE3FF" /><text x="1094.0" y="940" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">products</text><line x1="1019.172" x2="1094.0" y1="944" y2="944" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="CategoryID" data-source="Products" data-value="10"><rect x="68.5" y="958" width="520.945" height="34" fill="#A8CEFF" /><text x="579.945" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="1" data-column="1" data-field="products" data-source="Products" data-value="3"><rect x="590.445" y="958" width="513.055" height="34" fill="#A8CEFF" /><text x="1094.0" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">3</text></g><polygon points="55,970.0 63,975.0 55,980.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="CategoryID" data-source="Products" data-value="20"><rect x="68.5" y="993" width="520.945" height="34" fill="#EAF3FF" /><text x="579.945" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g><g data-fit="value" data-row="2" data-column="1" data-field="products" data-source="Products" data-value="2"><rect x="590.445" y="993" width="513.055" height="34" fill="#EAF3FF" /><text x="1094.0" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g></g>
+<rect x="32" y="1057" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1087" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1067" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1086" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 2 rows</text>
+<text x="52" y="1122" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which prices feed the three price metrics?</text>
+<text x="52" y="1151" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Category 10 has prices 80, 100, 30. Its minimum is 30, maximum is 100 and average is 210 / 3 = 70.</text>
+<rect x="52" y="1167" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1188" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">MIN(Sale_Price), MAX(Sale_Price), AVG(Sale_Price)</text>
+<g role="group" aria-label="P012 · Step 2" data-table="P012 · Step 2"><g data-fit="source" data-source="Products" data-first="0" data-last="0" aria-label="Products"><rect x="68.5" y="1215" width="217.625" height="35" fill="#075BCC" /><text x="78" y="1238" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="1" data-last="4" aria-label="Products calculated"><rect x="287.125" y="1215" width="816.375" height="35" fill="#075BCC" /><text x="296.625" y="1238" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="field" data-header="CategoryID" data-column="0" data-source="Products" aria-label="Products.CategoryID"><rect x="68.5" y="1251" width="217.625" height="39" fill="#CEE3FF" /><text x="276.625" y="1273" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CategoryID</text></g><g data-fit="field" data-header="products" data-column="1" data-source="Products" aria-label="Products.products"><rect x="287.125" y="1251" width="197.719" height="39" fill="#CEE3FF" /><text x="475.344" y="1273" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">products</text></g><g data-fit="field" data-header="min_price" data-column="2" data-source="Products" aria-label="Products.min_price"><rect x="485.844" y="1251" width="204.156" height="39" fill="#CEE3FF" /><text x="680.5" y="1273" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">min_price</text><line x1="599.234" x2="680.5" y1="1277" y2="1277" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="max_price" data-column="3" data-source="Products" aria-label="Products.max_price"><rect x="691.0" y="1251" width="208.141" height="39" fill="#CEE3FF" /><text x="889.641" y="1273" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">max_price</text><line x1="804.391" x2="889.641" y1="1277" y2="1277" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="avg_price" data-column="4" data-source="Products" aria-label="Products.avg_price"><rect x="900.141" y="1251" width="203.359" height="39" fill="#CEE3FF" /><text x="1094.0" y="1273" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">avg_price</text><line x1="1013.531" x2="1094.0" y1="1277" y2="1277" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="CategoryID" data-source="Products" data-value="10"><rect x="68.5" y="1291" width="217.625" height="34" fill="#EAF3FF" /><text x="276.625" y="1314" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="1" data-column="1" data-field="products" data-source="Products" data-value="3"><rect x="287.125" y="1291" width="197.719" height="34" fill="#EAF3FF" /><text x="475.344" y="1314" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="1" data-column="2" data-field="min_price" data-source="Products" data-value="30"><rect x="485.844" y="1291" width="204.156" height="34" fill="#A8CEFF" /><text x="680.5" y="1314" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">30</text></g><g data-fit="value" data-row="1" data-column="3" data-field="max_price" data-source="Products" data-value="100"><rect x="691.0" y="1291" width="208.141" height="34" fill="#A8CEFF" /><text x="889.641" y="1314" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">100</text></g><g data-fit="value" data-row="1" data-column="4" data-field="avg_price" data-source="Products" data-value="70.00"><rect x="900.141" y="1291" width="203.359" height="34" fill="#A8CEFF" /><text x="1094.0" y="1314" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">70.00</text></g><polygon points="55,1303.0 63,1308.0 55,1313.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="CategoryID" data-source="Products" data-value="20"><rect x="68.5" y="1326" width="217.625" height="34" fill="#EAF3FF" /><text x="276.625" y="1349" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g><g data-fit="value" data-row="2" data-column="1" data-field="products" data-source="Products" data-value="2"><rect x="287.125" y="1326" width="197.719" height="34" fill="#EAF3FF" /><text x="475.344" y="1349" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="2" data-field="min_price" data-source="Products" data-value="120"><rect x="485.844" y="1326" width="204.156" height="34" fill="#EAF3FF" /><text x="680.5" y="1349" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">120</text></g><g data-fit="value" data-row="2" data-column="3" data-field="max_price" data-source="Products" data-value="150"><rect x="691.0" y="1326" width="208.141" height="34" fill="#EAF3FF" /><text x="889.641" y="1349" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">150</text></g><g data-fit="value" data-row="2" data-column="4" data-field="avg_price" data-source="Products" data-value="135.00"><rect x="900.141" y="1326" width="203.359" height="34" fill="#EAF3FF" /><text x="1094.0" y="1349" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">135.00</text></g></g>
+<rect x="32" y="1390" width="1096" height="453" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1420" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1000.38" y="1400" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1419" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="1455" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What can each product contribute to the discount?</text>
+<text x="52" y="1484" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Read the products again. ID 2 contributes one full-price flag. IDs 3 and 5 have unusable market prices and</text>
+<text x="52" y="1509" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">contribute NULL percentages.</text>
+<rect x="52" y="1525" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1546" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN Market_Price IS NOT NULL AND Market_Price != 0 THEN … END</text>
+<g role="group" aria-label="P012 · Step 3" data-table="P012 · Step 3"><g data-fit="source" data-source="Products" data-first="0" data-last="1" aria-label="Products"><rect x="68.5" y="1573" width="457.961" height="35" fill="#075BCC" /><text x="78" y="1596" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="2" data-last="3" aria-label="Products calculated"><rect x="527.461" y="1573" width="576.039" height="35" fill="#075BCC" /><text x="536.961" y="1596" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="field" data-header="ProductID" data-column="0" data-source="Products" aria-label="Products.ProductID"><rect x="68.5" y="1609" width="223.215" height="39" fill="#CEE3FF" /><text x="282.215" y="1631" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">ProductID</text></g><g data-fit="field" data-header="CategoryID" data-column="1" data-source="Products" aria-label="Products.CategoryID"><rect x="292.715" y="1609" width="233.746" height="39" fill="#CEE3FF" /><text x="516.961" y="1631" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CategoryID</text></g><g data-fit="field" data-header="full_price_flag" data-column="2" data-source="Products" aria-label="Products.full_price_flag"><rect x="527.461" y="1609" width="255.809" height="39" fill="#CEE3FF" /><text x="773.77" y="1631" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">full_price_flag</text><line x1="656.973" x2="773.77" y1="1635" y2="1635" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="product_discount_pct" data-column="3" data-source="Products" aria-label="Products.product_discount_pct"><rect x="784.27" y="1609" width="319.23" height="39" fill="#CEE3FF" /><text x="1094.0" y="1631" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">product_discount_pct</text><line x1="913.781" x2="1094.0" y1="1635" y2="1635" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="ProductID" data-source="Products" data-value="1"><rect x="68.5" y="1649" width="223.215" height="34" fill="#EAF3FF" /><text x="282.215" y="1672" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CategoryID" data-source="Products" data-value="10"><rect x="292.715" y="1649" width="233.746" height="34" fill="#EAF3FF" /><text x="516.961" y="1672" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="1" data-column="2" data-field="full_price_flag" data-source="Products" data-value="0"><rect x="527.461" y="1649" width="255.809" height="34" fill="#A8CEFF" /><text x="773.77" y="1672" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="1" data-column="3" data-field="product_discount_pct" data-source="Products" data-value="20.00"><rect x="784.27" y="1649" width="319.23" height="34" fill="#A8CEFF" /><text x="1094.0" y="1672" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">20.00</text></g><polygon points="55,1661.0 63,1666.0 55,1671.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="ProductID" data-source="Products" data-value="2"><rect x="68.5" y="1684" width="223.215" height="34" fill="#EAF3FF" /><text x="282.215" y="1707" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CategoryID" data-source="Products" data-value="10"><rect x="292.715" y="1684" width="233.746" height="34" fill="#EAF3FF" /><text x="516.961" y="1707" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="2" data-column="2" data-field="full_price_flag" data-source="Products" data-value="1"><rect x="527.461" y="1684" width="255.809" height="34" fill="#A8CEFF" /><text x="773.77" y="1707" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="3" data-field="product_discount_pct" data-source="Products" data-value="0.00"><rect x="784.27" y="1684" width="319.23" height="34" fill="#A8CEFF" /><text x="1094.0" y="1707" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">0.00</text></g><polygon points="55,1696.0 63,1701.0 55,1706.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="ProductID" data-source="Products" data-value="3"><rect x="68.5" y="1719" width="223.215" height="34" fill="#EAF3FF" /><text x="282.215" y="1742" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="CategoryID" data-source="Products" data-value="10"><rect x="292.715" y="1719" width="233.746" height="34" fill="#EAF3FF" /><text x="516.961" y="1742" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="3" data-column="2" data-field="full_price_flag" data-source="Products" data-value="0"><rect x="527.461" y="1719" width="255.809" height="34" fill="#A8CEFF" /><text x="773.77" y="1742" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="3" data-column="3" data-field="product_discount_pct" data-source="Products" data-value="NULL"><rect x="784.27" y="1719" width="319.23" height="34" fill="#A8CEFF" /><text x="1094.0" y="1742" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#10376B" text-anchor="end">NULL</text></g><polygon points="55,1731.0 63,1736.0 55,1741.0" fill="#263746" /><g data-fit="value" data-row="4" data-column="0" data-field="ProductID" data-source="Products" data-value="4"><rect x="68.5" y="1754" width="223.215" height="34" fill="#EAF3FF" /><text x="282.215" y="1777" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="1" data-field="CategoryID" data-source="Products" data-value="20"><rect x="292.715" y="1754" width="233.746" height="34" fill="#EAF3FF" /><text x="516.961" y="1777" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g><g data-fit="value" data-row="4" data-column="2" data-field="full_price_flag" data-source="Products" data-value="0"><rect x="527.461" y="1754" width="255.809" height="34" fill="#EAF3FF" /><text x="773.77" y="1777" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="4" data-column="3" data-field="product_discount_pct" data-source="Products" data-value="25.00"><rect x="784.27" y="1754" width="319.23" height="34" fill="#EAF3FF" /><text x="1094.0" y="1777" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">25.00</text></g><g data-fit="value" data-row="5" data-column="0" data-field="ProductID" data-source="Products" data-value="5"><rect x="68.5" y="1789" width="223.215" height="34" fill="#EAF3FF" /><text x="282.215" y="1812" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="1" data-field="CategoryID" data-source="Products" data-value="20"><rect x="292.715" y="1789" width="233.746" height="34" fill="#EAF3FF" /><text x="516.961" y="1812" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g><g data-fit="value" data-row="5" data-column="2" data-field="full_price_flag" data-source="Products" data-value="0"><rect x="527.461" y="1789" width="255.809" height="34" fill="#EAF3FF" /><text x="773.77" y="1812" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="5" data-column="3" data-field="product_discount_pct" data-source="Products" data-value="NULL"><rect x="784.27" y="1789" width="319.23" height="34" fill="#EAF3FF" /><text x="1094.0" y="1812" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="end">NULL</text></g></g>
+<rect x="32" y="1853" width="1096" height="348" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1883" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1863" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1882" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 2 rows</text>
+<text x="52" y="1918" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which denominators belong to each category?</text>
+<text x="52" y="1947" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five</text>
+<text x="52" y="1972" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">products still count.</text>
+<rect x="52" y="1988" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2009" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SUM(full_price_flag), AVG(product_discount_pct) [using intermediate names]</text>
+<g role="group" aria-label="P012 · Final output" data-table="P012 · Final output"><g data-fit="source" data-source="Products" data-first="0" data-last="0" aria-label="Products"><rect x="68.5" y="2036" width="138.714" height="35" fill="#075BCC" /><text x="78" y="2059" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="1" data-last="6" aria-label="Products calculated"><rect x="208.214" y="2036" width="895.286" height="35" fill="#075BCC" /><text x="217.714" y="2059" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="field" data-header="CategoryID" data-column="0" data-source="Products" aria-label="Products.CategoryID"><rect x="68.5" y="2072" width="138.714" height="39" fill="#CEE3FF" /><text x="197.714" y="2094" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CategoryID</text></g><g data-fit="field" data-header="products" data-column="1" data-source="Products" aria-label="Products.products"><rect x="208.214" y="2072" width="118.808" height="39" fill="#CEE3FF" /><text x="317.522" y="2094" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">products</text><line x1="242.694" x2="317.522" y1="2098" y2="2098" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="min_price" data-column="2" data-source="Products" aria-label="Products.min_price"><rect x="328.022" y="2072" width="125.246" height="39" fill="#CEE3FF" /><text x="443.768" y="2094" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">min_price</text></g><g data-fit="field" data-header="max_price" data-column="3" data-source="Products" aria-label="Products.max_price"><rect x="454.268" y="2072" width="129.23" height="39" fill="#CEE3FF" /><text x="573.998" y="2094" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">max_price</text></g><g data-fit="field" data-header="avg_price" data-column="4" data-source="Products" aria-label="Products.avg_price"><rect x="584.498" y="2072" width="124.449" height="39" fill="#CEE3FF" /><text x="699.446" y="2094" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">avg_price</text><line x1="618.978" x2="699.446" y1="2098" y2="2098" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="full_price_products" data-column="5" data-source="Products" aria-label="Products.full_price_products"><rect x="709.946" y="2072" width="203.621" height="39" fill="#CEE3FF" /><text x="904.067" y="2094" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">full_price_products</text><line x1="744.426" x2="904.067" y1="2098" y2="2098" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="avg_discount_pct" data-column="6" data-source="Products" aria-label="Products.avg_discount_pct"><rect x="914.567" y="2072" width="188.933" height="39" fill="#CEE3FF" /><text x="1094.0" y="2094" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">avg_discount_pct</text><line x1="949.047" x2="1094.0" y1="2098" y2="2098" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="CategoryID" data-source="Products" data-value="10"><rect x="68.5" y="2112" width="138.714" height="34" fill="#EAF3FF" /><text x="197.714" y="2135" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="1" data-column="1" data-field="products" data-source="Products" data-value="3"><rect x="208.214" y="2112" width="118.808" height="34" fill="#A8CEFF" /><text x="317.522" y="2135" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="1" data-column="2" data-field="min_price" data-source="Products" data-value="30"><rect x="328.022" y="2112" width="125.246" height="34" fill="#EAF3FF" /><text x="443.768" y="2135" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">30</text></g><g data-fit="value" data-row="1" data-column="3" data-field="max_price" data-source="Products" data-value="100"><rect x="454.268" y="2112" width="129.23" height="34" fill="#EAF3FF" /><text x="573.998" y="2135" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g><g data-fit="value" data-row="1" data-column="4" data-field="avg_price" data-source="Products" data-value="70.00"><rect x="584.498" y="2112" width="124.449" height="34" fill="#A8CEFF" /><text x="699.446" y="2135" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">70.00</text></g><g data-fit="value" data-row="1" data-column="5" data-field="full_price_products" data-source="Products" data-value="1"><rect x="709.946" y="2112" width="203.621" height="34" fill="#A8CEFF" /><text x="904.067" y="2135" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="6" data-field="avg_discount_pct" data-source="Products" data-value="10.00"><rect x="914.567" y="2112" width="188.933" height="34" fill="#A8CEFF" /><text x="1094.0" y="2135" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">10.00</text></g><polygon points="55,2124.0 63,2129.0 55,2134.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="CategoryID" data-source="Products" data-value="20"><rect x="68.5" y="2147" width="138.714" height="34" fill="#EAF3FF" /><text x="197.714" y="2170" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g><g data-fit="value" data-row="2" data-column="1" data-field="products" data-source="Products" data-value="2"><rect x="208.214" y="2147" width="118.808" height="34" fill="#EAF3FF" /><text x="317.522" y="2170" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="2" data-field="min_price" data-source="Products" data-value="120"><rect x="328.022" y="2147" width="125.246" height="34" fill="#EAF3FF" /><text x="443.768" y="2170" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">120</text></g><g data-fit="value" data-row="2" data-column="3" data-field="max_price" data-source="Products" data-value="150"><rect x="454.268" y="2147" width="129.23" height="34" fill="#EAF3FF" /><text x="573.998" y="2170" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">150</text></g><g data-fit="value" data-row="2" data-column="4" data-field="avg_price" data-source="Products" data-value="135.00"><rect x="584.498" y="2147" width="124.449" height="34" fill="#EAF3FF" /><text x="699.446" y="2170" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">135.00</text></g><g data-fit="value" data-row="2" data-column="5" data-field="full_price_products" data-source="Products" data-value="0"><rect x="709.946" y="2147" width="203.621" height="34" fill="#EAF3FF" /><text x="904.067" y="2170" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="2" data-column="6" data-field="avg_discount_pct" data-source="Products" data-value="25.00"><rect x="914.567" y="2147" width="188.933" height="34" fill="#EAF3FF" /><text x="1094.0" y="2170" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">25.00</text></g></g>
 </svg>

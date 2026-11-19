@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1236" viewBox="0 0 1160 1236" role="img" aria-labelledby="title desc">
-<title id="title">P005 &#183; Orders placed in Q1 2025</title>
-<desc id="desc">One row per order placed in Q1 2025. Order 1 is from December and drops out. January 1 qualifies exactly at the lower boundary. March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter's two orders. FROM Orders &#183; one table is enough. The date that decides eligibility and the amount to display both belong to an order. Its customer ID is already recorded on that same row.</desc>
-<rect width="1160" height="1236" fill="#f4f7f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1400" viewBox="0 0 1160 1400" role="img" aria-labelledby="title desc">
+<title id="title">P005 · Orders placed in Q1 2025</title>
+<desc id="desc">One row per order placed in Q1 2025. Order 1 is from December and drops out. January 1 qualifies exactly at the lower boundary. March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter&#x27;s two orders. FROM Orders · one table is enough. The date that decides eligibility and the amount to display both belong to an order. Its customer ID is already recorded on that same row.</desc>
+<rect width="1160" height="1400" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P005    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Orders placed in Q1 2025</text>
@@ -10,172 +10,33 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Which side of the quarter boundary contains an order dated April 1?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  &#183;  4 rows</text>
-<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="68" y="354" width="219.094" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
-<rect x="287.094" y="354" width="246.188" height="26" rx="0" fill="#d8e9f7"/>
-<text x="298.094" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
-<rect x="533.281" y="354" width="252.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="544.281" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
-<rect x="785.562" y="354" width="318.438" height="26" rx="0" fill="#d8e9f7"/>
-<text x="796.562" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Total_Order_Amount</text>
-<rect x="68" y="380" width="219.094" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 409L287.094 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="287.094" y="380" width="246.188" height="29" rx="0" fill="#edf4fb"/>
-<text x="298.094" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M287.094 409L533.281 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="533.281" y="380" width="252.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="544.281" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024-12-31</text>
-<path d="M533.281 409L785.562 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="785.562" y="380" width="318.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="796.562" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">50</text>
-<path d="M785.562 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="409" width="219.094" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 438L287.094 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="287.094" y="409" width="246.188" height="29" rx="0" fill="#ffffff"/>
-<text x="298.094" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">11</text>
-<path d="M287.094 438L533.281 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="533.281" y="409" width="252.281" height="29" rx="0" fill="#ffffff"/>
-<text x="544.281" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
-<path d="M533.281 438L785.562 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="785.562" y="409" width="318.438" height="29" rx="0" fill="#ffffff"/>
-<text x="796.562" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M785.562 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 447.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="438" width="219.094" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 467L287.094 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="287.094" y="438" width="246.188" height="29" rx="0" fill="#edf4fb"/>
-<text x="298.094" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
-<path d="M287.094 467L533.281 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="533.281" y="438" width="252.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="544.281" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-31</text>
-<path d="M533.281 467L785.562 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="785.562" y="438" width="318.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="796.562" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M785.562 467L1104 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 476.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="467" width="219.094" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 496L287.094 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="287.094" y="467" width="246.188" height="29" rx="0" fill="#ffffff"/>
-<text x="298.094" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
-<path d="M287.094 496L533.281 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="533.281" y="467" width="252.281" height="29" rx="0" fill="#ffffff"/>
-<text x="544.281" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-04-01</text>
-<path d="M533.281 496L785.562 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="785.562" y="467" width="318.438" height="29" rx="0" fill="#ffffff"/>
-<text x="796.562" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">300</text>
-<path d="M785.562 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="520" width="1096" height="404" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="550" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
-<rect x="1000.38" y="530" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="549" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 &#8594; 3 rows</text>
-<text x="52" y="585" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does the quarter begin?</text>
-<g role="group" aria-label="FROM Orders &#183; one table is enough" data-decision="1">
-<rect x="52" y="596" width="1052" height="85" rx="5" fill="#edf4fb"/>
-<rect x="52" y="601" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="618" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Orders &#183; one table is enough</text>
-<text x="66" y="642" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The date that decides eligibility and the amount to display both belong to an order. Its customer ID is already recorded</text>
-<text x="66" y="665" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">on that same row.</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. A dark source band spans its columns. ƒ marks a calculated value. Deeper cell colors mark the values to</text>
+<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">follow. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  ·  4 rows</text>
+<g role="group" aria-label="Orders" data-table="Orders"><g data-fit="source" data-source="Orders" data-first="0" data-last="3" aria-label="Orders"><rect x="68.5" y="356" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="379" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Orders</text></g><g data-fit="field" data-header="OrderID" data-column="0" data-source="Orders" aria-label="Orders.OrderID"><rect x="68.5" y="392" width="216.297" height="39" fill="#CEE3FF" /><text x="275.297" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">OrderID</text></g><g data-fit="field" data-header="CustomerID" data-column="1" data-source="Orders" aria-label="Orders.CustomerID"><rect x="285.797" y="392" width="249.141" height="39" fill="#CEE3FF" /><text x="525.438" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CustomerID</text></g><g data-fit="field" data-header="OrderDate" data-column="2" data-source="Orders" aria-label="Orders.OrderDate"><rect x="535.938" y="392" width="246.234" height="39" fill="#CEE3FF" /><text x="545.438" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">OrderDate</text></g><g data-fit="field" data-header="Total_Order_Amount" data-column="3" data-source="Orders" aria-label="Orders.Total_Order_Amount"><rect x="783.172" y="392" width="320.328" height="39" fill="#CEE3FF" /><text x="1094.0" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">Total_Order_Amount</text></g><g data-fit="value" data-row="1" data-column="0" data-field="OrderID" data-source="Orders" data-value="1"><rect x="68.5" y="432" width="216.297" height="34" fill="#EAF3FF" /><text x="275.297" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CustomerID" data-source="Orders" data-value="10"><rect x="285.797" y="432" width="249.141" height="34" fill="#EAF3FF" /><text x="525.438" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="1" data-column="2" data-field="OrderDate" data-source="Orders" data-value="2024-12-31"><rect x="535.938" y="432" width="246.234" height="34" fill="#EAF3FF" /><text x="545.438" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">2024-12-31</text></g><g data-fit="value" data-row="1" data-column="3" data-field="Total_Order_Amount" data-source="Orders" data-value="50"><rect x="783.172" y="432" width="320.328" height="34" fill="#EAF3FF" /><text x="1094.0" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">50</text></g><g data-fit="value" data-row="2" data-column="0" data-field="OrderID" data-source="Orders" data-value="2"><rect x="68.5" y="467" width="216.297" height="34" fill="#EAF3FF" /><text x="275.297" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CustomerID" data-source="Orders" data-value="11"><rect x="285.797" y="467" width="249.141" height="34" fill="#EAF3FF" /><text x="525.438" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">11</text></g><g data-fit="value" data-row="2" data-column="2" data-field="OrderDate" data-source="Orders" data-value="2025-01-01"><rect x="535.938" y="467" width="246.234" height="34" fill="#EAF3FF" /><text x="545.438" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">2025-01-01</text></g><g data-fit="value" data-row="2" data-column="3" data-field="Total_Order_Amount" data-source="Orders" data-value="100"><rect x="783.172" y="467" width="320.328" height="34" fill="#EAF3FF" /><text x="1094.0" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g><g data-fit="value" data-row="3" data-column="0" data-field="OrderID" data-source="Orders" data-value="3"><rect x="68.5" y="502" width="216.297" height="34" fill="#EAF3FF" /><text x="275.297" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="CustomerID" data-source="Orders" data-value="12"><rect x="285.797" y="502" width="249.141" height="34" fill="#EAF3FF" /><text x="525.438" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">12</text></g><g data-fit="value" data-row="3" data-column="2" data-field="OrderDate" data-source="Orders" data-value="2025-03-31"><rect x="535.938" y="502" width="246.234" height="34" fill="#EAF3FF" /><text x="545.438" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">2025-03-31</text></g><g data-fit="value" data-row="3" data-column="3" data-field="Total_Order_Amount" data-source="Orders" data-value="200"><rect x="783.172" y="502" width="320.328" height="34" fill="#EAF3FF" /><text x="1094.0" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">200</text></g><polygon points="55,514.0 63,519.0 55,524.0" fill="#263746" /><g data-fit="value" data-row="4" data-column="0" data-field="OrderID" data-source="Orders" data-value="4"><rect x="68.5" y="537" width="216.297" height="34" fill="#EAF3FF" /><text x="275.297" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="1" data-field="CustomerID" data-source="Orders" data-value="13"><rect x="285.797" y="537" width="249.141" height="34" fill="#EAF3FF" /><text x="525.438" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">13</text></g><g data-fit="value" data-row="4" data-column="2" data-field="OrderDate" data-source="Orders" data-value="2025-04-01"><rect x="535.938" y="537" width="246.234" height="34" fill="#EAF3FF" /><text x="545.438" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">2025-04-01</text></g><g data-fit="value" data-row="4" data-column="3" data-field="Total_Order_Amount" data-source="Orders" data-value="300"><rect x="783.172" y="537" width="320.328" height="34" fill="#EAF3FF" /><text x="1094.0" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">300</text></g><polygon points="55,549.0 63,554.0 55,559.0" fill="#263746" /></g>
+<rect x="32" y="596" width="1096" height="451" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="626" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="606" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="625" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
+<text x="52" y="661" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does the quarter begin?</text>
+<g role="group" aria-label="FROM Orders · one table is enough" data-decision="1">
+<rect x="52" y="672" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="677" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="694" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Orders · one table is enough</text>
+<text x="66" y="718" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The date that decides eligibility and the amount to display both belong to an order. Its customer ID is already recorded</text>
+<text x="66" y="741" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">on that same row.</text>
 </g>
-<text x="52" y="707" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 1 is from December and drops out. January 1 qualifies exactly at the lower boundary.</text>
-<rect x="52" y="723" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="744" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE OrderDate &gt;= '2025-01-01'</text>
-<rect x="68" y="771" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="68" y="792" width="219.094" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
-<rect x="287.094" y="792" width="246.188" height="26" rx="0" fill="#d8e9f7"/>
-<text x="298.094" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
-<rect x="533.281" y="792" width="252.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="544.281" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
-<rect x="785.562" y="792" width="318.438" height="26" rx="0" fill="#d8e9f7"/>
-<text x="796.562" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Total_Order_Amount</text>
-<rect x="68" y="818" width="219.094" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 847L287.094 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="287.094" y="818" width="246.188" height="29" rx="0" fill="#edf4fb"/>
-<text x="298.094" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">11</text>
-<path d="M287.094 847L533.281 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="533.281" y="818" width="252.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="544.281" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
-<path d="M533.281 847L785.562 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="785.562" y="818" width="318.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="796.562" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M785.562 847L1104 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 856.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="847" width="219.094" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 876L287.094 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="287.094" y="847" width="246.188" height="29" rx="0" fill="#ffffff"/>
-<text x="298.094" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
-<path d="M287.094 876L533.281 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="533.281" y="847" width="252.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="544.281" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-31</text>
-<path d="M533.281 876L785.562 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="785.562" y="847" width="318.438" height="29" rx="0" fill="#ffffff"/>
-<text x="796.562" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M785.562 876L1104 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 885.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="876" width="219.094" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 905L287.094 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="287.094" y="876" width="246.188" height="29" rx="0" fill="#edf4fb"/>
-<text x="298.094" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
-<path d="M287.094 905L533.281 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="533.281" y="876" width="252.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="544.281" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-04-01</text>
-<path d="M533.281 905L785.562 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="785.562" y="876" width="318.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="796.562" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">300</text>
-<path d="M785.562 905L1104 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="934" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="964" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="944" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="963" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 2 rows</text>
-<text x="52" y="999" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does the quarter end?</text>
-<text x="52" y="1028" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter's two orders.</text>
-<rect x="52" y="1044" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND OrderDate &lt; '2025-04-01'</text>
-<rect x="68" y="1092" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="68" y="1113" width="219.094" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
-<rect x="287.094" y="1113" width="246.188" height="26" rx="0" fill="#d8e9f7"/>
-<text x="298.094" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
-<rect x="533.281" y="1113" width="252.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="544.281" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
-<rect x="785.562" y="1113" width="318.438" height="26" rx="0" fill="#d8e9f7"/>
-<text x="796.562" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Total_Order_Amount</text>
-<rect x="68" y="1139" width="219.094" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1168L287.094 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="287.094" y="1139" width="246.188" height="29" rx="0" fill="#edf4fb"/>
-<text x="298.094" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">11</text>
-<path d="M287.094 1168L533.281 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="533.281" y="1139" width="252.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="544.281" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
-<path d="M533.281 1168L785.562 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="785.562" y="1139" width="318.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="796.562" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M785.562 1168L1104 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1177.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1168" width="219.094" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1197L287.094 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="287.094" y="1168" width="246.188" height="29" rx="0" fill="#ffffff"/>
-<text x="298.094" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
-<path d="M287.094 1197L533.281 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="533.281" y="1168" width="252.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="544.281" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-31</text>
-<path d="M533.281 1197L785.562 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="785.562" y="1168" width="318.438" height="29" rx="0" fill="#ffffff"/>
-<text x="796.562" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M785.562 1197L1104 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="52" y="783" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 1 is from December and drops out. January 1 qualifies exactly at the lower boundary.</text>
+<rect x="52" y="799" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="820" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE OrderDate &gt;= &#x27;2025-01-01&#x27;</text>
+<g role="group" aria-label="P005 · Step 1" data-table="P005 · Step 1"><g data-fit="source" data-source="Orders" data-first="0" data-last="3" aria-label="Orders"><rect x="68.5" y="847" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="870" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Orders</text></g><g data-fit="field" data-header="OrderID" data-column="0" data-source="Orders" aria-label="Orders.OrderID"><rect x="68.5" y="883" width="216.297" height="39" fill="#CEE3FF" /><text x="275.297" y="905" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">OrderID</text></g><g data-fit="field" data-header="CustomerID" data-column="1" data-source="Orders" aria-label="Orders.CustomerID"><rect x="285.797" y="883" width="249.141" height="39" fill="#CEE3FF" /><text x="525.438" y="905" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CustomerID</text></g><g data-fit="field" data-header="OrderDate" data-column="2" data-source="Orders" aria-label="Orders.OrderDate"><rect x="535.938" y="883" width="246.234" height="39" fill="#CEE3FF" /><text x="545.438" y="905" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">OrderDate</text><line x1="545.438" x2="633.797" y1="909" y2="909" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="Total_Order_Amount" data-column="3" data-source="Orders" aria-label="Orders.Total_Order_Amount"><rect x="783.172" y="883" width="320.328" height="39" fill="#CEE3FF" /><text x="1094.0" y="905" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">Total_Order_Amount</text></g><g data-fit="value" data-row="1" data-column="0" data-field="OrderID" data-source="Orders" data-value="2"><rect x="68.5" y="923" width="216.297" height="34" fill="#EAF3FF" /><text x="275.297" y="946" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CustomerID" data-source="Orders" data-value="11"><rect x="285.797" y="923" width="249.141" height="34" fill="#EAF3FF" /><text x="525.438" y="946" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">11</text></g><g data-fit="value" data-row="1" data-column="2" data-field="OrderDate" data-source="Orders" data-value="2025-01-01"><rect x="535.938" y="923" width="246.234" height="34" fill="#EAF3FF" /><text x="545.438" y="946" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">2025-01-01</text></g><g data-fit="value" data-row="1" data-column="3" data-field="Total_Order_Amount" data-source="Orders" data-value="100"><rect x="783.172" y="923" width="320.328" height="34" fill="#EAF3FF" /><text x="1094.0" y="946" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g><g data-fit="value" data-row="2" data-column="0" data-field="OrderID" data-source="Orders" data-value="3"><rect x="68.5" y="958" width="216.297" height="34" fill="#EAF3FF" /><text x="275.297" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CustomerID" data-source="Orders" data-value="12"><rect x="285.797" y="958" width="249.141" height="34" fill="#EAF3FF" /><text x="525.438" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">12</text></g><g data-fit="value" data-row="2" data-column="2" data-field="OrderDate" data-source="Orders" data-value="2025-03-31"><rect x="535.938" y="958" width="246.234" height="34" fill="#A8CEFF" /><text x="545.438" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">2025-03-31</text></g><g data-fit="value" data-row="2" data-column="3" data-field="Total_Order_Amount" data-source="Orders" data-value="200"><rect x="783.172" y="958" width="320.328" height="34" fill="#EAF3FF" /><text x="1094.0" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">200</text></g><polygon points="55,970.0 63,975.0 55,980.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="OrderID" data-source="Orders" data-value="4"><rect x="68.5" y="993" width="216.297" height="34" fill="#EAF3FF" /><text x="275.297" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="3" data-column="1" data-field="CustomerID" data-source="Orders" data-value="13"><rect x="285.797" y="993" width="249.141" height="34" fill="#EAF3FF" /><text x="525.438" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">13</text></g><g data-fit="value" data-row="3" data-column="2" data-field="OrderDate" data-source="Orders" data-value="2025-04-01"><rect x="535.938" y="993" width="246.234" height="34" fill="#A8CEFF" /><text x="545.438" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">2025-04-01</text></g><g data-fit="value" data-row="3" data-column="3" data-field="Total_Order_Amount" data-source="Orders" data-value="300"><rect x="783.172" y="993" width="320.328" height="34" fill="#EAF3FF" /><text x="1094.0" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">300</text></g><polygon points="55,1005.0 63,1010.0 55,1015.0" fill="#263746" /></g>
+<rect x="32" y="1057" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1087" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1067" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1086" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="1122" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does the quarter end?</text>
+<text x="52" y="1151" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter&#x27;s two orders.</text>
+<rect x="52" y="1167" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1188" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND OrderDate &lt; &#x27;2025-04-01&#x27;</text>
+<g role="group" aria-label="P005 · Final output" data-table="P005 · Final output"><g data-fit="source" data-source="Orders" data-first="0" data-last="3" aria-label="Orders"><rect x="68.5" y="1215" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="1238" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Orders</text></g><g data-fit="field" data-header="OrderID" data-column="0" data-source="Orders" aria-label="Orders.OrderID"><rect x="68.5" y="1251" width="216.297" height="39" fill="#CEE3FF" /><text x="275.297" y="1273" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">OrderID</text><line x1="208.828" x2="275.297" y1="1277" y2="1277" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="CustomerID" data-column="1" data-source="Orders" aria-label="Orders.CustomerID"><rect x="285.797" y="1251" width="249.141" height="39" fill="#CEE3FF" /><text x="525.438" y="1273" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CustomerID</text></g><g data-fit="field" data-header="OrderDate" data-column="2" data-source="Orders" aria-label="Orders.OrderDate"><rect x="535.938" y="1251" width="246.234" height="39" fill="#CEE3FF" /><text x="545.438" y="1273" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">OrderDate</text><line x1="545.438" x2="633.797" y1="1277" y2="1277" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="Total_Order_Amount" data-column="3" data-source="Orders" aria-label="Orders.Total_Order_Amount"><rect x="783.172" y="1251" width="320.328" height="39" fill="#CEE3FF" /><text x="1094.0" y="1273" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">Total_Order_Amount</text></g><g data-fit="value" data-row="1" data-column="0" data-field="OrderID" data-source="Orders" data-value="2"><rect x="68.5" y="1291" width="216.297" height="34" fill="#EAF3FF" /><text x="275.297" y="1314" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CustomerID" data-source="Orders" data-value="11"><rect x="285.797" y="1291" width="249.141" height="34" fill="#EAF3FF" /><text x="525.438" y="1314" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">11</text></g><g data-fit="value" data-row="1" data-column="2" data-field="OrderDate" data-source="Orders" data-value="2025-01-01"><rect x="535.938" y="1291" width="246.234" height="34" fill="#EAF3FF" /><text x="545.438" y="1314" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">2025-01-01</text></g><g data-fit="value" data-row="1" data-column="3" data-field="Total_Order_Amount" data-source="Orders" data-value="100"><rect x="783.172" y="1291" width="320.328" height="34" fill="#EAF3FF" /><text x="1094.0" y="1314" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g><g data-fit="value" data-row="2" data-column="0" data-field="OrderID" data-source="Orders" data-value="3"><rect x="68.5" y="1326" width="216.297" height="34" fill="#A8CEFF" /><text x="275.297" y="1349" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CustomerID" data-source="Orders" data-value="12"><rect x="285.797" y="1326" width="249.141" height="34" fill="#EAF3FF" /><text x="525.438" y="1349" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">12</text></g><g data-fit="value" data-row="2" data-column="2" data-field="OrderDate" data-source="Orders" data-value="2025-03-31"><rect x="535.938" y="1326" width="246.234" height="34" fill="#A8CEFF" /><text x="545.438" y="1349" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">2025-03-31</text></g><g data-fit="value" data-row="2" data-column="3" data-field="Total_Order_Amount" data-source="Orders" data-value="200"><rect x="783.172" y="1326" width="320.328" height="34" fill="#EAF3FF" /><text x="1094.0" y="1349" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">200</text></g><polygon points="55,1338.0 63,1343.0 55,1348.0" fill="#263746" /></g>
 </svg>

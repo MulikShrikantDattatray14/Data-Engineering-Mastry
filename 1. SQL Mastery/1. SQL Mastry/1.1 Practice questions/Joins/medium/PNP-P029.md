@@ -94,7 +94,7 @@ The second `LEFT JOIN` keeps order 16 and supplies `NULL` for its missing units.
 
 ## Final learner solution — SQLite
 
-This verified version uses Shri’s CTE, both left joins, shipper grouping and descending sort. The final units expression applies the zero fallback shown above.
+Shri’s final SQLite solution uses the per-order CTE and both left joins. In the saved query, `COALESCE(SUM(od.total_units), 0)` gives OtherShip zero units when its only order has no detail rows.
 
 ```sql
 WITH OrderDetails_2 AS (

@@ -1,210 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2265" viewBox="0 0 1160 2265" role="img" aria-labelledby="title desc">
-<title id="title">B1.03 &#183; Binary Tree Nodes</title>
-<desc id="desc">One row per tree node with its role. Node 5 is the root. Test it first because it also appears in the list of parents. The parent IDs are 2, 5 and 8, each occurring twice. Removing NULL makes the NOT IN leaf test determinate. Leaves 1, 3, 6 and 9 have no children. Look up each N against the known parent IDs. Nodes 2 and 8 are inner nodes. One root + two inner nodes + four leaves = seven nodes, ordered by N. Outer query &#183; FROM BST. The tree stores one row per node. Its N identifies the node and its own P reveals whether it has a parent. Subquery &#183; read BST again. The second read provides the non-NULL parent values to test for membership. A node with two children still gets one classification. No self-join is needed.</desc>
-<rect width="1160" height="2265" fill="#f4f7f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2583" viewBox="0 0 1160 2583" role="img" aria-labelledby="title desc">
+<title id="title">B1.03 · Binary Tree Nodes</title>
+<desc id="desc">One row per tree node with its role. Node 5 is the root. Test it first because it also appears in the list of parents. The parent IDs are 2, 5 and 8, each occurring twice. Removing NULL makes the NOT IN leaf test determinate. Leaves 1, 3, 6 and 9 have no children. Look up each N against the known parent IDs. Nodes 2 and 8 are inner nodes. One root + two inner nodes + four leaves = seven nodes, ordered by N. Outer query · FROM BST. The tree stores one row per node. Its N identifies the node and its own P reveals whether it has a parent. Subquery · read BST again. The second read provides the non-NULL parent values to test for membership. A node with two children still gets one classification. No self-join is needed.</desc>
+<rect width="1160" height="2583" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">BOSSCODER  1.03    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Binary Tree Nodes</text>
 <text x="32" y="124" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#405766">One row per tree node with its role.</text>
 <rect x="32" y="151" width="1096" height="101" rx="10" fill="#e6f1ec"/>
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
-<text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Node 5 is both someone's parent and has no parent of its own. Which label takes</text>
+<text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Node 5 is both someone&#x27;s parent and has no parent of its own. Which label takes</text>
 <text x="50" y="226" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">precedence?</text>
 <text x="32" y="290" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="318" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
-<text x="68" y="351" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">BST  &#183;  7 rows</text>
-<rect x="68" y="360" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="375" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">BST</text>
-<rect x="68" y="381" width="512.789" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="396" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">N</text>
-<rect x="580.789" y="381" width="523.211" height="26" rx="0" fill="#d8e9f7"/>
-<text x="591.789" y="396" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">P</text>
-<rect x="68" y="407" width="512.789" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="426" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 436L580.789 436" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="580.789" y="407" width="523.211" height="29" rx="0" fill="#edf4fb"/>
-<text x="591.789" y="426" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M580.789 436L1104 436" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="436" width="512.789" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="455" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 465L580.789 465" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="580.789" y="436" width="523.211" height="29" rx="0" fill="#ffffff"/>
-<text x="591.789" y="455" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M580.789 465L1104 465" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="465" width="512.789" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="484" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 494L580.789 494" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="580.789" y="465" width="523.211" height="29" rx="0" fill="#edf4fb"/>
-<text x="591.789" y="484" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M580.789 494L1104 494" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="494" width="512.789" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="513" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
-<path d="M68 523L580.789 523" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="580.789" y="494" width="523.211" height="29" rx="0" fill="#ffffff"/>
-<text x="591.789" y="513" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M580.789 523L1104 523" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="523" width="512.789" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="542" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 552L580.789 552" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="580.789" y="523" width="523.211" height="29" rx="0" fill="#edf4fb"/>
-<text x="591.789" y="542" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M580.789 552L1104 552" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="552" width="512.789" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="571" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 581L580.789 581" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="580.789" y="552" width="523.211" height="29" rx="0" fill="#ffffff"/>
-<text x="591.789" y="571" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M580.789 581L1104 581" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 590.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="581" width="512.789" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="600" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 610L580.789 610" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="580.789" y="581" width="523.211" height="29" rx="0" fill="#edf4fb"/>
-<text x="591.789" y="600" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M580.789 610L1104 610" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="634" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="664" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
-<rect x="1008.7" y="644" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1020.7" y="663" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 &#8594; 1 row</text>
-<text x="52" y="699" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which node has no parent?</text>
-<g role="group" aria-label="Outer query &#183; FROM BST" data-decision="2">
-<rect x="52" y="710" width="1052" height="62" rx="5" fill="#edf4fb"/>
-<rect x="52" y="715" width="4" height="52" rx="2" fill="#194f7c"/>
-<text x="66" y="732" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">Outer query &#183; FROM BST</text>
-<text x="66" y="756" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The tree stores one row per node. Its N identifies the node and its own P reveals whether it has a parent.</text>
+<text x="32" y="318" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. A dark source band spans its columns. ƒ marks a calculated value. Deeper cell colors mark the values to</text>
+<text x="32" y="341" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">follow. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="374" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">BST  ·  7 rows</text>
+<g role="group" aria-label="BST" data-table="BST"><g data-fit="source" data-source="BST" data-first="0" data-last="1" aria-label="BST"><rect x="68.5" y="383" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="406" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">BST</text></g><g data-fit="field" data-header="N" data-column="0" data-source="BST" aria-label="BST.N"><rect x="68.5" y="419" width="503.992" height="39" fill="#CEE3FF" /><text x="562.992" y="441" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">N</text></g><g data-fit="field" data-header="P" data-column="1" data-source="BST" aria-label="BST.P"><rect x="573.492" y="419" width="530.008" height="39" fill="#CEE3FF" /><text x="1094.0" y="441" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">P</text></g><g data-fit="value" data-row="1" data-column="0" data-field="N" data-source="BST" data-value="1"><rect x="68.5" y="459" width="503.992" height="34" fill="#EAF3FF" /><text x="562.992" y="482" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="P" data-source="BST" data-value="2"><rect x="573.492" y="459" width="530.008" height="34" fill="#EAF3FF" /><text x="1094.0" y="482" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="0" data-field="N" data-source="BST" data-value="3"><rect x="68.5" y="494" width="503.992" height="34" fill="#EAF3FF" /><text x="562.992" y="517" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="2" data-column="1" data-field="P" data-source="BST" data-value="2"><rect x="573.492" y="494" width="530.008" height="34" fill="#EAF3FF" /><text x="1094.0" y="517" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="3" data-column="0" data-field="N" data-source="BST" data-value="6"><rect x="68.5" y="529" width="503.992" height="34" fill="#EAF3FF" /><text x="562.992" y="552" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">6</text></g><g data-fit="value" data-row="3" data-column="1" data-field="P" data-source="BST" data-value="8"><rect x="573.492" y="529" width="530.008" height="34" fill="#EAF3FF" /><text x="1094.0" y="552" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">8</text></g><g data-fit="value" data-row="4" data-column="0" data-field="N" data-source="BST" data-value="9"><rect x="68.5" y="564" width="503.992" height="34" fill="#EAF3FF" /><text x="562.992" y="587" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">9</text></g><g data-fit="value" data-row="4" data-column="1" data-field="P" data-source="BST" data-value="8"><rect x="573.492" y="564" width="530.008" height="34" fill="#EAF3FF" /><text x="1094.0" y="587" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">8</text></g><g data-fit="value" data-row="5" data-column="0" data-field="N" data-source="BST" data-value="2"><rect x="68.5" y="599" width="503.992" height="34" fill="#EAF3FF" /><text x="562.992" y="622" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="5" data-column="1" data-field="P" data-source="BST" data-value="5"><rect x="573.492" y="599" width="530.008" height="34" fill="#EAF3FF" /><text x="1094.0" y="622" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="6" data-column="0" data-field="N" data-source="BST" data-value="8"><rect x="68.5" y="634" width="503.992" height="34" fill="#EAF3FF" /><text x="562.992" y="657" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">8</text></g><g data-fit="value" data-row="6" data-column="1" data-field="P" data-source="BST" data-value="5"><rect x="573.492" y="634" width="530.008" height="34" fill="#EAF3FF" /><text x="1094.0" y="657" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="7" data-column="0" data-field="N" data-source="BST" data-value="5"><rect x="68.5" y="669" width="503.992" height="34" fill="#EAF3FF" /><text x="562.992" y="692" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="7" data-column="1" data-field="P" data-source="BST" data-value="NULL"><rect x="573.492" y="669" width="530.008" height="34" fill="#EAF3FF" /><text x="1094.0" y="692" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="end">NULL</text></g><polygon points="55,681.0 63,686.0 55,691.0" fill="#263746" /></g>
+<rect x="32" y="728" width="1096" height="358" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="758" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1008.7" y="738" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1020.7" y="757" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 1 row</text>
+<text x="52" y="793" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which node has no parent?</text>
+<g role="group" aria-label="Outer query · FROM BST" data-decision="2">
+<rect x="52" y="804" width="1052" height="62" rx="5" fill="#edf4fb"/>
+<rect x="52" y="809" width="4" height="52" rx="2" fill="#194f7c"/>
+<text x="66" y="826" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">Outer query · FROM BST</text>
+<text x="66" y="850" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The tree stores one row per node. Its N identifies the node and its own P reveals whether it has a parent.</text>
 </g>
-<text x="52" y="798" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Node 5 is the root. Test it first because it also appears in the list of parents.</text>
-<rect x="52" y="814" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="835" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE P IS NULL</text>
-<rect x="68" y="862" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="877" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">BST</text>
-<rect x="68" y="883" width="512.789" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="898" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">N</text>
-<rect x="580.789" y="883" width="523.211" height="26" rx="0" fill="#d8e9f7"/>
-<text x="591.789" y="898" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">P</text>
-<path d="M54 918.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="909" width="512.789" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="928" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 938L580.789 938" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="580.789" y="909" width="523.211" height="29" rx="0" fill="#d8e9f7"/>
-<text x="591.789" y="928" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M580.789 938L1104 938" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="967" width="1096" height="491" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="997" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="977" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="996" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 &#8594; 6 rows</text>
-<text x="52" y="1032" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which values can safely enter the parent lookup?</text>
-<g role="group" aria-label="Subquery &#183; read BST again" data-decision="3">
-<rect x="52" y="1043" width="1052" height="85" rx="5" fill="#edf4fb"/>
-<rect x="52" y="1048" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="1065" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">Subquery &#183; read BST again</text>
-<text x="66" y="1089" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The second read provides the non-NULL parent values to test for membership. A node with two children still gets one</text>
-<text x="66" y="1112" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">classification. No self-join is needed.</text>
+<text x="52" y="892" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Node 5 is the root. Test it first because it also appears in the list of parents.</text>
+<rect x="52" y="908" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="929" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE P IS NULL</text>
+<g role="group" aria-label="B1.03 · Step 2" data-table="B1.03 · Step 2"><g data-fit="source" data-source="BST" data-first="0" data-last="1" aria-label="BST"><rect x="68.5" y="956" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="979" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">BST</text></g><g data-fit="field" data-header="N" data-column="0" data-source="BST" aria-label="BST.N"><rect x="68.5" y="992" width="503.992" height="39" fill="#CEE3FF" /><text x="562.992" y="1014" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">N</text><line x1="550.445" x2="562.992" y1="1018" y2="1018" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="P" data-column="1" data-source="BST" aria-label="BST.P"><rect x="573.492" y="992" width="530.008" height="39" fill="#CEE3FF" /><text x="582.992" y="1014" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">P</text><line x1="582.992" x2="593.992" y1="1018" y2="1018" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="N" data-source="BST" data-value="5"><rect x="68.5" y="1032" width="503.992" height="34" fill="#A8CEFF" /><text x="562.992" y="1055" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="1" data-column="1" data-field="P" data-source="BST" data-value="NULL"><rect x="573.492" y="1032" width="530.008" height="34" fill="#A8CEFF" /><text x="582.992" y="1055" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><polygon points="55,1044.0 63,1049.0 55,1054.0" fill="#263746" /></g>
+<rect x="32" y="1096" width="1096" height="556" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1126" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1106" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1125" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 6 rows</text>
+<text x="52" y="1161" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which values can safely enter the parent lookup?</text>
+<g role="group" aria-label="Subquery · read BST again" data-decision="3">
+<rect x="52" y="1172" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="1177" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="1194" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">Subquery · read BST again</text>
+<text x="66" y="1218" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The second read provides the non-NULL parent values to test for membership. A node with two children still gets one</text>
+<text x="66" y="1241" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">classification. No self-join is needed.</text>
 </g>
-<text x="52" y="1154" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The parent IDs are 2, 5 and 8, each occurring twice. Removing NULL makes the NOT IN leaf test determinate.</text>
-<rect x="52" y="1170" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1191" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT P FROM BST WHERE P IS NOT NULL</text>
-<rect x="68" y="1218" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1233" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">BST</text>
-<rect x="68" y="1239" width="1036" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1254" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">P</text>
-<rect x="68" y="1265" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1284" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1294L1104 1294" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1294" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1313" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1323L1104 1323" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1323" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1342" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 1352L1104 1352" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1352" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1371" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 1381L1104 1381" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1381" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1400" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 1410L1104 1410" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1410" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1429" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 1439L1104 1439" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1468" width="1096" height="340" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1498" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
-<rect x="1000.38" y="1478" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1497" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 &#8594; 4 rows</text>
-<text x="52" y="1533" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which nodes never appear as a known parent?</text>
-<text x="52" y="1562" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Leaves 1, 3, 6 and 9 have no children. Look up each N against the known parent IDs.</text>
-<rect x="52" y="1578" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1599" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE N NOT IN (SELECT P FROM BST WHERE P IS NOT NULL)</text>
-<rect x="68" y="1626" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1641" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">BST</text>
-<rect x="68" y="1647" width="1036" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1662" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">N</text>
-<rect x="68" y="1673" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1692" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1702L1104 1702" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1702" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1721" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1731L1104 1731" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1731" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1750" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 1760L1104 1760" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1760" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1779" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
-<path d="M68 1789L1104 1789" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1818" width="1096" height="427" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1848" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1828" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1847" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 &#8594; 7 rows</text>
-<text x="52" y="1883" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How does CASE give each node one role?</text>
-<text x="52" y="1912" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nodes 2 and 8 are inner nodes. One root + two inner nodes + four leaves = seven nodes, ordered by N.</text>
-<rect x="52" y="1928" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1949" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN P IS NULL THEN 'Root' WHEN N NOT IN (&#8230;) THEN 'Leaf' ELSE 'Inner' END</text>
-<rect x="68" y="1976" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1991" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">BST</text>
-<rect x="68" y="1997" width="495.945" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2012" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">N</text>
-<rect x="563.945" y="1997" width="540.055" height="26" rx="0" fill="#d8e9f7"/>
-<text x="574.945" y="2012" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">NodeType</text>
-<rect x="68" y="2023" width="495.945" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2042" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 2052L563.945 2052" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="563.945" y="2023" width="540.055" height="29" rx="0" fill="#d8e9f7"/>
-<text x="574.945" y="2042" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Leaf</text>
-<path d="M563.945 2052L1104 2052" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2052" width="495.945" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 2081L563.945 2081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="563.945" y="2052" width="540.055" height="29" rx="0" fill="#d8e9f7"/>
-<text x="574.945" y="2071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Inner</text>
-<path d="M563.945 2081L1104 2081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2081" width="495.945" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2100" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 2110L563.945 2110" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="563.945" y="2081" width="540.055" height="29" rx="0" fill="#d8e9f7"/>
-<text x="574.945" y="2100" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Leaf</text>
-<path d="M563.945 2110L1104 2110" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 2119.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="2110" width="495.945" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2129" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 2139L563.945 2139" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="563.945" y="2110" width="540.055" height="29" rx="0" fill="#d8e9f7"/>
-<text x="574.945" y="2129" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Root</text>
-<path d="M563.945 2139L1104 2139" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2139" width="495.945" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 2168L563.945 2168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="563.945" y="2139" width="540.055" height="29" rx="0" fill="#d8e9f7"/>
-<text x="574.945" y="2158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Leaf</text>
-<path d="M563.945 2168L1104 2168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2168" width="495.945" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 2197L563.945 2197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="563.945" y="2168" width="540.055" height="29" rx="0" fill="#d8e9f7"/>
-<text x="574.945" y="2187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Inner</text>
-<path d="M563.945 2197L1104 2197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2197" width="495.945" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
-<path d="M68 2226L563.945 2226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="563.945" y="2197" width="540.055" height="29" rx="0" fill="#d8e9f7"/>
-<text x="574.945" y="2216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Leaf</text>
-<path d="M563.945 2226L1104 2226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="52" y="1283" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The parent IDs are 2, 5 and 8, each occurring twice. Removing NULL makes the NOT IN leaf test determinate.</text>
+<rect x="52" y="1299" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1320" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT P FROM BST WHERE P IS NOT NULL</text>
+<g role="group" aria-label="B1.03 · Step 3" data-table="B1.03 · Step 3"><g data-fit="source" data-source="BST" data-first="0" data-last="0" aria-label="BST"><rect x="68.5" y="1347" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="1370" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">BST</text></g><g data-fit="field" data-header="P" data-column="0" data-source="BST" aria-label="BST.P"><rect x="68.5" y="1383" width="1035.0" height="39" fill="#CEE3FF" /><text x="1094.0" y="1405" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">P</text><line x1="1083.0" x2="1094.0" y1="1409" y2="1409" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="P" data-source="BST" data-value="2"><rect x="68.5" y="1423" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1446" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="0" data-field="P" data-source="BST" data-value="2"><rect x="68.5" y="1458" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1481" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="3" data-column="0" data-field="P" data-source="BST" data-value="5"><rect x="68.5" y="1493" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1516" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="4" data-column="0" data-field="P" data-source="BST" data-value="5"><rect x="68.5" y="1528" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1551" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="0" data-field="P" data-source="BST" data-value="8"><rect x="68.5" y="1563" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1586" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">8</text></g><g data-fit="value" data-row="6" data-column="0" data-field="P" data-source="BST" data-value="8"><rect x="68.5" y="1598" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1621" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">8</text></g></g>
+<rect x="32" y="1662" width="1096" height="393" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1692" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1000.38" y="1672" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1691" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 4 rows</text>
+<text x="52" y="1727" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which nodes never appear as a known parent?</text>
+<text x="52" y="1756" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Leaves 1, 3, 6 and 9 have no children. Look up each N against the known parent IDs.</text>
+<rect x="52" y="1772" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1793" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE N NOT IN (SELECT P FROM BST WHERE P IS NOT NULL)</text>
+<g role="group" aria-label="B1.03 · Step 4" data-table="B1.03 · Step 4"><g data-fit="source" data-source="BST" data-first="0" data-last="0" aria-label="BST"><rect x="68.5" y="1820" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="1843" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">BST</text></g><g data-fit="field" data-header="N" data-column="0" data-source="BST" aria-label="BST.N"><rect x="68.5" y="1856" width="1035.0" height="39" fill="#CEE3FF" /><text x="1094.0" y="1878" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">N</text><line x1="1081.453" x2="1094.0" y1="1882" y2="1882" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="N" data-source="BST" data-value="1"><rect x="68.5" y="1896" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1919" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="0" data-field="N" data-source="BST" data-value="3"><rect x="68.5" y="1931" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1954" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="0" data-field="N" data-source="BST" data-value="6"><rect x="68.5" y="1966" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1989" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">6</text></g><g data-fit="value" data-row="4" data-column="0" data-field="N" data-source="BST" data-value="9"><rect x="68.5" y="2001" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="2024" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">9</text></g></g>
+<rect x="32" y="2065" width="1096" height="498" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="2095" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="2075" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="2094" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 7 rows</text>
+<text x="52" y="2130" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How does CASE give each node one role?</text>
+<text x="52" y="2159" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nodes 2 and 8 are inner nodes. One root + two inner nodes + four leaves = seven nodes, ordered by N.</text>
+<rect x="52" y="2175" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2196" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN P IS NULL THEN &#x27;Root&#x27; WHEN N NOT IN (…) THEN &#x27;Leaf&#x27; ELSE &#x27;Inner&#x27; END</text>
+<g role="group" aria-label="B1.03 · Final output" data-table="B1.03 · Final output"><g data-fit="source" data-source="BST" data-first="0" data-last="0" aria-label="BST"><rect x="68.5" y="2223" width="491.781" height="35" fill="#075BCC" /><text x="78" y="2246" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">BST</text></g><g data-fit="source" data-source="BST" data-first="1" data-last="1" aria-label="BST calculated"><rect x="561.281" y="2223" width="542.219" height="35" fill="#075BCC" /><text x="570.781" y="2246" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ BST</text></g><g data-fit="field" data-header="N" data-column="0" data-source="BST" aria-label="BST.N"><rect x="68.5" y="2259" width="491.781" height="39" fill="#CEE3FF" /><text x="550.781" y="2281" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">N</text><line x1="538.234" x2="550.781" y1="2285" y2="2285" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="NodeType" data-column="1" data-source="BST" aria-label="BST.NodeType"><rect x="561.281" y="2259" width="542.219" height="39" fill="#CEE3FF" /><text x="570.781" y="2281" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">NodeType</text><line x1="570.781" x2="653.688" y1="2285" y2="2285" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="N" data-source="BST" data-value="1"><rect x="68.5" y="2299" width="491.781" height="34" fill="#EAF3FF" /><text x="550.781" y="2322" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="NodeType" data-source="BST" data-value="Leaf"><rect x="561.281" y="2299" width="542.219" height="34" fill="#EAF3FF" /><text x="570.781" y="2322" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Leaf</text></g><g data-fit="value" data-row="2" data-column="0" data-field="N" data-source="BST" data-value="2"><rect x="68.5" y="2334" width="491.781" height="34" fill="#EAF3FF" /><text x="550.781" y="2357" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="NodeType" data-source="BST" data-value="Inner"><rect x="561.281" y="2334" width="542.219" height="34" fill="#EAF3FF" /><text x="570.781" y="2357" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Inner</text></g><g data-fit="value" data-row="3" data-column="0" data-field="N" data-source="BST" data-value="3"><rect x="68.5" y="2369" width="491.781" height="34" fill="#EAF3FF" /><text x="550.781" y="2392" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="NodeType" data-source="BST" data-value="Leaf"><rect x="561.281" y="2369" width="542.219" height="34" fill="#EAF3FF" /><text x="570.781" y="2392" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Leaf</text></g><g data-fit="value" data-row="4" data-column="0" data-field="N" data-source="BST" data-value="5"><rect x="68.5" y="2404" width="491.781" height="34" fill="#A8CEFF" /><text x="550.781" y="2427" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="4" data-column="1" data-field="NodeType" data-source="BST" data-value="Root"><rect x="561.281" y="2404" width="542.219" height="34" fill="#A8CEFF" /><text x="570.781" y="2427" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">Root</text></g><polygon points="55,2416.0 63,2421.0 55,2426.0" fill="#263746" /><g data-fit="value" data-row="5" data-column="0" data-field="N" data-source="BST" data-value="6"><rect x="68.5" y="2439" width="491.781" height="34" fill="#EAF3FF" /><text x="550.781" y="2462" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">6</text></g><g data-fit="value" data-row="5" data-column="1" data-field="NodeType" data-source="BST" data-value="Leaf"><rect x="561.281" y="2439" width="542.219" height="34" fill="#EAF3FF" /><text x="570.781" y="2462" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Leaf</text></g><g data-fit="value" data-row="6" data-column="0" data-field="N" data-source="BST" data-value="8"><rect x="68.5" y="2474" width="491.781" height="34" fill="#EAF3FF" /><text x="550.781" y="2497" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">8</text></g><g data-fit="value" data-row="6" data-column="1" data-field="NodeType" data-source="BST" data-value="Inner"><rect x="561.281" y="2474" width="542.219" height="34" fill="#EAF3FF" /><text x="570.781" y="2497" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Inner</text></g><g data-fit="value" data-row="7" data-column="0" data-field="N" data-source="BST" data-value="9"><rect x="68.5" y="2509" width="491.781" height="34" fill="#EAF3FF" /><text x="550.781" y="2532" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">9</text></g><g data-fit="value" data-row="7" data-column="1" data-field="NodeType" data-source="BST" data-value="Leaf"><rect x="561.281" y="2509" width="542.219" height="34" fill="#EAF3FF" /><text x="570.781" y="2532" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Leaf</text></g></g>
 </svg>

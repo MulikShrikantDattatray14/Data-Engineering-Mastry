@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2949" viewBox="0 0 1160 2949" role="img" aria-labelledby="title desc">
-<title id="title">P021 &#183; Top five customers by number of orders</title>
-<desc id="desc">One row per ranked buyer, including fifth-place ties. Nine order rows survive. Orders 17&#8211;19 retain ID 99 with NULL customer details. ID 7 has no orders and never enters the ranking. Nine orders form seven buyers. ID 99 contributes 3. IDs 1&#8211;6 contribute 1 each. The missing name becomes Unknown customer. Read the grouped buyers. Their counts are 3, 1, 1, 1, 1, 1, 1. The fifth value sets the cutoff at 1. Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID. First inside customer_counts &#183; FROM Orders. Only people who placed orders enter this ranking. The buyer ID written on each order is the value to count, even when its customer record is missing. Second &#183; LEFT JOIN Customers. Match the order&#8217;s CustomerID to Customers for the name. The left join keeps all three orders for ID 99. A customer with zero orders, such as ID 7, supplies no ranking row. Outer query &#183; FROM customer_counts. The CTE has one row per buyer ID. Reading it for the fifth-place cutoff compares buyers with buyers after all their orders have been counted.</desc>
-<rect width="1160" height="2949" fill="#f4f7f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="3363" viewBox="0 0 1160 3363" role="img" aria-labelledby="title desc">
+<title id="title">P021 · Top five customers by number of orders</title>
+<desc id="desc">One row per ranked buyer, including fifth-place ties. Nine order rows survive. Orders 17–19 retain ID 99 with NULL customer details. ID 7 has no orders and never enters the ranking. Nine orders form seven buyers. ID 99 contributes 3. IDs 1–6 contribute 1 each. The missing name becomes Unknown customer. Read the grouped buyers. Their counts are 3, 1, 1, 1, 1, 1, 1. The fifth value sets the cutoff at 1. Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID. First inside customer_counts · FROM Orders. Only people who placed orders enter this ranking. The buyer ID written on each order is the value to count, even when its customer record is missing. Second · LEFT JOIN Customers. Match the order’s CustomerID to Customers for the name. The left join keeps all three orders for ID 99. A customer with zero orders, such as ID 7, supplies no ranking row. Outer query · FROM customer_counts. The CTE has one row per buyer ID. Reading it for the fifth-place cutoff compares buyers with buyers after all their orders have been counted.</desc>
+<rect width="1160" height="3363" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P021    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Top five customers by number of orders</text>
@@ -10,520 +10,69 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Customer 99 has three orders and no customer record. Can that ID come first?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. Double underlines mark the matching keys. SQL excerpts use &#8230; for</text>
-<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">omitted clauses.</text>
-<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  &#183;  9 rows</text>
-<rect x="68" y="356" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="371" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="68" y="377" width="504.453" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
-<rect x="572.453" y="377" width="531.547" height="26" rx="0" fill="#d8e9f7"/>
-<text x="583.453" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
-<path d="M583.453 395L673.766 395" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<path d="M583.453 398L673.766 398" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<rect x="68" y="403" width="504.453" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">11</text>
-<path d="M68 432L572.453 432" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="403" width="531.547" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.453" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M572.453 432L1104 432" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="432" width="504.453" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="451" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
-<path d="M68 461L572.453 461" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="432" width="531.547" height="29" rx="0" fill="#ffffff"/>
-<text x="583.453" y="451" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M572.453 461L1104 461" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="461" width="504.453" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="480" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
-<path d="M68 490L572.453 490" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="461" width="531.547" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.453" y="480" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M572.453 490L1104 490" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="490" width="504.453" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="509" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
-<path d="M68 519L572.453 519" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="490" width="531.547" height="29" rx="0" fill="#ffffff"/>
-<text x="583.453" y="509" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M572.453 519L1104 519" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="519" width="504.453" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="538" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">15</text>
-<path d="M68 548L572.453 548" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="519" width="531.547" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.453" y="538" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M572.453 548L1104 548" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="548" width="504.453" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">16</text>
-<path d="M68 577L572.453 577" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="548" width="531.547" height="29" rx="0" fill="#ffffff"/>
-<text x="583.453" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M572.453 577L1104 577" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 586.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="577" width="504.453" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="596" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">17</text>
-<path d="M68 606L572.453 606" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="577" width="531.547" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.453" y="596" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
-<path d="M572.453 606L1104 606" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 615.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="606" width="504.453" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">18</text>
-<path d="M68 635L572.453 635" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="606" width="531.547" height="29" rx="0" fill="#ffffff"/>
-<text x="583.453" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
-<path d="M572.453 635L1104 635" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 644.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="635" width="504.453" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="654" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">19</text>
-<path d="M68 664L572.453 664" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.453" y="635" width="531.547" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.453" y="654" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
-<path d="M572.453 664L1104 664" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<text x="68" y="695" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#205e45" font-weight="700">Customers  &#183;  7 rows</text>
-<rect x="68" y="704" width="1036" height="21" rx="0" fill="#205e45"/>
-<text x="79" y="719" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<rect x="68" y="725" width="352.385" height="26" rx="0" fill="#d6ecdf"/>
-<text x="79" y="740" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">CustomerID</text>
-<path d="M79 743L169.312 743" fill="none" stroke="#205e45" stroke-width="1.2"/>
-<path d="M79 746L169.312 746" fill="none" stroke="#205e45" stroke-width="1.2"/>
-<rect x="420.385" y="725" width="343.354" height="26" rx="0" fill="#d6ecdf"/>
-<text x="431.385" y="740" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">FirstName</text>
-<rect x="763.74" y="725" width="340.26" height="26" rx="0" fill="#d6ecdf"/>
-<text x="774.74" y="740" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">LastName</text>
-<rect x="68" y="751" width="352.385" height="29" rx="0" fill="#eff7f2"/>
-<text x="79" y="770" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M68 780L420.385 780" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="420.385" y="751" width="343.354" height="29" rx="0" fill="#eff7f2"/>
-<text x="431.385" y="770" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Asha</text>
-<path d="M420.385 780L763.74 780" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="763.74" y="751" width="340.26" height="29" rx="0" fill="#eff7f2"/>
-<text x="774.74" y="770" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Rao</text>
-<path d="M763.74 780L1104 780" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="780" width="352.385" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="799" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2</text>
-<path d="M68 809L420.385 809" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="420.385" y="780" width="343.354" height="29" rx="0" fill="#ffffff"/>
-<text x="431.385" y="799" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ben</text>
-<path d="M420.385 809L763.74 809" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="763.74" y="780" width="340.26" height="29" rx="0" fill="#ffffff"/>
-<text x="774.74" y="799" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Das</text>
-<path d="M763.74 809L1104 809" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="809" width="352.385" height="29" rx="0" fill="#eff7f2"/>
-<text x="79" y="828" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">3</text>
-<path d="M68 838L420.385 838" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="420.385" y="809" width="343.354" height="29" rx="0" fill="#eff7f2"/>
-<text x="431.385" y="828" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Cia</text>
-<path d="M420.385 838L763.74 838" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="763.74" y="809" width="340.26" height="29" rx="0" fill="#eff7f2"/>
-<text x="774.74" y="828" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Sen</text>
-<path d="M763.74 838L1104 838" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="838" width="352.385" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="857" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">4</text>
-<path d="M68 867L420.385 867" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="420.385" y="838" width="343.354" height="29" rx="0" fill="#ffffff"/>
-<text x="431.385" y="857" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Dev</text>
-<path d="M420.385 867L763.74 867" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="763.74" y="838" width="340.26" height="29" rx="0" fill="#ffffff"/>
-<text x="774.74" y="857" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Roy</text>
-<path d="M763.74 867L1104 867" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="867" width="352.385" height="29" rx="0" fill="#eff7f2"/>
-<text x="79" y="886" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">5</text>
-<path d="M68 896L420.385 896" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="420.385" y="867" width="343.354" height="29" rx="0" fill="#eff7f2"/>
-<text x="431.385" y="886" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ena</text>
-<path d="M420.385 896L763.74 896" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="763.74" y="867" width="340.26" height="29" rx="0" fill="#eff7f2"/>
-<text x="774.74" y="886" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Jain</text>
-<path d="M763.74 896L1104 896" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="896" width="352.385" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="915" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">6</text>
-<path d="M68 925L420.385 925" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="420.385" y="896" width="343.354" height="29" rx="0" fill="#ffffff"/>
-<text x="431.385" y="915" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Farah</text>
-<path d="M420.385 925L763.74 925" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="763.74" y="896" width="340.26" height="29" rx="0" fill="#ffffff"/>
-<text x="774.74" y="915" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ali</text>
-<path d="M763.74 925L1104 925" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="925" width="352.385" height="29" rx="0" fill="#eff7f2"/>
-<text x="79" y="944" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">7</text>
-<path d="M68 954L420.385 954" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="420.385" y="925" width="343.354" height="29" rx="0" fill="#eff7f2"/>
-<text x="431.385" y="944" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Gita</text>
-<path d="M420.385 954L763.74 954" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="763.74" y="925" width="340.26" height="29" rx="0" fill="#eff7f2"/>
-<text x="774.74" y="944" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Shah</text>
-<path d="M763.74 954L1104 954" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="978" width="1096" height="696" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1008" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
-<rect x="1000.38" y="988" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1007" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 &#8594; 9 rows</text>
-<text x="52" y="1043" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which population defines the ranking?</text>
-<g role="group" aria-label="First inside customer_counts &#183; FROM Orders" data-decision="J1">
-<rect x="52" y="1054" width="1052" height="85" rx="5" fill="#edf4fb"/>
-<rect x="52" y="1059" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="1076" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">First inside customer_counts &#183; FROM Orders</text>
-<text x="66" y="1100" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Only people who placed orders enter this ranking. The buyer ID written on each order is the value to count, even when</text>
-<text x="66" y="1123" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">its customer record is missing.</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. A dark source band spans its columns. ƒ marks a calculated value. Deeper cell colors mark the values to</text>
+<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">follow. Double underlines mark the matching keys. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  ·  9 rows</text>
+<g role="group" aria-label="Orders" data-table="Orders"><g data-fit="source" data-source="Orders" data-first="0" data-last="1" aria-label="Orders"><rect x="68.5" y="356" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="379" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Orders</text></g><g data-fit="field" data-header="OrderID" data-column="0" data-source="Orders" aria-label="Orders.OrderID"><rect x="68.5" y="392" width="500.578" height="39" fill="#CEE3FF" /><text x="559.578" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">OrderID</text></g><g data-fit="field" data-header="CustomerID" data-column="1" data-source="Orders" aria-label="Orders.CustomerID"><rect x="570.078" y="392" width="533.422" height="39" fill="#CEE3FF" /><text x="1094.0" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CustomerID</text><line x1="994.688" x2="1094.0" y1="418" y2="418" stroke="#10376B" stroke-width="1.15" /><line x1="994.688" x2="1094.0" y1="421" y2="421" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="OrderID" data-source="Orders" data-value="11"><rect x="68.5" y="432" width="500.578" height="34" fill="#EAF3FF" /><text x="559.578" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">11</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CustomerID" data-source="Orders" data-value="1"><rect x="570.078" y="432" width="533.422" height="34" fill="#EAF3FF" /><text x="1094.0" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="0" data-field="OrderID" data-source="Orders" data-value="12"><rect x="68.5" y="467" width="500.578" height="34" fill="#EAF3FF" /><text x="559.578" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">12</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CustomerID" data-source="Orders" data-value="2"><rect x="570.078" y="467" width="533.422" height="34" fill="#EAF3FF" /><text x="1094.0" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="3" data-column="0" data-field="OrderID" data-source="Orders" data-value="13"><rect x="68.5" y="502" width="500.578" height="34" fill="#EAF3FF" /><text x="559.578" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">13</text></g><g data-fit="value" data-row="3" data-column="1" data-field="CustomerID" data-source="Orders" data-value="3"><rect x="570.078" y="502" width="533.422" height="34" fill="#EAF3FF" /><text x="1094.0" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="4" data-column="0" data-field="OrderID" data-source="Orders" data-value="14"><rect x="68.5" y="537" width="500.578" height="34" fill="#EAF3FF" /><text x="559.578" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">14</text></g><g data-fit="value" data-row="4" data-column="1" data-field="CustomerID" data-source="Orders" data-value="4"><rect x="570.078" y="537" width="533.422" height="34" fill="#EAF3FF" /><text x="1094.0" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="5" data-column="0" data-field="OrderID" data-source="Orders" data-value="15"><rect x="68.5" y="572" width="500.578" height="34" fill="#EAF3FF" /><text x="559.578" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">15</text></g><g data-fit="value" data-row="5" data-column="1" data-field="CustomerID" data-source="Orders" data-value="5"><rect x="570.078" y="572" width="533.422" height="34" fill="#EAF3FF" /><text x="1094.0" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="6" data-column="0" data-field="OrderID" data-source="Orders" data-value="16"><rect x="68.5" y="607" width="500.578" height="34" fill="#EAF3FF" /><text x="559.578" y="630" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">16</text></g><g data-fit="value" data-row="6" data-column="1" data-field="CustomerID" data-source="Orders" data-value="6"><rect x="570.078" y="607" width="533.422" height="34" fill="#EAF3FF" /><text x="1094.0" y="630" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">6</text></g><g data-fit="value" data-row="7" data-column="0" data-field="OrderID" data-source="Orders" data-value="17"><rect x="68.5" y="642" width="500.578" height="34" fill="#EAF3FF" /><text x="559.578" y="665" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">17</text></g><g data-fit="value" data-row="7" data-column="1" data-field="CustomerID" data-source="Orders" data-value="99"><rect x="570.078" y="642" width="533.422" height="34" fill="#A8CEFF" /><text x="1094.0" y="665" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">99</text></g><polygon points="55,654.0 63,659.0 55,664.0" fill="#263746" /><g data-fit="value" data-row="8" data-column="0" data-field="OrderID" data-source="Orders" data-value="18"><rect x="68.5" y="677" width="500.578" height="34" fill="#EAF3FF" /><text x="559.578" y="700" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">18</text></g><g data-fit="value" data-row="8" data-column="1" data-field="CustomerID" data-source="Orders" data-value="99"><rect x="570.078" y="677" width="533.422" height="34" fill="#A8CEFF" /><text x="1094.0" y="700" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">99</text></g><polygon points="55,689.0 63,694.0 55,699.0" fill="#263746" /><g data-fit="value" data-row="9" data-column="0" data-field="OrderID" data-source="Orders" data-value="19"><rect x="68.5" y="712" width="500.578" height="34" fill="#EAF3FF" /><text x="559.578" y="735" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">19</text></g><g data-fit="value" data-row="9" data-column="1" data-field="CustomerID" data-source="Orders" data-value="99"><rect x="570.078" y="712" width="533.422" height="34" fill="#A8CEFF" /><text x="1094.0" y="735" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">99</text></g><polygon points="55,724.0 63,729.0 55,734.0" fill="#263746" /></g>
+<text x="68" y="778" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#205e45" font-weight="700">Customers  ·  7 rows</text>
+<g role="group" aria-label="Customers" data-table="Customers"><g data-fit="source" data-source="Customers" data-first="0" data-last="2" aria-label="Customers"><rect x="68.5" y="787" width="1035.0" height="35" fill="#087333" /><text x="78" y="810" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Customers</text></g><g data-fit="field" data-header="CustomerID" data-column="0" data-source="Customers" aria-label="Customers.CustomerID"><rect x="68.5" y="823" width="353.344" height="39" fill="#C9ECCA" /><text x="412.344" y="845" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="end">CustomerID</text><line x1="313.031" x2="412.344" y1="849" y2="849" stroke="#0B4A27" stroke-width="1.15" /><line x1="313.031" x2="412.344" y1="852" y2="852" stroke="#0B4A27" stroke-width="1.15" /></g><g data-fit="field" data-header="FirstName" data-column="1" data-source="Customers" aria-label="Customers.FirstName"><rect x="422.844" y="823" width="341.375" height="39" fill="#C9ECCA" /><text x="432.344" y="845" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="start">FirstName</text></g><g data-fit="field" data-header="LastName" data-column="2" data-source="Customers" aria-label="Customers.LastName"><rect x="765.219" y="823" width="338.281" height="39" fill="#C9ECCA" /><text x="774.719" y="845" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="start">LastName</text></g><g data-fit="value" data-row="1" data-column="0" data-field="CustomerID" data-source="Customers" data-value="1"><rect x="68.5" y="863" width="353.344" height="34" fill="#E5F6E8" /><text x="412.344" y="886" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="FirstName" data-source="Customers" data-value="Asha"><rect x="422.844" y="863" width="341.375" height="34" fill="#E5F6E8" /><text x="432.344" y="886" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Asha</text></g><g data-fit="value" data-row="1" data-column="2" data-field="LastName" data-source="Customers" data-value="Rao"><rect x="765.219" y="863" width="338.281" height="34" fill="#E5F6E8" /><text x="774.719" y="886" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Rao</text></g><g data-fit="value" data-row="2" data-column="0" data-field="CustomerID" data-source="Customers" data-value="2"><rect x="68.5" y="898" width="353.344" height="34" fill="#E5F6E8" /><text x="412.344" y="921" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="FirstName" data-source="Customers" data-value="Ben"><rect x="422.844" y="898" width="341.375" height="34" fill="#E5F6E8" /><text x="432.344" y="921" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ben</text></g><g data-fit="value" data-row="2" data-column="2" data-field="LastName" data-source="Customers" data-value="Das"><rect x="765.219" y="898" width="338.281" height="34" fill="#E5F6E8" /><text x="774.719" y="921" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Das</text></g><g data-fit="value" data-row="3" data-column="0" data-field="CustomerID" data-source="Customers" data-value="3"><rect x="68.5" y="933" width="353.344" height="34" fill="#E5F6E8" /><text x="412.344" y="956" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="FirstName" data-source="Customers" data-value="Cia"><rect x="422.844" y="933" width="341.375" height="34" fill="#E5F6E8" /><text x="432.344" y="956" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Cia</text></g><g data-fit="value" data-row="3" data-column="2" data-field="LastName" data-source="Customers" data-value="Sen"><rect x="765.219" y="933" width="338.281" height="34" fill="#E5F6E8" /><text x="774.719" y="956" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Sen</text></g><g data-fit="value" data-row="4" data-column="0" data-field="CustomerID" data-source="Customers" data-value="4"><rect x="68.5" y="968" width="353.344" height="34" fill="#E5F6E8" /><text x="412.344" y="991" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="1" data-field="FirstName" data-source="Customers" data-value="Dev"><rect x="422.844" y="968" width="341.375" height="34" fill="#E5F6E8" /><text x="432.344" y="991" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Dev</text></g><g data-fit="value" data-row="4" data-column="2" data-field="LastName" data-source="Customers" data-value="Roy"><rect x="765.219" y="968" width="338.281" height="34" fill="#E5F6E8" /><text x="774.719" y="991" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Roy</text></g><g data-fit="value" data-row="5" data-column="0" data-field="CustomerID" data-source="Customers" data-value="5"><rect x="68.5" y="1003" width="353.344" height="34" fill="#E5F6E8" /><text x="412.344" y="1026" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="1" data-field="FirstName" data-source="Customers" data-value="Ena"><rect x="422.844" y="1003" width="341.375" height="34" fill="#E5F6E8" /><text x="432.344" y="1026" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ena</text></g><g data-fit="value" data-row="5" data-column="2" data-field="LastName" data-source="Customers" data-value="Jain"><rect x="765.219" y="1003" width="338.281" height="34" fill="#E5F6E8" /><text x="774.719" y="1026" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Jain</text></g><g data-fit="value" data-row="6" data-column="0" data-field="CustomerID" data-source="Customers" data-value="6"><rect x="68.5" y="1038" width="353.344" height="34" fill="#E5F6E8" /><text x="412.344" y="1061" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">6</text></g><g data-fit="value" data-row="6" data-column="1" data-field="FirstName" data-source="Customers" data-value="Farah"><rect x="422.844" y="1038" width="341.375" height="34" fill="#E5F6E8" /><text x="432.344" y="1061" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Farah</text></g><g data-fit="value" data-row="6" data-column="2" data-field="LastName" data-source="Customers" data-value="Ali"><rect x="765.219" y="1038" width="338.281" height="34" fill="#E5F6E8" /><text x="774.719" y="1061" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ali</text></g><g data-fit="value" data-row="7" data-column="0" data-field="CustomerID" data-source="Customers" data-value="7"><rect x="68.5" y="1073" width="353.344" height="34" fill="#E5F6E8" /><text x="412.344" y="1096" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">7</text></g><g data-fit="value" data-row="7" data-column="1" data-field="FirstName" data-source="Customers" data-value="Gita"><rect x="422.844" y="1073" width="341.375" height="34" fill="#E5F6E8" /><text x="432.344" y="1096" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Gita</text></g><g data-fit="value" data-row="7" data-column="2" data-field="LastName" data-source="Customers" data-value="Shah"><rect x="765.219" y="1073" width="338.281" height="34" fill="#E5F6E8" /><text x="774.719" y="1096" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Shah</text></g></g>
+<rect x="32" y="1132" width="1096" height="779" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1162" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="1142" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1161" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 → 9 rows</text>
+<text x="52" y="1197" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which population defines the ranking?</text>
+<g role="group" aria-label="First inside customer_counts · FROM Orders" data-decision="J1">
+<rect x="52" y="1208" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="1213" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="1230" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">First inside customer_counts · FROM Orders</text>
+<text x="66" y="1254" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Only people who placed orders enter this ranking. The buyer ID written on each order is the value to count, even when</text>
+<text x="66" y="1277" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">its customer record is missing.</text>
 </g>
-<g role="group" aria-label="Second &#183; LEFT JOIN Customers" data-decision="J1">
-<rect x="52" y="1147" width="1052" height="85" rx="5" fill="#eff7f2"/>
-<rect x="52" y="1152" width="4" height="75" rx="2" fill="#205e45"/>
-<text x="66" y="1169" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#205e45" font-weight="700">Second &#183; LEFT JOIN Customers</text>
-<text x="66" y="1193" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Match the order&#8217;s CustomerID to Customers for the name. The left join keeps all three orders for ID 99. A customer</text>
-<text x="66" y="1216" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">with zero orders, such as ID 7, supplies no ranking row.</text>
+<g role="group" aria-label="Second · LEFT JOIN Customers" data-decision="J1">
+<rect x="52" y="1301" width="1052" height="85" rx="5" fill="#eff7f2"/>
+<rect x="52" y="1306" width="4" height="75" rx="2" fill="#205e45"/>
+<text x="66" y="1323" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#205e45" font-weight="700">Second · LEFT JOIN Customers</text>
+<text x="66" y="1347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Match the order’s CustomerID to Customers for the name. The left join keeps all three orders for ID 99. A customer</text>
+<text x="66" y="1370" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">with zero orders, such as ID 7, supplies no ranking row.</text>
 </g>
-<text x="52" y="1258" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nine order rows survive. Orders 17&#8211;19 retain ID 99 with NULL customer details. ID 7 has no orders and never enters</text>
-<text x="52" y="1283" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">the ranking.</text>
-<rect x="52" y="1299" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1320" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Orders LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID</text>
-<rect x="68" y="1347" width="406.606" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1362" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="68" y="1368" width="189.756" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1383" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
-<rect x="257.756" y="1368" width="216.85" height="26" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1383" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
-<path d="M268.756 1386L359.069 1386" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<path d="M268.756 1389L359.069 1389" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<rect x="474.606" y="1347" width="629.394" height="21" rx="0" fill="#205e45"/>
-<text x="485.606" y="1362" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<rect x="474.606" y="1368" width="216.85" height="26" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1383" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">CustomerID</text>
-<path d="M485.606 1386L575.919 1386" fill="none" stroke="#205e45" stroke-width="1.2"/>
-<path d="M485.606 1389L575.919 1389" fill="none" stroke="#205e45" stroke-width="1.2"/>
-<rect x="691.456" y="1368" width="207.819" height="26" rx="0" fill="#d6ecdf"/>
-<text x="702.456" y="1383" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">FirstName</text>
-<rect x="899.275" y="1368" width="204.725" height="26" rx="0" fill="#d6ecdf"/>
-<text x="910.275" y="1383" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">LastName</text>
-<rect x="68" y="1394" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1413" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">11</text>
-<path d="M68 1423L257.756 1423" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="257.756" y="1394" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1413" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M257.756 1423L474.606 1423" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="474.606" y="1394" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1413" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M474.606 1423L691.456 1423" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.456" y="1394" width="207.819" height="29" rx="0" fill="#eff7f2"/>
-<text x="702.456" y="1413" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Asha</text>
-<path d="M691.456 1423L899.275 1423" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="899.275" y="1394" width="204.725" height="29" rx="0" fill="#eff7f2"/>
-<text x="910.275" y="1413" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Rao</text>
-<path d="M899.275 1423L1104 1423" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1423" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1442" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
-<path d="M68 1452L257.756 1452" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="257.756" y="1423" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1442" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M257.756 1452L474.606 1452" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="474.606" y="1423" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1442" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2</text>
-<path d="M474.606 1452L691.456 1452" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.456" y="1423" width="207.819" height="29" rx="0" fill="#ffffff"/>
-<text x="702.456" y="1442" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ben</text>
-<path d="M691.456 1452L899.275 1452" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="899.275" y="1423" width="204.725" height="29" rx="0" fill="#ffffff"/>
-<text x="910.275" y="1442" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Das</text>
-<path d="M899.275 1452L1104 1452" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1452" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1471" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
-<path d="M68 1481L257.756 1481" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="257.756" y="1452" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1471" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M257.756 1481L474.606 1481" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="474.606" y="1452" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1471" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">3</text>
-<path d="M474.606 1481L691.456 1481" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.456" y="1452" width="207.819" height="29" rx="0" fill="#eff7f2"/>
-<text x="702.456" y="1471" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Cia</text>
-<path d="M691.456 1481L899.275 1481" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="899.275" y="1452" width="204.725" height="29" rx="0" fill="#eff7f2"/>
-<text x="910.275" y="1471" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Sen</text>
-<path d="M899.275 1481L1104 1481" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1481" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
-<path d="M68 1510L257.756 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="257.756" y="1481" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M257.756 1510L474.606 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="474.606" y="1481" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">4</text>
-<path d="M474.606 1510L691.456 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.456" y="1481" width="207.819" height="29" rx="0" fill="#ffffff"/>
-<text x="702.456" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Dev</text>
-<path d="M691.456 1510L899.275 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="899.275" y="1481" width="204.725" height="29" rx="0" fill="#ffffff"/>
-<text x="910.275" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Roy</text>
-<path d="M899.275 1510L1104 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1510" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">15</text>
-<path d="M68 1539L257.756 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="257.756" y="1510" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M257.756 1539L474.606 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="474.606" y="1510" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">5</text>
-<path d="M474.606 1539L691.456 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.456" y="1510" width="207.819" height="29" rx="0" fill="#eff7f2"/>
-<text x="702.456" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ena</text>
-<path d="M691.456 1539L899.275 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="899.275" y="1510" width="204.725" height="29" rx="0" fill="#eff7f2"/>
-<text x="910.275" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Jain</text>
-<path d="M899.275 1539L1104 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1539" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">16</text>
-<path d="M68 1568L257.756 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="257.756" y="1539" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M257.756 1568L474.606 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="474.606" y="1539" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">6</text>
-<path d="M474.606 1568L691.456 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.456" y="1539" width="207.819" height="29" rx="0" fill="#ffffff"/>
-<text x="702.456" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Farah</text>
-<path d="M691.456 1568L899.275 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="899.275" y="1539" width="204.725" height="29" rx="0" fill="#ffffff"/>
-<text x="910.275" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ali</text>
-<path d="M899.275 1568L1104 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1577.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1568" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">17</text>
-<path d="M68 1597L257.756 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="257.756" y="1568" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
-<path d="M257.756 1597L474.606 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="474.606" y="1568" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M474.606 1597L691.456 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.456" y="1568" width="207.819" height="29" rx="0" fill="#eff7f2"/>
-<text x="702.456" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M691.456 1597L899.275 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="899.275" y="1568" width="204.725" height="29" rx="0" fill="#eff7f2"/>
-<text x="910.275" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M899.275 1597L1104 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1606.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1597" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">18</text>
-<path d="M68 1626L257.756 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="257.756" y="1597" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
-<path d="M257.756 1626L474.606 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="474.606" y="1597" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M474.606 1626L691.456 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.456" y="1597" width="207.819" height="29" rx="0" fill="#ffffff"/>
-<text x="702.456" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M691.456 1626L899.275 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="899.275" y="1597" width="204.725" height="29" rx="0" fill="#ffffff"/>
-<text x="910.275" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M899.275 1626L1104 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1635.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1626" width="189.756" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">19</text>
-<path d="M68 1655L257.756 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="257.756" y="1626" width="216.85" height="29" rx="0" fill="#d8e9f7"/>
-<text x="268.756" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
-<path d="M257.756 1655L474.606 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="474.606" y="1626" width="216.85" height="29" rx="0" fill="#d6ecdf"/>
-<text x="485.606" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M474.606 1655L691.456 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.456" y="1626" width="207.819" height="29" rx="0" fill="#eff7f2"/>
-<text x="702.456" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M691.456 1655L899.275 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="899.275" y="1626" width="204.725" height="29" rx="0" fill="#eff7f2"/>
-<text x="910.275" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M899.275 1655L1104 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1684" width="1096" height="452" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1714" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="1694" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1713" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 &#8594; 7 rows</text>
-<text x="52" y="1749" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What does one buyer contribute?</text>
-<text x="52" y="1778" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nine orders form seven buyers. ID 99 contributes 3. IDs 1&#8211;6 contribute 1 each. The missing name becomes</text>
-<text x="52" y="1803" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Unknown customer.</text>
-<rect x="52" y="1819" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1840" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY o.CustomerID, c.FirstName, c.LastName / COUNT(o.OrderID)</text>
-<rect x="68" y="1867" width="314.99" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1882" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="68" y="1888" width="314.99" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1903" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
-<path d="M79 1906L169.312 1906" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<path d="M79 1909L169.312 1909" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<rect x="382.99" y="1867" width="378.927" height="21" rx="0" fill="#205e45"/>
-<text x="393.99" y="1882" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<rect x="382.99" y="1888" width="378.927" height="26" rx="0" fill="#d6ecdf"/>
-<text x="393.99" y="1903" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">customer_name</text>
-<rect x="761.917" y="1867" width="342.083" height="21" rx="0" fill="#194f7c"/>
-<text x="772.917" y="1882" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="761.917" y="1888" width="342.083" height="26" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="1903" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">orders_placed</text>
-<path d="M54 1923.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1914" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1933" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
-<path d="M68 1943L382.99 1943" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="1914" width="378.927" height="29" rx="0" fill="#eff7f2"/>
-<text x="393.99" y="1933" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Unknown customer</text>
-<path d="M382.99 1943L761.917 1943" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="1914" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="1933" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M761.917 1943L1104 1943" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1943" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1962" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1972L382.99 1972" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="1943" width="378.927" height="29" rx="0" fill="#ffffff"/>
-<text x="393.99" y="1962" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Asha Rao</text>
-<path d="M382.99 1972L761.917 1972" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="1943" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="1962" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 1972L1104 1972" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1972" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1991" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 2001L382.99 2001" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="1972" width="378.927" height="29" rx="0" fill="#eff7f2"/>
-<text x="393.99" y="1991" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ben Das</text>
-<path d="M382.99 2001L761.917 2001" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="1972" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="1991" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2001L1104 2001" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2001" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2020" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 2030L382.99 2030" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2001" width="378.927" height="29" rx="0" fill="#ffffff"/>
-<text x="393.99" y="2020" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Cia Sen</text>
-<path d="M382.99 2030L761.917 2030" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2001" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2020" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2030L1104 2030" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2030" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2049" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 2059L382.99 2059" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2030" width="378.927" height="29" rx="0" fill="#eff7f2"/>
-<text x="393.99" y="2049" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Dev Roy</text>
-<path d="M382.99 2059L761.917 2059" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2030" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2049" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2059L1104 2059" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2059" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2078" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 2088L382.99 2088" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2059" width="378.927" height="29" rx="0" fill="#ffffff"/>
-<text x="393.99" y="2078" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ena Jain</text>
-<path d="M382.99 2088L761.917 2088" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2059" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2078" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2088L1104 2088" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2088" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2107" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 2117L382.99 2117" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2088" width="378.927" height="29" rx="0" fill="#eff7f2"/>
-<text x="393.99" y="2107" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Farah Ali</text>
-<path d="M382.99 2117L761.917 2117" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2088" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2107" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2117L1104 2117" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="2146" width="1096" height="346" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="2176" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
-<rect x="1008.7" y="2156" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1020.7" y="2175" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 &#8594; 1 row</text>
-<text x="52" y="2211" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which count is in fifth place?</text>
-<g role="group" aria-label="Outer query &#183; FROM customer_counts" data-decision="2">
-<rect x="52" y="2222" width="1052" height="85" rx="5" fill="#eef3f5"/>
-<rect x="52" y="2227" width="4" height="75" rx="2" fill="#415767"/>
-<text x="66" y="2244" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#415767" font-weight="700">Outer query &#183; FROM customer_counts</text>
-<text x="66" y="2268" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The CTE has one row per buyer ID. Reading it for the fifth-place cutoff compares buyers with buyers after all their</text>
-<text x="66" y="2291" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">orders have been counted.</text>
+<text x="52" y="1412" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nine order rows survive. Orders 17–19 retain ID 99 with NULL customer details. ID 7 has no orders and never enters</text>
+<text x="52" y="1437" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">the ranking.</text>
+<rect x="52" y="1453" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1474" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Orders LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID</text>
+<g role="group" aria-label="P021 · Step J1" data-table="P021 · Step J1"><g data-fit="source" data-source="Orders" data-first="0" data-last="1" aria-label="Orders"><rect x="68.5" y="1501" width="404.506" height="35" fill="#075BCC" /><text x="78" y="1524" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Orders</text></g><g data-fit="source" data-source="Customers" data-first="2" data-last="4" aria-label="Customers"><rect x="474.006" y="1501" width="629.494" height="35" fill="#087333" /><text x="483.506" y="1524" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Customers</text></g><g data-fit="field" data-header="Orders.OrderID" data-column="0" data-source="Orders" aria-label="Orders.OrderID"><rect x="68.5" y="1537" width="185.331" height="39" fill="#CEE3FF" /><text x="244.331" y="1559" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">OrderID</text><line x1="177.863" x2="244.331" y1="1563" y2="1563" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="Orders.CustomerID" data-column="1" data-source="Orders" aria-label="Orders.CustomerID"><rect x="254.831" y="1537" width="218.175" height="39" fill="#CEE3FF" /><text x="463.506" y="1559" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CustomerID</text><line x1="364.194" x2="463.506" y1="1563" y2="1563" stroke="#10376B" stroke-width="1.15" /><line x1="364.194" x2="463.506" y1="1566" y2="1566" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="Customers.CustomerID" data-column="2" data-source="Customers" aria-label="Customers.CustomerID"><rect x="474.006" y="1537" width="218.175" height="39" fill="#C9ECCA" /><text x="682.681" y="1559" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="end">CustomerID</text><line x1="583.369" x2="682.681" y1="1563" y2="1563" stroke="#0B4A27" stroke-width="1.15" /><line x1="583.369" x2="682.681" y1="1566" y2="1566" stroke="#0B4A27" stroke-width="1.15" /></g><g data-fit="field" data-header="Customers.FirstName" data-column="3" data-source="Customers" aria-label="Customers.FirstName"><rect x="693.181" y="1537" width="206.206" height="39" fill="#C9ECCA" /><text x="702.681" y="1559" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="start">FirstName</text></g><g data-fit="field" data-header="Customers.LastName" data-column="4" data-source="Customers" aria-label="Customers.LastName"><rect x="900.388" y="1537" width="203.113" height="39" fill="#C9ECCA" /><text x="909.888" y="1559" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="start">LastName</text></g><g data-fit="value" data-row="1" data-column="0" data-field="Orders.OrderID" data-source="Orders" data-value="11"><rect x="68.5" y="1577" width="185.331" height="34" fill="#EAF3FF" /><text x="244.331" y="1600" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">11</text></g><g data-fit="value" data-row="1" data-column="1" data-field="Orders.CustomerID" data-source="Orders" data-value="1"><rect x="254.831" y="1577" width="218.175" height="34" fill="#EAF3FF" /><text x="463.506" y="1600" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Customers.CustomerID" data-source="Customers" data-value="1"><rect x="474.006" y="1577" width="218.175" height="34" fill="#E5F6E8" /><text x="682.681" y="1600" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="3" data-field="Customers.FirstName" data-source="Customers" data-value="Asha"><rect x="693.181" y="1577" width="206.206" height="34" fill="#E5F6E8" /><text x="702.681" y="1600" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Asha</text></g><g data-fit="value" data-row="1" data-column="4" data-field="Customers.LastName" data-source="Customers" data-value="Rao"><rect x="900.388" y="1577" width="203.113" height="34" fill="#E5F6E8" /><text x="909.888" y="1600" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Rao</text></g><g data-fit="value" data-row="2" data-column="0" data-field="Orders.OrderID" data-source="Orders" data-value="12"><rect x="68.5" y="1612" width="185.331" height="34" fill="#EAF3FF" /><text x="244.331" y="1635" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">12</text></g><g data-fit="value" data-row="2" data-column="1" data-field="Orders.CustomerID" data-source="Orders" data-value="2"><rect x="254.831" y="1612" width="218.175" height="34" fill="#EAF3FF" /><text x="463.506" y="1635" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Customers.CustomerID" data-source="Customers" data-value="2"><rect x="474.006" y="1612" width="218.175" height="34" fill="#E5F6E8" /><text x="682.681" y="1635" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="3" data-field="Customers.FirstName" data-source="Customers" data-value="Ben"><rect x="693.181" y="1612" width="206.206" height="34" fill="#E5F6E8" /><text x="702.681" y="1635" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ben</text></g><g data-fit="value" data-row="2" data-column="4" data-field="Customers.LastName" data-source="Customers" data-value="Das"><rect x="900.388" y="1612" width="203.113" height="34" fill="#E5F6E8" /><text x="909.888" y="1635" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Das</text></g><g data-fit="value" data-row="3" data-column="0" data-field="Orders.OrderID" data-source="Orders" data-value="13"><rect x="68.5" y="1647" width="185.331" height="34" fill="#EAF3FF" /><text x="244.331" y="1670" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">13</text></g><g data-fit="value" data-row="3" data-column="1" data-field="Orders.CustomerID" data-source="Orders" data-value="3"><rect x="254.831" y="1647" width="218.175" height="34" fill="#EAF3FF" /><text x="463.506" y="1670" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="2" data-field="Customers.CustomerID" data-source="Customers" data-value="3"><rect x="474.006" y="1647" width="218.175" height="34" fill="#E5F6E8" /><text x="682.681" y="1670" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="3" data-field="Customers.FirstName" data-source="Customers" data-value="Cia"><rect x="693.181" y="1647" width="206.206" height="34" fill="#E5F6E8" /><text x="702.681" y="1670" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Cia</text></g><g data-fit="value" data-row="3" data-column="4" data-field="Customers.LastName" data-source="Customers" data-value="Sen"><rect x="900.388" y="1647" width="203.113" height="34" fill="#E5F6E8" /><text x="909.888" y="1670" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Sen</text></g><g data-fit="value" data-row="4" data-column="0" data-field="Orders.OrderID" data-source="Orders" data-value="14"><rect x="68.5" y="1682" width="185.331" height="34" fill="#EAF3FF" /><text x="244.331" y="1705" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">14</text></g><g data-fit="value" data-row="4" data-column="1" data-field="Orders.CustomerID" data-source="Orders" data-value="4"><rect x="254.831" y="1682" width="218.175" height="34" fill="#EAF3FF" /><text x="463.506" y="1705" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="2" data-field="Customers.CustomerID" data-source="Customers" data-value="4"><rect x="474.006" y="1682" width="218.175" height="34" fill="#E5F6E8" /><text x="682.681" y="1705" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="3" data-field="Customers.FirstName" data-source="Customers" data-value="Dev"><rect x="693.181" y="1682" width="206.206" height="34" fill="#E5F6E8" /><text x="702.681" y="1705" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Dev</text></g><g data-fit="value" data-row="4" data-column="4" data-field="Customers.LastName" data-source="Customers" data-value="Roy"><rect x="900.388" y="1682" width="203.113" height="34" fill="#E5F6E8" /><text x="909.888" y="1705" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Roy</text></g><g data-fit="value" data-row="5" data-column="0" data-field="Orders.OrderID" data-source="Orders" data-value="15"><rect x="68.5" y="1717" width="185.331" height="34" fill="#EAF3FF" /><text x="244.331" y="1740" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">15</text></g><g data-fit="value" data-row="5" data-column="1" data-field="Orders.CustomerID" data-source="Orders" data-value="5"><rect x="254.831" y="1717" width="218.175" height="34" fill="#EAF3FF" /><text x="463.506" y="1740" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="2" data-field="Customers.CustomerID" data-source="Customers" data-value="5"><rect x="474.006" y="1717" width="218.175" height="34" fill="#E5F6E8" /><text x="682.681" y="1740" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="3" data-field="Customers.FirstName" data-source="Customers" data-value="Ena"><rect x="693.181" y="1717" width="206.206" height="34" fill="#E5F6E8" /><text x="702.681" y="1740" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ena</text></g><g data-fit="value" data-row="5" data-column="4" data-field="Customers.LastName" data-source="Customers" data-value="Jain"><rect x="900.388" y="1717" width="203.113" height="34" fill="#E5F6E8" /><text x="909.888" y="1740" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Jain</text></g><g data-fit="value" data-row="6" data-column="0" data-field="Orders.OrderID" data-source="Orders" data-value="16"><rect x="68.5" y="1752" width="185.331" height="34" fill="#EAF3FF" /><text x="244.331" y="1775" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">16</text></g><g data-fit="value" data-row="6" data-column="1" data-field="Orders.CustomerID" data-source="Orders" data-value="6"><rect x="254.831" y="1752" width="218.175" height="34" fill="#EAF3FF" /><text x="463.506" y="1775" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">6</text></g><g data-fit="value" data-row="6" data-column="2" data-field="Customers.CustomerID" data-source="Customers" data-value="6"><rect x="474.006" y="1752" width="218.175" height="34" fill="#E5F6E8" /><text x="682.681" y="1775" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="end">6</text></g><g data-fit="value" data-row="6" data-column="3" data-field="Customers.FirstName" data-source="Customers" data-value="Farah"><rect x="693.181" y="1752" width="206.206" height="34" fill="#E5F6E8" /><text x="702.681" y="1775" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Farah</text></g><g data-fit="value" data-row="6" data-column="4" data-field="Customers.LastName" data-source="Customers" data-value="Ali"><rect x="900.388" y="1752" width="203.113" height="34" fill="#E5F6E8" /><text x="909.888" y="1775" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ali</text></g><g data-fit="value" data-row="7" data-column="0" data-field="Orders.OrderID" data-source="Orders" data-value="17"><rect x="68.5" y="1787" width="185.331" height="34" fill="#A8CEFF" /><text x="244.331" y="1810" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">17</text></g><g data-fit="value" data-row="7" data-column="1" data-field="Orders.CustomerID" data-source="Orders" data-value="99"><rect x="254.831" y="1787" width="218.175" height="34" fill="#A8CEFF" /><text x="463.506" y="1810" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">99</text></g><g data-fit="value" data-row="7" data-column="2" data-field="Customers.CustomerID" data-source="Customers" data-value="NULL"><rect x="474.006" y="1787" width="218.175" height="34" fill="#9CDD9D" /><text x="682.681" y="1810" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#0B4A27" text-anchor="end">NULL</text></g><g data-fit="value" data-row="7" data-column="3" data-field="Customers.FirstName" data-source="Customers" data-value="NULL"><rect x="693.181" y="1787" width="206.206" height="34" fill="#E5F6E8" /><text x="702.681" y="1810" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#0B4A27" text-anchor="start">NULL</text></g><g data-fit="value" data-row="7" data-column="4" data-field="Customers.LastName" data-source="Customers" data-value="NULL"><rect x="900.388" y="1787" width="203.113" height="34" fill="#E5F6E8" /><text x="909.888" y="1810" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#0B4A27" text-anchor="start">NULL</text></g><polygon points="55,1799.0 63,1804.0 55,1809.0" fill="#263746" /><g data-fit="value" data-row="8" data-column="0" data-field="Orders.OrderID" data-source="Orders" data-value="18"><rect x="68.5" y="1822" width="185.331" height="34" fill="#A8CEFF" /><text x="244.331" y="1845" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">18</text></g><g data-fit="value" data-row="8" data-column="1" data-field="Orders.CustomerID" data-source="Orders" data-value="99"><rect x="254.831" y="1822" width="218.175" height="34" fill="#A8CEFF" /><text x="463.506" y="1845" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">99</text></g><g data-fit="value" data-row="8" data-column="2" data-field="Customers.CustomerID" data-source="Customers" data-value="NULL"><rect x="474.006" y="1822" width="218.175" height="34" fill="#9CDD9D" /><text x="682.681" y="1845" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#0B4A27" text-anchor="end">NULL</text></g><g data-fit="value" data-row="8" data-column="3" data-field="Customers.FirstName" data-source="Customers" data-value="NULL"><rect x="693.181" y="1822" width="206.206" height="34" fill="#E5F6E8" /><text x="702.681" y="1845" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#0B4A27" text-anchor="start">NULL</text></g><g data-fit="value" data-row="8" data-column="4" data-field="Customers.LastName" data-source="Customers" data-value="NULL"><rect x="900.388" y="1822" width="203.113" height="34" fill="#E5F6E8" /><text x="909.888" y="1845" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#0B4A27" text-anchor="start">NULL</text></g><polygon points="55,1834.0 63,1839.0 55,1844.0" fill="#263746" /><g data-fit="value" data-row="9" data-column="0" data-field="Orders.OrderID" data-source="Orders" data-value="19"><rect x="68.5" y="1857" width="185.331" height="34" fill="#A8CEFF" /><text x="244.331" y="1880" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">19</text></g><g data-fit="value" data-row="9" data-column="1" data-field="Orders.CustomerID" data-source="Orders" data-value="99"><rect x="254.831" y="1857" width="218.175" height="34" fill="#A8CEFF" /><text x="463.506" y="1880" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">99</text></g><g data-fit="value" data-row="9" data-column="2" data-field="Customers.CustomerID" data-source="Customers" data-value="NULL"><rect x="474.006" y="1857" width="218.175" height="34" fill="#9CDD9D" /><text x="682.681" y="1880" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#0B4A27" text-anchor="end">NULL</text></g><g data-fit="value" data-row="9" data-column="3" data-field="Customers.FirstName" data-source="Customers" data-value="NULL"><rect x="693.181" y="1857" width="206.206" height="34" fill="#E5F6E8" /><text x="702.681" y="1880" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#0B4A27" text-anchor="start">NULL</text></g><g data-fit="value" data-row="9" data-column="4" data-field="Customers.LastName" data-source="Customers" data-value="NULL"><rect x="900.388" y="1857" width="203.113" height="34" fill="#E5F6E8" /><text x="909.888" y="1880" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#0B4A27" text-anchor="start">NULL</text></g><polygon points="55,1869.0 63,1874.0 55,1879.0" fill="#263746" /></g>
+<rect x="32" y="1921" width="1096" height="523" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1951" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1931" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1950" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 → 7 rows</text>
+<text x="52" y="1986" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What does one buyer contribute?</text>
+<text x="52" y="2015" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nine orders form seven buyers. ID 99 contributes 3. IDs 1–6 contribute 1 each. The missing name becomes</text>
+<text x="52" y="2040" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Unknown customer.</text>
+<rect x="52" y="2056" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2077" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY o.CustomerID, c.FirstName, c.LastName / COUNT(o.OrderID)</text>
+<g role="group" aria-label="P021 · Step 1" data-table="P021 · Step 1"><g data-fit="source" data-source="Orders" data-first="0" data-last="0" aria-label="Orders"><rect x="68.5" y="2104" width="319.719" height="35" fill="#075BCC" /><text x="78" y="2127" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Orders</text></g><g data-fit="source" data-source="Customers" data-first="1" data-last="1" aria-label="Customers calculated"><rect x="389.219" y="2104" width="374.656" height="35" fill="#087333" /><text x="398.719" y="2127" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Customers</text></g><g data-fit="source" data-source="Orders" data-first="2" data-last="2" aria-label="Orders calculated"><rect x="764.875" y="2104" width="338.625" height="35" fill="#075BCC" /><text x="774.375" y="2127" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Orders</text></g><g data-fit="field" data-header="CustomerID" data-column="0" data-source="Orders" aria-label="Orders.CustomerID"><rect x="68.5" y="2140" width="319.719" height="39" fill="#CEE3FF" /><text x="378.719" y="2162" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CustomerID</text><line x1="279.406" x2="378.719" y1="2166" y2="2166" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="customer_name" data-column="1" data-source="Customers" aria-label="Customers.customer_name"><rect x="389.219" y="2140" width="374.656" height="39" fill="#C9ECCA" /><text x="398.719" y="2162" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="start">customer_name</text></g><g data-fit="field" data-header="orders_placed" data-column="2" data-source="Orders" aria-label="Orders.orders_placed"><rect x="764.875" y="2140" width="338.625" height="39" fill="#CEE3FF" /><text x="1094.0" y="2162" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">orders_placed</text><line x1="975.781" x2="1094.0" y1="2166" y2="2166" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="CustomerID" data-source="Orders" data-value="99"><rect x="68.5" y="2180" width="319.719" height="34" fill="#A8CEFF" /><text x="378.719" y="2203" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">99</text></g><g data-fit="value" data-row="1" data-column="1" data-field="customer_name" data-source="Customers" data-value="Unknown customer"><rect x="389.219" y="2180" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="2203" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Unknown customer</text></g><g data-fit="value" data-row="1" data-column="2" data-field="orders_placed" data-source="Orders" data-value="3"><rect x="764.875" y="2180" width="338.625" height="34" fill="#A8CEFF" /><text x="1094.0" y="2203" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">3</text></g><polygon points="55,2192.0 63,2197.0 55,2202.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="CustomerID" data-source="Orders" data-value="1"><rect x="68.5" y="2215" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="2238" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="1" data-field="customer_name" data-source="Customers" data-value="Asha Rao"><rect x="389.219" y="2215" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="2238" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Asha Rao</text></g><g data-fit="value" data-row="2" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="2215" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="2238" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="3" data-column="0" data-field="CustomerID" data-source="Orders" data-value="2"><rect x="68.5" y="2250" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="2273" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="3" data-column="1" data-field="customer_name" data-source="Customers" data-value="Ben Das"><rect x="389.219" y="2250" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="2273" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ben Das</text></g><g data-fit="value" data-row="3" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="2250" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="2273" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="4" data-column="0" data-field="CustomerID" data-source="Orders" data-value="3"><rect x="68.5" y="2285" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="2308" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="4" data-column="1" data-field="customer_name" data-source="Customers" data-value="Cia Sen"><rect x="389.219" y="2285" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="2308" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Cia Sen</text></g><g data-fit="value" data-row="4" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="2285" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="2308" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="5" data-column="0" data-field="CustomerID" data-source="Orders" data-value="4"><rect x="68.5" y="2320" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="2343" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="5" data-column="1" data-field="customer_name" data-source="Customers" data-value="Dev Roy"><rect x="389.219" y="2320" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="2343" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Dev Roy</text></g><g data-fit="value" data-row="5" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="2320" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="2343" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="6" data-column="0" data-field="CustomerID" data-source="Orders" data-value="5"><rect x="68.5" y="2355" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="2378" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="6" data-column="1" data-field="customer_name" data-source="Customers" data-value="Ena Jain"><rect x="389.219" y="2355" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="2378" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ena Jain</text></g><g data-fit="value" data-row="6" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="2355" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="2378" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="7" data-column="0" data-field="CustomerID" data-source="Orders" data-value="6"><rect x="68.5" y="2390" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="2413" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">6</text></g><g data-fit="value" data-row="7" data-column="1" data-field="customer_name" data-source="Customers" data-value="Farah Ali"><rect x="389.219" y="2390" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="2413" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Farah Ali</text></g><g data-fit="value" data-row="7" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="2390" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="2413" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g></g>
+<rect x="32" y="2454" width="1096" height="381" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="2484" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1008.7" y="2464" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1020.7" y="2483" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 1 row</text>
+<text x="52" y="2519" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which count is in fifth place?</text>
+<g role="group" aria-label="Outer query · FROM customer_counts" data-decision="2">
+<rect x="52" y="2530" width="1052" height="85" rx="5" fill="#eef3f5"/>
+<rect x="52" y="2535" width="4" height="75" rx="2" fill="#415767"/>
+<text x="66" y="2552" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#415767" font-weight="700">Outer query · FROM customer_counts</text>
+<text x="66" y="2576" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The CTE has one row per buyer ID. Reading it for the fifth-place cutoff compares buyers with buyers after all their</text>
+<text x="66" y="2599" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">orders have been counted.</text>
 </g>
-<text x="52" y="2333" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Read the grouped buyers. Their counts are 3, 1, 1, 1, 1, 1, 1. The fifth value sets the cutoff at 1.</text>
-<rect x="52" y="2349" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="2370" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY orders_placed DESC LIMIT 1 OFFSET 4</text>
-<rect x="68" y="2397" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="2412" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="68" y="2418" width="1036" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2433" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">cutoff</text>
-<rect x="68" y="2444" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2463" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 2473L1104 2473" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="2502" width="1096" height="427" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="2532" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="2512" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="2531" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 &#8594; 7 rows</text>
-<text x="52" y="2567" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How many buyers meet that cutoff?</text>
-<text x="52" y="2596" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID.</text>
-<rect x="52" y="2612" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="2633" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE orders_placed &gt;= COALESCE((&#8230;fifth-row count&#8230;), 0)</text>
-<rect x="68" y="2660" width="314.99" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="2675" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="68" y="2681" width="314.99" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2696" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
-<path d="M79 2699L169.312 2699" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<path d="M79 2702L169.312 2702" fill="none" stroke="#194f7c" stroke-width="1.2"/>
-<rect x="382.99" y="2660" width="378.927" height="21" rx="0" fill="#205e45"/>
-<text x="393.99" y="2675" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<rect x="382.99" y="2681" width="378.927" height="26" rx="0" fill="#d6ecdf"/>
-<text x="393.99" y="2696" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#205e45" font-weight="700">customer_name</text>
-<rect x="761.917" y="2660" width="342.083" height="21" rx="0" fill="#194f7c"/>
-<text x="772.917" y="2675" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<rect x="761.917" y="2681" width="342.083" height="26" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2696" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">orders_placed</text>
-<path d="M54 2716.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="2707" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2726" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">99</text>
-<path d="M68 2736L382.99 2736" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2707" width="378.927" height="29" rx="0" fill="#eff7f2"/>
-<text x="393.99" y="2726" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Unknown customer</text>
-<path d="M382.99 2736L761.917 2736" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2707" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2726" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M761.917 2736L1104 2736" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2736" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2755" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 2765L382.99 2765" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2736" width="378.927" height="29" rx="0" fill="#ffffff"/>
-<text x="393.99" y="2755" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Asha Rao</text>
-<path d="M382.99 2765L761.917 2765" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2736" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2755" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2765L1104 2765" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2765" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2784" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 2794L382.99 2794" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2765" width="378.927" height="29" rx="0" fill="#eff7f2"/>
-<text x="393.99" y="2784" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ben Das</text>
-<path d="M382.99 2794L761.917 2794" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2765" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2784" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2794L1104 2794" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2794" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2813" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 2823L382.99 2823" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2794" width="378.927" height="29" rx="0" fill="#ffffff"/>
-<text x="393.99" y="2813" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Cia Sen</text>
-<path d="M382.99 2823L761.917 2823" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2794" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2813" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2823L1104 2823" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2823" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2842" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 2852L382.99 2852" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2823" width="378.927" height="29" rx="0" fill="#eff7f2"/>
-<text x="393.99" y="2842" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Dev Roy</text>
-<path d="M382.99 2852L761.917 2852" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2823" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2842" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2852L1104 2852" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2852" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2871" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 2881L382.99 2881" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2852" width="378.927" height="29" rx="0" fill="#ffffff"/>
-<text x="393.99" y="2871" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Ena Jain</text>
-<path d="M382.99 2881L761.917 2881" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2852" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2871" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2881L1104 2881" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2881" width="314.99" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2900" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 2910L382.99 2910" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="382.99" y="2881" width="378.927" height="29" rx="0" fill="#eff7f2"/>
-<text x="393.99" y="2900" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Farah Ali</text>
-<path d="M382.99 2910L761.917 2910" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="761.917" y="2881" width="342.083" height="29" rx="0" fill="#d8e9f7"/>
-<text x="772.917" y="2900" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M761.917 2910L1104 2910" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="52" y="2641" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Read the grouped buyers. Their counts are 3, 1, 1, 1, 1, 1, 1. The fifth value sets the cutoff at 1.</text>
+<rect x="52" y="2657" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2678" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY orders_placed DESC LIMIT 1 OFFSET 4</text>
+<g role="group" aria-label="P021 · Step 2" data-table="P021 · Step 2"><g data-fit="source" data-source="Orders" data-first="0" data-last="0" aria-label="Orders calculated"><rect x="68.5" y="2705" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="2728" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Orders</text></g><g data-fit="field" data-header="cutoff" data-column="0" data-source="Orders" aria-label="Orders.cutoff"><rect x="68.5" y="2741" width="1035.0" height="39" fill="#CEE3FF" /><text x="1094.0" y="2763" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">cutoff</text><line x1="1044.797" x2="1094.0" y1="2767" y2="2767" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="cutoff" data-source="Orders" data-value="1"><rect x="68.5" y="2781" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="2804" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g></g>
+<rect x="32" y="2845" width="1096" height="498" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="2875" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="2855" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="2874" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 7 rows</text>
+<text x="52" y="2910" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How many buyers meet that cutoff?</text>
+<text x="52" y="2939" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID.</text>
+<rect x="52" y="2955" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2976" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE orders_placed &gt;= COALESCE((…fifth-row count…), 0)</text>
+<g role="group" aria-label="P021 · Final output" data-table="P021 · Final output"><g data-fit="source" data-source="Orders" data-first="0" data-last="0" aria-label="Orders"><rect x="68.5" y="3003" width="319.719" height="35" fill="#075BCC" /><text x="78" y="3026" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Orders</text></g><g data-fit="source" data-source="Customers" data-first="1" data-last="1" aria-label="Customers calculated"><rect x="389.219" y="3003" width="374.656" height="35" fill="#087333" /><text x="398.719" y="3026" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Customers</text></g><g data-fit="source" data-source="Orders" data-first="2" data-last="2" aria-label="Orders calculated"><rect x="764.875" y="3003" width="338.625" height="35" fill="#075BCC" /><text x="774.375" y="3026" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Orders</text></g><g data-fit="field" data-header="CustomerID" data-column="0" data-source="Orders" aria-label="Orders.CustomerID"><rect x="68.5" y="3039" width="319.719" height="39" fill="#CEE3FF" /><text x="378.719" y="3061" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">CustomerID</text><line x1="279.406" x2="378.719" y1="3065" y2="3065" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="customer_name" data-column="1" data-source="Customers" aria-label="Customers.customer_name"><rect x="389.219" y="3039" width="374.656" height="39" fill="#C9ECCA" /><text x="398.719" y="3061" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#0B4A27" text-anchor="start">customer_name</text></g><g data-fit="field" data-header="orders_placed" data-column="2" data-source="Orders" aria-label="Orders.orders_placed"><rect x="764.875" y="3039" width="338.625" height="39" fill="#CEE3FF" /><text x="1094.0" y="3061" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">orders_placed</text><line x1="975.781" x2="1094.0" y1="3065" y2="3065" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="CustomerID" data-source="Orders" data-value="99"><rect x="68.5" y="3079" width="319.719" height="34" fill="#A8CEFF" /><text x="378.719" y="3102" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">99</text></g><g data-fit="value" data-row="1" data-column="1" data-field="customer_name" data-source="Customers" data-value="Unknown customer"><rect x="389.219" y="3079" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="3102" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Unknown customer</text></g><g data-fit="value" data-row="1" data-column="2" data-field="orders_placed" data-source="Orders" data-value="3"><rect x="764.875" y="3079" width="338.625" height="34" fill="#A8CEFF" /><text x="1094.0" y="3102" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">3</text></g><polygon points="55,3091.0 63,3096.0 55,3101.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="CustomerID" data-source="Orders" data-value="1"><rect x="68.5" y="3114" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="3137" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="1" data-field="customer_name" data-source="Customers" data-value="Asha Rao"><rect x="389.219" y="3114" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="3137" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Asha Rao</text></g><g data-fit="value" data-row="2" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="3114" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="3137" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="3" data-column="0" data-field="CustomerID" data-source="Orders" data-value="2"><rect x="68.5" y="3149" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="3172" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="3" data-column="1" data-field="customer_name" data-source="Customers" data-value="Ben Das"><rect x="389.219" y="3149" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="3172" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ben Das</text></g><g data-fit="value" data-row="3" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="3149" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="3172" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="4" data-column="0" data-field="CustomerID" data-source="Orders" data-value="3"><rect x="68.5" y="3184" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="3207" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="4" data-column="1" data-field="customer_name" data-source="Customers" data-value="Cia Sen"><rect x="389.219" y="3184" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="3207" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Cia Sen</text></g><g data-fit="value" data-row="4" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="3184" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="3207" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="5" data-column="0" data-field="CustomerID" data-source="Orders" data-value="4"><rect x="68.5" y="3219" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="3242" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="5" data-column="1" data-field="customer_name" data-source="Customers" data-value="Dev Roy"><rect x="389.219" y="3219" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="3242" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Dev Roy</text></g><g data-fit="value" data-row="5" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="3219" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="3242" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="6" data-column="0" data-field="CustomerID" data-source="Orders" data-value="5"><rect x="68.5" y="3254" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="3277" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="6" data-column="1" data-field="customer_name" data-source="Customers" data-value="Ena Jain"><rect x="389.219" y="3254" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="3277" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Ena Jain</text></g><g data-fit="value" data-row="6" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="3254" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="3277" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="7" data-column="0" data-field="CustomerID" data-source="Orders" data-value="6"><rect x="68.5" y="3289" width="319.719" height="34" fill="#EAF3FF" /><text x="378.719" y="3312" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">6</text></g><g data-fit="value" data-row="7" data-column="1" data-field="customer_name" data-source="Customers" data-value="Farah Ali"><rect x="389.219" y="3289" width="374.656" height="34" fill="#E5F6E8" /><text x="398.719" y="3312" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#0B4A27" text-anchor="start">Farah Ali</text></g><g data-fit="value" data-row="7" data-column="2" data-field="orders_placed" data-source="Orders" data-value="1"><rect x="764.875" y="3289" width="338.625" height="34" fill="#EAF3FF" /><text x="1094.0" y="3312" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g></g>
 </svg>

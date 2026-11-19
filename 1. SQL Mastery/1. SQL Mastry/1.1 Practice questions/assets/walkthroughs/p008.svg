@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1789" viewBox="0 0 1160 1789" role="img" aria-labelledby="title desc">
-<title id="title">P008 &#183; Price band labels</title>
-<desc id="desc">One row per product with one budget label. The Pen costs 199 and enters Budget. The other four rows still need a label. The Book at 200 and Bag at 699.50 both enter Mid. The Watch at 700 misses this band. The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay. FROM Products &#183; one table is enough. Each product gets one band from its own sale price. The catalogue already contains its ID, name and price, including products with a missing price.</desc>
-<rect width="1160" height="1789" fill="#f4f7f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2048" viewBox="0 0 1160 2048" role="img" aria-labelledby="title desc">
+<title id="title">P008 · Price band labels</title>
+<desc id="desc">One row per product with one budget label. The Pen costs 199 and enters Budget. The other four rows still need a label. The Book at 200 and Bag at 699.50 both enter Mid. The Watch at 700 misses this band. The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay. FROM Products · one table is enough. Each product gets one band from its own sale price. The catalogue already contains its ID, name and price, including products with a missing price.</desc>
+<rect width="1160" height="2048" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P008    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Price band labels</text>
@@ -10,308 +10,42 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Which band owns exactly 200? What about exactly 700?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Products  &#183;  5 rows</text>
-<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="354" width="346.922" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
-<rect x="414.922" y="354" width="333.125" height="26" rx="0" fill="#d8e9f7"/>
-<text x="425.922" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Product</text>
-<rect x="748.047" y="354" width="355.953" height="26" rx="0" fill="#d8e9f7"/>
-<text x="759.047" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Sale_Price</text>
-<rect x="68" y="380" width="346.922" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 409L414.922 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="414.922" y="380" width="333.125" height="29" rx="0" fill="#edf4fb"/>
-<text x="425.922" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pen</text>
-<path d="M414.922 409L748.047 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="748.047" y="380" width="355.953" height="29" rx="0" fill="#edf4fb"/>
-<text x="759.047" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">199</text>
-<path d="M748.047 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 418.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="409" width="346.922" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 438L414.922 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="414.922" y="409" width="333.125" height="29" rx="0" fill="#ffffff"/>
-<text x="425.922" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Book</text>
-<path d="M414.922 438L748.047 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="748.047" y="409" width="355.953" height="29" rx="0" fill="#ffffff"/>
-<text x="759.047" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M748.047 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="438" width="346.922" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 467L414.922 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="414.922" y="438" width="333.125" height="29" rx="0" fill="#edf4fb"/>
-<text x="425.922" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bag</text>
-<path d="M414.922 467L748.047 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="748.047" y="438" width="355.953" height="29" rx="0" fill="#edf4fb"/>
-<text x="759.047" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">699.50</text>
-<path d="M748.047 467L1104 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 476.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="467" width="346.922" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 496L414.922 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="414.922" y="467" width="333.125" height="29" rx="0" fill="#ffffff"/>
-<text x="425.922" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Watch</text>
-<path d="M414.922 496L748.047 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="748.047" y="467" width="355.953" height="29" rx="0" fill="#ffffff"/>
-<text x="759.047" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
-<path d="M748.047 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="496" width="346.922" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 525L414.922 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="414.922" y="496" width="333.125" height="29" rx="0" fill="#edf4fb"/>
-<text x="425.922" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mystery</text>
-<path d="M414.922 525L748.047 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="748.047" y="496" width="355.953" height="29" rx="0" fill="#edf4fb"/>
-<text x="759.047" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M748.047 525L1104 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="549" width="1096" height="462" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="579" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
-<rect x="1000.38" y="559" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
-<text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which prices qualify as Budget?</text>
-<g role="group" aria-label="FROM Products &#183; one table is enough" data-decision="1">
-<rect x="52" y="625" width="1052" height="85" rx="5" fill="#edf4fb"/>
-<rect x="52" y="630" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products &#183; one table is enough</text>
-<text x="66" y="671" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Each product gets one band from its own sale price. The catalogue already contains its ID, name and price, including</text>
-<text x="66" y="694" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">products with a missing price.</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. A dark source band spans its columns. ƒ marks a calculated value. Deeper cell colors mark the values to</text>
+<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">follow. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Products  ·  5 rows</text>
+<g role="group" aria-label="Products" data-table="Products"><g data-fit="source" data-source="Products" data-first="0" data-last="2" aria-label="Products"><rect x="68.5" y="356" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="379" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="field" data-header="ProductID" data-column="0" data-source="Products" aria-label="Products.ProductID"><rect x="68.5" y="392" width="349.198" height="39" fill="#CEE3FF" /><text x="408.198" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">ProductID</text></g><g data-fit="field" data-header="Product" data-column="1" data-source="Products" aria-label="Products.Product"><rect x="418.698" y="392" width="332.479" height="39" fill="#CEE3FF" /><text x="428.198" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Product</text></g><g data-fit="field" data-header="Sale_Price" data-column="2" data-source="Products" aria-label="Products.Sale_Price"><rect x="752.177" y="392" width="351.323" height="39" fill="#CEE3FF" /><text x="1094.0" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">Sale_Price</text></g><g data-fit="value" data-row="1" data-column="0" data-field="ProductID" data-source="Products" data-value="1"><rect x="68.5" y="432" width="349.198" height="34" fill="#EAF3FF" /><text x="408.198" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="Product" data-source="Products" data-value="Pen"><rect x="418.698" y="432" width="332.479" height="34" fill="#EAF3FF" /><text x="428.198" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Pen</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Sale_Price" data-source="Products" data-value="199"><rect x="752.177" y="432" width="351.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">199</text></g><g data-fit="value" data-row="2" data-column="0" data-field="ProductID" data-source="Products" data-value="2"><rect x="68.5" y="467" width="349.198" height="34" fill="#EAF3FF" /><text x="408.198" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="Product" data-source="Products" data-value="Book"><rect x="418.698" y="467" width="332.479" height="34" fill="#EAF3FF" /><text x="428.198" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Book</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Sale_Price" data-source="Products" data-value="200"><rect x="752.177" y="467" width="351.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">200</text></g><polygon points="55,479.0 63,484.0 55,489.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="ProductID" data-source="Products" data-value="3"><rect x="68.5" y="502" width="349.198" height="34" fill="#EAF3FF" /><text x="408.198" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="Product" data-source="Products" data-value="Bag"><rect x="418.698" y="502" width="332.479" height="34" fill="#EAF3FF" /><text x="428.198" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Bag</text></g><g data-fit="value" data-row="3" data-column="2" data-field="Sale_Price" data-source="Products" data-value="699.50"><rect x="752.177" y="502" width="351.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">699.50</text></g><g data-fit="value" data-row="4" data-column="0" data-field="ProductID" data-source="Products" data-value="4"><rect x="68.5" y="537" width="349.198" height="34" fill="#EAF3FF" /><text x="408.198" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="1" data-field="Product" data-source="Products" data-value="Watch"><rect x="418.698" y="537" width="332.479" height="34" fill="#EAF3FF" /><text x="428.198" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Watch</text></g><g data-fit="value" data-row="4" data-column="2" data-field="Sale_Price" data-source="Products" data-value="700"><rect x="752.177" y="537" width="351.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">700</text></g><polygon points="55,549.0 63,554.0 55,559.0" fill="#263746" /><g data-fit="value" data-row="5" data-column="0" data-field="ProductID" data-source="Products" data-value="5"><rect x="68.5" y="572" width="349.198" height="34" fill="#EAF3FF" /><text x="408.198" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="1" data-field="Product" data-source="Products" data-value="Mystery"><rect x="418.698" y="572" width="332.479" height="34" fill="#EAF3FF" /><text x="428.198" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Mystery</text></g><g data-fit="value" data-row="5" data-column="2" data-field="Sale_Price" data-source="Products" data-value="NULL"><rect x="752.177" y="572" width="351.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="end">NULL</text></g></g>
+<rect x="32" y="631" width="1096" height="521" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="661" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="641" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="660" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="696" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which prices qualify as Budget?</text>
+<g role="group" aria-label="FROM Products · one table is enough" data-decision="1">
+<rect x="52" y="707" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="712" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="729" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products · one table is enough</text>
+<text x="66" y="753" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Each product gets one band from its own sale price. The catalogue already contains its ID, name and price, including</text>
+<text x="66" y="776" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">products with a missing price.</text>
 </g>
-<text x="52" y="736" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The Pen costs 199 and enters Budget. The other four rows still need a label.</text>
-<rect x="52" y="752" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="773" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &lt; 200</text>
-<rect x="68" y="800" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="821" width="257.934" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
-<rect x="325.934" y="821" width="244.137" height="26" rx="0" fill="#d8e9f7"/>
-<text x="336.934" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Product</text>
-<rect x="570.07" y="821" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Sale_Price</text>
-<rect x="837.035" y="821" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price_band</text>
-<rect x="68" y="847" width="257.934" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 876L325.934 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="847" width="244.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.934" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pen</text>
-<path d="M325.934 876L570.07 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="847" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">199</text>
-<path d="M570.07 876L837.035 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="847" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Budget</text>
-<path d="M837.035 876L1104 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 885.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="876" width="257.934" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 905L325.934 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="876" width="244.137" height="29" rx="0" fill="#ffffff"/>
-<text x="336.934" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Book</text>
-<path d="M325.934 905L570.07 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="876" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M570.07 905L837.035 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="876" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M837.035 905L1104 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="905" width="257.934" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 934L325.934 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="905" width="244.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.934" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bag</text>
-<path d="M325.934 934L570.07 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="905" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">699.50</text>
-<path d="M570.07 934L837.035 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="905" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M837.035 934L1104 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 943.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="934" width="257.934" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 963L325.934 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="934" width="244.137" height="29" rx="0" fill="#ffffff"/>
-<text x="336.934" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Watch</text>
-<path d="M325.934 963L570.07 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="934" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
-<path d="M570.07 963L837.035 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="934" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M837.035 963L1104 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="963" width="257.934" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 992L325.934 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="963" width="244.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.934" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mystery</text>
-<path d="M325.934 992L570.07 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="963" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M570.07 992L837.035 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="963" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M837.035 992L1104 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1021" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1051" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="1031" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
-<text x="52" y="1086" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does Mid stop?</text>
-<text x="52" y="1115" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The Book at 200 and Bag at 699.50 both enter Mid. The Watch at 700 misses this band.</text>
-<rect x="52" y="1131" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &gt;= 200 AND Sale_Price &lt; 700</text>
-<rect x="68" y="1179" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="1200" width="257.934" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
-<rect x="325.934" y="1200" width="244.137" height="26" rx="0" fill="#d8e9f7"/>
-<text x="336.934" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Product</text>
-<rect x="570.07" y="1200" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Sale_Price</text>
-<rect x="837.035" y="1200" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price_band</text>
-<rect x="68" y="1226" width="257.934" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1255L325.934 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1226" width="244.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.934" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pen</text>
-<path d="M325.934 1255L570.07 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1226" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">199</text>
-<path d="M570.07 1255L837.035 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1226" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Budget</text>
-<path d="M837.035 1255L1104 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1264.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1255" width="257.934" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1284L325.934 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1255" width="244.137" height="29" rx="0" fill="#ffffff"/>
-<text x="336.934" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Book</text>
-<path d="M325.934 1284L570.07 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1255" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M570.07 1284L837.035 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1255" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mid</text>
-<path d="M837.035 1284L1104 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1284" width="257.934" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1303" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1313L325.934 1313" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1284" width="244.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.934" y="1303" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bag</text>
-<path d="M325.934 1313L570.07 1313" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1284" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1303" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">699.50</text>
-<path d="M570.07 1313L837.035 1313" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1284" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1303" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mid</text>
-<path d="M837.035 1313L1104 1313" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1322.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1313" width="257.934" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1332" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1342L325.934 1342" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1313" width="244.137" height="29" rx="0" fill="#ffffff"/>
-<text x="336.934" y="1332" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Watch</text>
-<path d="M325.934 1342L570.07 1342" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1313" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1332" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
-<path d="M570.07 1342L837.035 1342" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1313" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1332" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M837.035 1342L1104 1342" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1342" width="257.934" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1361" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 1371L325.934 1371" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1342" width="244.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.934" y="1361" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mystery</text>
-<path d="M325.934 1371L570.07 1371" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1342" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1361" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M570.07 1371L837.035 1371" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1342" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1361" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M837.035 1371L1104 1371" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1400" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1430" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1410" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1429" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
-<text x="52" y="1465" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How do the remaining rows get labels?</text>
-<text x="52" y="1494" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay.</text>
-<rect x="52" y="1510" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1531" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &gt;= 700 THEN 'Premium' ELSE 'Unknown'</text>
-<rect x="68" y="1558" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1573" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="1579" width="257.934" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
-<rect x="325.934" y="1579" width="244.137" height="26" rx="0" fill="#d8e9f7"/>
-<text x="336.934" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Product</text>
-<rect x="570.07" y="1579" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Sale_Price</text>
-<rect x="837.035" y="1579" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price_band</text>
-<rect x="68" y="1605" width="257.934" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1634L325.934 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1605" width="244.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.934" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pen</text>
-<path d="M325.934 1634L570.07 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1605" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">199</text>
-<path d="M570.07 1634L837.035 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1605" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Budget</text>
-<path d="M837.035 1634L1104 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1643.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1634" width="257.934" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1663L325.934 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1634" width="244.137" height="29" rx="0" fill="#ffffff"/>
-<text x="336.934" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Book</text>
-<path d="M325.934 1663L570.07 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1634" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M570.07 1663L837.035 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1634" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mid</text>
-<path d="M837.035 1663L1104 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1663" width="257.934" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1682" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1692L325.934 1692" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1663" width="244.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.934" y="1682" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bag</text>
-<path d="M325.934 1692L570.07 1692" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1663" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1682" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">699.50</text>
-<path d="M570.07 1692L837.035 1692" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1663" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1682" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mid</text>
-<path d="M837.035 1692L1104 1692" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1701.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1692" width="257.934" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1711" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1721L325.934 1721" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1692" width="244.137" height="29" rx="0" fill="#ffffff"/>
-<text x="336.934" y="1711" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Watch</text>
-<path d="M325.934 1721L570.07 1721" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1692" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1711" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
-<path d="M570.07 1721L837.035 1721" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1692" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1711" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Premium</text>
-<path d="M837.035 1721L1104 1721" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1721" width="257.934" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1740" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 1750L325.934 1750" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.934" y="1721" width="244.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.934" y="1740" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mystery</text>
-<path d="M325.934 1750L570.07 1750" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="570.07" y="1721" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="581.07" y="1740" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M570.07 1750L837.035 1750" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.035" y="1721" width="266.965" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.035" y="1740" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Unknown</text>
-<path d="M837.035 1750L1104 1750" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="52" y="818" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The Pen costs 199 and enters Budget. The other four rows still need a label.</text>
+<rect x="52" y="834" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="855" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &lt; 200</text>
+<g role="group" aria-label="P008 · Step 1" data-table="P008 · Step 1"><g data-fit="source" data-source="Products" data-first="0" data-last="2" aria-label="Products"><rect x="68.5" y="882" width="766.434" height="35" fill="#075BCC" /><text x="78" y="905" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="3" data-last="3" aria-label="Products calculated"><rect x="835.934" y="882" width="267.566" height="35" fill="#075BCC" /><text x="845.434" y="905" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="field" data-header="ProductID" data-column="0" data-source="Products" aria-label="Products.ProductID"><rect x="68.5" y="918" width="259.676" height="39" fill="#CEE3FF" /><text x="318.676" y="940" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">ProductID</text></g><g data-fit="field" data-header="Product" data-column="1" data-source="Products" aria-label="Products.Product"><rect x="329.176" y="918" width="242.957" height="39" fill="#CEE3FF" /><text x="338.676" y="940" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Product</text></g><g data-fit="field" data-header="Sale_Price" data-column="2" data-source="Products" aria-label="Products.Sale_Price"><rect x="573.133" y="918" width="261.801" height="39" fill="#CEE3FF" /><text x="825.434" y="940" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">Sale_Price</text><line x1="739.105" x2="825.434" y1="944" y2="944" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="price_band" data-column="3" data-source="Products" aria-label="Products.price_band"><rect x="835.934" y="918" width="267.566" height="39" fill="#CEE3FF" /><text x="845.434" y="940" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">price_band</text><line x1="845.434" x2="937.527" y1="944" y2="944" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="ProductID" data-source="Products" data-value="1"><rect x="68.5" y="958" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="Product" data-source="Products" data-value="Pen"><rect x="329.176" y="958" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Pen</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Sale_Price" data-source="Products" data-value="199"><rect x="573.133" y="958" width="261.801" height="34" fill="#EAF3FF" /><text x="825.434" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">199</text></g><g data-fit="value" data-row="1" data-column="3" data-field="price_band" data-source="Products" data-value="Budget"><rect x="835.934" y="958" width="267.566" height="34" fill="#EAF3FF" /><text x="845.434" y="981" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Budget</text></g><g data-fit="value" data-row="2" data-column="0" data-field="ProductID" data-source="Products" data-value="2"><rect x="68.5" y="993" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="Product" data-source="Products" data-value="Book"><rect x="329.176" y="993" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Book</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Sale_Price" data-source="Products" data-value="200"><rect x="573.133" y="993" width="261.801" height="34" fill="#A8CEFF" /><text x="825.434" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">200</text></g><g data-fit="value" data-row="2" data-column="3" data-field="price_band" data-source="Products" data-value="NULL"><rect x="835.934" y="993" width="267.566" height="34" fill="#A8CEFF" /><text x="845.434" y="1016" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><polygon points="55,1005.0 63,1010.0 55,1015.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="ProductID" data-source="Products" data-value="3"><rect x="68.5" y="1028" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1051" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="Product" data-source="Products" data-value="Bag"><rect x="329.176" y="1028" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1051" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Bag</text></g><g data-fit="value" data-row="3" data-column="2" data-field="Sale_Price" data-source="Products" data-value="699.50"><rect x="573.133" y="1028" width="261.801" height="34" fill="#EAF3FF" /><text x="825.434" y="1051" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">699.50</text></g><g data-fit="value" data-row="3" data-column="3" data-field="price_band" data-source="Products" data-value="NULL"><rect x="835.934" y="1028" width="267.566" height="34" fill="#EAF3FF" /><text x="845.434" y="1051" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><g data-fit="value" data-row="4" data-column="0" data-field="ProductID" data-source="Products" data-value="4"><rect x="68.5" y="1063" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1086" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="1" data-field="Product" data-source="Products" data-value="Watch"><rect x="329.176" y="1063" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1086" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Watch</text></g><g data-fit="value" data-row="4" data-column="2" data-field="Sale_Price" data-source="Products" data-value="700"><rect x="573.133" y="1063" width="261.801" height="34" fill="#A8CEFF" /><text x="825.434" y="1086" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">700</text></g><g data-fit="value" data-row="4" data-column="3" data-field="price_band" data-source="Products" data-value="NULL"><rect x="835.934" y="1063" width="267.566" height="34" fill="#A8CEFF" /><text x="845.434" y="1086" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><polygon points="55,1075.0 63,1080.0 55,1085.0" fill="#263746" /><g data-fit="value" data-row="5" data-column="0" data-field="ProductID" data-source="Products" data-value="5"><rect x="68.5" y="1098" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1121" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="1" data-field="Product" data-source="Products" data-value="Mystery"><rect x="329.176" y="1098" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1121" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Mystery</text></g><g data-fit="value" data-row="5" data-column="2" data-field="Sale_Price" data-source="Products" data-value="NULL"><rect x="573.133" y="1098" width="261.801" height="34" fill="#EAF3FF" /><text x="825.434" y="1121" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="end">NULL</text></g><g data-fit="value" data-row="5" data-column="3" data-field="price_band" data-source="Products" data-value="NULL"><rect x="835.934" y="1098" width="267.566" height="34" fill="#EAF3FF" /><text x="845.434" y="1121" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g></g>
+<rect x="32" y="1162" width="1096" height="428" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1192" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1172" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1191" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="1227" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does Mid stop?</text>
+<text x="52" y="1256" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The Book at 200 and Bag at 699.50 both enter Mid. The Watch at 700 misses this band.</text>
+<rect x="52" y="1272" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1293" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &gt;= 200 AND Sale_Price &lt; 700</text>
+<g role="group" aria-label="P008 · Step 2" data-table="P008 · Step 2"><g data-fit="source" data-source="Products" data-first="0" data-last="2" aria-label="Products"><rect x="68.5" y="1320" width="766.434" height="35" fill="#075BCC" /><text x="78" y="1343" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="3" data-last="3" aria-label="Products calculated"><rect x="835.934" y="1320" width="267.566" height="35" fill="#075BCC" /><text x="845.434" y="1343" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="field" data-header="ProductID" data-column="0" data-source="Products" aria-label="Products.ProductID"><rect x="68.5" y="1356" width="259.676" height="39" fill="#CEE3FF" /><text x="318.676" y="1378" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">ProductID</text></g><g data-fit="field" data-header="Product" data-column="1" data-source="Products" aria-label="Products.Product"><rect x="329.176" y="1356" width="242.957" height="39" fill="#CEE3FF" /><text x="338.676" y="1378" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Product</text></g><g data-fit="field" data-header="Sale_Price" data-column="2" data-source="Products" aria-label="Products.Sale_Price"><rect x="573.133" y="1356" width="261.801" height="39" fill="#CEE3FF" /><text x="825.434" y="1378" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">Sale_Price</text><line x1="739.105" x2="825.434" y1="1382" y2="1382" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="price_band" data-column="3" data-source="Products" aria-label="Products.price_band"><rect x="835.934" y="1356" width="267.566" height="39" fill="#CEE3FF" /><text x="845.434" y="1378" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">price_band</text><line x1="845.434" x2="937.527" y1="1382" y2="1382" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="ProductID" data-source="Products" data-value="1"><rect x="68.5" y="1396" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1419" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="Product" data-source="Products" data-value="Pen"><rect x="329.176" y="1396" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1419" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Pen</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Sale_Price" data-source="Products" data-value="199"><rect x="573.133" y="1396" width="261.801" height="34" fill="#EAF3FF" /><text x="825.434" y="1419" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">199</text></g><g data-fit="value" data-row="1" data-column="3" data-field="price_band" data-source="Products" data-value="Budget"><rect x="835.934" y="1396" width="267.566" height="34" fill="#EAF3FF" /><text x="845.434" y="1419" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Budget</text></g><g data-fit="value" data-row="2" data-column="0" data-field="ProductID" data-source="Products" data-value="2"><rect x="68.5" y="1431" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1454" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="Product" data-source="Products" data-value="Book"><rect x="329.176" y="1431" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1454" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Book</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Sale_Price" data-source="Products" data-value="200"><rect x="573.133" y="1431" width="261.801" height="34" fill="#A8CEFF" /><text x="825.434" y="1454" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">200</text></g><g data-fit="value" data-row="2" data-column="3" data-field="price_band" data-source="Products" data-value="Mid"><rect x="835.934" y="1431" width="267.566" height="34" fill="#A8CEFF" /><text x="845.434" y="1454" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">Mid</text></g><polygon points="55,1443.0 63,1448.0 55,1453.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="ProductID" data-source="Products" data-value="3"><rect x="68.5" y="1466" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1489" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="Product" data-source="Products" data-value="Bag"><rect x="329.176" y="1466" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1489" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Bag</text></g><g data-fit="value" data-row="3" data-column="2" data-field="Sale_Price" data-source="Products" data-value="699.50"><rect x="573.133" y="1466" width="261.801" height="34" fill="#EAF3FF" /><text x="825.434" y="1489" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">699.50</text></g><g data-fit="value" data-row="3" data-column="3" data-field="price_band" data-source="Products" data-value="Mid"><rect x="835.934" y="1466" width="267.566" height="34" fill="#EAF3FF" /><text x="845.434" y="1489" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Mid</text></g><g data-fit="value" data-row="4" data-column="0" data-field="ProductID" data-source="Products" data-value="4"><rect x="68.5" y="1501" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1524" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="1" data-field="Product" data-source="Products" data-value="Watch"><rect x="329.176" y="1501" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1524" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Watch</text></g><g data-fit="value" data-row="4" data-column="2" data-field="Sale_Price" data-source="Products" data-value="700"><rect x="573.133" y="1501" width="261.801" height="34" fill="#A8CEFF" /><text x="825.434" y="1524" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">700</text></g><g data-fit="value" data-row="4" data-column="3" data-field="price_band" data-source="Products" data-value="NULL"><rect x="835.934" y="1501" width="267.566" height="34" fill="#A8CEFF" /><text x="845.434" y="1524" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><polygon points="55,1513.0 63,1518.0 55,1523.0" fill="#263746" /><g data-fit="value" data-row="5" data-column="0" data-field="ProductID" data-source="Products" data-value="5"><rect x="68.5" y="1536" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1559" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="1" data-field="Product" data-source="Products" data-value="Mystery"><rect x="329.176" y="1536" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1559" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Mystery</text></g><g data-fit="value" data-row="5" data-column="2" data-field="Sale_Price" data-source="Products" data-value="NULL"><rect x="573.133" y="1536" width="261.801" height="34" fill="#EAF3FF" /><text x="825.434" y="1559" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="end">NULL</text></g><g data-fit="value" data-row="5" data-column="3" data-field="price_band" data-source="Products" data-value="NULL"><rect x="835.934" y="1536" width="267.566" height="34" fill="#EAF3FF" /><text x="845.434" y="1559" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g></g>
+<rect x="32" y="1600" width="1096" height="428" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1630" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1610" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1629" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="1665" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How do the remaining rows get labels?</text>
+<text x="52" y="1694" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay.</text>
+<rect x="52" y="1710" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1731" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &gt;= 700 THEN &#x27;Premium&#x27; ELSE &#x27;Unknown&#x27;</text>
+<g role="group" aria-label="P008 · Final output" data-table="P008 · Final output"><g data-fit="source" data-source="Products" data-first="0" data-last="2" aria-label="Products"><rect x="68.5" y="1758" width="766.434" height="35" fill="#075BCC" /><text x="78" y="1781" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="3" data-last="3" aria-label="Products calculated"><rect x="835.934" y="1758" width="267.566" height="35" fill="#075BCC" /><text x="845.434" y="1781" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="field" data-header="ProductID" data-column="0" data-source="Products" aria-label="Products.ProductID"><rect x="68.5" y="1794" width="259.676" height="39" fill="#CEE3FF" /><text x="318.676" y="1816" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">ProductID</text></g><g data-fit="field" data-header="Product" data-column="1" data-source="Products" aria-label="Products.Product"><rect x="329.176" y="1794" width="242.957" height="39" fill="#CEE3FF" /><text x="338.676" y="1816" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Product</text></g><g data-fit="field" data-header="Sale_Price" data-column="2" data-source="Products" aria-label="Products.Sale_Price"><rect x="573.133" y="1794" width="261.801" height="39" fill="#CEE3FF" /><text x="825.434" y="1816" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">Sale_Price</text><line x1="739.105" x2="825.434" y1="1820" y2="1820" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="price_band" data-column="3" data-source="Products" aria-label="Products.price_band"><rect x="835.934" y="1794" width="267.566" height="39" fill="#CEE3FF" /><text x="845.434" y="1816" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">price_band</text><line x1="845.434" x2="937.527" y1="1820" y2="1820" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="ProductID" data-source="Products" data-value="1"><rect x="68.5" y="1834" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1857" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="Product" data-source="Products" data-value="Pen"><rect x="329.176" y="1834" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1857" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Pen</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Sale_Price" data-source="Products" data-value="199"><rect x="573.133" y="1834" width="261.801" height="34" fill="#EAF3FF" /><text x="825.434" y="1857" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">199</text></g><g data-fit="value" data-row="1" data-column="3" data-field="price_band" data-source="Products" data-value="Budget"><rect x="835.934" y="1834" width="267.566" height="34" fill="#EAF3FF" /><text x="845.434" y="1857" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Budget</text></g><g data-fit="value" data-row="2" data-column="0" data-field="ProductID" data-source="Products" data-value="2"><rect x="68.5" y="1869" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1892" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="Product" data-source="Products" data-value="Book"><rect x="329.176" y="1869" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1892" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Book</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Sale_Price" data-source="Products" data-value="200"><rect x="573.133" y="1869" width="261.801" height="34" fill="#A8CEFF" /><text x="825.434" y="1892" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">200</text></g><g data-fit="value" data-row="2" data-column="3" data-field="price_band" data-source="Products" data-value="Mid"><rect x="835.934" y="1869" width="267.566" height="34" fill="#A8CEFF" /><text x="845.434" y="1892" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">Mid</text></g><polygon points="55,1881.0 63,1886.0 55,1891.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="ProductID" data-source="Products" data-value="3"><rect x="68.5" y="1904" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1927" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="Product" data-source="Products" data-value="Bag"><rect x="329.176" y="1904" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1927" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Bag</text></g><g data-fit="value" data-row="3" data-column="2" data-field="Sale_Price" data-source="Products" data-value="699.50"><rect x="573.133" y="1904" width="261.801" height="34" fill="#EAF3FF" /><text x="825.434" y="1927" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">699.50</text></g><g data-fit="value" data-row="3" data-column="3" data-field="price_band" data-source="Products" data-value="Mid"><rect x="835.934" y="1904" width="267.566" height="34" fill="#EAF3FF" /><text x="845.434" y="1927" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Mid</text></g><g data-fit="value" data-row="4" data-column="0" data-field="ProductID" data-source="Products" data-value="4"><rect x="68.5" y="1939" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1962" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="4" data-column="1" data-field="Product" data-source="Products" data-value="Watch"><rect x="329.176" y="1939" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1962" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Watch</text></g><g data-fit="value" data-row="4" data-column="2" data-field="Sale_Price" data-source="Products" data-value="700"><rect x="573.133" y="1939" width="261.801" height="34" fill="#A8CEFF" /><text x="825.434" y="1962" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">700</text></g><g data-fit="value" data-row="4" data-column="3" data-field="price_band" data-source="Products" data-value="Premium"><rect x="835.934" y="1939" width="267.566" height="34" fill="#A8CEFF" /><text x="845.434" y="1962" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">Premium</text></g><polygon points="55,1951.0 63,1956.0 55,1961.0" fill="#263746" /><g data-fit="value" data-row="5" data-column="0" data-field="ProductID" data-source="Products" data-value="5"><rect x="68.5" y="1974" width="259.676" height="34" fill="#EAF3FF" /><text x="318.676" y="1997" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">5</text></g><g data-fit="value" data-row="5" data-column="1" data-field="Product" data-source="Products" data-value="Mystery"><rect x="329.176" y="1974" width="242.957" height="34" fill="#EAF3FF" /><text x="338.676" y="1997" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Mystery</text></g><g data-fit="value" data-row="5" data-column="2" data-field="Sale_Price" data-source="Products" data-value="NULL"><rect x="573.133" y="1974" width="261.801" height="34" fill="#EAF3FF" /><text x="825.434" y="1997" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="end">NULL</text></g><g data-fit="value" data-row="5" data-column="3" data-field="price_band" data-source="Products" data-value="Unknown"><rect x="835.934" y="1974" width="267.566" height="34" fill="#EAF3FF" /><text x="845.434" y="1997" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Unknown</text></g></g>
 </svg>

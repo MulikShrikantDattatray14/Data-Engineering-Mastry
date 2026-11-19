@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1884" viewBox="0 0 1160 1884" role="img" aria-labelledby="title desc">
-<title id="title">B1.04 &#183; Rearrange Products Table</title>
-<desc id="desc">One row per available product and store pair. Both products have a store1 price, 95 and 70. The quoted store name becomes data in the output. Only product 0 has a store2 price (100). Product 1's missing price removes that pair. Both products supply a row: 105 for product 0 and 80 for product 1. 2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order. Each branch &#183; FROM Products. All three store prices are already on each product row. Read one store column per branch so a product can contribute a separate row to every store that has a price. UNION ALL &#183; stack the three stores. The result needs one row per available product and store. Appending the independent branches preserves all five pairs without a join. The final sort sets the display order.</desc>
-<rect width="1160" height="1884" fill="#f4f7f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2124" viewBox="0 0 1160 2124" role="img" aria-labelledby="title desc">
+<title id="title">B1.04 · Rearrange Products Table</title>
+<desc id="desc">One row per available product and store pair. Both products have a store1 price, 95 and 70. The quoted store name becomes data in the output. Only product 0 has a store2 price (100). Product 1&#x27;s missing price removes that pair. Both products supply a row: 105 for product 0 and 80 for product 1. 2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order. Each branch · FROM Products. All three store prices are already on each product row. Read one store column per branch so a product can contribute a separate row to every store that has a price. UNION ALL · stack the three stores. The result needs one row per available product and store. Appending the independent branches preserves all five pairs without a join. The final sort sets the display order.</desc>
+<rect width="1160" height="2124" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">BOSSCODER  1.04    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Rearrange Products Table</text>
@@ -10,213 +10,58 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Two products have three store columns each. Why do we get five price rows?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Products  &#183;  2 rows</text>
-<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="354" width="277.914" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">product_id</text>
-<rect x="345.914" y="354" width="252.695" height="26" rx="0" fill="#d8e9f7"/>
-<text x="356.914" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">store1</text>
-<rect x="598.609" y="354" width="252.695" height="26" rx="0" fill="#d8e9f7"/>
-<text x="609.609" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">store2</text>
-<rect x="851.305" y="354" width="252.695" height="26" rx="0" fill="#d8e9f7"/>
-<text x="862.305" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">store3</text>
-<rect x="68" y="380" width="277.914" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M68 409L345.914 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="345.914" y="380" width="252.695" height="29" rx="0" fill="#edf4fb"/>
-<text x="356.914" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">95</text>
-<path d="M345.914 409L598.609 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="598.609" y="380" width="252.695" height="29" rx="0" fill="#edf4fb"/>
-<text x="609.609" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M598.609 409L851.305 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="851.305" y="380" width="252.695" height="29" rx="0" fill="#edf4fb"/>
-<text x="862.305" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
-<path d="M851.305 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 418.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="409" width="277.914" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 438L345.914 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="345.914" y="409" width="252.695" height="29" rx="0" fill="#ffffff"/>
-<text x="356.914" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70</text>
-<path d="M345.914 438L598.609 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="598.609" y="409" width="252.695" height="29" rx="0" fill="#ffffff"/>
-<text x="609.609" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M598.609 438L851.305 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="851.305" y="409" width="252.695" height="29" rx="0" fill="#ffffff"/>
-<text x="862.305" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">80</text>
-<path d="M851.305 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="462" width="1096" height="375" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="492" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
-<rect x="1000.38" y="472" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="491" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 2 rows</text>
-<text x="52" y="527" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How does store1 become rows?</text>
-<g role="group" aria-label="Each branch &#183; FROM Products" data-decision="1">
-<rect x="52" y="538" width="1052" height="85" rx="5" fill="#edf4fb"/>
-<rect x="52" y="543" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="560" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">Each branch &#183; FROM Products</text>
-<text x="66" y="584" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">All three store prices are already on each product row. Read one store column per branch so a product can contribute a</text>
-<text x="66" y="607" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">separate row to every store that has a price.</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. A dark source band spans its columns. ƒ marks a calculated value. Deeper cell colors mark the values to</text>
+<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">follow. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Products  ·  2 rows</text>
+<g role="group" aria-label="Products" data-table="Products"><g data-fit="source" data-source="Products" data-first="0" data-last="3" aria-label="Products"><rect x="68.5" y="356" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="379" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="field" data-header="product_id" data-column="0" data-source="Products" aria-label="Products.product_id"><rect x="68.5" y="392" width="284.156" height="39" fill="#CEE3FF" /><text x="343.156" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">product_id</text></g><g data-fit="field" data-header="store1" data-column="1" data-source="Products" aria-label="Products.store1"><rect x="353.656" y="392" width="249.281" height="39" fill="#CEE3FF" /><text x="593.438" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">store1</text></g><g data-fit="field" data-header="store2" data-column="2" data-source="Products" aria-label="Products.store2"><rect x="603.938" y="392" width="249.281" height="39" fill="#CEE3FF" /><text x="843.719" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">store2</text></g><g data-fit="field" data-header="store3" data-column="3" data-source="Products" aria-label="Products.store3"><rect x="854.219" y="392" width="249.281" height="39" fill="#CEE3FF" /><text x="1094.0" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">store3</text></g><g data-fit="value" data-row="1" data-column="0" data-field="product_id" data-source="Products" data-value="0"><rect x="68.5" y="432" width="284.156" height="34" fill="#EAF3FF" /><text x="343.156" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="1" data-column="1" data-field="store1" data-source="Products" data-value="95"><rect x="353.656" y="432" width="249.281" height="34" fill="#EAF3FF" /><text x="593.438" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">95</text></g><g data-fit="value" data-row="1" data-column="2" data-field="store2" data-source="Products" data-value="100"><rect x="603.938" y="432" width="249.281" height="34" fill="#EAF3FF" /><text x="843.719" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g><g data-fit="value" data-row="1" data-column="3" data-field="store3" data-source="Products" data-value="105"><rect x="854.219" y="432" width="249.281" height="34" fill="#EAF3FF" /><text x="1094.0" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">105</text></g><g data-fit="value" data-row="2" data-column="0" data-field="product_id" data-source="Products" data-value="1"><rect x="68.5" y="467" width="284.156" height="34" fill="#EAF3FF" /><text x="343.156" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="1" data-field="store1" data-source="Products" data-value="70"><rect x="353.656" y="467" width="249.281" height="34" fill="#EAF3FF" /><text x="593.438" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">70</text></g><g data-fit="value" data-row="2" data-column="2" data-field="store2" data-source="Products" data-value="NULL"><rect x="603.938" y="467" width="249.281" height="34" fill="#EAF3FF" /><text x="843.719" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="end">NULL</text></g><g data-fit="value" data-row="2" data-column="3" data-field="store3" data-source="Products" data-value="80"><rect x="854.219" y="467" width="249.281" height="34" fill="#EAF3FF" /><text x="1094.0" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">80</text></g><polygon points="55,479.0 63,484.0 55,489.0" fill="#263746" /></g>
+<rect x="32" y="526" width="1096" height="416" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="556" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="536" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="555" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="52" y="591" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How does store1 become rows?</text>
+<g role="group" aria-label="Each branch · FROM Products" data-decision="1">
+<rect x="52" y="602" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="607" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="624" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">Each branch · FROM Products</text>
+<text x="66" y="648" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">All three store prices are already on each product row. Read one store column per branch so a product can contribute a</text>
+<text x="66" y="671" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">separate row to every store that has a price.</text>
 </g>
-<text x="52" y="649" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Both products have a store1 price, 95 and 70. The quoted store name becomes data in the output.</text>
-<rect x="52" y="665" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="686" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT product_id, 'store1' AS store, store1 AS price &#8230; WHERE store1 IS NOT NULL</text>
-<rect x="68" y="713" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="728" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="734" width="362.146" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="749" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">product_id</text>
-<rect x="430.146" y="734" width="336.927" height="26" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="749" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">store</text>
-<rect x="767.073" y="734" width="336.927" height="26" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="749" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price</text>
-<rect x="68" y="760" width="362.146" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="779" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M68 789L430.146 789" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="760" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="779" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store1</text>
-<path d="M430.146 789L767.073 789" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="760" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="779" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">95</text>
-<path d="M767.073 789L1104 789" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 798.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="789" width="362.146" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="808" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 818L430.146 818" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="789" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="808" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store1</text>
-<path d="M430.146 818L767.073 818" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="789" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="808" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70</text>
-<path d="M767.073 818L1104 818" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="847" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="877" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1008.7" y="857" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1020.7" y="876" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 1 row</text>
-<text x="52" y="912" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which product is available at store2?</text>
-<text x="52" y="941" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Only product 0 has a store2 price (100). Product 1's missing price removes that pair.</text>
-<rect x="52" y="957" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="978" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT product_id, 'store2' AS store, store2 AS price &#8230; WHERE store2 IS NOT NULL</text>
-<rect x="68" y="1005" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1020" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="1026" width="362.146" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1041" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">product_id</text>
-<rect x="430.146" y="1026" width="336.927" height="26" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1041" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">store</text>
-<rect x="767.073" y="1026" width="336.927" height="26" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1041" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price</text>
-<rect x="68" y="1052" width="362.146" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M68 1081L430.146 1081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="1052" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store2</text>
-<path d="M430.146 1081L767.073 1081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="1052" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M767.073 1081L1104 1081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1110" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1140" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
-<rect x="1000.38" y="1120" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1139" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 2 rows</text>
-<text x="52" y="1175" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which products are available at store3?</text>
-<text x="52" y="1204" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Both products supply a row: 105 for product 0 and 80 for product 1.</text>
-<rect x="52" y="1220" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT product_id, 'store3' AS store, store3 AS price &#8230; WHERE store3 IS NOT NULL</text>
-<rect x="68" y="1268" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1283" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="1289" width="362.146" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">product_id</text>
-<rect x="430.146" y="1289" width="336.927" height="26" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">store</text>
-<rect x="767.073" y="1289" width="336.927" height="26" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price</text>
-<rect x="68" y="1315" width="362.146" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1334" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M68 1344L430.146 1344" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="1315" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1334" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store3</text>
-<path d="M430.146 1344L767.073 1344" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="1315" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1334" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
-<path d="M767.073 1344L1104 1344" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1353.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1344" width="362.146" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1363" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1373L430.146 1373" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="1344" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1363" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store3</text>
-<path d="M430.146 1373L767.073 1373" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="1344" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1363" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">80</text>
-<path d="M767.073 1373L1104 1373" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1402" width="1096" height="462" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1432" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1412" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1431" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
-<text x="52" y="1467" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why stack the three sets of rows?</text>
-<g role="group" aria-label="UNION ALL &#183; stack the three stores" data-decision="F">
-<rect x="52" y="1478" width="1052" height="85" rx="5" fill="#edf4fb"/>
-<rect x="52" y="1483" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="1500" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">UNION ALL &#183; stack the three stores</text>
-<text x="66" y="1524" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The result needs one row per available product and store. Appending the independent branches preserves all five pairs</text>
-<text x="66" y="1547" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">without a join. The final sort sets the display order.</text>
+<text x="52" y="713" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Both products have a store1 price, 95 and 70. The quoted store name becomes data in the output.</text>
+<rect x="52" y="729" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="750" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT product_id, &#x27;store1&#x27; AS store, store1 AS price … WHERE store1 IS NOT NULL</text>
+<g role="group" aria-label="B1.04 · Step 1" data-table="B1.04 · Step 1"><g data-fit="source" data-source="Products" data-first="0" data-last="0" aria-label="Products"><rect x="68.5" y="777" width="349.875" height="35" fill="#075BCC" /><text x="78" y="800" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="1" data-last="1" aria-label="Products calculated"><rect x="419.375" y="777" width="347.438" height="35" fill="#075BCC" /><text x="428.875" y="800" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="source" data-source="Products" data-first="2" data-last="2" aria-label="Products"><rect x="767.812" y="777" width="335.688" height="35" fill="#075BCC" /><text x="777.312" y="800" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="field" data-header="product_id" data-column="0" data-source="Products" aria-label="Products.product_id"><rect x="68.5" y="813" width="349.875" height="39" fill="#CEE3FF" /><text x="408.875" y="835" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">product_id</text></g><g data-fit="field" data-header="store" data-column="1" data-source="Products" aria-label="Products.store"><rect x="419.375" y="813" width="347.438" height="39" fill="#CEE3FF" /><text x="428.875" y="835" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">store</text><line x1="428.875" x2="472.844" y1="839" y2="839" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="price" data-column="2" data-source="Products" aria-label="Products.price"><rect x="767.812" y="813" width="335.688" height="39" fill="#CEE3FF" /><text x="1094.0" y="835" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">price</text><line x1="1051.672" x2="1094.0" y1="839" y2="839" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="product_id" data-source="Products" data-value="0"><rect x="68.5" y="853" width="349.875" height="34" fill="#EAF3FF" /><text x="408.875" y="876" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="1" data-column="1" data-field="store" data-source="Products" data-value="store1"><rect x="419.375" y="853" width="347.438" height="34" fill="#EAF3FF" /><text x="428.875" y="876" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">store1</text></g><g data-fit="value" data-row="1" data-column="2" data-field="price" data-source="Products" data-value="95"><rect x="767.812" y="853" width="335.688" height="34" fill="#EAF3FF" /><text x="1094.0" y="876" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">95</text></g><g data-fit="value" data-row="2" data-column="0" data-field="product_id" data-source="Products" data-value="1"><rect x="68.5" y="888" width="349.875" height="34" fill="#EAF3FF" /><text x="408.875" y="911" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="1" data-field="store" data-source="Products" data-value="store1"><rect x="419.375" y="888" width="347.438" height="34" fill="#A8CEFF" /><text x="428.875" y="911" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">store1</text></g><g data-fit="value" data-row="2" data-column="2" data-field="price" data-source="Products" data-value="70"><rect x="767.812" y="888" width="335.688" height="34" fill="#A8CEFF" /><text x="1094.0" y="911" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">70</text></g><polygon points="55,900.0 63,905.0 55,910.0" fill="#263746" /></g>
+<rect x="32" y="952" width="1096" height="288" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="982" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1008.7" y="962" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1020.7" y="981" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 1 row</text>
+<text x="52" y="1017" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which product is available at store2?</text>
+<text x="52" y="1046" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Only product 0 has a store2 price (100). Product 1&#x27;s missing price removes that pair.</text>
+<rect x="52" y="1062" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1083" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT product_id, &#x27;store2&#x27; AS store, store2 AS price … WHERE store2 IS NOT NULL</text>
+<g role="group" aria-label="B1.04 · Step 2" data-table="B1.04 · Step 2"><g data-fit="source" data-source="Products" data-first="0" data-last="0" aria-label="Products"><rect x="68.5" y="1110" width="349.875" height="35" fill="#075BCC" /><text x="78" y="1133" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="1" data-last="1" aria-label="Products calculated"><rect x="419.375" y="1110" width="347.438" height="35" fill="#075BCC" /><text x="428.875" y="1133" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="source" data-source="Products" data-first="2" data-last="2" aria-label="Products"><rect x="767.812" y="1110" width="335.688" height="35" fill="#075BCC" /><text x="777.312" y="1133" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="field" data-header="product_id" data-column="0" data-source="Products" aria-label="Products.product_id"><rect x="68.5" y="1146" width="349.875" height="39" fill="#CEE3FF" /><text x="408.875" y="1168" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">product_id</text></g><g data-fit="field" data-header="store" data-column="1" data-source="Products" aria-label="Products.store"><rect x="419.375" y="1146" width="347.438" height="39" fill="#CEE3FF" /><text x="428.875" y="1168" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">store</text><line x1="428.875" x2="472.844" y1="1172" y2="1172" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="price" data-column="2" data-source="Products" aria-label="Products.price"><rect x="767.812" y="1146" width="335.688" height="39" fill="#CEE3FF" /><text x="1094.0" y="1168" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">price</text><line x1="1051.672" x2="1094.0" y1="1172" y2="1172" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="product_id" data-source="Products" data-value="0"><rect x="68.5" y="1186" width="349.875" height="34" fill="#EAF3FF" /><text x="408.875" y="1209" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="1" data-column="1" data-field="store" data-source="Products" data-value="store2"><rect x="419.375" y="1186" width="347.438" height="34" fill="#EAF3FF" /><text x="428.875" y="1209" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">store2</text></g><g data-fit="value" data-row="1" data-column="2" data-field="price" data-source="Products" data-value="100"><rect x="767.812" y="1186" width="335.688" height="34" fill="#EAF3FF" /><text x="1094.0" y="1209" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g></g>
+<rect x="32" y="1250" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1280" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1000.38" y="1260" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1279" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="52" y="1315" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which products are available at store3?</text>
+<text x="52" y="1344" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Both products supply a row: 105 for product 0 and 80 for product 1.</text>
+<rect x="52" y="1360" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1381" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT product_id, &#x27;store3&#x27; AS store, store3 AS price … WHERE store3 IS NOT NULL</text>
+<g role="group" aria-label="B1.04 · Step 3" data-table="B1.04 · Step 3"><g data-fit="source" data-source="Products" data-first="0" data-last="0" aria-label="Products"><rect x="68.5" y="1408" width="349.875" height="35" fill="#075BCC" /><text x="78" y="1431" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="1" data-last="1" aria-label="Products calculated"><rect x="419.375" y="1408" width="347.438" height="35" fill="#075BCC" /><text x="428.875" y="1431" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="source" data-source="Products" data-first="2" data-last="2" aria-label="Products"><rect x="767.812" y="1408" width="335.688" height="35" fill="#075BCC" /><text x="777.312" y="1431" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="field" data-header="product_id" data-column="0" data-source="Products" aria-label="Products.product_id"><rect x="68.5" y="1444" width="349.875" height="39" fill="#CEE3FF" /><text x="408.875" y="1466" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">product_id</text></g><g data-fit="field" data-header="store" data-column="1" data-source="Products" aria-label="Products.store"><rect x="419.375" y="1444" width="347.438" height="39" fill="#CEE3FF" /><text x="428.875" y="1466" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">store</text><line x1="428.875" x2="472.844" y1="1470" y2="1470" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="price" data-column="2" data-source="Products" aria-label="Products.price"><rect x="767.812" y="1444" width="335.688" height="39" fill="#CEE3FF" /><text x="1094.0" y="1466" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">price</text><line x1="1051.672" x2="1094.0" y1="1470" y2="1470" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="product_id" data-source="Products" data-value="0"><rect x="68.5" y="1484" width="349.875" height="34" fill="#EAF3FF" /><text x="408.875" y="1507" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="1" data-column="1" data-field="store" data-source="Products" data-value="store3"><rect x="419.375" y="1484" width="347.438" height="34" fill="#EAF3FF" /><text x="428.875" y="1507" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">store3</text></g><g data-fit="value" data-row="1" data-column="2" data-field="price" data-source="Products" data-value="105"><rect x="767.812" y="1484" width="335.688" height="34" fill="#EAF3FF" /><text x="1094.0" y="1507" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">105</text></g><g data-fit="value" data-row="2" data-column="0" data-field="product_id" data-source="Products" data-value="1"><rect x="68.5" y="1519" width="349.875" height="34" fill="#EAF3FF" /><text x="408.875" y="1542" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="1" data-field="store" data-source="Products" data-value="store3"><rect x="419.375" y="1519" width="347.438" height="34" fill="#A8CEFF" /><text x="428.875" y="1542" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">store3</text></g><g data-fit="value" data-row="2" data-column="2" data-field="price" data-source="Products" data-value="80"><rect x="767.812" y="1519" width="335.688" height="34" fill="#A8CEFF" /><text x="1094.0" y="1542" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">80</text></g><polygon points="55,1531.0 63,1536.0 55,1541.0" fill="#263746" /></g>
+<rect x="32" y="1583" width="1096" height="521" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1613" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1593" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1612" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="1648" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why stack the three sets of rows?</text>
+<g role="group" aria-label="UNION ALL · stack the three stores" data-decision="F">
+<rect x="52" y="1659" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="1664" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="1681" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">UNION ALL · stack the three stores</text>
+<text x="66" y="1705" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The result needs one row per available product and store. Appending the independent branches preserves all five pairs</text>
+<text x="66" y="1728" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">without a join. The final sort sets the display order.</text>
 </g>
-<text x="52" y="1589" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order.</text>
-<rect x="52" y="1605" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1626" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">UNION ALL / ORDER BY store ASC</text>
-<rect x="68" y="1653" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1668" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<rect x="68" y="1674" width="362.146" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1689" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">product_id</text>
-<rect x="430.146" y="1674" width="336.927" height="26" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1689" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">store</text>
-<rect x="767.073" y="1674" width="336.927" height="26" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1689" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price</text>
-<rect x="68" y="1700" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1719" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M68 1729L430.146 1729" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="1700" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1719" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store1</text>
-<path d="M430.146 1729L767.073 1729" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="1700" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1719" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">95</text>
-<path d="M767.073 1729L1104 1729" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1738.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1729" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1748" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1758L430.146 1758" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="1729" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1748" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store1</text>
-<path d="M430.146 1758L767.073 1758" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="1729" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1748" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70</text>
-<path d="M767.073 1758L1104 1758" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1758" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1777" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M68 1787L430.146 1787" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="1758" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1777" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store2</text>
-<path d="M430.146 1787L767.073 1787" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="1758" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1777" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M767.073 1787L1104 1787" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1787" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1806" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M68 1816L430.146 1816" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="1787" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1806" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store3</text>
-<path d="M430.146 1816L767.073 1816" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="1787" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1806" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
-<path d="M767.073 1816L1104 1816" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1825.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1816" width="362.146" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1835" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1845L430.146 1845" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="430.146" y="1816" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="441.146" y="1835" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">store3</text>
-<path d="M430.146 1845L767.073 1845" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="767.073" y="1816" width="336.927" height="29" rx="0" fill="#d8e9f7"/>
-<text x="778.073" y="1835" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">80</text>
-<path d="M767.073 1845L1104 1845" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="52" y="1770" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order.</text>
+<rect x="52" y="1786" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">UNION ALL / ORDER BY store ASC</text>
+<g role="group" aria-label="B1.04 · Final output" data-table="B1.04 · Final output"><g data-fit="source" data-source="Products" data-first="0" data-last="0" aria-label="Products"><rect x="68.5" y="1834" width="349.875" height="35" fill="#075BCC" /><text x="78" y="1857" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="source" data-source="Products" data-first="1" data-last="1" aria-label="Products calculated"><rect x="419.375" y="1834" width="347.438" height="35" fill="#075BCC" /><text x="428.875" y="1857" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Products</text></g><g data-fit="source" data-source="Products" data-first="2" data-last="2" aria-label="Products"><rect x="767.812" y="1834" width="335.688" height="35" fill="#075BCC" /><text x="777.312" y="1857" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Products</text></g><g data-fit="field" data-header="product_id" data-column="0" data-source="Products" aria-label="Products.product_id"><rect x="68.5" y="1870" width="349.875" height="39" fill="#CEE3FF" /><text x="408.875" y="1892" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">product_id</text><line x1="319.594" x2="408.875" y1="1896" y2="1896" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="store" data-column="1" data-source="Products" aria-label="Products.store"><rect x="419.375" y="1870" width="347.438" height="39" fill="#CEE3FF" /><text x="428.875" y="1892" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">store</text><line x1="428.875" x2="472.844" y1="1896" y2="1896" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="price" data-column="2" data-source="Products" aria-label="Products.price"><rect x="767.812" y="1870" width="335.688" height="39" fill="#CEE3FF" /><text x="1094.0" y="1892" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">price</text><line x1="1051.672" x2="1094.0" y1="1896" y2="1896" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="product_id" data-source="Products" data-value="0"><rect x="68.5" y="1910" width="349.875" height="34" fill="#EAF3FF" /><text x="408.875" y="1933" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="1" data-column="1" data-field="store" data-source="Products" data-value="store1"><rect x="419.375" y="1910" width="347.438" height="34" fill="#EAF3FF" /><text x="428.875" y="1933" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">store1</text></g><g data-fit="value" data-row="1" data-column="2" data-field="price" data-source="Products" data-value="95"><rect x="767.812" y="1910" width="335.688" height="34" fill="#EAF3FF" /><text x="1094.0" y="1933" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">95</text></g><g data-fit="value" data-row="2" data-column="0" data-field="product_id" data-source="Products" data-value="1"><rect x="68.5" y="1945" width="349.875" height="34" fill="#A8CEFF" /><text x="408.875" y="1968" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="1" data-field="store" data-source="Products" data-value="store1"><rect x="419.375" y="1945" width="347.438" height="34" fill="#A8CEFF" /><text x="428.875" y="1968" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">store1</text></g><g data-fit="value" data-row="2" data-column="2" data-field="price" data-source="Products" data-value="70"><rect x="767.812" y="1945" width="335.688" height="34" fill="#A8CEFF" /><text x="1094.0" y="1968" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">70</text></g><polygon points="55,1957.0 63,1962.0 55,1967.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="product_id" data-source="Products" data-value="0"><rect x="68.5" y="1980" width="349.875" height="34" fill="#EAF3FF" /><text x="408.875" y="2003" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="3" data-column="1" data-field="store" data-source="Products" data-value="store2"><rect x="419.375" y="1980" width="347.438" height="34" fill="#EAF3FF" /><text x="428.875" y="2003" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">store2</text></g><g data-fit="value" data-row="3" data-column="2" data-field="price" data-source="Products" data-value="100"><rect x="767.812" y="1980" width="335.688" height="34" fill="#EAF3FF" /><text x="1094.0" y="2003" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">100</text></g><g data-fit="value" data-row="4" data-column="0" data-field="product_id" data-source="Products" data-value="0"><rect x="68.5" y="2015" width="349.875" height="34" fill="#EAF3FF" /><text x="408.875" y="2038" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">0</text></g><g data-fit="value" data-row="4" data-column="1" data-field="store" data-source="Products" data-value="store3"><rect x="419.375" y="2015" width="347.438" height="34" fill="#EAF3FF" /><text x="428.875" y="2038" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">store3</text></g><g data-fit="value" data-row="4" data-column="2" data-field="price" data-source="Products" data-value="105"><rect x="767.812" y="2015" width="335.688" height="34" fill="#EAF3FF" /><text x="1094.0" y="2038" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">105</text></g><g data-fit="value" data-row="5" data-column="0" data-field="product_id" data-source="Products" data-value="1"><rect x="68.5" y="2050" width="349.875" height="34" fill="#A8CEFF" /><text x="408.875" y="2073" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="5" data-column="1" data-field="store" data-source="Products" data-value="store3"><rect x="419.375" y="2050" width="347.438" height="34" fill="#A8CEFF" /><text x="428.875" y="2073" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">store3</text></g><g data-fit="value" data-row="5" data-column="2" data-field="price" data-source="Products" data-value="80"><rect x="767.812" y="2050" width="335.688" height="34" fill="#A8CEFF" /><text x="1094.0" y="2073" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">80</text></g><polygon points="55,2062.0 63,2067.0 55,2072.0" fill="#263746" /></g>
 </svg>

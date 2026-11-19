@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1640" viewBox="0 0 1160 1640" role="img" aria-labelledby="title desc">
-<title id="title">B1.01 &#183; Find Customers With Positive Revenue This Year</title>
-<desc id="desc">One row per customer with positive revenue in 2021. Only customers 1, 2 and 4 have a 2021 row. Customer 3 has positive numbers in earlier years. Customer 2 has &#8722;50 and drops out. Customers 1 and 4 have 30 and 20 respectively. The qualifying IDs are 1 and 4. Each appears once because customer and year form the input key. Any output order is valid. FROM Customers &#183; one table is enough. The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and the customer ID to return.</desc>
-<rect width="1160" height="1640" fill="#f4f7f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1863" viewBox="0 0 1160 1863" role="img" aria-labelledby="title desc">
+<title id="title">B1.01 · Find Customers With Positive Revenue This Year</title>
+<desc id="desc">One row per customer with positive revenue in 2021. Only customers 1, 2 and 4 have a 2021 row. Customer 3 has positive numbers in earlier years. Customer 2 has −50 and drops out. Customers 1 and 4 have 30 and 20 respectively. The qualifying IDs are 1 and 4. Each appears once because customer and year form the input key. Any output order is valid. FROM Customers · one table is enough. The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and the customer ID to return.</desc>
+<rect width="1160" height="1863" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">BOSSCODER  1.01    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Find Customers With Positive Revenue This Year</text>
@@ -10,182 +10,43 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Can a customer qualify using a positive amount from a different year?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  &#183;  7 rows</text>
-<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<rect x="68" y="354" width="359.438" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_id</text>
-<rect x="427.438" y="354" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="438.438" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">year</text>
-<rect x="765.719" y="354" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="776.719" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">revenue</text>
-<rect x="68" y="380" width="359.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 409L427.438 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="380" width="338.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="438.438" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2018</text>
-<path d="M427.438 409L765.719 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="380" width="338.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="776.719" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">50</text>
-<path d="M765.719 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="409" width="359.438" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 438L427.438 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="409" width="338.281" height="29" rx="0" fill="#ffffff"/>
-<text x="438.438" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2021</text>
-<path d="M427.438 438L765.719 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="409" width="338.281" height="29" rx="0" fill="#ffffff"/>
-<text x="776.719" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M765.719 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="438" width="359.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 467L427.438 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="438" width="338.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="438.438" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2020</text>
-<path d="M427.438 467L765.719 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="438" width="338.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="776.719" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70</text>
-<path d="M765.719 467L1104 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 476.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="467" width="359.438" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 496L427.438 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="467" width="338.281" height="29" rx="0" fill="#ffffff"/>
-<text x="438.438" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2021</text>
-<path d="M427.438 496L765.719 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="467" width="338.281" height="29" rx="0" fill="#ffffff"/>
-<text x="776.719" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">-50</text>
-<path d="M765.719 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="496" width="359.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 525L427.438 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="496" width="338.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="438.438" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2018</text>
-<path d="M427.438 525L765.719 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="496" width="338.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="776.719" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M765.719 525L1104 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="525" width="359.438" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="544" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 554L427.438 554" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="525" width="338.281" height="29" rx="0" fill="#ffffff"/>
-<text x="438.438" y="544" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2016</text>
-<path d="M427.438 554L765.719 554" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="525" width="338.281" height="29" rx="0" fill="#ffffff"/>
-<text x="776.719" y="544" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">50</text>
-<path d="M765.719 554L1104 554" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="554" width="359.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="573" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 583L427.438 583" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="554" width="338.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="438.438" y="573" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2021</text>
-<path d="M427.438 583L765.719 583" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="554" width="338.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="776.719" y="573" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M765.719 583L1104 583" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="607" width="1096" height="404" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="637" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
-<rect x="1000.38" y="617" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="636" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 &#8594; 3 rows</text>
-<text x="52" y="672" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which customer-year rows matter?</text>
-<g role="group" aria-label="FROM Customers &#183; one table is enough" data-decision="1">
-<rect x="52" y="683" width="1052" height="85" rx="5" fill="#edf4fb"/>
-<rect x="52" y="688" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="705" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers &#183; one table is enough</text>
-<text x="66" y="729" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and</text>
-<text x="66" y="752" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">the customer ID to return.</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. A dark source band spans its columns. ƒ marks a calculated value. Deeper cell colors mark the values to</text>
+<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">follow. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  ·  7 rows</text>
+<g role="group" aria-label="Customers" data-table="Customers"><g data-fit="source" data-source="Customers" data-first="0" data-last="2" aria-label="Customers"><rect x="68.5" y="356" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="379" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Customers</text></g><g data-fit="field" data-header="customer_id" data-column="0" data-source="Customers" aria-label="Customers.customer_id"><rect x="68.5" y="392" width="376.823" height="39" fill="#CEE3FF" /><text x="435.823" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">customer_id</text></g><g data-fit="field" data-header="year" data-column="1" data-source="Customers" aria-label="Customers.year"><rect x="446.323" y="392" width="312.854" height="39" fill="#CEE3FF" /><text x="749.677" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">year</text></g><g data-fit="field" data-header="revenue" data-column="2" data-source="Customers" aria-label="Customers.revenue"><rect x="760.177" y="392" width="343.323" height="39" fill="#CEE3FF" /><text x="1094.0" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">revenue</text></g><g data-fit="value" data-row="1" data-column="0" data-field="customer_id" data-source="Customers" data-value="1"><rect x="68.5" y="432" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="year" data-source="Customers" data-value="2018"><rect x="446.323" y="432" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2018</text></g><g data-fit="value" data-row="1" data-column="2" data-field="revenue" data-source="Customers" data-value="50"><rect x="760.177" y="432" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">50</text></g><g data-fit="value" data-row="2" data-column="0" data-field="customer_id" data-source="Customers" data-value="1"><rect x="68.5" y="467" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="1" data-field="year" data-source="Customers" data-value="2021"><rect x="446.323" y="467" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2021</text></g><g data-fit="value" data-row="2" data-column="2" data-field="revenue" data-source="Customers" data-value="30"><rect x="760.177" y="467" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">30</text></g><g data-fit="value" data-row="3" data-column="0" data-field="customer_id" data-source="Customers" data-value="1"><rect x="68.5" y="502" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="3" data-column="1" data-field="year" data-source="Customers" data-value="2020"><rect x="446.323" y="502" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2020</text></g><g data-fit="value" data-row="3" data-column="2" data-field="revenue" data-source="Customers" data-value="70"><rect x="760.177" y="502" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">70</text></g><g data-fit="value" data-row="4" data-column="0" data-field="customer_id" data-source="Customers" data-value="2"><rect x="68.5" y="537" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="4" data-column="1" data-field="year" data-source="Customers" data-value="2021"><rect x="446.323" y="537" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2021</text></g><g data-fit="value" data-row="4" data-column="2" data-field="revenue" data-source="Customers" data-value="-50"><rect x="760.177" y="537" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="560" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">-50</text></g><polygon points="55,549.0 63,554.0 55,559.0" fill="#263746" /><g data-fit="value" data-row="5" data-column="0" data-field="customer_id" data-source="Customers" data-value="3"><rect x="68.5" y="572" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="5" data-column="1" data-field="year" data-source="Customers" data-value="2018"><rect x="446.323" y="572" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2018</text></g><g data-fit="value" data-row="5" data-column="2" data-field="revenue" data-source="Customers" data-value="10"><rect x="760.177" y="572" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="595" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">10</text></g><g data-fit="value" data-row="6" data-column="0" data-field="customer_id" data-source="Customers" data-value="3"><rect x="68.5" y="607" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="630" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="6" data-column="1" data-field="year" data-source="Customers" data-value="2016"><rect x="446.323" y="607" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="630" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2016</text></g><g data-fit="value" data-row="6" data-column="2" data-field="revenue" data-source="Customers" data-value="50"><rect x="760.177" y="607" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="630" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">50</text></g><g data-fit="value" data-row="7" data-column="0" data-field="customer_id" data-source="Customers" data-value="4"><rect x="68.5" y="642" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="665" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="7" data-column="1" data-field="year" data-source="Customers" data-value="2021"><rect x="446.323" y="642" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="665" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2021</text></g><g data-fit="value" data-row="7" data-column="2" data-field="revenue" data-source="Customers" data-value="20"><rect x="760.177" y="642" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="665" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g></g>
+<rect x="32" y="701" width="1096" height="451" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="731" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="711" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="730" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 3 rows</text>
+<text x="52" y="766" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which customer-year rows matter?</text>
+<g role="group" aria-label="FROM Customers · one table is enough" data-decision="1">
+<rect x="52" y="777" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="782" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="799" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers · one table is enough</text>
+<text x="66" y="823" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and</text>
+<text x="66" y="846" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">the customer ID to return.</text>
 </g>
-<text x="52" y="794" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Only customers 1, 2 and 4 have a 2021 row. Customer 3 has positive numbers in earlier years.</text>
-<rect x="52" y="810" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="831" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE year = 2021</text>
-<rect x="68" y="858" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="873" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<rect x="68" y="879" width="359.438" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="894" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_id</text>
-<rect x="427.438" y="879" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="438.438" y="894" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">year</text>
-<rect x="765.719" y="879" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="776.719" y="894" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">revenue</text>
-<rect x="68" y="905" width="359.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 934L427.438 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="905" width="338.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="438.438" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2021</text>
-<path d="M427.438 934L765.719 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="905" width="338.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="776.719" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M765.719 934L1104 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 943.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="934" width="359.438" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 963L427.438 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="934" width="338.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="438.438" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2021</text>
-<path d="M427.438 963L765.719 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="934" width="338.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="776.719" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">-50</text>
-<path d="M765.719 963L1104 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="963" width="359.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 992L427.438 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="963" width="338.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="438.438" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2021</text>
-<path d="M427.438 992L765.719 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="963" width="338.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="776.719" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M765.719 992L1104 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1021" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1051" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="1031" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 2 rows</text>
-<text x="52" y="1086" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which revenues are positive?</text>
-<text x="52" y="1115" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Customer 2 has &#8722;50 and drops out. Customers 1 and 4 have 30 and 20 respectively.</text>
-<rect x="52" y="1131" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND revenue &gt; 0</text>
-<rect x="68" y="1179" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<rect x="68" y="1200" width="359.438" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_id</text>
-<rect x="427.438" y="1200" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="438.438" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">year</text>
-<rect x="765.719" y="1200" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
-<text x="776.719" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">revenue</text>
-<rect x="68" y="1226" width="359.438" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1255L427.438 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="1226" width="338.281" height="29" rx="0" fill="#edf4fb"/>
-<text x="438.438" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2021</text>
-<path d="M427.438 1255L765.719 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="1226" width="338.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="776.719" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M765.719 1255L1104 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1255" width="359.438" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1284L427.438 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.438" y="1255" width="338.281" height="29" rx="0" fill="#ffffff"/>
-<text x="438.438" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2021</text>
-<path d="M427.438 1284L765.719 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="765.719" y="1255" width="338.281" height="29" rx="0" fill="#d8e9f7"/>
-<text x="776.719" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M765.719 1284L1104 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1313" width="1096" height="307" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1343" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1323" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1342" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 2 rows</text>
-<text x="52" y="1378" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What does the exercise ask us to return?</text>
-<text x="52" y="1407" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The qualifying IDs are 1 and 4. Each appears once because customer and year form the input key. Any output order</text>
-<text x="52" y="1432" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">is valid.</text>
-<rect x="52" y="1448" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1469" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT customer_id</text>
-<rect x="68" y="1496" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1511" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<rect x="68" y="1517" width="1036" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1532" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_id</text>
-<rect x="68" y="1543" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1572L1104 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1572" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1601L1104 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="52" y="888" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Only customers 1, 2 and 4 have a 2021 row. Customer 3 has positive numbers in earlier years.</text>
+<rect x="52" y="904" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="925" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE year = 2021</text>
+<g role="group" aria-label="B1.01 · Step 1" data-table="B1.01 · Step 1"><g data-fit="source" data-source="Customers" data-first="0" data-last="2" aria-label="Customers"><rect x="68.5" y="952" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="975" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Customers</text></g><g data-fit="field" data-header="customer_id" data-column="0" data-source="Customers" aria-label="Customers.customer_id"><rect x="68.5" y="988" width="376.823" height="39" fill="#CEE3FF" /><text x="435.823" y="1010" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">customer_id</text></g><g data-fit="field" data-header="year" data-column="1" data-source="Customers" aria-label="Customers.year"><rect x="446.323" y="988" width="312.854" height="39" fill="#CEE3FF" /><text x="749.677" y="1010" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">year</text><line x1="712.208" x2="749.677" y1="1014" y2="1014" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="revenue" data-column="2" data-source="Customers" aria-label="Customers.revenue"><rect x="760.177" y="988" width="343.323" height="39" fill="#CEE3FF" /><text x="1094.0" y="1010" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">revenue</text><line x1="1024.969" x2="1094.0" y1="1014" y2="1014" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="customer_id" data-source="Customers" data-value="1"><rect x="68.5" y="1028" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="1051" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="year" data-source="Customers" data-value="2021"><rect x="446.323" y="1028" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="1051" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2021</text></g><g data-fit="value" data-row="1" data-column="2" data-field="revenue" data-source="Customers" data-value="30"><rect x="760.177" y="1028" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="1051" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">30</text></g><g data-fit="value" data-row="2" data-column="0" data-field="customer_id" data-source="Customers" data-value="2"><rect x="68.5" y="1063" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="1086" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="year" data-source="Customers" data-value="2021"><rect x="446.323" y="1063" width="312.854" height="34" fill="#A8CEFF" /><text x="749.677" y="1086" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">2021</text></g><g data-fit="value" data-row="2" data-column="2" data-field="revenue" data-source="Customers" data-value="-50"><rect x="760.177" y="1063" width="343.323" height="34" fill="#A8CEFF" /><text x="1094.0" y="1086" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">-50</text></g><polygon points="55,1075.0 63,1080.0 55,1085.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="customer_id" data-source="Customers" data-value="4"><rect x="68.5" y="1098" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="1121" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="3" data-column="1" data-field="year" data-source="Customers" data-value="2021"><rect x="446.323" y="1098" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="1121" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2021</text></g><g data-fit="value" data-row="3" data-column="2" data-field="revenue" data-source="Customers" data-value="20"><rect x="760.177" y="1098" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="1121" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g></g>
+<rect x="32" y="1162" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1192" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1172" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1191" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="1227" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which revenues are positive?</text>
+<text x="52" y="1256" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Customer 2 has −50 and drops out. Customers 1 and 4 have 30 and 20 respectively.</text>
+<rect x="52" y="1272" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1293" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND revenue &gt; 0</text>
+<g role="group" aria-label="B1.01 · Step 2" data-table="B1.01 · Step 2"><g data-fit="source" data-source="Customers" data-first="0" data-last="2" aria-label="Customers"><rect x="68.5" y="1320" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="1343" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Customers</text></g><g data-fit="field" data-header="customer_id" data-column="0" data-source="Customers" aria-label="Customers.customer_id"><rect x="68.5" y="1356" width="376.823" height="39" fill="#CEE3FF" /><text x="435.823" y="1378" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">customer_id</text><line x1="333.292" x2="435.823" y1="1382" y2="1382" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="year" data-column="1" data-source="Customers" aria-label="Customers.year"><rect x="446.323" y="1356" width="312.854" height="39" fill="#CEE3FF" /><text x="749.677" y="1378" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">year</text></g><g data-fit="field" data-header="revenue" data-column="2" data-source="Customers" aria-label="Customers.revenue"><rect x="760.177" y="1356" width="343.323" height="39" fill="#CEE3FF" /><text x="1094.0" y="1378" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">revenue</text><line x1="1024.969" x2="1094.0" y1="1382" y2="1382" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="customer_id" data-source="Customers" data-value="1"><rect x="68.5" y="1396" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="1419" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="year" data-source="Customers" data-value="2021"><rect x="446.323" y="1396" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="1419" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2021</text></g><g data-fit="value" data-row="1" data-column="2" data-field="revenue" data-source="Customers" data-value="30"><rect x="760.177" y="1396" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="1419" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">30</text></g><g data-fit="value" data-row="2" data-column="0" data-field="customer_id" data-source="Customers" data-value="4"><rect x="68.5" y="1431" width="376.823" height="34" fill="#EAF3FF" /><text x="435.823" y="1454" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g><g data-fit="value" data-row="2" data-column="1" data-field="year" data-source="Customers" data-value="2021"><rect x="446.323" y="1431" width="312.854" height="34" fill="#EAF3FF" /><text x="749.677" y="1454" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2021</text></g><g data-fit="value" data-row="2" data-column="2" data-field="revenue" data-source="Customers" data-value="20"><rect x="760.177" y="1431" width="343.323" height="34" fill="#EAF3FF" /><text x="1094.0" y="1454" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">20</text></g></g>
+<rect x="32" y="1495" width="1096" height="348" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1525" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1505" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1524" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="52" y="1560" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What does the exercise ask us to return?</text>
+<text x="52" y="1589" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The qualifying IDs are 1 and 4. Each appears once because customer and year form the input key. Any output order</text>
+<text x="52" y="1614" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">is valid.</text>
+<rect x="52" y="1630" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1651" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT customer_id</text>
+<g role="group" aria-label="B1.01 · Final output" data-table="B1.01 · Final output"><g data-fit="source" data-source="Customers" data-first="0" data-last="0" aria-label="Customers"><rect x="68.5" y="1678" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="1701" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Customers</text></g><g data-fit="field" data-header="customer_id" data-column="0" data-source="Customers" aria-label="Customers.customer_id"><rect x="68.5" y="1714" width="1035.0" height="39" fill="#CEE3FF" /><text x="1094.0" y="1736" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">customer_id</text><line x1="991.469" x2="1094.0" y1="1740" y2="1740" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="customer_id" data-source="Customers" data-value="1"><rect x="68.5" y="1754" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1777" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="2" data-column="0" data-field="customer_id" data-source="Customers" data-value="4"><rect x="68.5" y="1789" width="1035.0" height="34" fill="#EAF3FF" /><text x="1094.0" y="1812" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">4</text></g></g>
 </svg>

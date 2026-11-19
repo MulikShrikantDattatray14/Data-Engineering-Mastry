@@ -40,7 +40,7 @@ Rate the submitted approach out of 10 for coverage and correctness. Identify wha
 
 ### Walkthrough format
 
-Include the visual in the same commit as each newly verified PNP or Bosscoder solution. Embed a question-specific SVG in the question file under `## Visual walkthrough`, then link to its full-size view. Use relative paths and compare the diagram’s final rows with the saved query on the same sample. The written steps below the diagram provide the text version.
+Save the learner’s final SQL, verified sample output and checks to GitHub as soon as the answer is correct. Present the next exercise through Step 1 immediately. If the previous walkthrough still needs work, leave a plain-text pending note in its record and continue the visual work in the background. Add the embedded figure and full-size link when the visual passes its checks. Embed a question-specific SVG in the question file under `## Visual walkthrough`, then link to its full-size view. Use relative paths and compare the diagram’s final rows with the saved query on the same sample. The written steps below the diagram provide the text version.
 
 Use the same step-by-step approach during practice and in each PNP or Bosscoder write-up. Identify what one output row represents, then build the query one part at a time using the same example. For each step, explain what to do and why, show the SQL and output, and explain what the output demonstrates. When a join is used, explain why it fits and which unmatched rows it keeps. Explain whether each condition affects input rows, output groups, or one metric.
 
@@ -49,6 +49,8 @@ In the worked visual and the written steps, name the actual `FROM` source and ex
 When a later join uses a key obtained in an earlier join, point out that dependency. When either order gives the same pairs or two independent lookups can trade places, say so. Distinguish the rows produced by a CTE from the rows that start the outer query. For a one-table task, explain which fields already supply the result. For independent branches or membership checks, explain why the saved query uses a set operation or subquery. Put these reasons next to the relevant stages of the worked walkthrough after the learner’s attempt.
 
 Preserve the official answer as supplied and add separate SQLite and SQL Server adaptations. Note dialect changes and verify executable versions when the engine is available.
+
+Use the [P028 walkthrough](assets/p028-payment-mix-walkthrough.svg?raw=1) as the layout reference. Give each group of adjacent columns from the same source a shared table-name band. Put field names in their own contrasting row below it. Distinguish calculated fields, keep the source visible for duplicate join-key names, and allow long labels to wrap with padding. In the saved figure, check the rendered text at normal GitHub reading width and at full size, including the widest intermediate table. Check existing records, including P029, as well as new ones. Re-run the saved SQL on the pictured sample and compare its final rows before publishing a repaired visual.
 
 #### Table color key
 

@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1524" viewBox="0 0 1160 1524" role="img" aria-labelledby="title desc">
-<title id="title">P024 &#183; Suppliers outside India or with no email</title>
-<desc id="desc">One row per supplier with a country or email issue. Check the two fields independently. ID 1 is local and contactable, ID 2 fails both checks and ID 3 has a missing country. IDs 2 and 3 survive the OR. One issue is enough for inclusion, and two issues still produce one supplier row. The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing. FROM Suppliers &#183; one table is enough. The country and email checks apply to one supplier. ID 2 can trigger both checks on its own record and still contribute just one follow-up row.</desc>
-<rect width="1160" height="1524" fill="#f4f7f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1723" viewBox="0 0 1160 1723" role="img" aria-labelledby="title desc">
+<title id="title">P024 · Suppliers outside India or with no email</title>
+<desc id="desc">One row per supplier with a country or email issue. Check the two fields independently. ID 1 is local and contactable, ID 2 fails both checks and ID 3 has a missing country. IDs 2 and 3 survive the OR. One issue is enough for inclusion, and two issues still produce one supplier row. The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing. FROM Suppliers · one table is enough. The country and email checks apply to one supplier. ID 2 can trigger both checks on its own record and still contribute just one follow-up row.</desc>
+<rect width="1160" height="1723" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P024    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Suppliers outside India or with no email</text>
@@ -10,191 +10,43 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Supplier 2 has a foreign country and a missing email. How many issue labels should it get?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Suppliers  &#183;  3 rows</text>
-<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<rect x="68" y="354" width="229.926" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">SupplierID</text>
-<rect x="297.926" y="354" width="274.582" height="26" rx="0" fill="#d8e9f7"/>
-<text x="308.926" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CompanyName</text>
-<rect x="572.508" y="354" width="208.707" height="26" rx="0" fill="#d8e9f7"/>
-<text x="583.508" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Country</text>
-<rect x="781.215" y="354" width="322.785" height="26" rx="0" fill="#d8e9f7"/>
-<text x="792.215" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Email</text>
-<rect x="68" y="380" width="229.926" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 409L297.926 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="297.926" y="380" width="274.582" height="29" rx="0" fill="#edf4fb"/>
-<text x="308.926" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Local Foods</text>
-<path d="M297.926 409L572.508 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.508" y="380" width="208.707" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.508" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">India</text>
-<path d="M572.508 409L781.215 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="781.215" y="380" width="322.785" height="29" rx="0" fill="#edf4fb"/>
-<text x="792.215" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">local@example.com</text>
-<path d="M781.215 409L1104 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 418.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="409" width="229.926" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 438L297.926 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="297.926" y="409" width="274.582" height="29" rx="0" fill="#ffffff"/>
-<text x="308.926" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Global Goods</text>
-<path d="M297.926 438L572.508 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.508" y="409" width="208.707" height="29" rx="0" fill="#ffffff"/>
-<text x="583.508" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">USA</text>
-<path d="M572.508 438L781.215 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="781.215" y="409" width="322.785" height="29" rx="0" fill="#ffffff"/>
-<text x="792.215" y="428" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M781.215 438L1104 438" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="438" width="229.926" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 467L297.926 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="297.926" y="438" width="274.582" height="29" rx="0" fill="#edf4fb"/>
-<text x="308.926" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mystery Supply</text>
-<path d="M297.926 467L572.508 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.508" y="438" width="208.707" height="29" rx="0" fill="#edf4fb"/>
-<text x="583.508" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M572.508 467L781.215 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="781.215" y="438" width="322.785" height="29" rx="0" fill="#edf4fb"/>
-<text x="792.215" y="457" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">mystery@example.com</text>
-<path d="M781.215 467L1104 467" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="491" width="1096" height="429" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="521" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
-<rect x="1000.38" y="501" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="520" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 3 rows</text>
-<text x="52" y="556" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which country and email checks fire?</text>
-<g role="group" aria-label="FROM Suppliers &#183; one table is enough" data-decision="A">
-<rect x="52" y="567" width="1052" height="85" rx="5" fill="#edf4fb"/>
-<rect x="52" y="572" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="589" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Suppliers &#183; one table is enough</text>
-<text x="66" y="613" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The country and email checks apply to one supplier. ID 2 can trigger both checks on its own record and still contribute</text>
-<text x="66" y="636" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">just one follow-up row.</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. A dark source band spans its columns. ƒ marks a calculated value. Deeper cell colors mark the values to</text>
+<text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">follow. SQL excerpts use … for omitted clauses.</text>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Suppliers  ·  3 rows</text>
+<g role="group" aria-label="Suppliers" data-table="Suppliers"><g data-fit="source" data-source="Suppliers" data-first="0" data-last="3" aria-label="Suppliers"><rect x="68.5" y="356" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="379" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Suppliers</text></g><g data-fit="field" data-header="SupplierID" data-column="0" data-source="Suppliers" aria-label="Suppliers.SupplierID"><rect x="68.5" y="392" width="228.32" height="39" fill="#CEE3FF" /><text x="287.32" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">SupplierID</text></g><g data-fit="field" data-header="CompanyName" data-column="1" data-source="Suppliers" aria-label="Suppliers.CompanyName"><rect x="297.82" y="392" width="274.477" height="39" fill="#CEE3FF" /><text x="307.32" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">CompanyName</text></g><g data-fit="field" data-header="Country" data-column="2" data-source="Suppliers" aria-label="Suppliers.Country"><rect x="573.297" y="392" width="206.523" height="39" fill="#CEE3FF" /><text x="582.797" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Country</text></g><g data-fit="field" data-header="Email" data-column="3" data-source="Suppliers" aria-label="Suppliers.Email"><rect x="780.82" y="392" width="322.68" height="39" fill="#CEE3FF" /><text x="790.32" y="414" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Email</text></g><g data-fit="value" data-row="1" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="1"><rect x="68.5" y="432" width="228.32" height="34" fill="#EAF3FF" /><text x="287.32" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CompanyName" data-source="Suppliers" data-value="Local Foods"><rect x="297.82" y="432" width="274.477" height="34" fill="#EAF3FF" /><text x="307.32" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Local Foods</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Country" data-source="Suppliers" data-value="India"><rect x="573.297" y="432" width="206.523" height="34" fill="#EAF3FF" /><text x="582.797" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">India</text></g><g data-fit="value" data-row="1" data-column="3" data-field="Email" data-source="Suppliers" data-value="local@example.com"><rect x="780.82" y="432" width="322.68" height="34" fill="#EAF3FF" /><text x="790.32" y="455" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">local@example.com</text></g><g data-fit="value" data-row="2" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="2"><rect x="68.5" y="467" width="228.32" height="34" fill="#EAF3FF" /><text x="287.32" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CompanyName" data-source="Suppliers" data-value="Global Goods"><rect x="297.82" y="467" width="274.477" height="34" fill="#EAF3FF" /><text x="307.32" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Global Goods</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Country" data-source="Suppliers" data-value="USA"><rect x="573.297" y="467" width="206.523" height="34" fill="#EAF3FF" /><text x="582.797" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">USA</text></g><g data-fit="value" data-row="2" data-column="3" data-field="Email" data-source="Suppliers" data-value="NULL"><rect x="780.82" y="467" width="322.68" height="34" fill="#EAF3FF" /><text x="790.32" y="490" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><polygon points="55,479.0 63,484.0 55,489.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="3"><rect x="68.5" y="502" width="228.32" height="34" fill="#EAF3FF" /><text x="287.32" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="CompanyName" data-source="Suppliers" data-value="Mystery Supply"><rect x="297.82" y="502" width="274.477" height="34" fill="#EAF3FF" /><text x="307.32" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Mystery Supply</text></g><g data-fit="value" data-row="3" data-column="2" data-field="Country" data-source="Suppliers" data-value="NULL"><rect x="573.297" y="502" width="206.523" height="34" fill="#EAF3FF" /><text x="582.797" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><g data-fit="value" data-row="3" data-column="3" data-field="Email" data-source="Suppliers" data-value="mystery@example.com"><rect x="780.82" y="502" width="322.68" height="34" fill="#EAF3FF" /><text x="790.32" y="525" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">mystery@example.com</text></g></g>
+<rect x="32" y="561" width="1096" height="476" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="591" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
+<rect x="1000.38" y="571" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="590" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
+<text x="52" y="626" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which country and email checks fire?</text>
+<g role="group" aria-label="FROM Suppliers · one table is enough" data-decision="A">
+<rect x="52" y="637" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="642" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="659" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Suppliers · one table is enough</text>
+<text x="66" y="683" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The country and email checks apply to one supplier. ID 2 can trigger both checks on its own record and still contribute</text>
+<text x="66" y="706" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">just one follow-up row.</text>
 </g>
-<text x="52" y="678" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Check the two fields independently. ID 1 is local and contactable, ID 2 fails both checks and ID 3 has a missing</text>
-<text x="52" y="703" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">country.</text>
-<rect x="52" y="719" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="740" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LOWER(TRIM(Country)) / NULLIF(TRIM(Email), '')</text>
-<rect x="68" y="767" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="782" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<rect x="68" y="788" width="324.224" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="803" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">SupplierID</text>
-<rect x="392.224" y="788" width="378.521" height="26" rx="0" fill="#d8e9f7"/>
-<text x="403.224" y="803" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">country_check</text>
-<rect x="770.745" y="788" width="333.255" height="26" rx="0" fill="#d8e9f7"/>
-<text x="781.745" y="803" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">email_check</text>
-<rect x="68" y="814" width="324.224" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="833" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 843L392.224 843" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="392.224" y="814" width="378.521" height="29" rx="0" fill="#d8e9f7"/>
-<text x="403.224" y="833" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">India</text>
-<path d="M392.224 843L770.745 843" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="770.745" y="814" width="333.255" height="29" rx="0" fill="#d8e9f7"/>
-<text x="781.745" y="833" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Present</text>
-<path d="M770.745 843L1104 843" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 852.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="843" width="324.224" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="862" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 872L392.224 872" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="392.224" y="843" width="378.521" height="29" rx="0" fill="#d8e9f7"/>
-<text x="403.224" y="862" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Outside India</text>
-<path d="M392.224 872L770.745 872" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="770.745" y="843" width="333.255" height="29" rx="0" fill="#d8e9f7"/>
-<text x="781.745" y="862" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Missing</text>
-<path d="M770.745 872L1104 872" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="872" width="324.224" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="891" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 901L392.224 901" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="392.224" y="872" width="378.521" height="29" rx="0" fill="#d8e9f7"/>
-<text x="403.224" y="891" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Country missing</text>
-<path d="M392.224 901L770.745 901" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="770.745" y="872" width="333.255" height="29" rx="0" fill="#d8e9f7"/>
-<text x="781.745" y="891" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Present</text>
-<path d="M770.745 901L1104 901" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="930" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="960" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="940" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="959" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 2 rows</text>
-<text x="52" y="995" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which suppliers need attention?</text>
-<text x="52" y="1024" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 2 and 3 survive the OR. One issue is enough for inclusion, and two issues still produce one supplier row.</text>
-<rect x="52" y="1040" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1061" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Country IS NULL OR LOWER(TRIM(Country)) != 'india' OR NULLIF(TRIM(Email), '') IS NULL</text>
-<rect x="68" y="1088" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1103" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<rect x="68" y="1109" width="321.453" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">SupplierID</text>
-<rect x="389.453" y="1109" width="300.234" height="26" rx="0" fill="#d8e9f7"/>
-<text x="400.453" y="1124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Country</text>
-<rect x="689.688" y="1109" width="414.312" height="26" rx="0" fill="#d8e9f7"/>
-<text x="700.688" y="1124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Email</text>
-<path d="M54 1144.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1135" width="321.453" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1154" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1164L389.453 1164" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="389.453" y="1135" width="300.234" height="29" rx="0" fill="#d8e9f7"/>
-<text x="400.453" y="1154" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">USA</text>
-<path d="M389.453 1164L689.688 1164" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="689.688" y="1135" width="414.312" height="29" rx="0" fill="#d8e9f7"/>
-<text x="700.688" y="1154" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M689.688 1164L1104 1164" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1164" width="321.453" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1183" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1193L389.453 1193" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="389.453" y="1164" width="300.234" height="29" rx="0" fill="#d8e9f7"/>
-<text x="400.453" y="1183" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M389.453 1193L689.688 1193" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="689.688" y="1164" width="414.312" height="29" rx="0" fill="#d8e9f7"/>
-<text x="700.688" y="1183" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">mystery@example.com</text>
-<path d="M689.688 1193L1104 1193" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1222" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1252" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1232" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1251" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 2 rows</text>
-<text x="52" y="1287" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why test combined issues first?</text>
-<text x="52" y="1316" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing.</text>
-<rect x="52" y="1332" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1353" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN &#8230; THEN 'Outside India; No email' &#8230; END / ORDER BY SupplierID</text>
-<rect x="68" y="1380" width="1036" height="21" rx="0" fill="#194f7c"/>
-<text x="79" y="1395" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<rect x="68" y="1401" width="157.656" height="26" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">SupplierID</text>
-<rect x="225.656" y="1401" width="202.312" height="26" rx="0" fill="#d8e9f7"/>
-<text x="236.656" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CompanyName</text>
-<rect x="427.969" y="1401" width="136.438" height="26" rx="0" fill="#d8e9f7"/>
-<text x="438.969" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Country</text>
-<rect x="564.406" y="1401" width="250.516" height="26" rx="0" fill="#d8e9f7"/>
-<text x="575.406" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Email</text>
-<rect x="814.922" y="1401" width="289.078" height="26" rx="0" fill="#d8e9f7"/>
-<text x="825.922" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">issue</text>
-<path d="M54 1436.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1427" width="157.656" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1446" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1456L225.656 1456" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="225.656" y="1427" width="202.312" height="29" rx="0" fill="#edf4fb"/>
-<text x="236.656" y="1446" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Global Goods</text>
-<path d="M225.656 1456L427.969 1456" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.969" y="1427" width="136.438" height="29" rx="0" fill="#edf4fb"/>
-<text x="438.969" y="1446" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">USA</text>
-<path d="M427.969 1456L564.406 1456" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="564.406" y="1427" width="250.516" height="29" rx="0" fill="#edf4fb"/>
-<text x="575.406" y="1446" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M564.406 1456L814.922 1456" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="814.922" y="1427" width="289.078" height="29" rx="0" fill="#d8e9f7"/>
-<text x="825.922" y="1446" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Outside India; No email</text>
-<path d="M814.922 1456L1104 1456" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1456" width="157.656" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1485L225.656 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="225.656" y="1456" width="202.312" height="29" rx="0" fill="#ffffff"/>
-<text x="236.656" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mystery Supply</text>
-<path d="M225.656 1485L427.969 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="427.969" y="1456" width="136.438" height="29" rx="0" fill="#ffffff"/>
-<text x="438.969" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M427.969 1485L564.406 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="564.406" y="1456" width="250.516" height="29" rx="0" fill="#ffffff"/>
-<text x="575.406" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">mystery@example.com</text>
-<path d="M564.406 1485L814.922 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="814.922" y="1456" width="289.078" height="29" rx="0" fill="#d8e9f7"/>
-<text x="825.922" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Country missing</text>
-<path d="M814.922 1485L1104 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<text x="52" y="748" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Check the two fields independently. ID 1 is local and contactable, ID 2 fails both checks and ID 3 has a missing</text>
+<text x="52" y="773" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">country.</text>
+<rect x="52" y="789" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="810" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LOWER(TRIM(Country)) / NULLIF(TRIM(Email), &#x27;&#x27;)</text>
+<g role="group" aria-label="P024 · Step A" data-table="P024 · Step A"><g data-fit="source" data-source="Suppliers" data-first="0" data-last="0" aria-label="Suppliers"><rect x="68.5" y="837" width="321.24" height="35" fill="#075BCC" /><text x="78" y="860" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Suppliers</text></g><g data-fit="source" data-source="Suppliers" data-first="1" data-last="2" aria-label="Suppliers calculated"><rect x="390.74" y="837" width="712.76" height="35" fill="#075BCC" /><text x="400.24" y="860" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Suppliers</text></g><g data-fit="field" data-header="SupplierID" data-column="0" data-source="Suppliers" aria-label="Suppliers.SupplierID"><rect x="68.5" y="873" width="321.24" height="39" fill="#CEE3FF" /><text x="380.24" y="895" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">SupplierID</text></g><g data-fit="field" data-header="country_check" data-column="1" data-source="Suppliers" aria-label="Suppliers.country_check"><rect x="390.74" y="873" width="377.036" height="39" fill="#CEE3FF" /><text x="400.24" y="895" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">country_check</text><line x1="400.24" x2="521.224" y1="899" y2="899" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="email_check" data-column="2" data-source="Suppliers" aria-label="Suppliers.email_check"><rect x="768.776" y="873" width="334.724" height="39" fill="#CEE3FF" /><text x="778.276" y="895" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">email_check</text><line x1="778.276" x2="880.573" y1="899" y2="899" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="1"><rect x="68.5" y="913" width="321.24" height="34" fill="#EAF3FF" /><text x="380.24" y="936" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">1</text></g><g data-fit="value" data-row="1" data-column="1" data-field="country_check" data-source="Suppliers" data-value="India"><rect x="390.74" y="913" width="377.036" height="34" fill="#EAF3FF" /><text x="400.24" y="936" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">India</text></g><g data-fit="value" data-row="1" data-column="2" data-field="email_check" data-source="Suppliers" data-value="Present"><rect x="768.776" y="913" width="334.724" height="34" fill="#EAF3FF" /><text x="778.276" y="936" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Present</text></g><g data-fit="value" data-row="2" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="2"><rect x="68.5" y="948" width="321.24" height="34" fill="#EAF3FF" /><text x="380.24" y="971" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="2" data-column="1" data-field="country_check" data-source="Suppliers" data-value="Outside India"><rect x="390.74" y="948" width="377.036" height="34" fill="#A8CEFF" /><text x="400.24" y="971" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">Outside India</text></g><g data-fit="value" data-row="2" data-column="2" data-field="email_check" data-source="Suppliers" data-value="Missing"><rect x="768.776" y="948" width="334.724" height="34" fill="#A8CEFF" /><text x="778.276" y="971" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">Missing</text></g><polygon points="55,960.0 63,965.0 55,970.0" fill="#263746" /><g data-fit="value" data-row="3" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="3"><rect x="68.5" y="983" width="321.24" height="34" fill="#EAF3FF" /><text x="380.24" y="1006" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="3" data-column="1" data-field="country_check" data-source="Suppliers" data-value="Country missing"><rect x="390.74" y="983" width="377.036" height="34" fill="#EAF3FF" /><text x="400.24" y="1006" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Country missing</text></g><g data-fit="value" data-row="3" data-column="2" data-field="email_check" data-source="Suppliers" data-value="Present"><rect x="768.776" y="983" width="334.724" height="34" fill="#EAF3FF" /><text x="778.276" y="1006" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Present</text></g></g>
+<rect x="32" y="1047" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1077" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1057" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1076" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="1112" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which suppliers need attention?</text>
+<text x="52" y="1141" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 2 and 3 survive the OR. One issue is enough for inclusion, and two issues still produce one supplier row.</text>
+<rect x="52" y="1157" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1178" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Country IS NULL OR LOWER(TRIM(Country)) != &#x27;india&#x27; OR NULLIF(TRIM(Email), &#x27;&#x27;) IS NULL</text>
+<g role="group" aria-label="P024 · Step B" data-table="P024 · Step B"><g data-fit="source" data-source="Suppliers" data-first="0" data-last="2" aria-label="Suppliers"><rect x="68.5" y="1205" width="1035.0" height="35" fill="#075BCC" /><text x="78" y="1228" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Suppliers</text></g><g data-fit="field" data-header="SupplierID" data-column="0" data-source="Suppliers" aria-label="Suppliers.SupplierID"><rect x="68.5" y="1241" width="320.146" height="39" fill="#CEE3FF" /><text x="379.146" y="1263" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">SupplierID</text><line x1="290.333" x2="379.146" y1="1267" y2="1267" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="Country" data-column="1" data-source="Suppliers" aria-label="Suppliers.Country"><rect x="389.646" y="1241" width="298.349" height="39" fill="#CEE3FF" /><text x="399.146" y="1263" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Country</text><line x1="399.146" x2="466.161" y1="1267" y2="1267" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="Email" data-column="2" data-source="Suppliers" aria-label="Suppliers.Email"><rect x="688.995" y="1241" width="414.505" height="39" fill="#CEE3FF" /><text x="698.495" y="1263" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Email</text><line x1="698.495" x2="744.776" y1="1267" y2="1267" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="2"><rect x="68.5" y="1281" width="320.146" height="34" fill="#A8CEFF" /><text x="379.146" y="1304" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="1" data-column="1" data-field="Country" data-source="Suppliers" data-value="USA"><rect x="389.646" y="1281" width="298.349" height="34" fill="#A8CEFF" /><text x="399.146" y="1304" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">USA</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Email" data-source="Suppliers" data-value="NULL"><rect x="688.995" y="1281" width="414.505" height="34" fill="#A8CEFF" /><text x="698.495" y="1304" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><polygon points="55,1293.0 63,1298.0 55,1303.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="3"><rect x="68.5" y="1316" width="320.146" height="34" fill="#EAF3FF" /><text x="379.146" y="1339" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="2" data-column="1" data-field="Country" data-source="Suppliers" data-value="NULL"><rect x="389.646" y="1316" width="298.349" height="34" fill="#EAF3FF" /><text x="399.146" y="1339" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Email" data-source="Suppliers" data-value="mystery@example.com"><rect x="688.995" y="1316" width="414.505" height="34" fill="#EAF3FF" /><text x="698.495" y="1339" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">mystery@example.com</text></g></g>
+<rect x="32" y="1380" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1410" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1390" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1409" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="52" y="1445" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why test combined issues first?</text>
+<text x="52" y="1474" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing.</text>
+<rect x="52" y="1490" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1511" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN … THEN &#x27;Outside India; No email&#x27; … END / ORDER BY SupplierID</text>
+<g role="group" aria-label="P024 · Final output" data-table="P024 · Final output"><g data-fit="source" data-source="Suppliers" data-first="0" data-last="3" aria-label="Suppliers"><rect x="68.5" y="1538" width="745.206" height="35" fill="#075BCC" /><text x="78" y="1561" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">Suppliers</text></g><g data-fit="source" data-source="Suppliers" data-first="4" data-last="4" aria-label="Suppliers calculated"><rect x="814.706" y="1538" width="288.794" height="35" fill="#075BCC" /><text x="824.206" y="1561" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#FFFFFF" text-anchor="start">ƒ Suppliers</text></g><g data-fit="field" data-header="SupplierID" data-column="0" data-source="Suppliers" aria-label="Suppliers.SupplierID"><rect x="68.5" y="1574" width="155.872" height="39" fill="#CEE3FF" /><text x="214.872" y="1596" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="end">SupplierID</text><line x1="126.059" x2="214.872" y1="1600" y2="1600" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="field" data-header="CompanyName" data-column="1" data-source="Suppliers" aria-label="Suppliers.CompanyName"><rect x="225.372" y="1574" width="202.028" height="39" fill="#CEE3FF" /><text x="234.872" y="1596" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">CompanyName</text></g><g data-fit="field" data-header="Country" data-column="2" data-source="Suppliers" aria-label="Suppliers.Country"><rect x="428.4" y="1574" width="134.075" height="39" fill="#CEE3FF" /><text x="437.9" y="1596" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Country</text></g><g data-fit="field" data-header="Email" data-column="3" data-source="Suppliers" aria-label="Suppliers.Email"><rect x="563.475" y="1574" width="250.231" height="39" fill="#CEE3FF" /><text x="572.975" y="1596" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">Email</text></g><g data-fit="field" data-header="issue" data-column="4" data-source="Suppliers" aria-label="Suppliers.issue"><rect x="814.706" y="1574" width="288.794" height="39" fill="#CEE3FF" /><text x="824.206" y="1596" font-size="15" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" fill="#10376B" text-anchor="start">issue</text><line x1="824.206" x2="868.034" y1="1600" y2="1600" stroke="#10376B" stroke-width="1.15" /></g><g data-fit="value" data-row="1" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="2"><rect x="68.5" y="1614" width="155.872" height="34" fill="#A8CEFF" /><text x="214.872" y="1637" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="end">2</text></g><g data-fit="value" data-row="1" data-column="1" data-field="CompanyName" data-source="Suppliers" data-value="Global Goods"><rect x="225.372" y="1614" width="202.028" height="34" fill="#EAF3FF" /><text x="234.872" y="1637" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Global Goods</text></g><g data-fit="value" data-row="1" data-column="2" data-field="Country" data-source="Suppliers" data-value="USA"><rect x="428.4" y="1614" width="134.075" height="34" fill="#EAF3FF" /><text x="437.9" y="1637" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">USA</text></g><g data-fit="value" data-row="1" data-column="3" data-field="Email" data-source="Suppliers" data-value="NULL"><rect x="563.475" y="1614" width="250.231" height="34" fill="#EAF3FF" /><text x="572.975" y="1637" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><g data-fit="value" data-row="1" data-column="4" data-field="issue" data-source="Suppliers" data-value="Outside India; No email"><rect x="814.706" y="1614" width="288.794" height="34" fill="#A8CEFF" /><text x="824.206" y="1637" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="700" fill="#10376B" text-anchor="start">Outside India; No email</text></g><polygon points="55,1626.0 63,1631.0 55,1636.0" fill="#263746" /><g data-fit="value" data-row="2" data-column="0" data-field="SupplierID" data-source="Suppliers" data-value="3"><rect x="68.5" y="1649" width="155.872" height="34" fill="#EAF3FF" /><text x="214.872" y="1672" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="end">3</text></g><g data-fit="value" data-row="2" data-column="1" data-field="CompanyName" data-source="Suppliers" data-value="Mystery Supply"><rect x="225.372" y="1649" width="202.028" height="34" fill="#EAF3FF" /><text x="234.872" y="1672" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Mystery Supply</text></g><g data-fit="value" data-row="2" data-column="2" data-field="Country" data-source="Suppliers" data-value="NULL"><rect x="428.4" y="1649" width="134.075" height="34" fill="#EAF3FF" /><text x="437.9" y="1672" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" font-style="italic" fill="#10376B" text-anchor="start">NULL</text></g><g data-fit="value" data-row="2" data-column="3" data-field="Email" data-source="Suppliers" data-value="mystery@example.com"><rect x="563.475" y="1649" width="250.231" height="34" fill="#EAF3FF" /><text x="572.975" y="1672" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">mystery@example.com</text></g><g data-fit="value" data-row="2" data-column="4" data-field="issue" data-source="Suppliers" data-value="Country missing"><rect x="814.706" y="1649" width="288.794" height="34" fill="#EAF3FF" /><text x="824.206" y="1672" font-size="16" font-family="DejaVu Sans Mono, monospace" font-weight="400" fill="#10376B" text-anchor="start">Country missing</text></g></g>
 </svg>
