@@ -15,11 +15,13 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `order_month` | First day of the month, as a date. | 🟦 `Orders` |
-| `orders` | Number of orders placed that month. | 🟦 `Orders` |
-| `order_value` | Total order amount for that month. | 🟦 `Orders` |
+One output row represents one month with orders in 2025.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `order_month` | 🟦 `Orders` | First day of the month, as a date. | 2025-01-01 |
+| `orders` | 🟦 `Orders` | Number of orders placed that month. | 2 |
+| `order_value` | 🟦 `Orders` | Total order amount for that month. | 150 |
 
 ### Practice example · Sample input
 

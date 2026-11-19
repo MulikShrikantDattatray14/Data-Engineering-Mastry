@@ -15,13 +15,15 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `ProductID` | Product identifier. | 🟦 `OrderDetails` |
-| `Product` | Product name. | 🟩 `Products` |
-| `units_sold` | Total quantity on the product’s sale lines. | 🟦 `OrderDetails` |
-| `order_lines` | Number of sale lines for the product. | 🟦 `OrderDetails` |
-| `orders` | Number of distinct orders containing that product. | 🟦 `OrderDetails` |
+One output row represents one product ID appearing on a sale line.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `ProductID` | 🟦 `OrderDetails.ProductID` | Product identifier. | 1 |
+| `Product` | 🟩 `Products.Product` | Product name. | Pen |
+| `units_sold` | 🟦 `OrderDetails` | Total quantity on the product’s sale lines. | 5 |
+| `order_lines` | 🟦 `OrderDetails` | Number of sale lines for the product. | 2 |
+| `orders` | 🟦 `OrderDetails` | Number of distinct orders containing that product. | 2 |
 
 ### Practice example · Sample input
 

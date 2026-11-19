@@ -15,11 +15,13 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `signup_year` | Calendar year of sign-up, as an integer. | 🟦 `Customers` |
-| `signup_quarter` | Calendar quarter of sign-up, from 1 to 4. | 🟦 `Customers` |
-| `new_customers` | Number of accounts created in that year and quarter. | 🟦 `Customers` |
+One output row represents one sign-up year and quarter, with undated accounts in a single separate group.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `signup_year` | 🟦 `Customers` | Calendar year of sign-up, as an integer. | 2024 |
+| `signup_quarter` | 🟦 `Customers` | Calendar quarter of sign-up, from 1 to 4. | 4 |
+| `new_customers` | 🟦 `Customers` | Number of accounts created in that year and quarter. | 1 |
 
 ### Practice example · Sample input
 

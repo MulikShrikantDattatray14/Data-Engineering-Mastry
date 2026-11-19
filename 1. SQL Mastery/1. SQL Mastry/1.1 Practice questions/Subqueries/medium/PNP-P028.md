@@ -14,13 +14,15 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `payment_type` | Payment type name, or `Unknown` for a missing or unrecognized payment ID. | 🟩 `Payments` |
-| `orders` | Number of orders for that payment type. | 🟦 `Orders` |
-| `pct_of_orders` | This type’s share of all orders, as a percentage rounded to two decimals. | 🟦 `Orders` |
-| `order_value` | Total amount of the orders for that payment type. | 🟦 `Orders` |
-| `pct_of_value` | This type’s share of all order value, as a percentage rounded to two decimals. | 🟦 `Orders` |
+One output row represents one payment type represented on orders, including Unknown for missing or unmatched payment IDs.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `payment_type` | 🟩 `Payments` | Payment type name, or `Unknown` for a missing or unrecognized payment ID. | UPI |
+| `orders` | 🟦 `Orders` | Number of orders for that payment type. | 2 |
+| `pct_of_orders` | 🟦 `Orders` | This type’s share of all orders, as a percentage rounded to two decimals. | 66.67 |
+| `order_value` | 🟦 `Orders` | Total amount of the orders for that payment type. | 300 |
+| `pct_of_value` | 🟦 `Orders` | This type’s share of all order value, as a percentage rounded to two decimals. | 50.00 |
 
 ### Practice example · Sample input
 

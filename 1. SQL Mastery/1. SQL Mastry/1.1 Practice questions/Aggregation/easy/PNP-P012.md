@@ -16,15 +16,17 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `CategoryID` | Category identifier. | 🟦 `Products` |
-| `products` | Number of products in the category. | 🟦 `Products` |
-| `min_price` | Lowest sale price. | 🟦 `Products` |
-| `max_price` | Highest sale price. | 🟦 `Products` |
-| `avg_price` | Average sale price, rounded to two decimals. | 🟦 `Products` |
-| `full_price_products` | Number of products whose sale and market prices are equal. | 🟦 `Products` |
-| `avg_discount_pct` | Average of the individual product discount percentages with a usable market price, rounded to two decimals. | 🟦 `Products` |
+One output row represents one category ID represented in the product catalogue.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `CategoryID` | 🟦 `Products.CategoryID` | Category identifier. | 10 |
+| `products` | 🟦 `Products` | Number of products in the category. | 2 |
+| `min_price` | 🟦 `Products` | Lowest sale price. | 80 |
+| `max_price` | 🟦 `Products` | Highest sale price. | 100 |
+| `avg_price` | 🟦 `Products` | Average sale price, rounded to two decimals. | 90.00 |
+| `full_price_products` | 🟦 `Products` | Number of products whose sale and market prices are equal. | 1 |
+| `avg_discount_pct` | 🟦 `Products` | Average of the individual product discount percentages with a usable market price, rounded to two decimals. | 10.00 |
 
 ### Practice example · Sample input
 

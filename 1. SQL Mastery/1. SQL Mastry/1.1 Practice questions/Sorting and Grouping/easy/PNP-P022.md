@@ -15,12 +15,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `OrderID` | Order identifier. | 🟦 `OrderDetails` |
-| `line_items` | Number of detail lines in the order. | 🟦 `OrderDetails` |
-| `distinct_products` | Number of different product IDs in the order. | 🟦 `OrderDetails` |
-| `total_units` | Total quantity across the order’s lines. | 🟦 `OrderDetails` |
+One output row represents one order with more than eight detail lines.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `OrderID` | 🟦 `OrderDetails.OrderID` | Order identifier. | 10 |
+| `line_items` | 🟦 `OrderDetails` | Number of detail lines in the order. | 9 |
+| `distinct_products` | 🟦 `OrderDetails` | Number of different product IDs in the order. | 8 |
+| `total_units` | 🟦 `OrderDetails` | Total quantity across the order’s lines. | 9 |
 
 ### Practice example · Sample input
 

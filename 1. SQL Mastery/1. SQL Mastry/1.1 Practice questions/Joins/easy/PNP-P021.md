@@ -15,11 +15,13 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `CustomerID` | Customer identifier. | 🟦 `Orders` |
-| `customer_name` | First and last name, or `Unknown customer` for an unrecognized customer ID. | 🟩 `Customers` |
-| `orders_placed` | Number of orders placed by that customer ID. | 🟦 `Orders` |
+One output row represents one ordering customer in the top five by order count, including everyone tied at the cutoff.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `CustomerID` | 🟦 `Orders.CustomerID` | Customer identifier. | 99 |
+| `customer_name` | 🟩 `Customers` | First and last name, or `Unknown customer` for an unrecognized customer ID. | Unknown customer |
+| `orders_placed` | 🟦 `Orders` | Number of orders placed by that customer ID. | 3 |
 
 ### Practice example · Sample input
 

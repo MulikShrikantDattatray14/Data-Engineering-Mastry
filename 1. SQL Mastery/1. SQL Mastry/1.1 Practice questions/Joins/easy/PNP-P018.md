@@ -15,12 +15,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `CustomerID` | Customer identifier. | 🟦 `Customers` |
-| `customer_name` | Customer’s first and last names, separated by a space. | 🟦 `Customers` |
-| `Email` | Email address as stored. | 🟦 `Customers` |
-| `DateEntered` | Customer’s sign-up date. | 🟦 `Customers` |
+One output row represents one customer with no order in the 90-day reporting window.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `CustomerID` | 🟦 `Customers.CustomerID` | Customer identifier. | 2 |
+| `customer_name` | 🟦 `Customers` | Customer’s first and last names, separated by a space. | Ben Das |
+| `Email` | 🟦 `Customers.Email` | Email address as stored. | ben@example.com |
+| `DateEntered` | 🟦 `Customers.DateEntered` | Customer’s sign-up date. | 2023-02-01 |
 
 ### Practice example · Sample input
 

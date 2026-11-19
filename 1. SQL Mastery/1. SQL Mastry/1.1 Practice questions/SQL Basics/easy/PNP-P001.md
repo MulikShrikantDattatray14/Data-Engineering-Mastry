@@ -15,9 +15,11 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `Brand` | One entry per usable brand name. | 🟦 `Products` |
+One output row represents one usable brand, after disregarding surrounding spaces. Missing and blank names contribute no entry.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `Brand` | 🟦 `Products.Brand` | One entry per usable brand name. | Adidas |
 
 ### Practice example · Sample input
 

@@ -14,11 +14,13 @@ Rearrange the table so each output row contains `(product_id, store, price)`. Om
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `product_id` | Product identifier. | 🟦 `Products` |
-| `store` | Name of the store where the product is available. | 🟦 `Products` |
-| `price` | Price of the product in that store. | 🟦 `Products` |
+One output row represents one product and store combination with a known price.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `product_id` | 🟦 `Products.product_id` | Product identifier. | 0 |
+| `store` | 🟦 `Products` | Name of the store where the product is available. | store1 |
+| `price` | 🟦 `Products` | Price of the product in that store. | 95 |
 
 ### Assignment example · Sample input
 

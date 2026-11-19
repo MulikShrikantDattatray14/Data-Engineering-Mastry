@@ -12,9 +12,11 @@ Write a solution to report the customers with positive revenue in the year 2021.
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `customer_id` | Identifier of each customer with positive revenue in 2021. | 🟦 `Customers` |
+One output row represents one customer with strictly positive 2021 revenue.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `customer_id` | 🟦 `Customers.customer_id` | Identifier of each customer with positive revenue in 2021. | 1 |
 
 ### Assignment example · Sample input
 
@@ -187,6 +189,22 @@ WHERE year = 2021 AND revenue > 0;
 **Why this way:** Both tests apply to each customer's 2021 row. The composite primary key already prevents duplicate rows for one customer in that year.
 
 **Common mistakes:** Using `OR`, which would admit rows meeting just one requirement; using `>= 0`, which would include zero revenue; or looking at revenue from a different year.
+
+### Official answer — SQLite adaptation
+
+```sql
+SELECT customer_id
+FROM Customers
+WHERE year = 2021 AND revenue > 0;
+```
+
+### Official answer — SQL Server adaptation
+
+```sql
+SELECT customer_id
+FROM Customers
+WHERE year = 2021 AND revenue > 0;
+```
 
 ## Revision verification
 

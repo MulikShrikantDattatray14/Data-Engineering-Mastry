@@ -15,13 +15,15 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `SupplierID` | Supplier identifier. | 🟦 `Suppliers` |
-| `CompanyName` | Supplier’s company name. | 🟦 `Suppliers` |
-| `Country` | Supplier country as stored. | 🟦 `Suppliers` |
-| `Email` | Email address as stored. | 🟦 `Suppliers` |
-| `issue` | Every applicable label among `Outside India`, `Country missing` and `No email`. A semicolon separates two labels. | 🟦 `Suppliers` |
+One output row represents one supplier outside India or with missing country or email information.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `SupplierID` | 🟦 `Suppliers.SupplierID` | Supplier identifier. | 2 |
+| `CompanyName` | 🟦 `Suppliers.CompanyName` | Supplier’s company name. | Global Goods |
+| `Country` | 🟦 `Suppliers.Country` | Supplier country as stored. | USA |
+| `Email` | 🟦 `Suppliers.Email` | Email address as stored. | NULL |
+| `issue` | 🟦 `Suppliers` | Every applicable label among `Outside India`, `Country missing` and `No email`. A semicolon separates two labels. | Outside India; No email |
 
 ### Practice example · Sample input
 

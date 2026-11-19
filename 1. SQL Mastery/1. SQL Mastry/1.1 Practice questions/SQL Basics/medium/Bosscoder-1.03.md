@@ -20,10 +20,12 @@ Report each node's type as `Root`, `Inner`, or `Leaf`, ordered by `N` ascending:
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `N` | Node value. | 🟦 `BST` |
-| `NodeType` | One of the node roles `Root`, `Inner` or `Leaf`. | 🟦 `BST` |
+One output row represents one node in the binary tree.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `N` | 🟦 `BST.N` | Node value. | 1 |
+| `NodeType` | 🟦 `BST` | One of the node roles `Root`, `Inner` or `Leaf`. A node without a parent is Root. Among the others, a node with children is Inner and one without children is Leaf. | Leaf |
 
 ### Assignment example · Sample input
 

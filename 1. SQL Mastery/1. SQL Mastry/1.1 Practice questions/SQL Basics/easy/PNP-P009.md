@@ -15,12 +15,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `source_table` | Name of the table that stores the flag (`Category` or `Payments`). | 🟦 `Category` or 🟩 `Payments` (by row) |
-| `flag_column` | Name of the flag being reported (`Active` or `Allowed`). | 🟦 `Category` or 🟩 `Payments` (by row) |
-| `raw_value` | Stored flag value as text, or `NULL` when missing. | 🟦 `Category` or 🟩 `Payments` (by row) |
-| `row_count` | Number of source rows holding that raw value. | 🟦 `Category` or 🟩 `Payments` (by row) |
+One output row represents one distinct raw flag value within one source column, including a missing value.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `source_table` | 🟦 `Category` or 🟩 `Payments` (by row) | Name of the table that stores the flag (`Category` or `Payments`). | 🟦 Category |
+| `flag_column` | 🟦 `Category` or 🟩 `Payments` (by row) | Name of the flag being reported (`Active` or `Allowed`). | Active |
+| `raw_value` | 🟦 `Category` or 🟩 `Payments` (by row) | Stored flag value as text, or `NULL` when missing. | `'1'` |
+| `row_count` | 🟦 `Category` or 🟩 `Payments` (by row) | Number of source rows holding that raw value. | 2 |
 
 ### Practice example · Sample input
 

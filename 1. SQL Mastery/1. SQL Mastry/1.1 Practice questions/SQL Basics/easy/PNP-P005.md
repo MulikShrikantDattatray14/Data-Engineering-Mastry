@@ -15,12 +15,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `OrderID` | Order identifier. | 🟦 `Orders` |
-| `CustomerID` | Customer identifier. | 🟦 `Orders` |
-| `OrderDate` | Date the order was placed. | 🟦 `Orders` |
-| `Total_Order_Amount` | Value of the order. | 🟦 `Orders` |
+One output row represents one order placed from 1 January through 31 March 2025, including both endpoints.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `OrderID` | 🟦 `Orders.OrderID` | Order identifier. | 2 |
+| `CustomerID` | 🟦 `Orders.CustomerID` | Customer identifier. | 11 |
+| `OrderDate` | 🟦 `Orders.OrderDate` | Date the order was placed. | 2025-01-01 |
+| `Total_Order_Amount` | 🟦 `Orders.Total_Order_Amount` | Value of the order. | 100 |
 
 ### Practice example · Sample input
 

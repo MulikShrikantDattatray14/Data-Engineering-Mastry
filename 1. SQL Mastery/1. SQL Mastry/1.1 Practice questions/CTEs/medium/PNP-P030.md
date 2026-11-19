@@ -14,11 +14,13 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `customer_type` | `One-time` for exactly one order or `Repeat` for two or more. | 🟦 `Orders` |
-| `customers` | Number of customers in that group. | 🟦 `Orders` |
-| `pct_of_customers` | Percentage of all ordering customers in that group, to two decimal places. | 🟦 `Orders` |
+One output row represents one customer type represented among customers who placed orders.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `customer_type` | 🟦 `Orders` | `One-time` for exactly one order or `Repeat` for two or more. | One-time |
+| `customers` | 🟦 `Orders` | Number of customers in that group. | 2 |
+| `pct_of_customers` | 🟦 `Orders` | Percentage of all ordering customers in that group, to two decimal places. | 66.67 |
 
 ### Practice example · Sample input
 

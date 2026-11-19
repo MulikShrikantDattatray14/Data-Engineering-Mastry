@@ -67,7 +67,7 @@ The three 🟦 lifetime amounts are **300**, **100** and **200**. Their average 
 ## Step 1 · Your approach before writing SQL
 
 1. What does one output row represent, and what does each requested column tell the CRM team?
-2. Which tables and matching keys supply those values? Which orders should survive a missing customer record?
+2. Which source would you start with, and why? If you add a source, when would you add it, which join type and keys would you choose, and which rows should survive?
 3. Which rows are eligible to contribute to the benchmark, and when should the above-average condition apply?
 4. How should repeated orders contribute to one customer total and to the overall average?
 5. How should missing IDs, missing names, equality, a zero benchmark, precision and ties behave?
@@ -117,7 +117,7 @@ ORDER BY total_spend DESC;
 
 ### 1. Which rows do we start with?
 
-`FROM Orders AS o` supplies one row per order. `Customers` supplies the names. These are the two sample inputs used throughout the walkthrough. The order below makes the examples easy to follow.
+`FROM Orders AS o` supplies one row per purchase because every order amount contributes to lifetime spend, even if the customer name is missing. A customer with no orders contributes no spend row. These are the two sample inputs used throughout the walkthrough. The order below makes the examples easy to follow.
 
 ```sql
 SELECT OrderID, CustomerID, Total_Order_Amount FROM Orders ORDER BY OrderID;
@@ -142,7 +142,7 @@ SELECT CustomerID, FirstName, LastName FROM Customers ORDER BY CustomerID;
 
 ### 2. How does each order get a name?
 
-The left side starts with the three orders. The right side supplies a customer record for each matching ID. Order 10 matches customer 1. With one match per order, the join produces three rows. An unmatched order survives with missing customer fields. The name expression in the next step displays `Unknown` for it.
+The left side starts with the three orders. Each order already carries the customer ID needed for the next lookup. The learner adds Customers here so the matching name is available before grouping. The LEFT JOIN keeps the purchase amount even if the name lookup fails. Order 10 matches customer 1. With one match per order, the join produces three rows. An unmatched order survives with missing customer fields. The name expression in the next step displays `Unknown` for it.
 
 ```sql
 SELECT o.OrderID, o.CustomerID, o.Total_Order_Amount,

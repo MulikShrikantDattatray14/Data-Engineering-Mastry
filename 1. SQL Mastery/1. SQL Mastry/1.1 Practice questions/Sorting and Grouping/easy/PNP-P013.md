@@ -15,10 +15,12 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `State` | State name, with `Unknown` for a missing state. | 🟦 `Customers` |
-| `customer_count` | Number of customers registered in that state. | 🟦 `Customers` |
+One output row represents one state with at least five customers, with missing states reported as Unknown.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `State` | 🟦 `Customers.State` | State name, with `Unknown` for a missing state. | Karnataka |
+| `customer_count` | 🟦 `Customers` | Number of customers registered in that state. | 5 |
 
 ### Practice example · Sample input
 

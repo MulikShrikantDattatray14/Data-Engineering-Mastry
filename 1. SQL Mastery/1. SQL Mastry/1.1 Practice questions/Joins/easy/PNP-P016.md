@@ -15,13 +15,15 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `OrderID` | Order identifier. | 🟩 `Orders` |
-| `OrderDate` | Date the order was placed. | 🟩 `Orders` |
-| `customer_name` | Customer’s first and last names, separated by a space. | 🟦 `Customers` |
-| `City` | Customer’s city with surrounding spaces removed. | 🟦 `Customers` |
-| `Total_Order_Amount` | Value of the order. | 🟩 `Orders` |
+One output row represents one December 2025 order with a matching customer.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `OrderID` | 🟩 `Orders.OrderID` | Order identifier. | 10 |
+| `OrderDate` | 🟩 `Orders.OrderDate` | Date the order was placed. | 2025-12-01 |
+| `customer_name` | 🟦 `Customers` | Customer’s first and last names, separated by a space. | Anu Sen |
+| `City` | 🟦 `Customers.City` | Customer’s city with surrounding spaces removed. | Delhi |
+| `Total_Order_Amount` | 🟩 `Orders.Total_Order_Amount` | Value of the order. | 100 |
 
 ### Practice example · Sample input
 

@@ -14,12 +14,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `category_name` | Category name, `Unmapped` or `Unknown product`. | 🟪 `Products` + `Category` |
-| `orders` | Number of distinct orders containing a line in this category. | 🟦 `OrderDetails` |
-| `units_sold` | Total quantity across the category’s sale lines. | 🟦 `OrderDetails` |
-| `list_price_value` | Total of each line’s quantity multiplied by its product’s sale price. | 🟪 `OrderDetails` + `Products` |
+One output row represents one category represented on sale lines, including lines with an unknown product or unmapped category.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `category_name` | 🟪 `Products` + `Category` | Category name, `Unmapped` or `Unknown product`. | Drinks |
+| `orders` | 🟦 `OrderDetails` | Number of distinct orders containing a line in this category. | 1 |
+| `units_sold` | 🟦 `OrderDetails` | Total quantity across the category’s sale lines. | 3 |
+| `list_price_value` | 🟪 `OrderDetails` + `Products` | Total of each line’s quantity multiplied by its product’s sale price. | 28 |
 
 ### Practice example · Sample input
 

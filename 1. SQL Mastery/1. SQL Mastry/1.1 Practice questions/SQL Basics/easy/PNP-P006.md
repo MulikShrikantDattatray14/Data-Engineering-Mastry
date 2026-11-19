@@ -15,14 +15,16 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `ProductID` | Product identifier. | 🟦 `Products` |
-| `Product` | Product name. | 🟦 `Products` |
-| `Brand` | Brand name. | 🟦 `Products` |
-| `Sale_Price` | Current sale price. | 🟦 `Products` |
-| `Market_Price` | Market price printed on the pack. | 🟦 `Products` |
-| `discount_display` | Discount as text, with `Full price` for a product sold at its printed price. | 🟦 `Products` |
+One output row represents one full-price product in the ten most expensive. Both prices must be known and equal.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `ProductID` | 🟦 `Products.ProductID` | Product identifier. | 2 |
+| `Product` | 🟦 `Products.Product` | Product name. | Lamp |
+| `Brand` | 🟦 `Products.Brand` | Brand name. | Home |
+| `Sale_Price` | 🟦 `Products.Sale_Price` | Current sale price. | 150 |
+| `Market_Price` | 🟦 `Products.Market_Price` | Market price printed on the pack. | 150 |
+| `discount_display` | 🟦 `Products` | Discount as text, with `Full price` for a product sold at its printed price. | Full price |
 
 ### Practice example · Sample input
 

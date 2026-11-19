@@ -15,12 +15,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `ProductID` | Product identifier. | 🟦 `Products` |
-| `Product` | Product name. | 🟦 `Products` |
-| `Sale_Price` | Current sale price. | 🟦 `Products` |
-| `price_band` | One of `Budget`, `Mid`, `Premium` or `Unknown` for the product’s sale price. | 🟦 `Products` |
+One output row represents one catalogue product, including products whose sale price is missing.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `ProductID` | 🟦 `Products.ProductID` | Product identifier. | 1 |
+| `Product` | 🟦 `Products.Product` | Product name. | Pen |
+| `Sale_Price` | 🟦 `Products.Sale_Price` | Current sale price. | 199 |
+| `price_band` | 🟦 `Products` | One of `Budget`, `Mid`, `Premium` or `Unknown` for the product’s sale price. Below 200 is Budget, 200 to below 700 is Mid, 700 or higher is Premium, and a missing price is Unknown. | Budget |
 
 ### Practice example · Sample input
 

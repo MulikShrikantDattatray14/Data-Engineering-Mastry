@@ -14,13 +14,15 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `state` | Customer’s state, or `Unknown` for a missing state or customer match. | 🟩 `Customers` |
-| `customers` | Number of distinct ordering customers in the group. | 🟦 `Orders` |
-| `orders` | Number of orders in the group. | 🟦 `Orders` |
-| `order_value` | Sum of the group’s known order amounts. | 🟦 `Orders` |
-| `avg_order_value` | Order value divided by the number of orders with a known amount. | 🟦 `Orders` |
+One output row represents one state group with at least ten orders, including the Unknown group if it qualifies.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `state` | 🟩 `Customers` | Customer’s state, or `Unknown` for a missing state or customer match. | Karnataka |
+| `customers` | 🟦 `Orders` | Number of distinct ordering customers in the group. | 2 |
+| `orders` | 🟦 `Orders` | Number of orders in the group. | 10 |
+| `order_value` | 🟦 `Orders` | Sum of the group’s known order amounts. | 1000 |
+| `avg_order_value` | 🟦 `Orders` | Order value divided by the number of orders with a known amount. | 100.00 |
 
 ### Practice example · Sample input
 

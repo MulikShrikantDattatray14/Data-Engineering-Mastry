@@ -17,13 +17,15 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `CustomerID` | Customer identifier. | 🟦 `Customers` |
-| `FirstName` | Customer’s first name. | 🟦 `Customers` |
-| `LastName` | Customer’s last name. | 🟦 `Customers` |
-| `City` | City with surrounding spaces removed. | 🟦 `Customers` |
-| `State` | Customer’s state as stored. | 🟦 `Customers` |
+One output row represents one customer in one of the five named metros, regardless of case or surrounding spaces in the stored city.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `CustomerID` | 🟦 `Customers.CustomerID` | Customer identifier. | 14 |
+| `FirstName` | 🟦 `Customers.FirstName` | Customer’s first name. | Isha |
+| `LastName` | 🟦 `Customers.LastName` | Customer’s last name. | Kumar |
+| `City` | 🟦 `Customers.City` | City with surrounding spaces removed. | Bangalore |
+| `State` | 🟦 `Customers.State` | Customer’s state as stored. | Karnataka |
 
 ### Practice example · Sample input
 

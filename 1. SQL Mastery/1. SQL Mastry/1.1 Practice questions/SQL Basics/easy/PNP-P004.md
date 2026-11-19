@@ -15,13 +15,15 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `CustomerID` | Customer identifier. | 🟦 `Customers` |
-| `FirstName` | Customer’s first name. | 🟦 `Customers` |
-| `LastName` | Customer’s last name. | 🟦 `Customers` |
-| `Email` | Email address as stored. | 🟦 `Customers` |
-| `issue` | One of `Missing`, `Contains a space` or `Not in name@domain.tld form`. | 🟦 `Customers` |
+One output row represents one customer whose stored email fails at least one of the specified checks.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `CustomerID` | 🟦 `Customers.CustomerID` | Customer identifier. | 1 |
+| `FirstName` | 🟦 `Customers.FirstName` | Customer’s first name. | Asha |
+| `LastName` | 🟦 `Customers.LastName` | Customer’s last name. | Rao |
+| `Email` | 🟦 `Customers.Email` | Email address as stored. | `NULL` |
+| `issue` | 🟦 `Customers` | One of `Missing`, `Contains a space` or `Not in name@domain.tld form`. | Missing |
 
 ### Practice example · Sample input
 

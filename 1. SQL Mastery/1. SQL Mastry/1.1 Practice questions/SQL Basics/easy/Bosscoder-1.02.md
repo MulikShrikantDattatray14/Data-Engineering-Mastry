@@ -14,10 +14,12 @@ Calculate a bonus for every employee. An employee receives 100% of their salary 
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `employee_id` | Employee identifier. | 🟦 `Employees` |
-| `bonus` | Bonus amount for that employee, including zero when applicable. | 🟦 `Employees` |
+One output row represents one employee, including employees who receive zero bonus.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `employee_id` | 🟦 `Employees.employee_id` | Employee identifier. | 2 |
+| `bonus` | 🟦 `Employees` | Bonus amount for that employee, including zero when applicable. Pay the full salary only for an odd ID and a name that does not start with M, otherwise pay zero. | 0 |
 
 ### Assignment example · Sample input
 

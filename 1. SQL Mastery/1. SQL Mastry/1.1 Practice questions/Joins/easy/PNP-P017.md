@@ -15,12 +15,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `OrderID` | Order identifier. | 🟦 `Orders` |
-| `OrderDate` | Date the order was placed. | 🟦 `Orders` |
-| `payment_type` | Payment type name, or `Unknown` for a missing or unrecognized code. | 🟩 `Payments` |
-| `shipper_name` | Shipper’s company name, or `Unknown` for a missing or unrecognized code. | 🟥 `Shippers` |
+One output row represents one order in the seven calendar dates ending on the latest order date, including orders with missing lookup labels.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `OrderID` | 🟦 `Orders.OrderID` | Order identifier. | 3 |
+| `OrderDate` | 🟦 `Orders.OrderDate` | Date the order was placed. | 2025-12-31 |
+| `payment_type` | 🟩 `Payments` | Payment type name, or `Unknown` for a missing or unrecognized code. | Unknown |
+| `shipper_name` | 🟥 `Shippers` | Shipper’s company name, or `Unknown` for a missing or unrecognized code. | Unknown |
 
 ### Practice example · Sample input
 

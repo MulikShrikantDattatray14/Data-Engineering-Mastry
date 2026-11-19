@@ -15,11 +15,13 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `CategoryID` | Category identifier. | 🟦 `Category` |
-| `CategoryName` | Category name. | 🟦 `Category` |
-| `product_count` | Number of products assigned to the category, including zero for an empty category. | 🟩 `Products` |
+One output row represents one catalogue category, including a category with no products.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `CategoryID` | 🟦 `Category.CategoryID` | Category identifier. | 2 |
+| `CategoryName` | 🟦 `Category.CategoryName` | Category name. | Toys |
+| `product_count` | 🟩 `Products` | Number of products assigned to the category, including zero for an empty category. | 0 |
 
 ### Practice example · Sample input
 

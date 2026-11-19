@@ -15,14 +15,16 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `total_orders` | Number of placed orders. | 🟦 `Orders` |
-| `ordering_customers` | Number of distinct customers who placed an order. | 🟦 `Orders` |
-| `total_order_value` | Total value of all orders. | 🟦 `Orders` |
-| `avg_order_value` | Average order amount, rounded to two decimals. | 🟦 `Orders` |
-| `first_order_date` | Earliest order date. | 🟦 `Orders` |
-| `last_order_date` | Latest order date. | 🟦 `Orders` |
+One output row represents one report covering every order in the input.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `total_orders` | 🟦 `Orders` | Number of placed orders. | 3 |
+| `ordering_customers` | 🟦 `Orders` | Number of distinct customers who placed an order. | 2 |
+| `total_order_value` | 🟦 `Orders` | Total value of all orders. | 600 |
+| `avg_order_value` | 🟦 `Orders` | Average order amount, rounded to two decimals. | 200.00 |
+| `first_order_date` | 🟦 `Orders` | Earliest order date. | 2025-01-01 |
+| `last_order_date` | 🟦 `Orders` | Latest order date. | 2025-01-03 |
 
 ### Practice example · Sample input
 

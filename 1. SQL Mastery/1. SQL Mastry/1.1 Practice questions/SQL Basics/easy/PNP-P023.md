@@ -15,12 +15,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `ProductID` | Product identifier. | 🟦 `Products` |
-| `Product` | Product name. | 🟦 `Products` |
-| `Sub_Category` | Product subcategory as stored. | 🟦 `Products` |
-| `Sale_Price` | Current sale price. | 🟦 `Products` |
+One output row represents one qualifying chocolate or cookie product priced below 250, excluding sugar-free products.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `ProductID` | 🟦 `Products.ProductID` | Product identifier. | 1 |
+| `Product` | 🟦 `Products.Product` | Product name. | Cocoa Cookie |
+| `Sub_Category` | 🟦 `Products.Sub_Category` | Product subcategory as stored. | Cookies |
+| `Sale_Price` | 🟦 `Products.Sale_Price` | Current sale price. | 200 |
 
 ### Practice example · Sample input
 

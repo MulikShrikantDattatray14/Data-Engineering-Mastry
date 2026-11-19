@@ -15,7 +15,7 @@
   <line x1="36" y1="181" x2="924" y2="181" stroke="#C8D4DF" stroke-width="1" />
   <text x="36" y="215" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">01</text>
   <text x="81" y="215" font-size="24" font-weight="700" fill="#14283A">Which rows do we start with?</text>
-  <text x="81" y="243" font-size="16" font-weight="400" fill="#324D63">FROM Orders AS o starts with purchases. Customers supplies the names for the lookup.</text>
+  <text x="81" y="243" font-size="16" font-weight="400" fill="#324D63">FROM Orders AS o supplies every purchase amount, including orders without a matching customer.</text>
   <rect x="36" y="259" width="422" height="26" fill="#15558D" />
   <text x="46" y="277" font-size="14" font-weight="700" fill="#FFFFFF">Orders</text>
   <rect x="36" y="285" width="91" height="37" fill="#DBEBFA" />
@@ -82,7 +82,7 @@
   <line x1="36" y1="456" x2="924" y2="456" stroke="#C8D4DF" stroke-width="1" />
   <text x="36" y="490" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">02</text>
   <text x="81" y="490" font-size="24" font-weight="700" fill="#14283A">How does each order get its customer name?</text>
-  <text x="81" y="518" font-size="16" font-weight="400" fill="#324D63">The LEFT JOIN keeps every order. On this sample, each order finds exactly one customer.</text>
+  <text x="81" y="518" font-size="16" font-weight="400" fill="#324D63">Orders supplies CustomerID. LEFT JOIN adds the name before grouping and keeps unmatched orders.</text>
   <rect x="36" y="534" width="888" height="34" fill="#F1F4F7" rx="4" />
   <rect x="36" y="534" width="3" height="34" fill="#687E90" />
   <text x="48" y="556" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">LEFT JOIN Customers AS c ON o.CustomerID = c.CustomerID</text>

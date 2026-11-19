@@ -15,13 +15,15 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `rows_after_join` | Number of combined catalogue and sale-line rows, including a row for each unsold product. | 🟪 `Products` + `OrderDetails` |
-| `sale_lines` | Number of sale lines matched to a listed product. | 🟩 `OrderDetails` |
-| `listed_products` | Number of distinct products in the catalogue. | 🟦 `Products` |
-| `products_sold` | Number of distinct catalogue products with at least one sale line. | 🟩 `OrderDetails` |
-| `pct_sold` | Sold products as a percentage of all listed products, rounded to two decimals. | 🟪 `Products` + `OrderDetails` |
+One output row represents one catalogue-wide sales summary, including products with no sale lines.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `rows_after_join` | 🟪 `Products` + `OrderDetails` | Number of combined catalogue and sale-line rows, including a row for each unsold product. | 4 |
+| `sale_lines` | 🟩 `OrderDetails` | Number of sale lines matched to a listed product. | 3 |
+| `listed_products` | 🟦 `Products` | Number of distinct products in the catalogue. | 3 |
+| `products_sold` | 🟩 `OrderDetails` | Number of distinct catalogue products with at least one sale line. | 2 |
+| `pct_sold` | 🟪 `Products` + `OrderDetails` | Sold products as a percentage of all listed products, rounded to two decimals. | 66.67 |
 
 ### Practice example · Sample input
 

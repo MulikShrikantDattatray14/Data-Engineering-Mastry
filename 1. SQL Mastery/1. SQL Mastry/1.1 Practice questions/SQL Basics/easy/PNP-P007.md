@@ -15,14 +15,16 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `ProductID` | Product identifier. | 🟦 `Products` |
-| `Product` | Product name. | 🟦 `Products` |
-| `Market_Price` | Market price printed on the pack. | 🟦 `Products` |
-| `Sale_Price` | Current sale price. | 🟦 `Products` |
-| `discount_amount` | Market price minus sale price, in rupees. | 🟦 `Products` |
-| `discount_pct` | Discount as a percentage of market price, rounded to two decimals. | 🟦 `Products` |
+One output row represents one catalogue product, including products with missing or zero market prices.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `ProductID` | 🟦 `Products.ProductID` | Product identifier. | 3 |
+| `Product` | 🟦 `Products.Product` | Product name. | Lamp |
+| `Market_Price` | 🟦 `Products.Market_Price` | Market price printed on the pack. | 200 |
+| `Sale_Price` | 🟦 `Products.Sale_Price` | Current sale price. | 150 |
+| `discount_amount` | 🟦 `Products` | Market price minus sale price, in rupees. A missing or zero market price gives NULL. | 50 |
+| `discount_pct` | 🟦 `Products` | Discount as a percentage of market price, rounded to two decimals. A missing or zero market price gives NULL. | 25.00 |
 
 ### Practice example · Sample input
 

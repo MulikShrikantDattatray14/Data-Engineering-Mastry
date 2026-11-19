@@ -15,12 +15,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `ProductID` | Product identifier. | 🟦 `Products` |
-| `Product` | Product name. | 🟦 `Products` |
-| `Brand` | Brand name. | 🟦 `Products` |
-| `Sale_Price` | Current sale price. | 🟦 `Products` |
+One output row represents one priced product in the top ten. Lower product IDs take priority when prices tie.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `ProductID` | 🟦 `Products.ProductID` | Product identifier. | 101 |
+| `Product` | 🟦 `Products.Product` | Product name. | Headphones |
+| `Brand` | 🟦 `Products.Brand` | Brand name. | Nova |
+| `Sale_Price` | 🟦 `Products.Sale_Price` | Current sale price. | 900 |
 
 ### Practice example · Sample input
 

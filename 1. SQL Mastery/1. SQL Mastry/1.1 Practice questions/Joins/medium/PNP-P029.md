@@ -14,12 +14,14 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `shipper_name` | The shipper’s company name, or `Unknown shipper`. | 🟩 `Shippers` |
-| `orders` | Number of orders carried. | 🟦 `Orders` |
-| `order_value` | Total of those orders’ amounts, with each order counted once. | 🟦 `Orders` |
-| `units_shipped` | Sum of the quantities on those orders’ detail lines. | 🟥 `OrderDetails` |
+One output row represents one shipper represented on orders, including Unknown shipper for missing or unmatched IDs.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `shipper_name` | 🟩 `Shippers` | The shipper’s company name, or `Unknown shipper`. | FastShip |
+| `orders` | 🟦 `Orders` | Number of orders carried. | 2 |
+| `order_value` | 🟦 `Orders` | Total of those orders’ amounts, with each order counted once. | 300 |
+| `units_shipped` | 🟥 `OrderDetails` | Sum of the quantities on those orders’ detail lines. | 9 |
 
 ### Practice example · Sample input
 

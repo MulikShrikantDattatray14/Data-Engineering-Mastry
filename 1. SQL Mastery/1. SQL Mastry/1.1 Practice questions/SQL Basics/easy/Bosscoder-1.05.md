@@ -21,9 +21,11 @@ The prompt does not specify an output order.
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `TriangleType` | Classification of a side-length triple as `Equilateral`, `Isosceles`, `Scalene` or `Not A Triangle`. | 🟦 `TRIANGLES` |
+One output row represents one input triangle triple, including triples that cannot form a triangle.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `TriangleType` | 🟦 `TRIANGLES` | Classification of a side-length triple as `Equilateral`, `Isosceles`, `Scalene` or `Not A Triangle`. | Isosceles |
 
 ### Assignment example · Sample input
 

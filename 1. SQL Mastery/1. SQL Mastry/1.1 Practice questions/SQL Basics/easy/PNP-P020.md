@@ -15,14 +15,16 @@
 
 ### Required output columns
 
-| Column | Meaning | Source |
-|---|---|---|
-| `OrderID` | Order identifier. | 🟦 `Orders` |
-| `OrderDate` | Date the order was placed. | 🟦 `Orders` |
-| `ShipDate` | Date the order shipped. | 🟦 `Orders` |
-| `DeliveryDate` | Date the order was delivered. | 🟦 `Orders` |
-| `days_to_ship` | Whole days from order date to ship date. | 🟦 `Orders` |
-| `days_to_deliver` | Whole days from order date to delivery date. | 🟦 `Orders` |
+One output row represents one order placed in November 2025, including orders with missing shipping or delivery dates.
+
+| Output column | Source or calculation | Meaning and applicable rules | Example value |
+| --- | --- | --- | --- |
+| `OrderID` | 🟦 `Orders.OrderID` | Order identifier. | 1 |
+| `OrderDate` | 🟦 `Orders.OrderDate` | Date the order was placed. | 2025-11-01 |
+| `ShipDate` | 🟦 `Orders.ShipDate` | Date the order shipped. | 2025-11-03 |
+| `DeliveryDate` | 🟦 `Orders.DeliveryDate` | Date the order was delivered. | 2025-11-06 |
+| `days_to_ship` | 🟦 `Orders` | Whole days from order date to ship date. | 2 |
+| `days_to_deliver` | 🟦 `Orders` | Whole days from order date to delivery date. | 5 |
 
 ### Practice example · Sample input
 
