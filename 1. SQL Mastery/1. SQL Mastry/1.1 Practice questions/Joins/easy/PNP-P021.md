@@ -77,6 +77,8 @@ The fifth buyer in descending order has 🟦 **1 order**. All six one-order buye
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P021/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Customer 99 has three orders and no customer record. Can that ID come first?
 
 ![Top five customers by number of orders. Every buyer reaches 1. All seven appear, including everyone tied for fifth. Sort tied buyers by customer ID.](../../assets/walkthroughs/p021.svg)

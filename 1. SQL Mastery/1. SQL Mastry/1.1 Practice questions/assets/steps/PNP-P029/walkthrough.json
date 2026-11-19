@@ -1,0 +1,207 @@
+{
+  "question": "P029",
+  "solution_heading": "Final learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Shippers",
+      "label": "🟩 Shippers",
+      "color": "🟩",
+      "columns": [
+        [
+          "ShipperID",
+          "INTEGER"
+        ],
+        [
+          "CompanyName",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "FastShip"
+        ],
+        [
+          2,
+          "SlowShip"
+        ]
+      ]
+    },
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "ShipperID",
+          "INTEGER"
+        ],
+        [
+          "Total_Order_Amount",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          10,
+          1,
+          100
+        ],
+        [
+          11,
+          1,
+          200
+        ],
+        [
+          12,
+          2,
+          50
+        ]
+      ]
+    },
+    {
+      "name": "OrderDetails",
+      "label": "🟥 OrderDetails",
+      "color": "🟥",
+      "columns": [
+        [
+          "OrderDetailID",
+          "INTEGER"
+        ],
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "Quantity",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          10,
+          2
+        ],
+        [
+          2,
+          10,
+          3
+        ],
+        [
+          3,
+          11,
+          4
+        ],
+        [
+          4,
+          12,
+          1
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "shipper_name",
+      "orders",
+      "order_value",
+      "units_shipped"
+    ],
+    "rows": [
+      [
+        "FastShip",
+        2,
+        300,
+        9
+      ],
+      [
+        "SlowShip",
+        1,
+        50,
+        1
+      ]
+    ]
+  },
+  "column_colors": {
+    "ShipperID": "🟩",
+    "CompanyName": "🟩",
+    "OrderID": "🟦",
+    "Total_Order_Amount": "🟦",
+    "OrderDetailID": "🟥",
+    "Quantity": "🟥",
+    "shipper_name": "🟩",
+    "orders": "🟦",
+    "order_value": "🟦",
+    "units_shipped": "🟥"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Why prepare OrderDetails_2 first?",
+      "change": "One order can have several detail lines. Sum the quantities for each OrderID so the summary can match an order at most once.",
+      "added_sql": "WITH OrderDetails_2 AS (\n    SELECT OrderID, SUM(Quantity) AS total_units\n    FROM OrderDetails\n    GROUP BY OrderID\n)\nSELECT OrderID, total_units\nFROM OrderDetails_2\nORDER BY OrderID;",
+      "expected_count": 3,
+      "inputs": [
+        "OrderDetails"
+      ],
+      "sql": "WITH OrderDetails_2 AS (\n    SELECT OrderID, SUM(Quantity) AS total_units\n    FROM OrderDetails\n    GROUP BY OrderID\n)\nSELECT OrderID, total_units\nFROM OrderDetails_2\nORDER BY OrderID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Why start the outer query with Orders?",
+      "change": "The report counts orders and adds their amounts. Orders supplies one row per order and both IDs needed for the later lookups.",
+      "added_sql": "SELECT OrderID, ShipperID, Total_Order_Amount FROM Orders ORDER BY OrderID;",
+      "expected_count": 3,
+      "inputs": [
+        "Orders"
+      ],
+      "sql": "SELECT OrderID, ShipperID, Total_Order_Amount FROM Orders ORDER BY OrderID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Why add Shippers with a LEFT JOIN?",
+      "change": "Orders already carries ShipperID. Add Shippers second to look up its company name. Every order stays on the left, including an order with an unrecognised shipper ID.",
+      "added_sql": "SELECT o.OrderID, o.ShipperID AS ordering_shipper_id, o.Total_Order_Amount,\n       s.ShipperID AS matched_shipper_id, s.CompanyName\nFROM Orders AS o\nLEFT JOIN Shippers AS s\n    ON o.ShipperID = s.ShipperID\nORDER BY o.OrderID;",
+      "expected_count": 3,
+      "inputs": [
+        "stage2",
+        "Shippers"
+      ],
+      "sql": "SELECT o.OrderID, o.ShipperID AS ordering_shipper_id, o.Total_Order_Amount,\n       s.ShipperID AS matched_shipper_id, s.CompanyName\nFROM Orders AS o\nLEFT JOIN Shippers AS s\n    ON o.ShipperID = s.ShipperID\nORDER BY o.OrderID;"
+    },
+    {
+      "id": "stage4",
+      "title": "Why LEFT JOIN the units summary third?",
+      "change": "Order 10 looks up five units from the two detail lines. Keeping one summary per order preserves its single amount of 100.",
+      "added_sql": "WITH OrderDetails_2 AS (\n    SELECT OrderID, SUM(Quantity) AS total_units\n    FROM OrderDetails\n    GROUP BY OrderID\n)\n-- …\n       s.ShipperID AS matched_shipper_id, s.CompanyName,\n       od.OrderID AS summarized_order_id, od.total_units\n-- …\nLEFT JOIN `OrderDetails_2` AS od\n    ON od.OrderID = o.OrderID",
+      "expected_count": 3,
+      "inputs": [
+        "stage3",
+        "stage1"
+      ],
+      "sql": "WITH OrderDetails_2 AS (\n    SELECT OrderID, SUM(Quantity) AS total_units\n    FROM OrderDetails\n    GROUP BY OrderID\n)\nSELECT o.OrderID, o.ShipperID AS ordering_shipper_id, o.Total_Order_Amount,\n       s.ShipperID AS matched_shipper_id, s.CompanyName,\n       od.OrderID AS summarized_order_id, od.total_units\nFROM Orders AS o\nLEFT JOIN Shippers AS s\n    ON o.ShipperID = s.ShipperID\nLEFT JOIN `OrderDetails_2` AS od\n    ON od.OrderID = o.OrderID\nORDER BY o.OrderID;"
+    },
+    {
+      "id": "stage5",
+      "title": "Why use the displayed shipper name for grouping?",
+      "change": "Each order contributes to one reporting label. COALESCE gives an unmatched lookup the label Unknown shipper so missing and unrecognised IDs feed the same group.",
+      "added_sql": "SELECT COALESCE(s.CompanyName, 'Unknown shipper') AS shipper_name,\n       o.OrderID, o.Total_Order_Amount, od.total_units\n-- …\nORDER BY shipper_name, o.OrderID;",
+      "expected_count": 3,
+      "sql": "WITH OrderDetails_2 AS (\n    SELECT OrderID, SUM(Quantity) AS total_units\n    FROM OrderDetails\n    GROUP BY OrderID\n)\nSELECT COALESCE(s.CompanyName, 'Unknown shipper') AS shipper_name,\n       o.OrderID, o.Total_Order_Amount, od.total_units\nFROM Orders AS o\nLEFT JOIN Shippers AS s\n    ON o.ShipperID = s.ShipperID\nLEFT JOIN `OrderDetails_2` AS od\n    ON od.OrderID = o.OrderID\nORDER BY shipper_name, o.OrderID;"
+    },
+    {
+      "id": "stage6",
+      "title": "Why count, add and then sort?",
+      "change": "Count the order IDs, add each order amount once and add its units total. COALESCE turns a group’s all-NULL units total into zero. Sort the shipper totals by order value, highest first.",
+      "added_sql": "SELECT\n    COALESCE(s.CompanyName, 'Unknown shipper') AS shipper_name,\n    COUNT(DISTINCT o.OrderID) AS orders,\n    SUM(o.Total_Order_Amount) AS order_value,\n    COALESCE(SUM(od.total_units), 0) AS units_shipped\n-- …\nGROUP BY shipper_name\nORDER BY order_value DESC;",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../Joins/medium/PNP-P029.md"
+}

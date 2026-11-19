@@ -67,6 +67,8 @@ In 🟩 Payments, ID 1 stores Y and IDs 2 and 3 store N. Those two rows have cou
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P009/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Will a NULL Active value form a group? Can the two flag summaries be stacked?
 
 ![Check how Active and Allowed are encoded. Three Category groups plus two Payments groups give five output rows. Their counts add to seven input rows. The query permits any row order.](../../assets/walkthroughs/p009.svg)

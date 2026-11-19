@@ -1,0 +1,170 @@
+{
+  "question": "P017",
+  "solution_heading": "SQLite",
+  "tables": [
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "OrderDate",
+          "TEXT"
+        ],
+        [
+          "PaymentID",
+          "INTEGER"
+        ],
+        [
+          "ShipperID",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "2025-12-24",
+          1,
+          1
+        ],
+        [
+          2,
+          "2025-12-25",
+          1,
+          1
+        ],
+        [
+          3,
+          "2025-12-31",
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "name": "Payments",
+      "label": "🟩 Payments",
+      "color": "🟩",
+      "columns": [
+        [
+          "PaymentID",
+          "INTEGER"
+        ],
+        [
+          "PaymentType",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "UPI"
+        ]
+      ]
+    },
+    {
+      "name": "Shippers",
+      "label": "🟥 Shippers",
+      "color": "🟥",
+      "columns": [
+        [
+          "ShipperID",
+          "INTEGER"
+        ],
+        [
+          "CompanyName",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "FastShip"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "OrderID",
+      "OrderDate",
+      "payment_type",
+      "shipper_name"
+    ],
+    "rows": [
+      [
+        3,
+        "2025-12-31",
+        "Unknown",
+        "Unknown"
+      ],
+      [
+        2,
+        "2025-12-25",
+        "UPI",
+        "FastShip"
+      ]
+    ]
+  },
+  "column_colors": {
+    "OrderID": "🟦",
+    "OrderDate": "🟦",
+    "PaymentID": "🟦",
+    "ShipperID": "🟦",
+    "PaymentType": "🟩",
+    "CompanyName": "🟥",
+    "payment_type": "🟩",
+    "shipper_name": "🟥"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Calculate the reporting window",
+      "change": "The CTE reads order dates to produce one pair of bounds. The main query starts from individual orders because it needs one result per qualifying order. Subtract six days from the latest date to get seven inclusive calendar dates.",
+      "added_sql": "WITH reporting_window AS (\n    SELECT\n        date(MAX(OrderDate)) AS latest_order_date,\n        date(MAX(OrderDate), '-6 days') AS window_start\n    FROM Orders\n)\nSELECT latest_order_date, window_start FROM reporting_window;",
+      "expected_count": 1,
+      "inputs": [
+        "Orders"
+      ],
+      "sql": "WITH reporting_window AS (\n    SELECT\n        date(MAX(OrderDate)) AS latest_order_date,\n        date(MAX(OrderDate), '-6 days') AS window_start\n    FROM Orders\n)\nSELECT latest_order_date, window_start FROM reporting_window;"
+    },
+    {
+      "id": "stage2",
+      "title": "Join the lookup tables",
+      "change": "The report needs an entry for each order in the date window, including orders with missing labels. Each order already carries both lookup IDs.",
+      "added_sql": "SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName\nFROM Orders AS o\nLEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID\nLEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID\nORDER BY o.OrderID;",
+      "expected_count": 3,
+      "inputs": [
+        "Orders",
+        "Payments",
+        "Shippers"
+      ],
+      "sql": "SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName\nFROM Orders AS o\nLEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID\nLEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID\nORDER BY o.OrderID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Keep orders within the window",
+      "change": "Each subquery returns one value and BETWEEN includes both endpoints. This query assumes ISO date-only text (YYYY-MM-DD), so the order date can be compared directly. With timestamps, use the earlier timestamp-safe version above.",
+      "added_sql": "WITH reporting_window AS (\n    SELECT\n        date(MAX(OrderDate)) AS latest_order_date,\n        date(MAX(OrderDate), '-6 days') AS window_start\n    FROM Orders\n)\n-- …\nWHERE (o.OrderDate) BETWEEN\n    (SELECT window_start FROM reporting_window)\n    AND\n    (SELECT latest_order_date FROM reporting_window)",
+      "expected_count": 2,
+      "inputs": [
+        "stage2",
+        "stage1"
+      ],
+      "sql": "WITH reporting_window AS (\n    SELECT\n        date(MAX(OrderDate)) AS latest_order_date,\n        date(MAX(OrderDate), '-6 days') AS window_start\n    FROM Orders\n)\nSELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName\nFROM Orders AS o\nLEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID\nLEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID\nWHERE (o.OrderDate) BETWEEN\n    (SELECT window_start FROM reporting_window)\n    AND\n    (SELECT latest_order_date FROM reporting_window)\nORDER BY o.OrderID;"
+    },
+    {
+      "id": "stage4",
+      "title": "Label missing values and sort",
+      "change": "Unknown makes missing lookups visible, and the ID resolves ties on the order date.",
+      "added_sql": "SELECT\n    o.OrderID,\n    o.OrderDate,\n    COALESCE(p.PaymentType, 'Unknown') AS payment_type,\n    COALESCE(s.CompanyName, 'Unknown') AS shipper_name\n-- …\nORDER BY o.OrderDate DESC, o.OrderID DESC;",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../Joins/easy/PNP-P017.md"
+}

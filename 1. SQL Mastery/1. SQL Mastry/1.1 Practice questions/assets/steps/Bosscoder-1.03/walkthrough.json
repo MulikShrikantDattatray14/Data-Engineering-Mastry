@@ -1,0 +1,151 @@
+{
+  "question": "Bosscoder-1.03",
+  "solution_heading": "My final solution · SQLite",
+  "tables": [
+    {
+      "name": "BST",
+      "label": "🟦 BST",
+      "color": "🟦",
+      "columns": [
+        [
+          "N",
+          "INTEGER"
+        ],
+        [
+          "P",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          5,
+          null
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "N",
+      "NodeType"
+    ],
+    "rows": [
+      [
+        1,
+        "Leaf"
+      ],
+      [
+        2,
+        "Inner"
+      ],
+      [
+        3,
+        "Leaf"
+      ],
+      [
+        5,
+        "Root"
+      ],
+      [
+        6,
+        "Leaf"
+      ],
+      [
+        8,
+        "Inner"
+      ],
+      [
+        9,
+        "Leaf"
+      ]
+    ]
+  },
+  "column_colors": {
+    "N": "🟦",
+    "P": "🟦",
+    "NodeType": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Understand one input row",
+      "change": "The row N = 1, P = 2 says node 1 has parent 2. To learn whether node 1 has children, look for its value in other rows' P column. Each output row will classify one N. Every node stays in the result.",
+      "added_sql": "SELECT N, P FROM BST ORDER BY N;",
+      "expected_count": 7,
+      "sql": "SELECT N, P FROM BST ORDER BY N;"
+    },
+    {
+      "id": "stage2",
+      "title": "Identify the root first",
+      "change": "P IS NULL identifies the node with no parent. Test this first because a single-node tree also has no children and must receive the Root label.",
+      "added_sql": "SELECT N, P FROM BST WHERE P IS NULL;",
+      "expected_count": 1,
+      "inputs": [
+        "BST"
+      ],
+      "sql": "SELECT N, P FROM BST WHERE P IS NULL;"
+    },
+    {
+      "id": "stage3",
+      "title": "Build the known parent list",
+      "change": "A value used in P has at least one child. Remove NULL here so NOT IN can decide whether a node is absent from this list.",
+      "added_sql": "SELECT P FROM BST WHERE P IS NOT NULL ORDER BY P;",
+      "expected_count": 6,
+      "inputs": [
+        "BST"
+      ],
+      "sql": "SELECT P FROM BST WHERE P IS NOT NULL ORDER BY P;"
+    },
+    {
+      "id": "stage4",
+      "title": "Identify leaves",
+      "change": "Check which N values are absent from the known parent list. Those nodes have no children.",
+      "added_sql": "SELECT N FROM BST\nWHERE N NOT IN (SELECT P FROM BST WHERE P IS NOT NULL)\nORDER BY N;",
+      "expected_count": 4,
+      "inputs": [
+        "BST",
+        "stage3"
+      ],
+      "sql": "SELECT N FROM BST\nWHERE N NOT IN (SELECT P FROM BST WHERE P IS NOT NULL)\nORDER BY N;"
+    },
+    {
+      "id": "stage5",
+      "title": "Combine the rules",
+      "change": "Use CASE to check Root first, Leaf second, then return Inner for the remaining nodes. Apply ORDER BY N to produce the required ordering.",
+      "added_sql": "SELECT N,\n       CASE\n           WHEN P IS NULL THEN 'Root'\n           WHEN N NOT IN (\n               SELECT P\n               FROM BST\n               WHERE P IS NOT NULL\n           ) THEN 'Leaf'\n           ELSE 'Inner'\n       END AS NodeType\nFROM BST",
+      "expected_count": 7,
+      "inputs": [
+        "BST",
+        "stage2",
+        "stage3",
+        "stage4"
+      ],
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/medium/Bosscoder-1.03.md"
+}

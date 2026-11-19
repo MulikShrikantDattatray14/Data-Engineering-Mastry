@@ -1,0 +1,112 @@
+{
+  "question": "P015",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Category",
+      "label": "🟦 Category",
+      "color": "🟦",
+      "columns": [
+        [
+          "CategoryID",
+          "INTEGER"
+        ],
+        [
+          "CategoryName",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Snacks"
+        ],
+        [
+          2,
+          "Toys"
+        ]
+      ]
+    },
+    {
+      "name": "Products",
+      "label": "🟩 Products",
+      "color": "🟩",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "CategoryID",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          10,
+          1
+        ],
+        [
+          11,
+          1
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "CategoryID",
+      "CategoryName",
+      "product_count"
+    ],
+    "rows": [
+      [
+        2,
+        "Toys",
+        0
+      ],
+      [
+        1,
+        "Snacks",
+        2
+      ]
+    ]
+  },
+  "column_colors": {
+    "CategoryID": "🟦",
+    "CategoryName": "🟦",
+    "ProductID": "🟩",
+    "product_count": "🟩"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Attach matching products to every category",
+      "change": "Snacks contributes two matched rows. Toys gets one unmatched row.",
+      "added_sql": "SELECT c.CategoryID, c.CategoryName, p.ProductID\nFROM Category AS c\nLEFT JOIN Products AS p ON c.CategoryID = p.CategoryID\nORDER BY c.CategoryID, p.ProductID;",
+      "expected_count": 3,
+      "inputs": [
+        "Category",
+        "Products"
+      ],
+      "sql": "SELECT c.CategoryID, c.CategoryName, p.ProductID\nFROM Category AS c\nLEFT JOIN Products AS p ON c.CategoryID = p.CategoryID\nORDER BY c.CategoryID, p.ProductID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Group the rows and count matched products",
+      "change": "COUNT(ProductID) counts non-NULL product IDs. COUNT(*) would count Toys' unmatched join row and incorrectly report one product.",
+      "added_sql": "SELECT c.CategoryID, c.CategoryName, COUNT(p.ProductID) AS product_count\n-- …\nGROUP BY c.CategoryID\nORDER BY c.CategoryID;",
+      "expected_count": 2,
+      "sql": "SELECT c.CategoryID, c.CategoryName, COUNT(p.ProductID) AS product_count\nFROM Category AS c\nLEFT JOIN Products AS p ON c.CategoryID = p.CategoryID\nGROUP BY c.CategoryID\nORDER BY c.CategoryID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Sort the report",
+      "change": "This puts empty categories first and resolves ties consistently.",
+      "added_sql": "ORDER BY COUNT(p.ProductID) ASC, c.CategoryID ASC;",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../Joins/easy/PNP-P015.md"
+}

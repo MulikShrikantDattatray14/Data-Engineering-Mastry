@@ -1,0 +1,125 @@
+{
+  "question": "P030",
+  "solution_heading": "Final learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "CustomerID",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          20
+        ],
+        [
+          3,
+          20
+        ],
+        [
+          4,
+          30
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "customer_type",
+      "customers",
+      "pct_of_customers"
+    ],
+    "rows": [
+      [
+        "One-time",
+        2,
+        66.67
+      ],
+      [
+        "Repeat",
+        1,
+        33.33
+      ]
+    ]
+  },
+  "column_colors": {
+    "OrderID": "🟦",
+    "CustomerID": "🟦",
+    "customer_type": "🟦",
+    "customers": "🟦",
+    "pct_of_customers": "🟦",
+    "total_orders": "🟦",
+    "ordering_customers": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Which orders supply the report?",
+      "change": "Each row in 🟦 `Orders` represents an order. `OrderID` identifies the order and `CustomerID` identifies its customer. Those two fields supply both grouping stages. The filter applies to the input orders before the first group forms.",
+      "added_sql": "SELECT OrderID, CustomerID\nFROM Orders\nWHERE CustomerID IS NOT NULL\nORDER BY OrderID;",
+      "expected_count": 4,
+      "sql": "SELECT OrderID, CustomerID\nFROM Orders\nWHERE CustomerID IS NOT NULL\nORDER BY OrderID;"
+    },
+    {
+      "id": "stage2",
+      "title": "How many orders did each customer place?",
+      "change": "Group the four eligible orders by 🟦 `CustomerID`. Within each group, count its order IDs. The result has one row for each of the three identified customers.",
+      "added_sql": "SELECT CustomerID, COUNT(OrderID) AS total_orders\n-- …\nGROUP BY CustomerID\nORDER BY CustomerID;",
+      "expected_count": 3,
+      "sql": "SELECT CustomerID, COUNT(OrderID) AS total_orders\nFROM Orders\nWHERE CustomerID IS NOT NULL\nGROUP BY CustomerID\nORDER BY CustomerID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Which label does the CTE give each customer?",
+      "change": "The `CASE` expression uses each group’s order count. A value of **1** gives `One-time`. Two or more gives `Repeat`. The final learner query calculates the count and the label in the same CTE.",
+      "added_sql": "WITH customer_order_counts AS (\n    SELECT\n        CustomerID,\n        COUNT(OrderID) AS total_orders,\n        CASE\n            WHEN COUNT(OrderID) = 1 THEN 'One-time'\n            ELSE 'Repeat'\n        END AS customer_type\n-- …\n)\nSELECT CustomerID, total_orders, customer_type\nFROM customer_order_counts",
+      "expected_count": 3,
+      "sql": "WITH customer_order_counts AS (\n    SELECT\n        CustomerID,\n        COUNT(OrderID) AS total_orders,\n        CASE\n            WHEN COUNT(OrderID) = 1 THEN 'One-time'\n            ELSE 'Repeat'\n        END AS customer_type\n    FROM Orders\n    WHERE CustomerID IS NOT NULL\n    GROUP BY CustomerID\n)\nSELECT CustomerID, total_orders, customer_type\nFROM customer_order_counts\nORDER BY CustomerID;"
+    },
+    {
+      "id": "stage4",
+      "title": "What does the main query count?",
+      "change": "Each row of the CTE is already one buyer. Buyers 10 and 30 are One-time, while buyer 20 is Repeat.",
+      "added_sql": "SELECT customer_type, COUNT(total_orders) AS customers FROM customer_order_counts GROUP BY customer_type;",
+      "expected_count": 2,
+      "sql": "WITH customer_order_counts AS (\n    SELECT\n        CustomerID,\n        COUNT(OrderID) AS total_orders,\n        CASE\n            WHEN COUNT(OrderID) = 1 THEN 'One-time'\n            ELSE 'Repeat'\n        END AS customer_type\n    FROM Orders\n    WHERE CustomerID IS NOT NULL\n    GROUP BY CustomerID\n)\n\nSELECT customer_type, COUNT(total_orders) AS customers FROM customer_order_counts GROUP BY customer_type;"
+    },
+    {
+      "id": "stage5",
+      "title": "Count all ordering customers",
+      "change": "The scalar denominator reads all three customer rows. It gives both groups the same benchmark of three customers.",
+      "added_sql": "SELECT COUNT(*) AS ordering_customers FROM customer_order_counts;",
+      "expected_count": 1,
+      "inputs": [
+        "stage3"
+      ],
+      "sql": "WITH customer_order_counts AS (\n    SELECT\n        CustomerID,\n        COUNT(OrderID) AS total_orders,\n        CASE\n            WHEN COUNT(OrderID) = 1 THEN 'One-time'\n            ELSE 'Repeat'\n        END AS customer_type\n    FROM Orders\n    WHERE CustomerID IS NOT NULL\n    GROUP BY CustomerID\n)\n\nSELECT COUNT(*) AS ordering_customers FROM customer_order_counts;"
+    },
+    {
+      "id": "stage6",
+      "title": "Which rows belong in the denominator?",
+      "change": "The scalar subquery reads every row of `customer_order_counts`. It supplies the same denominator for both result rows. This is the denominator query after the same `WITH` clause.",
+      "added_sql": "SELECT\n    customer_type,\n    COUNT(total_orders) AS customers,\n    ROUND(\n        COUNT(total_orders) * 100.0\n        / (SELECT COUNT(*) FROM customer_order_counts),\n        2\n    ) AS pct_of_customers\nFROM customer_order_counts\nGROUP BY customer_type\nORDER BY customer_type;",
+      "expected_count": 2,
+      "inputs": [
+        "stage4",
+        "stage5"
+      ],
+      "final": true
+    }
+  ],
+  "record": "../../../CTEs/medium/PNP-P030.md"
+}

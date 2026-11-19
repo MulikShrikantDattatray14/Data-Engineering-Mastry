@@ -68,6 +68,8 @@ All ten orders have an amount of 100. Their combined value is 🟦 `10 × 100 = 
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P027/01.md)
+
 🟦 **Orders** supplies the order IDs, buyer IDs and amounts. 🟩 **Customers** supplies the state. Each color stays with its source through the join, including any `NULL` cell. A double underline marks the join keys, ▸ marks a focus row, and ƒ marks a calculated column in its source color.
 
 The diagram keeps the original ten orders and adds examples from practice. Follow **order 11** through the missing customer lookup. Then follow **Maharashtra** through the two counts used in this report. Lists such as `12–16` show inclusive OrderID ranges. Each number is a separate order.

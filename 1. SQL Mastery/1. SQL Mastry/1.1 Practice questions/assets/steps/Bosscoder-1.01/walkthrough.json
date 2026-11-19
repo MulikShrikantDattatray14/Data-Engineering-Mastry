@@ -1,0 +1,108 @@
+{
+  "question": "Bosscoder-1.01",
+  "solution_heading": "My solution — SQLite",
+  "tables": [
+    {
+      "name": "Customers",
+      "label": "🟦 Customers",
+      "color": "🟦",
+      "columns": [
+        [
+          "customer_id",
+          "INTEGER"
+        ],
+        [
+          "year",
+          "INTEGER"
+        ],
+        [
+          "revenue",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          2018,
+          50
+        ],
+        [
+          1,
+          2021,
+          30
+        ],
+        [
+          1,
+          2020,
+          70
+        ],
+        [
+          2,
+          2021,
+          -50
+        ],
+        [
+          3,
+          2018,
+          10
+        ],
+        [
+          3,
+          2016,
+          50
+        ],
+        [
+          4,
+          2021,
+          20
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "customer_id"
+    ],
+    "rows": [
+      [
+        1
+      ],
+      [
+        4
+      ]
+    ]
+  },
+  "column_colors": {
+    "customer_id": "🟦",
+    "year": "🟦",
+    "revenue": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Keep only 2021 records",
+      "change": "The question asks about revenue *in 2021*. Other years cannot decide whether a customer qualifies.",
+      "added_sql": "SELECT customer_id, year, revenue\nFROM Customers\nWHERE year = 2021\nORDER BY customer_id;",
+      "expected_count": 3,
+      "sql": "SELECT customer_id, year, revenue\nFROM Customers\nWHERE year = 2021\nORDER BY customer_id;"
+    },
+    {
+      "id": "stage2",
+      "title": "Keep only positive revenue",
+      "change": "Keep only positive revenue.",
+      "added_sql": "WHERE year = 2021 AND revenue > 0",
+      "expected_count": 2,
+      "sql": "SELECT customer_id, year, revenue\nFROM Customers\nWHERE year = 2021 AND revenue > 0\nORDER BY customer_id;"
+    },
+    {
+      "id": "stage3",
+      "title": "Return the requested column",
+      "change": "The output requires only `customer_id`, so the final `SELECT` drops the helper columns `year` and `revenue` from display:",
+      "added_sql": "SELECT customer_id",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "unordered": true,
+  "record": "../../../SQL Basics/easy/Bosscoder-1.01.md"
+}

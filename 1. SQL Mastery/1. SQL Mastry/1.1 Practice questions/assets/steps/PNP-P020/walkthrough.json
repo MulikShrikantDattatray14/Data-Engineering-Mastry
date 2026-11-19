@@ -1,0 +1,104 @@
+{
+  "question": "P020",
+  "solution_heading": "Learner submission — SQLite",
+  "tables": [
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "OrderDate",
+          "TEXT"
+        ],
+        [
+          "ShipDate",
+          "TEXT"
+        ],
+        [
+          "DeliveryDate",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "2025-11-01",
+          "2025-11-03",
+          "2025-11-06"
+        ],
+        [
+          2,
+          "2025-11-02",
+          null,
+          null
+        ],
+        [
+          3,
+          "2025-10-31",
+          "2025-11-01",
+          "2025-11-04"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "OrderID",
+      "OrderDate",
+      "ShipDate",
+      "DeliveryDate",
+      "days_to_ship",
+      "days_to_deliver"
+    ],
+    "rows": [
+      [
+        1,
+        "2025-11-01",
+        "2025-11-03",
+        "2025-11-06",
+        2,
+        5
+      ],
+      [
+        2,
+        "2025-11-02",
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "column_colors": {
+    "OrderID": "🟦",
+    "OrderDate": "🟦",
+    "ShipDate": "🟦",
+    "DeliveryDate": "🟦",
+    "days_to_ship": "🟦",
+    "days_to_deliver": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Keep November 2025 orders",
+      "change": "The reporting period depends on when the order was placed. Order 3 was shipped in November but placed in October. Order 2 stays even though it has no shipping or delivery date.",
+      "added_sql": "SELECT OrderID, OrderDate, ShipDate, DeliveryDate\nFROM Orders\nWHERE strftime(\"%m\", OrderDate) = '11' AND strftime(\"%Y\", OrderDate) = '2025'\nORDER BY OrderDate ASC, `OrderID` ASC;",
+      "expected_count": 2,
+      "sql": "SELECT OrderID, OrderDate, ShipDate, DeliveryDate\nFROM Orders\nWHERE strftime(\"%m\", OrderDate) = '11' AND strftime(\"%Y\", OrderDate) = '2025'\nORDER BY OrderDate ASC, `OrderID` ASC;"
+    },
+    {
+      "id": "stage2",
+      "title": "Calculate the calendar-day differences and sort",
+      "change": "Subtracting raw date strings in SQLite can subtract just their leading years. The inner date calls discard time, so crossing midnight counts as one calendar day. Each missing date affects only its own metric. The ID breaks order-date ties.",
+      "added_sql": "SELECT OrderID, OrderDate, ShipDate, DeliveryDate,\n       CAST(julianday(date(ShipDate)) - julianday(date(OrderDate)) AS INTEGER) AS days_to_ship,\n       CAST(julianday(date(DeliveryDate)) - julianday(date(OrderDate)) AS INTEGER) AS days_to_deliver",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P020.md"
+}

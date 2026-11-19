@@ -1,0 +1,113 @@
+{
+  "question": "P004",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Customers",
+      "label": "🟦 Customers",
+      "color": "🟦",
+      "columns": [
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "FirstName",
+          "TEXT"
+        ],
+        [
+          "LastName",
+          "TEXT"
+        ],
+        [
+          "Email",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Asha",
+          "Rao",
+          null
+        ],
+        [
+          2,
+          "Ben",
+          "Das",
+          "ben das@example.com"
+        ],
+        [
+          3,
+          "Cia",
+          "Sen",
+          "cia.example.com"
+        ],
+        [
+          4,
+          "Dev",
+          "Roy",
+          "dev@example.com"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "CustomerID",
+      "FirstName",
+      "LastName",
+      "Email",
+      "issue"
+    ],
+    "rows": [
+      [
+        1,
+        "Asha",
+        "Rao",
+        null,
+        "Missing"
+      ],
+      [
+        2,
+        "Ben",
+        "Das",
+        "ben das@example.com",
+        "Contains a space"
+      ],
+      [
+        3,
+        "Cia",
+        "Sen",
+        "cia.example.com",
+        "Not in name@domain.tld form"
+      ]
+    ]
+  },
+  "column_colors": {
+    "CustomerID": "🟦",
+    "FirstName": "🟦",
+    "LastName": "🟦",
+    "Email": "🟦",
+    "issue": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Assign the issue to each customer",
+      "change": "Each customer needs the first applicable label.",
+      "added_sql": "SELECT CustomerID, FirstName, LastName, Email,\n       (CASE\n          WHEN Email IS NULL OR LENGTH(Email) == 0 THEN 'Missing'\n          WHEN Email LIKE '% %' THEN 'Contains a space'\n          WHEN Email NOT LIKE '%_@_%._%' THEN 'Not in name@domain.tld form'\n        END) AS issue\nFROM Customers\nORDER BY CustomerID ASC;",
+      "expected_count": 4,
+      "sql": "SELECT CustomerID, FirstName, LastName, Email,\n       (CASE\n          WHEN Email IS NULL OR LENGTH(Email) == 0 THEN 'Missing'\n          WHEN Email LIKE '% %' THEN 'Contains a space'\n          WHEN Email NOT LIKE '%_@_%._%' THEN 'Not in name@domain.tld form'\n        END) AS issue\nFROM Customers\nORDER BY CustomerID ASC;"
+    },
+    {
+      "id": "stage2",
+      "title": "Keep only rows that fail a check",
+      "change": "The report includes only rows with an issue.",
+      "added_sql": "WHERE Email IS NULL OR LENGTH(Email) == 0 OR Email LIKE '% %'\n   OR Email NOT LIKE '%_@_%._%'",
+      "expected_count": 3,
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P004.md"
+}

@@ -76,6 +76,8 @@ Suppose one more order arrives in 🟦 `Orders` with `PaymentID = 99`. The 🟩 
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P028/01.md)
+
 Use the original three orders and the two we added during practice. Order **13** carries payment ID **99** and an amount of **50**. Order **14** carries a missing payment ID and an amount of **150**. These five orders stay in view through the last step.
 
 🟦 **Orders** supplies IDs and amounts. 🟩 **Payments** supplies labels. The two join keys have a double underline. A ▸ marks a focus row, and darker cells show the inputs to the current calculation. The ƒ symbol identifies calculated columns in their source colors.

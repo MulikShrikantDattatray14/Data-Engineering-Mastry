@@ -60,6 +60,8 @@
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P008/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Which band owns exactly 200? What about exactly 700?
 
 ![Price band labels. The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay.](../../assets/walkthroughs/p008.svg)

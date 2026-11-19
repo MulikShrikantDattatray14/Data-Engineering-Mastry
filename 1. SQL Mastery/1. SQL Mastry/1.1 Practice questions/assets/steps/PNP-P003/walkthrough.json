@@ -1,0 +1,201 @@
+{
+  "question": "P003",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Customers",
+      "label": "🟦 Customers",
+      "color": "🟦",
+      "columns": [
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "FirstName",
+          "TEXT"
+        ],
+        [
+          "LastName",
+          "TEXT"
+        ],
+        [
+          "City",
+          "TEXT"
+        ],
+        [
+          "State",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          12,
+          "Asha",
+          "Rao",
+          " Bengaluru ",
+          "Karnataka"
+        ],
+        [
+          5,
+          "Nisha",
+          "Shah",
+          "MUMBAI",
+          "Maharashtra"
+        ],
+        [
+          21,
+          "Riya",
+          "Patil",
+          "Pune",
+          "Maharashtra"
+        ],
+        [
+          3,
+          "Dev",
+          "Kumar",
+          "Delhi",
+          "Delhi"
+        ],
+        [
+          7,
+          "Mira",
+          "Das",
+          "Bengaluru",
+          "Karnataka"
+        ],
+        [
+          9,
+          "Farah",
+          "Ali",
+          " Chennai ",
+          "Tamil Nadu"
+        ],
+        [
+          14,
+          "Isha",
+          "Kumar",
+          "Bangalore",
+          "Karnataka"
+        ],
+        [
+          6,
+          "Omar",
+          "Khan",
+          " Bombay ",
+          "Maharashtra"
+        ],
+        [
+          8,
+          "Lea",
+          "Singh",
+          "New Delhi",
+          "Delhi"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "CustomerID",
+      "FirstName",
+      "LastName",
+      "City",
+      "State"
+    ],
+    "rows": [
+      [
+        14,
+        "Isha",
+        "Kumar",
+        "Bangalore",
+        "Karnataka"
+      ],
+      [
+        7,
+        "Mira",
+        "Das",
+        "Bengaluru",
+        "Karnataka"
+      ],
+      [
+        12,
+        "Asha",
+        "Rao",
+        "Bengaluru",
+        "Karnataka"
+      ],
+      [
+        6,
+        "Omar",
+        "Khan",
+        "Bombay",
+        "Maharashtra"
+      ],
+      [
+        9,
+        "Farah",
+        "Ali",
+        "Chennai",
+        "Tamil Nadu"
+      ],
+      [
+        3,
+        "Dev",
+        "Kumar",
+        "Delhi",
+        "Delhi"
+      ],
+      [
+        5,
+        "Nisha",
+        "Shah",
+        "MUMBAI",
+        "Maharashtra"
+      ],
+      [
+        8,
+        "Lea",
+        "Singh",
+        "New Delhi",
+        "Delhi"
+      ]
+    ]
+  },
+  "column_colors": {
+    "CustomerID": "🟦",
+    "FirstName": "🟦",
+    "LastName": "🟦",
+    "City": "🟦",
+    "State": "🟦",
+    "OriginalCity": "🟦",
+    "MatchCity": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Check the displayed value and the matching value",
+      "change": "Case-insensitive matching can coexist with original display case.",
+      "added_sql": "SELECT CustomerID, City AS OriginalCity, TRIM(City) AS City,\n       TRIM(LOWER(City)) AS MatchCity\nFROM Customers\nORDER BY CustomerID;",
+      "expected_count": 9,
+      "sql": "SELECT CustomerID, City AS OriginalCity, TRIM(City) AS City,\n       TRIM(LOWER(City)) AS MatchCity\nFROM Customers\nORDER BY CustomerID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Keep eligible cities",
+      "change": "Alternate names must still match the intended metros.",
+      "added_sql": "select CustomerID,FirstName,LastName,trim(City) as City,State\n-- …\nwhere trim(lower(City)) in (\"bengaluru\",\"mumbai\",\"delhi\",\"hyderabad\",\"chennai\",\"bangalore\",\"bombay\",\"new delhi\")",
+      "expected_count": 8,
+      "sql": "select CustomerID,FirstName,LastName,trim(City) as City,State\nfrom Customers\nwhere trim(lower(City)) in (\"bengaluru\",\"mumbai\",\"delhi\",\"hyderabad\",\"chennai\",\"bangalore\",\"bombay\",\"new delhi\")\norder by CustomerID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Apply the requested ordering",
+      "change": "Matching case should not affect alphabetical placement.",
+      "added_sql": "order by trim(lower(City)) asc, CustomerID asc",
+      "expected_count": 8,
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P003.md"
+}

@@ -1,0 +1,134 @@
+{
+  "question": "Bosscoder-1.04",
+  "solution_heading": "My solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "🟦 Products",
+      "color": "🟦",
+      "columns": [
+        [
+          "product_id",
+          "INTEGER"
+        ],
+        [
+          "store1",
+          "INTEGER"
+        ],
+        [
+          "store2",
+          "INTEGER"
+        ],
+        [
+          "store3",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          0,
+          95,
+          100,
+          105
+        ],
+        [
+          1,
+          70,
+          null,
+          80
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "product_id",
+      "store",
+      "price"
+    ],
+    "rows": [
+      [
+        0,
+        "store1",
+        95
+      ],
+      [
+        1,
+        "store1",
+        70
+      ],
+      [
+        0,
+        "store2",
+        100
+      ],
+      [
+        0,
+        "store3",
+        105
+      ],
+      [
+        1,
+        "store3",
+        80
+      ]
+    ]
+  },
+  "column_colors": {
+    "product_id": "🟦",
+    "store1": "🟦",
+    "store2": "🟦",
+    "store3": "🟦",
+    "store": "🟦",
+    "price": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Turn `store1` into rows",
+      "change": "The text `'store1'` becomes the output store label, while the value in column `store1` becomes `price`.",
+      "added_sql": "SELECT product_id,\n       'store1' AS store,\n       store1 AS price\nFROM Products\nWHERE store1 IS NOT NULL;",
+      "expected_count": 2,
+      "inputs": [
+        "Products"
+      ],
+      "sql": "SELECT product_id,\n       'store1' AS store,\n       store1 AS price\nFROM Products\nWHERE store1 IS NOT NULL;"
+    },
+    {
+      "id": "stage2",
+      "title": "Do the same for `store2`",
+      "change": "Product 1 has `NULL` in this column and is excluded by the branch's `WHERE` condition.",
+      "added_sql": "'store2' AS store,\n       store2 AS price\n-- …\nWHERE store2 IS NOT NULL;",
+      "expected_count": 1,
+      "inputs": [
+        "Products"
+      ],
+      "sql": "SELECT product_id,\n       'store2' AS store,\n       store2 AS price\nFROM Products\nWHERE store2 IS NOT NULL;"
+    },
+    {
+      "id": "stage3",
+      "title": "Do the same for `store3`",
+      "change": "Both products have a price there.",
+      "added_sql": "'store3' AS store,\n       store3 AS price\n-- …\nWHERE store3 IS NOT NULL;",
+      "expected_count": 2,
+      "inputs": [
+        "Products"
+      ],
+      "sql": "SELECT product_id,\n       'store3' AS store,\n       store3 AS price\nFROM Products\nWHERE store3 IS NOT NULL;"
+    },
+    {
+      "id": "stage4",
+      "title": "Stack the branch results with `UNION ALL`",
+      "change": "It retains all two `store1` rows, one `store2` row, and two `store3` rows: five output rows in total. The final `ORDER BY store ASC` arranges the stores as `store1`, `store2`, `store3`.",
+      "added_sql": "SELECT product_id,\n       'store1' AS store,\n       store1 AS price\nFROM Products\nWHERE store1 IS NOT NULL\n\nUNION ALL\n\nSELECT product_id,\n       'store2' AS store,\n       store2 AS price\nFROM Products\nWHERE store2 IS NOT NULL\n\nUNION ALL\n\n-- …\n\nORDER BY store ASC;",
+      "expected_count": 5,
+      "inputs": [
+        "stage1",
+        "stage2",
+        "stage3"
+      ],
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/Bosscoder-1.04.md"
+}

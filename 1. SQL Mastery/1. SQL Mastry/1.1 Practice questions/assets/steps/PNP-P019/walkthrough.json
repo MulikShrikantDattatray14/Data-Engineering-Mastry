@@ -1,0 +1,140 @@
+{
+  "question": "P019",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "🟩 Products",
+      "color": "🟩",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Product",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Pen"
+        ],
+        [
+          2,
+          "Bag"
+        ],
+        [
+          3,
+          "Cup"
+        ]
+      ]
+    },
+    {
+      "name": "OrderDetails",
+      "label": "🟦 OrderDetails",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderDetailID",
+          "INTEGER"
+        ],
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Quantity",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          10,
+          1,
+          2
+        ],
+        [
+          2,
+          11,
+          1,
+          3
+        ],
+        [
+          3,
+          11,
+          2,
+          1
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "ProductID",
+      "Product",
+      "units_sold",
+      "order_lines",
+      "orders"
+    ],
+    "rows": [
+      [
+        1,
+        "Pen",
+        5,
+        2,
+        2
+      ],
+      [
+        2,
+        "Bag",
+        1,
+        1,
+        1
+      ]
+    ]
+  },
+  "column_colors": {
+    "ProductID": "🟦",
+    "Product": "🟩",
+    "OrderDetailID": "🟦",
+    "OrderID": "🟦",
+    "Quantity": "🟦",
+    "units_sold": "🟦",
+    "order_lines": "🟦",
+    "orders": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Attach the product name to each order line",
+      "change": "The task covers products that appear on sale lines. Each detail row supplies the product ID, order ID and quantity needed to count sales.",
+      "added_sql": "SELECT O.OrderDetailID, O.OrderID, O.ProductID, P.Product, O.Quantity\nFROM OrderDetails AS O\nLEFT JOIN Products AS P ON O.ProductID = P.ProductID\nORDER BY O.OrderDetailID;",
+      "expected_count": 3,
+      "sql": "SELECT O.OrderDetailID, O.OrderID, O.ProductID, P.Product, O.Quantity\nFROM OrderDetails AS O\nLEFT JOIN Products AS P ON O.ProductID = P.ProductID\nORDER BY O.OrderDetailID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Group by product and calculate the metrics",
+      "change": "The metrics answer different questions. Pen's quantities add up to five. Its two lines happen to belong to different orders. If it appears again in order 10, the line count increases and the distinct order count stays at two.",
+      "added_sql": "select O.ProductID,P.Product,sum (O.Quantity) as units_sold, count(OrderDetailID)  as order_lines, count(distinct(OrderID)) as orders\n-- …\nleft join Products as P on O.ProductID =P.ProductID\ngroup by O.ProductID\nORDER BY O.ProductID;",
+      "expected_count": 2,
+      "sql": "select O.ProductID,P.Product,sum (O.Quantity) as units_sold, count(OrderDetailID)  as order_lines, count(distinct(OrderID)) as orders\nfrom OrderDetails as O\nleft join Products as P on O.ProductID =P.ProductID\ngroup by O.ProductID\nORDER BY O.ProductID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Apply the ranking and verify ties",
+      "change": "Both tables have ProductID, so qualifying the tie-breaker makes it unambiguous. Run the learner query above.",
+      "added_sql": "order by sum (O.Quantity) desc , O.ProductID asc",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../Joins/easy/PNP-P019.md"
+}

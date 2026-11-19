@@ -1,0 +1,125 @@
+{
+  "question": "P008",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "🟦 Products",
+      "color": "🟦",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Product",
+          "TEXT"
+        ],
+        [
+          "Sale_Price",
+          "NUMERIC"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Pen",
+          199
+        ],
+        [
+          2,
+          "Book",
+          200
+        ],
+        [
+          3,
+          "Bag",
+          699.5
+        ],
+        [
+          4,
+          "Watch",
+          700
+        ],
+        [
+          5,
+          "Mystery",
+          null
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "ProductID",
+      "Product",
+      "Sale_Price",
+      "price_band"
+    ],
+    "rows": [
+      [
+        1,
+        "Pen",
+        199,
+        "Budget"
+      ],
+      [
+        2,
+        "Book",
+        200,
+        "Mid"
+      ],
+      [
+        3,
+        "Bag",
+        699.5,
+        "Mid"
+      ],
+      [
+        4,
+        "Watch",
+        700,
+        "Premium"
+      ],
+      [
+        5,
+        "Mystery",
+        null,
+        "Unknown"
+      ]
+    ]
+  },
+  "column_colors": {
+    "ProductID": "🟦",
+    "Product": "🟦",
+    "Sale_Price": "🟦",
+    "price_band": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Label prices below 200",
+      "change": "Budget ends immediately before 200.",
+      "added_sql": "SELECT ProductID, Product, Sale_Price,\n       CASE\n           WHEN Sale_Price < 200 THEN 'Budget'\n       END AS price_band\nFROM Products\nORDER BY ProductID ASC;",
+      "expected_count": 5,
+      "sql": "SELECT ProductID, Product, Sale_Price,\n       CASE\n           WHEN Sale_Price < 200 THEN 'Budget'\n       END AS price_band\nFROM Products\nORDER BY ProductID ASC;"
+    },
+    {
+      "id": "stage2",
+      "title": "Add the Mid range",
+      "change": "Mid includes fractional prices below 700.",
+      "added_sql": "WHEN Sale_Price >= 200 AND Sale_Price < 700 THEN 'Mid'",
+      "expected_count": 5,
+      "sql": "SELECT ProductID, Product, Sale_Price,\n       CASE\n           WHEN Sale_Price < 200 THEN 'Budget'\n           WHEN Sale_Price >= 200 AND Sale_Price < 700 THEN 'Mid'\n       END AS price_band\nFROM Products\nORDER BY ProductID ASC;"
+    },
+    {
+      "id": "stage3",
+      "title": "Complete the labels",
+      "change": "A missing price still needs its own label.",
+      "added_sql": "select ProductID,Product,Sale_Price,\n(\n-- …\nwhen Sale_Price < 200 then \"Budget\"\nwhen Sale_Price >=200 and Sale_Price < 700 then \"Mid\"\nwhen Sale_Price>=700 then\"Premium\"\nelse \"Unknown\"\nend\n) as \nprice_band",
+      "expected_count": 5,
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P008.md"
+}

@@ -62,6 +62,8 @@ Order 11 belongs to the same customer but was placed on 🟩 **2026-01-01**, out
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P016/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Both orders belong to Anu. Which operation removes the January order?
 
 ![December 2025 orders with customer names. The remaining order displays Anu Sen, Delhi and 100. The query sorts by order date and ID.](../../assets/walkthroughs/p016.svg)

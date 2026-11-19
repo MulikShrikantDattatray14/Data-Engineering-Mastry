@@ -1,0 +1,116 @@
+{
+  "question": "P024",
+  "solution_heading": "My final solution · SQLite",
+  "tables": [
+    {
+      "name": "Suppliers",
+      "label": "🟦 Suppliers",
+      "color": "🟦",
+      "columns": [
+        [
+          "SupplierID",
+          "INTEGER"
+        ],
+        [
+          "CompanyName",
+          "TEXT"
+        ],
+        [
+          "Country",
+          "TEXT"
+        ],
+        [
+          "Email",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Local Foods",
+          "India",
+          "local@example.com"
+        ],
+        [
+          2,
+          "Global Goods",
+          "USA",
+          null
+        ],
+        [
+          3,
+          "Mystery Supply",
+          null,
+          "mystery@example.com"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "SupplierID",
+      "CompanyName",
+      "Country",
+      "Email",
+      "issue"
+    ],
+    "rows": [
+      [
+        2,
+        "Global Goods",
+        "USA",
+        null,
+        "Outside India; No email"
+      ],
+      [
+        3,
+        "Mystery Supply",
+        null,
+        "mystery@example.com",
+        "Country missing"
+      ]
+    ]
+  },
+  "column_colors": {
+    "SupplierID": "🟦",
+    "CompanyName": "🟦",
+    "Country": "🟦",
+    "Email": "🟦",
+    "issue": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Decide what one output row represents",
+      "change": "Each row is a supplier with its original spelling and contact fields. The sample contains three suppliers.",
+      "added_sql": "SELECT SupplierID, CompanyName, Country, Email FROM Suppliers ORDER BY SupplierID;",
+      "expected_count": 3,
+      "sql": "SELECT SupplierID, CompanyName, Country, Email FROM Suppliers ORDER BY SupplierID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Keep suppliers with any issue",
+      "change": "Supplier 1 passes both checks and leaves the issue report. Suppliers 2 and 3 remain.",
+      "added_sql": "SELECT SupplierID, CompanyName, Country, Email FROM Suppliers\nWHERE Country IS NULL\n   OR TRIM(LOWER(Country)) != 'india'\n   OR TRIM(Email) IS NULL\n   OR LENGTH(TRIM(Email)) = 0;",
+      "expected_count": 2,
+      "sql": "SELECT SupplierID, CompanyName, Country, Email FROM Suppliers\nWHERE Country IS NULL\n   OR TRIM(LOWER(Country)) != 'india'\n   OR TRIM(Email) IS NULL\n   OR LENGTH(TRIM(Email)) = 0;"
+    },
+    {
+      "id": "stage3",
+      "title": "Build the issue text",
+      "change": "The CASE expression labels supplier 2 with both issues and supplier 3 with a missing country. The combined condition is checked first.",
+      "added_sql": "SELECT SupplierID, CompanyName, Country, Email,\n    CASE\n        WHEN Country IS NULL\n             AND (TRIM(Email) IS NULL OR LENGTH(TRIM(Email)) = 0)\n            THEN 'Country missing; No email'\n        WHEN TRIM(LOWER(Country)) != 'india'\n             AND (TRIM(Email) IS NULL OR LENGTH(TRIM(Email)) = 0)\n            THEN 'Outside India; No email'\n        WHEN Country IS NULL THEN 'Country missing'\n        WHEN TRIM(LOWER(Country)) != 'india' THEN 'Outside India'\n        WHEN TRIM(Email) IS NULL OR LENGTH(TRIM(Email)) = 0 THEN 'No email'\n    END AS issue\nFROM Suppliers",
+      "expected_count": 2,
+      "sql": "SELECT SupplierID, CompanyName, Country, Email,\n    CASE\n        WHEN Country IS NULL\n             AND (TRIM(Email) IS NULL OR LENGTH(TRIM(Email)) = 0)\n            THEN 'Country missing; No email'\n        WHEN TRIM(LOWER(Country)) != 'india'\n             AND (TRIM(Email) IS NULL OR LENGTH(TRIM(Email)) = 0)\n            THEN 'Outside India; No email'\n        WHEN Country IS NULL THEN 'Country missing'\n        WHEN TRIM(LOWER(Country)) != 'india' THEN 'Outside India'\n        WHEN TRIM(Email) IS NULL OR LENGTH(TRIM(Email)) = 0 THEN 'No email'\n    END AS issue\nFROM Suppliers\nWHERE Country IS NULL\n   OR TRIM(LOWER(Country)) != 'india'\n   OR TRIM(Email) IS NULL\n   OR LENGTH(TRIM(Email)) = 0;"
+    },
+    {
+      "id": "stage4",
+      "title": "Sort and check the edge cases",
+      "change": "Both issue rows remain. Sorting by supplier ID places 2 before 3.",
+      "added_sql": "ORDER BY SupplierID ASC",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P024.md"
+}

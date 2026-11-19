@@ -1,0 +1,124 @@
+{
+  "question": "P012",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "🟦 Products",
+      "color": "🟦",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "CategoryID",
+          "INTEGER"
+        ],
+        [
+          "Sale_Price",
+          "INTEGER"
+        ],
+        [
+          "Market_Price",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          10,
+          80,
+          100
+        ],
+        [
+          2,
+          10,
+          100,
+          100
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "CategoryID",
+      "products",
+      "min_price",
+      "max_price",
+      "avg_price",
+      "full_price_products",
+      "avg_discount_pct"
+    ],
+    "rows": [
+      [
+        10,
+        2,
+        80,
+        100,
+        90.0,
+        1,
+        10.0
+      ]
+    ]
+  },
+  "column_colors": {
+    "ProductID": "🟦",
+    "CategoryID": "🟦",
+    "Sale_Price": "🟦",
+    "Market_Price": "🟦",
+    "products": "🟦",
+    "min_price": "🟦",
+    "max_price": "🟦",
+    "avg_price": "🟦",
+    "full_price_products": "🟦",
+    "avg_discount_pct": "🟦",
+    "full_price_flag": "🟦",
+    "product_discount_pct": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Get one row per category",
+      "change": "Each input row is a product and each output row is a category. All the fields come from Products, so this query reads a single table.",
+      "added_sql": "SELECT CategoryID, COUNT(ProductID) AS products\nFROM Products\nGROUP BY CategoryID\nORDER BY CategoryID;",
+      "expected_count": 1,
+      "sql": "SELECT CategoryID, COUNT(ProductID) AS products\nFROM Products\nGROUP BY CategoryID\nORDER BY CategoryID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Add the sale-price statistics",
+      "change": "Category 10 has sale prices of 80 and 100. The minimum is 80, the maximum is 100, and the mean is 90.",
+      "added_sql": "SELECT CategoryID, COUNT(ProductID) AS products,\n       MIN(Sale_Price) AS min_price,\n       MAX(Sale_Price) AS max_price,\n       ROUND(AVG(Sale_Price), 2) AS avg_price",
+      "expected_count": 1,
+      "inputs": [
+        "Products"
+      ],
+      "sql": "SELECT CategoryID, COUNT(ProductID) AS products,\n       MIN(Sale_Price) AS min_price,\n       MAX(Sale_Price) AS max_price,\n       ROUND(AVG(Sale_Price), 2) AS avg_price\nFROM Products\nGROUP BY CategoryID\nORDER BY CategoryID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Preview the contribution of each product",
+      "change": "Compare each product's own sale and market prices. Their valid discounts are 20% and 0%, so both contribute to the average.",
+      "added_sql": "SELECT ProductID, CategoryID,\n       CASE WHEN Sale_Price = Market_Price THEN 1 ELSE 0 END AS full_price_flag,\n       CASE\n           WHEN Market_Price IS NOT NULL AND Market_Price != 0\n           THEN (Market_Price - Sale_Price) * 100.0 / Market_Price\n       END AS product_discount_pct\n-- …\nORDER BY ProductID;",
+      "expected_count": 2,
+      "inputs": [
+        "Products"
+      ],
+      "sql": "SELECT ProductID, CategoryID,\n       CASE WHEN Sale_Price = Market_Price THEN 1 ELSE 0 END AS full_price_flag,\n       CASE\n           WHEN Market_Price IS NOT NULL AND Market_Price != 0\n           THEN (Market_Price - Sale_Price) * 100.0 / Market_Price\n       END AS product_discount_pct\nFROM Products\nORDER BY ProductID;"
+    },
+    {
+      "id": "stage4",
+      "title": "Combine the category metrics",
+      "change": "The flags count products when added. Each eligible product contributes one percentage to the average.",
+      "added_sql": "SELECT\n    CategoryID,\n    COUNT(ProductID) AS products,\n    MIN(Sale_Price) AS min_price,\n    MAX(Sale_Price) AS max_price,\n    ROUND(AVG(Sale_Price), 2) AS avg_price,\n    SUM(CASE\n        WHEN Market_Price = Sale_Price THEN 1\n        ELSE 0\n    END) AS full_price_products,\n    ROUND(AVG(CASE\n-- …\n    END), 2) AS avg_discount_pct\n-- …\nGROUP BY CategoryID\nORDER BY CategoryID ASC;",
+      "expected_count": 1,
+      "inputs": [
+        "stage2",
+        "stage3"
+      ],
+      "final": true
+    }
+  ],
+  "record": "../../../Aggregation/easy/PNP-P012.md"
+}

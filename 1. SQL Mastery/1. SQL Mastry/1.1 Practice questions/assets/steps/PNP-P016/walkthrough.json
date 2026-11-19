@@ -1,0 +1,129 @@
+{
+  "question": "P016",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Customers",
+      "label": "🟦 Customers",
+      "color": "🟦",
+      "columns": [
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "FirstName",
+          "TEXT"
+        ],
+        [
+          "LastName",
+          "TEXT"
+        ],
+        [
+          "City",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Anu",
+          "Sen",
+          " Delhi "
+        ]
+      ]
+    },
+    {
+      "name": "Orders",
+      "label": "🟩 Orders",
+      "color": "🟩",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "OrderDate",
+          "TEXT"
+        ],
+        [
+          "Total_Order_Amount",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          10,
+          1,
+          "2025-12-01",
+          100
+        ],
+        [
+          11,
+          1,
+          "2026-01-01",
+          150
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "OrderID",
+      "OrderDate",
+      "customer_name",
+      "City",
+      "Total_Order_Amount"
+    ],
+    "rows": [
+      [
+        10,
+        "2025-12-01",
+        "Anu Sen",
+        "Delhi",
+        100
+      ]
+    ]
+  },
+  "column_colors": {
+    "CustomerID": "🟦",
+    "FirstName": "🟦",
+    "LastName": "🟦",
+    "City": "🟦",
+    "OrderID": "🟩",
+    "OrderDate": "🟩",
+    "Total_Order_Amount": "🟩",
+    "customer_name": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Match each order to its customer",
+      "change": "Both sample orders match Anu, so both remain before the date filter.",
+      "added_sql": "SELECT o.OrderID, c.CustomerID, c.FirstName, c.LastName, c.City, o.OrderDate, o.Total_Order_Amount\nFROM Customers AS c\nINNER JOIN Orders AS o ON c.CustomerID = o.CustomerID\nORDER BY o.OrderID;",
+      "expected_count": 2,
+      "sql": "SELECT o.OrderID, c.CustomerID, c.FirstName, c.LastName, c.City, o.OrderDate, o.Total_Order_Amount\nFROM Customers AS c\nINNER JOIN Orders AS o ON c.CustomerID = o.CustomerID\nORDER BY o.OrderID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Filter to December 2025",
+      "change": "The reporting period applies to the entire result. January 2026 is outside the call sheet period.",
+      "added_sql": "WHERE strftime('%Y', o.OrderDate) = '2025' AND strftime('%m', o.OrderDate) = '12'",
+      "expected_count": 1,
+      "sql": "SELECT o.OrderID, c.CustomerID, c.FirstName, c.LastName, c.City, o.OrderDate, o.Total_Order_Amount\nFROM Customers AS c\nINNER JOIN Orders AS o ON c.CustomerID = o.CustomerID\nWHERE strftime('%Y', o.OrderDate) = '2025' AND strftime('%m', o.OrderDate) = '12'\nORDER BY o.OrderID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Format and sort the call sheet",
+      "change": "The support team needs readable customer names and cities. The ID breaks ties when orders have the same date.",
+      "added_sql": "select o.OrderID, o.OrderDate, (c.FirstName||\" \"|| c.LastName) as customer_name, trim(c.City) as City, o.Total_Order_Amount\n-- …\nwhere strftime('%Y', OrderDate) = '2025' and strftime('%m', OrderDate)='12'\norder by o.OrderDate asc,o.OrderID asc;",
+      "expected_count": 1,
+      "final": true
+    }
+  ],
+  "record": "../../../Joins/easy/PNP-P016.md"
+}

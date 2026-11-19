@@ -1,0 +1,213 @@
+{
+  "question": "P027",
+  "solution_heading": "Final learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Customers",
+      "label": "🟩 Customers",
+      "color": "🟩",
+      "columns": [
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "State",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Karnataka"
+        ],
+        [
+          2,
+          "Karnataka"
+        ]
+      ]
+    },
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "Total_Order_Amount",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          1,
+          100
+        ],
+        [
+          2,
+          1,
+          100
+        ],
+        [
+          3,
+          1,
+          100
+        ],
+        [
+          4,
+          1,
+          100
+        ],
+        [
+          5,
+          1,
+          100
+        ],
+        [
+          6,
+          2,
+          100
+        ],
+        [
+          7,
+          2,
+          100
+        ],
+        [
+          8,
+          2,
+          100
+        ],
+        [
+          9,
+          2,
+          100
+        ],
+        [
+          10,
+          2,
+          100
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "state",
+      "customers",
+      "orders",
+      "order_value",
+      "avg_order_value"
+    ],
+    "rows": [
+      [
+        "Karnataka",
+        2,
+        10,
+        1000,
+        100.0
+      ]
+    ]
+  },
+  "column_colors": {
+    "CustomerID": "🟩",
+    "State": "🟩",
+    "OrderID": "🟦",
+    "Total_Order_Amount": "🟦",
+    "state": "🟩",
+    "customers": "🟦",
+    "orders": "🟦",
+    "order_value": "🟦",
+    "avg_order_value": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Why start with Orders?",
+      "change": "The sample has ten orders of 100 each, placed by two different customers. Each purchase contributes one input row.",
+      "added_sql": "SELECT OrderID, CustomerID, Total_Order_Amount FROM Orders ORDER BY OrderID;",
+      "expected_count": 10,
+      "inputs": [
+        "Orders"
+      ],
+      "sql": "SELECT OrderID, CustomerID, Total_Order_Amount FROM Orders ORDER BY OrderID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Why LEFT JOIN Customers?",
+      "change": "Both buyers have a matching customer row, so all ten purchases acquire the state Karnataka.",
+      "added_sql": "SELECT o.OrderID, o.CustomerID AS ordered_by, o.Total_Order_Amount,\n       c.CustomerID AS matched_customer, c.State\nFROM Orders AS o\nLEFT JOIN Customers AS c ON c.CustomerID = o.CustomerID\nORDER BY o.OrderID;",
+      "expected_count": 10,
+      "inputs": [
+        "stage1",
+        "Customers"
+      ],
+      "sql": "SELECT o.OrderID, o.CustomerID AS ordered_by, o.Total_Order_Amount,\n       c.CustomerID AS matched_customer, c.State\nFROM Orders AS o\nLEFT JOIN Customers AS c ON c.CustomerID = o.CustomerID\nORDER BY o.OrderID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Why label the state before GROUP BY?",
+      "change": "The saved expression normalizes a missing or blank state to Unknown. In this sample, all ten state labels remain Karnataka.",
+      "added_sql": "SELECT Orders.OrderID, Orders.CustomerID, COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, Orders.Total_Order_Amount FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID ORDER BY Orders.OrderID;",
+      "expected_count": 10,
+      "sql": "SELECT Orders.OrderID, Orders.CustomerID, COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, Orders.Total_Order_Amount FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID ORDER BY Orders.OrderID;"
+    },
+    {
+      "id": "stage4",
+      "title": "Why group by the displayed state?",
+      "change": "All ten labelled orders share the same state and become one group.",
+      "added_sql": "SELECT COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, COUNT(*) AS group_rows FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID\nGROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown');",
+      "expected_count": 1,
+      "sql": "SELECT COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, COUNT(*) AS group_rows FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID\nGROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown');"
+    },
+    {
+      "id": "stage5",
+      "title": "Why count buyers and orders separately?",
+      "change": "Two distinct customer IDs occur across ten orders: each buyer placed five.",
+      "added_sql": "SELECT COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, COUNT(DISTINCT Orders.CustomerID) AS customers, COUNT(Orders.OrderID) AS orders FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID",
+      "expected_count": 1,
+      "inputs": [
+        "stage3",
+        "stage4"
+      ],
+      "sql": "SELECT COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, COUNT(DISTINCT Orders.CustomerID) AS customers, COUNT(Orders.OrderID) AS orders FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID\nGROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown');"
+    },
+    {
+      "id": "stage6",
+      "title": "Why do SUM and AVG read only known amounts?",
+      "change": "The ten amounts of 100 sum to 1000 and average 100. The metrics use one value per order.",
+      "added_sql": "SELECT\n    COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state,\n    COUNT(DISTINCT Orders.CustomerID) AS customers,\n    COUNT(Orders.OrderID) AS orders,\n    SUM(Orders.Total_Order_Amount) AS order_value,\n    AVG(Orders.Total_Order_Amount) AS avg_order_value\nFROM Orders\nLEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID",
+      "expected_count": 1,
+      "inputs": [
+        "stage3",
+        "stage5"
+      ],
+      "sql": "SELECT\n    COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state,\n    COUNT(DISTINCT Orders.CustomerID) AS customers,\n    COUNT(Orders.OrderID) AS orders,\n    SUM(Orders.Total_Order_Amount) AS order_value,\n    AVG(Orders.Total_Order_Amount) AS avg_order_value\nFROM Orders\nLEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID\nGROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown');"
+    },
+    {
+      "id": "stage7",
+      "title": "Why use HAVING for the 10-order minimum?",
+      "change": "Karnataka has exactly ten orders. The inclusive ten-order threshold keeps it.",
+      "added_sql": "HAVING COUNT(Orders.OrderID) >= 10;",
+      "expected_count": 1,
+      "sql": "SELECT\n    COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state,\n    COUNT(DISTINCT Orders.CustomerID) AS customers,\n    COUNT(Orders.OrderID) AS orders,\n    SUM(Orders.Total_Order_Amount) AS order_value,\n    AVG(Orders.Total_Order_Amount) AS avg_order_value\nFROM Orders\nLEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID\nGROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown')\nHAVING COUNT(Orders.OrderID) >= 10;"
+    },
+    {
+      "id": "stage8",
+      "title": "Why sort by average order value?",
+      "change": "The saved descending order ranks states by average order value. The one qualifying state remains the only row.",
+      "added_sql": "ORDER BY avg_order_value DESC",
+      "expected_count": 1,
+      "final": true
+    }
+  ],
+  "record": "../../../Joins/medium/PNP-P027.md"
+}

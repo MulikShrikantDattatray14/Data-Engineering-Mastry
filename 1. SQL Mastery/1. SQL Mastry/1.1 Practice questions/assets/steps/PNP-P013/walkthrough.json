@@ -1,0 +1,91 @@
+{
+  "question": "P013",
+  "solution_heading": "Learner solution — SQLite (CASE)",
+  "tables": [
+    {
+      "name": "Customers",
+      "label": "🟦 Customers",
+      "color": "🟦",
+      "columns": [
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "State",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Karnataka"
+        ],
+        [
+          2,
+          "Karnataka"
+        ],
+        [
+          3,
+          "Karnataka"
+        ],
+        [
+          4,
+          "Karnataka"
+        ],
+        [
+          5,
+          "Karnataka"
+        ],
+        [
+          6,
+          "Maharashtra"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "State",
+      "customer_count"
+    ],
+    "rows": [
+      [
+        "Karnataka",
+        5
+      ]
+    ]
+  },
+  "column_colors": {
+    "CustomerID": "🟦",
+    "State": "🟦",
+    "customer_count": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Group and count the customer rows",
+      "change": "The five Karnataka customers form one group; Maharashtra forms another with just one customer.",
+      "added_sql": "SELECT State, COUNT(CustomerID) AS customer_count FROM Customers GROUP BY State ORDER BY State;",
+      "expected_count": 2,
+      "sql": "SELECT State, COUNT(CustomerID) AS customer_count FROM Customers GROUP BY State ORDER BY State;"
+    },
+    {
+      "id": "stage2",
+      "title": "Filter whole groups and label the missing state",
+      "change": "The threshold is a condition on a whole group. Filtering missing states in WHERE would remove their rows before they can contribute to the Unknown group.",
+      "added_sql": "select \nCASE\n    WHEN State IS NOT NULL THEN State\n    ELSE 'Unknown'\nEND AS State\n\n, count(CustomerID) as customer_count\nfrom Customers\ngroup by state\nhaving count(CustomerID)>=5\nORDER BY State ASC",
+      "expected_count": 1,
+      "sql": "select \nCASE\n    WHEN State IS NOT NULL THEN State\n    ELSE 'Unknown'\nEND AS State\n\n, count(CustomerID) as customer_count\nfrom Customers\ngroup by state\nhaving count(CustomerID)>=5\nORDER BY State ASC"
+    },
+    {
+      "id": "stage3",
+      "title": "Apply the requested sort",
+      "change": "Delhi has the highest count. Karnataka and Unknown tie, so Karnataka comes first alphabetically. The preview happened to display the same order on these rows.",
+      "added_sql": "order by  count(CustomerID) desc, State asc",
+      "expected_count": 1,
+      "final": true
+    }
+  ],
+  "record": "../../../Sorting and Grouping/easy/PNP-P013.md"
+}

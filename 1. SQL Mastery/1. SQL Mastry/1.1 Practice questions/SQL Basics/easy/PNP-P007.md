@@ -58,6 +58,8 @@
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P007/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Sticker has a market price of zero. Does the row survive? What goes in its discount columns?
 
 ![Discount amount and percentage per product. Lamp's 25% leads Mug's 20%. SQLite places Sticker's NULL last in descending order.](../../assets/walkthroughs/p007.svg)

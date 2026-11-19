@@ -63,6 +63,8 @@ The denominator for catalogue coverage includes all three listed products. Pen a
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P011/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Pen appears on two sale lines. Does that make two sold products?
 
 ![How much of the catalogue has ever sold?. The two sold products are Pen and Bag. Divide by all three listed products to get 66.67%.](../../assets/walkthroughs/p011.svg)

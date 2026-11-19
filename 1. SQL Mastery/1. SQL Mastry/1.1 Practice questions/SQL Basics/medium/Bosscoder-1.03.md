@@ -78,6 +78,8 @@ BST has integer columns N and P. Each row describes one node N and its parent P.
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.03/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Node 5 is both someone's parent and has no parent of its own. Which label takes precedence?
 
 ![Binary Tree Nodes. Nodes 2 and 8 are inner nodes. One root + two inner nodes + four leaves = seven nodes, ordered by N.](../../assets/walkthroughs/b1-03.svg)

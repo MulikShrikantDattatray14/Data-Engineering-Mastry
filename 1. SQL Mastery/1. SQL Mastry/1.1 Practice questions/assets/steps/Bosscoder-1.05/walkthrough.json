@@ -1,0 +1,109 @@
+{
+  "question": "Bosscoder-1.05",
+  "solution_heading": "My final solution · SQLite",
+  "tables": [
+    {
+      "name": "TRIANGLES",
+      "label": "🟦 TRIANGLES",
+      "color": "🟦",
+      "columns": [
+        [
+          "A",
+          "INTEGER"
+        ],
+        [
+          "B",
+          "INTEGER"
+        ],
+        [
+          "C",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          20,
+          20,
+          23
+        ],
+        [
+          20,
+          20,
+          20
+        ],
+        [
+          20,
+          21,
+          22
+        ],
+        [
+          13,
+          14,
+          30
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "TriangleType"
+    ],
+    "rows": [
+      [
+        "Isosceles"
+      ],
+      [
+        "Equilateral"
+      ],
+      [
+        "Scalene"
+      ],
+      [
+        "Not A Triangle"
+      ]
+    ]
+  },
+  "column_colors": {
+    "A": "🟦",
+    "B": "🟦",
+    "C": "🟦",
+    "TriangleType": "🟦",
+    "check_result": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Start with one row per set of side lengths",
+      "change": "Every row must receive a classification. Read TRIANGLES and calculate the label in SELECT.",
+      "added_sql": "SELECT A, B, C FROM TRIANGLES;",
+      "expected_count": 4,
+      "sql": "SELECT A, B, C FROM TRIANGLES;"
+    },
+    {
+      "id": "stage2",
+      "title": "Reject invalid triangles first",
+      "change": "Each pair of sides must add up to strictly more than the remaining side. Any failed pair makes the row Not A Triangle. Use OR because one failed comparison is sufficient. Equality is invalid too, as with 2 + 3 = 5.",
+      "added_sql": "SELECT A, B, C,\n       CASE WHEN A+B <= C OR A+C <= B OR B+C <= A\n            THEN 'Not A Triangle' ELSE 'Continue' END AS check_result\nFROM TRIANGLES;",
+      "expected_count": 4,
+      "sql": "SELECT A, B, C,\n       CASE WHEN A+B <= C OR A+C <= B OR B+C <= A\n            THEN 'Not A Triangle' ELSE 'Continue' END AS check_result\nFROM TRIANGLES;"
+    },
+    {
+      "id": "stage3",
+      "title": "Check all equal, then all different",
+      "change": "For valid rows, all equal sides produce Equilateral. All three pairwise inequalities produce Scalene. A CASE stops at its first true branch.",
+      "added_sql": "CASE\n           WHEN A+B <= C OR A+C <= B OR B+C <= A THEN 'Not A Triangle'\n           WHEN A=B AND B=C AND C=A THEN 'Equilateral'\n           WHEN A!=B AND B!=C AND C!=A THEN 'Scalene'\n           ELSE 'Continue'\n       END AS check_result",
+      "expected_count": 4,
+      "sql": "SELECT A, B, C,\n       CASE\n           WHEN A+B <= C OR A+C <= B OR B+C <= A THEN 'Not A Triangle'\n           WHEN A=B AND B=C AND C=A THEN 'Equilateral'\n           WHEN A!=B AND B!=C AND C!=A THEN 'Scalene'\n           ELSE 'Continue'\n       END AS check_result\nFROM TRIANGLES;"
+    },
+    {
+      "id": "stage4",
+      "title": "Check the equal pair and return the requested column",
+      "change": "Your final branch tests each possible equal pair while requiring the third side to differ. All possible classifications are covered for non-NULL side lengths.",
+      "added_sql": "SELECT\n-- …\n        WHEN (A + B <= C) OR (A + C <= B) OR (B + C <= A)\n            THEN 'Not A Triangle'\n        WHEN A = B AND B = C AND C = A\n            THEN 'Equilateral'\n        WHEN A != B AND B != C AND C != A\n            THEN 'Scalene'\n        WHEN (A = B AND B != C)\n          OR (B = C AND C != A)\n          OR (C = A AND A != B)\n            THEN 'Isosceles'\n    END AS TriangleType",
+      "expected_count": 4,
+      "final": true
+    }
+  ],
+  "unordered": true,
+  "record": "../../../SQL Basics/easy/Bosscoder-1.05.md"
+}

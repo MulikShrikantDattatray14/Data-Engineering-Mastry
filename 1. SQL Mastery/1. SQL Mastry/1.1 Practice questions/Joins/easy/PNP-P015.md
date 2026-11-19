@@ -60,6 +60,8 @@ The report orders the counts from smallest to largest. That puts Toys first even
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P015/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Toys has no products. What would COUNT(*) return for its joined row?
 
 ![Product count for every category. Sort by the computed count: Toys has 0, then Snacks has 2. Category ID breaks a tie.](../../assets/walkthroughs/p015.svg)

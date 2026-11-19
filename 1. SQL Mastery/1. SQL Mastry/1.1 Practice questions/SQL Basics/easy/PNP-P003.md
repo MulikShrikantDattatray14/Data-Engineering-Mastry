@@ -83,6 +83,8 @@ The saved attempt keeps the displayed city’s original spelling and capitalizat
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P003/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Two customers have Bengaluru with different spacing. How will their names be ordered?
 
 ![Customers in metro cities. Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling.](../../assets/walkthroughs/p003.svg)

@@ -56,6 +56,8 @@
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P005/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Which side of the quarter boundary contains an order dated April 1?
 
 ![Orders placed in Q1 2025. March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter's two orders.](../../assets/walkthroughs/p005.svg)

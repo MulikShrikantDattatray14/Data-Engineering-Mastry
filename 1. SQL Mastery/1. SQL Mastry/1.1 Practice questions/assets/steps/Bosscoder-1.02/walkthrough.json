@@ -1,0 +1,115 @@
+{
+  "question": "Bosscoder-1.02",
+  "solution_heading": "My final solution · SQLite",
+  "tables": [
+    {
+      "name": "Employees",
+      "label": "🟦 Employees",
+      "color": "🟦",
+      "columns": [
+        [
+          "employee_id",
+          "INTEGER"
+        ],
+        [
+          "name",
+          "TEXT"
+        ],
+        [
+          "salary",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          2,
+          "Meir",
+          3000
+        ],
+        [
+          3,
+          "Michael",
+          3800
+        ],
+        [
+          7,
+          "Addilyn",
+          7400
+        ],
+        [
+          8,
+          "Juan",
+          6100
+        ],
+        [
+          9,
+          "Kannon",
+          7700
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "employee_id",
+      "bonus"
+    ],
+    "rows": [
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        7,
+        7400
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        9,
+        7700
+      ]
+    ]
+  },
+  "column_colors": {
+    "employee_id": "🟦",
+    "name": "🟦",
+    "salary": "🟦",
+    "bonus": "🟦",
+    "remainder": "🟦",
+    "name_allowed": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Keep one row per employee",
+      "change": "The question asks for every employee, including employees receiving zero. Read Employees and keep all five rows. Apply the conditions inside the bonus calculation.",
+      "added_sql": "SELECT employee_id, name, salary FROM Employees ORDER BY employee_id;",
+      "expected_count": 5,
+      "sql": "SELECT employee_id, name, salary FROM Employees ORDER BY employee_id;"
+    },
+    {
+      "id": "stage2",
+      "title": "Check the two requirements for each employee",
+      "change": "An odd ID has remainder 1 when divided by 2. The name test excludes names starting with M. AND requires both checks to pass.",
+      "added_sql": "SELECT employee_id, name, salary,\n       employee_id % 2 AS remainder,\n       name NOT LIKE 'M%' AS name_allowed\nFROM Employees ORDER BY employee_id;",
+      "expected_count": 5,
+      "sql": "SELECT employee_id, name, salary,\n       employee_id % 2 AS remainder,\n       name NOT LIKE 'M%' AS name_allowed\nFROM Employees ORDER BY employee_id;"
+    },
+    {
+      "id": "stage3",
+      "title": "Choose the bonus and order the result",
+      "change": "CASE returns salary when both checks are true, and ELSE returns zero for everyone else. Select employee_id and bonus, and order by employee_id ascending.",
+      "added_sql": "SELECT employee_id,\n       CASE\n           WHEN name NOT LIKE 'M%' AND employee_id % 2 = 1 THEN salary\n           ELSE 0\n       END AS bonus\nFROM Employees\nORDER BY employee_id ASC;",
+      "expected_count": 5,
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/Bosscoder-1.02.md"
+}

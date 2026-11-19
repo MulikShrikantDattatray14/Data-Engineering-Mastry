@@ -73,6 +73,8 @@ TRIANGLES has integer columns A, B, C. Each input row supplies three side length
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.05/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Why must the 13, 14, 30 row face the triangle test before its side lengths get classified?
 
 ![Type Of Triangle. 20,20,23 is Isosceles. The result has one label for each of the four input triples. The example follows input order.](../../assets/walkthroughs/b1-05.svg)

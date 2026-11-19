@@ -56,6 +56,8 @@
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P023/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** A sugar-free chocolate costs 150. Which of the three filters removes it?
 
 ![Chocolate or cookie products under 250. ID 2 passes the first two filters, then drops out on its name. Cocoa Cookie (200) precedes Dark Bar (249).](../../assets/walkthroughs/p023.svg)

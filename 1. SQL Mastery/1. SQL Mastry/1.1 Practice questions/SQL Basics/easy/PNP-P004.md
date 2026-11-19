@@ -65,6 +65,8 @@ When an address has multiple issues, the saved attempt gives priority to `Missin
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P004/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** What happens to a valid address when the CASE checks find no issue?
 
 ![Customer emails that cannot be delivered. Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID.](../../assets/walkthroughs/p004.svg)

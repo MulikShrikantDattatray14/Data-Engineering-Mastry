@@ -58,6 +58,8 @@
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P006/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Does a missing sale price prove the product was sold at full price?
 
 ![Most expensive products sold at full price. Lamp costs 150 and Mug costs 100. Only two products qualify for the ten available places.](../../assets/walkthroughs/p006.svg)

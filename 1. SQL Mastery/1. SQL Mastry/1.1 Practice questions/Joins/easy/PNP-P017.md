@@ -67,6 +67,8 @@ Order 2 falls on December 25. Payment ID 1 is ðŸŸ© **UPI** and shipper ID 1 is ð
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P017/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Order 3 has neither lookup key. At which step could an INNER JOIN lose it?
 
 ![Orders with payment type and shipper. Order 3 appears first with Unknown in both fields. Order 2 follows with UPI and FastShip.](../../assets/walkthroughs/p017.svg)

@@ -57,6 +57,8 @@
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P020/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** If an order has no ship date yet, what happens to its row and its day count?
 
 ![Days to ship and days to deliver. For order 1, November 3 minus 1 = 2 days to ship and November 6 minus 1 = 5 to deliver. Order 2 keeps two NULLs.](../../assets/walkthroughs/p020.svg)

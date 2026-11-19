@@ -1,0 +1,188 @@
+{
+  "question": "P028",
+  "solution_heading": "Final learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "PaymentID",
+          "INTEGER"
+        ],
+        [
+          "Total_Order_Amount",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          10,
+          1,
+          100
+        ],
+        [
+          11,
+          1,
+          200
+        ],
+        [
+          12,
+          2,
+          300
+        ]
+      ]
+    },
+    {
+      "name": "Payments",
+      "label": "🟩 Payments",
+      "color": "🟩",
+      "columns": [
+        [
+          "PaymentID",
+          "INTEGER"
+        ],
+        [
+          "PaymentType",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "UPI"
+        ],
+        [
+          2,
+          "Card"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "payment_type",
+      "orders",
+      "pct_of_orders",
+      "order_value",
+      "pct_of_value"
+    ],
+    "rows": [
+      [
+        "UPI",
+        2,
+        66.67,
+        300,
+        50.0
+      ],
+      [
+        "Card",
+        1,
+        33.33,
+        300,
+        50.0
+      ]
+    ]
+  },
+  "column_colors": {
+    "OrderID": "🟦",
+    "PaymentID": "🟦",
+    "Total_Order_Amount": "🟦",
+    "PaymentType": "🟩",
+    "payment_type": "🟩",
+    "orders": "🟦",
+    "pct_of_orders": "🟦",
+    "order_value": "🟦",
+    "pct_of_value": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Why start with Orders?",
+      "change": "Orders supplies three payments to classify. Their order amounts are 100, 200 and 300.",
+      "added_sql": "SELECT OrderID, PaymentID, Total_Order_Amount FROM Orders ORDER BY OrderID;",
+      "expected_count": 3,
+      "inputs": [
+        "Orders"
+      ],
+      "sql": "SELECT OrderID, PaymentID, Total_Order_Amount FROM Orders ORDER BY OrderID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Why LEFT JOIN on PaymentID?",
+      "change": "Orders 10 and 11 receive UPI; order 12 receives Card. The left join would retain an order without a lookup match.",
+      "added_sql": "SELECT o.OrderID, o.PaymentID AS ordering_payment_id, p.PaymentID AS matched_payment_id, p.PaymentType, o.Total_Order_Amount FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID ORDER BY o.OrderID;",
+      "expected_count": 3,
+      "inputs": [
+        "stage1",
+        "Payments"
+      ],
+      "sql": "SELECT o.OrderID, o.PaymentID AS ordering_payment_id, p.PaymentID AS matched_payment_id, p.PaymentType, o.Total_Order_Amount FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID ORDER BY o.OrderID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Why name missing payment types before grouping?",
+      "change": "The label is UPI or Card on the sample. An order with no known payment type would receive Unknown.",
+      "added_sql": "SELECT o.OrderID, COALESCE(p.PaymentType, 'Unknown') AS payment_type, o.Total_Order_Amount FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID ORDER BY o.OrderID;",
+      "expected_count": 3,
+      "sql": "SELECT o.OrderID, COALESCE(p.PaymentType, 'Unknown') AS payment_type, o.Total_Order_Amount FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID ORDER BY o.OrderID;"
+    },
+    {
+      "id": "stage4",
+      "title": "Why group by the displayed payment type?",
+      "change": "The two UPI orders share one payment group. The Card order forms the other group.",
+      "added_sql": "SELECT COALESCE(p.PaymentType, 'Unknown') AS payment_type, COUNT(*) AS group_rows FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID GROUP BY payment_type;",
+      "expected_count": 2,
+      "sql": "SELECT COALESCE(p.PaymentType, 'Unknown') AS payment_type, COUNT(*) AS group_rows FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID GROUP BY payment_type;"
+    },
+    {
+      "id": "stage5",
+      "title": "Why count order IDs and add order amounts?",
+      "change": "UPI has two orders and Card has one; each group contributes a total value of 300.",
+      "added_sql": "SELECT COALESCE(p.PaymentType, 'Unknown') AS payment_type, COUNT(DISTINCT o.OrderID) AS orders, SUM(o.Total_Order_Amount) AS order_value FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID GROUP BY payment_type;",
+      "expected_count": 2,
+      "inputs": [
+        "stage3",
+        "stage4"
+      ],
+      "sql": "SELECT COALESCE(p.PaymentType, 'Unknown') AS payment_type, COUNT(DISTINCT o.OrderID) AS orders, SUM(o.Total_Order_Amount) AS order_value FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID GROUP BY payment_type;"
+    },
+    {
+      "id": "stage6",
+      "title": "Why do both scalar subqueries read all five orders?",
+      "change": "The benchmark reads all three orders. There are 3 orders worth 600 in total; both denominators apply to each payment group.",
+      "added_sql": "SELECT COUNT(*) AS all_orders, SUM(Total_Order_Amount) AS all_order_value FROM Orders;",
+      "expected_count": 1,
+      "inputs": [
+        "Orders"
+      ],
+      "sql": "SELECT COUNT(*) AS all_orders, SUM(Total_Order_Amount) AS all_order_value FROM Orders;"
+    },
+    {
+      "id": "stage7",
+      "title": "Why do the two shares use different denominators?",
+      "change": "UPI is 66.67% of orders and 50% of value. Card is 33.33% of orders and also 50% of value.",
+      "added_sql": "SELECT\n    COALESCE(Payments.PaymentType, 'Unknown') AS payment_type,\n    COUNT(DISTINCT Orders.OrderID) AS orders,\n    ROUND(\n        COUNT(DISTINCT Orders.OrderID) * 100.0\n        / (SELECT COUNT(*) FROM Orders),\n        2\n    ) AS pct_of_orders,\n    SUM(Orders.Total_Order_Amount) AS order_value,\n    ROUND(\n        SUM(Orders.Total_Order_Amount) * 100.0\n        / (SELECT SUM(Total_Order_Amount) FROM Orders),\n        2\n    ) AS pct_of_value\nFROM Orders\nLEFT JOIN Payments\n    ON Orders.PaymentID = Payments.PaymentID\nGROUP BY payment_type;",
+      "expected_count": 2,
+      "inputs": [
+        "stage5",
+        "stage6"
+      ],
+      "sql": "SELECT\n    COALESCE(Payments.PaymentType, 'Unknown') AS payment_type,\n    COUNT(DISTINCT Orders.OrderID) AS orders,\n    ROUND(\n        COUNT(DISTINCT Orders.OrderID) * 100.0\n        / (SELECT COUNT(*) FROM Orders),\n        2\n    ) AS pct_of_orders,\n    SUM(Orders.Total_Order_Amount) AS order_value,\n    ROUND(\n        SUM(Orders.Total_Order_Amount) * 100.0\n        / (SELECT SUM(Total_Order_Amount) FROM Orders),\n        2\n    ) AS pct_of_value\nFROM Orders\nLEFT JOIN Payments\n    ON Orders.PaymentID = Payments.PaymentID\nGROUP BY payment_type;"
+    },
+    {
+      "id": "stage8",
+      "title": "Why sort by the number of orders?",
+      "change": "Descending order count puts UPI (two orders) before Card (one).",
+      "added_sql": "ORDER BY orders DESC",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../Subqueries/medium/PNP-P028.md"
+}

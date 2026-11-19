@@ -1,0 +1,109 @@
+{
+  "question": "P014",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "OrderDate",
+          "TEXT"
+        ],
+        [
+          "Total_Order_Amount",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "2025-01-01",
+          100
+        ],
+        [
+          2,
+          "2025-01-31",
+          50
+        ],
+        [
+          3,
+          "2025-03-01",
+          200
+        ],
+        [
+          4,
+          "2024-12-01",
+          300
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "order_month",
+      "orders",
+      "order_value"
+    ],
+    "rows": [
+      [
+        "2025-01-01",
+        2,
+        150
+      ],
+      [
+        "2025-03-01",
+        1,
+        200
+      ]
+    ]
+  },
+  "column_colors": {
+    "OrderID": "🟦",
+    "OrderDate": "🟦",
+    "Total_Order_Amount": "🟦",
+    "order_month": "🟦",
+    "orders": "🟦",
+    "order_value": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Keep only 2025 orders",
+      "change": "Both the monthly counts and the totals must use only 2025 orders.",
+      "added_sql": "SELECT OrderID, OrderDate, Total_Order_Amount\nFROM Orders\nWHERE strftime('%Y', OrderDate) = '2025'\nORDER BY OrderID;",
+      "expected_count": 3,
+      "sql": "SELECT OrderID, OrderDate, Total_Order_Amount\nFROM Orders\nWHERE strftime('%Y', OrderDate) = '2025'\nORDER BY OrderID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Give each order its month label",
+      "change": "The first order in a month might have happened after the first. The label represents the calendar month.",
+      "added_sql": "SELECT OrderID, OrderDate, Total_Order_Amount,\n       date(OrderDate, 'start of month') AS order_month",
+      "expected_count": 3,
+      "sql": "SELECT OrderID, OrderDate, Total_Order_Amount,\n       date(OrderDate, 'start of month') AS order_month\nFROM Orders\nWHERE strftime('%Y', OrderDate) = '2025'\nORDER BY OrderID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Group and count orders",
+      "change": "The year filter means a month number identifies one month in 2025. A month with no orders does not form a group.",
+      "added_sql": "SELECT date(OrderDate, 'start of month') AS order_month,\n       count(*) AS orders\n-- …\nGROUP BY strftime('%m', OrderDate)\nORDER BY strftime('%m', OrderDate) ASC;",
+      "expected_count": 2,
+      "sql": "SELECT date(OrderDate, 'start of month') AS order_month,\n       count(*) AS orders\nFROM Orders\nWHERE strftime('%Y', OrderDate) = '2025'\nGROUP BY strftime('%m', OrderDate)\nORDER BY strftime('%m', OrderDate) ASC;"
+    },
+    {
+      "id": "stage4",
+      "title": "Add the monthly total and ensure chronological order",
+      "change": "The count and sum describe the same order group. The explicit sort guarantees January precedes March.",
+      "added_sql": "count(*) AS orders,\n       sum(Total_Order_Amount) AS order_value",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../Sorting and Grouping/easy/PNP-P014.md"
+}

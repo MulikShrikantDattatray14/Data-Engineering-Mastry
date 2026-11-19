@@ -1,0 +1,127 @@
+{
+  "question": "P006",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "🟦 Products",
+      "color": "🟦",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Product",
+          "TEXT"
+        ],
+        [
+          "Brand",
+          "TEXT"
+        ],
+        [
+          "Sale_Price",
+          "INTEGER"
+        ],
+        [
+          "Market_Price",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Mug",
+          "Home",
+          100,
+          100
+        ],
+        [
+          2,
+          "Lamp",
+          "Home",
+          150,
+          150
+        ],
+        [
+          3,
+          "Mystery",
+          "Home",
+          null,
+          100
+        ],
+        [
+          4,
+          "Bottle",
+          "Home",
+          90,
+          100
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "ProductID",
+      "Product",
+      "Brand",
+      "Sale_Price",
+      "Market_Price",
+      "discount_display"
+    ],
+    "rows": [
+      [
+        2,
+        "Lamp",
+        "Home",
+        150,
+        150,
+        "Full price"
+      ],
+      [
+        1,
+        "Mug",
+        "Home",
+        100,
+        100,
+        "Full price"
+      ]
+    ]
+  },
+  "column_colors": {
+    "ProductID": "🟦",
+    "Product": "🟦",
+    "Brand": "🟦",
+    "Sale_Price": "🟦",
+    "Market_Price": "🟦",
+    "discount_display": "🟦",
+    "prices_match": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Compare the two prices on each row",
+      "change": "The comparison can be true, false, or unknown.",
+      "added_sql": "SELECT ProductID, Product, Sale_Price, Market_Price,\n       Market_Price = Sale_Price AS prices_match\nFROM Products\nORDER BY ProductID;",
+      "expected_count": 4,
+      "sql": "SELECT ProductID, Product, Sale_Price, Market_Price,\n       Market_Price = Sale_Price AS prices_match\nFROM Products\nORDER BY ProductID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Keep products with equal prices",
+      "change": "Only true comparisons qualify.",
+      "added_sql": "SELECT ProductID, Product, Brand, Sale_Price, Market_Price\n-- …\nWHERE Market_Price = Sale_Price",
+      "expected_count": 2,
+      "sql": "SELECT ProductID, Product, Brand, Sale_Price, Market_Price\nFROM Products\nWHERE Market_Price = Sale_Price\nORDER BY ProductID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Label and rank the full-price products",
+      "change": "Every retained product gets the same label before sorting and limiting.",
+      "added_sql": "SELECT ProductID, Product, Brand, Sale_Price, Market_Price,\n       'Full price' AS discount_display\n-- …\nORDER BY Sale_Price DESC, ProductID ASC\nLIMIT 10;",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P006.md"
+}

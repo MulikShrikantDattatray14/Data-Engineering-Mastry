@@ -1,0 +1,102 @@
+{
+  "question": "P005",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "OrderDate",
+          "TEXT"
+        ],
+        [
+          "Total_Order_Amount",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          10,
+          "2024-12-31",
+          50
+        ],
+        [
+          2,
+          11,
+          "2025-01-01",
+          100
+        ],
+        [
+          3,
+          12,
+          "2025-03-31",
+          200
+        ],
+        [
+          4,
+          13,
+          "2025-04-01",
+          300
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "OrderID",
+      "CustomerID",
+      "OrderDate",
+      "Total_Order_Amount"
+    ],
+    "rows": [
+      [
+        2,
+        11,
+        "2025-01-01",
+        100
+      ],
+      [
+        3,
+        12,
+        "2025-03-31",
+        200
+      ]
+    ]
+  },
+  "column_colors": {
+    "OrderID": "🟦",
+    "CustomerID": "🟦",
+    "OrderDate": "🟦",
+    "Total_Order_Amount": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Keep orders from the start of the quarter",
+      "change": "The first day belongs to the quarter.",
+      "added_sql": "select OrderID, CustomerID, OrderDate,Total_Order_Amount\nfrom Orders\nwhere OrderDate>= '2025-01-01'\norder by OrderDate asc , OrderID asc",
+      "expected_count": 3,
+      "sql": "select OrderID, CustomerID, OrderDate,Total_Order_Amount\nfrom Orders\nwhere OrderDate>= '2025-01-01'\norder by OrderDate asc , OrderID asc"
+    },
+    {
+      "id": "stage2",
+      "title": "Exclude the start of the next quarter",
+      "change": "The next quarter is excluded while all March 31 timestamps remain eligible.",
+      "added_sql": "where OrderDate>= '2025-01-01' and OrderDate < '2025-04-01'",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P005.md"
+}

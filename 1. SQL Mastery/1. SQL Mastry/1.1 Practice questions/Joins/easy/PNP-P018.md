@@ -62,6 +62,8 @@ Ben’s only order was on December 1, 2024. Cia has no order in the sample. Both
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P018/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Ben has an old order and Cia has none. Should they reach the same result?
 
 ![Customers with no order in the last 90 days. Ben (ID 2) signed up before Cia (ID 3). Both qualify even though their order histories differ.](../../assets/walkthroughs/p018.svg)

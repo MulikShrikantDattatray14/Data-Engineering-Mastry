@@ -1,0 +1,135 @@
+{
+  "question": "P022",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "OrderDetails",
+      "label": "🟦 OrderDetails",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderDetailID",
+          "INTEGER"
+        ],
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Quantity",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          10,
+          1,
+          1
+        ],
+        [
+          2,
+          10,
+          2,
+          1
+        ],
+        [
+          3,
+          10,
+          3,
+          1
+        ],
+        [
+          4,
+          10,
+          4,
+          1
+        ],
+        [
+          5,
+          10,
+          5,
+          1
+        ],
+        [
+          6,
+          10,
+          6,
+          1
+        ],
+        [
+          7,
+          10,
+          7,
+          1
+        ],
+        [
+          8,
+          10,
+          8,
+          1
+        ],
+        [
+          9,
+          10,
+          1,
+          1
+        ],
+        [
+          10,
+          11,
+          2,
+          1
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "OrderID",
+      "line_items",
+      "distinct_products",
+      "total_units"
+    ],
+    "rows": [
+      [
+        10,
+        9,
+        8,
+        9
+      ]
+    ]
+  },
+  "column_colors": {
+    "OrderDetailID": "🟦",
+    "OrderID": "🟦",
+    "ProductID": "🟦",
+    "Quantity": "🟦",
+    "line_items": "🟦",
+    "distinct_products": "🟦",
+    "total_units": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Define and check one row per order",
+      "change": "Several detail rows can belong to one order. Count the lines, count each distinct product once, and add the quantities. All three metrics come from OrderDetails.",
+      "added_sql": "select OrderID,count(OrderID)  as line_items, count(distinct(ProductID)) as distinct_products,\nsum(Quantity) as total_units\nfrom OrderDetails\ngroup by OrderID\norder by OrderID;",
+      "expected_count": 2,
+      "sql": "select OrderID,count(OrderID)  as line_items, count(distinct(ProductID)) as distinct_products,\nsum(Quantity) as total_units\nfrom OrderDetails\ngroup by OrderID\norder by OrderID;"
+    },
+    {
+      "id": "stage2",
+      "title": "Apply the cutoff and sort",
+      "change": "HAVING checks the group count after aggregation. The order ID gives a consistent result for tied counts.",
+      "added_sql": "having count(OrderID) > 8\norder by count(OrderID) desc ,OrderID asc",
+      "expected_count": 1,
+      "final": true
+    }
+  ],
+  "record": "../../../Sorting and Grouping/easy/PNP-P022.md"
+}

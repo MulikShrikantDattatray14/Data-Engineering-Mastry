@@ -92,6 +92,8 @@ ORDER BY customer_type;
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P030/01.md)
+
 Customer **20** is the row to follow. The triangle points to its two orders, its single CTE row and its contribution to the `Repeat` result. The final panel adds one hypothetical order to explain the approved filter.
 
 ![Four Orders rows become three identified customers and two customer groups. A separate check follows an order with a missing customer ID.](../../assets/walkthroughs/p030.svg)

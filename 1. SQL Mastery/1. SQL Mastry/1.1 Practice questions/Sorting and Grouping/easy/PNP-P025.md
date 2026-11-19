@@ -58,6 +58,8 @@
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P025/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Where do March 31, April 1 and a missing sign-up date go?
 
 ![Customer sign-ups by year and quarter. The three dated groups run chronologically, followed by NULL / NULL. Counts 1 + 2 + 1 + 1 recover all five customers.](../../assets/walkthroughs/p025.svg)

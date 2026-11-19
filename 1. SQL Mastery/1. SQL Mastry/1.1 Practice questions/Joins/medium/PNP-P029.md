@@ -72,6 +72,8 @@
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P029/01.md)
+
 Follow order 10 from its two 🟥 quantities to one 🟦 amount of 100 in the 🟩 FastShip group. Two labeled checks follow an order with a missing shipper and an order with no detail lines.
 
 ![Six stages trace order details, order amounts, both left joins, shipper groups and final totals. Two separate examples show how missing matches survive.](../../assets/walkthroughs/p029.svg)

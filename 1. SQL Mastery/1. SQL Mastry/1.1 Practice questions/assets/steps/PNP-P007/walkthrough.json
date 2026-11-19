@@ -1,0 +1,120 @@
+{
+  "question": "P007",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "🟦 Products",
+      "color": "🟦",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Product",
+          "TEXT"
+        ],
+        [
+          "Market_Price",
+          "INTEGER"
+        ],
+        [
+          "Sale_Price",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Mug",
+          100,
+          80
+        ],
+        [
+          2,
+          "Sticker",
+          0,
+          0
+        ],
+        [
+          3,
+          "Lamp",
+          200,
+          150
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "ProductID",
+      "Product",
+      "Market_Price",
+      "Sale_Price",
+      "discount_amount",
+      "discount_pct"
+    ],
+    "rows": [
+      [
+        3,
+        "Lamp",
+        200,
+        150,
+        50,
+        25.0
+      ],
+      [
+        1,
+        "Mug",
+        100,
+        80,
+        20,
+        20.0
+      ],
+      [
+        2,
+        "Sticker",
+        0,
+        0,
+        null,
+        null
+      ]
+    ]
+  },
+  "column_colors": {
+    "ProductID": "🟦",
+    "Product": "🟦",
+    "Market_Price": "🟦",
+    "Sale_Price": "🟦",
+    "discount_amount": "🟦",
+    "discount_pct": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Calculate the discount amount",
+      "change": "Every product must remain in the output.",
+      "added_sql": "select \nProductID,\nProduct,\n Market_Price,\nSale_Price,\n(\ncase\nwhen Market_Price is null or Market_Price =0 then Null\nelse (Market_Price - Sale_Price)\nend \n) as discount_amount\nfrom Products\norder by ProductID",
+      "expected_count": 3,
+      "sql": "select \nProductID,\nProduct,\n Market_Price,\nSale_Price,\n(\ncase\nwhen Market_Price is null or Market_Price =0 then Null\nelse (Market_Price - Sale_Price)\nend \n) as discount_amount\nfrom Products\norder by ProductID"
+    },
+    {
+      "id": "stage2",
+      "title": "Calculate the percentage",
+      "change": "Real-valued division preserves fractional percentages before rounding.",
+      "added_sql": ") as discount_amount,\n(\ncase\nwhen Market_Price is null or Market_Price =0 then Null\nelse round((  ((Market_Price - Sale_Price)*100.0/ Market_Price)),2)\nend \n) \n\n as discount_pct",
+      "expected_count": 3,
+      "sql": "select \nProductID,\nProduct,\n Market_Price,\nSale_Price,\n(\ncase\nwhen Market_Price is null or Market_Price =0 then Null\nelse (Market_Price - Sale_Price)\nend \n) as discount_amount,\n(\ncase\nwhen Market_Price is null or Market_Price =0 then Null\nelse round((  ((Market_Price - Sale_Price)*100.0/ Market_Price)),2)\nend \n) \n\n as discount_pct\nfrom Products\norder by ProductID"
+    },
+    {
+      "id": "stage3",
+      "title": "Sort the result",
+      "change": "The largest measured discounts belong first.",
+      "added_sql": "order by discount_pct desc",
+      "expected_count": 3,
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P007.md"
+}

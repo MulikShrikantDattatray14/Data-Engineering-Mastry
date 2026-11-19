@@ -63,6 +63,8 @@ The saved attempt compares countries without surrounding spaces or case differen
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P024/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Supplier 2 has a foreign country and a missing email. How many issue labels should it get?
 
 ![Suppliers outside India or with no email. The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing.](../../assets/walkthroughs/p024.svg)

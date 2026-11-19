@@ -1,0 +1,162 @@
+{
+  "question": "P018",
+  "solution_heading": "Final learner submission — SQLite",
+  "tables": [
+    {
+      "name": "Customers",
+      "label": "🟦 Customers",
+      "color": "🟦",
+      "columns": [
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "FirstName",
+          "TEXT"
+        ],
+        [
+          "LastName",
+          "TEXT"
+        ],
+        [
+          "Email",
+          "TEXT"
+        ],
+        [
+          "DateEntered",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Asha",
+          "Rao",
+          "asha@example.com",
+          "2023-01-01"
+        ],
+        [
+          2,
+          "Ben",
+          "Das",
+          "ben@example.com",
+          "2023-02-01"
+        ],
+        [
+          3,
+          "Cia",
+          "Sen",
+          "cia@example.com",
+          "2024-01-01"
+        ]
+      ]
+    },
+    {
+      "name": "Orders",
+      "label": "🟩 Orders",
+      "color": "🟩",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "OrderDate",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          10,
+          1,
+          "2025-03-31"
+        ],
+        [
+          11,
+          2,
+          "2024-12-01"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "CustomerID",
+      "customer_name",
+      "Email",
+      "DateEntered"
+    ],
+    "rows": [
+      [
+        2,
+        "Ben Das",
+        "ben@example.com",
+        "2023-02-01"
+      ],
+      [
+        3,
+        "Cia Sen",
+        "cia@example.com",
+        "2024-01-01"
+      ]
+    ]
+  },
+  "column_colors": {
+    "CustomerID": "🟦",
+    "FirstName": "🟦",
+    "LastName": "🟦",
+    "Email": "🟦",
+    "DateEntered": "🟦",
+    "OrderID": "🟩",
+    "OrderDate": "🟩",
+    "customer_name": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Calculate the 90-day window",
+      "change": "The date window depends on the most recent transaction. The CTE returns one pair of dates for the whole report. Subtract 89 days because the latest date counts as one of the 90.",
+      "added_sql": "WITH reporting_window AS (\n    SELECT date(MAX(OrderDate)) AS latest_order_date,\n           date(MAX(OrderDate), '-89 days') AS window_start\n    FROM Orders\n)\nSELECT latest_order_date, window_start FROM reporting_window;",
+      "expected_count": 1,
+      "inputs": [
+        "Orders"
+      ],
+      "sql": "WITH reporting_window AS (\n    SELECT date(MAX(OrderDate)) AS latest_order_date,\n           date(MAX(OrderDate), '-89 days') AS window_start\n    FROM Orders\n)\nSELECT latest_order_date, window_start FROM reporting_window;"
+    },
+    {
+      "id": "stage2",
+      "title": "Match only orders inside the window",
+      "change": "Every customer is a candidate for outreach, including Cia, who has never ordered. Only the customer list contains everyone to test.",
+      "added_sql": "SELECT Customers.CustomerID, Orders.OrderID AS matched_order_id, Orders.OrderDate AS matched_order_date\nFROM Customers\nLEFT JOIN Orders\n    ON Orders.CustomerID = Customers.CustomerID\n   AND date(Orders.OrderDate) BETWEEN\n       (SELECT window_start FROM reporting_window)\n       AND (SELECT latest_order_date FROM reporting_window)\nORDER BY Customers.CustomerID;",
+      "expected_count": 3,
+      "inputs": [
+        "Customers",
+        "Orders",
+        "stage1"
+      ],
+      "sql": "WITH reporting_window AS (\n    SELECT date(MAX(OrderDate)) AS latest_order_date,\n           date(MAX(OrderDate), '-89 days') AS window_start\n    FROM Orders\n)\nSELECT Customers.CustomerID, Orders.OrderID AS matched_order_id, Orders.OrderDate AS matched_order_date\nFROM Customers\nLEFT JOIN Orders\n    ON Orders.CustomerID = Customers.CustomerID\n   AND date(Orders.OrderDate) BETWEEN\n       (SELECT window_start FROM reporting_window)\n       AND (SELECT latest_order_date FROM reporting_window)\nORDER BY Customers.CustomerID;"
+    },
+    {
+      "id": "stage3",
+      "title": "Keep customers with no recent match",
+      "change": "Ben and Cia have no matching order inside the window, so their joined order IDs are NULL.",
+      "added_sql": "WHERE Orders.OrderID IS NULL",
+      "expected_count": 2,
+      "sql": "WITH reporting_window AS (\n    SELECT date(MAX(OrderDate)) AS latest_order_date,\n           date(MAX(OrderDate), '-89 days') AS window_start\n    FROM Orders\n)\nSELECT Customers.CustomerID, Orders.OrderID AS matched_order_id, Orders.OrderDate AS matched_order_date\nFROM Customers\nLEFT JOIN Orders\n    ON Orders.CustomerID = Customers.CustomerID\n   AND date(Orders.OrderDate) BETWEEN\n       (SELECT window_start FROM reporting_window)\n       AND (SELECT latest_order_date FROM reporting_window)\nWHERE Orders.OrderID IS NULL\nORDER BY Customers.CustomerID;"
+    },
+    {
+      "id": "stage4",
+      "title": "Select the customer details and sort",
+      "change": "A NULL order ID indicates the recent-order join found no match. Testing whether an order is outside the window could let a customer with both an old and a recent order through. The customer ID breaks sign-up date ties.",
+      "added_sql": "SELECT\n        date(MAX(OrderDate)) AS latest_order_date,\n-- …\nSELECT\n    c.CustomerID,\n    c.FirstName || ' ' || c.LastName AS customer_name,\n    c.Email,\n    c.DateEntered\nFROM Customers AS c\nLEFT JOIN Orders AS o\n    ON o.CustomerID = c.CustomerID\n   AND date(o.OrderDate) BETWEEN\n-- …\nWHERE o.OrderID IS NULL\nORDER BY c.DateEntered ASC, c.CustomerID ASC;",
+      "expected_count": 2,
+      "final": true
+    }
+  ],
+  "record": "../../../Joins/easy/PNP-P018.md"
+}

@@ -1,0 +1,156 @@
+{
+  "question": "P009",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Category",
+      "label": "🟦 Category",
+      "color": "🟦",
+      "columns": [
+        [
+          "CategoryID",
+          "INTEGER"
+        ],
+        [
+          "Active",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          null
+        ]
+      ]
+    },
+    {
+      "name": "Payments",
+      "label": "🟩 Payments",
+      "color": "🟩",
+      "columns": [
+        [
+          "PaymentID",
+          "INTEGER"
+        ],
+        [
+          "Allowed",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Y"
+        ],
+        [
+          2,
+          "N"
+        ],
+        [
+          3,
+          "N"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "source_table",
+      "flag_column",
+      "raw_value",
+      "row_count"
+    ],
+    "rows": [
+      [
+        "Category",
+        "Active",
+        "1",
+        2
+      ],
+      [
+        "Category",
+        "Active",
+        "0",
+        1
+      ],
+      [
+        "Category",
+        "Active",
+        null,
+        1
+      ],
+      [
+        "Payments",
+        "Allowed",
+        "Y",
+        1
+      ],
+      [
+        "Payments",
+        "Allowed",
+        "N",
+        2
+      ]
+    ]
+  },
+  "column_colors": {
+    "CategoryID": "🟦",
+    "Active": "🟦",
+    "PaymentID": "🟩",
+    "Allowed": "🟩",
+    "source_table": "🟦",
+    "flag_column": "🟦",
+    "raw_value": "🟦",
+    "row_count": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Summarize Category",
+      "change": "Each distinct Active value is one category branch row, including NULL. The two active categories share one group.",
+      "added_sql": "SELECT 'Category' AS source_table,\n       'Active' AS flag_column, CAST(Active AS TEXT) AS raw_value , count(*) as row_count\nfrom Category\nGroup by Active",
+      "expected_count": 3,
+      "inputs": [
+        "Category"
+      ],
+      "sql": "SELECT 'Category' AS source_table,\n       'Active' AS flag_column, CAST(Active AS TEXT) AS raw_value , count(*) as row_count\nfrom Category\nGroup by Active"
+    },
+    {
+      "id": "stage2",
+      "title": "Summarize Payments",
+      "change": "This independent branch counts each Allowed value in Payments. N occurs twice and Y once.",
+      "added_sql": "SELECT 'Payments' AS source_table,\n       'Allowed' AS flag_column,\nCAST(Allowed AS TEXT) AS raw_value , count(*) as row_count\nfrom Payments\ngroup by Allowed",
+      "expected_count": 2,
+      "inputs": [
+        "Payments"
+      ],
+      "sql": "SELECT 'Payments' AS source_table,\n       'Allowed' AS flag_column,\nCAST(Allowed AS TEXT) AS raw_value , count(*) as row_count\nfrom Payments\ngroup by Allowed"
+    },
+    {
+      "id": "stage3",
+      "title": "Combine both summaries",
+      "change": "UNION ALL stacks both branches into five groups. The saved query does not specify row order.",
+      "added_sql": "UNION ALL",
+      "expected_count": 5,
+      "inputs": [
+        "stage1",
+        "stage2"
+      ],
+      "final": true
+    }
+  ],
+  "unordered": true,
+  "record": "../../../SQL Basics/easy/PNP-P009.md"
+}

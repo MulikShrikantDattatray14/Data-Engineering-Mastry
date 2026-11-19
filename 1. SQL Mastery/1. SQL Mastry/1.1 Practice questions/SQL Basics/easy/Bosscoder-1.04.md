@@ -83,6 +83,8 @@ Rearrange the table so each output row contains `(product_id, store, price)`. Om
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.04/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Two products have three store columns each. Why do we get five price rows?
 
 ![Rearrange Products Table. 2 + 1 + 2 = 5 available pairs. The store order is specified. Products tied within a store may appear in either order.](../../assets/walkthroughs/b1-04.svg)

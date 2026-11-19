@@ -66,6 +66,8 @@ Employees has integer employee_id (primary key), text name, and integer salary. 
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.02/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Michael has an odd ID. Does that alone earn a bonus?
 
 ![Calculate Special Bonus. IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order.](../../assets/walkthroughs/b1-02.svg)

@@ -1,0 +1,116 @@
+{
+  "question": "P010",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "CustomerID",
+          "INTEGER"
+        ],
+        [
+          "OrderDate",
+          "TEXT"
+        ],
+        [
+          "Total_Order_Amount",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          10,
+          "2025-01-01",
+          100
+        ],
+        [
+          2,
+          10,
+          "2025-01-02",
+          200
+        ],
+        [
+          3,
+          20,
+          "2025-01-03",
+          300
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "columns": [
+      "total_orders",
+      "ordering_customers",
+      "total_order_value",
+      "avg_order_value",
+      "first_order_date",
+      "last_order_date"
+    ],
+    "rows": [
+      [
+        3,
+        2,
+        600,
+        200.0,
+        "2025-01-01",
+        "2025-01-03"
+      ]
+    ]
+  },
+  "column_colors": {
+    "OrderID": "🟦",
+    "CustomerID": "🟦",
+    "OrderDate": "🟦",
+    "Total_Order_Amount": "🟦",
+    "total_orders": "🟦",
+    "ordering_customers": "🟦",
+    "total_order_value": "🟦",
+    "avg_order_value": "🟦",
+    "first_order_date": "🟦",
+    "last_order_date": "🟦"
+  },
+  "steps": [
+    {
+      "id": "stage1",
+      "title": "Count orders and distinct customers",
+      "change": "Order volume and customer reach count different things.",
+      "added_sql": "SELECT COUNT(OrderID) AS total_orders,\n       COUNT(DISTINCT CustomerID) AS ordering_customers\nFROM Orders;",
+      "expected_count": 1,
+      "sql": "SELECT COUNT(OrderID) AS total_orders,\n       COUNT(DISTINCT CustomerID) AS ordering_customers\nFROM Orders;"
+    },
+    {
+      "id": "stage2",
+      "title": "Compute order value metrics",
+      "change": "The sum and average use each order amount.",
+      "added_sql": "SELECT SUM(Total_Order_Amount) AS total_order_value,\n       ROUND(AVG(Total_Order_Amount), 2) AS avg_order_value",
+      "expected_count": 1,
+      "inputs": [
+        "Orders"
+      ],
+      "sql": "SELECT SUM(Total_Order_Amount) AS total_order_value,\n       ROUND(AVG(Total_Order_Amount), 2) AS avg_order_value\nFROM Orders;"
+    },
+    {
+      "id": "stage3",
+      "title": "Add the first and last dates",
+      "change": "The date bounds must describe the entire set of orders.",
+      "added_sql": "SELECT COUNT(OrderID) AS total_orders,\n       COUNT(DISTINCT CustomerID) AS ordering_customers,\n       SUM(Total_Order_Amount) AS total_order_value,\n       ROUND(AVG(Total_Order_Amount), 2) AS avg_order_value,\n       MIN(OrderDate) AS first_order_date,\n       MAX(OrderDate) AS last_order_date",
+      "expected_count": 1,
+      "inputs": [
+        "stage1",
+        "stage2",
+        "Orders"
+      ],
+      "final": true
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P010.md"
+}

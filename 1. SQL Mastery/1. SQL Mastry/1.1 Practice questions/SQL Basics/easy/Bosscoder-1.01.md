@@ -80,6 +80,8 @@ Write a solution to report the customers with positive revenue in the year 2021.
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.01/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Can a customer qualify using a positive amount from a different year?
 
 ![Find Customers With Positive Revenue This Year. The qualifying IDs are 1 and 4. Each appears once because customer and year form the input key. Any output order is valid.](../../assets/walkthroughs/b1-01.svg)

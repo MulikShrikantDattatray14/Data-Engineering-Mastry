@@ -62,6 +62,8 @@ The saved attempt reports months that have at least one order.
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P014/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Would February appear if it had no orders?
 
 ![Orders per month in 2025. January totals 100 + 50 = 150. March totals 200. No February group was present in the input.](../../assets/walkthroughs/p014.svg)
