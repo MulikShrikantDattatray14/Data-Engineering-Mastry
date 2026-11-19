@@ -82,6 +82,8 @@ The relevant columns in `Products` are `ProductID` (integer identifier), `Produc
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P002/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Mug and Bottle both cost 100. Which one gets the last place?
 
 ![Ten highest-priced products. Mug takes place 10. Bottle is 11th and the zero-price Sticker is 12th.](../../assets/walkthroughs/p002.svg)

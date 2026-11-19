@@ -4,6 +4,75 @@
 
 [Question and required columns](../../../2.PNP-%20foundations%20and%20practice/6.%20SubQueries/P031.%20Customers%20who%20spend%20more%20than%20the%20average%20customer.md#question-and-image) · [Practice input and expected output](../../../2.PNP-%20foundations%20and%20practice/6.%20SubQueries/P031.%20Customers%20who%20spend%20more%20than%20the%20average%20customer.md#sample-input-and-expected-output) · [Source-colored sample tables](../../assets/question-samples/p031.svg?raw=1)
 
+[Question](#question) · [Your SQLite solution](#final-learner-solution--sqlite) · [Previous / Next walkthrough](../../assets/steps/PNP-P031/01.md) · [SQL Server adaptation](#learner-solution--sql-server) · [Official solutions](#official-solution)
+
+## Question
+
+**Table colors** · 🟩 `Customers` · 🟦 `Orders`
+
+**Business scenario.** The CRM team is building an invite list for an early-access programme. The rule is simple: invite customers whose lifetime spend is above what the average customer spends. Lifetime spend means the sum of Total_Order_Amount across all of a customer's orders. Refunds are not modelled, so this is gross spend.
+
+**Task.** Return every customer whose total spend is greater than the average total spend per customer. Show the customer's spend, the average they were compared against, and how far above it they are in percent. Sort by spend, highest first.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/6.%20SubQueries/P031.%20Customers%20who%20spend%20more%20than%20the%20average%20customer.md#question-and-image) · *100 SQL Interview Questions*, Q31, pp. 52–54.
+
+### Required output columns
+
+The course asks for one row per ordering customer whose lifetime spend exceeds the average lifetime spend across ordering customers.
+
+| # | Output column | Source | Requirement for one result row | Practice example |
+| ---: | --- | --- | --- | --- |
+| 1 | `CustomerID` | 🟦 `Orders.CustomerID` | Return the ordering customer's ID. The course excludes orders with a missing ID and preserves known IDs even if their customer record is missing. | 1 |
+| 2 | `customer_name` | 🟩 `Customers.FirstName`, `Customers.LastName` | Look up the name for the ordering ID. The course displays the first and last name or `Unknown customer` when no customer row matches. | Asha Rao |
+| 3 | `total_spend` | 🟦 `Orders.Total_Order_Amount` | Sum the gross amount of all orders placed by this customer. Multiple orders still contribute a single customer total to the benchmark. | 300 |
+| 4 | `avg_customer_spend` | 🟦 Calculated from the customer totals | Average one lifetime total per ordering customer. The same benchmark appears on each output row. Display it to two decimals. | 200.00 |
+| 5 | `pct_above_avg` | 🟦 Calculated from the customer total and benchmark | Calculate 100 × (customer total − benchmark) ÷ benchmark, guard against a zero denominator, and display the percentage to two decimals. | 50.00 |
+
+**Selection and ordering.** Compare each customer total with the unrounded benchmark using strict greater-than. Equal spend is excluded. Sort by total spend descending. The course answer uses customer ID ascending as its tie-breaker.
+
+### Practice example · Sample input
+
+<a name="sample-input-and-expected-output"></a>
+
+*The PNP material supplies the output columns. These rows illustrate the invitation rule.*
+
+**🟩 `Customers`**
+
+| 🟩 `CustomerID` | 🟩 `FirstName` | 🟩 `LastName` |
+| ---: | --- | --- |
+| 1 | Asha | Rao |
+| 2 | Ben | Das |
+| 3 | Cia | Sen |
+
+**🟦 `Orders`**
+
+| 🟦 `OrderID` | 🟦 `CustomerID` | 🟦 `Total_Order_Amount` |
+| ---: | ---: | ---: |
+| 10 | 1 | 300 |
+| 11 | 2 | 100 |
+| 12 | 3 | 200 |
+
+### Expected output
+
+| 🟦 `CustomerID` | 🟩 `customer_name` | 🟦 `total_spend` | 🟦 `avg_customer_spend` | 🟦 `pct_above_avg` |
+| ---: | --- | ---: | ---: | ---: |
+| 1 | Asha Rao | 300 | 200.00 | 50.00 |
+
+[View the source-colored sample tables](../../assets/question-samples/p031.svg?raw=1)
+
+### How the sample produces this output
+
+The three 🟦 lifetime amounts are **300**, **100** and **200**. Their average is **(300 + 100 + 200) ÷ 3 = 200.00**. 🟩 **Asha Rao** (ID **1**) spent 🟦 **100** above that average, or **(300 − 200) ÷ 200 × 100 = 50.00%**. 🟩 **Ben Das** is below the average. 🟩 **Cia Sen** equals it. Only Asha qualifies.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one output row represent, and what does each requested column tell the CRM team?
+2. Which tables and matching keys supply those values? Which orders should survive a missing customer record?
+3. Which rows are eligible to contribute to the benchmark, and when should the above-average condition apply?
+4. How should repeated orders contribute to one customer total and to the overall average?
+5. How should missing IDs, missing names, equality, a zero benchmark, precision and ties behave?
+6. Trace Asha and Cia from the sample inputs through their different outcomes.
+
 ## Final learner solution — SQLite
 
 Shri selected this exact query as the final SQLite submission on 19 November 2026.
@@ -37,6 +106,8 @@ ORDER BY total_spend DESC;
 ```
 
 ## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P031/01.md)
 
 ![Six stages of the locked SQLite query. The left join preserves the three orders. Customer totals of 300, 100 and 200 average 200. Asha Rao is the only customer above it, at 50 percent.](../../assets/walkthroughs/p031.svg)
 
@@ -181,3 +252,133 @@ Executed in SQLite on the three orders in the practice example. Asha, Ben and Ci
 - The submission returns the unrounded average and percentage and sorts by descending spend. The course rounds both displayed calculations to two decimals and uses customer ID to break spending ties. Both compare totals with the unrounded average.
 
 [Official PostgreSQL answer, Q31](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/fa70de6416696e0d6ab94faee964e048f9552ecd/1.%20SQL%20Mastery/1.%20SQL%20Mastry/2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L370-L393)
+
+## Learner solution — SQL Server
+
+This T-SQL adaptation preserves the chosen fallback, grouping, precision policy and ordering. The decimal cast keeps fractional averages if the input column is integral. SQL Server execution is unverified.
+
+```sql
+WITH customer_spend AS (
+    SELECT
+        o.CustomerID,
+        COALESCE(c.FirstName + ' ' + c.LastName, 'Unknown') AS customer_name,
+        SUM(o.Total_Order_Amount) AS total_spend
+    FROM Orders AS o
+    LEFT JOIN Customers AS c ON o.CustomerID = c.CustomerID
+    GROUP BY o.CustomerID, c.FirstName, c.LastName
+),
+spend_with_avg AS (
+    SELECT
+        cs.*,
+        (SELECT AVG(CAST(total_spend AS decimal(28, 8))) FROM customer_spend) AS avg_customer_spend
+    FROM customer_spend AS cs
+)
+SELECT
+    CustomerID,
+    customer_name,
+    total_spend,
+    avg_customer_spend,
+    100.0 * (total_spend - avg_customer_spend)
+        / NULLIF(avg_customer_spend, 0) AS pct_above_avg
+FROM spend_with_avg
+WHERE total_spend > avg_customer_spend
+ORDER BY total_spend DESC;
+```
+
+## Official solution
+
+### As supplied — PostgreSQL 16
+
+[PrepNPlaced Q31 in the original answer key](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L370-L393)
+
+```sql
+WITH customer_spend AS (
+    SELECT o.CustomerID,
+           SUM(o.Total_Order_Amount) AS total_spend
+    FROM Orders AS o
+    WHERE o.CustomerID IS NOT NULL
+    GROUP BY o.CustomerID
+),
+benchmark AS (
+    SELECT AVG(cs.total_spend) AS avg_customer_spend
+    FROM customer_spend AS cs
+)
+SELECT cs.CustomerID,
+       CASE WHEN c.CustomerID IS NULL THEN 'Unknown customer'
+            ELSE CONCAT_WS(' ', c.FirstName, c.LastName) END                  AS customer_name,
+       cs.total_spend,
+       ROUND(b.avg_customer_spend, 2)                                         AS avg_customer_spend,
+       ROUND(100.0 * (cs.total_spend - b.avg_customer_spend)
+             / NULLIF(b.avg_customer_spend, 0), 2)                            AS pct_above_avg
+FROM customer_spend AS cs
+CROSS JOIN benchmark AS b
+LEFT JOIN Customers AS c ON c.CustomerID = cs.CustomerID
+WHERE cs.total_spend > (SELECT avg_customer_spend FROM benchmark)
+ORDER BY cs.total_spend DESC, cs.CustomerID;
+```
+
+### Official answer — SQLite
+
+The name expression skips missing name parts on a matched customer. It uses the course label for an unmatched ID.
+
+```sql
+WITH customer_spend AS (
+    SELECT o.CustomerID,
+           SUM(o.Total_Order_Amount) AS total_spend
+    FROM Orders AS o
+    WHERE o.CustomerID IS NOT NULL
+    GROUP BY o.CustomerID
+),
+benchmark AS (
+    SELECT AVG(cs.total_spend) AS avg_customer_spend
+    FROM customer_spend AS cs
+)
+SELECT cs.CustomerID,
+       CASE WHEN c.CustomerID IS NULL THEN 'Unknown customer'
+            WHEN c.FirstName IS NULL THEN COALESCE(c.LastName, '')
+            WHEN c.LastName IS NULL THEN c.FirstName
+            ELSE c.FirstName || ' ' || c.LastName END                  AS customer_name,
+       cs.total_spend,
+       ROUND(b.avg_customer_spend, 2)                                         AS avg_customer_spend,
+       ROUND(100.0 * (cs.total_spend - b.avg_customer_spend)
+             / NULLIF(b.avg_customer_spend, 0), 2)                            AS pct_above_avg
+FROM customer_spend AS cs
+CROSS JOIN benchmark AS b
+LEFT JOIN Customers AS c ON c.CustomerID = cs.CustomerID
+WHERE cs.total_spend > (SELECT avg_customer_spend FROM benchmark)
+ORDER BY cs.total_spend DESC, cs.CustomerID;
+```
+
+### Official answer — SQL Server
+
+This T-SQL adaptation uses a decimal average and the course’s display and ordering rules. SQL Server execution is unverified.
+
+```sql
+WITH customer_spend AS (
+    SELECT o.CustomerID,
+           SUM(o.Total_Order_Amount) AS total_spend
+    FROM Orders AS o
+    WHERE o.CustomerID IS NOT NULL
+    GROUP BY o.CustomerID
+),
+benchmark AS (
+    SELECT AVG(CAST(cs.total_spend AS decimal(28, 8))) AS avg_customer_spend
+    FROM customer_spend AS cs
+)
+SELECT cs.CustomerID,
+       CASE WHEN c.CustomerID IS NULL THEN 'Unknown customer'
+            ELSE CONCAT_WS(' ', c.FirstName, c.LastName) END                  AS customer_name,
+       cs.total_spend,
+       ROUND(b.avg_customer_spend, 2)                                         AS avg_customer_spend,
+       ROUND(100.0 * (cs.total_spend - b.avg_customer_spend)
+             / NULLIF(b.avg_customer_spend, 0), 2)                            AS pct_above_avg
+FROM customer_spend AS cs
+CROSS JOIN benchmark AS b
+LEFT JOIN Customers AS c ON c.CustomerID = cs.CustomerID
+WHERE cs.total_spend > (SELECT avg_customer_spend FROM benchmark)
+ORDER BY cs.total_spend DESC, cs.CustomerID;
+```
+
+## Verification
+
+Both SQLite queries return Asha Rao on the practice sample. On the course CSVs (46,438 orders and 5,072 customer records), the locked query returns 1,317 rows and the course SQLite query returns 1,317 rows. 0 orders have a missing customer ID. The separate edge checks above explain how an unrecognized or missing ID changes the result.

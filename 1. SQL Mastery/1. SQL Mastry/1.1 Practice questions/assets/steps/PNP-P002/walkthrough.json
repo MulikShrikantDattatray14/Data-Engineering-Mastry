@@ -1,0 +1,212 @@
+{
+  "question": "P002",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "🟦 Products",
+      "color": "🟦",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Product",
+          "TEXT"
+        ],
+        [
+          "Brand",
+          "TEXT"
+        ],
+        [
+          "Sale_Price",
+          "NUMERIC"
+        ]
+      ],
+      "rows": [
+        [
+          4,
+          "Mug",
+          "Home",
+          100
+        ],
+        [
+          20,
+          "Bottle",
+          "Home",
+          100
+        ],
+        [
+          30,
+          "Sticker",
+          "Home",
+          0
+        ],
+        [
+          31,
+          "Mystery item",
+          "Home",
+          null
+        ],
+        [
+          101,
+          "Headphones",
+          "Nova",
+          900
+        ],
+        [
+          102,
+          "Tablet",
+          "Nova",
+          800
+        ],
+        [
+          103,
+          "Monitor",
+          "Pixel",
+          700
+        ],
+        [
+          104,
+          "Keyboard",
+          "Typeco",
+          600
+        ],
+        [
+          105,
+          "Speaker",
+          "Nova",
+          500
+        ],
+        [
+          106,
+          "Router",
+          "Netco",
+          400
+        ],
+        [
+          107,
+          "Camera",
+          "Pixel",
+          300
+        ],
+        [
+          108,
+          "Mouse",
+          "Typeco",
+          200
+        ],
+        [
+          109,
+          "Lamp",
+          "Home",
+          150
+        ]
+      ]
+    }
+  ],
+  "column_colors": {
+    "ProductID": "🟦",
+    "Product": "🟦",
+    "Brand": "🟦",
+    "Sale_Price": "🟦"
+  },
+  "expected": {
+    "columns": [
+      "ProductID",
+      "Product",
+      "Brand",
+      "Sale_Price"
+    ],
+    "rows": [
+      [
+        101,
+        "Headphones",
+        "Nova",
+        900
+      ],
+      [
+        102,
+        "Tablet",
+        "Nova",
+        800
+      ],
+      [
+        103,
+        "Monitor",
+        "Pixel",
+        700
+      ],
+      [
+        104,
+        "Keyboard",
+        "Typeco",
+        600
+      ],
+      [
+        105,
+        "Speaker",
+        "Nova",
+        500
+      ],
+      [
+        106,
+        "Router",
+        "Netco",
+        400
+      ],
+      [
+        107,
+        "Camera",
+        "Pixel",
+        300
+      ],
+      [
+        108,
+        "Mouse",
+        "Typeco",
+        200
+      ],
+      [
+        109,
+        "Lamp",
+        "Home",
+        150
+      ],
+      [
+        4,
+        "Mug",
+        "Home",
+        100
+      ]
+    ]
+  },
+  "steps": [
+    {
+      "id": "filter",
+      "title": "Keep known prices",
+      "change": "One of the 13 catalogue rows has a missing price. Sticker still qualifies for ranking at a price of zero.",
+      "added_sql": "WHERE Sale_Price IS NOT NULL",
+      "expected_count": 12,
+      "sql": "SELECT ProductID, Product, Brand, Sale_Price FROM Products WHERE Sale_Price IS NOT NULL ORDER BY ProductID;"
+    },
+    {
+      "id": "rank",
+      "title": "Sort by price and break ties",
+      "change": "All 12 eligible products remain. The two products at 100 are ordered by their IDs, with Mug (4) before Bottle (20).",
+      "added_sql": "ORDER BY Sale_Price DESC, ProductID ASC",
+      "expected_count": 12,
+      "sql": "SELECT ProductID, Product, Brand, Sale_Price FROM Products WHERE Sale_Price IS NOT NULL ORDER BY Sale_Price DESC, ProductID ASC;"
+    },
+    {
+      "id": "limit",
+      "title": "Keep the first ten",
+      "change": "Mug takes the last slot at position 10. Bottle and Sticker fall outside the ten-row result.",
+      "added_sql": "LIMIT 10",
+      "final": true,
+      "expected_count": 10
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P002.md"
+}

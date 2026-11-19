@@ -71,6 +71,8 @@ The saved attempt treats padded versions of the same brand as a single displayed
 
 ## Visual walkthrough
 
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P001/01.md)
+
 Follow the sample rows through each query step. **Predict the result.** Will product 2 create a second Nike entry if the stored name has spaces?
 
 ![Brand directory. Alphabetical ordering gives Adidas, Nike and Puma. Each name appears once.](../../assets/walkthroughs/p001.svg)

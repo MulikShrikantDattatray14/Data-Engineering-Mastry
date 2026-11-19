@@ -11,7 +11,7 @@ Practice topics in the original Bosscoder assignment order. Within each topic, p
 Use this sequence in chat and in every saved question, including reattempts.
 
 1. Give the original PNP question word for word, including its business scenario and task. For a Bosscoder exercise, use its assignment wording. Link to the source in the saved record.
-2. List the required output columns in their specified order, with a plain-English meaning for each.
+2. List the required output columns in their specified order, with a plain-English meaning for each. In both the chat question and the Markdown record, give each column its own row in a Required output columns table. For each, identify its source field or calculation, what it means for one output row, any eligibility, benchmark or display rule that affects it, and an example value where available. State row eligibility and sorting separately. Copying a column name as its explanation is insufficient. Keep implementation choices for the learner. Present the original scenario and task first, then this table, then named inputs, expected output, worked sample, and only then Step 1.
 3. Show the sample input as separate, named tables. Identify an example supplied by the assignment. Label any added data **Practice example**.
 4. Show the expected output as a table with those same columns.
 5. Explain how the sample rows produce each result. Trace the actual IDs and values, show the arithmetic where relevant, and explain the order or inclusion rules that affect the example.
@@ -37,6 +37,14 @@ After the worked sample, the learner gives one plain-English plan covering the f
 6. How a sample row or group travels from the inputs to its expected output.
 
 Rate the submitted approach out of 10 for coverage and correctness. Identify what the learner got right and the specific requirement behind any gap. Use color to trace the learner’s proposed approach across the full sample tables and highlight the first step where a result diverges. Let the learner revise the plan in plain English. When it covers every applicable requirement, confirm that it is ready, show the complete agreed progression, and invite the learner to write SQL. Save that progression with the verified solution.
+
+### Previous / Next walkthroughs
+
+After a learner locks a SQL answer, show one stage at a time in chat and link the corresponding GitHub walkthrough from the saved record. Use the same sample throughout. Show the SQL added or changed, the rows entering that operation, and the rows it returns. Explain a concrete change in values, row count, order or membership. Previous goes back one stage and Next reveals the next operation. Keep future exercise answers behind the learner’s attempt.
+
+The native GitHub pages work directly from the question. Store a question-specific fixture and stages in `assets/steps/<record-id>/walkthrough.json`. Generate and verify the pages with `python tools/build_steps.py assets/steps/<record-id>/walkthrough.json` from this practice folder, and run the same command with `--check` before committing. See the [P031 manifest](assets/steps/PNP-P031/walkthrough.json) for branching inputs, CTEs, colors and the final output check. The last stage reads the exact saved learner query. Keep the existing written steps and full-size diagram available.
+
+Use the [P030 record](CTEs/medium/PNP-P030.md) as the Markdown format. Include the question, sample, final learner SQLite query, its SQL Server adaptation, the original official answer with its source, and separate dialect adaptations in their designated sections. Keep selected answers verbatim and document differences alongside them. Link the completed sections from the source question page.
 
 ### Walkthrough format
 
@@ -124,6 +132,7 @@ Show which rows form each group before calculating its measures. For each aggreg
 | ID | Question | Set | Difficulty |
 | --- | --- | --- | --- |
 | P028 | [Payment mix: share of orders and value](Subqueries/medium/PNP-P028.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
+| P031 | [Customers who spend more than the average customer](Subqueries/medium/PNP-P031.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) |
 
 ### CTEs
 

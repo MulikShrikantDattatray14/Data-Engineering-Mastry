@@ -1,0 +1,111 @@
+{
+  "question": "P001",
+  "solution_heading": "Learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "🟦 Products",
+      "color": "🟦",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Brand",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Nike"
+        ],
+        [
+          2,
+          " Nike "
+        ],
+        [
+          3,
+          null
+        ],
+        [
+          4,
+          ""
+        ],
+        [
+          5,
+          "   "
+        ],
+        [
+          6,
+          "Adidas"
+        ],
+        [
+          7,
+          "Puma"
+        ],
+        [
+          8,
+          "Adidas"
+        ]
+      ]
+    }
+  ],
+  "column_colors": {
+    "ProductID": "🟦",
+    "Brand": "🟦",
+    "CleanBrand": "🟦"
+  },
+  "expected": {
+    "columns": [
+      "Brand"
+    ],
+    "rows": [
+      [
+        "Adidas"
+      ],
+      [
+        "Nike"
+      ],
+      [
+        "Puma"
+      ]
+    ]
+  },
+  "steps": [
+    {
+      "id": "trim",
+      "title": "Clean the stored brand names",
+      "change": "TRIM turns the padded Nike entry into Nike. A string of three spaces becomes an empty string. All eight product rows remain.",
+      "added_sql": "TRIM(Brand) AS CleanBrand",
+      "expected_count": 8,
+      "sql": "SELECT ProductID, Brand, TRIM(Brand) AS CleanBrand FROM Products ORDER BY ProductID;"
+    },
+    {
+      "id": "filter",
+      "title": "Remove missing and empty names",
+      "change": "Filtering removes products 3, 4 and 5. Nike and Adidas still appear twice.",
+      "added_sql": "WHERE TRIM(Brand) IS NOT NULL AND LENGTH(TRIM(Brand)) > 0",
+      "expected_count": 5,
+      "sql": "SELECT ProductID, TRIM(Brand) AS Brand FROM Products WHERE TRIM(Brand) IS NOT NULL AND LENGTH(TRIM(Brand)) > 0 ORDER BY ProductID;"
+    },
+    {
+      "id": "distinct",
+      "title": "Keep each cleaned brand once",
+      "change": "The two Nike rows and two Adidas rows collapse to one of each. Three distinct brand names survive. Their order is still unspecified.",
+      "added_sql": "SELECT DISTINCT TRIM(Brand) AS Brand",
+      "expected_count": 3,
+      "sql": "SELECT DISTINCT TRIM(Brand) AS Brand FROM Products WHERE TRIM(Brand) IS NOT NULL AND LENGTH(TRIM(Brand)) > 0;"
+    },
+    {
+      "id": "result",
+      "title": "Sort the directory",
+      "change": "The output now has exactly one row per usable brand, alphabetically ordered from Adidas to Puma.",
+      "added_sql": "ORDER BY TRIM(Brand) ASC",
+      "final": true,
+      "expected_count": 3
+    }
+  ],
+  "record": "../../../SQL Basics/easy/PNP-P001.md"
+}
