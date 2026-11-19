@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1781" viewBox="0 0 1160 1781" role="img" aria-labelledby="title desc">
-<title id="title">P025 · Customer sign-ups by year and quarter</title>
-<desc id="desc">One row per sign-up year and quarter. IDs 2 and 3 both map to 2025 Q1. ID 4 maps to Q2. ID 5 has NULL year and quarter. The five customer IDs form four groups. IDs 2 and 3 count together, and ID 5 contributes one to the missing-date group. The three dated groups run chronologically, followed by NULL / NULL. Counts 1 + 2 + 1 + 1 recover all five customers. FROM Customers · one table is enough. Each customer ID represents one sign-up. The sign-up date on that row supplies its year and quarter, including the missing-date group for customer 5.</desc>
+<title id="title">P025 &#183; Customer sign-ups by year and quarter</title>
+<desc id="desc">One row per sign-up year and quarter. IDs 2 and 3 both map to 2025 Q1. ID 4 maps to Q2. ID 5 has NULL year and quarter. The five customer IDs form four groups. IDs 2 and 3 count together, and ID 5 contributes one to the missing-date group. The three dated groups run chronologically, followed by NULL / NULL. Counts 1 + 2 + 1 + 1 recover all five customers. FROM Customers &#183; one table is enough. Each customer ID represents one sign-up. The sign-up date on that row supplies its year and quarter, including the missing-date group for customer 5.</desc>
 <rect width="1160" height="1781" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P025    /    SQL WALKTHROUGH</text>
@@ -10,14 +10,14 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Where do March 31, April 1 and a missing sign-up date go?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  ·  5 rows</text>
-<rect x="68" y="333" width="513.484" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  &#183;  5 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="581.484" y="333" width="522.516" height="47" rx="0" fill="#194f7c"/>
-<text x="592.484" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="592.484" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DateEntered</text>
+<rect x="68" y="354" width="513.484" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="581.484" y="354" width="522.516" height="26" rx="0" fill="#d8e9f7"/>
+<text x="592.484" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">DateEntered</text>
 <rect x="68" y="380" width="513.484" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 409L581.484 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -53,30 +53,28 @@
 <rect x="32" y="549" width="1096" height="462" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="579" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="559" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
 <text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What quarter does each customer enter?</text>
-<g role="group" aria-label="FROM Customers · one table is enough" data-decision="2">
+<g role="group" aria-label="FROM Customers &#183; one table is enough" data-decision="2">
 <rect x="52" y="625" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="630" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers · one table is enough</text>
+<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers &#183; one table is enough</text>
 <text x="66" y="671" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Each customer ID represents one sign-up. The sign-up date on that row supplies its year and quarter, including the</text>
 <text x="66" y="694" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">missing-date group for customer 5.</text>
 </g>
 <text x="52" y="736" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 2 and 3 both map to 2025 Q1. ID 4 maps to Q2. ID 5 has NULL year and quarter.</text>
 <rect x="52" y="752" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="773" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CAST(strftime(&#x27;%Y&#x27;, DateEntered) AS INTEGER) / CASE WHEN … THEN 1 … END AS signup_quarter</text>
-<rect x="68" y="800" width="245.453" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="773" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CAST(strftime('%Y', DateEntered) AS INTEGER) / CASE WHEN &#8230; THEN 1 &#8230; END AS signup_quarter</text>
+<rect x="68" y="800" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="313.453" y="800" width="254.484" height="47" rx="0" fill="#194f7c"/>
-<text x="324.453" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="324.453" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DateEntered</text>
-<rect x="567.938" y="800" width="254.484" height="47" rx="0" fill="#194f7c"/>
-<text x="578.938" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="578.938" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_year</text>
-<rect x="822.422" y="800" width="281.578" height="47" rx="0" fill="#194f7c"/>
-<text x="833.422" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="833.422" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_quarter</text>
+<rect x="68" y="821" width="245.453" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="313.453" y="821" width="254.484" height="26" rx="0" fill="#d8e9f7"/>
+<text x="324.453" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">DateEntered</text>
+<rect x="567.938" y="821" width="254.484" height="26" rx="0" fill="#d8e9f7"/>
+<text x="578.938" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">signup_year</text>
+<rect x="822.422" y="821" width="281.578" height="26" rx="0" fill="#d8e9f7"/>
+<text x="833.422" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">signup_quarter</text>
 <rect x="68" y="847" width="245.453" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 876L313.453 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -142,21 +140,20 @@
 <rect x="32" y="1021" width="1096" height="365" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1051" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
 <rect x="1000.38" y="1031" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 4 rows</text>
+<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 4 rows</text>
 <text x="52" y="1086" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which keys must be grouped together?</text>
 <text x="52" y="1115" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The five customer IDs form four groups. IDs 2 and 3 count together, and ID 5 contributes one to the missing-date</text>
 <text x="52" y="1140" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">group.</text>
 <rect x="52" y="1156" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1177" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY signup_year, signup_quarter</text>
-<rect x="68" y="1204" width="330.281" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1204" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1219" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1240" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_year</text>
-<rect x="398.281" y="1204" width="357.375" height="47" rx="0" fill="#194f7c"/>
-<text x="409.281" y="1219" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="409.281" y="1240" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_quarter</text>
-<rect x="755.656" y="1204" width="348.344" height="47" rx="0" fill="#194f7c"/>
-<text x="766.656" y="1219" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="766.656" y="1240" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">new_customers</text>
+<rect x="68" y="1225" width="330.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1240" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">signup_year</text>
+<rect x="398.281" y="1225" width="357.375" height="26" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1240" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">signup_quarter</text>
+<rect x="755.656" y="1225" width="348.344" height="26" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1240" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">new_customers</text>
 <rect x="68" y="1251" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
 <path d="M68 1280L398.281 1280" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -197,21 +194,20 @@
 <rect x="32" y="1396" width="1096" height="365" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1426" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="1406" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1425" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 4 rows</text>
+<text x="1012.38" y="1425" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 &#8594; 4 rows</text>
 <text x="52" y="1461" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where should the missing-date group appear?</text>
 <text x="52" y="1490" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The three dated groups run chronologically, followed by NULL / NULL. Counts 1 + 2 + 1 + 1 recover all five</text>
 <text x="52" y="1515" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">customers.</text>
 <rect x="52" y="1531" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1552" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY signup_year ASC NULLS LAST, signup_quarter ASC NULLS LAST</text>
-<rect x="68" y="1579" width="330.281" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1579" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1594" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1615" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_year</text>
-<rect x="398.281" y="1579" width="357.375" height="47" rx="0" fill="#194f7c"/>
-<text x="409.281" y="1594" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="409.281" y="1615" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">signup_quarter</text>
-<rect x="755.656" y="1579" width="348.344" height="47" rx="0" fill="#194f7c"/>
-<text x="766.656" y="1594" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="766.656" y="1615" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">new_customers</text>
+<rect x="68" y="1600" width="330.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1615" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">signup_year</text>
+<rect x="398.281" y="1600" width="357.375" height="26" rx="0" fill="#d8e9f7"/>
+<text x="409.281" y="1615" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">signup_quarter</text>
+<rect x="755.656" y="1600" width="348.344" height="26" rx="0" fill="#d8e9f7"/>
+<text x="766.656" y="1615" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">new_customers</text>
 <rect x="68" y="1626" width="330.281" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024</text>
 <path d="M68 1655L398.281 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>

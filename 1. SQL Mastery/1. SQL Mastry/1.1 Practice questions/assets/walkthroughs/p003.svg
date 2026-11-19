@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2218" viewBox="0 0 1160 2218" role="img" aria-labelledby="title desc">
-<title id="title">P003 · Customers in metro cities</title>
-<desc id="desc">One row per customer in an eligible metro. ID 5 displays MUMBAI and matches on mumbai. Padding disappears from ID 12. Pune (ID 21) drops out. Bangalore, Bombay and New Delhi are accepted spellings in this exercise. Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling. FROM Customers · one table is enough. The report lists people by their own city. One customer row supplies the city to test and the ID, name and state to display.</desc>
+<title id="title">P003 &#183; Customers in metro cities</title>
+<desc id="desc">One row per customer in an eligible metro. ID 5 displays MUMBAI and matches on mumbai. Padding disappears from ID 12. Pune (ID 21) drops out. Bangalore, Bombay and New Delhi are accepted spellings in this exercise. Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling. FROM Customers &#183; one table is enough. The report lists people by their own city. One customer row supplies the city to test and the ID, name and state to display.</desc>
 <rect width="1160" height="2218" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P003    /    SQL WALKTHROUGH</text>
@@ -10,24 +10,21 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Two customers have Bengaluru with different spacing. How will their names be ordered?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. Dots inside quotes show padding. SQL excerpts use … for omitted</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. Dots inside quotes show padding. SQL excerpts use &#8230; for omitted</text>
 <text x="32" y="314" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">clauses.</text>
-<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  ·  9 rows</text>
-<rect x="68" y="356" width="201.281" height="47" rx="0" fill="#194f7c"/>
+<text x="68" y="347" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  &#183;  9 rows</text>
+<rect x="68" y="356" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="371" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="269.281" y="356" width="192.25" height="47" rx="0" fill="#194f7c"/>
-<text x="280.281" y="371" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="280.281" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="461.531" y="356" width="189.156" height="47" rx="0" fill="#194f7c"/>
-<text x="472.531" y="371" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="472.531" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="650.688" y="356" width="236.297" height="47" rx="0" fill="#194f7c"/>
-<text x="661.688" y="371" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="661.688" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="886.984" y="356" width="217.016" height="47" rx="0" fill="#194f7c"/>
-<text x="897.984" y="371" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="897.984" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
+<rect x="68" y="377" width="201.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="269.281" y="377" width="192.25" height="26" rx="0" fill="#d8e9f7"/>
+<text x="280.281" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">FirstName</text>
+<rect x="461.531" y="377" width="189.156" height="26" rx="0" fill="#d8e9f7"/>
+<text x="472.531" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">LastName</text>
+<rect x="650.688" y="377" width="236.297" height="26" rx="0" fill="#d8e9f7"/>
+<text x="661.688" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">City</text>
+<rect x="886.984" y="377" width="217.016" height="26" rx="0" fill="#d8e9f7"/>
+<text x="897.984" y="392" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">State</text>
 <path d="M54 412.5l8 5-8 5z" fill="#142a3a"/>
 <rect x="68" y="403" width="201.281" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
@@ -39,7 +36,7 @@
 <text x="472.531" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
 <path d="M461.531 432L650.688 432" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="650.688" y="403" width="236.297" height="29" rx="0" fill="#edf4fb"/>
-<text x="661.688" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Bengaluru·&#x27;</text>
+<text x="661.688" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">'&#183;Bengaluru&#183;'</text>
 <path d="M650.688 432L886.984 432" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="886.984" y="403" width="217.016" height="29" rx="0" fill="#edf4fb"/>
 <text x="897.984" y="422" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
@@ -115,7 +112,7 @@
 <text x="472.531" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ali</text>
 <path d="M461.531 577L650.688 577" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="650.688" y="548" width="236.297" height="29" rx="0" fill="#ffffff"/>
-<text x="661.688" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Chennai·&#x27;</text>
+<text x="661.688" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">'&#183;Chennai&#183;'</text>
 <path d="M650.688 577L886.984 577" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="886.984" y="548" width="217.016" height="29" rx="0" fill="#ffffff"/>
 <text x="897.984" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tamil Nadu</text>
@@ -145,7 +142,7 @@
 <text x="472.531" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Khan</text>
 <path d="M461.531 635L650.688 635" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="650.688" y="606" width="236.297" height="29" rx="0" fill="#ffffff"/>
-<text x="661.688" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Bombay·&#x27;</text>
+<text x="661.688" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">'&#183;Bombay&#183;'</text>
 <path d="M650.688 635L886.984 635" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="886.984" y="606" width="217.016" height="29" rx="0" fill="#ffffff"/>
 <text x="897.984" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
@@ -168,30 +165,28 @@
 <rect x="32" y="688" width="1096" height="578" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="718" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="698" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="717" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 → 9 rows</text>
+<text x="1012.38" y="717" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 &#8594; 9 rows</text>
 <text x="52" y="753" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which city spelling is shown and which is tested?</text>
-<g role="group" aria-label="FROM Customers · one table is enough" data-decision="1">
+<g role="group" aria-label="FROM Customers &#183; one table is enough" data-decision="1">
 <rect x="52" y="764" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="769" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="786" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers · one table is enough</text>
+<text x="66" y="786" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers &#183; one table is enough</text>
 <text x="66" y="810" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The report lists people by their own city. One customer row supplies the city to test and the ID, name and state to</text>
 <text x="66" y="833" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">display.</text>
 </g>
 <text x="52" y="875" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">ID 5 displays MUMBAI and matches on mumbai. Padding disappears from ID 12.</text>
 <rect x="52" y="891" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="912" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">TRIM(City) / LOWER(TRIM(City))</text>
-<rect x="68" y="939" width="252.02" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="939" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="320.02" y="939" width="287.035" height="47" rx="0" fill="#194f7c"/>
-<text x="331.02" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="331.02" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OriginalCity</text>
-<rect x="607.055" y="939" width="248.473" height="47" rx="0" fill="#194f7c"/>
-<text x="618.055" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="618.055" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="855.527" y="939" width="248.473" height="47" rx="0" fill="#194f7c"/>
-<text x="866.527" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="866.527" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">MatchCity</text>
+<rect x="68" y="960" width="252.02" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="320.02" y="960" width="287.035" height="26" rx="0" fill="#d8e9f7"/>
+<text x="331.02" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OriginalCity</text>
+<rect x="607.055" y="960" width="248.473" height="26" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">City</text>
+<rect x="855.527" y="960" width="248.473" height="26" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">MatchCity</text>
 <rect x="68" y="986" width="252.02" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
 <path d="M68 1015L320.02 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -220,7 +215,7 @@
 <text x="79" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
 <path d="M68 1073L320.02 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="320.02" y="1044" width="287.035" height="29" rx="0" fill="#edf4fb"/>
-<text x="331.02" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Bombay·&#x27;</text>
+<text x="331.02" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">'&#183;Bombay&#183;'</text>
 <path d="M320.02 1073L607.055 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="607.055" y="1044" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
 <text x="618.055" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bombay</text>
@@ -257,7 +252,7 @@
 <text x="79" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
 <path d="M68 1160L320.02 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="320.02" y="1131" width="287.035" height="29" rx="0" fill="#ffffff"/>
-<text x="331.02" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Chennai·&#x27;</text>
+<text x="331.02" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">'&#183;Chennai&#183;'</text>
 <path d="M320.02 1160L607.055 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="607.055" y="1131" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
 <text x="618.055" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chennai</text>
@@ -270,7 +265,7 @@
 <text x="79" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
 <path d="M68 1189L320.02 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="320.02" y="1160" width="287.035" height="29" rx="0" fill="#edf4fb"/>
-<text x="331.02" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Bengaluru·&#x27;</text>
+<text x="331.02" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">'&#183;Bengaluru&#183;'</text>
 <path d="M320.02 1189L607.055 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 <rect x="607.055" y="1160" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
 <text x="618.055" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
@@ -305,26 +300,23 @@
 <rect x="32" y="1276" width="1096" height="456" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1306" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
 <rect x="1000.38" y="1286" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1305" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 → 8 rows</text>
+<text x="1012.38" y="1305" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 &#8594; 8 rows</text>
 <text x="52" y="1341" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which customers match the metro list?</text>
 <text x="52" y="1370" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Pune (ID 21) drops out. Bangalore, Bombay and New Delhi are accepted spellings in this exercise.</text>
 <rect x="52" y="1386" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE TRIM(LOWER(City)) IN (…)</text>
-<rect x="68" y="1434" width="208.994" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE TRIM(LOWER(City)) IN (&#8230;)</text>
+<rect x="68" y="1434" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="276.994" y="1434" width="199.963" height="47" rx="0" fill="#194f7c"/>
-<text x="287.994" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="287.994" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="476.956" y="1434" width="196.869" height="47" rx="0" fill="#194f7c"/>
-<text x="487.956" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="487.956" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="673.825" y="1434" width="205.447" height="47" rx="0" fill="#194f7c"/>
-<text x="684.825" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="684.825" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="879.272" y="1434" width="224.728" height="47" rx="0" fill="#194f7c"/>
-<text x="890.272" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="890.272" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
+<rect x="68" y="1455" width="208.994" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="276.994" y="1455" width="199.963" height="26" rx="0" fill="#d8e9f7"/>
+<text x="287.994" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">FirstName</text>
+<rect x="476.956" y="1455" width="196.869" height="26" rx="0" fill="#d8e9f7"/>
+<text x="487.956" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">LastName</text>
+<rect x="673.825" y="1455" width="205.447" height="26" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">City</text>
+<rect x="879.272" y="1455" width="224.728" height="26" rx="0" fill="#d8e9f7"/>
+<text x="890.272" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">State</text>
 <rect x="68" y="1481" width="208.994" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
 <path d="M68 1510L276.994 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -450,26 +442,23 @@
 <rect x="32" y="1742" width="1096" height="456" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1772" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="1752" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1771" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">8 → 8 rows</text>
+<text x="1012.38" y="1771" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">8 &#8594; 8 rows</text>
 <text x="52" y="1807" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How do two people in the same city break a tie?</text>
 <text x="52" y="1836" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling.</text>
 <rect x="52" y="1852" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1873" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY TRIM(LOWER(City)), CustomerID</text>
-<rect x="68" y="1900" width="208.994" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1900" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="276.994" y="1900" width="199.963" height="47" rx="0" fill="#194f7c"/>
-<text x="287.994" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="287.994" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="476.956" y="1900" width="196.869" height="47" rx="0" fill="#194f7c"/>
-<text x="487.956" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="487.956" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="673.825" y="1900" width="205.447" height="47" rx="0" fill="#194f7c"/>
-<text x="684.825" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="684.825" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="879.272" y="1900" width="224.728" height="47" rx="0" fill="#194f7c"/>
-<text x="890.272" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="890.272" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
+<rect x="68" y="1921" width="208.994" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="276.994" y="1921" width="199.963" height="26" rx="0" fill="#d8e9f7"/>
+<text x="287.994" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">FirstName</text>
+<rect x="476.956" y="1921" width="196.869" height="26" rx="0" fill="#d8e9f7"/>
+<text x="487.956" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">LastName</text>
+<rect x="673.825" y="1921" width="205.447" height="26" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">City</text>
+<rect x="879.272" y="1921" width="224.728" height="26" rx="0" fill="#d8e9f7"/>
+<text x="890.272" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">State</text>
 <rect x="68" y="1947" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1966" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
 <path d="M68 1976L276.994 1976" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>

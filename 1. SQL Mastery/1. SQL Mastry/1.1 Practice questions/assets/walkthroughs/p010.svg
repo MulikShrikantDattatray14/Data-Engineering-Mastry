@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1383" viewBox="0 0 1160 1383" role="img" aria-labelledby="title desc">
-<title id="title">P010 · Headline order KPIs</title>
-<desc id="desc">One summary row for all orders. Order IDs 1, 2, 3 give three orders. Customer IDs 10, 10, 20 give two distinct buyers. 100 + 200 + 300 = 600. All three amounts are known, so 600 / 3 = 200 per order. The earliest order is January 1 and the latest is January 3. All six metrics describe the same three orders. FROM Orders · one table is enough. Each transaction contributes once to the headline figures. Its order ID, buyer ID, amount and date supply all six measures. Buyer 10 can therefore have two orders while counting as one buyer.</desc>
+<title id="title">P010 &#183; Headline order KPIs</title>
+<desc id="desc">One summary row for all orders. Order IDs 1, 2, 3 give three orders. Customer IDs 10, 10, 20 give two distinct buyers. 100 + 200 + 300 = 600. All three amounts are known, so 600 / 3 = 200 per order. The earliest order is January 1 and the latest is January 3. All six metrics describe the same three orders. FROM Orders &#183; one table is enough. Each transaction contributes once to the headline figures. Its order ID, buyer ID, amount and date supply all six measures. Buyer 10 can therefore have two orders while counting as one buyer.</desc>
 <rect width="1160" height="1383" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P010    /    SQL WALKTHROUGH</text>
@@ -10,20 +10,18 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Three orders belong to two people. Which headline numbers should be 3 and 2?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  ·  3 rows</text>
-<rect x="68" y="333" width="219.094" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  &#183;  3 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="287.094" y="333" width="246.188" height="47" rx="0" fill="#194f7c"/>
-<text x="298.094" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="298.094" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="533.281" y="333" width="252.281" height="47" rx="0" fill="#194f7c"/>
-<text x="544.281" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="544.281" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="785.562" y="333" width="318.438" height="47" rx="0" fill="#194f7c"/>
-<text x="796.562" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="796.562" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
+<rect x="68" y="354" width="219.094" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
+<rect x="287.094" y="354" width="246.188" height="26" rx="0" fill="#d8e9f7"/>
+<text x="298.094" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="533.281" y="354" width="252.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="544.281" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
+<rect x="785.562" y="354" width="318.438" height="26" rx="0" fill="#d8e9f7"/>
+<text x="796.562" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Total_Order_Amount</text>
 <path d="M54 389.5l8 5-8 5z" fill="#142a3a"/>
 <rect x="68" y="380" width="219.094" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
@@ -65,24 +63,24 @@
 <rect x="32" y="491" width="1096" height="346" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="521" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1008.7" y="501" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1020.7" y="520" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 1 row</text>
+<text x="1020.7" y="520" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 1 row</text>
 <text x="52" y="556" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What makes an order different from a buyer?</text>
-<g role="group" aria-label="FROM Orders · one table is enough" data-decision="1">
+<g role="group" aria-label="FROM Orders &#183; one table is enough" data-decision="1">
 <rect x="52" y="567" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="572" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="589" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Orders · one table is enough</text>
+<text x="66" y="589" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Orders &#183; one table is enough</text>
 <text x="66" y="613" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Each transaction contributes once to the headline figures. Its order ID, buyer ID, amount and date supply all six</text>
 <text x="66" y="636" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">measures. Buyer 10 can therefore have two orders while counting as one buyer.</text>
 </g>
 <text x="52" y="678" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order IDs 1, 2, 3 give three orders. Customer IDs 10, 10, 20 give two distinct buyers.</text>
 <rect x="52" y="694" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="715" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">COUNT(OrderID), COUNT(DISTINCT CustomerID)</text>
-<rect x="68" y="742" width="490.906" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="742" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="757" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">total_orders</text>
-<rect x="558.906" y="742" width="545.094" height="47" rx="0" fill="#194f7c"/>
-<text x="569.906" y="757" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="569.906" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ordering_customers</text>
+<rect x="68" y="763" width="490.906" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">total_orders</text>
+<rect x="558.906" y="763" width="545.094" height="26" rx="0" fill="#d8e9f7"/>
+<text x="569.906" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ordering_customers</text>
 <rect x="68" y="789" width="490.906" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="808" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
 <path d="M68 818L558.906 818" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -92,17 +90,17 @@
 <rect x="32" y="847" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="877" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
 <rect x="1008.7" y="857" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1020.7" y="876" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 1 row</text>
+<text x="1020.7" y="876" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 1 row</text>
 <text x="52" y="912" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which values feed revenue and average order value?</text>
 <text x="52" y="941" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">100 + 200 + 300 = 600. All three amounts are known, so 600 / 3 = 200 per order.</text>
 <rect x="52" y="957" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="978" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SUM(Total_Order_Amount), AVG(Total_Order_Amount)</text>
-<rect x="68" y="1005" width="527.031" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1005" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1020" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1041" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">total_order_value</text>
-<rect x="595.031" y="1005" width="508.969" height="47" rx="0" fill="#194f7c"/>
-<text x="606.031" y="1020" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="606.031" y="1041" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">avg_order_value</text>
+<rect x="68" y="1026" width="527.031" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1041" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">total_order_value</text>
+<rect x="595.031" y="1026" width="508.969" height="26" rx="0" fill="#d8e9f7"/>
+<text x="606.031" y="1041" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">avg_order_value</text>
 <rect x="68" y="1052" width="527.031" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1071" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">600</text>
 <path d="M68 1081L595.031 1081" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -112,29 +110,25 @@
 <rect x="32" y="1110" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1140" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1008.7" y="1120" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1020.7" y="1139" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 1 row</text>
+<text x="1020.7" y="1139" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 1 row</text>
 <text x="52" y="1175" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What period do these figures cover?</text>
 <text x="52" y="1204" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The earliest order is January 1 and the latest is January 3. All six metrics describe the same three orders.</text>
 <rect x="52" y="1220" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">MIN(OrderDate), MAX(OrderDate)</text>
-<rect x="68" y="1268" width="141.057" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1268" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1283" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">total_orders</text>
-<rect x="209.057" y="1268" width="195.245" height="47" rx="0" fill="#194f7c"/>
-<text x="220.057" y="1283" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="220.057" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ordering_customers</text>
-<rect x="404.302" y="1268" width="186.214" height="47" rx="0" fill="#194f7c"/>
-<text x="415.302" y="1283" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="415.302" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">total_order_value</text>
-<rect x="590.516" y="1268" width="168.151" height="47" rx="0" fill="#194f7c"/>
-<text x="601.516" y="1283" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="601.516" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">avg_order_value</text>
-<rect x="758.667" y="1268" width="177.182" height="47" rx="0" fill="#194f7c"/>
-<text x="769.667" y="1283" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="769.667" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">first_order_date</text>
-<rect x="935.849" y="1268" width="168.151" height="47" rx="0" fill="#194f7c"/>
-<text x="946.849" y="1283" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="946.849" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">last_order_date</text>
+<rect x="68" y="1289" width="141.057" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">total_orders</text>
+<rect x="209.057" y="1289" width="195.245" height="26" rx="0" fill="#d8e9f7"/>
+<text x="220.057" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ordering_customers</text>
+<rect x="404.302" y="1289" width="186.214" height="26" rx="0" fill="#d8e9f7"/>
+<text x="415.302" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">total_order_value</text>
+<rect x="590.516" y="1289" width="168.151" height="26" rx="0" fill="#d8e9f7"/>
+<text x="601.516" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">avg_order_value</text>
+<rect x="758.667" y="1289" width="177.182" height="26" rx="0" fill="#d8e9f7"/>
+<text x="769.667" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">first_order_date</text>
+<rect x="935.849" y="1289" width="168.151" height="26" rx="0" fill="#d8e9f7"/>
+<text x="946.849" y="1304" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">last_order_date</text>
 <rect x="68" y="1315" width="141.057" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="1334" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
 <path d="M68 1344L209.057 1344" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>

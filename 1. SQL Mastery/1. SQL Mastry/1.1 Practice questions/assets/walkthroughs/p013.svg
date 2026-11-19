@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2017" viewBox="0 0 1160 2017" role="img" aria-labelledby="title desc">
-<title id="title">P013 · States with at least five customers</title>
-<desc id="desc">One row per state group with at least five customers. IDs 1–5 form Karnataka, ID 6 forms Maharashtra, IDs 7–11 form NULL and IDs 12–17 form Delhi. Four groups become three. Maharashtra has one customer. Karnataka and NULL qualify with exactly five, and NULL displays as Unknown. Delhi&#x27;s six come first. The two groups of five sort by the displayed labels Karnataka and Unknown. FROM Customers · one table is enough. A customer contributes once to the group for their recorded state. The ID to count and the state to group by already share one row, even when the state is missing.</desc>
+<title id="title">P013 &#183; States with at least five customers</title>
+<desc id="desc">One row per state group with at least five customers. IDs 1&#8211;5 form Karnataka, ID 6 forms Maharashtra, IDs 7&#8211;11 form NULL and IDs 12&#8211;17 form Delhi. Four groups become three. Maharashtra has one customer. Karnataka and NULL qualify with exactly five, and NULL displays as Unknown. Delhi's six come first. The two groups of five sort by the displayed labels Karnataka and Unknown. FROM Customers &#183; one table is enough. A customer contributes once to the group for their recorded state. The ID to count and the state to group by already share one row, even when the state is missing.</desc>
 <rect width="1160" height="2017" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P013    /    SQL WALKTHROUGH</text>
@@ -9,15 +9,15 @@
 <rect x="32" y="151" width="1096" height="74" rx="10" fill="#e6f1ec"/>
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Five customers have no recorded state. Will their group meet the threshold?</text>
-<text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs  ·  extended example</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  ·  17 rows</text>
-<rect x="68" y="333" width="510.133" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs  &#183;  extended example</text>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  &#183;  17 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="578.133" y="333" width="525.867" height="47" rx="0" fill="#194f7c"/>
-<text x="589.133" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="589.133" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
+<rect x="68" y="354" width="510.133" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="578.133" y="354" width="525.867" height="26" rx="0" fill="#d8e9f7"/>
+<text x="589.133" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">State</text>
 <rect x="68" y="380" width="510.133" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 409L578.133 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -128,24 +128,24 @@
 <rect x="32" y="897" width="1096" height="433" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="927" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="990.641" y="907" width="117.359" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1002.64" y="926" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">17 → 4 rows</text>
+<text x="1002.64" y="926" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">17 &#8594; 4 rows</text>
 <text x="52" y="962" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How many customers belong to each state?</text>
-<g role="group" aria-label="FROM Customers · one table is enough" data-decision="1">
+<g role="group" aria-label="FROM Customers &#183; one table is enough" data-decision="1">
 <rect x="52" y="973" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="978" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="995" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers · one table is enough</text>
+<text x="66" y="995" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers &#183; one table is enough</text>
 <text x="66" y="1019" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">A customer contributes once to the group for their recorded state. The ID to count and the state to group by already</text>
 <text x="66" y="1042" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">share one row, even when the state is missing.</text>
 </g>
-<text x="52" y="1084" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 1–5 form Karnataka, ID 6 forms Maharashtra, IDs 7–11 form NULL and IDs 12–17 form Delhi.</text>
+<text x="52" y="1084" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 1&#8211;5 form Karnataka, ID 6 forms Maharashtra, IDs 7&#8211;11 form NULL and IDs 12&#8211;17 form Delhi.</text>
 <rect x="52" y="1100" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY State</text>
-<rect x="68" y="1148" width="507.805" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1148" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1163" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1184" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
-<rect x="575.805" y="1148" width="528.195" height="47" rx="0" fill="#194f7c"/>
-<text x="586.805" y="1163" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="586.805" y="1184" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_count</text>
+<rect x="68" y="1169" width="507.805" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1184" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">State</text>
+<rect x="575.805" y="1169" width="528.195" height="26" rx="0" fill="#d8e9f7"/>
+<text x="586.805" y="1184" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_count</text>
 <path d="M54 1204.5l8 5-8 5z" fill="#142a3a"/>
 <rect x="68" y="1195" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
@@ -174,18 +174,18 @@
 <rect x="32" y="1340" width="1096" height="336" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1370" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
 <rect x="1000.38" y="1350" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1369" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
+<text x="1012.38" y="1369" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 &#8594; 3 rows</text>
 <text x="52" y="1405" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which state groups meet the threshold?</text>
 <text x="52" y="1434" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Four groups become three. Maharashtra has one customer. Karnataka and NULL qualify with exactly five, and NULL</text>
 <text x="52" y="1459" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">displays as Unknown.</text>
 <rect x="52" y="1475" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1496" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">HAVING COUNT(CustomerID) &gt;= 5</text>
-<rect x="68" y="1523" width="498.164" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1523" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1538" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
-<rect x="566.164" y="1523" width="537.836" height="47" rx="0" fill="#194f7c"/>
-<text x="577.164" y="1538" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="577.164" y="1559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_count</text>
+<rect x="68" y="1544" width="498.164" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">State</text>
+<rect x="566.164" y="1544" width="537.836" height="26" rx="0" fill="#d8e9f7"/>
+<text x="577.164" y="1559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_count</text>
 <rect x="68" y="1570" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1589" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
 <path d="M68 1599L566.164 1599" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -208,17 +208,17 @@
 <rect x="32" y="1686" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1716" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="1696" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1715" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
+<text x="1012.38" y="1715" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 3 rows</text>
 <text x="52" y="1751" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which state wins a tie on customer count?</text>
-<text x="52" y="1780" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Delhi&#x27;s six come first. The two groups of five sort by the displayed labels Karnataka and Unknown.</text>
+<text x="52" y="1780" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Delhi's six come first. The two groups of five sort by the displayed labels Karnataka and Unknown.</text>
 <rect x="52" y="1796" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1817" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY COUNT(CustomerID) DESC, State ASC</text>
-<rect x="68" y="1844" width="498.164" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1844" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1859" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1880" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
-<rect x="566.164" y="1844" width="537.836" height="47" rx="0" fill="#194f7c"/>
-<text x="577.164" y="1859" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="577.164" y="1880" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_count</text>
+<rect x="68" y="1865" width="498.164" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1880" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">State</text>
+<rect x="566.164" y="1865" width="537.836" height="26" rx="0" fill="#d8e9f7"/>
+<text x="577.164" y="1880" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_count</text>
 <rect x="68" y="1891" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1910" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
 <path d="M68 1920L566.164 1920" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>

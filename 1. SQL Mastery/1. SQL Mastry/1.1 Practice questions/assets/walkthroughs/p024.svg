@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1524" viewBox="0 0 1160 1524" role="img" aria-labelledby="title desc">
-<title id="title">P024 · Suppliers outside India or with no email</title>
-<desc id="desc">One row per supplier with a country or email issue. Check the two fields independently. ID 1 is local and contactable, ID 2 fails both checks and ID 3 has a missing country. IDs 2 and 3 survive the OR. One issue is enough for inclusion, and two issues still produce one supplier row. The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing. FROM Suppliers · one table is enough. The country and email checks apply to one supplier. ID 2 can trigger both checks on its own record and still contribute just one follow-up row.</desc>
+<title id="title">P024 &#183; Suppliers outside India or with no email</title>
+<desc id="desc">One row per supplier with a country or email issue. Check the two fields independently. ID 1 is local and contactable, ID 2 fails both checks and ID 3 has a missing country. IDs 2 and 3 survive the OR. One issue is enough for inclusion, and two issues still produce one supplier row. The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing. FROM Suppliers &#183; one table is enough. The country and email checks apply to one supplier. ID 2 can trigger both checks on its own record and still contribute just one follow-up row.</desc>
 <rect width="1160" height="1524" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P024    /    SQL WALKTHROUGH</text>
@@ -10,20 +10,18 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Supplier 2 has a foreign country and a missing email. How many issue labels should it get?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Suppliers  ·  3 rows</text>
-<rect x="68" y="333" width="229.926" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Suppliers  &#183;  3 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">SupplierID</text>
-<rect x="297.926" y="333" width="274.582" height="47" rx="0" fill="#194f7c"/>
-<text x="308.926" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="308.926" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CompanyName</text>
-<rect x="572.508" y="333" width="208.707" height="47" rx="0" fill="#194f7c"/>
-<text x="583.508" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="583.508" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Country</text>
-<rect x="781.215" y="333" width="322.785" height="47" rx="0" fill="#194f7c"/>
-<text x="792.215" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="792.215" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
+<rect x="68" y="354" width="229.926" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">SupplierID</text>
+<rect x="297.926" y="354" width="274.582" height="26" rx="0" fill="#d8e9f7"/>
+<text x="308.926" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CompanyName</text>
+<rect x="572.508" y="354" width="208.707" height="26" rx="0" fill="#d8e9f7"/>
+<text x="583.508" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Country</text>
+<rect x="781.215" y="354" width="322.785" height="26" rx="0" fill="#d8e9f7"/>
+<text x="792.215" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Email</text>
 <rect x="68" y="380" width="229.926" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 409L297.926 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -64,28 +62,27 @@
 <rect x="32" y="491" width="1096" height="429" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="521" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="501" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="520" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
+<text x="1012.38" y="520" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 3 rows</text>
 <text x="52" y="556" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which country and email checks fire?</text>
-<g role="group" aria-label="FROM Suppliers · one table is enough" data-decision="A">
+<g role="group" aria-label="FROM Suppliers &#183; one table is enough" data-decision="A">
 <rect x="52" y="567" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="572" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="589" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Suppliers · one table is enough</text>
+<text x="66" y="589" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Suppliers &#183; one table is enough</text>
 <text x="66" y="613" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The country and email checks apply to one supplier. ID 2 can trigger both checks on its own record and still contribute</text>
 <text x="66" y="636" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">just one follow-up row.</text>
 </g>
 <text x="52" y="678" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Check the two fields independently. ID 1 is local and contactable, ID 2 fails both checks and ID 3 has a missing</text>
 <text x="52" y="703" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">country.</text>
 <rect x="52" y="719" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="740" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LOWER(TRIM(Country)) / NULLIF(TRIM(Email), &#x27;&#x27;)</text>
-<rect x="68" y="767" width="324.224" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="740" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LOWER(TRIM(Country)) / NULLIF(TRIM(Email), '')</text>
+<rect x="68" y="767" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="782" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="79" y="803" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">SupplierID</text>
-<rect x="392.224" y="767" width="378.521" height="47" rx="0" fill="#194f7c"/>
-<text x="403.224" y="782" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="403.224" y="803" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">country_check</text>
-<rect x="770.745" y="767" width="333.255" height="47" rx="0" fill="#194f7c"/>
-<text x="781.745" y="782" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="781.745" y="803" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">email_check</text>
+<rect x="68" y="788" width="324.224" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="803" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">SupplierID</text>
+<rect x="392.224" y="788" width="378.521" height="26" rx="0" fill="#d8e9f7"/>
+<text x="403.224" y="803" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">country_check</text>
+<rect x="770.745" y="788" width="333.255" height="26" rx="0" fill="#d8e9f7"/>
+<text x="781.745" y="803" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">email_check</text>
 <rect x="68" y="814" width="324.224" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="833" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 843L392.224 843" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -117,20 +114,19 @@
 <rect x="32" y="930" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="960" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
 <rect x="1000.38" y="940" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="959" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="1012.38" y="959" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 2 rows</text>
 <text x="52" y="995" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which suppliers need attention?</text>
 <text x="52" y="1024" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 2 and 3 survive the OR. One issue is enough for inclusion, and two issues still produce one supplier row.</text>
 <rect x="52" y="1040" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1061" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Country IS NULL OR LOWER(TRIM(Country)) != &#x27;india&#x27; OR NULLIF(TRIM(Email), &#x27;&#x27;) IS NULL</text>
-<rect x="68" y="1088" width="321.453" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="1061" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Country IS NULL OR LOWER(TRIM(Country)) != 'india' OR NULLIF(TRIM(Email), '') IS NULL</text>
+<rect x="68" y="1088" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1103" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="79" y="1124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">SupplierID</text>
-<rect x="389.453" y="1088" width="300.234" height="47" rx="0" fill="#194f7c"/>
-<text x="400.453" y="1103" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="400.453" y="1124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Country</text>
-<rect x="689.688" y="1088" width="414.312" height="47" rx="0" fill="#194f7c"/>
-<text x="700.688" y="1103" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="700.688" y="1124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
+<rect x="68" y="1109" width="321.453" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">SupplierID</text>
+<rect x="389.453" y="1109" width="300.234" height="26" rx="0" fill="#d8e9f7"/>
+<text x="400.453" y="1124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Country</text>
+<rect x="689.688" y="1109" width="414.312" height="26" rx="0" fill="#d8e9f7"/>
+<text x="700.688" y="1124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Email</text>
 <path d="M54 1144.5l8 5-8 5z" fill="#142a3a"/>
 <rect x="68" y="1135" width="321.453" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1154" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
@@ -153,26 +149,23 @@
 <rect x="32" y="1222" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1252" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="1232" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1251" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="1012.38" y="1251" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 2 rows</text>
 <text x="52" y="1287" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why test combined issues first?</text>
 <text x="52" y="1316" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The first matching branch wins. ID 2 receives both labels on one row. ID 3 receives Country missing.</text>
 <rect x="52" y="1332" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1353" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN … THEN &#x27;Outside India; No email&#x27; … END / ORDER BY SupplierID</text>
-<rect x="68" y="1380" width="157.656" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="1353" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN &#8230; THEN 'Outside India; No email' &#8230; END / ORDER BY SupplierID</text>
+<rect x="68" y="1380" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1395" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="79" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">SupplierID</text>
-<rect x="225.656" y="1380" width="202.312" height="47" rx="0" fill="#194f7c"/>
-<text x="236.656" y="1395" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="236.656" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CompanyName</text>
-<rect x="427.969" y="1380" width="136.438" height="47" rx="0" fill="#194f7c"/>
-<text x="438.969" y="1395" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="438.969" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Country</text>
-<rect x="564.406" y="1380" width="250.516" height="47" rx="0" fill="#194f7c"/>
-<text x="575.406" y="1395" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="575.406" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
-<rect x="814.922" y="1380" width="289.078" height="47" rx="0" fill="#194f7c"/>
-<text x="825.922" y="1395" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Suppliers</text>
-<text x="825.922" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">issue</text>
+<rect x="68" y="1401" width="157.656" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">SupplierID</text>
+<rect x="225.656" y="1401" width="202.312" height="26" rx="0" fill="#d8e9f7"/>
+<text x="236.656" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CompanyName</text>
+<rect x="427.969" y="1401" width="136.438" height="26" rx="0" fill="#d8e9f7"/>
+<text x="438.969" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Country</text>
+<rect x="564.406" y="1401" width="250.516" height="26" rx="0" fill="#d8e9f7"/>
+<text x="575.406" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Email</text>
+<rect x="814.922" y="1401" width="289.078" height="26" rx="0" fill="#d8e9f7"/>
+<text x="825.922" y="1416" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">issue</text>
 <path d="M54 1436.5l8 5-8 5z" fill="#142a3a"/>
 <rect x="68" y="1427" width="157.656" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1446" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>

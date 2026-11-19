@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1203" viewBox="0 0 1160 1203" role="img" aria-labelledby="title desc">
-<title id="title">P020 · Days to ship and days to deliver</title>
-<desc id="desc">One row per November 2025 order. Order 3 was placed in October even though it shipped in November. Orders 1 and 2 qualify. For order 1, November 3 minus 1 = 2 days to ship and November 6 minus 1 = 5 to deliver. Order 2 keeps two NULLs. FROM Orders · one table is enough. Placement, shipment and delivery dates belong to the same order. Keeping that row gives order 2 a place in the report even while its later dates are missing.</desc>
+<title id="title">P020 &#183; Days to ship and days to deliver</title>
+<desc id="desc">One row per November 2025 order. Order 3 was placed in October even though it shipped in November. Orders 1 and 2 qualify. For order 1, November 3 minus 1 = 2 days to ship and November 6 minus 1 = 5 to deliver. Order 2 keeps two NULLs. FROM Orders &#183; one table is enough. Placement, shipment and delivery dates belong to the same order. Keeping that row gives order 2 a place in the report even while its later dates are missing.</desc>
 <rect width="1160" height="1203" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P020    /    SQL WALKTHROUGH</text>
@@ -10,20 +10,18 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">If an order has no ship date yet, what happens to its row and its day count?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  ·  3 rows</text>
-<rect x="68" y="333" width="231.117" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  &#183;  3 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="299.117" y="333" width="264.305" height="47" rx="0" fill="#194f7c"/>
-<text x="310.117" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="310.117" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="563.422" y="333" width="264.305" height="47" rx="0" fill="#194f7c"/>
-<text x="574.422" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="574.422" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ShipDate</text>
-<rect x="827.727" y="333" width="276.273" height="47" rx="0" fill="#194f7c"/>
-<text x="838.727" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="838.727" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DeliveryDate</text>
+<rect x="68" y="354" width="231.117" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
+<rect x="299.117" y="354" width="264.305" height="26" rx="0" fill="#d8e9f7"/>
+<text x="310.117" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
+<rect x="563.422" y="354" width="264.305" height="26" rx="0" fill="#d8e9f7"/>
+<text x="574.422" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ShipDate</text>
+<rect x="827.727" y="354" width="276.273" height="26" rx="0" fill="#d8e9f7"/>
+<text x="838.727" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">DeliveryDate</text>
 <rect x="68" y="380" width="231.117" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 409L299.117 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -64,30 +62,28 @@
 <rect x="32" y="491" width="1096" height="375" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="521" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="501" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="520" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="1012.38" y="520" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 2 rows</text>
 <text x="52" y="556" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which date decides whether an order qualifies?</text>
-<g role="group" aria-label="FROM Orders · one table is enough" data-decision="1">
+<g role="group" aria-label="FROM Orders &#183; one table is enough" data-decision="1">
 <rect x="52" y="567" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="572" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="589" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Orders · one table is enough</text>
+<text x="66" y="589" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Orders &#183; one table is enough</text>
 <text x="66" y="613" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Placement, shipment and delivery dates belong to the same order. Keeping that row gives order 2 a place in the report</text>
 <text x="66" y="636" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">even while its later dates are missing.</text>
 </g>
 <text x="52" y="678" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 3 was placed in October even though it shipped in November. Orders 1 and 2 qualify.</text>
 <rect x="52" y="694" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="715" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE strftime(&#x27;%m&#x27;, OrderDate) = &#x27;11&#x27; AND strftime(&#x27;%Y&#x27;, OrderDate) = &#x27;2025&#x27;</text>
-<rect x="68" y="742" width="231.117" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="715" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE strftime('%m', OrderDate) = '11' AND strftime('%Y', OrderDate) = '2025'</text>
+<rect x="68" y="742" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="757" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="299.117" y="742" width="264.305" height="47" rx="0" fill="#194f7c"/>
-<text x="310.117" y="757" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="310.117" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="563.422" y="742" width="264.305" height="47" rx="0" fill="#194f7c"/>
-<text x="574.422" y="757" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="574.422" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ShipDate</text>
-<rect x="827.727" y="742" width="276.273" height="47" rx="0" fill="#194f7c"/>
-<text x="838.727" y="757" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="838.727" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DeliveryDate</text>
+<rect x="68" y="763" width="231.117" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
+<rect x="299.117" y="763" width="264.305" height="26" rx="0" fill="#d8e9f7"/>
+<text x="310.117" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
+<rect x="563.422" y="763" width="264.305" height="26" rx="0" fill="#d8e9f7"/>
+<text x="574.422" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ShipDate</text>
+<rect x="827.727" y="763" width="276.273" height="26" rx="0" fill="#d8e9f7"/>
+<text x="838.727" y="778" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">DeliveryDate</text>
 <rect x="68" y="789" width="231.117" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="808" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 818L299.117 818" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -116,30 +112,26 @@
 <rect x="32" y="876" width="1096" height="307" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="906" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="886" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="905" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="1012.38" y="905" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 2 rows</text>
 <text x="52" y="941" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does each elapsed time start?</text>
 <text x="52" y="970" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">For order 1, November 3 minus 1 = 2 days to ship and November 6 minus 1 = 5 to deliver. Order 2 keeps two</text>
 <text x="52" y="995" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">NULLs.</text>
 <rect x="52" y="1011" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1032" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">julianday(date(ShipDate)) - julianday(date(OrderDate)) [likewise for DeliveryDate]</text>
-<rect x="68" y="1059" width="134.51" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1059" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1074" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="202.51" y="1059" width="167.698" height="47" rx="0" fill="#194f7c"/>
-<text x="213.51" y="1074" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="213.51" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="370.208" y="1059" width="167.698" height="47" rx="0" fill="#194f7c"/>
-<text x="381.208" y="1074" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="381.208" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ShipDate</text>
-<rect x="537.906" y="1059" width="179.667" height="47" rx="0" fill="#194f7c"/>
-<text x="548.906" y="1074" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="548.906" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DeliveryDate</text>
-<rect x="717.573" y="1059" width="179.667" height="47" rx="0" fill="#194f7c"/>
-<text x="728.573" y="1074" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="728.573" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">days_to_ship</text>
-<rect x="897.24" y="1059" width="206.76" height="47" rx="0" fill="#194f7c"/>
-<text x="908.24" y="1074" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="908.24" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">days_to_deliver</text>
+<rect x="68" y="1080" width="134.51" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
+<rect x="202.51" y="1080" width="167.698" height="26" rx="0" fill="#d8e9f7"/>
+<text x="213.51" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
+<rect x="370.208" y="1080" width="167.698" height="26" rx="0" fill="#d8e9f7"/>
+<text x="381.208" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ShipDate</text>
+<rect x="537.906" y="1080" width="179.667" height="26" rx="0" fill="#d8e9f7"/>
+<text x="548.906" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">DeliveryDate</text>
+<rect x="717.573" y="1080" width="179.667" height="26" rx="0" fill="#d8e9f7"/>
+<text x="728.573" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">days_to_ship</text>
+<rect x="897.24" y="1080" width="206.76" height="26" rx="0" fill="#d8e9f7"/>
+<text x="908.24" y="1095" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">days_to_deliver</text>
 <rect x="68" y="1106" width="134.51" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="1125" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 1135L202.51 1135" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>

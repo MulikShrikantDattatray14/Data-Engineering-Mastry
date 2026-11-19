@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1319" viewBox="0 0 1160 1319" role="img" aria-labelledby="title desc">
-<title id="title">P004 · Customer emails that cannot be delivered</title>
-<desc id="desc">One row per customer with an email issue. Asha has no address, Ben&#x27;s contains a space and Cia&#x27;s fails the requested pattern. Dev gets NULL in the issue column. Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID. FROM Customers · one table is enough. The contact list needs one decision per person. The stored email and the identity of the person to contact are already on the same customer row.</desc>
+<title id="title">P004 &#183; Customer emails that cannot be delivered</title>
+<desc id="desc">One row per customer with an email issue. Asha has no address, Ben's contains a space and Cia's fails the requested pattern. Dev gets NULL in the issue column. Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID. FROM Customers &#183; one table is enough. The contact list needs one decision per person. The stored email and the identity of the person to contact are already on the same customer row.</desc>
 <rect width="1160" height="1319" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P004    /    SQL WALKTHROUGH</text>
@@ -10,20 +10,18 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">What happens to a valid address when the CASE checks find no issue?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  ·  4 rows</text>
-<rect x="68" y="333" width="241.074" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  &#183;  4 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="309.074" y="333" width="232.043" height="47" rx="0" fill="#194f7c"/>
-<text x="320.074" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="320.074" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="541.117" y="333" width="228.949" height="47" rx="0" fill="#194f7c"/>
-<text x="552.117" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="552.117" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="770.066" y="333" width="333.934" height="47" rx="0" fill="#194f7c"/>
-<text x="781.066" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="781.066" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
+<rect x="68" y="354" width="241.074" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="309.074" y="354" width="232.043" height="26" rx="0" fill="#d8e9f7"/>
+<text x="320.074" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">FirstName</text>
+<rect x="541.117" y="354" width="228.949" height="26" rx="0" fill="#d8e9f7"/>
+<text x="552.117" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">LastName</text>
+<rect x="770.066" y="354" width="333.934" height="26" rx="0" fill="#d8e9f7"/>
+<text x="781.066" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Email</text>
 <rect x="68" y="380" width="241.074" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 409L309.074 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -76,34 +74,31 @@
 <rect x="32" y="520" width="1096" height="458" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="550" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="530" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="549" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 4 rows</text>
+<text x="1012.38" y="549" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 &#8594; 4 rows</text>
 <text x="52" y="585" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which issue does each address trigger?</text>
-<g role="group" aria-label="FROM Customers · one table is enough" data-decision="1">
+<g role="group" aria-label="FROM Customers &#183; one table is enough" data-decision="1">
 <rect x="52" y="596" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="601" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="618" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers · one table is enough</text>
+<text x="66" y="618" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers &#183; one table is enough</text>
 <text x="66" y="642" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The contact list needs one decision per person. The stored email and the identity of the person to contact are already</text>
 <text x="66" y="665" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">on the same customer row.</text>
 </g>
-<text x="52" y="707" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Asha has no address, Ben&#x27;s contains a space and Cia&#x27;s fails the requested pattern. Dev gets NULL in the issue</text>
+<text x="52" y="707" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Asha has no address, Ben's contains a space and Cia's fails the requested pattern. Dev gets NULL in the issue</text>
 <text x="52" y="732" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">column.</text>
 <rect x="52" y="748" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="769" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE … IS NULL … LIKE &#x27;% %&#x27; … NOT LIKE &#x27;%_@_%._%&#x27; … END</text>
-<rect x="68" y="796" width="158.863" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="769" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE &#8230; IS NULL &#8230; LIKE '% %' &#8230; NOT LIKE '%_@_%._%' &#8230; END</text>
+<rect x="68" y="796" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="226.863" y="796" width="149.831" height="47" rx="0" fill="#194f7c"/>
-<text x="237.863" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="237.863" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="376.694" y="796" width="146.738" height="47" rx="0" fill="#194f7c"/>
-<text x="387.694" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="387.694" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="523.431" y="796" width="251.722" height="47" rx="0" fill="#194f7c"/>
-<text x="534.431" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="534.431" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
-<rect x="775.153" y="796" width="328.847" height="47" rx="0" fill="#194f7c"/>
-<text x="786.153" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="786.153" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">issue</text>
+<rect x="68" y="817" width="158.863" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="226.863" y="817" width="149.831" height="26" rx="0" fill="#d8e9f7"/>
+<text x="237.863" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">FirstName</text>
+<rect x="376.694" y="817" width="146.738" height="26" rx="0" fill="#d8e9f7"/>
+<text x="387.694" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">LastName</text>
+<rect x="523.431" y="817" width="251.722" height="26" rx="0" fill="#d8e9f7"/>
+<text x="534.431" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Email</text>
+<rect x="775.153" y="817" width="328.847" height="26" rx="0" fill="#d8e9f7"/>
+<text x="786.153" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">issue</text>
 <rect x="68" y="843" width="158.863" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="862" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 872L226.863 872" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -168,26 +163,23 @@
 <rect x="32" y="988" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1018" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="998" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1017" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
+<text x="1012.38" y="1017" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 &#8594; 3 rows</text>
 <text x="52" y="1053" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which customers need follow-up?</text>
 <text x="52" y="1082" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID.</text>
 <rect x="52" y="1098" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1119" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Email IS NULL OR LENGTH(Email) = 0 OR Email LIKE &#x27;% %&#x27; OR Email NOT LIKE &#x27;%_@_%._%&#x27;</text>
-<rect x="68" y="1146" width="158.863" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="1119" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Email IS NULL OR LENGTH(Email) = 0 OR Email LIKE '% %' OR Email NOT LIKE '%_@_%._%'</text>
+<rect x="68" y="1146" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="226.863" y="1146" width="149.831" height="47" rx="0" fill="#194f7c"/>
-<text x="237.863" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="237.863" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="376.694" y="1146" width="146.738" height="47" rx="0" fill="#194f7c"/>
-<text x="387.694" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="387.694" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="523.431" y="1146" width="251.722" height="47" rx="0" fill="#194f7c"/>
-<text x="534.431" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="534.431" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
-<rect x="775.153" y="1146" width="328.847" height="47" rx="0" fill="#194f7c"/>
-<text x="786.153" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="786.153" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">issue</text>
+<rect x="68" y="1167" width="158.863" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="226.863" y="1167" width="149.831" height="26" rx="0" fill="#d8e9f7"/>
+<text x="237.863" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">FirstName</text>
+<rect x="376.694" y="1167" width="146.738" height="26" rx="0" fill="#d8e9f7"/>
+<text x="387.694" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">LastName</text>
+<rect x="523.431" y="1167" width="251.722" height="26" rx="0" fill="#d8e9f7"/>
+<text x="534.431" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Email</text>
+<rect x="775.153" y="1167" width="328.847" height="26" rx="0" fill="#d8e9f7"/>
+<text x="786.153" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">issue</text>
 <rect x="68" y="1193" width="158.863" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1212" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 1222L226.863 1222" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>

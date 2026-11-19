@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1236" viewBox="0 0 1160 1236" role="img" aria-labelledby="title desc">
-<title id="title">P005 · Orders placed in Q1 2025</title>
-<desc id="desc">One row per order placed in Q1 2025. Order 1 is from December and drops out. January 1 qualifies exactly at the lower boundary. March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter&#x27;s two orders. FROM Orders · one table is enough. The date that decides eligibility and the amount to display both belong to an order. Its customer ID is already recorded on that same row.</desc>
+<title id="title">P005 &#183; Orders placed in Q1 2025</title>
+<desc id="desc">One row per order placed in Q1 2025. Order 1 is from December and drops out. January 1 qualifies exactly at the lower boundary. March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter's two orders. FROM Orders &#183; one table is enough. The date that decides eligibility and the amount to display both belong to an order. Its customer ID is already recorded on that same row.</desc>
 <rect width="1160" height="1236" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P005    /    SQL WALKTHROUGH</text>
@@ -10,20 +10,18 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Which side of the quarter boundary contains an order dated April 1?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  ·  4 rows</text>
-<rect x="68" y="333" width="219.094" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Orders  &#183;  4 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="287.094" y="333" width="246.188" height="47" rx="0" fill="#194f7c"/>
-<text x="298.094" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="298.094" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="533.281" y="333" width="252.281" height="47" rx="0" fill="#194f7c"/>
-<text x="544.281" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="544.281" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="785.562" y="333" width="318.438" height="47" rx="0" fill="#194f7c"/>
-<text x="796.562" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="796.562" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
+<rect x="68" y="354" width="219.094" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
+<rect x="287.094" y="354" width="246.188" height="26" rx="0" fill="#d8e9f7"/>
+<text x="298.094" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="533.281" y="354" width="252.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="544.281" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
+<rect x="785.562" y="354" width="318.438" height="26" rx="0" fill="#d8e9f7"/>
+<text x="796.562" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Total_Order_Amount</text>
 <rect x="68" y="380" width="219.094" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 409L287.094 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -77,30 +75,28 @@
 <rect x="32" y="520" width="1096" height="404" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="550" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="530" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="549" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
+<text x="1012.38" y="549" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 &#8594; 3 rows</text>
 <text x="52" y="585" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does the quarter begin?</text>
-<g role="group" aria-label="FROM Orders · one table is enough" data-decision="1">
+<g role="group" aria-label="FROM Orders &#183; one table is enough" data-decision="1">
 <rect x="52" y="596" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="601" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="618" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Orders · one table is enough</text>
+<text x="66" y="618" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Orders &#183; one table is enough</text>
 <text x="66" y="642" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The date that decides eligibility and the amount to display both belong to an order. Its customer ID is already recorded</text>
 <text x="66" y="665" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">on that same row.</text>
 </g>
 <text x="52" y="707" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 1 is from December and drops out. January 1 qualifies exactly at the lower boundary.</text>
 <rect x="52" y="723" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="744" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE OrderDate &gt;= &#x27;2025-01-01&#x27;</text>
-<rect x="68" y="771" width="219.094" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="744" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE OrderDate &gt;= '2025-01-01'</text>
+<rect x="68" y="771" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="287.094" y="771" width="246.188" height="47" rx="0" fill="#194f7c"/>
-<text x="298.094" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="298.094" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="533.281" y="771" width="252.281" height="47" rx="0" fill="#194f7c"/>
-<text x="544.281" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="544.281" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="785.562" y="771" width="318.438" height="47" rx="0" fill="#194f7c"/>
-<text x="796.562" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="796.562" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
+<rect x="68" y="792" width="219.094" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
+<rect x="287.094" y="792" width="246.188" height="26" rx="0" fill="#d8e9f7"/>
+<text x="298.094" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="533.281" y="792" width="252.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="544.281" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
+<rect x="785.562" y="792" width="318.438" height="26" rx="0" fill="#d8e9f7"/>
+<text x="796.562" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Total_Order_Amount</text>
 <rect x="68" y="818" width="219.094" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
 <path d="M68 847L287.094 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -142,23 +138,21 @@
 <rect x="32" y="934" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="964" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="944" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="963" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="1012.38" y="963" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 2 rows</text>
 <text x="52" y="999" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does the quarter end?</text>
-<text x="52" y="1028" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter&#x27;s two orders.</text>
+<text x="52" y="1028" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">March 31 stays and April 1 drops out. Orders 2 and 3 are the quarter's two orders.</text>
 <rect x="52" y="1044" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND OrderDate &lt; &#x27;2025-04-01&#x27;</text>
-<rect x="68" y="1092" width="219.094" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND OrderDate &lt; '2025-04-01'</text>
+<rect x="68" y="1092" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="287.094" y="1092" width="246.188" height="47" rx="0" fill="#194f7c"/>
-<text x="298.094" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="298.094" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="533.281" y="1092" width="252.281" height="47" rx="0" fill="#194f7c"/>
-<text x="544.281" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="544.281" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="785.562" y="1092" width="318.438" height="47" rx="0" fill="#194f7c"/>
-<text x="796.562" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="796.562" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
+<rect x="68" y="1113" width="219.094" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderID</text>
+<rect x="287.094" y="1113" width="246.188" height="26" rx="0" fill="#d8e9f7"/>
+<text x="298.094" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">CustomerID</text>
+<rect x="533.281" y="1113" width="252.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="544.281" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">OrderDate</text>
+<rect x="785.562" y="1113" width="318.438" height="26" rx="0" fill="#d8e9f7"/>
+<text x="796.562" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Total_Order_Amount</text>
 <rect x="68" y="1139" width="219.094" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
 <path d="M68 1168L287.094 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>

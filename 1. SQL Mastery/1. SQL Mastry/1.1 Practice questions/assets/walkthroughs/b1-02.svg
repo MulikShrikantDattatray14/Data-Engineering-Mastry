@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1410" viewBox="0 0 1160 1410" role="img" aria-labelledby="title desc">
-<title id="title">B1.02 · Calculate Special Bonus</title>
-<desc id="desc">One row per employee with their calculated bonus. An odd ID gives 1. A permitted name also gives 1. Michael fails the name test and Juan fails the ID test. IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order. FROM Employees · one table is enough. Each employee row holds the ID and name that determine eligibility, plus the salary that determines the payout. Employees who receive zero still have an output row.</desc>
+<title id="title">B1.02 &#183; Calculate Special Bonus</title>
+<desc id="desc">One row per employee with their calculated bonus. An odd ID gives 1. A permitted name also gives 1. Michael fails the name test and Juan fails the ID test. IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order. FROM Employees &#183; one table is enough. Each employee row holds the ID and name that determine eligibility, plus the salary that determines the payout. Employees who receive zero still have an output row.</desc>
 <rect width="1160" height="1410" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">BOSSCODER  1.02    /    SQL WALKTHROUGH</text>
@@ -10,17 +10,16 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Michael has an odd ID. Does that alone earn a bonus?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Employees  ·  5 rows</text>
-<rect x="68" y="333" width="358.927" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Employees  &#183;  5 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">employee_id</text>
-<rect x="426.927" y="333" width="338.536" height="47" rx="0" fill="#194f7c"/>
-<text x="437.927" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="437.927" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">name</text>
-<rect x="765.464" y="333" width="338.536" height="47" rx="0" fill="#194f7c"/>
-<text x="776.464" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="776.464" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">salary</text>
+<rect x="68" y="354" width="358.927" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">employee_id</text>
+<rect x="426.927" y="354" width="338.536" height="26" rx="0" fill="#d8e9f7"/>
+<text x="437.927" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">name</text>
+<rect x="765.464" y="354" width="338.536" height="26" rx="0" fill="#d8e9f7"/>
+<text x="776.464" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">salary</text>
 <rect x="68" y="380" width="358.927" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
 <path d="M68 409L426.927 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -71,33 +70,30 @@
 <rect x="32" y="549" width="1096" height="462" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="579" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="559" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
 <text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Who passes both tests?</text>
-<g role="group" aria-label="FROM Employees · one table is enough" data-decision="2">
+<g role="group" aria-label="FROM Employees &#183; one table is enough" data-decision="2">
 <rect x="52" y="625" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="630" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Employees · one table is enough</text>
+<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Employees &#183; one table is enough</text>
 <text x="66" y="671" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Each employee row holds the ID and name that determine eligibility, plus the salary that determines the payout.</text>
 <text x="66" y="694" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Employees who receive zero still have an output row.</text>
 </g>
 <text x="52" y="736" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">An odd ID gives 1. A permitted name also gives 1. Michael fails the name test and Juan fails the ID test.</text>
 <rect x="52" y="752" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="773" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">employee_id % 2 AS remainder, name NOT LIKE &#x27;M%&#x27; AS name_allowed</text>
-<rect x="68" y="800" width="217.162" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="773" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">employee_id % 2 AS remainder, name NOT LIKE 'M%' AS name_allowed</text>
+<rect x="68" y="800" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">employee_id</text>
-<rect x="285.163" y="800" width="196.772" height="47" rx="0" fill="#194f7c"/>
-<text x="296.163" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="296.163" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">name</text>
-<rect x="481.934" y="800" width="196.772" height="47" rx="0" fill="#194f7c"/>
-<text x="492.934" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="492.934" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">salary</text>
-<rect x="678.706" y="800" width="199.1" height="47" rx="0" fill="#194f7c"/>
-<text x="689.706" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="689.706" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">remainder</text>
-<rect x="877.806" y="800" width="226.194" height="47" rx="0" fill="#194f7c"/>
-<text x="888.806" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="888.806" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">name_allowed</text>
+<rect x="68" y="821" width="217.162" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">employee_id</text>
+<rect x="285.163" y="821" width="196.772" height="26" rx="0" fill="#d8e9f7"/>
+<text x="296.163" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">name</text>
+<rect x="481.934" y="821" width="196.772" height="26" rx="0" fill="#d8e9f7"/>
+<text x="492.934" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">salary</text>
+<rect x="678.706" y="821" width="199.1" height="26" rx="0" fill="#d8e9f7"/>
+<text x="689.706" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">remainder</text>
+<rect x="877.806" y="821" width="226.194" height="26" rx="0" fill="#d8e9f7"/>
+<text x="888.806" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">name_allowed</text>
 <rect x="68" y="847" width="217.162" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
 <path d="M68 876L285.163 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -178,17 +174,17 @@
 <rect x="32" y="1021" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1051" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="1031" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
 <text x="52" y="1086" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Who receives their full salary?</text>
 <text x="52" y="1115" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order.</text>
 <rect x="52" y="1131" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN name NOT LIKE &#x27;M%&#x27; AND employee_id % 2 = 1 THEN salary ELSE 0 END</text>
-<rect x="68" y="1179" width="528.195" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN name NOT LIKE 'M%' AND employee_id % 2 = 1 THEN salary ELSE 0 END</text>
+<rect x="68" y="1179" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="79" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">employee_id</text>
-<rect x="596.195" y="1179" width="507.805" height="47" rx="0" fill="#194f7c"/>
-<text x="607.195" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="607.195" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">bonus</text>
+<rect x="68" y="1200" width="528.195" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">employee_id</text>
+<rect x="596.195" y="1200" width="507.805" height="26" rx="0" fill="#d8e9f7"/>
+<text x="607.195" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">bonus</text>
 <rect x="68" y="1226" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
 <path d="M68 1255L596.195 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>

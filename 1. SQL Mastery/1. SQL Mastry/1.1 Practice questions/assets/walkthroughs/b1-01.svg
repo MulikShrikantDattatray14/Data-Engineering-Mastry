@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1640" viewBox="0 0 1160 1640" role="img" aria-labelledby="title desc">
-<title id="title">B1.01 · Find Customers With Positive Revenue This Year</title>
-<desc id="desc">One row per customer with positive revenue in 2021. Only customers 1, 2 and 4 have a 2021 row. Customer 3 has positive numbers in earlier years. Customer 2 has −50 and drops out. Customers 1 and 4 have 30 and 20 respectively. The qualifying IDs are 1 and 4. Each appears once because customer and year form the input key. Any output order is valid. FROM Customers · one table is enough. The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and the customer ID to return.</desc>
+<title id="title">B1.01 &#183; Find Customers With Positive Revenue This Year</title>
+<desc id="desc">One row per customer with positive revenue in 2021. Only customers 1, 2 and 4 have a 2021 row. Customer 3 has positive numbers in earlier years. Customer 2 has &#8722;50 and drops out. Customers 1 and 4 have 30 and 20 respectively. The qualifying IDs are 1 and 4. Each appears once because customer and year form the input key. Any output order is valid. FROM Customers &#183; one table is enough. The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and the customer ID to return.</desc>
 <rect width="1160" height="1640" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">BOSSCODER  1.01    /    SQL WALKTHROUGH</text>
@@ -10,17 +10,16 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Can a customer qualify using a positive amount from a different year?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  ·  7 rows</text>
-<rect x="68" y="333" width="359.438" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Customers  &#183;  7 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_id</text>
-<rect x="427.438" y="333" width="338.281" height="47" rx="0" fill="#194f7c"/>
-<text x="438.438" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="438.438" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">year</text>
-<rect x="765.719" y="333" width="338.281" height="47" rx="0" fill="#194f7c"/>
-<text x="776.719" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="776.719" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">revenue</text>
+<rect x="68" y="354" width="359.438" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_id</text>
+<rect x="427.438" y="354" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="438.438" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">year</text>
+<rect x="765.719" y="354" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="776.719" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">revenue</text>
 <rect x="68" y="380" width="359.438" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 409L427.438 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -88,27 +87,26 @@
 <rect x="32" y="607" width="1096" height="404" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="637" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="617" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="636" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 → 3 rows</text>
+<text x="1012.38" y="636" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">7 &#8594; 3 rows</text>
 <text x="52" y="672" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which customer-year rows matter?</text>
-<g role="group" aria-label="FROM Customers · one table is enough" data-decision="1">
+<g role="group" aria-label="FROM Customers &#183; one table is enough" data-decision="1">
 <rect x="52" y="683" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="688" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="705" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers · one table is enough</text>
+<text x="66" y="705" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers &#183; one table is enough</text>
 <text x="66" y="729" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and</text>
 <text x="66" y="752" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">the customer ID to return.</text>
 </g>
 <text x="52" y="794" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Only customers 1, 2 and 4 have a 2021 row. Customer 3 has positive numbers in earlier years.</text>
 <rect x="52" y="810" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="831" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE year = 2021</text>
-<rect x="68" y="858" width="359.438" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="858" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="873" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="894" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_id</text>
-<rect x="427.438" y="858" width="338.281" height="47" rx="0" fill="#194f7c"/>
-<text x="438.438" y="873" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="438.438" y="894" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">year</text>
-<rect x="765.719" y="858" width="338.281" height="47" rx="0" fill="#194f7c"/>
-<text x="776.719" y="873" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="776.719" y="894" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">revenue</text>
+<rect x="68" y="879" width="359.438" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="894" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_id</text>
+<rect x="427.438" y="879" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="438.438" y="894" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">year</text>
+<rect x="765.719" y="879" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="776.719" y="894" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">revenue</text>
 <rect x="68" y="905" width="359.438" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 934L427.438 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -140,20 +138,19 @@
 <rect x="32" y="1021" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1051" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
 <rect x="1000.38" y="1031" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 &#8594; 2 rows</text>
 <text x="52" y="1086" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which revenues are positive?</text>
-<text x="52" y="1115" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Customer 2 has −50 and drops out. Customers 1 and 4 have 30 and 20 respectively.</text>
+<text x="52" y="1115" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Customer 2 has &#8722;50 and drops out. Customers 1 and 4 have 30 and 20 respectively.</text>
 <rect x="52" y="1131" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND revenue &gt; 0</text>
-<rect x="68" y="1179" width="359.438" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1179" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_id</text>
-<rect x="427.438" y="1179" width="338.281" height="47" rx="0" fill="#194f7c"/>
-<text x="438.438" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="438.438" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">year</text>
-<rect x="765.719" y="1179" width="338.281" height="47" rx="0" fill="#194f7c"/>
-<text x="776.719" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="776.719" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">revenue</text>
+<rect x="68" y="1200" width="359.438" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_id</text>
+<rect x="427.438" y="1200" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="438.438" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">year</text>
+<rect x="765.719" y="1200" width="338.281" height="26" rx="0" fill="#d8e9f7"/>
+<text x="776.719" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">revenue</text>
 <rect x="68" y="1226" width="359.438" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 1255L427.438 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -175,15 +172,16 @@
 <rect x="32" y="1313" width="1096" height="307" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1343" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="1323" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1342" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="1012.38" y="1342" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 &#8594; 2 rows</text>
 <text x="52" y="1378" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What does the exercise ask us to return?</text>
 <text x="52" y="1407" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The qualifying IDs are 1 and 4. Each appears once because customer and year form the input key. Any output order</text>
 <text x="52" y="1432" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">is valid.</text>
 <rect x="52" y="1448" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1469" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT customer_id</text>
-<rect x="68" y="1496" width="1036" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1496" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1511" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1532" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_id</text>
+<rect x="68" y="1517" width="1036" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1532" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">customer_id</text>
 <rect x="68" y="1543" width="1036" height="29" rx="0" fill="#d8e9f7"/>
 <text x="79" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 1572L1104 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>

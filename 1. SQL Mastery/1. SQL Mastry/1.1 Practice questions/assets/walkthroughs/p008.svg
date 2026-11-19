@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1789" viewBox="0 0 1160 1789" role="img" aria-labelledby="title desc">
-<title id="title">P008 · Price band labels</title>
-<desc id="desc">One row per product with one budget label. The Pen costs 199 and enters Budget. The other four rows still need a label. The Book at 200 and Bag at 699.50 both enter Mid. The Watch at 700 misses this band. The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay. FROM Products · one table is enough. Each product gets one band from its own sale price. The catalogue already contains its ID, name and price, including products with a missing price.</desc>
+<title id="title">P008 &#183; Price band labels</title>
+<desc id="desc">One row per product with one budget label. The Pen costs 199 and enters Budget. The other four rows still need a label. The Book at 200 and Bag at 699.50 both enter Mid. The Watch at 700 misses this band. The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay. FROM Products &#183; one table is enough. Each product gets one band from its own sale price. The catalogue already contains its ID, name and price, including products with a missing price.</desc>
 <rect width="1160" height="1789" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P008    /    SQL WALKTHROUGH</text>
@@ -10,17 +10,16 @@
 <text x="50" y="173" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#215e49" font-weight="700">PREDICT THE RESULT</text>
 <text x="50" y="199" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#142a3a" font-weight="700">Which band owns exactly 200? What about exactly 700?</text>
 <text x="32" y="263" font-family="DejaVu Sans, sans-serif" font-size="21" fill="#142a3a" font-weight="700">Sample inputs</text>
-<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use … for omitted clauses.</text>
-<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Products  ·  5 rows</text>
-<rect x="68" y="333" width="346.922" height="47" rx="0" fill="#194f7c"/>
+<text x="32" y="291" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#405766">A triangle marks an example to follow. Shaded columns show what to read. SQL excerpts use &#8230; for omitted clauses.</text>
+<text x="68" y="324" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#194f7c" font-weight="700">Products  &#183;  5 rows</text>
+<rect x="68" y="333" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="414.922" y="333" width="333.125" height="47" rx="0" fill="#194f7c"/>
-<text x="425.922" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="425.922" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="748.047" y="333" width="355.953" height="47" rx="0" fill="#194f7c"/>
-<text x="759.047" y="348" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="759.047" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
+<rect x="68" y="354" width="346.922" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
+<rect x="414.922" y="354" width="333.125" height="26" rx="0" fill="#d8e9f7"/>
+<text x="425.922" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Product</text>
+<rect x="748.047" y="354" width="355.953" height="26" rx="0" fill="#d8e9f7"/>
+<text x="759.047" y="369" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Sale_Price</text>
 <rect x="68" y="380" width="346.922" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="399" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 409L414.922 409" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -71,30 +70,28 @@
 <rect x="32" y="549" width="1096" height="462" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="579" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="559" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
 <text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which prices qualify as Budget?</text>
-<g role="group" aria-label="FROM Products · one table is enough" data-decision="1">
+<g role="group" aria-label="FROM Products &#183; one table is enough" data-decision="1">
 <rect x="52" y="625" width="1052" height="85" rx="5" fill="#edf4fb"/>
 <rect x="52" y="630" width="4" height="75" rx="2" fill="#194f7c"/>
-<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products · one table is enough</text>
+<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products &#183; one table is enough</text>
 <text x="66" y="671" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Each product gets one band from its own sale price. The catalogue already contains its ID, name and price, including</text>
 <text x="66" y="694" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">products with a missing price.</text>
 </g>
 <text x="52" y="736" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The Pen costs 199 and enters Budget. The other four rows still need a label.</text>
 <rect x="52" y="752" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="773" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &lt; 200</text>
-<rect x="68" y="800" width="257.934" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="800" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="325.934" y="800" width="244.137" height="47" rx="0" fill="#194f7c"/>
-<text x="336.934" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="336.934" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="570.07" y="800" width="266.965" height="47" rx="0" fill="#194f7c"/>
-<text x="581.07" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="581.07" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
-<rect x="837.035" y="800" width="266.965" height="47" rx="0" fill="#194f7c"/>
-<text x="848.035" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="848.035" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">price_band</text>
+<rect x="68" y="821" width="257.934" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
+<rect x="325.934" y="821" width="244.137" height="26" rx="0" fill="#d8e9f7"/>
+<text x="336.934" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Product</text>
+<rect x="570.07" y="821" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
+<text x="581.07" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Sale_Price</text>
+<rect x="837.035" y="821" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
+<text x="848.035" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price_band</text>
 <rect x="68" y="847" width="257.934" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 876L325.934 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -160,23 +157,21 @@
 <rect x="32" y="1021" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1051" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
 <rect x="1000.38" y="1031" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
 <text x="52" y="1086" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does Mid stop?</text>
 <text x="52" y="1115" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The Book at 200 and Bag at 699.50 both enter Mid. The Watch at 700 misses this band.</text>
 <rect x="52" y="1131" width="1056" height="35" rx="5" fill="#f0f4f6"/>
 <text x="64" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &gt;= 200 AND Sale_Price &lt; 700</text>
-<rect x="68" y="1179" width="257.934" height="47" rx="0" fill="#194f7c"/>
+<rect x="68" y="1179" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="325.934" y="1179" width="244.137" height="47" rx="0" fill="#194f7c"/>
-<text x="336.934" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="336.934" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="570.07" y="1179" width="266.965" height="47" rx="0" fill="#194f7c"/>
-<text x="581.07" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="581.07" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
-<rect x="837.035" y="1179" width="266.965" height="47" rx="0" fill="#194f7c"/>
-<text x="848.035" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="848.035" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">price_band</text>
+<rect x="68" y="1200" width="257.934" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
+<rect x="325.934" y="1200" width="244.137" height="26" rx="0" fill="#d8e9f7"/>
+<text x="336.934" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Product</text>
+<rect x="570.07" y="1200" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
+<text x="581.07" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Sale_Price</text>
+<rect x="837.035" y="1200" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
+<text x="848.035" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price_band</text>
 <rect x="68" y="1226" width="257.934" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 1255L325.934 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
@@ -242,23 +237,21 @@
 <rect x="32" y="1400" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="1430" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
 <rect x="1000.38" y="1410" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1429" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="1012.38" y="1429" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 &#8594; 5 rows</text>
 <text x="52" y="1465" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How do the remaining rows get labels?</text>
 <text x="52" y="1494" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The Watch becomes Premium. Mystery has a NULL price and receives Unknown. All five products stay.</text>
 <rect x="52" y="1510" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1531" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &gt;= 700 THEN &#x27;Premium&#x27; ELSE &#x27;Unknown&#x27;</text>
-<rect x="68" y="1558" width="257.934" height="47" rx="0" fill="#194f7c"/>
+<text x="64" y="1531" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN Sale_Price &gt;= 700 THEN 'Premium' ELSE 'Unknown'</text>
+<rect x="68" y="1558" width="1036" height="21" rx="0" fill="#194f7c"/>
 <text x="79" y="1573" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="325.934" y="1558" width="244.137" height="47" rx="0" fill="#194f7c"/>
-<text x="336.934" y="1573" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="336.934" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="570.07" y="1558" width="266.965" height="47" rx="0" fill="#194f7c"/>
-<text x="581.07" y="1573" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="581.07" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
-<rect x="837.035" y="1558" width="266.965" height="47" rx="0" fill="#194f7c"/>
-<text x="848.035" y="1573" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="848.035" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">price_band</text>
+<rect x="68" y="1579" width="257.934" height="26" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">ProductID</text>
+<rect x="325.934" y="1579" width="244.137" height="26" rx="0" fill="#d8e9f7"/>
+<text x="336.934" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Product</text>
+<rect x="570.07" y="1579" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
+<text x="581.07" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">Sale_Price</text>
+<rect x="837.035" y="1579" width="266.965" height="26" rx="0" fill="#d8e9f7"/>
+<text x="848.035" y="1594" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#194f7c" font-weight="700">price_band</text>
 <rect x="68" y="1605" width="257.934" height="29" rx="0" fill="#edf4fb"/>
 <text x="79" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
 <path d="M68 1634L325.934 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
