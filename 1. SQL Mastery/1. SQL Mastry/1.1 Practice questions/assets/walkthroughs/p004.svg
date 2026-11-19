@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1226" viewBox="0 0 1160 1226" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1319" viewBox="0 0 1160 1319" role="img" aria-labelledby="title desc">
 <title id="title">P004 · Customer emails that cannot be delivered</title>
-<desc id="desc">One row per customer with an email issue. Asha has no address, Ben&#x27;s contains a space and Cia&#x27;s fails the requested pattern. Dev gets NULL in the issue column. Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID.</desc>
-<rect width="1160" height="1226" fill="#f4f7f7"/>
+<desc id="desc">One row per customer with an email issue. Asha has no address, Ben&#x27;s contains a space and Cia&#x27;s fails the requested pattern. Dev gets NULL in the issue column. Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID. FROM Customers · one table is enough. The contact list needs one decision per person. The stored email and the identity of the person to contact are already on the same customer row.</desc>
+<rect width="1160" height="1319" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P004    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Customer emails that cannot be delivered</text>
@@ -73,158 +73,165 @@
 <rect x="770.066" y="467" width="333.934" height="29" rx="0" fill="#ffffff"/>
 <text x="781.066" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">dev@example.com</text>
 <path d="M770.066 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="520" width="1096" height="365" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="520" width="1096" height="458" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="550" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="530" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="549" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 4 rows</text>
 <text x="52" y="585" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which issue does each address trigger?</text>
-<text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Asha has no address, Ben&#x27;s contains a space and Cia&#x27;s fails the requested pattern. Dev gets NULL in the issue</text>
-<text x="52" y="639" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">column.</text>
-<rect x="52" y="655" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="676" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE … IS NULL … LIKE &#x27;% %&#x27; … NOT LIKE &#x27;%_@_%._%&#x27; … END</text>
-<rect x="68" y="703" width="158.863" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="718" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="739" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="226.863" y="703" width="149.831" height="47" rx="0" fill="#194f7c"/>
-<text x="237.863" y="718" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="237.863" y="739" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="376.694" y="703" width="146.738" height="47" rx="0" fill="#194f7c"/>
-<text x="387.694" y="718" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="387.694" y="739" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="523.431" y="703" width="251.722" height="47" rx="0" fill="#194f7c"/>
-<text x="534.431" y="718" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="534.431" y="739" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
-<rect x="775.153" y="703" width="328.847" height="47" rx="0" fill="#194f7c"/>
-<text x="786.153" y="718" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="786.153" y="739" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">issue</text>
-<rect x="68" y="750" width="158.863" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="769" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 779L226.863 779" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="226.863" y="750" width="149.831" height="29" rx="0" fill="#edf4fb"/>
-<text x="237.863" y="769" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
-<path d="M226.863 779L376.694 779" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="376.694" y="750" width="146.738" height="29" rx="0" fill="#edf4fb"/>
-<text x="387.694" y="769" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
-<path d="M376.694 779L523.431 779" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="523.431" y="750" width="251.722" height="29" rx="0" fill="#d8e9f7"/>
-<text x="534.431" y="769" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M523.431 779L775.153 779" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="775.153" y="750" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
-<text x="786.153" y="769" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Missing</text>
-<path d="M775.153 779L1104 779" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="779" width="158.863" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="798" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 808L226.863 808" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="226.863" y="779" width="149.831" height="29" rx="0" fill="#ffffff"/>
-<text x="237.863" y="798" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ben</text>
-<path d="M226.863 808L376.694 808" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="376.694" y="779" width="146.738" height="29" rx="0" fill="#ffffff"/>
-<text x="387.694" y="798" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
-<path d="M376.694 808L523.431 808" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="523.431" y="779" width="251.722" height="29" rx="0" fill="#d8e9f7"/>
-<text x="534.431" y="798" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">ben das@example.com</text>
-<path d="M523.431 808L775.153 808" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="775.153" y="779" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
-<text x="786.153" y="798" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Contains a space</text>
-<path d="M775.153 808L1104 808" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 817.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="808" width="158.863" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="827" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 837L226.863 837" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="226.863" y="808" width="149.831" height="29" rx="0" fill="#edf4fb"/>
-<text x="237.863" y="827" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cia</text>
-<path d="M226.863 837L376.694 837" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="376.694" y="808" width="146.738" height="29" rx="0" fill="#edf4fb"/>
-<text x="387.694" y="827" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
-<path d="M376.694 837L523.431 837" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="523.431" y="808" width="251.722" height="29" rx="0" fill="#d8e9f7"/>
-<text x="534.431" y="827" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">cia.example.com</text>
-<path d="M523.431 837L775.153 837" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="775.153" y="808" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
-<text x="786.153" y="827" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not in name@domain.tld form</text>
-<path d="M775.153 837L1104 837" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="837" width="158.863" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="856" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 866L226.863 866" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="226.863" y="837" width="149.831" height="29" rx="0" fill="#ffffff"/>
-<text x="237.863" y="856" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dev</text>
-<path d="M226.863 866L376.694 866" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="376.694" y="837" width="146.738" height="29" rx="0" fill="#ffffff"/>
-<text x="387.694" y="856" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Roy</text>
-<path d="M376.694 866L523.431 866" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="523.431" y="837" width="251.722" height="29" rx="0" fill="#d8e9f7"/>
-<text x="534.431" y="856" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">dev@example.com</text>
-<path d="M523.431 866L775.153 866" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="775.153" y="837" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
-<text x="786.153" y="856" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M775.153 866L1104 866" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="895" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="925" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="905" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="924" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
-<text x="52" y="960" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which customers need follow-up?</text>
-<text x="52" y="989" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID.</text>
-<rect x="52" y="1005" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1026" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Email IS NULL OR LENGTH(Email) = 0 OR Email LIKE &#x27;% %&#x27; OR Email NOT LIKE &#x27;%_@_%._%&#x27;</text>
-<rect x="68" y="1053" width="158.863" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1068" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1089" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="226.863" y="1053" width="149.831" height="47" rx="0" fill="#194f7c"/>
-<text x="237.863" y="1068" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="237.863" y="1089" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="376.694" y="1053" width="146.738" height="47" rx="0" fill="#194f7c"/>
-<text x="387.694" y="1068" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="387.694" y="1089" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="523.431" y="1053" width="251.722" height="47" rx="0" fill="#194f7c"/>
-<text x="534.431" y="1068" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="534.431" y="1089" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
-<rect x="775.153" y="1053" width="328.847" height="47" rx="0" fill="#194f7c"/>
-<text x="786.153" y="1068" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="786.153" y="1089" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">issue</text>
-<rect x="68" y="1100" width="158.863" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1119" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1129L226.863 1129" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="226.863" y="1100" width="149.831" height="29" rx="0" fill="#edf4fb"/>
-<text x="237.863" y="1119" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
-<path d="M226.863 1129L376.694 1129" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="376.694" y="1100" width="146.738" height="29" rx="0" fill="#edf4fb"/>
-<text x="387.694" y="1119" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
-<path d="M376.694 1129L523.431 1129" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="523.431" y="1100" width="251.722" height="29" rx="0" fill="#edf4fb"/>
-<text x="534.431" y="1119" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M523.431 1129L775.153 1129" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="775.153" y="1100" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
-<text x="786.153" y="1119" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Missing</text>
-<path d="M775.153 1129L1104 1129" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1129" width="158.863" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1148" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1158L226.863 1158" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="226.863" y="1129" width="149.831" height="29" rx="0" fill="#ffffff"/>
-<text x="237.863" y="1148" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ben</text>
-<path d="M226.863 1158L376.694 1158" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="376.694" y="1129" width="146.738" height="29" rx="0" fill="#ffffff"/>
-<text x="387.694" y="1148" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
-<path d="M376.694 1158L523.431 1158" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="523.431" y="1129" width="251.722" height="29" rx="0" fill="#ffffff"/>
-<text x="534.431" y="1148" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">ben das@example.com</text>
-<path d="M523.431 1158L775.153 1158" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="775.153" y="1129" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
-<text x="786.153" y="1148" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Contains a space</text>
-<path d="M775.153 1158L1104 1158" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1167.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1158" width="158.863" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1177" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1187L226.863 1187" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="226.863" y="1158" width="149.831" height="29" rx="0" fill="#edf4fb"/>
-<text x="237.863" y="1177" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cia</text>
-<path d="M226.863 1187L376.694 1187" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="376.694" y="1158" width="146.738" height="29" rx="0" fill="#edf4fb"/>
-<text x="387.694" y="1177" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
-<path d="M376.694 1187L523.431 1187" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="523.431" y="1158" width="251.722" height="29" rx="0" fill="#edf4fb"/>
-<text x="534.431" y="1177" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">cia.example.com</text>
-<path d="M523.431 1187L775.153 1187" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="775.153" y="1158" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
-<text x="786.153" y="1177" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not in name@domain.tld form</text>
-<path d="M775.153 1187L1104 1187" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM Customers · one table is enough" data-decision="1">
+<rect x="52" y="596" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="601" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="618" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers · one table is enough</text>
+<text x="66" y="642" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The contact list needs one decision per person. The stored email and the identity of the person to contact are already</text>
+<text x="66" y="665" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">on the same customer row.</text>
+</g>
+<text x="52" y="707" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Asha has no address, Ben&#x27;s contains a space and Cia&#x27;s fails the requested pattern. Dev gets NULL in the issue</text>
+<text x="52" y="732" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">column.</text>
+<rect x="52" y="748" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="769" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE … IS NULL … LIKE &#x27;% %&#x27; … NOT LIKE &#x27;%_@_%._%&#x27; … END</text>
+<rect x="68" y="796" width="158.863" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<rect x="226.863" y="796" width="149.831" height="47" rx="0" fill="#194f7c"/>
+<text x="237.863" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="237.863" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
+<rect x="376.694" y="796" width="146.738" height="47" rx="0" fill="#194f7c"/>
+<text x="387.694" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="387.694" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
+<rect x="523.431" y="796" width="251.722" height="47" rx="0" fill="#194f7c"/>
+<text x="534.431" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="534.431" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
+<rect x="775.153" y="796" width="328.847" height="47" rx="0" fill="#194f7c"/>
+<text x="786.153" y="811" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="786.153" y="832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">issue</text>
+<rect x="68" y="843" width="158.863" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="862" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 872L226.863 872" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="226.863" y="843" width="149.831" height="29" rx="0" fill="#edf4fb"/>
+<text x="237.863" y="862" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
+<path d="M226.863 872L376.694 872" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="376.694" y="843" width="146.738" height="29" rx="0" fill="#edf4fb"/>
+<text x="387.694" y="862" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
+<path d="M376.694 872L523.431 872" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="523.431" y="843" width="251.722" height="29" rx="0" fill="#d8e9f7"/>
+<text x="534.431" y="862" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M523.431 872L775.153 872" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="775.153" y="843" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
+<text x="786.153" y="862" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Missing</text>
+<path d="M775.153 872L1104 872" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="872" width="158.863" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="891" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 901L226.863 901" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="226.863" y="872" width="149.831" height="29" rx="0" fill="#ffffff"/>
+<text x="237.863" y="891" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ben</text>
+<path d="M226.863 901L376.694 901" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="376.694" y="872" width="146.738" height="29" rx="0" fill="#ffffff"/>
+<text x="387.694" y="891" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
+<path d="M376.694 901L523.431 901" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="523.431" y="872" width="251.722" height="29" rx="0" fill="#d8e9f7"/>
+<text x="534.431" y="891" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">ben das@example.com</text>
+<path d="M523.431 901L775.153 901" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="775.153" y="872" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
+<text x="786.153" y="891" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Contains a space</text>
+<path d="M775.153 901L1104 901" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 910.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="901" width="158.863" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="920" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 930L226.863 930" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="226.863" y="901" width="149.831" height="29" rx="0" fill="#edf4fb"/>
+<text x="237.863" y="920" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cia</text>
+<path d="M226.863 930L376.694 930" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="376.694" y="901" width="146.738" height="29" rx="0" fill="#edf4fb"/>
+<text x="387.694" y="920" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
+<path d="M376.694 930L523.431 930" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="523.431" y="901" width="251.722" height="29" rx="0" fill="#d8e9f7"/>
+<text x="534.431" y="920" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">cia.example.com</text>
+<path d="M523.431 930L775.153 930" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="775.153" y="901" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
+<text x="786.153" y="920" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not in name@domain.tld form</text>
+<path d="M775.153 930L1104 930" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="930" width="158.863" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="949" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 959L226.863 959" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="226.863" y="930" width="149.831" height="29" rx="0" fill="#ffffff"/>
+<text x="237.863" y="949" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dev</text>
+<path d="M226.863 959L376.694 959" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="376.694" y="930" width="146.738" height="29" rx="0" fill="#ffffff"/>
+<text x="387.694" y="949" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Roy</text>
+<path d="M376.694 959L523.431 959" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="523.431" y="930" width="251.722" height="29" rx="0" fill="#d8e9f7"/>
+<text x="534.431" y="949" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">dev@example.com</text>
+<path d="M523.431 959L775.153 959" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="775.153" y="930" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
+<text x="786.153" y="949" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M775.153 959L1104 959" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="988" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1018" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="998" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1017" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
+<text x="52" y="1053" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which customers need follow-up?</text>
+<text x="52" y="1082" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Only IDs 1, 2 and 3 remain. The final query orders the flagged customers by ID.</text>
+<rect x="52" y="1098" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1119" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Email IS NULL OR LENGTH(Email) = 0 OR Email LIKE &#x27;% %&#x27; OR Email NOT LIKE &#x27;%_@_%._%&#x27;</text>
+<rect x="68" y="1146" width="158.863" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<rect x="226.863" y="1146" width="149.831" height="47" rx="0" fill="#194f7c"/>
+<text x="237.863" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="237.863" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
+<rect x="376.694" y="1146" width="146.738" height="47" rx="0" fill="#194f7c"/>
+<text x="387.694" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="387.694" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
+<rect x="523.431" y="1146" width="251.722" height="47" rx="0" fill="#194f7c"/>
+<text x="534.431" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="534.431" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
+<rect x="775.153" y="1146" width="328.847" height="47" rx="0" fill="#194f7c"/>
+<text x="786.153" y="1161" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="786.153" y="1182" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">issue</text>
+<rect x="68" y="1193" width="158.863" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1212" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1222L226.863 1222" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="226.863" y="1193" width="149.831" height="29" rx="0" fill="#edf4fb"/>
+<text x="237.863" y="1212" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
+<path d="M226.863 1222L376.694 1222" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="376.694" y="1193" width="146.738" height="29" rx="0" fill="#edf4fb"/>
+<text x="387.694" y="1212" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
+<path d="M376.694 1222L523.431 1222" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="523.431" y="1193" width="251.722" height="29" rx="0" fill="#edf4fb"/>
+<text x="534.431" y="1212" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M523.431 1222L775.153 1222" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="775.153" y="1193" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
+<text x="786.153" y="1212" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Missing</text>
+<path d="M775.153 1222L1104 1222" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1222" width="158.863" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1251L226.863 1251" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="226.863" y="1222" width="149.831" height="29" rx="0" fill="#ffffff"/>
+<text x="237.863" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ben</text>
+<path d="M226.863 1251L376.694 1251" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="376.694" y="1222" width="146.738" height="29" rx="0" fill="#ffffff"/>
+<text x="387.694" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
+<path d="M376.694 1251L523.431 1251" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="523.431" y="1222" width="251.722" height="29" rx="0" fill="#ffffff"/>
+<text x="534.431" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">ben das@example.com</text>
+<path d="M523.431 1251L775.153 1251" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="775.153" y="1222" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
+<text x="786.153" y="1241" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Contains a space</text>
+<path d="M775.153 1251L1104 1251" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1260.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1251" width="158.863" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1280L226.863 1280" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="226.863" y="1251" width="149.831" height="29" rx="0" fill="#edf4fb"/>
+<text x="237.863" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cia</text>
+<path d="M226.863 1280L376.694 1280" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="376.694" y="1251" width="146.738" height="29" rx="0" fill="#edf4fb"/>
+<text x="387.694" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
+<path d="M376.694 1280L523.431 1280" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="523.431" y="1251" width="251.722" height="29" rx="0" fill="#edf4fb"/>
+<text x="534.431" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">cia.example.com</text>
+<path d="M523.431 1280L775.153 1280" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="775.153" y="1251" width="328.847" height="29" rx="0" fill="#d8e9f7"/>
+<text x="786.153" y="1270" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not in name@domain.tld form</text>
+<path d="M775.153 1280L1104 1280" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

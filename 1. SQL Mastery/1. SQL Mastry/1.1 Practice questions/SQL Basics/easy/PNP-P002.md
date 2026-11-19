@@ -102,6 +102,8 @@ Verified in SQLite on the sample, with fewer than ten priced products including 
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Products · one table is enough** · The item being ranked is a product. Its price, ID, brand and display name share one catalogue row, so that row supplies both the ranking and the result.
+
 **How to start.** Which rows qualify before ranking?
 
 Use the same sample throughout and check the output after each step.

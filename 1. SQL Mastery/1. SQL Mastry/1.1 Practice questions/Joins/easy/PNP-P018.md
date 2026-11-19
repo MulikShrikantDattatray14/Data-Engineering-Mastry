@@ -98,9 +98,7 @@ Guided submission. This final version uses table aliases and a single-quoted spa
 
 ### 1. Calculate the 90-day window
 
-**What to do.** Find the latest order date and subtract 89 days.
-
-**Why.** The latest day itself counts toward the 90 days. Customer sign-up dates do not set the window.
+🟩 **Prepare the dates · FROM Orders** · The date window depends on the most recent transaction. The CTE returns one pair of dates for the whole report. Subtract 89 days because the latest date counts as one of the 90.
 
 ```sql
 WITH reporting_window AS (
@@ -117,9 +115,9 @@ SELECT latest_order_date, window_start FROM reporting_window;
 
 ### 2. Match only orders inside the window
 
-**What to do.** Join Customers to Orders on customer ID and apply the date range in ON.
+🟦 **Outer query first · FROM Customers** · Every customer is a candidate for outreach, including Cia, who has never ordered. Only the customer list contains everyone to test.
 
-**Why this join.** LEFT JOIN retains customers with no qualifying order. The date condition in ON makes Ben's old order ineligible to match while still retaining Ben. Cia also stays because the join preserves customers who never ordered.
+🟩 **Second · LEFT JOIN Orders** · Match the two `CustomerID` columns and test the order date in `ON`. The left join keeps Ben and Cia with NULL order IDs when neither has a qualifying order. Ben has an order outside the window. Cia has never ordered.
 
 ```sql
 WITH reporting_window AS (

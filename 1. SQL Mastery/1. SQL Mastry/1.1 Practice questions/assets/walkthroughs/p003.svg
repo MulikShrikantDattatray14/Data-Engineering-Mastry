@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2125" viewBox="0 0 1160 2125" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2218" viewBox="0 0 1160 2218" role="img" aria-labelledby="title desc">
 <title id="title">P003 · Customers in metro cities</title>
-<desc id="desc">One row per customer in an eligible metro. ID 5 displays MUMBAI and matches on mumbai. Padding disappears from ID 12. Pune (ID 21) drops out. Bangalore, Bombay and New Delhi are accepted spellings in this exercise. Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling.</desc>
-<rect width="1160" height="2125" fill="#f4f7f7"/>
+<desc id="desc">One row per customer in an eligible metro. ID 5 displays MUMBAI and matches on mumbai. Padding disappears from ID 12. Pune (ID 21) drops out. Bangalore, Bombay and New Delhi are accepted spellings in this exercise. Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling. FROM Customers · one table is enough. The report lists people by their own city. One customer row supplies the city to test and the ID, name and state to display.</desc>
+<rect width="1160" height="2218" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P003    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Customers in metro cities</text>
@@ -165,424 +165,431 @@
 <rect x="886.984" y="635" width="217.016" height="29" rx="0" fill="#edf4fb"/>
 <text x="897.984" y="654" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
 <path d="M886.984 664L1104 664" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="688" width="1096" height="485" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="688" width="1096" height="578" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="718" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="698" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="717" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 → 9 rows</text>
 <text x="52" y="753" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which city spelling is shown and which is tested?</text>
-<text x="52" y="782" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">ID 5 displays MUMBAI and matches on mumbai. Padding disappears from ID 12.</text>
-<rect x="52" y="798" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="819" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">TRIM(City) / LOWER(TRIM(City))</text>
-<rect x="68" y="846" width="252.02" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="861" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="882" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="320.02" y="846" width="287.035" height="47" rx="0" fill="#194f7c"/>
-<text x="331.02" y="861" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="331.02" y="882" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OriginalCity</text>
-<rect x="607.055" y="846" width="248.473" height="47" rx="0" fill="#194f7c"/>
-<text x="618.055" y="861" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="618.055" y="882" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="855.527" y="846" width="248.473" height="47" rx="0" fill="#194f7c"/>
-<text x="866.527" y="861" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="866.527" y="882" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">MatchCity</text>
-<rect x="68" y="893" width="252.02" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 922L320.02 922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.02" y="893" width="287.035" height="29" rx="0" fill="#edf4fb"/>
-<text x="331.02" y="912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M320.02 922L607.055 922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="607.055" y="893" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="618.055" y="912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M607.055 922L855.527 922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="855.527" y="893" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="866.527" y="912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">delhi</text>
-<path d="M855.527 922L1104 922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="922" width="252.02" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 951L320.02 951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.02" y="922" width="287.035" height="29" rx="0" fill="#ffffff"/>
-<text x="331.02" y="941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">MUMBAI</text>
-<path d="M320.02 951L607.055 951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="607.055" y="922" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="618.055" y="941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">MUMBAI</text>
-<path d="M607.055 951L855.527 951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="855.527" y="922" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="866.527" y="941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">mumbai</text>
-<path d="M855.527 951L1104 951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="951" width="252.02" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 980L320.02 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.02" y="951" width="287.035" height="29" rx="0" fill="#edf4fb"/>
-<text x="331.02" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Bombay·&#x27;</text>
-<path d="M320.02 980L607.055 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="607.055" y="951" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="618.055" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bombay</text>
-<path d="M607.055 980L855.527 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="855.527" y="951" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="866.527" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">bombay</text>
-<path d="M855.527 980L1104 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 989.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="980" width="252.02" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
-<path d="M68 1009L320.02 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.02" y="980" width="287.035" height="29" rx="0" fill="#ffffff"/>
-<text x="331.02" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
-<path d="M320.02 1009L607.055 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="607.055" y="980" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="618.055" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
-<path d="M607.055 1009L855.527 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="855.527" y="980" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="866.527" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">bengaluru</text>
-<path d="M855.527 1009L1104 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1009" width="252.02" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 1038L320.02 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.02" y="1009" width="287.035" height="29" rx="0" fill="#edf4fb"/>
-<text x="331.02" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">New Delhi</text>
-<path d="M320.02 1038L607.055 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="607.055" y="1009" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="618.055" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">New Delhi</text>
-<path d="M607.055 1038L855.527 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="855.527" y="1009" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="866.527" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">new delhi</text>
-<path d="M855.527 1038L1104 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1038" width="252.02" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1057" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
-<path d="M68 1067L320.02 1067" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.02" y="1038" width="287.035" height="29" rx="0" fill="#ffffff"/>
-<text x="331.02" y="1057" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Chennai·&#x27;</text>
-<path d="M320.02 1067L607.055 1067" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="607.055" y="1038" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="618.055" y="1057" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chennai</text>
-<path d="M607.055 1067L855.527 1067" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="855.527" y="1038" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="866.527" y="1057" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">chennai</text>
-<path d="M855.527 1067L1104 1067" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1076.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1067" width="252.02" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1086" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
-<path d="M68 1096L320.02 1096" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.02" y="1067" width="287.035" height="29" rx="0" fill="#edf4fb"/>
-<text x="331.02" y="1086" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Bengaluru·&#x27;</text>
-<path d="M320.02 1096L607.055 1096" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="607.055" y="1067" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="618.055" y="1086" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
-<path d="M607.055 1096L855.527 1096" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="855.527" y="1067" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="866.527" y="1086" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">bengaluru</text>
-<path d="M855.527 1096L1104 1096" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1096" width="252.02" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1115" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
-<path d="M68 1125L320.02 1125" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.02" y="1096" width="287.035" height="29" rx="0" fill="#ffffff"/>
-<text x="331.02" y="1115" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bangalore</text>
-<path d="M320.02 1125L607.055 1125" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="607.055" y="1096" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="618.055" y="1115" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bangalore</text>
-<path d="M607.055 1125L855.527 1125" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="855.527" y="1096" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="866.527" y="1115" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">bangalore</text>
-<path d="M855.527 1125L1104 1125" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1125" width="252.02" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1144" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">21</text>
-<path d="M68 1154L320.02 1154" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.02" y="1125" width="287.035" height="29" rx="0" fill="#edf4fb"/>
-<text x="331.02" y="1144" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pune</text>
-<path d="M320.02 1154L607.055 1154" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="607.055" y="1125" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="618.055" y="1144" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pune</text>
-<path d="M607.055 1154L855.527 1154" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="855.527" y="1125" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
-<text x="866.527" y="1144" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">pune</text>
-<path d="M855.527 1154L1104 1154" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1183" width="1096" height="456" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1213" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="1193" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1212" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 → 8 rows</text>
-<text x="52" y="1248" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which customers match the metro list?</text>
-<text x="52" y="1277" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Pune (ID 21) drops out. Bangalore, Bombay and New Delhi are accepted spellings in this exercise.</text>
-<rect x="52" y="1293" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1314" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE TRIM(LOWER(City)) IN (…)</text>
-<rect x="68" y="1341" width="208.994" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1356" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1377" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="276.994" y="1341" width="199.963" height="47" rx="0" fill="#194f7c"/>
-<text x="287.994" y="1356" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="287.994" y="1377" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="476.956" y="1341" width="196.869" height="47" rx="0" fill="#194f7c"/>
-<text x="487.956" y="1356" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="487.956" y="1377" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="673.825" y="1341" width="205.447" height="47" rx="0" fill="#194f7c"/>
-<text x="684.825" y="1356" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="684.825" y="1377" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="879.272" y="1341" width="224.728" height="47" rx="0" fill="#194f7c"/>
-<text x="890.272" y="1356" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="890.272" y="1377" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
-<rect x="68" y="1388" width="208.994" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1417L276.994 1417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1388" width="199.963" height="29" rx="0" fill="#edf4fb"/>
-<text x="287.994" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dev</text>
-<path d="M276.994 1417L476.956 1417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1388" width="196.869" height="29" rx="0" fill="#edf4fb"/>
-<text x="487.956" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kumar</text>
-<path d="M476.956 1417L673.825 1417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1388" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M673.825 1417L879.272 1417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1388" width="224.728" height="29" rx="0" fill="#edf4fb"/>
-<text x="890.272" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M879.272 1417L1104 1417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1417" width="208.994" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 1446L276.994 1446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1417" width="199.963" height="29" rx="0" fill="#ffffff"/>
-<text x="287.994" y="1436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nisha</text>
-<path d="M276.994 1446L476.956 1446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1417" width="196.869" height="29" rx="0" fill="#ffffff"/>
-<text x="487.956" y="1436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Shah</text>
-<path d="M476.956 1446L673.825 1446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1417" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">MUMBAI</text>
-<path d="M673.825 1446L879.272 1446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1417" width="224.728" height="29" rx="0" fill="#ffffff"/>
-<text x="890.272" y="1436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
-<path d="M879.272 1446L1104 1446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1446" width="208.994" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 1475L276.994 1475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1446" width="199.963" height="29" rx="0" fill="#edf4fb"/>
-<text x="287.994" y="1465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Omar</text>
-<path d="M276.994 1475L476.956 1475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1446" width="196.869" height="29" rx="0" fill="#edf4fb"/>
-<text x="487.956" y="1465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Khan</text>
-<path d="M476.956 1475L673.825 1475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1446" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bombay</text>
-<path d="M673.825 1475L879.272 1475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1446" width="224.728" height="29" rx="0" fill="#edf4fb"/>
-<text x="890.272" y="1465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
-<path d="M879.272 1475L1104 1475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1484.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1475" width="208.994" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1494" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
-<path d="M68 1504L276.994 1504" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1475" width="199.963" height="29" rx="0" fill="#ffffff"/>
-<text x="287.994" y="1494" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mira</text>
-<path d="M276.994 1504L476.956 1504" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1475" width="196.869" height="29" rx="0" fill="#ffffff"/>
-<text x="487.956" y="1494" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
-<path d="M476.956 1504L673.825 1504" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1475" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1494" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
-<path d="M673.825 1504L879.272 1504" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1475" width="224.728" height="29" rx="0" fill="#ffffff"/>
-<text x="890.272" y="1494" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
-<path d="M879.272 1504L1104 1504" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1504" width="208.994" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1523" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 1533L276.994 1533" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1504" width="199.963" height="29" rx="0" fill="#edf4fb"/>
-<text x="287.994" y="1523" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lea</text>
-<path d="M276.994 1533L476.956 1533" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1504" width="196.869" height="29" rx="0" fill="#edf4fb"/>
-<text x="487.956" y="1523" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Singh</text>
-<path d="M476.956 1533L673.825 1533" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1504" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1523" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">New Delhi</text>
-<path d="M673.825 1533L879.272 1533" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1504" width="224.728" height="29" rx="0" fill="#edf4fb"/>
-<text x="890.272" y="1523" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M879.272 1533L1104 1533" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1533" width="208.994" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1552" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
-<path d="M68 1562L276.994 1562" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1533" width="199.963" height="29" rx="0" fill="#ffffff"/>
-<text x="287.994" y="1552" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Farah</text>
-<path d="M276.994 1562L476.956 1562" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1533" width="196.869" height="29" rx="0" fill="#ffffff"/>
-<text x="487.956" y="1552" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ali</text>
-<path d="M476.956 1562L673.825 1562" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1533" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1552" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chennai</text>
-<path d="M673.825 1562L879.272 1562" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1533" width="224.728" height="29" rx="0" fill="#ffffff"/>
-<text x="890.272" y="1552" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tamil Nadu</text>
-<path d="M879.272 1562L1104 1562" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1571.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1562" width="208.994" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1581" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
-<path d="M68 1591L276.994 1591" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1562" width="199.963" height="29" rx="0" fill="#edf4fb"/>
-<text x="287.994" y="1581" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
-<path d="M276.994 1591L476.956 1591" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1562" width="196.869" height="29" rx="0" fill="#edf4fb"/>
-<text x="487.956" y="1581" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
-<path d="M476.956 1591L673.825 1591" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1562" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1581" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
-<path d="M673.825 1591L879.272 1591" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1562" width="224.728" height="29" rx="0" fill="#edf4fb"/>
-<text x="890.272" y="1581" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
-<path d="M879.272 1591L1104 1591" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1591" width="208.994" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1610" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
-<path d="M68 1620L276.994 1620" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1591" width="199.963" height="29" rx="0" fill="#ffffff"/>
-<text x="287.994" y="1610" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Isha</text>
-<path d="M276.994 1620L476.956 1620" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1591" width="196.869" height="29" rx="0" fill="#ffffff"/>
-<text x="487.956" y="1610" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kumar</text>
-<path d="M476.956 1620L673.825 1620" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1591" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1610" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bangalore</text>
-<path d="M673.825 1620L879.272 1620" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1591" width="224.728" height="29" rx="0" fill="#ffffff"/>
-<text x="890.272" y="1610" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
-<path d="M879.272 1620L1104 1620" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1649" width="1096" height="456" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1679" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1659" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1678" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">8 → 8 rows</text>
-<text x="52" y="1714" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How do two people in the same city break a tie?</text>
-<text x="52" y="1743" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling.</text>
-<rect x="52" y="1759" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1780" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY TRIM(LOWER(City)), CustomerID</text>
-<rect x="68" y="1807" width="208.994" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1822" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1843" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<rect x="276.994" y="1807" width="199.963" height="47" rx="0" fill="#194f7c"/>
-<text x="287.994" y="1822" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="287.994" y="1843" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="476.956" y="1807" width="196.869" height="47" rx="0" fill="#194f7c"/>
-<text x="487.956" y="1822" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="487.956" y="1843" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="673.825" y="1807" width="205.447" height="47" rx="0" fill="#194f7c"/>
-<text x="684.825" y="1822" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="684.825" y="1843" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="879.272" y="1807" width="224.728" height="47" rx="0" fill="#194f7c"/>
-<text x="890.272" y="1822" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="890.272" y="1843" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
-<rect x="68" y="1854" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1873" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
-<path d="M68 1883L276.994 1883" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1854" width="199.963" height="29" rx="0" fill="#edf4fb"/>
-<text x="287.994" y="1873" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Isha</text>
-<path d="M276.994 1883L476.956 1883" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1854" width="196.869" height="29" rx="0" fill="#edf4fb"/>
-<text x="487.956" y="1873" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kumar</text>
-<path d="M476.956 1883L673.825 1883" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1854" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1873" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bangalore</text>
-<path d="M673.825 1883L879.272 1883" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1854" width="224.728" height="29" rx="0" fill="#edf4fb"/>
-<text x="890.272" y="1873" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
-<path d="M879.272 1883L1104 1883" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1892.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1883" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1902" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
-<path d="M68 1912L276.994 1912" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1883" width="199.963" height="29" rx="0" fill="#ffffff"/>
-<text x="287.994" y="1902" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mira</text>
-<path d="M276.994 1912L476.956 1912" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1883" width="196.869" height="29" rx="0" fill="#ffffff"/>
-<text x="487.956" y="1902" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
-<path d="M476.956 1912L673.825 1912" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1883" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1902" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
-<path d="M673.825 1912L879.272 1912" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1883" width="224.728" height="29" rx="0" fill="#ffffff"/>
-<text x="890.272" y="1902" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
-<path d="M879.272 1912L1104 1912" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1921.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1912" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1931" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
-<path d="M68 1941L276.994 1941" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1912" width="199.963" height="29" rx="0" fill="#edf4fb"/>
-<text x="287.994" y="1931" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
-<path d="M276.994 1941L476.956 1941" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1912" width="196.869" height="29" rx="0" fill="#edf4fb"/>
-<text x="487.956" y="1931" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
-<path d="M476.956 1941L673.825 1941" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1912" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1931" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
-<path d="M673.825 1941L879.272 1941" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1912" width="224.728" height="29" rx="0" fill="#edf4fb"/>
-<text x="890.272" y="1931" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
-<path d="M879.272 1941L1104 1941" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1941" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1960" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 1970L276.994 1970" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1941" width="199.963" height="29" rx="0" fill="#ffffff"/>
-<text x="287.994" y="1960" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Omar</text>
-<path d="M276.994 1970L476.956 1970" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1941" width="196.869" height="29" rx="0" fill="#ffffff"/>
-<text x="487.956" y="1960" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Khan</text>
-<path d="M476.956 1970L673.825 1970" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1941" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1960" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bombay</text>
-<path d="M673.825 1970L879.272 1970" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1941" width="224.728" height="29" rx="0" fill="#ffffff"/>
-<text x="890.272" y="1960" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
-<path d="M879.272 1970L1104 1970" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1970" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1989" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
-<path d="M68 1999L276.994 1999" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1970" width="199.963" height="29" rx="0" fill="#edf4fb"/>
-<text x="287.994" y="1989" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Farah</text>
-<path d="M276.994 1999L476.956 1999" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1970" width="196.869" height="29" rx="0" fill="#edf4fb"/>
-<text x="487.956" y="1989" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ali</text>
-<path d="M476.956 1999L673.825 1999" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1970" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="1989" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chennai</text>
-<path d="M673.825 1999L879.272 1999" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1970" width="224.728" height="29" rx="0" fill="#edf4fb"/>
-<text x="890.272" y="1989" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tamil Nadu</text>
-<path d="M879.272 1999L1104 1999" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1999" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2018" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 2028L276.994 2028" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="1999" width="199.963" height="29" rx="0" fill="#ffffff"/>
-<text x="287.994" y="2018" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dev</text>
-<path d="M276.994 2028L476.956 2028" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="1999" width="196.869" height="29" rx="0" fill="#ffffff"/>
-<text x="487.956" y="2018" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kumar</text>
-<path d="M476.956 2028L673.825 2028" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="1999" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="2018" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M673.825 2028L879.272 2028" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="1999" width="224.728" height="29" rx="0" fill="#ffffff"/>
-<text x="890.272" y="2018" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M879.272 2028L1104 2028" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2028" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2047" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 2057L276.994 2057" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="2028" width="199.963" height="29" rx="0" fill="#edf4fb"/>
-<text x="287.994" y="2047" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nisha</text>
-<path d="M276.994 2057L476.956 2057" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="2028" width="196.869" height="29" rx="0" fill="#edf4fb"/>
-<text x="487.956" y="2047" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Shah</text>
-<path d="M476.956 2057L673.825 2057" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="2028" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="2047" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">MUMBAI</text>
-<path d="M673.825 2057L879.272 2057" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="2028" width="224.728" height="29" rx="0" fill="#edf4fb"/>
-<text x="890.272" y="2047" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
-<path d="M879.272 2057L1104 2057" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2057" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2076" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 2086L276.994 2086" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="276.994" y="2057" width="199.963" height="29" rx="0" fill="#ffffff"/>
-<text x="287.994" y="2076" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lea</text>
-<path d="M276.994 2086L476.956 2086" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="476.956" y="2057" width="196.869" height="29" rx="0" fill="#ffffff"/>
-<text x="487.956" y="2076" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Singh</text>
-<path d="M476.956 2086L673.825 2086" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="673.825" y="2057" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
-<text x="684.825" y="2076" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">New Delhi</text>
-<path d="M673.825 2086L879.272 2086" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="879.272" y="2057" width="224.728" height="29" rx="0" fill="#ffffff"/>
-<text x="890.272" y="2076" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M879.272 2086L1104 2086" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM Customers · one table is enough" data-decision="1">
+<rect x="52" y="764" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="769" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="786" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers · one table is enough</text>
+<text x="66" y="810" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The report lists people by their own city. One customer row supplies the city to test and the ID, name and state to</text>
+<text x="66" y="833" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">display.</text>
+</g>
+<text x="52" y="875" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">ID 5 displays MUMBAI and matches on mumbai. Padding disappears from ID 12.</text>
+<rect x="52" y="891" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="912" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">TRIM(City) / LOWER(TRIM(City))</text>
+<rect x="68" y="939" width="252.02" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<rect x="320.02" y="939" width="287.035" height="47" rx="0" fill="#194f7c"/>
+<text x="331.02" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="331.02" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OriginalCity</text>
+<rect x="607.055" y="939" width="248.473" height="47" rx="0" fill="#194f7c"/>
+<text x="618.055" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="618.055" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
+<rect x="855.527" y="939" width="248.473" height="47" rx="0" fill="#194f7c"/>
+<text x="866.527" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="866.527" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">MatchCity</text>
+<rect x="68" y="986" width="252.02" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1015L320.02 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.02" y="986" width="287.035" height="29" rx="0" fill="#edf4fb"/>
+<text x="331.02" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M320.02 1015L607.055 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="607.055" y="986" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M607.055 1015L855.527 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.527" y="986" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">delhi</text>
+<path d="M855.527 1015L1104 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1015" width="252.02" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 1044L320.02 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.02" y="1015" width="287.035" height="29" rx="0" fill="#ffffff"/>
+<text x="331.02" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">MUMBAI</text>
+<path d="M320.02 1044L607.055 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="607.055" y="1015" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">MUMBAI</text>
+<path d="M607.055 1044L855.527 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.527" y="1015" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">mumbai</text>
+<path d="M855.527 1044L1104 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1044" width="252.02" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M68 1073L320.02 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.02" y="1044" width="287.035" height="29" rx="0" fill="#edf4fb"/>
+<text x="331.02" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Bombay·&#x27;</text>
+<path d="M320.02 1073L607.055 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="607.055" y="1044" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bombay</text>
+<path d="M607.055 1073L855.527 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.527" y="1044" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">bombay</text>
+<path d="M855.527 1073L1104 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1082.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1073" width="252.02" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
+<path d="M68 1102L320.02 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.02" y="1073" width="287.035" height="29" rx="0" fill="#ffffff"/>
+<text x="331.02" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
+<path d="M320.02 1102L607.055 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="607.055" y="1073" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
+<path d="M607.055 1102L855.527 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.527" y="1073" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">bengaluru</text>
+<path d="M855.527 1102L1104 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1102" width="252.02" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M68 1131L320.02 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.02" y="1102" width="287.035" height="29" rx="0" fill="#edf4fb"/>
+<text x="331.02" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">New Delhi</text>
+<path d="M320.02 1131L607.055 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="607.055" y="1102" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">New Delhi</text>
+<path d="M607.055 1131L855.527 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.527" y="1102" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">new delhi</text>
+<path d="M855.527 1131L1104 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1131" width="252.02" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M68 1160L320.02 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.02" y="1131" width="287.035" height="29" rx="0" fill="#ffffff"/>
+<text x="331.02" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Chennai·&#x27;</text>
+<path d="M320.02 1160L607.055 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="607.055" y="1131" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chennai</text>
+<path d="M607.055 1160L855.527 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.527" y="1131" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">chennai</text>
+<path d="M855.527 1160L1104 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1169.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1160" width="252.02" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
+<path d="M68 1189L320.02 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.02" y="1160" width="287.035" height="29" rx="0" fill="#edf4fb"/>
+<text x="331.02" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Bengaluru·&#x27;</text>
+<path d="M320.02 1189L607.055 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="607.055" y="1160" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
+<path d="M607.055 1189L855.527 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.527" y="1160" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">bengaluru</text>
+<path d="M855.527 1189L1104 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1189" width="252.02" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
+<path d="M68 1218L320.02 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.02" y="1189" width="287.035" height="29" rx="0" fill="#ffffff"/>
+<text x="331.02" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bangalore</text>
+<path d="M320.02 1218L607.055 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="607.055" y="1189" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bangalore</text>
+<path d="M607.055 1218L855.527 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.527" y="1189" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">bangalore</text>
+<path d="M855.527 1218L1104 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1218" width="252.02" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1237" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">21</text>
+<path d="M68 1247L320.02 1247" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.02" y="1218" width="287.035" height="29" rx="0" fill="#edf4fb"/>
+<text x="331.02" y="1237" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pune</text>
+<path d="M320.02 1247L607.055 1247" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="607.055" y="1218" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="618.055" y="1237" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pune</text>
+<path d="M607.055 1247L855.527 1247" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="855.527" y="1218" width="248.473" height="29" rx="0" fill="#d8e9f7"/>
+<text x="866.527" y="1237" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">pune</text>
+<path d="M855.527 1247L1104 1247" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1276" width="1096" height="456" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1306" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1286" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1305" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">9 → 8 rows</text>
+<text x="52" y="1341" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which customers match the metro list?</text>
+<text x="52" y="1370" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Pune (ID 21) drops out. Bangalore, Bombay and New Delhi are accepted spellings in this exercise.</text>
+<rect x="52" y="1386" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE TRIM(LOWER(City)) IN (…)</text>
+<rect x="68" y="1434" width="208.994" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<rect x="276.994" y="1434" width="199.963" height="47" rx="0" fill="#194f7c"/>
+<text x="287.994" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="287.994" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
+<rect x="476.956" y="1434" width="196.869" height="47" rx="0" fill="#194f7c"/>
+<text x="487.956" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="487.956" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
+<rect x="673.825" y="1434" width="205.447" height="47" rx="0" fill="#194f7c"/>
+<text x="684.825" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="684.825" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
+<rect x="879.272" y="1434" width="224.728" height="47" rx="0" fill="#194f7c"/>
+<text x="890.272" y="1449" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="890.272" y="1470" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
+<rect x="68" y="1481" width="208.994" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1510L276.994 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1481" width="199.963" height="29" rx="0" fill="#edf4fb"/>
+<text x="287.994" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dev</text>
+<path d="M276.994 1510L476.956 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1481" width="196.869" height="29" rx="0" fill="#edf4fb"/>
+<text x="487.956" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kumar</text>
+<path d="M476.956 1510L673.825 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1481" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M673.825 1510L879.272 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1481" width="224.728" height="29" rx="0" fill="#edf4fb"/>
+<text x="890.272" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M879.272 1510L1104 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1510" width="208.994" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 1539L276.994 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1510" width="199.963" height="29" rx="0" fill="#ffffff"/>
+<text x="287.994" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nisha</text>
+<path d="M276.994 1539L476.956 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1510" width="196.869" height="29" rx="0" fill="#ffffff"/>
+<text x="487.956" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Shah</text>
+<path d="M476.956 1539L673.825 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1510" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">MUMBAI</text>
+<path d="M673.825 1539L879.272 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1510" width="224.728" height="29" rx="0" fill="#ffffff"/>
+<text x="890.272" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
+<path d="M879.272 1539L1104 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1539" width="208.994" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M68 1568L276.994 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1539" width="199.963" height="29" rx="0" fill="#edf4fb"/>
+<text x="287.994" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Omar</text>
+<path d="M276.994 1568L476.956 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1539" width="196.869" height="29" rx="0" fill="#edf4fb"/>
+<text x="487.956" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Khan</text>
+<path d="M476.956 1568L673.825 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1539" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bombay</text>
+<path d="M673.825 1568L879.272 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1539" width="224.728" height="29" rx="0" fill="#edf4fb"/>
+<text x="890.272" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
+<path d="M879.272 1568L1104 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1577.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1568" width="208.994" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
+<path d="M68 1597L276.994 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1568" width="199.963" height="29" rx="0" fill="#ffffff"/>
+<text x="287.994" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mira</text>
+<path d="M276.994 1597L476.956 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1568" width="196.869" height="29" rx="0" fill="#ffffff"/>
+<text x="487.956" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
+<path d="M476.956 1597L673.825 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1568" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
+<path d="M673.825 1597L879.272 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1568" width="224.728" height="29" rx="0" fill="#ffffff"/>
+<text x="890.272" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
+<path d="M879.272 1597L1104 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1597" width="208.994" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M68 1626L276.994 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1597" width="199.963" height="29" rx="0" fill="#edf4fb"/>
+<text x="287.994" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lea</text>
+<path d="M276.994 1626L476.956 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1597" width="196.869" height="29" rx="0" fill="#edf4fb"/>
+<text x="487.956" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Singh</text>
+<path d="M476.956 1626L673.825 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1597" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">New Delhi</text>
+<path d="M673.825 1626L879.272 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1597" width="224.728" height="29" rx="0" fill="#edf4fb"/>
+<text x="890.272" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M879.272 1626L1104 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1626" width="208.994" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M68 1655L276.994 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1626" width="199.963" height="29" rx="0" fill="#ffffff"/>
+<text x="287.994" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Farah</text>
+<path d="M276.994 1655L476.956 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1626" width="196.869" height="29" rx="0" fill="#ffffff"/>
+<text x="487.956" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ali</text>
+<path d="M476.956 1655L673.825 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1626" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chennai</text>
+<path d="M673.825 1655L879.272 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1626" width="224.728" height="29" rx="0" fill="#ffffff"/>
+<text x="890.272" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tamil Nadu</text>
+<path d="M879.272 1655L1104 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1664.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1655" width="208.994" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1674" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
+<path d="M68 1684L276.994 1684" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1655" width="199.963" height="29" rx="0" fill="#edf4fb"/>
+<text x="287.994" y="1674" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
+<path d="M276.994 1684L476.956 1684" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1655" width="196.869" height="29" rx="0" fill="#edf4fb"/>
+<text x="487.956" y="1674" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
+<path d="M476.956 1684L673.825 1684" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1655" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1674" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
+<path d="M673.825 1684L879.272 1684" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1655" width="224.728" height="29" rx="0" fill="#edf4fb"/>
+<text x="890.272" y="1674" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
+<path d="M879.272 1684L1104 1684" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1684" width="208.994" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1703" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
+<path d="M68 1713L276.994 1713" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1684" width="199.963" height="29" rx="0" fill="#ffffff"/>
+<text x="287.994" y="1703" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Isha</text>
+<path d="M276.994 1713L476.956 1713" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1684" width="196.869" height="29" rx="0" fill="#ffffff"/>
+<text x="487.956" y="1703" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kumar</text>
+<path d="M476.956 1713L673.825 1713" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1684" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1703" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bangalore</text>
+<path d="M673.825 1713L879.272 1713" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1684" width="224.728" height="29" rx="0" fill="#ffffff"/>
+<text x="890.272" y="1703" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
+<path d="M879.272 1713L1104 1713" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1742" width="1096" height="456" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1772" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1752" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1771" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">8 → 8 rows</text>
+<text x="52" y="1807" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How do two people in the same city break a tie?</text>
+<text x="52" y="1836" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Within Bengaluru, ID 7 precedes ID 12. The output keeps each trimmed display spelling.</text>
+<rect x="52" y="1852" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1873" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY TRIM(LOWER(City)), CustomerID</text>
+<rect x="68" y="1900" width="208.994" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<rect x="276.994" y="1900" width="199.963" height="47" rx="0" fill="#194f7c"/>
+<text x="287.994" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="287.994" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
+<rect x="476.956" y="1900" width="196.869" height="47" rx="0" fill="#194f7c"/>
+<text x="487.956" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="487.956" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
+<rect x="673.825" y="1900" width="205.447" height="47" rx="0" fill="#194f7c"/>
+<text x="684.825" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="684.825" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
+<rect x="879.272" y="1900" width="224.728" height="47" rx="0" fill="#194f7c"/>
+<text x="890.272" y="1915" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="890.272" y="1936" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
+<rect x="68" y="1947" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1966" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
+<path d="M68 1976L276.994 1976" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1947" width="199.963" height="29" rx="0" fill="#edf4fb"/>
+<text x="287.994" y="1966" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Isha</text>
+<path d="M276.994 1976L476.956 1976" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1947" width="196.869" height="29" rx="0" fill="#edf4fb"/>
+<text x="487.956" y="1966" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kumar</text>
+<path d="M476.956 1976L673.825 1976" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1947" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1966" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bangalore</text>
+<path d="M673.825 1976L879.272 1976" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1947" width="224.728" height="29" rx="0" fill="#edf4fb"/>
+<text x="890.272" y="1966" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
+<path d="M879.272 1976L1104 1976" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1985.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1976" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1995" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
+<path d="M68 2005L276.994 2005" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="1976" width="199.963" height="29" rx="0" fill="#ffffff"/>
+<text x="287.994" y="1995" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mira</text>
+<path d="M276.994 2005L476.956 2005" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="1976" width="196.869" height="29" rx="0" fill="#ffffff"/>
+<text x="487.956" y="1995" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
+<path d="M476.956 2005L673.825 2005" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="1976" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="1995" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
+<path d="M673.825 2005L879.272 2005" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="1976" width="224.728" height="29" rx="0" fill="#ffffff"/>
+<text x="890.272" y="1995" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
+<path d="M879.272 2005L1104 2005" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 2014.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="2005" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2024" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">12</text>
+<path d="M68 2034L276.994 2034" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="2005" width="199.963" height="29" rx="0" fill="#edf4fb"/>
+<text x="287.994" y="2024" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
+<path d="M276.994 2034L476.956 2034" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="2005" width="196.869" height="29" rx="0" fill="#edf4fb"/>
+<text x="487.956" y="2024" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
+<path d="M476.956 2034L673.825 2034" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="2005" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="2024" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bengaluru</text>
+<path d="M673.825 2034L879.272 2034" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="2005" width="224.728" height="29" rx="0" fill="#edf4fb"/>
+<text x="890.272" y="2024" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
+<path d="M879.272 2034L1104 2034" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2034" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2053" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M68 2063L276.994 2063" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="2034" width="199.963" height="29" rx="0" fill="#ffffff"/>
+<text x="287.994" y="2053" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Omar</text>
+<path d="M276.994 2063L476.956 2063" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="2034" width="196.869" height="29" rx="0" fill="#ffffff"/>
+<text x="487.956" y="2053" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Khan</text>
+<path d="M476.956 2063L673.825 2063" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="2034" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="2053" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bombay</text>
+<path d="M673.825 2063L879.272 2063" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="2034" width="224.728" height="29" rx="0" fill="#ffffff"/>
+<text x="890.272" y="2053" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
+<path d="M879.272 2063L1104 2063" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2063" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2082" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M68 2092L276.994 2092" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="2063" width="199.963" height="29" rx="0" fill="#edf4fb"/>
+<text x="287.994" y="2082" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Farah</text>
+<path d="M276.994 2092L476.956 2092" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="2063" width="196.869" height="29" rx="0" fill="#edf4fb"/>
+<text x="487.956" y="2082" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ali</text>
+<path d="M476.956 2092L673.825 2092" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="2063" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="2082" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chennai</text>
+<path d="M673.825 2092L879.272 2092" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="2063" width="224.728" height="29" rx="0" fill="#edf4fb"/>
+<text x="890.272" y="2082" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tamil Nadu</text>
+<path d="M879.272 2092L1104 2092" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2092" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2111" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 2121L276.994 2121" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="2092" width="199.963" height="29" rx="0" fill="#ffffff"/>
+<text x="287.994" y="2111" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dev</text>
+<path d="M276.994 2121L476.956 2121" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="2092" width="196.869" height="29" rx="0" fill="#ffffff"/>
+<text x="487.956" y="2111" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kumar</text>
+<path d="M476.956 2121L673.825 2121" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="2092" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="2111" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M673.825 2121L879.272 2121" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="2092" width="224.728" height="29" rx="0" fill="#ffffff"/>
+<text x="890.272" y="2111" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M879.272 2121L1104 2121" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2121" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2140" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 2150L276.994 2150" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="2121" width="199.963" height="29" rx="0" fill="#edf4fb"/>
+<text x="287.994" y="2140" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nisha</text>
+<path d="M276.994 2150L476.956 2150" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="2121" width="196.869" height="29" rx="0" fill="#edf4fb"/>
+<text x="487.956" y="2140" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Shah</text>
+<path d="M476.956 2150L673.825 2150" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="2121" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="2140" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">MUMBAI</text>
+<path d="M673.825 2150L879.272 2150" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="2121" width="224.728" height="29" rx="0" fill="#edf4fb"/>
+<text x="890.272" y="2140" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
+<path d="M879.272 2150L1104 2150" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2150" width="208.994" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M68 2179L276.994 2179" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="276.994" y="2150" width="199.963" height="29" rx="0" fill="#ffffff"/>
+<text x="287.994" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lea</text>
+<path d="M276.994 2179L476.956 2179" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="476.956" y="2150" width="196.869" height="29" rx="0" fill="#ffffff"/>
+<text x="487.956" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Singh</text>
+<path d="M476.956 2179L673.825 2179" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="673.825" y="2150" width="205.447" height="29" rx="0" fill="#d8e9f7"/>
+<text x="684.825" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">New Delhi</text>
+<path d="M673.825 2179L879.272 2179" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="879.272" y="2150" width="224.728" height="29" rx="0" fill="#ffffff"/>
+<text x="890.272" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M879.272 2179L1104 2179" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

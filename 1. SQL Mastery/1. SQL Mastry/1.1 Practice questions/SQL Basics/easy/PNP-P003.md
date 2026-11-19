@@ -102,6 +102,8 @@ The exact submission passed in SQLite with double-quoted string literal compatib
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Customers · one table is enough** · The report lists people by their own city. One customer row supplies the city to test and the ID, name and state to display.
+
 **How to start.** Which city value is for display and which is for comparison?
 
 Use the same sample throughout and check the output after each step.

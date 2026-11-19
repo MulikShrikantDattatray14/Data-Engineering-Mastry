@@ -79,6 +79,8 @@ The equality filter returns the requested rows directly. The original exercise a
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Products · one table is enough** · A product row contains both prices used to decide whether it is full price. That same row supplies its ID, name, brand and sale price for the ranking.
+
 **How to start.** What distinguishes an equal price from a missing price?
 
 Use the same sample throughout and check the output after each step.

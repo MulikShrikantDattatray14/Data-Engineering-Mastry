@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1580" viewBox="0 0 1160 1580" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1673" viewBox="0 0 1160 1673" role="img" aria-labelledby="title desc">
 <title id="title">B1.05 · Type Of Triangle</title>
-<desc id="desc">One label per input triple of sides. For 13, 14 and 30, the sum of the two shorter sides is 27. That row cannot form a triangle. 20,20,20 is Equilateral and 20,21,22 is Scalene. The valid 20,20,23 still needs the two-equal label. 20,20,23 is Isosceles. The result has one label for each of the four input triples. The example follows input order.</desc>
-<rect width="1160" height="1580" fill="#f4f7f7"/>
+<desc id="desc">One label per input triple of sides. For 13, 14 and 30, the sum of the two shorter sides is 27. That row cannot form a triangle. 20,20,20 is Equilateral and 20,21,22 is Scalene. The valid 20,20,23 still needs the two-equal label. 20,20,23 is Isosceles. The result has one label for each of the four input triples. The example follows input order. FROM TRIANGLES · one table is enough. The three sides on one input row describe one candidate triangle. Testing A, B and C on that same row produces exactly one label for the triple.</desc>
+<rect width="1160" height="1673" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">BOSSCODER  1.05    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Type Of Triangle</text>
@@ -58,166 +58,173 @@
 <rect x="758.667" y="467" width="345.333" height="29" rx="0" fill="#ffffff"/>
 <text x="769.667" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
 <path d="M758.667 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="520" width="1096" height="340" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="520" width="1096" height="433" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="550" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="530" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="549" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 4 rows</text>
 <text x="52" y="585" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which triples can form a triangle?</text>
-<text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">For 13, 14 and 30, the sum of the two shorter sides is 27. That row cannot form a triangle.</text>
-<rect x="52" y="630" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="651" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN A + B &lt;= C OR A + C &lt;= B OR B + C &lt;= A</text>
-<rect x="68" y="678" width="245.723" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
-<text x="79" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">A</text>
-<rect x="313.723" y="678" width="245.723" height="47" rx="0" fill="#194f7c"/>
-<text x="324.723" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
-<text x="324.723" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">B</text>
-<rect x="559.445" y="678" width="245.723" height="47" rx="0" fill="#194f7c"/>
-<text x="570.445" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
-<text x="570.445" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">C</text>
-<rect x="805.168" y="678" width="298.832" height="47" rx="0" fill="#194f7c"/>
-<text x="816.168" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
-<text x="816.168" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">check_result</text>
-<rect x="68" y="725" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 754L313.723 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="313.723" y="725" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="324.723" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M313.723 754L559.445 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="559.445" y="725" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="570.445" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">23</text>
-<path d="M559.445 754L805.168 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="805.168" y="725" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
-<text x="816.168" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Continue</text>
-<path d="M805.168 754L1104 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="754" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 783L313.723 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="313.723" y="754" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="324.723" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M313.723 783L559.445 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="559.445" y="754" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="570.445" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M559.445 783L805.168 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="805.168" y="754" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
-<text x="816.168" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Continue</text>
-<path d="M805.168 783L1104 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="783" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 812L313.723 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="313.723" y="783" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="324.723" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">21</text>
-<path d="M313.723 812L559.445 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="559.445" y="783" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="570.445" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">22</text>
-<path d="M559.445 812L805.168 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="805.168" y="783" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
-<text x="816.168" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Continue</text>
-<path d="M805.168 812L1104 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 821.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="812" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
-<path d="M68 841L313.723 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="313.723" y="812" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="324.723" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
-<path d="M313.723 841L559.445 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="559.445" y="812" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="570.445" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M559.445 841L805.168 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="805.168" y="812" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
-<text x="816.168" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not A Triangle</text>
-<path d="M805.168 841L1104 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="870" width="1096" height="340" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="900" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="880" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="899" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 4 rows</text>
-<text x="52" y="935" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which valid triples are all equal or all different?</text>
-<text x="52" y="964" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">20,20,20 is Equilateral and 20,21,22 is Scalene. The valid 20,20,23 still needs the two-equal label.</text>
-<rect x="52" y="980" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1001" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN A = B AND B = C … / WHEN A != B AND B != C AND C != A …</text>
-<rect x="68" y="1028" width="245.723" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1043" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
-<text x="79" y="1064" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">A</text>
-<rect x="313.723" y="1028" width="245.723" height="47" rx="0" fill="#194f7c"/>
-<text x="324.723" y="1043" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
-<text x="324.723" y="1064" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">B</text>
-<rect x="559.445" y="1028" width="245.723" height="47" rx="0" fill="#194f7c"/>
-<text x="570.445" y="1043" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
-<text x="570.445" y="1064" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">C</text>
-<rect x="805.168" y="1028" width="298.832" height="47" rx="0" fill="#194f7c"/>
-<text x="816.168" y="1043" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
-<text x="816.168" y="1064" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">check_result</text>
-<rect x="68" y="1075" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 1104L313.723 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="313.723" y="1075" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="324.723" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M313.723 1104L559.445 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="559.445" y="1075" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="570.445" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">23</text>
-<path d="M559.445 1104L805.168 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="805.168" y="1075" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
-<text x="816.168" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Continue</text>
-<path d="M805.168 1104L1104 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1104" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 1133L313.723 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="313.723" y="1104" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="324.723" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M313.723 1133L559.445 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="559.445" y="1104" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="570.445" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M559.445 1133L805.168 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="805.168" y="1104" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
-<text x="816.168" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Equilateral</text>
-<path d="M805.168 1133L1104 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1133" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 1162L313.723 1162" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="313.723" y="1133" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="324.723" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">21</text>
-<path d="M313.723 1162L559.445 1162" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="559.445" y="1133" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="570.445" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">22</text>
-<path d="M559.445 1162L805.168 1162" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="805.168" y="1133" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
-<text x="816.168" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Scalene</text>
-<path d="M805.168 1162L1104 1162" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1171.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1162" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1181" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
-<path d="M68 1191L313.723 1191" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="313.723" y="1162" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="324.723" y="1181" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
-<path d="M313.723 1191L559.445 1191" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="559.445" y="1162" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
-<text x="570.445" y="1181" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M559.445 1191L805.168 1191" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="805.168" y="1162" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
-<text x="816.168" y="1181" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not A Triangle</text>
-<path d="M805.168 1191L1104 1191" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1220" width="1096" height="340" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1250" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1230" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1249" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 4 rows</text>
-<text x="52" y="1285" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which label belongs to each original row?</text>
-<text x="52" y="1314" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">20,20,23 is Isosceles. The result has one label for each of the four input triples. The example follows input order.</text>
-<rect x="52" y="1330" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1351" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE … THEN &#x27;Isosceles&#x27; END AS TriangleType</text>
-<rect x="68" y="1378" width="1036" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1393" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
-<text x="79" y="1414" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">TriangleType</text>
-<rect x="68" y="1425" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1444" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Isosceles</text>
-<path d="M68 1454L1104 1454" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1454" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1473" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Equilateral</text>
-<path d="M68 1483L1104 1483" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1483" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1502" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Scalene</text>
-<path d="M68 1512L1104 1512" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1521.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1512" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1531" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not A Triangle</text>
-<path d="M68 1541L1104 1541" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM TRIANGLES · one table is enough" data-decision="2">
+<rect x="52" y="596" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="601" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="618" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM TRIANGLES · one table is enough</text>
+<text x="66" y="642" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The three sides on one input row describe one candidate triangle. Testing A, B and C on that same row produces</text>
+<text x="66" y="665" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">exactly one label for the triple.</text>
+</g>
+<text x="52" y="707" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">For 13, 14 and 30, the sum of the two shorter sides is 27. That row cannot form a triangle.</text>
+<rect x="52" y="723" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="744" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN A + B &lt;= C OR A + C &lt;= B OR B + C &lt;= A</text>
+<rect x="68" y="771" width="245.723" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
+<text x="79" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">A</text>
+<rect x="313.723" y="771" width="245.723" height="47" rx="0" fill="#194f7c"/>
+<text x="324.723" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
+<text x="324.723" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">B</text>
+<rect x="559.445" y="771" width="245.723" height="47" rx="0" fill="#194f7c"/>
+<text x="570.445" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
+<text x="570.445" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">C</text>
+<rect x="805.168" y="771" width="298.832" height="47" rx="0" fill="#194f7c"/>
+<text x="816.168" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
+<text x="816.168" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">check_result</text>
+<rect x="68" y="818" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 847L313.723 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.723" y="818" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.723" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M313.723 847L559.445 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="559.445" y="818" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="570.445" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">23</text>
+<path d="M559.445 847L805.168 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="805.168" y="818" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
+<text x="816.168" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Continue</text>
+<path d="M805.168 847L1104 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="847" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 876L313.723 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.723" y="847" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.723" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M313.723 876L559.445 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="559.445" y="847" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="570.445" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M559.445 876L805.168 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="805.168" y="847" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
+<text x="816.168" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Continue</text>
+<path d="M805.168 876L1104 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="876" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 905L313.723 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.723" y="876" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.723" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">21</text>
+<path d="M313.723 905L559.445 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="559.445" y="876" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="570.445" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">22</text>
+<path d="M559.445 905L805.168 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="805.168" y="876" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
+<text x="816.168" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Continue</text>
+<path d="M805.168 905L1104 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 914.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="905" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
+<path d="M68 934L313.723 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.723" y="905" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.723" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
+<path d="M313.723 934L559.445 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="559.445" y="905" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="570.445" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
+<path d="M559.445 934L805.168 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="805.168" y="905" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
+<text x="816.168" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not A Triangle</text>
+<path d="M805.168 934L1104 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="963" width="1096" height="340" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="993" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="973" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="992" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 4 rows</text>
+<text x="52" y="1028" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which valid triples are all equal or all different?</text>
+<text x="52" y="1057" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">20,20,20 is Equilateral and 20,21,22 is Scalene. The valid 20,20,23 still needs the two-equal label.</text>
+<rect x="52" y="1073" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHEN A = B AND B = C … / WHEN A != B AND B != C AND C != A …</text>
+<rect x="68" y="1121" width="245.723" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1136" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
+<text x="79" y="1157" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">A</text>
+<rect x="313.723" y="1121" width="245.723" height="47" rx="0" fill="#194f7c"/>
+<text x="324.723" y="1136" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
+<text x="324.723" y="1157" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">B</text>
+<rect x="559.445" y="1121" width="245.723" height="47" rx="0" fill="#194f7c"/>
+<text x="570.445" y="1136" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
+<text x="570.445" y="1157" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">C</text>
+<rect x="805.168" y="1121" width="298.832" height="47" rx="0" fill="#194f7c"/>
+<text x="816.168" y="1136" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
+<text x="816.168" y="1157" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">check_result</text>
+<rect x="68" y="1168" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 1197L313.723 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.723" y="1168" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.723" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M313.723 1197L559.445 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="559.445" y="1168" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="570.445" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">23</text>
+<path d="M559.445 1197L805.168 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="805.168" y="1168" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
+<text x="816.168" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Continue</text>
+<path d="M805.168 1197L1104 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1197" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 1226L313.723 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.723" y="1197" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.723" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M313.723 1226L559.445 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="559.445" y="1197" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="570.445" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M559.445 1226L805.168 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="805.168" y="1197" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
+<text x="816.168" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Equilateral</text>
+<path d="M805.168 1226L1104 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1226" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 1255L313.723 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.723" y="1226" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.723" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">21</text>
+<path d="M313.723 1255L559.445 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="559.445" y="1226" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="570.445" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">22</text>
+<path d="M559.445 1255L805.168 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="805.168" y="1226" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
+<text x="816.168" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Scalene</text>
+<path d="M805.168 1255L1104 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1264.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1255" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">13</text>
+<path d="M68 1284L313.723 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="313.723" y="1255" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="324.723" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">14</text>
+<path d="M313.723 1284L559.445 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="559.445" y="1255" width="245.723" height="29" rx="0" fill="#d8e9f7"/>
+<text x="570.445" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
+<path d="M559.445 1284L805.168 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="805.168" y="1255" width="298.832" height="29" rx="0" fill="#d8e9f7"/>
+<text x="816.168" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not A Triangle</text>
+<path d="M805.168 1284L1104 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1313" width="1096" height="340" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1343" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1323" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1342" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 4 rows</text>
+<text x="52" y="1378" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which label belongs to each original row?</text>
+<text x="52" y="1407" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">20,20,23 is Isosceles. The result has one label for each of the four input triples. The example follows input order.</text>
+<rect x="52" y="1423" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1444" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE … THEN &#x27;Isosceles&#x27; END AS TriangleType</text>
+<rect x="68" y="1471" width="1036" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1486" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">TRIANGLES</text>
+<text x="79" y="1507" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">TriangleType</text>
+<rect x="68" y="1518" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1537" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Isosceles</text>
+<path d="M68 1547L1104 1547" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1547" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1566" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Equilateral</text>
+<path d="M68 1576L1104 1576" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1576" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1595" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Scalene</text>
+<path d="M68 1605L1104 1605" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1614.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1605" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Not A Triangle</text>
+<path d="M68 1634L1104 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

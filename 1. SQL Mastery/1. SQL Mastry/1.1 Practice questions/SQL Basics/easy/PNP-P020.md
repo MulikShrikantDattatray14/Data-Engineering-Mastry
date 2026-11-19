@@ -78,6 +78,8 @@ Guided submission. Chat formatting was cleaned up. The tested SQLite configurati
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Orders · one table is enough** · Placement, shipment and delivery dates belong to the same order. Keeping that row gives order 2 a place in the report even while its later dates are missing.
+
 One final row represents one order. All output fields come from Orders.
 
 ### 1. Keep November 2025 orders

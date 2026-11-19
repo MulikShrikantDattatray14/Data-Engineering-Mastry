@@ -86,9 +86,9 @@ One output row represents one eligible order.
 
 ### 1. Match each order to its customer
 
-**What to do.** Join Customers and Orders on CustomerID.
+🟦 **First · FROM Customers** · The saved query begins with known customers because they supply the name and city for the call sheet.
 
-**Why this join.** The call sheet requires a matching customer for every order. INNER JOIN keeps matched pairs. An order without a known customer and a customer without an order both produce no rows.
+🟩 **Second · INNER JOIN Orders** · Match the two `CustomerID` columns. Only an order with a known customer belongs on the call sheet. Either table can come first in this inner join and produce the same pairs. A customer without an order and an order with an unknown customer produce no pair. The December filter applies to the matched orders.
 
 ```sql
 SELECT o.OrderID, c.CustomerID, c.FirstName, c.LastName, c.City, o.OrderDate, o.Total_Order_Amount

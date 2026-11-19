@@ -84,9 +84,9 @@ One final row represents one category. Use the same sample throughout.
 
 ### 1. Attach matching products to every category
 
-**What to do.** Start with Category and match Products by CategoryID.
+🟦 **First · FROM Category** · The requested population is every category. Starting here gives Toys a row before looking for any products.
 
-**Why this join.** Every category must stay, including Toys. A LEFT JOIN retains Toys with a NULL product ID. An INNER JOIN would drop it. A FULL OUTER JOIN could bring in products outside the required category list.
+🟩 **Second · LEFT JOIN Products** · Attach products through the category ID already on the left. Snacks matches two products. The left join also retains Toys with a NULL product ID, which counts as zero products. An inner join would drop Toys. A full outer join could also admit products outside the category list.
 
 ```sql
 SELECT c.CategoryID, c.CategoryName, p.ProductID

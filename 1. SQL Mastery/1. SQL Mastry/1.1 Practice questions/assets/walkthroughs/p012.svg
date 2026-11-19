@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1864" viewBox="0 0 1160 1864" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1957" viewBox="0 0 1160 1957" role="img" aria-labelledby="title desc">
 <title id="title">P012 · Price and discount statistics per category</title>
-<desc id="desc">One row of price statistics per category. The extended example puts product IDs 1, 2, 3 in category 10 and IDs 4, 5 in category 20. Category 10 has prices 80, 100, 30. Its minimum is 30, maximum is 100 and average is 210 / 3 = 70. Read the products again. ID 2 contributes one full-price flag. IDs 3 and 5 have unusable market prices and contribute NULL percentages. Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five products still count.</desc>
-<rect width="1160" height="1864" fill="#f4f7f7"/>
+<desc id="desc">One row of price statistics per category. The extended example puts product IDs 1, 2, 3 in category 10 and IDs 4, 5 in category 20. Category 10 has prices 80, 100, 30. Its minimum is 30, maximum is 100 and average is 210 / 3 = 70. Read the products again. ID 2 contributes one full-price flag. IDs 3 and 5 have unusable market prices and contribute NULL percentages. Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five products still count. FROM Products · one table is enough. The group key is the category ID already on each product. The same rows hold both price columns, so they supply the product count and every price statistic.</desc>
+<rect width="1160" height="1957" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P012    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Price and discount statistics per category</text>
@@ -87,242 +87,249 @@
 <rect x="829.195" y="496" width="274.805" height="29" rx="0" fill="#edf4fb"/>
 <text x="840.195" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
 <path d="M829.195 525L1104 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="549" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="549" width="1096" height="375" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="579" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="559" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 2 rows</text>
 <text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which products belong together?</text>
-<text x="52" y="643" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The extended example puts product IDs 1, 2, 3 in category 10 and IDs 4, 5 in category 20.</text>
-<rect x="52" y="659" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="680" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY CategoryID</text>
-<rect x="68" y="707" width="527.031" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CategoryID</text>
-<rect x="595.031" y="707" width="508.969" height="47" rx="0" fill="#194f7c"/>
-<text x="606.031" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="606.031" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">products</text>
-<path d="M54 763.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="754" width="527.031" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M68 783L595.031 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="595.031" y="754" width="508.969" height="29" rx="0" fill="#d8e9f7"/>
-<text x="606.031" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M595.031 783L1104 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="783" width="527.031" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 812L595.031 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="595.031" y="783" width="508.969" height="29" rx="0" fill="#d8e9f7"/>
-<text x="606.031" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M595.031 812L1104 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="841" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="871" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="851" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="870" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 2 rows</text>
-<text x="52" y="906" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which prices feed the three price metrics?</text>
-<text x="52" y="935" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Category 10 has prices 80, 100, 30. Its minimum is 30, maximum is 100 and average is 210 / 3 = 70.</text>
-<rect x="52" y="951" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="972" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">MIN(Sale_Price), MAX(Sale_Price), AVG(Sale_Price)</text>
-<rect x="68" y="999" width="216.231" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CategoryID</text>
-<rect x="284.231" y="999" width="198.169" height="47" rx="0" fill="#194f7c"/>
-<text x="295.231" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="295.231" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">products</text>
-<rect x="482.4" y="999" width="207.2" height="47" rx="0" fill="#194f7c"/>
-<text x="493.4" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="493.4" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">min_price</text>
-<rect x="689.6" y="999" width="207.2" height="47" rx="0" fill="#194f7c"/>
-<text x="700.6" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="700.6" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">max_price</text>
-<rect x="896.8" y="999" width="207.2" height="47" rx="0" fill="#194f7c"/>
-<text x="907.8" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="907.8" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">avg_price</text>
-<path d="M54 1055.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1046" width="216.231" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M68 1075L284.231 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="284.231" y="1046" width="198.169" height="29" rx="0" fill="#edf4fb"/>
-<text x="295.231" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M284.231 1075L482.4 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="482.4" y="1046" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="493.4" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M482.4 1075L689.6 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="689.6" y="1046" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="700.6" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M689.6 1075L896.8 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="896.8" y="1046" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="907.8" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70.00</text>
-<path d="M896.8 1075L1104 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1075" width="216.231" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 1104L284.231 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="284.231" y="1075" width="198.169" height="29" rx="0" fill="#ffffff"/>
-<text x="295.231" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M284.231 1104L482.4 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="482.4" y="1075" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="493.4" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">120</text>
-<path d="M482.4 1104L689.6 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="689.6" y="1075" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="700.6" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M689.6 1104L896.8 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="896.8" y="1075" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
-<text x="907.8" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">135.00</text>
-<path d="M896.8 1104L1104 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1133" width="1096" height="394" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1163" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
-<rect x="1000.38" y="1143" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1162" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
-<text x="52" y="1198" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What can each product contribute to the discount?</text>
-<text x="52" y="1227" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Read the products again. ID 2 contributes one full-price flag. IDs 3 and 5 have unusable market prices and</text>
-<text x="52" y="1252" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">contribute NULL percentages.</text>
-<rect x="52" y="1268" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1289" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN Market_Price IS NOT NULL AND Market_Price != 0 THEN … END</text>
-<rect x="68" y="1316" width="218.359" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1331" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1352" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="286.359" y="1316" width="227.391" height="47" rx="0" fill="#194f7c"/>
-<text x="297.359" y="1331" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="297.359" y="1352" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CategoryID</text>
-<rect x="513.75" y="1316" width="272.547" height="47" rx="0" fill="#194f7c"/>
-<text x="524.75" y="1331" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="524.75" y="1352" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">full_price_flag</text>
-<rect x="786.297" y="1316" width="317.703" height="47" rx="0" fill="#194f7c"/>
-<text x="797.297" y="1331" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="797.297" y="1352" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">product_discount_pct</text>
-<path d="M54 1372.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1363" width="218.359" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1382" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1392L286.359 1392" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1363" width="227.391" height="29" rx="0" fill="#edf4fb"/>
-<text x="297.359" y="1382" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M286.359 1392L513.75 1392" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1363" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1382" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M513.75 1392L786.297 1392" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1363" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1382" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20.00</text>
-<path d="M786.297 1392L1104 1392" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1401.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1392" width="218.359" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1411" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1421L286.359 1421" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1392" width="227.391" height="29" rx="0" fill="#ffffff"/>
-<text x="297.359" y="1411" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M286.359 1421L513.75 1421" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1392" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1411" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M513.75 1421L786.297 1421" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1392" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1411" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0.00</text>
-<path d="M786.297 1421L1104 1421" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1430.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1421" width="218.359" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1440" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1450L286.359 1450" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1421" width="227.391" height="29" rx="0" fill="#edf4fb"/>
-<text x="297.359" y="1440" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M286.359 1450L513.75 1450" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1421" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1440" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M513.75 1450L786.297 1450" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1421" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1440" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M786.297 1450L1104 1450" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1450" width="218.359" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1469" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1479L286.359 1479" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1450" width="227.391" height="29" rx="0" fill="#ffffff"/>
-<text x="297.359" y="1469" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M286.359 1479L513.75 1479" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1450" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1469" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M513.75 1479L786.297 1479" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1450" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1469" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">25.00</text>
-<path d="M786.297 1479L1104 1479" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1479" width="218.359" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1498" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 1508L286.359 1508" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="286.359" y="1479" width="227.391" height="29" rx="0" fill="#edf4fb"/>
-<text x="297.359" y="1498" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M286.359 1508L513.75 1508" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="513.75" y="1479" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
-<text x="524.75" y="1498" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M513.75 1508L786.297 1508" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="786.297" y="1479" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
-<text x="797.297" y="1498" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M786.297 1508L1104 1508" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1537" width="1096" height="307" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1567" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1547" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1566" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 2 rows</text>
-<text x="52" y="1602" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which denominators belong to each category?</text>
-<text x="52" y="1631" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five</text>
-<text x="52" y="1656" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">products still count.</text>
-<rect x="52" y="1672" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1693" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SUM(full_price_flag), AVG(product_discount_pct) [using intermediate names]</text>
-<rect x="68" y="1720" width="135.098" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1735" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1756" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CategoryID</text>
-<rect x="203.098" y="1720" width="117.036" height="47" rx="0" fill="#194f7c"/>
-<text x="214.098" y="1735" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="214.098" y="1756" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">products</text>
-<rect x="320.134" y="1720" width="126.067" height="47" rx="0" fill="#194f7c"/>
-<text x="331.134" y="1735" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="331.134" y="1756" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">min_price</text>
-<rect x="446.201" y="1720" width="126.067" height="47" rx="0" fill="#194f7c"/>
-<text x="457.201" y="1735" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="457.201" y="1756" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">max_price</text>
-<rect x="572.268" y="1720" width="126.067" height="47" rx="0" fill="#194f7c"/>
-<text x="583.268" y="1735" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="583.268" y="1756" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">avg_price</text>
-<rect x="698.335" y="1720" width="216.379" height="47" rx="0" fill="#194f7c"/>
-<text x="709.335" y="1735" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="709.335" y="1756" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">full_price_products</text>
-<rect x="914.714" y="1720" width="189.286" height="47" rx="0" fill="#194f7c"/>
-<text x="925.714" y="1735" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="925.714" y="1756" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">avg_discount_pct</text>
-<path d="M54 1776.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1767" width="135.098" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
-<path d="M68 1796L203.098 1796" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="203.098" y="1767" width="117.036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="214.098" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M203.098 1796L320.134 1796" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.134" y="1767" width="126.067" height="29" rx="0" fill="#edf4fb"/>
-<text x="331.134" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M320.134 1796L446.201 1796" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="446.201" y="1767" width="126.067" height="29" rx="0" fill="#edf4fb"/>
-<text x="457.201" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M446.201 1796L572.268 1796" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.268" y="1767" width="126.067" height="29" rx="0" fill="#d8e9f7"/>
-<text x="583.268" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70.00</text>
-<path d="M572.268 1796L698.335 1796" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="698.335" y="1767" width="216.379" height="29" rx="0" fill="#d8e9f7"/>
-<text x="709.335" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M698.335 1796L914.714 1796" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="914.714" y="1767" width="189.286" height="29" rx="0" fill="#d8e9f7"/>
-<text x="925.714" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10.00</text>
-<path d="M914.714 1796L1104 1796" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1796" width="135.098" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1815" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 1825L203.098 1825" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="203.098" y="1796" width="117.036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="214.098" y="1815" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M203.098 1825L320.134 1825" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="320.134" y="1796" width="126.067" height="29" rx="0" fill="#ffffff"/>
-<text x="331.134" y="1815" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">120</text>
-<path d="M320.134 1825L446.201 1825" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="446.201" y="1796" width="126.067" height="29" rx="0" fill="#ffffff"/>
-<text x="457.201" y="1815" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M446.201 1825L572.268 1825" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="572.268" y="1796" width="126.067" height="29" rx="0" fill="#d8e9f7"/>
-<text x="583.268" y="1815" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">135.00</text>
-<path d="M572.268 1825L698.335 1825" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="698.335" y="1796" width="216.379" height="29" rx="0" fill="#d8e9f7"/>
-<text x="709.335" y="1815" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M698.335 1825L914.714 1825" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="914.714" y="1796" width="189.286" height="29" rx="0" fill="#d8e9f7"/>
-<text x="925.714" y="1815" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">25.00</text>
-<path d="M914.714 1825L1104 1825" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM Products · one table is enough" data-decision="1">
+<rect x="52" y="625" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="630" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products · one table is enough</text>
+<text x="66" y="671" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The group key is the category ID already on each product. The same rows hold both price columns, so they supply the</text>
+<text x="66" y="694" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">product count and every price statistic.</text>
+</g>
+<text x="52" y="736" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The extended example puts product IDs 1, 2, 3 in category 10 and IDs 4, 5 in category 20.</text>
+<rect x="52" y="752" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="773" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY CategoryID</text>
+<rect x="68" y="800" width="527.031" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CategoryID</text>
+<rect x="595.031" y="800" width="508.969" height="47" rx="0" fill="#194f7c"/>
+<text x="606.031" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="606.031" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">products</text>
+<path d="M54 856.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="847" width="527.031" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M68 876L595.031 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="595.031" y="847" width="508.969" height="29" rx="0" fill="#d8e9f7"/>
+<text x="606.031" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M595.031 876L1104 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="876" width="527.031" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 905L595.031 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="595.031" y="876" width="508.969" height="29" rx="0" fill="#d8e9f7"/>
+<text x="606.031" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M595.031 905L1104 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="934" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="964" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="944" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="963" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 2 rows</text>
+<text x="52" y="999" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which prices feed the three price metrics?</text>
+<text x="52" y="1028" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Category 10 has prices 80, 100, 30. Its minimum is 30, maximum is 100 and average is 210 / 3 = 70.</text>
+<rect x="52" y="1044" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">MIN(Sale_Price), MAX(Sale_Price), AVG(Sale_Price)</text>
+<rect x="68" y="1092" width="216.231" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CategoryID</text>
+<rect x="284.231" y="1092" width="198.169" height="47" rx="0" fill="#194f7c"/>
+<text x="295.231" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="295.231" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">products</text>
+<rect x="482.4" y="1092" width="207.2" height="47" rx="0" fill="#194f7c"/>
+<text x="493.4" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="493.4" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">min_price</text>
+<rect x="689.6" y="1092" width="207.2" height="47" rx="0" fill="#194f7c"/>
+<text x="700.6" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="700.6" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">max_price</text>
+<rect x="896.8" y="1092" width="207.2" height="47" rx="0" fill="#194f7c"/>
+<text x="907.8" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="907.8" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">avg_price</text>
+<path d="M54 1148.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1139" width="216.231" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M68 1168L284.231 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="284.231" y="1139" width="198.169" height="29" rx="0" fill="#edf4fb"/>
+<text x="295.231" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M284.231 1168L482.4 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="482.4" y="1139" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
+<text x="493.4" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
+<path d="M482.4 1168L689.6 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="689.6" y="1139" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
+<text x="700.6" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M689.6 1168L896.8 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="896.8" y="1139" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
+<text x="907.8" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70.00</text>
+<path d="M896.8 1168L1104 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1168" width="216.231" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 1197L284.231 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="284.231" y="1168" width="198.169" height="29" rx="0" fill="#ffffff"/>
+<text x="295.231" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M284.231 1197L482.4 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="482.4" y="1168" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
+<text x="493.4" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">120</text>
+<path d="M482.4 1197L689.6 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="689.6" y="1168" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
+<text x="700.6" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
+<path d="M689.6 1197L896.8 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="896.8" y="1168" width="207.2" height="29" rx="0" fill="#d8e9f7"/>
+<text x="907.8" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">135.00</text>
+<path d="M896.8 1197L1104 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1226" width="1096" height="394" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1256" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1000.38" y="1236" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1255" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="1291" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What can each product contribute to the discount?</text>
+<text x="52" y="1320" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Read the products again. ID 2 contributes one full-price flag. IDs 3 and 5 have unusable market prices and</text>
+<text x="52" y="1345" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">contribute NULL percentages.</text>
+<rect x="52" y="1361" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1382" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN Market_Price IS NOT NULL AND Market_Price != 0 THEN … END</text>
+<rect x="68" y="1409" width="218.359" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1424" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1445" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="286.359" y="1409" width="227.391" height="47" rx="0" fill="#194f7c"/>
+<text x="297.359" y="1424" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="297.359" y="1445" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CategoryID</text>
+<rect x="513.75" y="1409" width="272.547" height="47" rx="0" fill="#194f7c"/>
+<text x="524.75" y="1424" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="524.75" y="1445" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">full_price_flag</text>
+<rect x="786.297" y="1409" width="317.703" height="47" rx="0" fill="#194f7c"/>
+<text x="797.297" y="1424" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="797.297" y="1445" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">product_discount_pct</text>
+<path d="M54 1465.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1456" width="218.359" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1485L286.359 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="286.359" y="1456" width="227.391" height="29" rx="0" fill="#edf4fb"/>
+<text x="297.359" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M286.359 1485L513.75 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="513.75" y="1456" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
+<text x="524.75" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M513.75 1485L786.297 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="786.297" y="1456" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
+<text x="797.297" y="1475" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20.00</text>
+<path d="M786.297 1485L1104 1485" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1494.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1485" width="218.359" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1504" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1514L286.359 1514" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="286.359" y="1485" width="227.391" height="29" rx="0" fill="#ffffff"/>
+<text x="297.359" y="1504" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M286.359 1514L513.75 1514" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="513.75" y="1485" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
+<text x="524.75" y="1504" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M513.75 1514L786.297 1514" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="786.297" y="1485" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
+<text x="797.297" y="1504" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0.00</text>
+<path d="M786.297 1514L1104 1514" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1523.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1514" width="218.359" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1543L286.359 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="286.359" y="1514" width="227.391" height="29" rx="0" fill="#edf4fb"/>
+<text x="297.359" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M286.359 1543L513.75 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="513.75" y="1514" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
+<text x="524.75" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M513.75 1543L786.297 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="786.297" y="1514" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
+<text x="797.297" y="1533" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M786.297 1543L1104 1543" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1543" width="218.359" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 1572L286.359 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="286.359" y="1543" width="227.391" height="29" rx="0" fill="#ffffff"/>
+<text x="297.359" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M286.359 1572L513.75 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="513.75" y="1543" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
+<text x="524.75" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M513.75 1572L786.297 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="786.297" y="1543" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
+<text x="797.297" y="1562" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">25.00</text>
+<path d="M786.297 1572L1104 1572" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1572" width="218.359" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 1601L286.359 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="286.359" y="1572" width="227.391" height="29" rx="0" fill="#edf4fb"/>
+<text x="297.359" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M286.359 1601L513.75 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="513.75" y="1572" width="272.547" height="29" rx="0" fill="#d8e9f7"/>
+<text x="524.75" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M513.75 1601L786.297 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="786.297" y="1572" width="317.703" height="29" rx="0" fill="#d8e9f7"/>
+<text x="797.297" y="1591" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M786.297 1601L1104 1601" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1630" width="1096" height="307" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1660" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1640" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1659" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 2 rows</text>
+<text x="52" y="1695" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which denominators belong to each category?</text>
+<text x="52" y="1724" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Category 10 averages (20% + 0%) / 2 = 10%. Category 20 averages its single known percentage, 25%. All five</text>
+<text x="52" y="1749" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">products still count.</text>
+<rect x="52" y="1765" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SUM(full_price_flag), AVG(product_discount_pct) [using intermediate names]</text>
+<rect x="68" y="1813" width="135.098" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1828" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CategoryID</text>
+<rect x="203.098" y="1813" width="117.036" height="47" rx="0" fill="#194f7c"/>
+<text x="214.098" y="1828" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="214.098" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">products</text>
+<rect x="320.134" y="1813" width="126.067" height="47" rx="0" fill="#194f7c"/>
+<text x="331.134" y="1828" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="331.134" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">min_price</text>
+<rect x="446.201" y="1813" width="126.067" height="47" rx="0" fill="#194f7c"/>
+<text x="457.201" y="1828" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="457.201" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">max_price</text>
+<rect x="572.268" y="1813" width="126.067" height="47" rx="0" fill="#194f7c"/>
+<text x="583.268" y="1828" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="583.268" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">avg_price</text>
+<rect x="698.335" y="1813" width="216.379" height="47" rx="0" fill="#194f7c"/>
+<text x="709.335" y="1828" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="709.335" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">full_price_products</text>
+<rect x="914.714" y="1813" width="189.286" height="47" rx="0" fill="#194f7c"/>
+<text x="925.714" y="1828" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="925.714" y="1849" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">avg_discount_pct</text>
+<path d="M54 1869.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1860" width="135.098" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10</text>
+<path d="M68 1889L203.098 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="203.098" y="1860" width="117.036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="214.098" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M203.098 1889L320.134 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.134" y="1860" width="126.067" height="29" rx="0" fill="#edf4fb"/>
+<text x="331.134" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
+<path d="M320.134 1889L446.201 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="446.201" y="1860" width="126.067" height="29" rx="0" fill="#edf4fb"/>
+<text x="457.201" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M446.201 1889L572.268 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.268" y="1860" width="126.067" height="29" rx="0" fill="#d8e9f7"/>
+<text x="583.268" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">70.00</text>
+<path d="M572.268 1889L698.335 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="698.335" y="1860" width="216.379" height="29" rx="0" fill="#d8e9f7"/>
+<text x="709.335" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M698.335 1889L914.714 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="914.714" y="1860" width="189.286" height="29" rx="0" fill="#d8e9f7"/>
+<text x="925.714" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">10.00</text>
+<path d="M914.714 1889L1104 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1889" width="135.098" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 1918L203.098 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="203.098" y="1889" width="117.036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="214.098" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M203.098 1918L320.134 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="320.134" y="1889" width="126.067" height="29" rx="0" fill="#ffffff"/>
+<text x="331.134" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">120</text>
+<path d="M320.134 1918L446.201 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="446.201" y="1889" width="126.067" height="29" rx="0" fill="#ffffff"/>
+<text x="457.201" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
+<path d="M446.201 1918L572.268 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="572.268" y="1889" width="126.067" height="29" rx="0" fill="#d8e9f7"/>
+<text x="583.268" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">135.00</text>
+<path d="M572.268 1918L698.335 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="698.335" y="1889" width="216.379" height="29" rx="0" fill="#d8e9f7"/>
+<text x="709.335" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M698.335 1918L914.714 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="914.714" y="1889" width="189.286" height="29" rx="0" fill="#d8e9f7"/>
+<text x="925.714" y="1908" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">25.00</text>
+<path d="M914.714 1918L1104 1918" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

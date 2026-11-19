@@ -119,6 +119,8 @@ FROM TRIANGLES;
 
 ## Progressive walkthrough
 
+🟦 **FROM TRIANGLES · one table is enough** · The three sides on one input row describe one candidate triangle. Testing `A`, `B` and `C` on that same row produces exactly one label for the triple.
+
 ### 1. Start with one row per set of side lengths
 
 Every row must receive a classification. Read TRIANGLES and calculate the label in SELECT.

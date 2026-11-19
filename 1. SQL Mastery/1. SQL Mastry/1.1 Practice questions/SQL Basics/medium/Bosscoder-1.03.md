@@ -120,6 +120,8 @@ ORDER BY N;
 
 ## Progressive walkthrough
 
+🟦 **Outer query · FROM BST** · The tree stores one row per node. Its `N` identifies the node and its own `P` reveals whether it has a parent.
+
 ### 1. Understand one input row
 
 The row N = 1, P = 2 says node 1 has parent 2. To learn whether node 1 has children, look for its value in other rows' P column. Each output row will classify one N. Every node stays in the result.
@@ -155,6 +157,8 @@ SELECT N, P FROM BST WHERE P IS NULL;
 Node 5 qualifies as Root whether it has children or has none.
 
 ### 3. Build the known parent list
+
+🟦 **Subquery · read BST again** · The second read provides the non-NULL parent values to test for membership. A node with two children still gets one classification. No self-join is needed.
 
 A value used in P has at least one child. Remove NULL here so NOT IN can decide whether a node is absent from this list.
 

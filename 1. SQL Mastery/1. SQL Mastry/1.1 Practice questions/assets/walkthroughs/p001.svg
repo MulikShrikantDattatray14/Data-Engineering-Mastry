@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2156" viewBox="0 0 1160 2156" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2249" viewBox="0 0 1160 2249" role="img" aria-labelledby="title desc">
 <title id="title">P001 · Brand directory</title>
-<desc id="desc">One row per usable brand. Products 1 and 2 both become Nike. On 5, removing three spaces leaves an empty string. IDs 3, 4 and 5 drop out. The five remaining products still include repeated brands. The five values form three groups. Nike appears twice, Adidas twice and Puma once. Alphabetical ordering gives Adidas, Nike and Puma. Each name appears once.</desc>
-<rect width="1160" height="2156" fill="#f4f7f7"/>
+<desc id="desc">One row per usable brand. Products 1 and 2 both become Nike. On 5, removing three spaces leaves an empty string. IDs 3, 4 and 5 drop out. The five remaining products still include repeated brands. The five values form three groups. Nike appears twice, Adidas twice and Puma once. Alphabetical ordering gives Adidas, Nike and Puma. Each name appears once. FROM Products · one table is enough. Each product already carries its stored Brand. Reading the catalogue supplies both the repeated names and the blank values that the directory must handle.</desc>
+<rect width="1160" height="2249" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P001    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Brand directory</text>
@@ -69,183 +69,190 @@
 <rect x="588.078" y="606" width="515.922" height="29" rx="0" fill="#ffffff"/>
 <text x="599.078" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
 <path d="M588.078 635L1104 635" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="659" width="1096" height="456" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="659" width="1096" height="549" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="689" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="669" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="688" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">8 → 8 rows</text>
 <text x="52" y="724" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why trim the brand first?</text>
-<text x="52" y="753" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Products 1 and 2 both become Nike. On 5, removing three spaces leaves an empty string.</text>
-<rect x="52" y="769" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="790" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">TRIM(Brand)</text>
-<rect x="68" y="817" width="343.708" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="832" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="853" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="411.708" y="817" width="339.552" height="47" rx="0" fill="#194f7c"/>
-<text x="422.708" y="832" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="422.708" y="853" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
-<rect x="751.26" y="817" width="352.74" height="47" rx="0" fill="#194f7c"/>
-<text x="762.26" y="832" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="762.26" y="853" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CleanBrand</text>
-<path d="M54 873.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="864" width="343.708" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="883" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 893L411.708 893" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="411.708" y="864" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
-<text x="422.708" y="883" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
-<path d="M411.708 893L751.26 893" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="751.26" y="864" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
-<text x="762.26" y="883" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
-<path d="M751.26 893L1104 893" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 902.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="893" width="343.708" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 922L411.708 922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="411.708" y="893" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
-<text x="422.708" y="912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Nike·&#x27;</text>
-<path d="M411.708 922L751.26 922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="751.26" y="893" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
-<text x="762.26" y="912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
-<path d="M751.26 922L1104 922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="922" width="343.708" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 951L411.708 951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="411.708" y="922" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
-<text x="422.708" y="941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M411.708 951L751.26 951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="751.26" y="922" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
-<text x="762.26" y="941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M751.26 951L1104 951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="951" width="343.708" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 980L411.708 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="411.708" y="951" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
-<text x="422.708" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;&#x27;</text>
-<path d="M411.708 980L751.26 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="751.26" y="951" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
-<text x="762.26" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;&#x27;</text>
-<path d="M751.26 980L1104 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="980" width="343.708" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M68 1009L411.708 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="411.708" y="980" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
-<text x="422.708" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;···&#x27;</text>
-<path d="M411.708 1009L751.26 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="751.26" y="980" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
-<text x="762.26" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;&#x27;</text>
-<path d="M751.26 1009L1104 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1009" width="343.708" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 1038L411.708 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="411.708" y="1009" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
-<text x="422.708" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
-<path d="M411.708 1038L751.26 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="751.26" y="1009" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
-<text x="762.26" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
-<path d="M751.26 1038L1104 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1038" width="343.708" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1057" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
-<path d="M68 1067L411.708 1067" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="411.708" y="1038" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
-<text x="422.708" y="1057" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
-<path d="M411.708 1067L751.26 1067" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="751.26" y="1038" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
-<text x="762.26" y="1057" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
-<path d="M751.26 1067L1104 1067" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1067" width="343.708" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1086" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 1096L411.708 1096" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="411.708" y="1067" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
-<text x="422.708" y="1086" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
-<path d="M411.708 1096L751.26 1096" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="751.26" y="1067" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
-<text x="762.26" y="1086" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
-<path d="M751.26 1096L1104 1096" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1125" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1155" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="1135" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1154" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">8 → 5 rows</text>
-<text x="52" y="1190" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which product rows can supply a brand?</text>
-<text x="52" y="1219" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 3, 4 and 5 drop out. The five remaining products still include repeated brands.</text>
-<rect x="52" y="1235" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1256" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE TRIM(Brand) IS NOT NULL AND LENGTH(TRIM(Brand)) &gt; 0</text>
-<rect x="68" y="1283" width="526.094" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1298" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1319" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="594.094" y="1283" width="509.906" height="47" rx="0" fill="#194f7c"/>
-<text x="605.094" y="1298" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="605.094" y="1319" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
-<path d="M54 1339.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1330" width="526.094" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1349" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1359L594.094 1359" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="594.094" y="1330" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
-<text x="605.094" y="1349" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
-<path d="M594.094 1359L1104 1359" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1368.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1359" width="526.094" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1378" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1388L594.094 1388" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="594.094" y="1359" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
-<text x="605.094" y="1378" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
-<path d="M594.094 1388L1104 1388" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1388" width="526.094" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M68 1417L594.094 1417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="594.094" y="1388" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
-<text x="605.094" y="1407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
-<path d="M594.094 1417L1104 1417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1417" width="526.094" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
-<path d="M68 1446L594.094 1446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="594.094" y="1417" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
-<text x="605.094" y="1436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
-<path d="M594.094 1446L1104 1446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1446" width="526.094" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 1475L594.094 1475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="594.094" y="1446" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
-<text x="605.094" y="1465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
-<path d="M594.094 1475L1104 1475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1504" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1534" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
-<rect x="1000.38" y="1514" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1533" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 3 rows</text>
-<text x="52" y="1569" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which values does DISTINCT compare?</text>
-<text x="52" y="1598" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The five values form three groups. Nike appears twice, Adidas twice and Puma once.</text>
-<rect x="52" y="1614" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1635" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT DISTINCT TRIM(Brand)</text>
-<rect x="68" y="1662" width="1036" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1677" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1698" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
-<path d="M54 1718.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1709" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1728" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
-<path d="M68 1738L1104 1738" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1738" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1757" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
-<path d="M68 1767L1104 1767" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1767" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1786" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
-<path d="M68 1796L1104 1796" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1825" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1855" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1835" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1854" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
-<text x="52" y="1890" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How should the filter list read?</text>
-<text x="52" y="1919" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Alphabetical ordering gives Adidas, Nike and Puma. Each name appears once.</text>
-<rect x="52" y="1935" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1956" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY TRIM(Brand) ASC</text>
-<rect x="68" y="1983" width="1036" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1998" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="2019" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
-<rect x="68" y="2030" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2049" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
-<path d="M68 2059L1104 2059" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 2068.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="2059" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2078" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
-<path d="M68 2088L1104 2088" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2088" width="1036" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2107" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
-<path d="M68 2117L1104 2117" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM Products · one table is enough" data-decision="1">
+<rect x="52" y="735" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="740" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="757" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products · one table is enough</text>
+<text x="66" y="781" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Each product already carries its stored Brand. Reading the catalogue supplies both the repeated names and the blank</text>
+<text x="66" y="804" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">values that the directory must handle.</text>
+</g>
+<text x="52" y="846" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Products 1 and 2 both become Nike. On 5, removing three spaces leaves an empty string.</text>
+<rect x="52" y="862" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="883" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">TRIM(Brand)</text>
+<rect x="68" y="910" width="343.708" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="925" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="946" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="411.708" y="910" width="339.552" height="47" rx="0" fill="#194f7c"/>
+<text x="422.708" y="925" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="422.708" y="946" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
+<rect x="751.26" y="910" width="352.74" height="47" rx="0" fill="#194f7c"/>
+<text x="762.26" y="925" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="762.26" y="946" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CleanBrand</text>
+<path d="M54 966.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="957" width="343.708" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="976" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 986L411.708 986" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="411.708" y="957" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
+<text x="422.708" y="976" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
+<path d="M411.708 986L751.26 986" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="751.26" y="957" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
+<text x="762.26" y="976" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
+<path d="M751.26 986L1104 986" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 995.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="986" width="343.708" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1015L411.708 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="411.708" y="986" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
+<text x="422.708" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Nike·&#x27;</text>
+<path d="M411.708 1015L751.26 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="751.26" y="986" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
+<text x="762.26" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
+<path d="M751.26 1015L1104 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1015" width="343.708" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1044L411.708 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="411.708" y="1015" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
+<text x="422.708" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M411.708 1044L751.26 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="751.26" y="1015" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
+<text x="762.26" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M751.26 1044L1104 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1044" width="343.708" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 1073L411.708 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="411.708" y="1044" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
+<text x="422.708" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;&#x27;</text>
+<path d="M411.708 1073L751.26 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="751.26" y="1044" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
+<text x="762.26" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;&#x27;</text>
+<path d="M751.26 1073L1104 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1073" width="343.708" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M68 1102L411.708 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="411.708" y="1073" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
+<text x="422.708" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;···&#x27;</text>
+<path d="M411.708 1102L751.26 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="751.26" y="1073" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
+<text x="762.26" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;&#x27;</text>
+<path d="M751.26 1102L1104 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1102" width="343.708" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M68 1131L411.708 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="411.708" y="1102" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
+<text x="422.708" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
+<path d="M411.708 1131L751.26 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="751.26" y="1102" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
+<text x="762.26" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
+<path d="M751.26 1131L1104 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1131" width="343.708" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
+<path d="M68 1160L411.708 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="411.708" y="1131" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
+<text x="422.708" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
+<path d="M411.708 1160L751.26 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="751.26" y="1131" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
+<text x="762.26" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
+<path d="M751.26 1160L1104 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1160" width="343.708" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M68 1189L411.708 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="411.708" y="1160" width="339.552" height="29" rx="0" fill="#d8e9f7"/>
+<text x="422.708" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
+<path d="M411.708 1189L751.26 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="751.26" y="1160" width="352.74" height="29" rx="0" fill="#d8e9f7"/>
+<text x="762.26" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
+<path d="M751.26 1189L1104 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1218" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1248" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1228" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1247" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">8 → 5 rows</text>
+<text x="52" y="1283" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which product rows can supply a brand?</text>
+<text x="52" y="1312" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 3, 4 and 5 drop out. The five remaining products still include repeated brands.</text>
+<rect x="52" y="1328" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1349" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE TRIM(Brand) IS NOT NULL AND LENGTH(TRIM(Brand)) &gt; 0</text>
+<rect x="68" y="1376" width="526.094" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1391" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1412" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="594.094" y="1376" width="509.906" height="47" rx="0" fill="#194f7c"/>
+<text x="605.094" y="1391" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="605.094" y="1412" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
+<path d="M54 1432.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1423" width="526.094" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1442" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1452L594.094 1452" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="594.094" y="1423" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
+<text x="605.094" y="1442" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
+<path d="M594.094 1452L1104 1452" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1461.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1452" width="526.094" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1471" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1481L594.094 1481" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="594.094" y="1452" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
+<text x="605.094" y="1471" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
+<path d="M594.094 1481L1104 1481" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1481" width="526.094" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M68 1510L594.094 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="594.094" y="1481" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
+<text x="605.094" y="1500" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
+<path d="M594.094 1510L1104 1510" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1510" width="526.094" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
+<path d="M68 1539L594.094 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="594.094" y="1510" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
+<text x="605.094" y="1529" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
+<path d="M594.094 1539L1104 1539" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1539" width="526.094" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M68 1568L594.094 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="594.094" y="1539" width="509.906" height="29" rx="0" fill="#d8e9f7"/>
+<text x="605.094" y="1558" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
+<path d="M594.094 1568L1104 1568" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1597" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1627" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1000.38" y="1607" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1626" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 3 rows</text>
+<text x="52" y="1662" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which values does DISTINCT compare?</text>
+<text x="52" y="1691" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The five values form three groups. Nike appears twice, Adidas twice and Puma once.</text>
+<rect x="52" y="1707" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1728" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SELECT DISTINCT TRIM(Brand)</text>
+<rect x="68" y="1755" width="1036" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1770" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1791" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
+<path d="M54 1811.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1802" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1821" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
+<path d="M68 1831L1104 1831" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1831" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1850" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
+<path d="M68 1860L1104 1860" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1860" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1879" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
+<path d="M68 1889L1104 1889" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1918" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1948" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1928" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1947" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
+<text x="52" y="1983" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How should the filter list read?</text>
+<text x="52" y="2012" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Alphabetical ordering gives Adidas, Nike and Puma. Each name appears once.</text>
+<rect x="52" y="2028" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2049" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY TRIM(Brand) ASC</text>
+<rect x="68" y="2076" width="1036" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="2091" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="2112" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
+<rect x="68" y="2123" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2142" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Adidas</text>
+<path d="M68 2152L1104 2152" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 2161.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="2152" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2171" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nike</text>
+<path d="M68 2181L1104 2181" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2181" width="1036" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2200" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Puma</text>
+<path d="M68 2210L1104 2210" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

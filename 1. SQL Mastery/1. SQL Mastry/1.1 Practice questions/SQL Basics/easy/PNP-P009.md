@@ -100,9 +100,7 @@ Use the same sample throughout and check the output after each step.
 
 ### 1. Summarize Category
 
-**What to do.** Summarize Category.
-
-**Why.** One group represents one Active value, including NULL.
+🟦 **First branch · FROM Category** · Count raw `Active` values within the category population. Each category contributes once to its own flag group.
 
 Group by Active and label every group with the table and flag names. Casting the flag as text preserves SQL NULL. COUNT(*) counts all rows in each group, including the missing flag row.
 
@@ -121,9 +119,7 @@ Group by Active
 
 ### 2. Summarize Payments
 
-**What to do.** Summarize Payments.
-
-**Why.** Apply the same output shape to Allowed.
+🟩 **Second branch · FROM Payments** · Payment methods form a separate population. Count `Allowed` directly in this table so its three rows retain their own frequencies.
 
 Apply the same four-column structure to Allowed. Two N flags produce one row with a count of two.
 
@@ -142,9 +138,7 @@ group by Allowed
 
 ### 3. Combine both summaries
 
-**What to do.** Combine both summaries.
-
-**Why.** Appending keeps each source's groups visible.
+**UNION ALL · append the counts** · The question asks for both lists of counts. There is no category-to-payment pair to match. The branches can trade places and return the same five groups. Display order is unspecified.
 
 The first SELECT supplies the four output column names. UNION ALL appends the Payments summary to the Category summary. The table shows the observed SQLite output order.
 

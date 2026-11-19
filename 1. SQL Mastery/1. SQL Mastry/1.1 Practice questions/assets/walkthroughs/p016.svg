@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1429" viewBox="0 0 1160 1429" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1592" viewBox="0 0 1160 1592" role="img" aria-labelledby="title desc">
 <title id="title">P016 · December 2025 orders with customer names</title>
-<desc id="desc">One row per December order with a matching customer. Customer 1 matches two orders, 10 and 11. The inner join keeps both matched pairs at this stage. Order 10 qualifies on December 1. Order 11 is dated January 1 of the following year and drops out. The remaining order displays Anu Sen, Delhi and 100. The query sorts by order date and ID.</desc>
-<rect width="1160" height="1429" fill="#f4f7f7"/>
+<desc id="desc">One row per December order with a matching customer. Customer 1 matches two orders, 10 and 11. The inner join keeps both matched pairs at this stage. Order 10 qualifies on December 1. Order 11 is dated January 1 of the following year and drops out. The remaining order displays Anu Sen, Delhi and 100. The query sorts by order date and ID. First · FROM Customers. The saved query begins with known customers because they supply the name and city for the call sheet. Second · INNER JOIN Orders. Match the two CustomerID columns. Only an order with a known customer belongs on the call sheet. Either table can come first in this inner join and produce the same pairs.</desc>
+<rect width="1160" height="1592" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P016    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">December 2025 orders with customer names</text>
@@ -80,182 +80,195 @@
 <rect x="785.562" y="548" width="318.438" height="29" rx="0" fill="#ffffff"/>
 <text x="796.562" y="567" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">150</text>
 <path d="M785.562 577L1104 577" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="601" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="601" width="1096" height="445" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="631" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="611" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="630" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">1 → 2 rows</text>
 <text x="52" y="666" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which pairs satisfy the customer lookup?</text>
-<text x="52" y="695" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Customer 1 matches two orders, 10 and 11. The inner join keeps both matched pairs at this stage.</text>
-<rect x="52" y="711" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="732" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Customers INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID</text>
-<rect x="68" y="759" width="126.182" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="774" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="795" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<path d="M79 798L169.312 798" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M79 801L169.312 801" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="194.182" y="759" width="117.15" height="47" rx="0" fill="#194f7c"/>
-<text x="205.182" y="774" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="205.182" y="795" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="311.332" y="759" width="114.057" height="47" rx="0" fill="#194f7c"/>
-<text x="322.332" y="774" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="322.332" y="795" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="425.389" y="759" width="122.635" height="47" rx="0" fill="#194f7c"/>
-<text x="436.389" y="774" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="436.389" y="795" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="548.023" y="759" width="99.0879" height="47" rx="0" fill="#205e45"/>
-<text x="559.023" y="774" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="559.023" y="795" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="647.111" y="759" width="126.182" height="47" rx="0" fill="#205e45"/>
-<text x="658.111" y="774" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="658.111" y="795" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<path d="M658.111 798L748.424 798" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M658.111 801L748.424 801" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="773.293" y="759" width="132.275" height="47" rx="0" fill="#205e45"/>
-<text x="784.293" y="774" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="784.293" y="795" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="905.568" y="759" width="198.432" height="47" rx="0" fill="#205e45"/>
-<text x="916.568" y="774" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="916.568" y="795" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
-<path d="M54 815.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="806" width="126.182" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 835L194.182 835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="194.182" y="806" width="117.15" height="29" rx="0" fill="#edf4fb"/>
-<text x="205.182" y="825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Anu</text>
-<path d="M194.182 835L311.332 835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="311.332" y="806" width="114.057" height="29" rx="0" fill="#edf4fb"/>
-<text x="322.332" y="825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
-<path d="M311.332 835L425.389 835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="425.389" y="806" width="122.635" height="29" rx="0" fill="#edf4fb"/>
-<text x="436.389" y="825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Delhi·&#x27;</text>
-<path d="M425.389 835L548.023 835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="548.023" y="806" width="99.0879" height="29" rx="0" fill="#d6ecdf"/>
-<text x="559.023" y="825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
-<path d="M548.023 835L647.111 835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="647.111" y="806" width="126.182" height="29" rx="0" fill="#d6ecdf"/>
-<text x="658.111" y="825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M647.111 835L773.293 835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="773.293" y="806" width="132.275" height="29" rx="0" fill="#eff7f2"/>
-<text x="784.293" y="825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-12-01</text>
-<path d="M773.293 835L905.568 835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="905.568" y="806" width="198.432" height="29" rx="0" fill="#eff7f2"/>
-<text x="916.568" y="825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">100</text>
-<path d="M905.568 835L1104 835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 844.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="835" width="126.182" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 864L194.182 864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="194.182" y="835" width="117.15" height="29" rx="0" fill="#ffffff"/>
-<text x="205.182" y="854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Anu</text>
-<path d="M194.182 864L311.332 864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="311.332" y="835" width="114.057" height="29" rx="0" fill="#ffffff"/>
-<text x="322.332" y="854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
-<path d="M311.332 864L425.389 864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="425.389" y="835" width="122.635" height="29" rx="0" fill="#ffffff"/>
-<text x="436.389" y="854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Delhi·&#x27;</text>
-<path d="M425.389 864L548.023 864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="548.023" y="835" width="99.0879" height="29" rx="0" fill="#d6ecdf"/>
-<text x="559.023" y="854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">11</text>
-<path d="M548.023 864L647.111 864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="647.111" y="835" width="126.182" height="29" rx="0" fill="#d6ecdf"/>
-<text x="658.111" y="854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M647.111 864L773.293 864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="773.293" y="835" width="132.275" height="29" rx="0" fill="#ffffff"/>
-<text x="784.293" y="854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2026-01-01</text>
-<path d="M773.293 864L905.568 864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="905.568" y="835" width="198.432" height="29" rx="0" fill="#ffffff"/>
-<text x="916.568" y="854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">150</text>
-<path d="M905.568 864L1104 864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="893" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="923" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1008.7" y="903" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1020.7" y="922" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 1 row</text>
-<text x="52" y="958" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which matched orders fall in December 2025?</text>
-<text x="52" y="987" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 10 qualifies on December 1. Order 11 is dated January 1 of the following year and drops out.</text>
-<rect x="52" y="1003" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1024" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">strftime(&#x27;%Y&#x27;, OrderDate) = &#x27;2025&#x27; AND strftime(&#x27;%m&#x27;, OrderDate) = &#x27;12&#x27;</text>
-<rect x="68" y="1051" width="117.114" height="47" rx="0" fill="#205e45"/>
-<text x="79" y="1066" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1087" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="185.114" y="1051" width="144.208" height="47" rx="0" fill="#194f7c"/>
-<text x="196.114" y="1066" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="196.114" y="1087" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<path d="M196.114 1090L286.426 1090" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M196.114 1093L286.426 1093" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="329.321" y="1051" width="135.176" height="47" rx="0" fill="#194f7c"/>
-<text x="340.321" y="1066" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="340.321" y="1087" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="464.498" y="1051" width="132.083" height="47" rx="0" fill="#194f7c"/>
-<text x="475.498" y="1066" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="475.498" y="1087" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="596.58" y="1051" width="140.661" height="47" rx="0" fill="#194f7c"/>
-<text x="607.58" y="1066" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="607.58" y="1087" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="737.241" y="1051" width="150.301" height="47" rx="0" fill="#205e45"/>
-<text x="748.241" y="1066" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="748.241" y="1087" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="887.542" y="1051" width="216.458" height="47" rx="0" fill="#205e45"/>
-<text x="898.542" y="1066" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="898.542" y="1087" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
-<path d="M54 1107.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1098" width="117.114" height="29" rx="0" fill="#d6ecdf"/>
-<text x="79" y="1117" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
-<path d="M68 1127L185.114 1127" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="185.114" y="1098" width="144.208" height="29" rx="0" fill="#edf4fb"/>
-<text x="196.114" y="1117" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M185.114 1127L329.321 1127" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="329.321" y="1098" width="135.176" height="29" rx="0" fill="#edf4fb"/>
-<text x="340.321" y="1117" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Anu</text>
-<path d="M329.321 1127L464.498 1127" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="464.498" y="1098" width="132.083" height="29" rx="0" fill="#edf4fb"/>
-<text x="475.498" y="1117" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
-<path d="M464.498 1127L596.58 1127" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="596.58" y="1098" width="140.661" height="29" rx="0" fill="#edf4fb"/>
-<text x="607.58" y="1117" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Delhi·&#x27;</text>
-<path d="M596.58 1127L737.241 1127" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="737.241" y="1098" width="150.301" height="29" rx="0" fill="#d6ecdf"/>
-<text x="748.241" y="1117" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-12-01</text>
-<path d="M737.241 1127L887.542 1127" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="887.542" y="1098" width="216.458" height="29" rx="0" fill="#eff7f2"/>
-<text x="898.542" y="1117" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">100</text>
-<path d="M887.542 1127L1104 1127" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1156" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1186" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1008.7" y="1166" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1020.7" y="1185" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">1 → 1 row</text>
-<text x="52" y="1221" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What belongs on the call sheet?</text>
-<text x="52" y="1250" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The remaining order displays Anu Sen, Delhi and 100. The query sorts by order date and ID.</text>
-<rect x="52" y="1266" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1287" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">FirstName || &#x27; &#x27; || LastName / TRIM(City)</text>
-<rect x="68" y="1314" width="166.863" height="47" rx="0" fill="#205e45"/>
-<text x="79" y="1329" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1350" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="234.863" y="1314" width="200.05" height="47" rx="0" fill="#205e45"/>
-<text x="245.863" y="1329" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="245.863" y="1350" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="434.913" y="1314" width="221.05" height="47" rx="0" fill="#194f7c"/>
-<text x="445.913" y="1329" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="445.913" y="1350" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_name</text>
-<rect x="655.963" y="1314" width="181.831" height="47" rx="0" fill="#194f7c"/>
-<text x="666.963" y="1329" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="666.963" y="1350" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
-<rect x="837.794" y="1314" width="266.206" height="47" rx="0" fill="#205e45"/>
-<text x="848.794" y="1329" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="848.794" y="1350" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
-<path d="M54 1370.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1361" width="166.863" height="29" rx="0" fill="#eff7f2"/>
-<text x="79" y="1380" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
-<path d="M68 1390L234.863 1390" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="234.863" y="1361" width="200.05" height="29" rx="0" fill="#eff7f2"/>
-<text x="245.863" y="1380" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-12-01</text>
-<path d="M234.863 1390L434.913 1390" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="434.913" y="1361" width="221.05" height="29" rx="0" fill="#d8e9f7"/>
-<text x="445.913" y="1380" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Anu Sen</text>
-<path d="M434.913 1390L655.963 1390" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="655.963" y="1361" width="181.831" height="29" rx="0" fill="#d8e9f7"/>
-<text x="666.963" y="1380" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M655.963 1390L837.794 1390" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.794" y="1361" width="266.206" height="29" rx="0" fill="#eff7f2"/>
-<text x="848.794" y="1380" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">100</text>
-<path d="M837.794 1390L1104 1390" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="First · FROM Customers" data-decision="J1">
+<rect x="52" y="677" width="1052" height="62" rx="5" fill="#edf4fb"/>
+<rect x="52" y="682" width="4" height="52" rx="2" fill="#194f7c"/>
+<text x="66" y="699" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">First · FROM Customers</text>
+<text x="66" y="723" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The saved query begins with known customers because they supply the name and city for the call sheet.</text>
+</g>
+<g role="group" aria-label="Second · INNER JOIN Orders" data-decision="J1">
+<rect x="52" y="747" width="1052" height="85" rx="5" fill="#eff7f2"/>
+<rect x="52" y="752" width="4" height="75" rx="2" fill="#205e45"/>
+<text x="66" y="769" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#205e45" font-weight="700">Second · INNER JOIN Orders</text>
+<text x="66" y="793" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Match the two CustomerID columns. Only an order with a known customer belongs on the call sheet. Either table can</text>
+<text x="66" y="816" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">come first in this inner join and produce the same pairs.</text>
+</g>
+<text x="52" y="858" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Customer 1 matches two orders, 10 and 11. The inner join keeps both matched pairs at this stage.</text>
+<rect x="52" y="874" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="895" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Customers INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID</text>
+<rect x="68" y="922" width="126.182" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="937" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="958" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M79 961L169.312 961" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M79 964L169.312 964" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="194.182" y="922" width="117.15" height="47" rx="0" fill="#194f7c"/>
+<text x="205.182" y="937" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="205.182" y="958" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
+<rect x="311.332" y="922" width="114.057" height="47" rx="0" fill="#194f7c"/>
+<text x="322.332" y="937" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="322.332" y="958" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
+<rect x="425.389" y="922" width="122.635" height="47" rx="0" fill="#194f7c"/>
+<text x="436.389" y="937" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="436.389" y="958" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
+<rect x="548.023" y="922" width="99.0879" height="47" rx="0" fill="#205e45"/>
+<text x="559.023" y="937" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="559.023" y="958" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="647.111" y="922" width="126.182" height="47" rx="0" fill="#205e45"/>
+<text x="658.111" y="937" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="658.111" y="958" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M658.111 961L748.424 961" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M658.111 964L748.424 964" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="773.293" y="922" width="132.275" height="47" rx="0" fill="#205e45"/>
+<text x="784.293" y="937" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="784.293" y="958" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="905.568" y="922" width="198.432" height="47" rx="0" fill="#205e45"/>
+<text x="916.568" y="937" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="916.568" y="958" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
+<path d="M54 978.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="969" width="126.182" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="988" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 998L194.182 998" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="194.182" y="969" width="117.15" height="29" rx="0" fill="#edf4fb"/>
+<text x="205.182" y="988" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Anu</text>
+<path d="M194.182 998L311.332 998" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="311.332" y="969" width="114.057" height="29" rx="0" fill="#edf4fb"/>
+<text x="322.332" y="988" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
+<path d="M311.332 998L425.389 998" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="425.389" y="969" width="122.635" height="29" rx="0" fill="#edf4fb"/>
+<text x="436.389" y="988" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Delhi·&#x27;</text>
+<path d="M425.389 998L548.023 998" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="548.023" y="969" width="99.0879" height="29" rx="0" fill="#d6ecdf"/>
+<text x="559.023" y="988" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
+<path d="M548.023 998L647.111 998" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="647.111" y="969" width="126.182" height="29" rx="0" fill="#d6ecdf"/>
+<text x="658.111" y="988" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M647.111 998L773.293 998" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="773.293" y="969" width="132.275" height="29" rx="0" fill="#eff7f2"/>
+<text x="784.293" y="988" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-12-01</text>
+<path d="M773.293 998L905.568 998" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="905.568" y="969" width="198.432" height="29" rx="0" fill="#eff7f2"/>
+<text x="916.568" y="988" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">100</text>
+<path d="M905.568 998L1104 998" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1007.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="998" width="126.182" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1017" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1027L194.182 1027" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="194.182" y="998" width="117.15" height="29" rx="0" fill="#ffffff"/>
+<text x="205.182" y="1017" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Anu</text>
+<path d="M194.182 1027L311.332 1027" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="311.332" y="998" width="114.057" height="29" rx="0" fill="#ffffff"/>
+<text x="322.332" y="1017" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
+<path d="M311.332 1027L425.389 1027" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="425.389" y="998" width="122.635" height="29" rx="0" fill="#ffffff"/>
+<text x="436.389" y="1017" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Delhi·&#x27;</text>
+<path d="M425.389 1027L548.023 1027" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="548.023" y="998" width="99.0879" height="29" rx="0" fill="#d6ecdf"/>
+<text x="559.023" y="1017" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">11</text>
+<path d="M548.023 1027L647.111 1027" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="647.111" y="998" width="126.182" height="29" rx="0" fill="#d6ecdf"/>
+<text x="658.111" y="1017" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M647.111 1027L773.293 1027" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="773.293" y="998" width="132.275" height="29" rx="0" fill="#ffffff"/>
+<text x="784.293" y="1017" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2026-01-01</text>
+<path d="M773.293 1027L905.568 1027" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="905.568" y="998" width="198.432" height="29" rx="0" fill="#ffffff"/>
+<text x="916.568" y="1017" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">150</text>
+<path d="M905.568 1027L1104 1027" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1056" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1086" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1008.7" y="1066" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1020.7" y="1085" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 1 row</text>
+<text x="52" y="1121" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which matched orders fall in December 2025?</text>
+<text x="52" y="1150" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 10 qualifies on December 1. Order 11 is dated January 1 of the following year and drops out.</text>
+<rect x="52" y="1166" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">strftime(&#x27;%Y&#x27;, OrderDate) = &#x27;2025&#x27; AND strftime(&#x27;%m&#x27;, OrderDate) = &#x27;12&#x27;</text>
+<rect x="68" y="1214" width="117.114" height="47" rx="0" fill="#205e45"/>
+<text x="79" y="1229" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1250" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="185.114" y="1214" width="144.208" height="47" rx="0" fill="#194f7c"/>
+<text x="196.114" y="1229" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="196.114" y="1250" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M196.114 1253L286.426 1253" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M196.114 1256L286.426 1256" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="329.321" y="1214" width="135.176" height="47" rx="0" fill="#194f7c"/>
+<text x="340.321" y="1229" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="340.321" y="1250" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
+<rect x="464.498" y="1214" width="132.083" height="47" rx="0" fill="#194f7c"/>
+<text x="475.498" y="1229" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="475.498" y="1250" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
+<rect x="596.58" y="1214" width="140.661" height="47" rx="0" fill="#194f7c"/>
+<text x="607.58" y="1229" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="607.58" y="1250" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
+<rect x="737.241" y="1214" width="150.301" height="47" rx="0" fill="#205e45"/>
+<text x="748.241" y="1229" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="748.241" y="1250" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="887.542" y="1214" width="216.458" height="47" rx="0" fill="#205e45"/>
+<text x="898.542" y="1229" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="898.542" y="1250" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
+<path d="M54 1270.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1261" width="117.114" height="29" rx="0" fill="#d6ecdf"/>
+<text x="79" y="1280" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
+<path d="M68 1290L185.114 1290" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="185.114" y="1261" width="144.208" height="29" rx="0" fill="#edf4fb"/>
+<text x="196.114" y="1280" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M185.114 1290L329.321 1290" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="329.321" y="1261" width="135.176" height="29" rx="0" fill="#edf4fb"/>
+<text x="340.321" y="1280" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Anu</text>
+<path d="M329.321 1290L464.498 1290" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="464.498" y="1261" width="132.083" height="29" rx="0" fill="#edf4fb"/>
+<text x="475.498" y="1280" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
+<path d="M464.498 1290L596.58 1290" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="596.58" y="1261" width="140.661" height="29" rx="0" fill="#edf4fb"/>
+<text x="607.58" y="1280" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">&#x27;·Delhi·&#x27;</text>
+<path d="M596.58 1290L737.241 1290" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="737.241" y="1261" width="150.301" height="29" rx="0" fill="#d6ecdf"/>
+<text x="748.241" y="1280" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-12-01</text>
+<path d="M737.241 1290L887.542 1290" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="887.542" y="1261" width="216.458" height="29" rx="0" fill="#eff7f2"/>
+<text x="898.542" y="1280" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">100</text>
+<path d="M887.542 1290L1104 1290" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1319" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1349" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1008.7" y="1329" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1020.7" y="1348" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">1 → 1 row</text>
+<text x="52" y="1384" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What belongs on the call sheet?</text>
+<text x="52" y="1413" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The remaining order displays Anu Sen, Delhi and 100. The query sorts by order date and ID.</text>
+<rect x="52" y="1429" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1450" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">FirstName || &#x27; &#x27; || LastName / TRIM(City)</text>
+<rect x="68" y="1477" width="166.863" height="47" rx="0" fill="#205e45"/>
+<text x="79" y="1492" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1513" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="234.863" y="1477" width="200.05" height="47" rx="0" fill="#205e45"/>
+<text x="245.863" y="1492" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="245.863" y="1513" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="434.913" y="1477" width="221.05" height="47" rx="0" fill="#194f7c"/>
+<text x="445.913" y="1492" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="445.913" y="1513" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_name</text>
+<rect x="655.963" y="1477" width="181.831" height="47" rx="0" fill="#194f7c"/>
+<text x="666.963" y="1492" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="666.963" y="1513" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">City</text>
+<rect x="837.794" y="1477" width="266.206" height="47" rx="0" fill="#205e45"/>
+<text x="848.794" y="1492" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="848.794" y="1513" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
+<path d="M54 1533.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1524" width="166.863" height="29" rx="0" fill="#eff7f2"/>
+<text x="79" y="1543" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
+<path d="M68 1553L234.863 1553" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="234.863" y="1524" width="200.05" height="29" rx="0" fill="#eff7f2"/>
+<text x="245.863" y="1543" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-12-01</text>
+<path d="M234.863 1553L434.913 1553" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="434.913" y="1524" width="221.05" height="29" rx="0" fill="#d8e9f7"/>
+<text x="445.913" y="1543" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Anu Sen</text>
+<path d="M434.913 1553L655.963 1553" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="655.963" y="1524" width="181.831" height="29" rx="0" fill="#d8e9f7"/>
+<text x="666.963" y="1543" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M655.963 1553L837.794 1553" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.794" y="1524" width="266.206" height="29" rx="0" fill="#eff7f2"/>
+<text x="848.794" y="1543" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">100</text>
+<path d="M837.794 1553L1104 1553" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

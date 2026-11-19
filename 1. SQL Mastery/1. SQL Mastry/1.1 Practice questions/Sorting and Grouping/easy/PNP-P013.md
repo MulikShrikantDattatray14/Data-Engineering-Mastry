@@ -79,6 +79,8 @@ Verified on the original sample and the extended example below. The query assume
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Customers · one table is enough** · A customer contributes once to the group for their recorded state. The ID to count and the state to group by already share one row, even when the state is missing.
+
 Start by asking what one output row represents. It represents one state group. Use the same extended example throughout: keep the original six customers, add IDs 7–11 with a NULL state, and add IDs 12–17 with state Delhi. All fields come from Customers, so the query uses a single table.
 
 ### 1. Group and count the customer rows

@@ -86,9 +86,9 @@ One output row represents one product appearing in OrderDetails. The sample stay
 
 ### 1. Attach the product name to each order line
 
-**What to do.** Start with OrderDetails and look up the name in Products by ProductID.
+🟦 **First · FROM OrderDetails** · The task covers products that appear on sale lines. Each detail row supplies the product ID, order ID and quantity needed to count sales.
 
-**Why this join.** The learner uses LEFT JOIN to preserve every order line even if the catalogue lookup is missing. Cup does not appear because it has no order line. A missing catalogue match gives a NULL name. The official INNER JOIN requires a match in the catalogue.
+🟩 **Second · LEFT JOIN Products** · Use the sold `ProductID` to look up its catalogue name. The left join keeps a line and its quantity if that lookup fails. Its name becomes NULL. Unsold Cup contributes no line. The official inner join requires a catalogue match.
 
 ```sql
 SELECT O.OrderDetailID, O.OrderID, O.ProductID, P.Product, O.Quantity

@@ -103,6 +103,8 @@ ORDER BY CASE WHEN YEAR(DateEntered) IS NULL THEN 1 ELSE 0 END,
 
 ## Progressive walkthrough
 
+🟦 **FROM Customers · one table is enough** · Each customer ID represents one sign-up. The sign-up date on that row supplies its year and quarter, including the missing-date group for customer 5.
+
 ### 1. Define one result row
 
 One result row represents one year and quarter. The sample needs four groups, including the missing-date group. All customers participate, so start from Customers.

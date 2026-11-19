@@ -193,7 +193,7 @@ Order 11 carries buyer ID 99 even though the customer table has no row for 99.
 
 ### 2. Why LEFT JOIN Customers?
 
-Start with the orders and look up each customer’s state. The customer key is unique, so an order can find at most one customer. A failed lookup still leaves one row for its order. This keeps all 49 rows available for the report.
+🟦 `Orders` already holds each transaction and its `CustomerID`. Add 🟩 `Customers` second to find the state for that ID. Its unique customer key gives each order at most one match. The `LEFT JOIN` keeps order 11 when buyer 99 is missing, so all 49 orders are available for grouping.
 
 ```sql
 SELECT o.OrderID, o.CustomerID AS ordered_by, o.Total_Order_Amount,

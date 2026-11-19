@@ -75,6 +75,8 @@ The query passed the sample and additional checks for March 31 timestamps, April
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Orders · one table is enough** · The date that decides eligibility and the amount to display both belong to an order. Its customer ID is already recorded on that same row.
+
 **How to start.** Which dates begin this quarter and the next?
 
 Use the same sample throughout and check the output after each step.

@@ -87,6 +87,8 @@ The exact query passed in the tested SQLite configuration, which accepts double-
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Products · one table is enough** · Each product gets one band from its own sale price. The catalogue already contains its ID, name and price, including products with a missing price.
+
 **How to start.** Which label owns each threshold?
 
 Use the same sample throughout and check the output after each step.

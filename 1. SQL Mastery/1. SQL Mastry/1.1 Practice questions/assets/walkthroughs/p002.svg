@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2479" viewBox="0 0 1160 2479" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2572" viewBox="0 0 1160 2572" role="img" aria-labelledby="title desc">
 <title id="title">P002 · Ten highest-priced products</title>
-<desc id="desc">One row per ranked product, up to ten. ID 31 drops out. ID 30 costs zero, which is still a known price. Twelve rows qualify. Nine products cost more than 100. Mug (ID 4) comes before Bottle (ID 20) at the same price. Mug takes place 10. Bottle is 11th and the zero-price Sticker is 12th.</desc>
-<rect width="1160" height="2479" fill="#f4f7f7"/>
+<desc id="desc">One row per ranked product, up to ten. ID 31 drops out. ID 30 costs zero, which is still a known price. Twelve rows qualify. Nine products cost more than 100. Mug (ID 4) comes before Bottle (ID 20) at the same price. Mug takes place 10. Bottle is 11th and the zero-price Sticker is 12th. FROM Products · one table is enough. The item being ranked is a product. Its price, ID, brand and display name share one catalogue row, so that row supplies both the ranking and the result.</desc>
+<rect width="1160" height="2572" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P002    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Ten highest-priced products</text>
@@ -182,477 +182,484 @@
 <rect x="842.781" y="728" width="261.219" height="29" rx="0" fill="#edf4fb"/>
 <text x="853.781" y="747" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
 <path d="M842.781 757L1104 757" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="781" width="1096" height="572" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="781" width="1096" height="665" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="811" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="980.906" y="791" width="127.094" height="28" rx="10" fill="#e6eeeb"/>
 <text x="992.906" y="810" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">13 → 12 rows</text>
 <text x="52" y="846" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which prices can enter the ranking?</text>
-<text x="52" y="875" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">ID 31 drops out. ID 30 costs zero, which is still a known price. Twelve rows qualify.</text>
-<rect x="52" y="891" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="912" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Sale_Price IS NOT NULL</text>
-<rect x="68" y="939" width="257.008" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="325.008" y="939" width="272.133" height="47" rx="0" fill="#194f7c"/>
-<text x="336.008" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="336.008" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="597.141" y="939" width="240.82" height="47" rx="0" fill="#194f7c"/>
-<text x="608.141" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="608.141" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
-<rect x="837.961" y="939" width="266.039" height="47" rx="0" fill="#194f7c"/>
-<text x="848.961" y="954" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="848.961" y="975" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
-<path d="M54 995.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="986" width="257.008" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1015L325.008 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="986" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mug</text>
-<path d="M325.008 1015L597.141 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="986" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 1015L837.961 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="986" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M837.961 1015L1104 1015" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1024.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1015" width="257.008" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 1044L325.008 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1015" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bottle</text>
-<path d="M325.008 1044L597.141 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1015" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 1044L837.961 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1015" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1034" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M837.961 1044L1104 1044" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1044" width="257.008" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M68 1073L325.008 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1044" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sticker</text>
-<path d="M325.008 1073L597.141 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1044" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 1073L837.961 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1044" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M837.961 1073L1104 1073" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1073" width="257.008" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">101</text>
-<path d="M68 1102L325.008 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1073" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Headphones</text>
-<path d="M325.008 1102L597.141 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1073" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
-<path d="M597.141 1102L837.961 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1073" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1092" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">900</text>
-<path d="M837.961 1102L1104 1102" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1102" width="257.008" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">102</text>
-<path d="M68 1131L325.008 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1102" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tablet</text>
-<path d="M325.008 1131L597.141 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1102" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
-<path d="M597.141 1131L837.961 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1102" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">800</text>
-<path d="M837.961 1131L1104 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1131" width="257.008" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">103</text>
-<path d="M68 1160L325.008 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1131" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Monitor</text>
-<path d="M325.008 1160L597.141 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1131" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
-<path d="M597.141 1160L837.961 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1131" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
-<path d="M837.961 1160L1104 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1160" width="257.008" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">104</text>
-<path d="M68 1189L325.008 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1160" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Keyboard</text>
-<path d="M325.008 1189L597.141 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1160" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
-<path d="M597.141 1189L837.961 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1160" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">600</text>
-<path d="M837.961 1189L1104 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1189" width="257.008" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
-<path d="M68 1218L325.008 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1189" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Speaker</text>
-<path d="M325.008 1218L597.141 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1189" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
-<path d="M597.141 1218L837.961 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1189" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">500</text>
-<path d="M837.961 1218L1104 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1218" width="257.008" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1237" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">106</text>
-<path d="M68 1247L325.008 1247" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1218" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1237" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Router</text>
-<path d="M325.008 1247L597.141 1247" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1218" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1237" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Netco</text>
-<path d="M597.141 1247L837.961 1247" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1218" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1237" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">400</text>
-<path d="M837.961 1247L1104 1247" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1247" width="257.008" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1266" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">107</text>
-<path d="M68 1276L325.008 1276" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1247" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1266" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Camera</text>
-<path d="M325.008 1276L597.141 1276" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1247" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1266" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
-<path d="M597.141 1276L837.961 1276" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1247" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1266" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">300</text>
-<path d="M837.961 1276L1104 1276" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1276" width="257.008" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1295" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">108</text>
-<path d="M68 1305L325.008 1305" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1276" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1295" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mouse</text>
-<path d="M325.008 1305L597.141 1305" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1276" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1295" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
-<path d="M597.141 1305L837.961 1305" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1276" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1295" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M837.961 1305L1104 1305" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1305" width="257.008" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1324" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">109</text>
-<path d="M68 1334L325.008 1334" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1305" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1324" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lamp</text>
-<path d="M325.008 1334L597.141 1334" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1305" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1324" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 1334L837.961 1334" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1305" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1324" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M837.961 1334L1104 1334" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1363" width="1096" height="572" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1393" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="980.906" y="1373" width="127.094" height="28" rx="10" fill="#e6eeeb"/>
-<text x="992.906" y="1392" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">12 → 12 rows</text>
-<text x="52" y="1428" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What separates products tied on price?</text>
-<text x="52" y="1457" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nine products cost more than 100. Mug (ID 4) comes before Bottle (ID 20) at the same price.</text>
-<rect x="52" y="1473" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1494" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY Sale_Price DESC, ProductID ASC</text>
-<rect x="68" y="1521" width="257.008" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1536" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1557" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="325.008" y="1521" width="272.133" height="47" rx="0" fill="#194f7c"/>
-<text x="336.008" y="1536" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="336.008" y="1557" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="597.141" y="1521" width="240.82" height="47" rx="0" fill="#194f7c"/>
-<text x="608.141" y="1536" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="608.141" y="1557" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
-<rect x="837.961" y="1521" width="266.039" height="47" rx="0" fill="#194f7c"/>
-<text x="848.961" y="1536" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="848.961" y="1557" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
-<rect x="68" y="1568" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">101</text>
-<path d="M68 1597L325.008 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1568" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Headphones</text>
-<path d="M325.008 1597L597.141 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1568" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
-<path d="M597.141 1597L837.961 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1568" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">900</text>
-<path d="M837.961 1597L1104 1597" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1597" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">102</text>
-<path d="M68 1626L325.008 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1597" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tablet</text>
-<path d="M325.008 1626L597.141 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1597" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
-<path d="M597.141 1626L837.961 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1597" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1616" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">800</text>
-<path d="M837.961 1626L1104 1626" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1626" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">103</text>
-<path d="M68 1655L325.008 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1626" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Monitor</text>
-<path d="M325.008 1655L597.141 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1626" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
-<path d="M597.141 1655L837.961 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1626" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1645" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
-<path d="M837.961 1655L1104 1655" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1655" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1674" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">104</text>
-<path d="M68 1684L325.008 1684" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1655" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1674" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Keyboard</text>
-<path d="M325.008 1684L597.141 1684" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1655" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1674" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
-<path d="M597.141 1684L837.961 1684" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1655" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1674" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">600</text>
-<path d="M837.961 1684L1104 1684" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1684" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1703" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
-<path d="M68 1713L325.008 1713" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1684" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1703" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Speaker</text>
-<path d="M325.008 1713L597.141 1713" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1684" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1703" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
-<path d="M597.141 1713L837.961 1713" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1684" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1703" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">500</text>
-<path d="M837.961 1713L1104 1713" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1713" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1732" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">106</text>
-<path d="M68 1742L325.008 1742" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1713" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1732" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Router</text>
-<path d="M325.008 1742L597.141 1742" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1713" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1732" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Netco</text>
-<path d="M597.141 1742L837.961 1742" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1713" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1732" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">400</text>
-<path d="M837.961 1742L1104 1742" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1742" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1761" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">107</text>
-<path d="M68 1771L325.008 1771" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1742" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1761" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Camera</text>
-<path d="M325.008 1771L597.141 1771" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1742" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1761" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
-<path d="M597.141 1771L837.961 1771" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1742" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1761" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">300</text>
-<path d="M837.961 1771L1104 1771" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1771" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1790" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">108</text>
-<path d="M68 1800L325.008 1800" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1771" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1790" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mouse</text>
-<path d="M325.008 1800L597.141 1800" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1771" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1790" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
-<path d="M597.141 1800L837.961 1800" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1771" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1790" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M837.961 1800L1104 1800" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1800" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1819" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">109</text>
-<path d="M68 1829L325.008 1829" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1800" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1819" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lamp</text>
-<path d="M325.008 1829L597.141 1829" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1800" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1819" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 1829L837.961 1829" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1800" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1819" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M837.961 1829L1104 1829" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1838.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1829" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1848" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1858L325.008 1858" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1829" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1848" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mug</text>
-<path d="M325.008 1858L597.141 1858" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1829" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1848" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 1858L837.961 1858" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1829" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1848" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M837.961 1858L1104 1858" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1867.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1858" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1877" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
-<path d="M68 1887L325.008 1887" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1858" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="1877" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bottle</text>
-<path d="M325.008 1887L597.141 1887" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1858" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="1877" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 1887L837.961 1887" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1858" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1877" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M837.961 1887L1104 1887" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1887" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1906" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
-<path d="M68 1916L325.008 1916" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="1887" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="1906" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sticker</text>
-<path d="M325.008 1916L597.141 1916" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="1887" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="1906" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 1916L837.961 1916" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="1887" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="1906" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M837.961 1916L1104 1916" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1945" width="1096" height="514" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1975" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="980.906" y="1955" width="127.094" height="28" rx="10" fill="#e6eeeb"/>
-<text x="992.906" y="1974" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">12 → 10 rows</text>
-<text x="52" y="2010" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which ten rows reach the report?</text>
-<text x="52" y="2039" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Mug takes place 10. Bottle is 11th and the zero-price Sticker is 12th.</text>
-<rect x="52" y="2055" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="2076" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LIMIT 10</text>
-<rect x="68" y="2103" width="257.008" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="2118" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="2139" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="325.008" y="2103" width="272.133" height="47" rx="0" fill="#194f7c"/>
-<text x="336.008" y="2118" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="336.008" y="2139" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="597.141" y="2103" width="240.82" height="47" rx="0" fill="#194f7c"/>
-<text x="608.141" y="2118" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="608.141" y="2139" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
-<rect x="837.961" y="2103" width="266.039" height="47" rx="0" fill="#194f7c"/>
-<text x="848.961" y="2118" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="848.961" y="2139" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
-<rect x="68" y="2150" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">101</text>
-<path d="M68 2179L325.008 2179" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2150" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Headphones</text>
-<path d="M325.008 2179L597.141 2179" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2150" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
-<path d="M597.141 2179L837.961 2179" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2150" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">900</text>
-<path d="M837.961 2179L1104 2179" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2179" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2198" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">102</text>
-<path d="M68 2208L325.008 2208" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2179" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="2198" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tablet</text>
-<path d="M325.008 2208L597.141 2208" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2179" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="2198" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
-<path d="M597.141 2208L837.961 2208" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2179" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2198" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">800</text>
-<path d="M837.961 2208L1104 2208" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2208" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2227" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">103</text>
-<path d="M68 2237L325.008 2237" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2208" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="2227" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Monitor</text>
-<path d="M325.008 2237L597.141 2237" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2208" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="2227" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
-<path d="M597.141 2237L837.961 2237" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2208" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2227" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
-<path d="M837.961 2237L1104 2237" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2237" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2256" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">104</text>
-<path d="M68 2266L325.008 2266" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2237" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="2256" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Keyboard</text>
-<path d="M325.008 2266L597.141 2266" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2237" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="2256" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
-<path d="M597.141 2266L837.961 2266" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2237" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2256" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">600</text>
-<path d="M837.961 2266L1104 2266" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2266" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2285" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
-<path d="M68 2295L325.008 2295" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2266" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="2285" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Speaker</text>
-<path d="M325.008 2295L597.141 2295" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2266" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="2285" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
-<path d="M597.141 2295L837.961 2295" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2266" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2285" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">500</text>
-<path d="M837.961 2295L1104 2295" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2295" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2314" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">106</text>
-<path d="M68 2324L325.008 2324" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2295" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="2314" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Router</text>
-<path d="M325.008 2324L597.141 2324" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2295" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="2314" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Netco</text>
-<path d="M597.141 2324L837.961 2324" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2295" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2314" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">400</text>
-<path d="M837.961 2324L1104 2324" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2324" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2343" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">107</text>
-<path d="M68 2353L325.008 2353" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2324" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="2343" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Camera</text>
-<path d="M325.008 2353L597.141 2353" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2324" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="2343" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
-<path d="M597.141 2353L837.961 2353" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2324" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2343" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">300</text>
-<path d="M837.961 2353L1104 2353" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2353" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2372" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">108</text>
-<path d="M68 2382L325.008 2382" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2353" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="2372" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mouse</text>
-<path d="M325.008 2382L597.141 2382" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2353" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="2372" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
-<path d="M597.141 2382L837.961 2382" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2353" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2372" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M837.961 2382L1104 2382" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2382" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2401" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">109</text>
-<path d="M68 2411L325.008 2411" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2382" width="272.133" height="29" rx="0" fill="#edf4fb"/>
-<text x="336.008" y="2401" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lamp</text>
-<path d="M325.008 2411L597.141 2411" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2382" width="240.82" height="29" rx="0" fill="#edf4fb"/>
-<text x="608.141" y="2401" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 2411L837.961 2411" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2382" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2401" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M837.961 2411L1104 2411" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 2420.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="2411" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="2430" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 2440L325.008 2440" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="325.008" y="2411" width="272.133" height="29" rx="0" fill="#ffffff"/>
-<text x="336.008" y="2430" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mug</text>
-<path d="M325.008 2440L597.141 2440" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="597.141" y="2411" width="240.82" height="29" rx="0" fill="#ffffff"/>
-<text x="608.141" y="2430" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
-<path d="M597.141 2440L837.961 2440" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="837.961" y="2411" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
-<text x="848.961" y="2430" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M837.961 2440L1104 2440" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM Products · one table is enough" data-decision="1">
+<rect x="52" y="857" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="862" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="879" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products · one table is enough</text>
+<text x="66" y="903" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The item being ranked is a product. Its price, ID, brand and display name share one catalogue row, so that row</text>
+<text x="66" y="926" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">supplies both the ranking and the result.</text>
+</g>
+<text x="52" y="968" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">ID 31 drops out. ID 30 costs zero, which is still a known price. Twelve rows qualify.</text>
+<rect x="52" y="984" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1005" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE Sale_Price IS NOT NULL</text>
+<rect x="68" y="1032" width="257.008" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1047" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1068" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="325.008" y="1032" width="272.133" height="47" rx="0" fill="#194f7c"/>
+<text x="336.008" y="1047" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="336.008" y="1068" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
+<rect x="597.141" y="1032" width="240.82" height="47" rx="0" fill="#194f7c"/>
+<text x="608.141" y="1047" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="608.141" y="1068" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
+<rect x="837.961" y="1032" width="266.039" height="47" rx="0" fill="#194f7c"/>
+<text x="848.961" y="1047" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="848.961" y="1068" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
+<path d="M54 1088.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1079" width="257.008" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1098" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 1108L325.008 1108" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1079" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1098" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mug</text>
+<path d="M325.008 1108L597.141 1108" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1079" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1098" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 1108L837.961 1108" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1079" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1098" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M837.961 1108L1104 1108" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1117.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1108" width="257.008" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1127" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 1137L325.008 1137" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1108" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1127" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bottle</text>
+<path d="M325.008 1137L597.141 1137" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1108" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1127" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 1137L837.961 1137" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1108" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1127" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M837.961 1137L1104 1137" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1137" width="257.008" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
+<path d="M68 1166L325.008 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1137" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sticker</text>
+<path d="M325.008 1166L597.141 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1137" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 1166L837.961 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1137" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M837.961 1166L1104 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1166" width="257.008" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">101</text>
+<path d="M68 1195L325.008 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1166" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Headphones</text>
+<path d="M325.008 1195L597.141 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1166" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
+<path d="M597.141 1195L837.961 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1166" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">900</text>
+<path d="M837.961 1195L1104 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1195" width="257.008" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">102</text>
+<path d="M68 1224L325.008 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1195" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tablet</text>
+<path d="M325.008 1224L597.141 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1195" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
+<path d="M597.141 1224L837.961 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1195" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">800</text>
+<path d="M837.961 1224L1104 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1224" width="257.008" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1243" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">103</text>
+<path d="M68 1253L325.008 1253" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1224" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1243" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Monitor</text>
+<path d="M325.008 1253L597.141 1253" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1224" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1243" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
+<path d="M597.141 1253L837.961 1253" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1224" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1243" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
+<path d="M837.961 1253L1104 1253" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1253" width="257.008" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1272" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">104</text>
+<path d="M68 1282L325.008 1282" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1253" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1272" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Keyboard</text>
+<path d="M325.008 1282L597.141 1282" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1253" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1272" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
+<path d="M597.141 1282L837.961 1282" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1253" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1272" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">600</text>
+<path d="M837.961 1282L1104 1282" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1282" width="257.008" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1301" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
+<path d="M68 1311L325.008 1311" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1282" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1301" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Speaker</text>
+<path d="M325.008 1311L597.141 1311" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1282" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1301" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
+<path d="M597.141 1311L837.961 1311" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1282" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1301" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">500</text>
+<path d="M837.961 1311L1104 1311" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1311" width="257.008" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1330" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">106</text>
+<path d="M68 1340L325.008 1340" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1311" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1330" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Router</text>
+<path d="M325.008 1340L597.141 1340" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1311" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1330" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Netco</text>
+<path d="M597.141 1340L837.961 1340" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1311" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1330" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">400</text>
+<path d="M837.961 1340L1104 1340" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1340" width="257.008" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1359" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">107</text>
+<path d="M68 1369L325.008 1369" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1340" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1359" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Camera</text>
+<path d="M325.008 1369L597.141 1369" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1340" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1359" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
+<path d="M597.141 1369L837.961 1369" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1340" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1359" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">300</text>
+<path d="M837.961 1369L1104 1369" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1369" width="257.008" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1388" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">108</text>
+<path d="M68 1398L325.008 1398" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1369" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1388" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mouse</text>
+<path d="M325.008 1398L597.141 1398" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1369" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1388" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
+<path d="M597.141 1398L837.961 1398" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1369" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1388" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
+<path d="M837.961 1398L1104 1398" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1398" width="257.008" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1417" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">109</text>
+<path d="M68 1427L325.008 1427" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1398" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1417" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lamp</text>
+<path d="M325.008 1427L597.141 1427" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1398" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1417" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 1427L837.961 1427" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1398" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1417" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
+<path d="M837.961 1427L1104 1427" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1456" width="1096" height="572" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1486" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="980.906" y="1466" width="127.094" height="28" rx="10" fill="#e6eeeb"/>
+<text x="992.906" y="1485" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">12 → 12 rows</text>
+<text x="52" y="1521" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What separates products tied on price?</text>
+<text x="52" y="1550" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Nine products cost more than 100. Mug (ID 4) comes before Bottle (ID 20) at the same price.</text>
+<rect x="52" y="1566" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1587" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY Sale_Price DESC, ProductID ASC</text>
+<rect x="68" y="1614" width="257.008" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1629" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1650" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="325.008" y="1614" width="272.133" height="47" rx="0" fill="#194f7c"/>
+<text x="336.008" y="1629" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="336.008" y="1650" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
+<rect x="597.141" y="1614" width="240.82" height="47" rx="0" fill="#194f7c"/>
+<text x="608.141" y="1629" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="608.141" y="1650" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
+<rect x="837.961" y="1614" width="266.039" height="47" rx="0" fill="#194f7c"/>
+<text x="848.961" y="1629" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="848.961" y="1650" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
+<rect x="68" y="1661" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1680" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">101</text>
+<path d="M68 1690L325.008 1690" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1661" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1680" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Headphones</text>
+<path d="M325.008 1690L597.141 1690" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1661" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1680" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
+<path d="M597.141 1690L837.961 1690" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1661" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1680" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">900</text>
+<path d="M837.961 1690L1104 1690" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1690" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1709" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">102</text>
+<path d="M68 1719L325.008 1719" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1690" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1709" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tablet</text>
+<path d="M325.008 1719L597.141 1719" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1690" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1709" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
+<path d="M597.141 1719L837.961 1719" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1690" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1709" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">800</text>
+<path d="M837.961 1719L1104 1719" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1719" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1738" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">103</text>
+<path d="M68 1748L325.008 1748" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1719" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1738" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Monitor</text>
+<path d="M325.008 1748L597.141 1748" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1719" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1738" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
+<path d="M597.141 1748L837.961 1748" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1719" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1738" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
+<path d="M837.961 1748L1104 1748" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1748" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1767" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">104</text>
+<path d="M68 1777L325.008 1777" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1748" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1767" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Keyboard</text>
+<path d="M325.008 1777L597.141 1777" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1748" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1767" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
+<path d="M597.141 1777L837.961 1777" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1748" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1767" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">600</text>
+<path d="M837.961 1777L1104 1777" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1777" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1796" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
+<path d="M68 1806L325.008 1806" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1777" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1796" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Speaker</text>
+<path d="M325.008 1806L597.141 1806" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1777" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1796" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
+<path d="M597.141 1806L837.961 1806" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1777" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1796" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">500</text>
+<path d="M837.961 1806L1104 1806" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1806" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">106</text>
+<path d="M68 1835L325.008 1835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1806" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Router</text>
+<path d="M325.008 1835L597.141 1835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1806" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Netco</text>
+<path d="M597.141 1835L837.961 1835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1806" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1825" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">400</text>
+<path d="M837.961 1835L1104 1835" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1835" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">107</text>
+<path d="M68 1864L325.008 1864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1835" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Camera</text>
+<path d="M325.008 1864L597.141 1864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1835" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
+<path d="M597.141 1864L837.961 1864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1835" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1854" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">300</text>
+<path d="M837.961 1864L1104 1864" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1864" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1883" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">108</text>
+<path d="M68 1893L325.008 1893" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1864" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1883" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mouse</text>
+<path d="M325.008 1893L597.141 1893" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1864" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1883" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
+<path d="M597.141 1893L837.961 1893" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1864" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1883" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
+<path d="M837.961 1893L1104 1893" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1893" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">109</text>
+<path d="M68 1922L325.008 1922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1893" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lamp</text>
+<path d="M325.008 1922L597.141 1922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1893" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 1922L837.961 1922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1893" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1912" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
+<path d="M837.961 1922L1104 1922" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1931.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1922" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 1951L325.008 1951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1922" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mug</text>
+<path d="M325.008 1951L597.141 1951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1922" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 1951L837.961 1951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1922" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1941" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M837.961 1951L1104 1951" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1960.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1951" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">20</text>
+<path d="M68 1980L325.008 1980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1951" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="1970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Bottle</text>
+<path d="M325.008 1980L597.141 1980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1951" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="1970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 1980L837.961 1980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1951" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M837.961 1980L1104 1980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1980" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">30</text>
+<path d="M68 2009L325.008 2009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="1980" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="1999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sticker</text>
+<path d="M325.008 2009L597.141 2009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="1980" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="1999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 2009L837.961 2009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="1980" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="1999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M837.961 2009L1104 2009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="2038" width="1096" height="514" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="2068" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="980.906" y="2048" width="127.094" height="28" rx="10" fill="#e6eeeb"/>
+<text x="992.906" y="2067" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">12 → 10 rows</text>
+<text x="52" y="2103" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which ten rows reach the report?</text>
+<text x="52" y="2132" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Mug takes place 10. Bottle is 11th and the zero-price Sticker is 12th.</text>
+<rect x="52" y="2148" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2169" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LIMIT 10</text>
+<rect x="68" y="2196" width="257.008" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="2211" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="2232" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="325.008" y="2196" width="272.133" height="47" rx="0" fill="#194f7c"/>
+<text x="336.008" y="2211" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="336.008" y="2232" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
+<rect x="597.141" y="2196" width="240.82" height="47" rx="0" fill="#194f7c"/>
+<text x="608.141" y="2211" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="608.141" y="2232" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Brand</text>
+<rect x="837.961" y="2196" width="266.039" height="47" rx="0" fill="#194f7c"/>
+<text x="848.961" y="2211" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="848.961" y="2232" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
+<rect x="68" y="2243" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2262" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">101</text>
+<path d="M68 2272L325.008 2272" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2243" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="2262" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Headphones</text>
+<path d="M325.008 2272L597.141 2272" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2243" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="2262" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
+<path d="M597.141 2272L837.961 2272" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2243" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2262" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">900</text>
+<path d="M837.961 2272L1104 2272" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2272" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2291" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">102</text>
+<path d="M68 2301L325.008 2301" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2272" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="2291" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Tablet</text>
+<path d="M325.008 2301L597.141 2301" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2272" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="2291" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
+<path d="M597.141 2301L837.961 2301" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2272" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2291" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">800</text>
+<path d="M837.961 2301L1104 2301" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2301" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2320" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">103</text>
+<path d="M68 2330L325.008 2330" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2301" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="2320" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Monitor</text>
+<path d="M325.008 2330L597.141 2330" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2301" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="2320" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
+<path d="M597.141 2330L837.961 2330" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2301" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2320" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">700</text>
+<path d="M837.961 2330L1104 2330" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2330" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2349" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">104</text>
+<path d="M68 2359L325.008 2359" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2330" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="2349" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Keyboard</text>
+<path d="M325.008 2359L597.141 2359" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2330" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="2349" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
+<path d="M597.141 2359L837.961 2359" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2330" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2349" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">600</text>
+<path d="M837.961 2359L1104 2359" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2359" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2378" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">105</text>
+<path d="M68 2388L325.008 2388" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2359" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="2378" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Speaker</text>
+<path d="M325.008 2388L597.141 2388" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2359" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="2378" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Nova</text>
+<path d="M597.141 2388L837.961 2388" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2359" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2378" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">500</text>
+<path d="M837.961 2388L1104 2388" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2388" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">106</text>
+<path d="M68 2417L325.008 2417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2388" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="2407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Router</text>
+<path d="M325.008 2417L597.141 2417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2388" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="2407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Netco</text>
+<path d="M597.141 2417L837.961 2417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2388" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2407" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">400</text>
+<path d="M837.961 2417L1104 2417" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2417" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">107</text>
+<path d="M68 2446L325.008 2446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2417" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="2436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Camera</text>
+<path d="M325.008 2446L597.141 2446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2417" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="2436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Pixel</text>
+<path d="M597.141 2446L837.961 2446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2417" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2436" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">300</text>
+<path d="M837.961 2446L1104 2446" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2446" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">108</text>
+<path d="M68 2475L325.008 2475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2446" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="2465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mouse</text>
+<path d="M325.008 2475L597.141 2475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2446" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="2465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Typeco</text>
+<path d="M597.141 2475L837.961 2475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2446" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2465" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
+<path d="M837.961 2475L1104 2475" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2475" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2494" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">109</text>
+<path d="M68 2504L325.008 2504" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2475" width="272.133" height="29" rx="0" fill="#edf4fb"/>
+<text x="336.008" y="2494" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Lamp</text>
+<path d="M325.008 2504L597.141 2504" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2475" width="240.82" height="29" rx="0" fill="#edf4fb"/>
+<text x="608.141" y="2494" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 2504L837.961 2504" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2475" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2494" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
+<path d="M837.961 2504L1104 2504" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 2513.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="2504" width="257.008" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2523" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 2533L325.008 2533" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="325.008" y="2504" width="272.133" height="29" rx="0" fill="#ffffff"/>
+<text x="336.008" y="2523" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Mug</text>
+<path d="M325.008 2533L597.141 2533" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="597.141" y="2504" width="240.82" height="29" rx="0" fill="#ffffff"/>
+<text x="608.141" y="2523" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Home</text>
+<path d="M597.141 2533L837.961 2533" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="837.961" y="2504" width="266.039" height="29" rx="0" fill="#d8e9f7"/>
+<text x="848.961" y="2523" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M837.961 2533L1104 2533" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

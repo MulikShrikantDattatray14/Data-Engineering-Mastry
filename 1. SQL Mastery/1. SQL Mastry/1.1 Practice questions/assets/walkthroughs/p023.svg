@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1464" viewBox="0 0 1160 1464" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1557" viewBox="0 0 1160 1557" role="img" aria-labelledby="title desc">
 <title id="title">P023 · Chocolate or cookie products under 250</title>
-<desc id="desc">One row per qualifying chocolate or cookie product. IDs 1, 2 and 4 match, including uppercase CHOCOLATE. Tea Biscuit (ID 3) drops out. All three remaining sample prices pass. A price of exactly 250 would fail. ID 2 passes the first two filters, then drops out on its name. Cocoa Cookie (200) precedes Dark Bar (249).</desc>
-<rect width="1160" height="1464" fill="#f4f7f7"/>
+<desc id="desc">One row per qualifying chocolate or cookie product. IDs 1, 2 and 4 match, including uppercase CHOCOLATE. Tea Biscuit (ID 3) drops out. All three remaining sample prices pass. A price of exactly 250 would fail. ID 2 passes the first two filters, then drops out on its name. Cocoa Cookie (200) precedes Dark Bar (249). FROM Products · one table is enough. All three eligibility tests concern one catalogue item. Its subcategory, price and name can be checked together, and its own ID breaks a price tie.</desc>
+<rect width="1160" height="1557" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P023    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Chocolate or cookie products under 250</text>
@@ -73,162 +73,169 @@
 <rect x="860.832" y="467" width="243.168" height="29" rx="0" fill="#ffffff"/>
 <text x="871.832" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">249</text>
 <path d="M860.832 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="520" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="520" width="1096" height="404" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="550" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="530" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="549" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
 <text x="52" y="585" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which subcategories are eligible?</text>
-<text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 1, 2 and 4 match, including uppercase CHOCOLATE. Tea Biscuit (ID 3) drops out.</text>
-<rect x="52" y="630" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="651" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LOWER(TRIM(Sub_Category)) LIKE &#x27;%cookie%&#x27; OR … LIKE &#x27;%chocolate%&#x27;</text>
-<rect x="68" y="678" width="234.137" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="302.137" y="678" width="297.465" height="47" rx="0" fill="#194f7c"/>
-<text x="313.137" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="313.137" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="599.602" y="678" width="261.23" height="47" rx="0" fill="#194f7c"/>
-<text x="610.602" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="610.602" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sub_Category</text>
-<rect x="860.832" y="678" width="243.168" height="47" rx="0" fill="#194f7c"/>
-<text x="871.832" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="871.832" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
-<rect x="68" y="725" width="234.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 754L302.137 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="302.137" y="725" width="297.465" height="29" rx="0" fill="#edf4fb"/>
-<text x="313.137" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cocoa Cookie</text>
-<path d="M302.137 754L599.602 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="599.602" y="725" width="261.23" height="29" rx="0" fill="#d8e9f7"/>
-<text x="610.602" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cookies</text>
-<path d="M599.602 754L860.832 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="860.832" y="725" width="243.168" height="29" rx="0" fill="#edf4fb"/>
-<text x="871.832" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M860.832 754L1104 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 763.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="754" width="234.137" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 783L302.137 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="302.137" y="754" width="297.465" height="29" rx="0" fill="#ffffff"/>
-<text x="313.137" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sugar-free Choc</text>
-<path d="M302.137 783L599.602 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="599.602" y="754" width="261.23" height="29" rx="0" fill="#d8e9f7"/>
-<text x="610.602" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chocolate</text>
-<path d="M599.602 783L860.832 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="860.832" y="754" width="243.168" height="29" rx="0" fill="#ffffff"/>
-<text x="871.832" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M860.832 783L1104 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="783" width="234.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 812L302.137 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="302.137" y="783" width="297.465" height="29" rx="0" fill="#edf4fb"/>
-<text x="313.137" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dark Bar</text>
-<path d="M302.137 812L599.602 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="599.602" y="783" width="261.23" height="29" rx="0" fill="#d8e9f7"/>
-<text x="610.602" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">CHOCOLATE</text>
-<path d="M599.602 812L860.832 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="860.832" y="783" width="243.168" height="29" rx="0" fill="#edf4fb"/>
-<text x="871.832" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">249</text>
-<path d="M860.832 812L1104 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="841" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="871" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="851" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="870" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
-<text x="52" y="906" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What is the price ceiling?</text>
-<text x="52" y="935" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">All three remaining sample prices pass. A price of exactly 250 would fail.</text>
-<rect x="52" y="951" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="972" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND Sale_Price &lt; 250</text>
-<rect x="68" y="999" width="234.137" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="302.137" y="999" width="297.465" height="47" rx="0" fill="#194f7c"/>
-<text x="313.137" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="313.137" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="599.602" y="999" width="261.23" height="47" rx="0" fill="#194f7c"/>
-<text x="610.602" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="610.602" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sub_Category</text>
-<rect x="860.832" y="999" width="243.168" height="47" rx="0" fill="#194f7c"/>
-<text x="871.832" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="871.832" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
-<rect x="68" y="1046" width="234.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1075L302.137 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="302.137" y="1046" width="297.465" height="29" rx="0" fill="#edf4fb"/>
-<text x="313.137" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cocoa Cookie</text>
-<path d="M302.137 1075L599.602 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="599.602" y="1046" width="261.23" height="29" rx="0" fill="#edf4fb"/>
-<text x="610.602" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cookies</text>
-<path d="M599.602 1075L860.832 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="860.832" y="1046" width="243.168" height="29" rx="0" fill="#d8e9f7"/>
-<text x="871.832" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M860.832 1075L1104 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1084.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1075" width="234.137" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1104L302.137 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="302.137" y="1075" width="297.465" height="29" rx="0" fill="#ffffff"/>
-<text x="313.137" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sugar-free Choc</text>
-<path d="M302.137 1104L599.602 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="599.602" y="1075" width="261.23" height="29" rx="0" fill="#ffffff"/>
-<text x="610.602" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chocolate</text>
-<path d="M599.602 1104L860.832 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="860.832" y="1075" width="243.168" height="29" rx="0" fill="#d8e9f7"/>
-<text x="871.832" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M860.832 1104L1104 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1104" width="234.137" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1133L302.137 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="302.137" y="1104" width="297.465" height="29" rx="0" fill="#edf4fb"/>
-<text x="313.137" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dark Bar</text>
-<path d="M302.137 1133L599.602 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="599.602" y="1104" width="261.23" height="29" rx="0" fill="#edf4fb"/>
-<text x="610.602" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">CHOCOLATE</text>
-<path d="M599.602 1133L860.832 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="860.832" y="1104" width="243.168" height="29" rx="0" fill="#d8e9f7"/>
-<text x="871.832" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">249</text>
-<path d="M860.832 1133L1104 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1162" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1192" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1172" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1191" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
-<text x="52" y="1227" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which name rule completes the shortlist?</text>
-<text x="52" y="1256" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">ID 2 passes the first two filters, then drops out on its name. Cocoa Cookie (200) precedes Dark Bar (249).</text>
-<rect x="52" y="1272" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1293" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND Product NOT LIKE &#x27;%sugar-free%&#x27; / ORDER BY Sale_Price, ProductID</text>
-<rect x="68" y="1320" width="241.367" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1335" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="79" y="1356" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
-<rect x="309.367" y="1320" width="275.773" height="47" rx="0" fill="#194f7c"/>
-<text x="320.367" y="1335" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="320.367" y="1356" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
-<rect x="585.141" y="1320" width="268.461" height="47" rx="0" fill="#194f7c"/>
-<text x="596.141" y="1335" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="596.141" y="1356" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sub_Category</text>
-<rect x="853.602" y="1320" width="250.398" height="47" rx="0" fill="#194f7c"/>
-<text x="864.602" y="1335" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
-<text x="864.602" y="1356" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
-<rect x="68" y="1367" width="241.367" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1386" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1396L309.367 1396" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="309.367" y="1367" width="275.773" height="29" rx="0" fill="#d8e9f7"/>
-<text x="320.367" y="1386" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cocoa Cookie</text>
-<path d="M309.367 1396L585.141 1396" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="585.141" y="1367" width="268.461" height="29" rx="0" fill="#edf4fb"/>
-<text x="596.141" y="1386" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cookies</text>
-<path d="M585.141 1396L853.602 1396" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="853.602" y="1367" width="250.398" height="29" rx="0" fill="#d8e9f7"/>
-<text x="864.602" y="1386" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M853.602 1396L1104 1396" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1396" width="241.367" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1415" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
-<path d="M68 1425L309.367 1425" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="309.367" y="1396" width="275.773" height="29" rx="0" fill="#d8e9f7"/>
-<text x="320.367" y="1415" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dark Bar</text>
-<path d="M309.367 1425L585.141 1425" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="585.141" y="1396" width="268.461" height="29" rx="0" fill="#ffffff"/>
-<text x="596.141" y="1415" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">CHOCOLATE</text>
-<path d="M585.141 1425L853.602 1425" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="853.602" y="1396" width="250.398" height="29" rx="0" fill="#d8e9f7"/>
-<text x="864.602" y="1415" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">249</text>
-<path d="M853.602 1425L1104 1425" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM Products · one table is enough" data-decision="1">
+<rect x="52" y="596" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="601" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="618" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Products · one table is enough</text>
+<text x="66" y="642" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">All three eligibility tests concern one catalogue item. Its subcategory, price and name can be checked together, and its</text>
+<text x="66" y="665" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">own ID breaks a price tie.</text>
+</g>
+<text x="52" y="707" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 1, 2 and 4 match, including uppercase CHOCOLATE. Tea Biscuit (ID 3) drops out.</text>
+<rect x="52" y="723" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="744" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LOWER(TRIM(Sub_Category)) LIKE &#x27;%cookie%&#x27; OR … LIKE &#x27;%chocolate%&#x27;</text>
+<rect x="68" y="771" width="234.137" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="302.137" y="771" width="297.465" height="47" rx="0" fill="#194f7c"/>
+<text x="313.137" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="313.137" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
+<rect x="599.602" y="771" width="261.23" height="47" rx="0" fill="#194f7c"/>
+<text x="610.602" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="610.602" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sub_Category</text>
+<rect x="860.832" y="771" width="243.168" height="47" rx="0" fill="#194f7c"/>
+<text x="871.832" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="871.832" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
+<rect x="68" y="818" width="234.137" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 847L302.137 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="302.137" y="818" width="297.465" height="29" rx="0" fill="#edf4fb"/>
+<text x="313.137" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cocoa Cookie</text>
+<path d="M302.137 847L599.602 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="599.602" y="818" width="261.23" height="29" rx="0" fill="#d8e9f7"/>
+<text x="610.602" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cookies</text>
+<path d="M599.602 847L860.832 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="860.832" y="818" width="243.168" height="29" rx="0" fill="#edf4fb"/>
+<text x="871.832" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
+<path d="M860.832 847L1104 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 856.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="847" width="234.137" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 876L302.137 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="302.137" y="847" width="297.465" height="29" rx="0" fill="#ffffff"/>
+<text x="313.137" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sugar-free Choc</text>
+<path d="M302.137 876L599.602 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="599.602" y="847" width="261.23" height="29" rx="0" fill="#d8e9f7"/>
+<text x="610.602" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chocolate</text>
+<path d="M599.602 876L860.832 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="860.832" y="847" width="243.168" height="29" rx="0" fill="#ffffff"/>
+<text x="871.832" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
+<path d="M860.832 876L1104 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="876" width="234.137" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 905L302.137 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="302.137" y="876" width="297.465" height="29" rx="0" fill="#edf4fb"/>
+<text x="313.137" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dark Bar</text>
+<path d="M302.137 905L599.602 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="599.602" y="876" width="261.23" height="29" rx="0" fill="#d8e9f7"/>
+<text x="610.602" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">CHOCOLATE</text>
+<path d="M599.602 905L860.832 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="860.832" y="876" width="243.168" height="29" rx="0" fill="#edf4fb"/>
+<text x="871.832" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">249</text>
+<path d="M860.832 905L1104 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="934" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="964" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="944" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="963" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
+<text x="52" y="999" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What is the price ceiling?</text>
+<text x="52" y="1028" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">All three remaining sample prices pass. A price of exactly 250 would fail.</text>
+<rect x="52" y="1044" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND Sale_Price &lt; 250</text>
+<rect x="68" y="1092" width="234.137" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="302.137" y="1092" width="297.465" height="47" rx="0" fill="#194f7c"/>
+<text x="313.137" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="313.137" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
+<rect x="599.602" y="1092" width="261.23" height="47" rx="0" fill="#194f7c"/>
+<text x="610.602" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="610.602" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sub_Category</text>
+<rect x="860.832" y="1092" width="243.168" height="47" rx="0" fill="#194f7c"/>
+<text x="871.832" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="871.832" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
+<rect x="68" y="1139" width="234.137" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1168L302.137 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="302.137" y="1139" width="297.465" height="29" rx="0" fill="#edf4fb"/>
+<text x="313.137" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cocoa Cookie</text>
+<path d="M302.137 1168L599.602 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="599.602" y="1139" width="261.23" height="29" rx="0" fill="#edf4fb"/>
+<text x="610.602" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cookies</text>
+<path d="M599.602 1168L860.832 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="860.832" y="1139" width="243.168" height="29" rx="0" fill="#d8e9f7"/>
+<text x="871.832" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
+<path d="M860.832 1168L1104 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1177.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1168" width="234.137" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1197L302.137 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="302.137" y="1168" width="297.465" height="29" rx="0" fill="#ffffff"/>
+<text x="313.137" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sugar-free Choc</text>
+<path d="M302.137 1197L599.602 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="599.602" y="1168" width="261.23" height="29" rx="0" fill="#ffffff"/>
+<text x="610.602" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Chocolate</text>
+<path d="M599.602 1197L860.832 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="860.832" y="1168" width="243.168" height="29" rx="0" fill="#d8e9f7"/>
+<text x="871.832" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
+<path d="M860.832 1197L1104 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1197" width="234.137" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 1226L302.137 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="302.137" y="1197" width="297.465" height="29" rx="0" fill="#edf4fb"/>
+<text x="313.137" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dark Bar</text>
+<path d="M302.137 1226L599.602 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="599.602" y="1197" width="261.23" height="29" rx="0" fill="#edf4fb"/>
+<text x="610.602" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">CHOCOLATE</text>
+<path d="M599.602 1226L860.832 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="860.832" y="1197" width="243.168" height="29" rx="0" fill="#d8e9f7"/>
+<text x="871.832" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">249</text>
+<path d="M860.832 1226L1104 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1255" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1285" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1265" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1284" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="1320" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which name rule completes the shortlist?</text>
+<text x="52" y="1349" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">ID 2 passes the first two filters, then drops out on its name. Cocoa Cookie (200) precedes Dark Bar (249).</text>
+<rect x="52" y="1365" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1386" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">AND Product NOT LIKE &#x27;%sugar-free%&#x27; / ORDER BY Sale_Price, ProductID</text>
+<rect x="68" y="1413" width="241.367" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1428" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="79" y="1449" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ProductID</text>
+<rect x="309.367" y="1413" width="275.773" height="47" rx="0" fill="#194f7c"/>
+<text x="320.367" y="1428" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="320.367" y="1449" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Product</text>
+<rect x="585.141" y="1413" width="268.461" height="47" rx="0" fill="#194f7c"/>
+<text x="596.141" y="1428" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="596.141" y="1449" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sub_Category</text>
+<rect x="853.602" y="1413" width="250.398" height="47" rx="0" fill="#194f7c"/>
+<text x="864.602" y="1428" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Products</text>
+<text x="864.602" y="1449" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Sale_Price</text>
+<rect x="68" y="1460" width="241.367" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1479" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1489L309.367 1489" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="309.367" y="1460" width="275.773" height="29" rx="0" fill="#d8e9f7"/>
+<text x="320.367" y="1479" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cocoa Cookie</text>
+<path d="M309.367 1489L585.141 1489" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="585.141" y="1460" width="268.461" height="29" rx="0" fill="#edf4fb"/>
+<text x="596.141" y="1479" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cookies</text>
+<path d="M585.141 1489L853.602 1489" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="853.602" y="1460" width="250.398" height="29" rx="0" fill="#d8e9f7"/>
+<text x="864.602" y="1479" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
+<path d="M853.602 1489L1104 1489" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1489" width="241.367" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1508" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">4</text>
+<path d="M68 1518L309.367 1518" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="309.367" y="1489" width="275.773" height="29" rx="0" fill="#d8e9f7"/>
+<text x="320.367" y="1508" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Dark Bar</text>
+<path d="M309.367 1518L585.141 1518" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="585.141" y="1489" width="268.461" height="29" rx="0" fill="#ffffff"/>
+<text x="596.141" y="1508" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">CHOCOLATE</text>
+<path d="M585.141 1518L853.602 1518" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="853.602" y="1489" width="250.398" height="29" rx="0" fill="#d8e9f7"/>
+<text x="864.602" y="1508" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">249</text>
+<path d="M853.602 1518L1104 1518" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

@@ -119,6 +119,8 @@ ORDER BY store ASC;
 
 ### Step-by-step explanation with one example
 
+🟦 **Each branch · FROM Products** · All three store prices are already on each product row. Read one store column per branch so a product can contribute a separate row to every store that has a price.
+
 **Starting data.** One input row represents one product; the three store prices occupy three separate columns.
 
 | product_id | store1 | store2 | store3 |
@@ -175,6 +177,8 @@ WHERE store3 IS NOT NULL;
 | 1 | store3 | 80 |
 
 Each branch produces the **same three output columns** in the same order. A price of `0`, if present, would stay: `0 IS NOT NULL` is true. Only missing (`NULL`) prices are removed.
+
+🟦 **UNION ALL · stack the three stores** · The result needs one row per available product and store. Appending the independent branches preserves all five pairs without a join. The final sort sets the display order.
 
 **4. Stack the branch results with `UNION ALL`.** It retains all two `store1` rows, one `store2` row, and two `store3` rows: five output rows in total. The final `ORDER BY store ASC` arranges the stores as `store1`, `store2`, `store3`.
 

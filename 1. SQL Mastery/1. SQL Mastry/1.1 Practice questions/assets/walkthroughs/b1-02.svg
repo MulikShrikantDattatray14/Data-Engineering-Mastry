@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1317" viewBox="0 0 1160 1317" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1410" viewBox="0 0 1160 1410" role="img" aria-labelledby="title desc">
 <title id="title">B1.02 · Calculate Special Bonus</title>
-<desc id="desc">One row per employee with their calculated bonus. An odd ID gives 1. A permitted name also gives 1. Michael fails the name test and Juan fails the ID test. IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order.</desc>
-<rect width="1160" height="1317" fill="#f4f7f7"/>
+<desc id="desc">One row per employee with their calculated bonus. An odd ID gives 1. A permitted name also gives 1. Michael fails the name test and Juan fails the ID test. IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order. FROM Employees · one table is enough. Each employee row holds the ID and name that determine eligibility, plus the salary that determines the payout. Employees who receive zero still have an output row.</desc>
+<rect width="1160" height="1410" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">BOSSCODER  1.02    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Calculate Special Bonus</text>
@@ -68,150 +68,157 @@
 <rect x="765.464" y="496" width="338.536" height="29" rx="0" fill="#edf4fb"/>
 <text x="776.464" y="515" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7700</text>
 <path d="M765.464 525L1104 525" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="549" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="549" width="1096" height="462" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="579" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="559" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="578" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
 <text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Who passes both tests?</text>
-<text x="52" y="643" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">An odd ID gives 1. A permitted name also gives 1. Michael fails the name test and Juan fails the ID test.</text>
-<rect x="52" y="659" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="680" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">employee_id % 2 AS remainder, name NOT LIKE &#x27;M%&#x27; AS name_allowed</text>
-<rect x="68" y="707" width="217.162" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="79" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">employee_id</text>
-<rect x="285.163" y="707" width="196.772" height="47" rx="0" fill="#194f7c"/>
-<text x="296.163" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="296.163" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">name</text>
-<rect x="481.934" y="707" width="196.772" height="47" rx="0" fill="#194f7c"/>
-<text x="492.934" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="492.934" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">salary</text>
-<rect x="678.706" y="707" width="199.1" height="47" rx="0" fill="#194f7c"/>
-<text x="689.706" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="689.706" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">remainder</text>
-<rect x="877.806" y="707" width="226.194" height="47" rx="0" fill="#194f7c"/>
-<text x="888.806" y="722" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="888.806" y="743" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">name_allowed</text>
-<rect x="68" y="754" width="217.162" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 783L285.163 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="285.163" y="754" width="196.772" height="29" rx="0" fill="#edf4fb"/>
-<text x="296.163" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Meir</text>
-<path d="M285.163 783L481.934 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="481.934" y="754" width="196.772" height="29" rx="0" fill="#edf4fb"/>
-<text x="492.934" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3000</text>
-<path d="M481.934 783L678.706 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="678.706" y="754" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
-<text x="689.706" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M678.706 783L877.806 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="877.806" y="754" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
-<text x="888.806" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M877.806 783L1104 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 792.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="783" width="217.162" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 812L285.163 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="285.163" y="783" width="196.772" height="29" rx="0" fill="#ffffff"/>
-<text x="296.163" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Michael</text>
-<path d="M285.163 812L481.934 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="481.934" y="783" width="196.772" height="29" rx="0" fill="#ffffff"/>
-<text x="492.934" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3800</text>
-<path d="M481.934 812L678.706 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="678.706" y="783" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
-<text x="689.706" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M678.706 812L877.806 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="877.806" y="783" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
-<text x="888.806" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M877.806 812L1104 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 821.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="812" width="217.162" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
-<path d="M68 841L285.163 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="285.163" y="812" width="196.772" height="29" rx="0" fill="#edf4fb"/>
-<text x="296.163" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Addilyn</text>
-<path d="M285.163 841L481.934 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="481.934" y="812" width="196.772" height="29" rx="0" fill="#edf4fb"/>
-<text x="492.934" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7400</text>
-<path d="M481.934 841L678.706 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="678.706" y="812" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
-<text x="689.706" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M678.706 841L877.806 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="877.806" y="812" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
-<text x="888.806" y="831" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M877.806 841L1104 841" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="841" width="217.162" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="860" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 870L285.163 870" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="285.163" y="841" width="196.772" height="29" rx="0" fill="#ffffff"/>
-<text x="296.163" y="860" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Juan</text>
-<path d="M285.163 870L481.934 870" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="481.934" y="841" width="196.772" height="29" rx="0" fill="#ffffff"/>
-<text x="492.934" y="860" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6100</text>
-<path d="M481.934 870L678.706 870" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="678.706" y="841" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
-<text x="689.706" y="860" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M678.706 870L877.806 870" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="877.806" y="841" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
-<text x="888.806" y="860" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M877.806 870L1104 870" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="870" width="217.162" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="889" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
-<path d="M68 899L285.163 899" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="285.163" y="870" width="196.772" height="29" rx="0" fill="#edf4fb"/>
-<text x="296.163" y="889" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kannon</text>
-<path d="M285.163 899L481.934 899" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="481.934" y="870" width="196.772" height="29" rx="0" fill="#edf4fb"/>
-<text x="492.934" y="889" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7700</text>
-<path d="M481.934 899L678.706 899" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="678.706" y="870" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
-<text x="689.706" y="889" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M678.706 899L877.806 899" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="877.806" y="870" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
-<text x="888.806" y="889" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M877.806 899L1104 899" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="928" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="958" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="938" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="957" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
-<text x="52" y="993" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Who receives their full salary?</text>
-<text x="52" y="1022" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order.</text>
-<rect x="52" y="1038" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1059" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN name NOT LIKE &#x27;M%&#x27; AND employee_id % 2 = 1 THEN salary ELSE 0 END</text>
-<rect x="68" y="1086" width="528.195" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1101" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="79" y="1122" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">employee_id</text>
-<rect x="596.195" y="1086" width="507.805" height="47" rx="0" fill="#194f7c"/>
-<text x="607.195" y="1101" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
-<text x="607.195" y="1122" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">bonus</text>
-<rect x="68" y="1133" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1162L596.195 1162" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="596.195" y="1133" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
-<text x="607.195" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M596.195 1162L1104 1162" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1171.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1162" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1181" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1191L596.195 1191" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="596.195" y="1162" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
-<text x="607.195" y="1181" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M596.195 1191L1104 1191" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1200.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1191" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1210" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
-<path d="M68 1220L596.195 1220" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="596.195" y="1191" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
-<text x="607.195" y="1210" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7400</text>
-<path d="M596.195 1220L1104 1220" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1220" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1239" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
-<path d="M68 1249L596.195 1249" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="596.195" y="1220" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
-<text x="607.195" y="1239" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
-<path d="M596.195 1249L1104 1249" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1249" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1268" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
-<path d="M68 1278L596.195 1278" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="596.195" y="1249" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
-<text x="607.195" y="1268" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7700</text>
-<path d="M596.195 1278L1104 1278" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM Employees · one table is enough" data-decision="2">
+<rect x="52" y="625" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="630" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="647" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Employees · one table is enough</text>
+<text x="66" y="671" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Each employee row holds the ID and name that determine eligibility, plus the salary that determines the payout.</text>
+<text x="66" y="694" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Employees who receive zero still have an output row.</text>
+</g>
+<text x="52" y="736" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">An odd ID gives 1. A permitted name also gives 1. Michael fails the name test and Juan fails the ID test.</text>
+<rect x="52" y="752" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="773" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">employee_id % 2 AS remainder, name NOT LIKE &#x27;M%&#x27; AS name_allowed</text>
+<rect x="68" y="800" width="217.162" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
+<text x="79" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">employee_id</text>
+<rect x="285.163" y="800" width="196.772" height="47" rx="0" fill="#194f7c"/>
+<text x="296.163" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
+<text x="296.163" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">name</text>
+<rect x="481.934" y="800" width="196.772" height="47" rx="0" fill="#194f7c"/>
+<text x="492.934" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
+<text x="492.934" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">salary</text>
+<rect x="678.706" y="800" width="199.1" height="47" rx="0" fill="#194f7c"/>
+<text x="689.706" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
+<text x="689.706" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">remainder</text>
+<rect x="877.806" y="800" width="226.194" height="47" rx="0" fill="#194f7c"/>
+<text x="888.806" y="815" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
+<text x="888.806" y="836" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">name_allowed</text>
+<rect x="68" y="847" width="217.162" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 876L285.163 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="285.163" y="847" width="196.772" height="29" rx="0" fill="#edf4fb"/>
+<text x="296.163" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Meir</text>
+<path d="M285.163 876L481.934 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="481.934" y="847" width="196.772" height="29" rx="0" fill="#edf4fb"/>
+<text x="492.934" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3000</text>
+<path d="M481.934 876L678.706 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="678.706" y="847" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
+<text x="689.706" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M678.706 876L877.806 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="877.806" y="847" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
+<text x="888.806" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M877.806 876L1104 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 885.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="876" width="217.162" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 905L285.163 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="285.163" y="876" width="196.772" height="29" rx="0" fill="#ffffff"/>
+<text x="296.163" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Michael</text>
+<path d="M285.163 905L481.934 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="481.934" y="876" width="196.772" height="29" rx="0" fill="#ffffff"/>
+<text x="492.934" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3800</text>
+<path d="M481.934 905L678.706 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="678.706" y="876" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
+<text x="689.706" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M678.706 905L877.806 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="877.806" y="876" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
+<text x="888.806" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M877.806 905L1104 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 914.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="905" width="217.162" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
+<path d="M68 934L285.163 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="285.163" y="905" width="196.772" height="29" rx="0" fill="#edf4fb"/>
+<text x="296.163" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Addilyn</text>
+<path d="M285.163 934L481.934 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="481.934" y="905" width="196.772" height="29" rx="0" fill="#edf4fb"/>
+<text x="492.934" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7400</text>
+<path d="M481.934 934L678.706 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="678.706" y="905" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
+<text x="689.706" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M678.706 934L877.806 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="877.806" y="905" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
+<text x="888.806" y="924" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M877.806 934L1104 934" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="934" width="217.162" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M68 963L285.163 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="285.163" y="934" width="196.772" height="29" rx="0" fill="#ffffff"/>
+<text x="296.163" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Juan</text>
+<path d="M285.163 963L481.934 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="481.934" y="934" width="196.772" height="29" rx="0" fill="#ffffff"/>
+<text x="492.934" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6100</text>
+<path d="M481.934 963L678.706 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="678.706" y="934" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
+<text x="689.706" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M678.706 963L877.806 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="877.806" y="934" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
+<text x="888.806" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M877.806 963L1104 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="963" width="217.162" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M68 992L285.163 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="285.163" y="963" width="196.772" height="29" rx="0" fill="#edf4fb"/>
+<text x="296.163" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Kannon</text>
+<path d="M285.163 992L481.934 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="481.934" y="963" width="196.772" height="29" rx="0" fill="#edf4fb"/>
+<text x="492.934" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7700</text>
+<path d="M481.934 992L678.706 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="678.706" y="963" width="199.1" height="29" rx="0" fill="#d8e9f7"/>
+<text x="689.706" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M678.706 992L877.806 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="877.806" y="963" width="226.194" height="29" rx="0" fill="#d8e9f7"/>
+<text x="888.806" y="982" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M877.806 992L1104 992" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1021" width="1096" height="369" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1051" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1031" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1050" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">5 → 5 rows</text>
+<text x="52" y="1086" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Who receives their full salary?</text>
+<text x="52" y="1115" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 7 and 9 receive 7400 and 7700. The remaining employees receive 0 and all five appear in ID order.</text>
+<rect x="52" y="1131" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1152" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">CASE WHEN name NOT LIKE &#x27;M%&#x27; AND employee_id % 2 = 1 THEN salary ELSE 0 END</text>
+<rect x="68" y="1179" width="528.195" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
+<text x="79" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">employee_id</text>
+<rect x="596.195" y="1179" width="507.805" height="47" rx="0" fill="#194f7c"/>
+<text x="607.195" y="1194" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Employees</text>
+<text x="607.195" y="1215" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">bonus</text>
+<rect x="68" y="1226" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1255L596.195 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="596.195" y="1226" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="607.195" y="1245" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M596.195 1255L1104 1255" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1264.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1255" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1284L596.195 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="596.195" y="1255" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="607.195" y="1274" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M596.195 1284L1104 1284" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1293.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1284" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1303" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7</text>
+<path d="M68 1313L596.195 1313" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="596.195" y="1284" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="607.195" y="1303" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7400</text>
+<path d="M596.195 1313L1104 1313" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1313" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1332" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">8</text>
+<path d="M68 1342L596.195 1342" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="596.195" y="1313" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="607.195" y="1332" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">0</text>
+<path d="M596.195 1342L1104 1342" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1342" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1361" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">9</text>
+<path d="M68 1371L596.195 1371" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="596.195" y="1342" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="607.195" y="1361" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">7700</text>
+<path d="M596.195 1371L1104 1371" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

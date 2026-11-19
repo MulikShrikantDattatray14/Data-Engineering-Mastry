@@ -64,6 +64,8 @@ Follow the sample rows through each query step. **Predict the result.** Three or
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Orders · one table is enough** · Each transaction contributes once to the headline figures. Its order ID, buyer ID, amount and date supply all six measures. Buyer 10 can therefore have two orders while counting as one buyer.
+
 **How to start.** Is this one row per customer or one for the entire table?
 
 Use the same sample throughout and check the output after each step.

@@ -75,6 +75,8 @@ Guided submission. Chat formatting was cleaned up. SQLite accepted the double-qu
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Products · one table is enough** · All three eligibility tests concern one catalogue item. Its subcategory, price and name can be checked together, and its own ID breaks a price tie.
+
 One row represents one qualifying product. All data comes from Products.
 
 ### 1. Find the two eligible subcategories

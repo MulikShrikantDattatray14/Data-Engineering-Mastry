@@ -44,6 +44,10 @@ Include the visual in the same commit as each newly verified PNP or Bosscoder so
 
 Use the same step-by-step approach during practice and in each PNP or Bosscoder write-up. Identify what one output row represents, then build the query one part at a time using the same example. For each step, explain what to do and why, show the SQL and output, and explain what the output demonstrates. When a join is used, explain why it fits and which unmatched rows it keeps. Explain whether each condition affects input rows, output groups, or one metric.
 
+In the worked visual and the written steps, name the actual `FROM` source and explain which rows it supplies for this question. At each join, identify the accumulated left result, the table being added, the matching columns and the reason for its position. Explain why the selected join type fits the requested rows. Trace a concrete match, missing match or repeated match and state which values survive, become `NULL` or repeat. Use a labeled hypothetical case when the sample lacks the relevant edge case.
+
+When a later join uses a key obtained in an earlier join, point out that dependency. When either order gives the same pairs or two independent lookups can trade places, say so. Distinguish the rows produced by a CTE from the rows that start the outer query. For a one-table task, explain which fields already supply the result. For independent branches or membership checks, explain why the saved query uses a set operation or subquery. Put these reasons next to the relevant stages of the worked walkthrough after the learner’s attempt.
+
 Preserve the official answer as supplied and add separate SQLite and SQL Server adaptations. Note dialect changes and verify executable versions when the engine is available.
 
 #### Table color key

@@ -115,6 +115,8 @@ The official query trims brand names for filtering and returns raw brand names. 
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Products · one table is enough** · Each product already carries its stored `Brand`. Reading the catalogue supplies both the repeated names and the blank values that the directory must handle.
+
 **How to start.** What counts as one brand?
 
 Use the same sample throughout and check the output after each step.

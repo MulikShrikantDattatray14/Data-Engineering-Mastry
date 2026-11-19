@@ -115,9 +115,9 @@ Guided submission. The learner chose grouping by customer ID, counting orders, a
 
 ### 1. Build one row per customer ID that placed an order
 
-**What to do.** Start from Orders, join customer names, and count orders for each customer ID.
+🟦 **First inside customer_counts · FROM Orders** · Only people who placed orders enter this ranking. The buyer ID written on each order is the value to count, even when its customer record is missing.
 
-**Why this join.** The LEFT JOIN keeps orders for ID 99 even without a catalogue match. ID 7 has no order and never enters the ranking.
+🟩 **Second · LEFT JOIN Customers** · Match the order’s `CustomerID` to Customers for the name. The left join keeps all three orders for ID 99. A customer with zero orders, such as ID 7, supplies no ranking row. Group the retained orders by buyer ID and name.
 
 ```sql
 WITH customer_counts AS (
@@ -147,9 +147,7 @@ These are the candidate counts before the cutoff. The learner's COALESCE also su
 
 ### 2. Find the fifth row's count
 
-**What to do.** Sort the counts descending, skip four rows, and read the next count. Use zero when the fifth row is absent.
-
-**Why.** The fifth row sets the minimum qualifying count. The fallback keeps all eligible customers when there are fewer than five.
+**Outer query · FROM customer_counts** · The CTE has one row per buyer ID. Reading it for the fifth-place cutoff compares buyers with buyers after all their orders have been counted. Sort the counts descending and skip four rows. A missing fifth row gives a cutoff of zero, which includes every buyer.
 
 ```sql
 WITH customer_counts AS (

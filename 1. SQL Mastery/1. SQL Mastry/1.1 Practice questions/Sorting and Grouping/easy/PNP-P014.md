@@ -84,6 +84,8 @@ The submitted query was reformatted to remove chat markup. Tested on the sample,
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Orders · one table is enough** · Each order supplies its month and the amount that month earns. Grouping these transactions produces exactly the months with orders, including both January transactions.
+
 The final output has one row per month, using data from Orders alone.
 
 ### 1. Keep only 2025 orders

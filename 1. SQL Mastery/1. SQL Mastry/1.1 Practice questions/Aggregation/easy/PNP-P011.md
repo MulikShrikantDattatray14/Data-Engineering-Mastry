@@ -91,9 +91,9 @@ Use the same sample throughout and check the output after each step.
 
 ### 1. Join from the catalogue
 
-**What to do.** Join from the catalogue.
+🟦 **First · FROM Products** · The denominator is every listed product. Only the catalogue can supply Cup, which has never sold.
 
-**Why.** Unsold items still belong to the catalogue.
+🟩 **Second · LEFT JOIN OrderDetails** · Match the catalogue ID to `OrderDetails.ProductID` to find evidence of a sale. The left join retains Cup with a NULL detail ID and gives Pen one row per matching sale line.
 
 **Golden rule.** Ask “Out of what?” to find the denominator. For “What percentage of listed products have sold?”, the denominator is all distinct listed products, and the numerator is the distinct listed products with a sale.
 

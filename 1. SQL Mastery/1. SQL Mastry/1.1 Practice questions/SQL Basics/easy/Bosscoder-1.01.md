@@ -96,6 +96,8 @@ WHERE year = 2021 AND revenue > 0;
 
 ### Step-by-step explanation with one example
 
+🟦 **FROM Customers · one table is enough** · The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and the customer ID to return.
+
 **Starting data.** Each row is one customer in one year. The `(customer_id, year)` key means a customer cannot have two separate rows for the same year.
 
 | customer_id | year | revenue |

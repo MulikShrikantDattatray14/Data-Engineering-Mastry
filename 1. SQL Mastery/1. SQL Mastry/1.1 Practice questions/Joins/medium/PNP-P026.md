@@ -150,7 +150,7 @@ There are five sale lines and eleven units. These are the numbers we can check a
 
 ### 2. Why LEFT JOIN to Products?
 
-Finance wants every sold unit counted. Start with `OrderDetails`, where one row is one order line. A `LEFT JOIN` to `Products` keeps line 5 even though its product ID `999` has no match. The two product ID columns below distinguish the ID recorded on the order from the product actually found.
+🟩 `Products` comes second because it supplies the price and the category reference for each 🟦 sale line. The `LEFT JOIN` keeps line 5 and its four units even though product ID `999` has no match. The two product ID columns below distinguish the ID recorded on the order from the product actually found.
 
 ```sql
 SELECT od.OrderDetailID, od.ProductID AS ordered_product_id,
@@ -171,7 +171,7 @@ ORDER BY od.OrderDetailID;
 
 ### 3. Why FULL OUTER JOIN to Category?
 
-Sales alone cannot supply a row for Stationery. The `FULL OUTER JOIN` keeps the sale lines from step 2 and adds any category with no matching sale. Follow the last three rows. They show a product with a broken category reference, a sale with no product match, and a category with no sales.
+The 🟩 `Products.CategoryID` obtained in step 2 supplies the key to add 🟥 `Category` third. The `FULL OUTER JOIN` preserves both an unmatched sale and a catalogue category with no matching sales, such as Stationery. Follow the last three rows. They show a product with a broken category reference, a sale with no product match, and a category with no sales.
 
 ```sql
 SELECT od.OrderDetailID, p.ProductID AS matched_product_id,

@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1862" viewBox="0 0 1160 1862" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2118" viewBox="0 0 1160 2118" role="img" aria-labelledby="title desc">
 <title id="title">P018 · Customers with no order in the last 90 days</title>
-<desc id="desc">One row per customer without an order in the 90-date window. The latest order is March 31. January 1 through March 31 inclusive covers ninety dates. Asha matches order 10. Ben&#x27;s order is too old and Cia has no order. All three customers remain, with two empty right sides. Asha leaves because her match has ID 10. Ben and Cia both have a NULL matched order ID. Ben (ID 2) signed up before Cia (ID 3). Both qualify even though their order histories differ.</desc>
-<rect width="1160" height="1862" fill="#f4f7f7"/>
+<desc id="desc">One row per customer without an order in the 90-date window. The latest order is March 31. January 1 through March 31 inclusive covers ninety dates. Asha matches order 10. Ben&#x27;s order is too old and Cia has no order. All three customers remain, with two empty right sides. Asha leaves because her match has ID 10. Ben and Cia both have a NULL matched order ID. Ben (ID 2) signed up before Cia (ID 3). Both qualify even though their order histories differ. Prepare the dates · FROM Orders. The date window depends on the most recent transaction. The CTE returns one pair of dates for the whole report. Outer query first · FROM Customers. Every customer is a candidate for outreach, including Cia, who has never ordered. Only the customer list contains everyone to test. Second · LEFT JOIN Orders. Match the two CustomerID columns and test the order date in ON. The left join keeps Ben and Cia with NULL order IDs when neither has a qualifying order.</desc>
+<rect width="1160" height="2118" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P018    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Customers with no order in the last 90 days</text>
@@ -107,222 +107,242 @@
 <rect x="745.573" y="606" width="358.427" height="29" rx="0" fill="#ffffff"/>
 <text x="756.573" y="625" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2024-12-01</text>
 <path d="M745.573 635L1104 635" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="659" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="659" width="1096" height="323" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="689" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1008.7" y="669" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1020.7" y="688" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 1 row</text>
 <text x="52" y="724" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How do we find the ninety calendar dates?</text>
-<text x="52" y="753" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The latest order is March 31. January 1 through March 31 inclusive covers ninety dates.</text>
-<rect x="52" y="769" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="790" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">date(MAX(OrderDate), &#x27;-89 days&#x27;)</text>
-<rect x="68" y="817" width="540.578" height="47" rx="0" fill="#205e45"/>
-<text x="79" y="832" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="853" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">latest_order_date</text>
-<rect x="608.578" y="817" width="495.422" height="47" rx="0" fill="#205e45"/>
-<text x="619.578" y="832" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="619.578" y="853" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">window_start</text>
-<rect x="68" y="864" width="540.578" height="29" rx="0" fill="#d6ecdf"/>
-<text x="79" y="883" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-03-31</text>
-<path d="M68 893L608.578 893" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="608.578" y="864" width="495.422" height="29" rx="0" fill="#d6ecdf"/>
-<text x="619.578" y="883" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-01-01</text>
-<path d="M608.578 893L1104 893" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="922" width="1096" height="336" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="952" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="932" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="951" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
-<text x="52" y="987" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why put the order-date condition inside ON?</text>
-<text x="52" y="1016" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Asha matches order 10. Ben&#x27;s order is too old and Cia has no order. All three customers remain, with two empty</text>
-<text x="52" y="1041" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">right sides.</text>
-<rect x="52" y="1057" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1078" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Customers LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID AND date(Orders.OrderDate) BETWEEN …</text>
-<rect x="68" y="1105" width="125.648" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1120" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1141" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<path d="M79 1144L169.312 1144" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M79 1147L169.312 1147" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="193.648" y="1105" width="116.617" height="47" rx="0" fill="#194f7c"/>
-<text x="204.648" y="1120" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="204.648" y="1141" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
-<rect x="310.266" y="1105" width="113.523" height="47" rx="0" fill="#194f7c"/>
-<text x="321.266" y="1120" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="321.266" y="1141" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
-<rect x="423.789" y="1105" width="189.586" height="47" rx="0" fill="#194f7c"/>
-<text x="434.789" y="1120" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="434.789" y="1141" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
-<rect x="613.375" y="1105" width="134.68" height="47" rx="0" fill="#194f7c"/>
-<text x="624.375" y="1120" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="624.375" y="1141" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DateEntered</text>
-<rect x="748.055" y="1105" width="98.5547" height="47" rx="0" fill="#205e45"/>
-<text x="759.055" y="1120" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="759.055" y="1141" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="846.609" y="1105" width="125.648" height="47" rx="0" fill="#205e45"/>
-<text x="857.609" y="1120" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="857.609" y="1141" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<path d="M857.609 1144L947.922 1144" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M857.609 1147L947.922 1147" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="972.258" y="1105" width="131.742" height="47" rx="0" fill="#205e45"/>
-<text x="983.258" y="1120" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="983.258" y="1141" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="68" y="1152" width="125.648" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1171" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1181L193.648 1181" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="193.648" y="1152" width="116.617" height="29" rx="0" fill="#edf4fb"/>
-<text x="204.648" y="1171" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
-<path d="M193.648 1181L310.266 1181" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="310.266" y="1152" width="113.523" height="29" rx="0" fill="#edf4fb"/>
-<text x="321.266" y="1171" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
-<path d="M310.266 1181L423.789 1181" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="423.789" y="1152" width="189.586" height="29" rx="0" fill="#edf4fb"/>
-<text x="434.789" y="1171" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">asha@example.com</text>
-<path d="M423.789 1181L613.375 1181" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="613.375" y="1152" width="134.68" height="29" rx="0" fill="#edf4fb"/>
-<text x="624.375" y="1171" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2023-01-01</text>
-<path d="M613.375 1181L748.055 1181" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="748.055" y="1152" width="98.5547" height="29" rx="0" fill="#d6ecdf"/>
-<text x="759.055" y="1171" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
-<path d="M748.055 1181L846.609 1181" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="846.609" y="1152" width="125.648" height="29" rx="0" fill="#d6ecdf"/>
-<text x="857.609" y="1171" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M846.609 1181L972.258 1181" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="972.258" y="1152" width="131.742" height="29" rx="0" fill="#eff7f2"/>
-<text x="983.258" y="1171" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-03-31</text>
-<path d="M972.258 1181L1104 1181" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1190.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1181" width="125.648" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1200" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1210L193.648 1210" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="193.648" y="1181" width="116.617" height="29" rx="0" fill="#ffffff"/>
-<text x="204.648" y="1200" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ben</text>
-<path d="M193.648 1210L310.266 1210" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="310.266" y="1181" width="113.523" height="29" rx="0" fill="#ffffff"/>
-<text x="321.266" y="1200" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
-<path d="M310.266 1210L423.789 1210" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="423.789" y="1181" width="189.586" height="29" rx="0" fill="#ffffff"/>
-<text x="434.789" y="1200" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">ben@example.com</text>
-<path d="M423.789 1210L613.375 1210" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="613.375" y="1181" width="134.68" height="29" rx="0" fill="#ffffff"/>
-<text x="624.375" y="1200" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2023-02-01</text>
-<path d="M613.375 1210L748.055 1210" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="748.055" y="1181" width="98.5547" height="29" rx="0" fill="#d6ecdf"/>
-<text x="759.055" y="1200" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M748.055 1210L846.609 1210" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="846.609" y="1181" width="125.648" height="29" rx="0" fill="#d6ecdf"/>
-<text x="857.609" y="1200" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M846.609 1210L972.258 1210" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="972.258" y="1181" width="131.742" height="29" rx="0" fill="#ffffff"/>
-<text x="983.258" y="1200" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M972.258 1210L1104 1210" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1219.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1210" width="125.648" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1229" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1239L193.648 1239" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="193.648" y="1210" width="116.617" height="29" rx="0" fill="#edf4fb"/>
-<text x="204.648" y="1229" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cia</text>
-<path d="M193.648 1239L310.266 1239" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="310.266" y="1210" width="113.523" height="29" rx="0" fill="#edf4fb"/>
-<text x="321.266" y="1229" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
-<path d="M310.266 1239L423.789 1239" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="423.789" y="1210" width="189.586" height="29" rx="0" fill="#edf4fb"/>
-<text x="434.789" y="1229" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">cia@example.com</text>
-<path d="M423.789 1239L613.375 1239" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="613.375" y="1210" width="134.68" height="29" rx="0" fill="#edf4fb"/>
-<text x="624.375" y="1229" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024-01-01</text>
-<path d="M613.375 1239L748.055 1239" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="748.055" y="1210" width="98.5547" height="29" rx="0" fill="#d6ecdf"/>
-<text x="759.055" y="1229" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M748.055 1239L846.609 1239" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="846.609" y="1210" width="125.648" height="29" rx="0" fill="#d6ecdf"/>
-<text x="857.609" y="1229" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M846.609 1239L972.258 1239" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="972.258" y="1210" width="131.742" height="29" rx="0" fill="#eff7f2"/>
-<text x="983.258" y="1229" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M972.258 1239L1104 1239" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1268" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1298" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
-<rect x="1000.38" y="1278" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1297" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
-<text x="52" y="1333" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which joined rows prove there was no recent order?</text>
-<text x="52" y="1362" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Asha leaves because her match has ID 10. Ben and Cia both have a NULL matched order ID.</text>
-<rect x="52" y="1378" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1399" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE o.OrderID IS NULL</text>
-<rect x="68" y="1426" width="303.188" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1441" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1462" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<path d="M79 1465L169.312 1465" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M79 1468L169.312 1468" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="371.188" y="1426" width="357.375" height="47" rx="0" fill="#205e45"/>
-<text x="382.188" y="1441" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="382.188" y="1462" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">matched_order_id</text>
-<rect x="728.562" y="1426" width="375.438" height="47" rx="0" fill="#205e45"/>
-<text x="739.562" y="1441" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="739.562" y="1462" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">matched_order_date</text>
-<path d="M54 1482.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1473" width="303.188" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1492" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1502L371.188 1502" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="371.188" y="1473" width="357.375" height="29" rx="0" fill="#d6ecdf"/>
-<text x="382.188" y="1492" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M371.188 1502L728.562 1502" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="728.562" y="1473" width="375.438" height="29" rx="0" fill="#eff7f2"/>
-<text x="739.562" y="1492" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M728.562 1502L1104 1502" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1511.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1502" width="303.188" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1521" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1531L371.188 1531" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="371.188" y="1502" width="357.375" height="29" rx="0" fill="#d6ecdf"/>
-<text x="382.188" y="1521" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M371.188 1531L728.562 1531" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="728.562" y="1502" width="375.438" height="29" rx="0" fill="#ffffff"/>
-<text x="739.562" y="1521" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M728.562 1531L1104 1531" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1560" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1590" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1570" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1589" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
-<text x="52" y="1625" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How does the outreach list read?</text>
-<text x="52" y="1654" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Ben (ID 2) signed up before Cia (ID 3). Both qualify even though their order histories differ.</text>
-<rect x="52" y="1670" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1691" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY c.DateEntered ASC, c.CustomerID ASC</text>
-<rect x="68" y="1718" width="236.395" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1733" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1754" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
-<path d="M79 1757L169.312 1757" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M79 1760L169.312 1760" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="304.395" y="1718" width="263.488" height="47" rx="0" fill="#194f7c"/>
-<text x="315.395" y="1733" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="315.395" y="1754" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_name</text>
-<rect x="567.883" y="1718" width="290.691" height="47" rx="0" fill="#194f7c"/>
-<text x="578.883" y="1733" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="578.883" y="1754" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
-<rect x="858.574" y="1718" width="245.426" height="47" rx="0" fill="#194f7c"/>
-<text x="869.574" y="1733" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="869.574" y="1754" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DateEntered</text>
-<path d="M54 1774.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1765" width="236.395" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1784" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1794L304.395 1794" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="304.395" y="1765" width="263.488" height="29" rx="0" fill="#d8e9f7"/>
-<text x="315.395" y="1784" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ben Das</text>
-<path d="M304.395 1794L567.883 1794" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="567.883" y="1765" width="290.691" height="29" rx="0" fill="#edf4fb"/>
-<text x="578.883" y="1784" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">ben@example.com</text>
-<path d="M567.883 1794L858.574 1794" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="858.574" y="1765" width="245.426" height="29" rx="0" fill="#d8e9f7"/>
-<text x="869.574" y="1784" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2023-02-01</text>
-<path d="M858.574 1794L1104 1794" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1803.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1794" width="236.395" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1813" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1823L304.395 1823" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="304.395" y="1794" width="263.488" height="29" rx="0" fill="#d8e9f7"/>
-<text x="315.395" y="1813" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cia Sen</text>
-<path d="M304.395 1823L567.883 1823" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="567.883" y="1794" width="290.691" height="29" rx="0" fill="#ffffff"/>
-<text x="578.883" y="1813" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">cia@example.com</text>
-<path d="M567.883 1823L858.574 1823" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="858.574" y="1794" width="245.426" height="29" rx="0" fill="#d8e9f7"/>
-<text x="869.574" y="1813" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024-01-01</text>
-<path d="M858.574 1823L1104 1823" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="Prepare the dates · FROM Orders" data-decision="1">
+<rect x="52" y="735" width="1052" height="62" rx="5" fill="#eff7f2"/>
+<rect x="52" y="740" width="4" height="52" rx="2" fill="#205e45"/>
+<text x="66" y="757" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#205e45" font-weight="700">Prepare the dates · FROM Orders</text>
+<text x="66" y="781" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The date window depends on the most recent transaction. The CTE returns one pair of dates for the whole report.</text>
+</g>
+<text x="52" y="823" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The latest order is March 31. January 1 through March 31 inclusive covers ninety dates.</text>
+<rect x="52" y="839" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="860" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">date(MAX(OrderDate), &#x27;-89 days&#x27;)</text>
+<rect x="68" y="887" width="540.578" height="47" rx="0" fill="#205e45"/>
+<text x="79" y="902" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="923" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">latest_order_date</text>
+<rect x="608.578" y="887" width="495.422" height="47" rx="0" fill="#205e45"/>
+<text x="619.578" y="902" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="619.578" y="923" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">window_start</text>
+<rect x="68" y="934" width="540.578" height="29" rx="0" fill="#d6ecdf"/>
+<text x="79" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-03-31</text>
+<path d="M68 963L608.578 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="934" width="495.422" height="29" rx="0" fill="#d6ecdf"/>
+<text x="619.578" y="953" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-01-01</text>
+<path d="M608.578 963L1104 963" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="992" width="1096" height="522" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1022" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1002" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1021" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
+<text x="52" y="1057" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why put the order-date condition inside ON?</text>
+<g role="group" aria-label="Outer query first · FROM Customers" data-decision="J1">
+<rect x="52" y="1068" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="1073" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="1090" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">Outer query first · FROM Customers</text>
+<text x="66" y="1114" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Every customer is a candidate for outreach, including Cia, who has never ordered. Only the customer list contains</text>
+<text x="66" y="1137" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">everyone to test.</text>
+</g>
+<g role="group" aria-label="Second · LEFT JOIN Orders" data-decision="J1">
+<rect x="52" y="1161" width="1052" height="85" rx="5" fill="#eff7f2"/>
+<rect x="52" y="1166" width="4" height="75" rx="2" fill="#205e45"/>
+<text x="66" y="1183" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#205e45" font-weight="700">Second · LEFT JOIN Orders</text>
+<text x="66" y="1207" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Match the two CustomerID columns and test the order date in ON. The left join keeps Ben and Cia with NULL order IDs</text>
+<text x="66" y="1230" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">when neither has a qualifying order.</text>
+</g>
+<text x="52" y="1272" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Asha matches order 10. Ben&#x27;s order is too old and Cia has no order. All three customers remain, with two empty</text>
+<text x="52" y="1297" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">right sides.</text>
+<rect x="52" y="1313" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1334" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Customers LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID AND date(Orders.OrderDate) BETWEEN …</text>
+<rect x="68" y="1361" width="125.648" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1376" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1397" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M79 1400L169.312 1400" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M79 1403L169.312 1403" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="193.648" y="1361" width="116.617" height="47" rx="0" fill="#194f7c"/>
+<text x="204.648" y="1376" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="204.648" y="1397" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">FirstName</text>
+<rect x="310.266" y="1361" width="113.523" height="47" rx="0" fill="#194f7c"/>
+<text x="321.266" y="1376" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="321.266" y="1397" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">LastName</text>
+<rect x="423.789" y="1361" width="189.586" height="47" rx="0" fill="#194f7c"/>
+<text x="434.789" y="1376" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="434.789" y="1397" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
+<rect x="613.375" y="1361" width="134.68" height="47" rx="0" fill="#194f7c"/>
+<text x="624.375" y="1376" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="624.375" y="1397" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DateEntered</text>
+<rect x="748.055" y="1361" width="98.5547" height="47" rx="0" fill="#205e45"/>
+<text x="759.055" y="1376" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="759.055" y="1397" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="846.609" y="1361" width="125.648" height="47" rx="0" fill="#205e45"/>
+<text x="857.609" y="1376" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="857.609" y="1397" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M857.609 1400L947.922 1400" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M857.609 1403L947.922 1403" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="972.258" y="1361" width="131.742" height="47" rx="0" fill="#205e45"/>
+<text x="983.258" y="1376" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="983.258" y="1397" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="68" y="1408" width="125.648" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1427" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1437L193.648 1437" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="193.648" y="1408" width="116.617" height="29" rx="0" fill="#edf4fb"/>
+<text x="204.648" y="1427" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Asha</text>
+<path d="M193.648 1437L310.266 1437" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="310.266" y="1408" width="113.523" height="29" rx="0" fill="#edf4fb"/>
+<text x="321.266" y="1427" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Rao</text>
+<path d="M310.266 1437L423.789 1437" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="423.789" y="1408" width="189.586" height="29" rx="0" fill="#edf4fb"/>
+<text x="434.789" y="1427" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">asha@example.com</text>
+<path d="M423.789 1437L613.375 1437" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="613.375" y="1408" width="134.68" height="29" rx="0" fill="#edf4fb"/>
+<text x="624.375" y="1427" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2023-01-01</text>
+<path d="M613.375 1437L748.055 1437" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="748.055" y="1408" width="98.5547" height="29" rx="0" fill="#d6ecdf"/>
+<text x="759.055" y="1427" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">10</text>
+<path d="M748.055 1437L846.609 1437" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="846.609" y="1408" width="125.648" height="29" rx="0" fill="#d6ecdf"/>
+<text x="857.609" y="1427" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M846.609 1437L972.258 1437" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="972.258" y="1408" width="131.742" height="29" rx="0" fill="#eff7f2"/>
+<text x="983.258" y="1427" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">2025-03-31</text>
+<path d="M972.258 1437L1104 1437" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1446.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1437" width="125.648" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1456" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1466L193.648 1466" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="193.648" y="1437" width="116.617" height="29" rx="0" fill="#ffffff"/>
+<text x="204.648" y="1456" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ben</text>
+<path d="M193.648 1466L310.266 1466" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="310.266" y="1437" width="113.523" height="29" rx="0" fill="#ffffff"/>
+<text x="321.266" y="1456" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Das</text>
+<path d="M310.266 1466L423.789 1466" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="423.789" y="1437" width="189.586" height="29" rx="0" fill="#ffffff"/>
+<text x="434.789" y="1456" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">ben@example.com</text>
+<path d="M423.789 1466L613.375 1466" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="613.375" y="1437" width="134.68" height="29" rx="0" fill="#ffffff"/>
+<text x="624.375" y="1456" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2023-02-01</text>
+<path d="M613.375 1466L748.055 1466" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="748.055" y="1437" width="98.5547" height="29" rx="0" fill="#d6ecdf"/>
+<text x="759.055" y="1456" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M748.055 1466L846.609 1466" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="846.609" y="1437" width="125.648" height="29" rx="0" fill="#d6ecdf"/>
+<text x="857.609" y="1456" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M846.609 1466L972.258 1466" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="972.258" y="1437" width="131.742" height="29" rx="0" fill="#ffffff"/>
+<text x="983.258" y="1456" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M972.258 1466L1104 1466" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1475.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1466" width="125.648" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1485" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1495L193.648 1495" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="193.648" y="1466" width="116.617" height="29" rx="0" fill="#edf4fb"/>
+<text x="204.648" y="1485" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cia</text>
+<path d="M193.648 1495L310.266 1495" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="310.266" y="1466" width="113.523" height="29" rx="0" fill="#edf4fb"/>
+<text x="321.266" y="1485" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Sen</text>
+<path d="M310.266 1495L423.789 1495" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="423.789" y="1466" width="189.586" height="29" rx="0" fill="#edf4fb"/>
+<text x="434.789" y="1485" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">cia@example.com</text>
+<path d="M423.789 1495L613.375 1495" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="613.375" y="1466" width="134.68" height="29" rx="0" fill="#edf4fb"/>
+<text x="624.375" y="1485" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024-01-01</text>
+<path d="M613.375 1495L748.055 1495" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="748.055" y="1466" width="98.5547" height="29" rx="0" fill="#d6ecdf"/>
+<text x="759.055" y="1485" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M748.055 1495L846.609 1495" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="846.609" y="1466" width="125.648" height="29" rx="0" fill="#d6ecdf"/>
+<text x="857.609" y="1485" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M846.609 1495L972.258 1495" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="972.258" y="1466" width="131.742" height="29" rx="0" fill="#eff7f2"/>
+<text x="983.258" y="1485" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M972.258 1495L1104 1495" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1524" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1554" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1000.38" y="1534" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1553" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="1589" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which joined rows prove there was no recent order?</text>
+<text x="52" y="1618" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Asha leaves because her match has ID 10. Ben and Cia both have a NULL matched order ID.</text>
+<rect x="52" y="1634" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1655" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE o.OrderID IS NULL</text>
+<rect x="68" y="1682" width="303.188" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1697" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1718" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M79 1721L169.312 1721" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M79 1724L169.312 1724" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="371.188" y="1682" width="357.375" height="47" rx="0" fill="#205e45"/>
+<text x="382.188" y="1697" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="382.188" y="1718" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">matched_order_id</text>
+<rect x="728.562" y="1682" width="375.438" height="47" rx="0" fill="#205e45"/>
+<text x="739.562" y="1697" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="739.562" y="1718" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">matched_order_date</text>
+<path d="M54 1738.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1729" width="303.188" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1748" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1758L371.188 1758" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="371.188" y="1729" width="357.375" height="29" rx="0" fill="#d6ecdf"/>
+<text x="382.188" y="1748" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M371.188 1758L728.562 1758" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="728.562" y="1729" width="375.438" height="29" rx="0" fill="#eff7f2"/>
+<text x="739.562" y="1748" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M728.562 1758L1104 1758" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1767.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1758" width="303.188" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1777" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1787L371.188 1787" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="371.188" y="1758" width="357.375" height="29" rx="0" fill="#d6ecdf"/>
+<text x="382.188" y="1777" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M371.188 1787L728.562 1787" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="728.562" y="1758" width="375.438" height="29" rx="0" fill="#ffffff"/>
+<text x="739.562" y="1777" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M728.562 1787L1104 1787" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1816" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1846" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1826" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1845" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="52" y="1881" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How does the outreach list read?</text>
+<text x="52" y="1910" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Ben (ID 2) signed up before Cia (ID 3). Both qualify even though their order histories differ.</text>
+<rect x="52" y="1926" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1947" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY c.DateEntered ASC, c.CustomerID ASC</text>
+<rect x="68" y="1974" width="236.395" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1989" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="2010" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CustomerID</text>
+<path d="M79 2013L169.312 2013" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M79 2016L169.312 2016" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="304.395" y="1974" width="263.488" height="47" rx="0" fill="#194f7c"/>
+<text x="315.395" y="1989" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="315.395" y="2010" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_name</text>
+<rect x="567.883" y="1974" width="290.691" height="47" rx="0" fill="#194f7c"/>
+<text x="578.883" y="1989" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="578.883" y="2010" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Email</text>
+<rect x="858.574" y="1974" width="245.426" height="47" rx="0" fill="#194f7c"/>
+<text x="869.574" y="1989" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="869.574" y="2010" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">DateEntered</text>
+<path d="M54 2030.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="2021" width="236.395" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2040" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 2050L304.395 2050" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="304.395" y="2021" width="263.488" height="29" rx="0" fill="#d8e9f7"/>
+<text x="315.395" y="2040" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Ben Das</text>
+<path d="M304.395 2050L567.883 2050" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="567.883" y="2021" width="290.691" height="29" rx="0" fill="#edf4fb"/>
+<text x="578.883" y="2040" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">ben@example.com</text>
+<path d="M567.883 2050L858.574 2050" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="858.574" y="2021" width="245.426" height="29" rx="0" fill="#d8e9f7"/>
+<text x="869.574" y="2040" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2023-02-01</text>
+<path d="M858.574 2050L1104 2050" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 2059.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="2050" width="236.395" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2069" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 2079L304.395 2079" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="304.395" y="2050" width="263.488" height="29" rx="0" fill="#d8e9f7"/>
+<text x="315.395" y="2069" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Cia Sen</text>
+<path d="M304.395 2079L567.883 2079" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="567.883" y="2050" width="290.691" height="29" rx="0" fill="#ffffff"/>
+<text x="578.883" y="2069" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">cia@example.com</text>
+<path d="M567.883 2079L858.574 2079" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="858.574" y="2050" width="245.426" height="29" rx="0" fill="#d8e9f7"/>
+<text x="869.574" y="2069" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2024-01-01</text>
+<path d="M858.574 2079L1104 2079" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

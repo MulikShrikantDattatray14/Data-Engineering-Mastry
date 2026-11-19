@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1756" viewBox="0 0 1160 1756" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1849" viewBox="0 0 1160 1849" role="img" aria-labelledby="title desc">
 <title id="title">P014 · Orders per month in 2025</title>
-<desc id="desc">One row per 2025 month with orders. Order 4 is from December 2024. Orders 1, 2 and 3 remain. January 1 and January 31 both map to 2025-01-01. March 1 maps to 2025-03-01. Orders 1 and 2 form January&#x27;s group of two. Order 3 forms March&#x27;s group of one. January totals 100 + 50 = 150. March totals 200. No February group was present in the input.</desc>
-<rect width="1160" height="1756" fill="#f4f7f7"/>
+<desc id="desc">One row per 2025 month with orders. Order 4 is from December 2024. Orders 1, 2 and 3 remain. January 1 and January 31 both map to 2025-01-01. March 1 maps to 2025-03-01. Orders 1 and 2 form January&#x27;s group of two. Order 3 forms March&#x27;s group of one. January totals 100 + 50 = 150. March totals 200. No February group was present in the input. FROM Orders · one table is enough. Each order supplies its month and the amount that month earns. Grouping these transactions produces exactly the months with orders, including both January transactions.</desc>
+<rect width="1160" height="1849" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P014    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Orders per month in 2025</text>
@@ -59,171 +59,178 @@
 <rect x="703.5" y="467" width="400.5" height="29" rx="0" fill="#ffffff"/>
 <text x="714.5" y="486" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">300</text>
 <path d="M703.5 496L1104 496" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="520" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="520" width="1096" height="404" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="550" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="530" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="549" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
 <text x="52" y="585" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which orders belong to the reporting year?</text>
-<text x="52" y="614" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 4 is from December 2024. Orders 1, 2 and 3 remain.</text>
-<rect x="52" y="630" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="651" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE strftime(&#x27;%Y&#x27;, OrderDate) = &#x27;2025&#x27;</text>
-<rect x="68" y="678" width="301.156" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="369.156" y="678" width="334.344" height="47" rx="0" fill="#194f7c"/>
-<text x="380.156" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="380.156" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="703.5" y="678" width="400.5" height="47" rx="0" fill="#194f7c"/>
-<text x="714.5" y="693" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="714.5" y="714" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
-<path d="M54 734.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="725" width="301.156" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 754L369.156 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="369.156" y="725" width="334.344" height="29" rx="0" fill="#d8e9f7"/>
-<text x="380.156" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
-<path d="M369.156 754L703.5 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="703.5" y="725" width="400.5" height="29" rx="0" fill="#edf4fb"/>
-<text x="714.5" y="744" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M703.5 754L1104 754" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 763.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="754" width="301.156" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 783L369.156 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="369.156" y="754" width="334.344" height="29" rx="0" fill="#d8e9f7"/>
-<text x="380.156" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-31</text>
-<path d="M369.156 783L703.5 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="703.5" y="754" width="400.5" height="29" rx="0" fill="#ffffff"/>
-<text x="714.5" y="773" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">50</text>
-<path d="M703.5 783L1104 783" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="783" width="301.156" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 812L369.156 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="369.156" y="783" width="334.344" height="29" rx="0" fill="#d8e9f7"/>
-<text x="380.156" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
-<path d="M369.156 812L703.5 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="703.5" y="783" width="400.5" height="29" rx="0" fill="#edf4fb"/>
-<text x="714.5" y="802" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M703.5 812L1104 812" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="841" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="871" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="851" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="870" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
-<text x="52" y="906" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How can two different January dates share a key?</text>
-<text x="52" y="935" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">January 1 and January 31 both map to 2025-01-01. March 1 maps to 2025-03-01.</text>
-<rect x="52" y="951" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="972" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">date(OrderDate, &#x27;start of month&#x27;)</text>
-<rect x="68" y="999" width="216.836" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="284.836" y="999" width="250.023" height="47" rx="0" fill="#194f7c"/>
-<text x="295.836" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="295.836" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="534.859" y="999" width="316.18" height="47" rx="0" fill="#194f7c"/>
-<text x="545.859" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="545.859" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
-<rect x="851.039" y="999" width="252.961" height="47" rx="0" fill="#194f7c"/>
-<text x="862.039" y="1014" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="862.039" y="1035" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">order_month</text>
-<path d="M54 1055.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1046" width="216.836" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1075L284.836 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="284.836" y="1046" width="250.023" height="29" rx="0" fill="#d8e9f7"/>
-<text x="295.836" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
-<path d="M284.836 1075L534.859 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="534.859" y="1046" width="316.18" height="29" rx="0" fill="#edf4fb"/>
-<text x="545.859" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
-<path d="M534.859 1075L851.039 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="851.039" y="1046" width="252.961" height="29" rx="0" fill="#d8e9f7"/>
-<text x="862.039" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
-<path d="M851.039 1075L1104 1075" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1084.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1075" width="216.836" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1104L284.836 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="284.836" y="1075" width="250.023" height="29" rx="0" fill="#d8e9f7"/>
-<text x="295.836" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-31</text>
-<path d="M284.836 1104L534.859 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="534.859" y="1075" width="316.18" height="29" rx="0" fill="#ffffff"/>
-<text x="545.859" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">50</text>
-<path d="M534.859 1104L851.039 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="851.039" y="1075" width="252.961" height="29" rx="0" fill="#d8e9f7"/>
-<text x="862.039" y="1094" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
-<path d="M851.039 1104L1104 1104" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1104" width="216.836" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1133L284.836 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="284.836" y="1104" width="250.023" height="29" rx="0" fill="#d8e9f7"/>
-<text x="295.836" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
-<path d="M284.836 1133L534.859 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="534.859" y="1104" width="316.18" height="29" rx="0" fill="#edf4fb"/>
-<text x="545.859" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M534.859 1133L851.039 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="851.039" y="1104" width="252.961" height="29" rx="0" fill="#d8e9f7"/>
-<text x="862.039" y="1123" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
-<path d="M851.039 1133L1104 1133" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1162" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1192" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
-<rect x="1000.38" y="1172" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1191" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
-<text x="52" y="1227" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How many orders belong to each month?</text>
-<text x="52" y="1256" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Orders 1 and 2 form January&#x27;s group of two. Order 3 forms March&#x27;s group of one.</text>
-<rect x="52" y="1272" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1293" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY strftime(&#x27;%m&#x27;, OrderDate)</text>
-<rect x="68" y="1320" width="540.578" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1335" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1356" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">order_month</text>
-<rect x="608.578" y="1320" width="495.422" height="47" rx="0" fill="#194f7c"/>
-<text x="619.578" y="1335" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="619.578" y="1356" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">orders</text>
-<path d="M54 1376.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1367" width="540.578" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1386" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
-<path d="M68 1396L608.578 1396" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="608.578" y="1367" width="495.422" height="29" rx="0" fill="#d8e9f7"/>
-<text x="619.578" y="1386" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M608.578 1396L1104 1396" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1396" width="540.578" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1415" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
-<path d="M68 1425L608.578 1425" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="608.578" y="1396" width="495.422" height="29" rx="0" fill="#d8e9f7"/>
-<text x="619.578" y="1415" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M608.578 1425L1104 1425" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1454" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1484" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1464" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1483" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
-<text x="52" y="1519" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What is the total value per month?</text>
-<text x="52" y="1548" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">January totals 100 + 50 = 150. March totals 200. No February group was present in the input.</text>
-<rect x="52" y="1564" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1585" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SUM(Total_Order_Amount) / ORDER BY strftime(&#x27;%m&#x27;, OrderDate)</text>
-<rect x="68" y="1612" width="360.385" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1627" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1648" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">order_month</text>
-<rect x="428.385" y="1612" width="315.229" height="47" rx="0" fill="#194f7c"/>
-<text x="439.385" y="1627" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="439.385" y="1648" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">orders</text>
-<rect x="743.615" y="1612" width="360.385" height="47" rx="0" fill="#194f7c"/>
-<text x="754.615" y="1627" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="754.615" y="1648" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">order_value</text>
-<path d="M54 1668.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1659" width="360.385" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1678" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
-<path d="M68 1688L428.385 1688" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="428.385" y="1659" width="315.229" height="29" rx="0" fill="#edf4fb"/>
-<text x="439.385" y="1678" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M428.385 1688L743.615 1688" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="743.615" y="1659" width="360.385" height="29" rx="0" fill="#d8e9f7"/>
-<text x="754.615" y="1678" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
-<path d="M743.615 1688L1104 1688" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1688" width="360.385" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1707" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
-<path d="M68 1717L428.385 1717" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="428.385" y="1688" width="315.229" height="29" rx="0" fill="#ffffff"/>
-<text x="439.385" y="1707" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M428.385 1717L743.615 1717" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="743.615" y="1688" width="360.385" height="29" rx="0" fill="#d8e9f7"/>
-<text x="754.615" y="1707" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
-<path d="M743.615 1717L1104 1717" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM Orders · one table is enough" data-decision="1">
+<rect x="52" y="596" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="601" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="618" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Orders · one table is enough</text>
+<text x="66" y="642" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Each order supplies its month and the amount that month earns. Grouping these transactions produces exactly the</text>
+<text x="66" y="665" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">months with orders, including both January transactions.</text>
+</g>
+<text x="52" y="707" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 4 is from December 2024. Orders 1, 2 and 3 remain.</text>
+<rect x="52" y="723" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="744" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">WHERE strftime(&#x27;%Y&#x27;, OrderDate) = &#x27;2025&#x27;</text>
+<rect x="68" y="771" width="301.156" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="369.156" y="771" width="334.344" height="47" rx="0" fill="#194f7c"/>
+<text x="380.156" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="380.156" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="703.5" y="771" width="400.5" height="47" rx="0" fill="#194f7c"/>
+<text x="714.5" y="786" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="714.5" y="807" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
+<path d="M54 827.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="818" width="301.156" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 847L369.156 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="369.156" y="818" width="334.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="380.156" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
+<path d="M369.156 847L703.5 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="703.5" y="818" width="400.5" height="29" rx="0" fill="#edf4fb"/>
+<text x="714.5" y="837" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M703.5 847L1104 847" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 856.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="847" width="301.156" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 876L369.156 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="369.156" y="847" width="334.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="380.156" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-31</text>
+<path d="M369.156 876L703.5 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="703.5" y="847" width="400.5" height="29" rx="0" fill="#ffffff"/>
+<text x="714.5" y="866" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">50</text>
+<path d="M703.5 876L1104 876" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="876" width="301.156" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 905L369.156 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="369.156" y="876" width="334.344" height="29" rx="0" fill="#d8e9f7"/>
+<text x="380.156" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
+<path d="M369.156 905L703.5 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="703.5" y="876" width="400.5" height="29" rx="0" fill="#edf4fb"/>
+<text x="714.5" y="895" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
+<path d="M703.5 905L1104 905" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="934" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="964" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="944" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="963" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
+<text x="52" y="999" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How can two different January dates share a key?</text>
+<text x="52" y="1028" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">January 1 and January 31 both map to 2025-01-01. March 1 maps to 2025-03-01.</text>
+<rect x="52" y="1044" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1065" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">date(OrderDate, &#x27;start of month&#x27;)</text>
+<rect x="68" y="1092" width="216.836" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="284.836" y="1092" width="250.023" height="47" rx="0" fill="#194f7c"/>
+<text x="295.836" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="295.836" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="534.859" y="1092" width="316.18" height="47" rx="0" fill="#194f7c"/>
+<text x="545.859" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="545.859" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">Total_Order_Amount</text>
+<rect x="851.039" y="1092" width="252.961" height="47" rx="0" fill="#194f7c"/>
+<text x="862.039" y="1107" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="862.039" y="1128" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">order_month</text>
+<path d="M54 1148.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1139" width="216.836" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1168L284.836 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="284.836" y="1139" width="250.023" height="29" rx="0" fill="#d8e9f7"/>
+<text x="295.836" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
+<path d="M284.836 1168L534.859 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="534.859" y="1139" width="316.18" height="29" rx="0" fill="#edf4fb"/>
+<text x="545.859" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">100</text>
+<path d="M534.859 1168L851.039 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.039" y="1139" width="252.961" height="29" rx="0" fill="#d8e9f7"/>
+<text x="862.039" y="1158" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
+<path d="M851.039 1168L1104 1168" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1177.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1168" width="216.836" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1197L284.836 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="284.836" y="1168" width="250.023" height="29" rx="0" fill="#d8e9f7"/>
+<text x="295.836" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-31</text>
+<path d="M284.836 1197L534.859 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="534.859" y="1168" width="316.18" height="29" rx="0" fill="#ffffff"/>
+<text x="545.859" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">50</text>
+<path d="M534.859 1197L851.039 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.039" y="1168" width="252.961" height="29" rx="0" fill="#d8e9f7"/>
+<text x="862.039" y="1187" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
+<path d="M851.039 1197L1104 1197" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1197" width="216.836" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1226L284.836 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="284.836" y="1197" width="250.023" height="29" rx="0" fill="#d8e9f7"/>
+<text x="295.836" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
+<path d="M284.836 1226L534.859 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="534.859" y="1197" width="316.18" height="29" rx="0" fill="#edf4fb"/>
+<text x="545.859" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
+<path d="M534.859 1226L851.039 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="851.039" y="1197" width="252.961" height="29" rx="0" fill="#d8e9f7"/>
+<text x="862.039" y="1216" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
+<path d="M851.039 1226L1104 1226" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1255" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1285" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1000.38" y="1265" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1284" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="1320" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How many orders belong to each month?</text>
+<text x="52" y="1349" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Orders 1 and 2 form January&#x27;s group of two. Order 3 forms March&#x27;s group of one.</text>
+<rect x="52" y="1365" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1386" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY strftime(&#x27;%m&#x27;, OrderDate)</text>
+<rect x="68" y="1413" width="540.578" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1428" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1449" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">order_month</text>
+<rect x="608.578" y="1413" width="495.422" height="47" rx="0" fill="#194f7c"/>
+<text x="619.578" y="1428" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="619.578" y="1449" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">orders</text>
+<path d="M54 1469.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1460" width="540.578" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1479" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
+<path d="M68 1489L608.578 1489" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1460" width="495.422" height="29" rx="0" fill="#d8e9f7"/>
+<text x="619.578" y="1479" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M608.578 1489L1104 1489" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1489" width="540.578" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1508" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
+<path d="M68 1518L608.578 1518" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1489" width="495.422" height="29" rx="0" fill="#d8e9f7"/>
+<text x="619.578" y="1508" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M608.578 1518L1104 1518" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1547" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1577" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1557" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1576" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="1612" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">What is the total value per month?</text>
+<text x="52" y="1641" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">January totals 100 + 50 = 150. March totals 200. No February group was present in the input.</text>
+<rect x="52" y="1657" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1678" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">SUM(Total_Order_Amount) / ORDER BY strftime(&#x27;%m&#x27;, OrderDate)</text>
+<rect x="68" y="1705" width="360.385" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1720" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1741" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">order_month</text>
+<rect x="428.385" y="1705" width="315.229" height="47" rx="0" fill="#194f7c"/>
+<text x="439.385" y="1720" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="439.385" y="1741" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">orders</text>
+<rect x="743.615" y="1705" width="360.385" height="47" rx="0" fill="#194f7c"/>
+<text x="754.615" y="1720" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="754.615" y="1741" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">order_value</text>
+<path d="M54 1761.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1752" width="360.385" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1771" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-01-01</text>
+<path d="M68 1781L428.385 1781" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="428.385" y="1752" width="315.229" height="29" rx="0" fill="#edf4fb"/>
+<text x="439.385" y="1771" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M428.385 1781L743.615 1781" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="743.615" y="1752" width="360.385" height="29" rx="0" fill="#d8e9f7"/>
+<text x="754.615" y="1771" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">150</text>
+<path d="M743.615 1781L1104 1781" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1781" width="360.385" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1800" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-03-01</text>
+<path d="M68 1810L428.385 1810" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="428.385" y="1781" width="315.229" height="29" rx="0" fill="#ffffff"/>
+<text x="439.385" y="1800" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M428.385 1810L743.615 1810" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="743.615" y="1781" width="360.385" height="29" rx="0" fill="#d8e9f7"/>
+<text x="754.615" y="1800" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">200</text>
+<path d="M743.615 1810L1104 1810" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

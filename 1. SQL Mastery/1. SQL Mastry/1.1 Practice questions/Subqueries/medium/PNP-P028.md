@@ -151,7 +151,7 @@ Orders 10–12 are the original sample. Our practice example adds order 13 for 5
 
 ### 2. Why LEFT JOIN on PaymentID?
 
-All five orders contribute to the overall totals, including orders whose payment lookup fails.
+Each 🟦 order carries a `PaymentID`. Add 🟩 `Payments` second to look up the label for that ID. The `LEFT JOIN` keeps order 13, whose ID 99 has no match, and order 14, whose ID is missing. Their amounts still belong in the overall total.
 
 ```sql
 SELECT o.OrderID, o.PaymentID AS order_payment_id, o.Total_Order_Amount,

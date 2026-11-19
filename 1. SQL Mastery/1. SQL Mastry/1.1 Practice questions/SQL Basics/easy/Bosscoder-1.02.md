@@ -100,6 +100,8 @@ Text matching in SQL Server depends on collation. This version was reviewed and 
 
 ## Progressive walkthrough
 
+🟦 **FROM Employees · one table is enough** · Each employee row holds the ID and name that determine eligibility, plus the salary that determines the payout. Employees who receive zero still have an output row.
+
 ### 1. Keep one row per employee
 
 The question asks for every employee, including employees receiving zero. Read Employees and keep all five rows. Apply the conditions inside the bonus calculation.

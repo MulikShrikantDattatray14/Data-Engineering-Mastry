@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1924" viewBox="0 0 1160 1924" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2017" viewBox="0 0 1160 2017" role="img" aria-labelledby="title desc">
 <title id="title">P013 · States with at least five customers</title>
-<desc id="desc">One row per state group with at least five customers. IDs 1–5 form Karnataka, ID 6 forms Maharashtra, IDs 7–11 form NULL and IDs 12–17 form Delhi. Four groups become three. Maharashtra has one customer. Karnataka and NULL qualify with exactly five, and NULL displays as Unknown. Delhi&#x27;s six come first. The two groups of five sort by the displayed labels Karnataka and Unknown.</desc>
-<rect width="1160" height="1924" fill="#f4f7f7"/>
+<desc id="desc">One row per state group with at least five customers. IDs 1–5 form Karnataka, ID 6 forms Maharashtra, IDs 7–11 form NULL and IDs 12–17 form Delhi. Four groups become three. Maharashtra has one customer. Karnataka and NULL qualify with exactly five, and NULL displays as Unknown. Delhi&#x27;s six come first. The two groups of five sort by the displayed labels Karnataka and Unknown. FROM Customers · one table is enough. A customer contributes once to the group for their recorded state. The ID to count and the state to group by already share one row, even when the state is missing.</desc>
+<rect width="1160" height="2017" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P013    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">States with at least five customers</text>
@@ -125,110 +125,117 @@
 <rect x="578.133" y="844" width="525.867" height="29" rx="0" fill="#edf4fb"/>
 <text x="589.133" y="863" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
 <path d="M578.133 873L1104 873" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="897" width="1096" height="340" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="897" width="1096" height="433" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="927" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="990.641" y="907" width="117.359" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1002.64" y="926" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">17 → 4 rows</text>
 <text x="52" y="962" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How many customers belong to each state?</text>
-<text x="52" y="991" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 1–5 form Karnataka, ID 6 forms Maharashtra, IDs 7–11 form NULL and IDs 12–17 form Delhi.</text>
-<rect x="52" y="1007" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY State</text>
-<rect x="68" y="1055" width="507.805" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1070" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1091" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
-<rect x="575.805" y="1055" width="528.195" height="47" rx="0" fill="#194f7c"/>
-<text x="586.805" y="1070" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="586.805" y="1091" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_count</text>
-<path d="M54 1111.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1102" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M68 1131L575.805 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="575.805" y="1102" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
-<text x="586.805" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M575.805 1131L1104 1131" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1131" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M68 1160L575.805 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="575.805" y="1131" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
-<text x="586.805" y="1150" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M575.805 1160L1104 1160" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1160" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
-<path d="M68 1189L575.805 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="575.805" y="1160" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
-<text x="586.805" y="1179" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M575.805 1189L1104 1189" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1189" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
-<path d="M68 1218L575.805 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="575.805" y="1189" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
-<text x="586.805" y="1208" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M575.805 1218L1104 1218" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1247" width="1096" height="336" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1277" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="1257" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1276" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
-<text x="52" y="1312" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which state groups meet the threshold?</text>
-<text x="52" y="1341" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Four groups become three. Maharashtra has one customer. Karnataka and NULL qualify with exactly five, and NULL</text>
-<text x="52" y="1366" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">displays as Unknown.</text>
-<rect x="52" y="1382" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1403" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">HAVING COUNT(CustomerID) &gt;= 5</text>
-<rect x="68" y="1430" width="498.164" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1445" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1466" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
-<rect x="566.164" y="1430" width="537.836" height="47" rx="0" fill="#194f7c"/>
-<text x="577.164" y="1445" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="577.164" y="1466" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_count</text>
-<rect x="68" y="1477" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1496" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M68 1506L566.164 1506" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.164" y="1477" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
-<text x="577.164" y="1496" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M566.164 1506L1104 1506" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1506" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1525" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
-<path d="M68 1535L566.164 1535" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.164" y="1506" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
-<text x="577.164" y="1525" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M566.164 1535L1104 1535" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1544.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1535" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1554" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Unknown</text>
-<path d="M68 1564L566.164 1564" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.164" y="1535" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
-<text x="577.164" y="1554" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M566.164 1564L1104 1564" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1593" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1623" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="1603" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1622" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
-<text x="52" y="1658" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which state wins a tie on customer count?</text>
-<text x="52" y="1687" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Delhi&#x27;s six come first. The two groups of five sort by the displayed labels Karnataka and Unknown.</text>
-<rect x="52" y="1703" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1724" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY COUNT(CustomerID) DESC, State ASC</text>
-<rect x="68" y="1751" width="498.164" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1766" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="79" y="1787" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
-<rect x="566.164" y="1751" width="537.836" height="47" rx="0" fill="#194f7c"/>
-<text x="577.164" y="1766" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
-<text x="577.164" y="1787" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_count</text>
-<rect x="68" y="1798" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1817" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
-<path d="M68 1827L566.164 1827" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.164" y="1798" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
-<text x="577.164" y="1817" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
-<path d="M566.164 1827L1104 1827" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1827" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1846" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
-<path d="M68 1856L566.164 1856" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.164" y="1827" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
-<text x="577.164" y="1846" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M566.164 1856L1104 1856" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1865.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1856" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1875" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Unknown</text>
-<path d="M68 1885L566.164 1885" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.164" y="1856" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
-<text x="577.164" y="1875" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
-<path d="M566.164 1885L1104 1885" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="FROM Customers · one table is enough" data-decision="1">
+<rect x="52" y="973" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="978" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="995" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">FROM Customers · one table is enough</text>
+<text x="66" y="1019" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">A customer contributes once to the group for their recorded state. The ID to count and the state to group by already</text>
+<text x="66" y="1042" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">share one row, even when the state is missing.</text>
+</g>
+<text x="52" y="1084" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">IDs 1–5 form Karnataka, ID 6 forms Maharashtra, IDs 7–11 form NULL and IDs 12–17 form Delhi.</text>
+<rect x="52" y="1100" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1121" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">GROUP BY State</text>
+<rect x="68" y="1148" width="507.805" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1163" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1184" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
+<rect x="575.805" y="1148" width="528.195" height="47" rx="0" fill="#194f7c"/>
+<text x="586.805" y="1163" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="586.805" y="1184" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_count</text>
+<path d="M54 1204.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1195" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M68 1224L575.805 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="575.805" y="1195" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
+<text x="586.805" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M575.805 1224L1104 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1224" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1243" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M68 1253L575.805 1253" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="575.805" y="1224" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
+<text x="586.805" y="1243" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M575.805 1253L1104 1253" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1253" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1272" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
+<path d="M68 1282L575.805 1282" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="575.805" y="1253" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
+<text x="586.805" y="1272" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M575.805 1282L1104 1282" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1282" width="507.805" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1301" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Maharashtra</text>
+<path d="M68 1311L575.805 1311" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="575.805" y="1282" width="528.195" height="29" rx="0" fill="#d8e9f7"/>
+<text x="586.805" y="1301" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M575.805 1311L1104 1311" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1340" width="1096" height="336" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1370" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1350" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1369" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">4 → 3 rows</text>
+<text x="52" y="1405" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which state groups meet the threshold?</text>
+<text x="52" y="1434" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Four groups become three. Maharashtra has one customer. Karnataka and NULL qualify with exactly five, and NULL</text>
+<text x="52" y="1459" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">displays as Unknown.</text>
+<rect x="52" y="1475" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1496" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">HAVING COUNT(CustomerID) &gt;= 5</text>
+<rect x="68" y="1523" width="498.164" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1538" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
+<rect x="566.164" y="1523" width="537.836" height="47" rx="0" fill="#194f7c"/>
+<text x="577.164" y="1538" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="577.164" y="1559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_count</text>
+<rect x="68" y="1570" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1589" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M68 1599L566.164 1599" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.164" y="1570" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
+<text x="577.164" y="1589" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M566.164 1599L1104 1599" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1599" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1618" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
+<path d="M68 1628L566.164 1628" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.164" y="1599" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
+<text x="577.164" y="1618" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M566.164 1628L1104 1628" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1637.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1628" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1647" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Unknown</text>
+<path d="M68 1657L566.164 1657" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.164" y="1628" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
+<text x="577.164" y="1647" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M566.164 1657L1104 1657" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1686" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1716" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="1696" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1715" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
+<text x="52" y="1751" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which state wins a tie on customer count?</text>
+<text x="52" y="1780" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Delhi&#x27;s six come first. The two groups of five sort by the displayed labels Karnataka and Unknown.</text>
+<rect x="52" y="1796" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1817" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">ORDER BY COUNT(CustomerID) DESC, State ASC</text>
+<rect x="68" y="1844" width="498.164" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1859" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="79" y="1880" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">State</text>
+<rect x="566.164" y="1844" width="537.836" height="47" rx="0" fill="#194f7c"/>
+<text x="577.164" y="1859" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Customers</text>
+<text x="577.164" y="1880" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">customer_count</text>
+<rect x="68" y="1891" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1910" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Delhi</text>
+<path d="M68 1920L566.164 1920" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.164" y="1891" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
+<text x="577.164" y="1910" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">6</text>
+<path d="M566.164 1920L1104 1920" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1920" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1939" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Karnataka</text>
+<path d="M68 1949L566.164 1949" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.164" y="1920" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
+<text x="577.164" y="1939" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M566.164 1949L1104 1949" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1958.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1949" width="498.164" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="1968" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">Unknown</text>
+<path d="M68 1978L566.164 1978" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.164" y="1949" width="537.836" height="29" rx="0" fill="#d8e9f7"/>
+<text x="577.164" y="1968" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">5</text>
+<path d="M566.164 1978L1104 1978" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

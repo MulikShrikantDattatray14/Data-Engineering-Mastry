@@ -117,6 +117,8 @@ ORDER BY SupplierID ASC;
 
 ## Walkthrough
 
+🟦 **FROM Suppliers · one table is enough** · The country and email checks apply to one supplier. ID 2 can trigger both checks on its own record and still contribute just one follow-up row.
+
 ### 1. Decide what one output row represents
 
 Read one row per supplier from `Suppliers`. Select the four original fields so any spaces or casing in the stored data remain visible. At this point the sample shows suppliers 1, 2, and 3.

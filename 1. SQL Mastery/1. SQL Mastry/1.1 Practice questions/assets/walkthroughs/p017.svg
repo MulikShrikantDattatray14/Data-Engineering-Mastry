@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2295" viewBox="0 0 1160 2295" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="2667" viewBox="0 0 1160 2667" role="img" aria-labelledby="title desc">
 <title id="title">P017 · Orders with payment type and shipper</title>
-<desc id="desc">One row per order in the latest seven calendar dates. Orders 1 and 2 both match UPI. Order 3 has a NULL payment ID. All three orders survive. Orders 1 and 2 match FastShip. The missing shipper on order 3 adds NULLs, so the working result still has three orders. Read Orders for the window bounds. December 31 minus six days is December 25. Both endpoints count. The date filter removes order 1 from the joined rows. December 25 (order 2) and December 31 (order 3) both qualify. Order 3 appears first with Unknown in both fields. Order 2 follows with UPI and FastShip.</desc>
-<rect width="1160" height="2295" fill="#f4f7f7"/>
+<desc id="desc">One row per order in the latest seven calendar dates. Orders 1 and 2 both match UPI. Order 3 has a NULL payment ID. All three orders survive. Orders 1 and 2 match FastShip. The missing shipper on order 3 adds NULLs, so the working result still has three orders. Read Orders for the window bounds. December 31 minus six days is December 25. Both endpoints count. The date filter removes order 1 from the joined rows. December 25 (order 2) and December 31 (order 3) both qualify. Order 3 appears first with Unknown in both fields. Order 2 follows with UPI and FastShip. First · FROM Orders. The report needs an entry for each order in the date window, including orders with missing labels. Each order already carries both lookup IDs. Second · LEFT JOIN Payments. Look up Orders.PaymentID in Payments to get the payment type. A failed match leaves the order available for the shipper lookup. Third · LEFT JOIN Shippers. Match Orders.ShipperID to Shippers on the rows carried from step 1. A missing shipper leaves a NULL company name. Both lookups use separate order columns, so they can trade places. Reporting window · FROM Orders. The CTE reads order dates to produce one pair of bounds. The main query starts from individual orders because it needs one result per qualifying order.</desc>
+<rect width="1160" height="2667" fill="#f4f7f7"/>
 <rect x="0" y="0" width="1160" height="8" rx="0" fill="#22654f"/>
 <text x="32" y="43" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#215e49" font-weight="700">PNP  P017    /    SQL WALKTHROUGH</text>
 <text x="32" y="92" font-family="DejaVu Sans, sans-serif" font-size="34" fill="#142a3a" font-weight="700">Orders with payment type and shipper</text>
@@ -96,310 +96,338 @@
 <rect x="576.969" y="693" width="527.031" height="29" rx="0" fill="#fcf1f2"/>
 <text x="587.969" y="712" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">FastShip</text>
 <path d="M576.969 722L1104 722" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="746" width="1096" height="311" rx="10" fill="white" stroke="#cbd8dd"/>
+<rect x="32" y="746" width="1096" height="497" rx="10" fill="white" stroke="#cbd8dd"/>
 <text x="52" y="776" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 1</text>
 <rect x="1000.38" y="756" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
 <text x="1012.38" y="775" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
 <text x="52" y="811" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why join Payments to Orders first?</text>
-<text x="52" y="840" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Orders 1 and 2 both match UPI. Order 3 has a NULL payment ID. All three orders survive.</text>
-<rect x="52" y="856" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="877" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Orders LEFT JOIN Payments ON Orders.PaymentID = Payments.PaymentID</text>
-<rect x="68" y="904" width="152.083" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="919" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="940" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="220.083" y="904" width="185.271" height="47" rx="0" fill="#194f7c"/>
-<text x="231.083" y="919" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="231.083" y="940" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="405.354" y="904" width="170.146" height="47" rx="0" fill="#194f7c"/>
-<text x="416.354" y="919" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="416.354" y="940" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentID</text>
-<path d="M416.354 943L497.635 943" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M416.354 946L497.635 946" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="575.5" y="904" width="170.146" height="47" rx="0" fill="#194f7c"/>
-<text x="586.5" y="919" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="586.5" y="940" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ShipperID</text>
-<rect x="745.646" y="904" width="170.146" height="47" rx="0" fill="#205e45"/>
-<text x="756.646" y="919" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
-<text x="756.646" y="940" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentID</text>
-<path d="M756.646 943L837.927 943" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M756.646 946L837.927 946" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="915.792" y="904" width="188.208" height="47" rx="0" fill="#205e45"/>
-<text x="926.792" y="919" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
-<text x="926.792" y="940" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentType</text>
-<rect x="68" y="951" width="152.083" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 980L220.083 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="220.083" y="951" width="185.271" height="29" rx="0" fill="#edf4fb"/>
-<text x="231.083" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-24</text>
-<path d="M220.083 980L405.354 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="405.354" y="951" width="170.146" height="29" rx="0" fill="#d8e9f7"/>
-<text x="416.354" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M405.354 980L575.5 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="575.5" y="951" width="170.146" height="29" rx="0" fill="#edf4fb"/>
-<text x="586.5" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M575.5 980L745.646 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="745.646" y="951" width="170.146" height="29" rx="0" fill="#d6ecdf"/>
-<text x="756.646" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M745.646 980L915.792 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="915.792" y="951" width="188.208" height="29" rx="0" fill="#d6ecdf"/>
-<text x="926.792" y="970" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
-<path d="M915.792 980L1104 980" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="980" width="152.083" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1009L220.083 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="220.083" y="980" width="185.271" height="29" rx="0" fill="#ffffff"/>
-<text x="231.083" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
-<path d="M220.083 1009L405.354 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="405.354" y="980" width="170.146" height="29" rx="0" fill="#d8e9f7"/>
-<text x="416.354" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M405.354 1009L575.5 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="575.5" y="980" width="170.146" height="29" rx="0" fill="#ffffff"/>
-<text x="586.5" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M575.5 1009L745.646 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="745.646" y="980" width="170.146" height="29" rx="0" fill="#d6ecdf"/>
-<text x="756.646" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M745.646 1009L915.792 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="915.792" y="980" width="188.208" height="29" rx="0" fill="#d6ecdf"/>
-<text x="926.792" y="999" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
-<path d="M915.792 1009L1104 1009" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1018.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1009" width="152.083" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1038L220.083 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="220.083" y="1009" width="185.271" height="29" rx="0" fill="#edf4fb"/>
-<text x="231.083" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
-<path d="M220.083 1038L405.354 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="405.354" y="1009" width="170.146" height="29" rx="0" fill="#d8e9f7"/>
-<text x="416.354" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M405.354 1038L575.5 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="575.5" y="1009" width="170.146" height="29" rx="0" fill="#edf4fb"/>
-<text x="586.5" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M575.5 1038L745.646 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="745.646" y="1009" width="170.146" height="29" rx="0" fill="#d6ecdf"/>
-<text x="756.646" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M745.646 1038L915.792 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="915.792" y="1009" width="188.208" height="29" rx="0" fill="#d6ecdf"/>
-<text x="926.792" y="1028" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M915.792 1038L1104 1038" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1067" width="1096" height="336" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1097" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
-<rect x="1000.38" y="1077" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1096" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
-<text x="52" y="1132" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why use a second left join for Shippers?</text>
-<text x="52" y="1161" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Orders 1 and 2 match FastShip. The missing shipper on order 3 adds NULLs, so the working result still has three</text>
-<text x="52" y="1186" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">orders.</text>
-<rect x="52" y="1202" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1223" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID</text>
-<rect x="68" y="1250" width="107.289" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1265" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1286" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="175.289" y="1250" width="140.477" height="47" rx="0" fill="#194f7c"/>
-<text x="186.289" y="1265" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="186.289" y="1286" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="315.766" y="1250" width="125.352" height="47" rx="0" fill="#194f7c"/>
-<text x="326.766" y="1265" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="326.766" y="1286" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentID</text>
-<rect x="441.117" y="1250" width="125.352" height="47" rx="0" fill="#194f7c"/>
-<text x="452.117" y="1265" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="452.117" y="1286" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ShipperID</text>
-<path d="M452.117 1289L533.398 1289" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M452.117 1292L533.398 1292" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="566.469" y="1250" width="125.352" height="47" rx="0" fill="#205e45"/>
-<text x="577.469" y="1265" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
-<text x="577.469" y="1286" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentID</text>
-<rect x="691.82" y="1250" width="143.414" height="47" rx="0" fill="#205e45"/>
-<text x="702.82" y="1265" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
-<text x="702.82" y="1286" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentType</text>
-<rect x="835.234" y="1250" width="125.352" height="47" rx="0" fill="#903e48"/>
-<text x="846.234" y="1265" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Shippers</text>
-<text x="846.234" y="1286" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ShipperID</text>
-<path d="M846.234 1289L927.516 1289" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<path d="M846.234 1292L927.516 1292" fill="none" stroke="#ffffff" stroke-width="1.2"/>
-<rect x="960.586" y="1250" width="143.414" height="47" rx="0" fill="#903e48"/>
-<text x="971.586" y="1265" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Shippers</text>
-<text x="971.586" y="1286" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CompanyName</text>
-<rect x="68" y="1297" width="107.289" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1316" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M68 1326L175.289 1326" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="175.289" y="1297" width="140.477" height="29" rx="0" fill="#edf4fb"/>
-<text x="186.289" y="1316" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-24</text>
-<path d="M175.289 1326L315.766 1326" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="315.766" y="1297" width="125.352" height="29" rx="0" fill="#edf4fb"/>
-<text x="326.766" y="1316" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M315.766 1326L441.117 1326" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="441.117" y="1297" width="125.352" height="29" rx="0" fill="#d8e9f7"/>
-<text x="452.117" y="1316" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M441.117 1326L566.469 1326" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.469" y="1297" width="125.352" height="29" rx="0" fill="#eff7f2"/>
-<text x="577.469" y="1316" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M566.469 1326L691.82 1326" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.82" y="1297" width="143.414" height="29" rx="0" fill="#eff7f2"/>
-<text x="702.82" y="1316" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
-<path d="M691.82 1326L835.234 1326" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="835.234" y="1297" width="125.352" height="29" rx="0" fill="#f7dfe1"/>
-<text x="846.234" y="1316" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">1</text>
-<path d="M835.234 1326L960.586 1326" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="960.586" y="1297" width="143.414" height="29" rx="0" fill="#f7dfe1"/>
-<text x="971.586" y="1316" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">FastShip</text>
-<path d="M960.586 1326L1104 1326" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="1326" width="107.289" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="1345" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1355L175.289 1355" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="175.289" y="1326" width="140.477" height="29" rx="0" fill="#ffffff"/>
-<text x="186.289" y="1345" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
-<path d="M175.289 1355L315.766 1355" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="315.766" y="1326" width="125.352" height="29" rx="0" fill="#ffffff"/>
-<text x="326.766" y="1345" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M315.766 1355L441.117 1355" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="441.117" y="1326" width="125.352" height="29" rx="0" fill="#d8e9f7"/>
-<text x="452.117" y="1345" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
-<path d="M441.117 1355L566.469 1355" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.469" y="1326" width="125.352" height="29" rx="0" fill="#ffffff"/>
-<text x="577.469" y="1345" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
-<path d="M566.469 1355L691.82 1355" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.82" y="1326" width="143.414" height="29" rx="0" fill="#ffffff"/>
-<text x="702.82" y="1345" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
-<path d="M691.82 1355L835.234 1355" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="835.234" y="1326" width="125.352" height="29" rx="0" fill="#f7dfe1"/>
-<text x="846.234" y="1345" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">1</text>
-<path d="M835.234 1355L960.586 1355" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="960.586" y="1326" width="143.414" height="29" rx="0" fill="#f7dfe1"/>
-<text x="971.586" y="1345" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">FastShip</text>
-<path d="M960.586 1355L1104 1355" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1364.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1355" width="107.289" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="1374" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1384L175.289 1384" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="175.289" y="1355" width="140.477" height="29" rx="0" fill="#edf4fb"/>
-<text x="186.289" y="1374" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
-<path d="M175.289 1384L315.766 1384" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="315.766" y="1355" width="125.352" height="29" rx="0" fill="#edf4fb"/>
-<text x="326.766" y="1374" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M315.766 1384L441.117 1384" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="441.117" y="1355" width="125.352" height="29" rx="0" fill="#d8e9f7"/>
-<text x="452.117" y="1374" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
-<path d="M441.117 1384L566.469 1384" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.469" y="1355" width="125.352" height="29" rx="0" fill="#eff7f2"/>
-<text x="577.469" y="1374" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M566.469 1384L691.82 1384" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="691.82" y="1355" width="143.414" height="29" rx="0" fill="#eff7f2"/>
-<text x="702.82" y="1374" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M691.82 1384L835.234 1384" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="835.234" y="1355" width="125.352" height="29" rx="0" fill="#f7dfe1"/>
-<text x="846.234" y="1374" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c" font-style="italic">NULL</text>
-<path d="M835.234 1384L960.586 1384" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="960.586" y="1355" width="143.414" height="29" rx="0" fill="#f7dfe1"/>
-<text x="971.586" y="1374" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c" font-style="italic">NULL</text>
-<path d="M960.586 1384L1104 1384" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1413" width="1096" height="253" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1443" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
-<rect x="1008.7" y="1423" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1020.7" y="1442" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 1 row</text>
-<text x="52" y="1478" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does a seven-date window start?</text>
-<text x="52" y="1507" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Read Orders for the window bounds. December 31 minus six days is December 25. Both endpoints count.</text>
-<rect x="52" y="1523" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1544" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">date(MAX(OrderDate), &#x27;-6 days&#x27;)</text>
-<rect x="68" y="1571" width="540.578" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1586" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1607" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">latest_order_date</text>
-<rect x="608.578" y="1571" width="495.422" height="47" rx="0" fill="#194f7c"/>
-<text x="619.578" y="1586" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="619.578" y="1607" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">window_start</text>
-<rect x="68" y="1618" width="540.578" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1637" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
-<path d="M68 1647L608.578 1647" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="608.578" y="1618" width="495.422" height="29" rx="0" fill="#d8e9f7"/>
-<text x="619.578" y="1637" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
-<path d="M608.578 1647L1104 1647" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1676" width="1096" height="307" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="1706" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 4</text>
-<rect x="1000.38" y="1686" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="1705" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
-<text x="52" y="1741" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which orders fall inside those bounds?</text>
-<text x="52" y="1770" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The date filter removes order 1 from the joined rows. December 25 (order 2) and December 31 (order 3) both</text>
-<text x="52" y="1795" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">qualify.</text>
-<rect x="52" y="1811" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="1832" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">OrderDate BETWEEN window_start AND latest_order_date [CTE bounds]</text>
-<rect x="68" y="1859" width="232.641" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="1874" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="1895" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="300.641" y="1859" width="265.828" height="47" rx="0" fill="#194f7c"/>
-<text x="311.641" y="1874" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="311.641" y="1895" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="566.469" y="1859" width="268.766" height="47" rx="0" fill="#205e45"/>
-<text x="577.469" y="1874" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
-<text x="577.469" y="1895" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentType</text>
-<rect x="835.234" y="1859" width="268.766" height="47" rx="0" fill="#903e48"/>
-<text x="846.234" y="1874" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Shippers</text>
-<text x="846.234" y="1895" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CompanyName</text>
-<rect x="68" y="1906" width="232.641" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1925" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 1935L300.641 1935" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="300.641" y="1906" width="265.828" height="29" rx="0" fill="#d8e9f7"/>
-<text x="311.641" y="1925" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
-<path d="M300.641 1935L566.469 1935" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.469" y="1906" width="268.766" height="29" rx="0" fill="#eff7f2"/>
-<text x="577.469" y="1925" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
-<path d="M566.469 1935L835.234 1935" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="835.234" y="1906" width="268.766" height="29" rx="0" fill="#fcf1f2"/>
-<text x="846.234" y="1925" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">FastShip</text>
-<path d="M835.234 1935L1104 1935" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<path d="M54 1944.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="1935" width="232.641" height="29" rx="0" fill="#d8e9f7"/>
-<text x="79" y="1954" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 1964L300.641 1964" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="300.641" y="1935" width="265.828" height="29" rx="0" fill="#d8e9f7"/>
-<text x="311.641" y="1954" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
-<path d="M300.641 1964L566.469 1964" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="566.469" y="1935" width="268.766" height="29" rx="0" fill="#ffffff"/>
-<text x="577.469" y="1954" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
-<path d="M566.469 1964L835.234 1964" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="835.234" y="1935" width="268.766" height="29" rx="0" fill="#ffffff"/>
-<text x="846.234" y="1954" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c" font-style="italic">NULL</text>
-<path d="M835.234 1964L1104 1964" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="32" y="1993" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
-<text x="52" y="2023" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
-<rect x="1000.38" y="2003" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
-<text x="1012.38" y="2022" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
-<text x="52" y="2058" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How should missing lookups read?</text>
-<text x="52" y="2087" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 3 appears first with Unknown in both fields. Order 2 follows with UPI and FastShip.</text>
-<rect x="52" y="2103" width="1056" height="35" rx="5" fill="#f0f4f6"/>
-<text x="64" y="2124" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">COALESCE(p.PaymentType, &#x27;Unknown&#x27;), COALESCE(s.CompanyName, &#x27;Unknown&#x27;)</text>
-<rect x="68" y="2151" width="228.125" height="47" rx="0" fill="#194f7c"/>
-<text x="79" y="2166" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="79" y="2187" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
-<rect x="296.125" y="2151" width="261.312" height="47" rx="0" fill="#194f7c"/>
-<text x="307.125" y="2166" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
-<text x="307.125" y="2187" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
-<rect x="557.438" y="2151" width="273.281" height="47" rx="0" fill="#205e45"/>
-<text x="568.438" y="2166" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
-<text x="568.438" y="2187" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">payment_type</text>
-<rect x="830.719" y="2151" width="273.281" height="47" rx="0" fill="#903e48"/>
-<text x="841.719" y="2166" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Shippers</text>
-<text x="841.719" y="2187" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">shipper_name</text>
-<path d="M54 2207.5l8 5-8 5z" fill="#142a3a"/>
-<rect x="68" y="2198" width="228.125" height="29" rx="0" fill="#edf4fb"/>
-<text x="79" y="2217" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
-<path d="M68 2227L296.125 2227" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="296.125" y="2198" width="261.312" height="29" rx="0" fill="#edf4fb"/>
-<text x="307.125" y="2217" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
-<path d="M296.125 2227L557.438 2227" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="557.438" y="2198" width="273.281" height="29" rx="0" fill="#d6ecdf"/>
-<text x="568.438" y="2217" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Unknown</text>
-<path d="M557.438 2227L830.719 2227" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="830.719" y="2198" width="273.281" height="29" rx="0" fill="#f7dfe1"/>
-<text x="841.719" y="2217" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">Unknown</text>
-<path d="M830.719 2227L1104 2227" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="68" y="2227" width="228.125" height="29" rx="0" fill="#ffffff"/>
-<text x="79" y="2246" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
-<path d="M68 2256L296.125 2256" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="296.125" y="2227" width="261.312" height="29" rx="0" fill="#ffffff"/>
-<text x="307.125" y="2246" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
-<path d="M296.125 2256L557.438 2256" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="557.438" y="2227" width="273.281" height="29" rx="0" fill="#d6ecdf"/>
-<text x="568.438" y="2246" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
-<path d="M557.438 2256L830.719 2256" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
-<rect x="830.719" y="2227" width="273.281" height="29" rx="0" fill="#f7dfe1"/>
-<text x="841.719" y="2246" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">FastShip</text>
-<path d="M830.719 2256L1104 2256" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<g role="group" aria-label="First · FROM Orders" data-decision="J1">
+<rect x="52" y="822" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="827" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="844" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">First · FROM Orders</text>
+<text x="66" y="868" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The report needs an entry for each order in the date window, including orders with missing labels. Each order already</text>
+<text x="66" y="891" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">carries both lookup IDs.</text>
+</g>
+<g role="group" aria-label="Second · LEFT JOIN Payments" data-decision="J1">
+<rect x="52" y="915" width="1052" height="85" rx="5" fill="#eff7f2"/>
+<rect x="52" y="920" width="4" height="75" rx="2" fill="#205e45"/>
+<text x="66" y="937" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#205e45" font-weight="700">Second · LEFT JOIN Payments</text>
+<text x="66" y="961" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Look up Orders.PaymentID in Payments to get the payment type. A failed match leaves the order available for the</text>
+<text x="66" y="984" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">shipper lookup.</text>
+</g>
+<text x="52" y="1026" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Orders 1 and 2 both match UPI. Order 3 has a NULL payment ID. All three orders survive.</text>
+<rect x="52" y="1042" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1063" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">Orders LEFT JOIN Payments ON Orders.PaymentID = Payments.PaymentID</text>
+<rect x="68" y="1090" width="152.083" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1105" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1126" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="220.083" y="1090" width="185.271" height="47" rx="0" fill="#194f7c"/>
+<text x="231.083" y="1105" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="231.083" y="1126" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="405.354" y="1090" width="170.146" height="47" rx="0" fill="#194f7c"/>
+<text x="416.354" y="1105" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="416.354" y="1126" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentID</text>
+<path d="M416.354 1129L497.635 1129" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M416.354 1132L497.635 1132" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="575.5" y="1090" width="170.146" height="47" rx="0" fill="#194f7c"/>
+<text x="586.5" y="1105" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="586.5" y="1126" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ShipperID</text>
+<rect x="745.646" y="1090" width="170.146" height="47" rx="0" fill="#205e45"/>
+<text x="756.646" y="1105" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="756.646" y="1126" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentID</text>
+<path d="M756.646 1129L837.927 1129" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M756.646 1132L837.927 1132" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="915.792" y="1090" width="188.208" height="47" rx="0" fill="#205e45"/>
+<text x="926.792" y="1105" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="926.792" y="1126" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentType</text>
+<rect x="68" y="1137" width="152.083" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1166L220.083 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="220.083" y="1137" width="185.271" height="29" rx="0" fill="#edf4fb"/>
+<text x="231.083" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-24</text>
+<path d="M220.083 1166L405.354 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="405.354" y="1137" width="170.146" height="29" rx="0" fill="#d8e9f7"/>
+<text x="416.354" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M405.354 1166L575.5 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="575.5" y="1137" width="170.146" height="29" rx="0" fill="#edf4fb"/>
+<text x="586.5" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M575.5 1166L745.646 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="745.646" y="1137" width="170.146" height="29" rx="0" fill="#d6ecdf"/>
+<text x="756.646" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M745.646 1166L915.792 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="915.792" y="1137" width="188.208" height="29" rx="0" fill="#d6ecdf"/>
+<text x="926.792" y="1156" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
+<path d="M915.792 1166L1104 1166" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1166" width="152.083" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1195L220.083 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="220.083" y="1166" width="185.271" height="29" rx="0" fill="#ffffff"/>
+<text x="231.083" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
+<path d="M220.083 1195L405.354 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="405.354" y="1166" width="170.146" height="29" rx="0" fill="#d8e9f7"/>
+<text x="416.354" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M405.354 1195L575.5 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="575.5" y="1166" width="170.146" height="29" rx="0" fill="#ffffff"/>
+<text x="586.5" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M575.5 1195L745.646 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="745.646" y="1166" width="170.146" height="29" rx="0" fill="#d6ecdf"/>
+<text x="756.646" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M745.646 1195L915.792 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="915.792" y="1166" width="188.208" height="29" rx="0" fill="#d6ecdf"/>
+<text x="926.792" y="1185" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
+<path d="M915.792 1195L1104 1195" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1204.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1195" width="152.083" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1224L220.083 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="220.083" y="1195" width="185.271" height="29" rx="0" fill="#edf4fb"/>
+<text x="231.083" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
+<path d="M220.083 1224L405.354 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="405.354" y="1195" width="170.146" height="29" rx="0" fill="#d8e9f7"/>
+<text x="416.354" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M405.354 1224L575.5 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="575.5" y="1195" width="170.146" height="29" rx="0" fill="#edf4fb"/>
+<text x="586.5" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M575.5 1224L745.646 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="745.646" y="1195" width="170.146" height="29" rx="0" fill="#d6ecdf"/>
+<text x="756.646" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M745.646 1224L915.792 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="915.792" y="1195" width="188.208" height="29" rx="0" fill="#d6ecdf"/>
+<text x="926.792" y="1214" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M915.792 1224L1104 1224" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1253" width="1096" height="429" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1283" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 2</text>
+<rect x="1000.38" y="1263" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="1282" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 3 rows</text>
+<text x="52" y="1318" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Why use a second left join for Shippers?</text>
+<g role="group" aria-label="Third · LEFT JOIN Shippers" data-decision="J2">
+<rect x="52" y="1329" width="1052" height="85" rx="5" fill="#fcf1f2"/>
+<rect x="52" y="1334" width="4" height="75" rx="2" fill="#903e48"/>
+<text x="66" y="1351" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#903e48" font-weight="700">Third · LEFT JOIN Shippers</text>
+<text x="66" y="1375" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Match Orders.ShipperID to Shippers on the rows carried from step 1. A missing shipper leaves a NULL company name.</text>
+<text x="66" y="1398" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">Both lookups use separate order columns, so they can trade places.</text>
+</g>
+<text x="52" y="1440" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Orders 1 and 2 match FastShip. The missing shipper on order 3 adds NULLs, so the working result still has three</text>
+<text x="52" y="1465" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">orders.</text>
+<rect x="52" y="1481" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1502" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID</text>
+<rect x="68" y="1529" width="107.289" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1544" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1565" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="175.289" y="1529" width="140.477" height="47" rx="0" fill="#194f7c"/>
+<text x="186.289" y="1544" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="186.289" y="1565" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="315.766" y="1529" width="125.352" height="47" rx="0" fill="#194f7c"/>
+<text x="326.766" y="1544" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="326.766" y="1565" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentID</text>
+<rect x="441.117" y="1529" width="125.352" height="47" rx="0" fill="#194f7c"/>
+<text x="452.117" y="1544" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="452.117" y="1565" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ShipperID</text>
+<path d="M452.117 1568L533.398 1568" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M452.117 1571L533.398 1571" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="566.469" y="1529" width="125.352" height="47" rx="0" fill="#205e45"/>
+<text x="577.469" y="1544" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="577.469" y="1565" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentID</text>
+<rect x="691.82" y="1529" width="143.414" height="47" rx="0" fill="#205e45"/>
+<text x="702.82" y="1544" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="702.82" y="1565" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentType</text>
+<rect x="835.234" y="1529" width="125.352" height="47" rx="0" fill="#903e48"/>
+<text x="846.234" y="1544" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Shippers</text>
+<text x="846.234" y="1565" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">ShipperID</text>
+<path d="M846.234 1568L927.516 1568" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<path d="M846.234 1571L927.516 1571" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="960.586" y="1529" width="143.414" height="47" rx="0" fill="#903e48"/>
+<text x="971.586" y="1544" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Shippers</text>
+<text x="971.586" y="1565" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CompanyName</text>
+<rect x="68" y="1576" width="107.289" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1595" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M68 1605L175.289 1605" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="175.289" y="1576" width="140.477" height="29" rx="0" fill="#edf4fb"/>
+<text x="186.289" y="1595" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-24</text>
+<path d="M175.289 1605L315.766 1605" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="315.766" y="1576" width="125.352" height="29" rx="0" fill="#edf4fb"/>
+<text x="326.766" y="1595" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M315.766 1605L441.117 1605" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="441.117" y="1576" width="125.352" height="29" rx="0" fill="#d8e9f7"/>
+<text x="452.117" y="1595" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M441.117 1605L566.469 1605" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.469" y="1576" width="125.352" height="29" rx="0" fill="#eff7f2"/>
+<text x="577.469" y="1595" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M566.469 1605L691.82 1605" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.82" y="1576" width="143.414" height="29" rx="0" fill="#eff7f2"/>
+<text x="702.82" y="1595" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
+<path d="M691.82 1605L835.234 1605" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="835.234" y="1576" width="125.352" height="29" rx="0" fill="#f7dfe1"/>
+<text x="846.234" y="1595" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">1</text>
+<path d="M835.234 1605L960.586 1605" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="960.586" y="1576" width="143.414" height="29" rx="0" fill="#f7dfe1"/>
+<text x="971.586" y="1595" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">FastShip</text>
+<path d="M960.586 1605L1104 1605" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="1605" width="107.289" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 1634L175.289 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="175.289" y="1605" width="140.477" height="29" rx="0" fill="#ffffff"/>
+<text x="186.289" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
+<path d="M175.289 1634L315.766 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="315.766" y="1605" width="125.352" height="29" rx="0" fill="#ffffff"/>
+<text x="326.766" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M315.766 1634L441.117 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="441.117" y="1605" width="125.352" height="29" rx="0" fill="#d8e9f7"/>
+<text x="452.117" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">1</text>
+<path d="M441.117 1634L566.469 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.469" y="1605" width="125.352" height="29" rx="0" fill="#ffffff"/>
+<text x="577.469" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">1</text>
+<path d="M566.469 1634L691.82 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.82" y="1605" width="143.414" height="29" rx="0" fill="#ffffff"/>
+<text x="702.82" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
+<path d="M691.82 1634L835.234 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="835.234" y="1605" width="125.352" height="29" rx="0" fill="#f7dfe1"/>
+<text x="846.234" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">1</text>
+<path d="M835.234 1634L960.586 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="960.586" y="1605" width="143.414" height="29" rx="0" fill="#f7dfe1"/>
+<text x="971.586" y="1624" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">FastShip</text>
+<path d="M960.586 1634L1104 1634" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 1643.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="1634" width="107.289" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 1663L175.289 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="175.289" y="1634" width="140.477" height="29" rx="0" fill="#edf4fb"/>
+<text x="186.289" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
+<path d="M175.289 1663L315.766 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="315.766" y="1634" width="125.352" height="29" rx="0" fill="#edf4fb"/>
+<text x="326.766" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M315.766 1663L441.117 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="441.117" y="1634" width="125.352" height="29" rx="0" fill="#d8e9f7"/>
+<text x="452.117" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164" font-style="italic">NULL</text>
+<path d="M441.117 1663L566.469 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.469" y="1634" width="125.352" height="29" rx="0" fill="#eff7f2"/>
+<text x="577.469" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M566.469 1663L691.82 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="691.82" y="1634" width="143.414" height="29" rx="0" fill="#eff7f2"/>
+<text x="702.82" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M691.82 1663L835.234 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="835.234" y="1634" width="125.352" height="29" rx="0" fill="#f7dfe1"/>
+<text x="846.234" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c" font-style="italic">NULL</text>
+<path d="M835.234 1663L960.586 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="960.586" y="1634" width="143.414" height="29" rx="0" fill="#f7dfe1"/>
+<text x="971.586" y="1653" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c" font-style="italic">NULL</text>
+<path d="M960.586 1663L1104 1663" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="1692" width="1096" height="346" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="1722" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 3</text>
+<rect x="1008.7" y="1702" width="99.2969" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1020.7" y="1721" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 1 row</text>
+<text x="52" y="1757" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Where does a seven-date window start?</text>
+<g role="group" aria-label="Reporting window · FROM Orders" data-decision="2">
+<rect x="52" y="1768" width="1052" height="85" rx="5" fill="#edf4fb"/>
+<rect x="52" y="1773" width="4" height="75" rx="2" fill="#194f7c"/>
+<text x="66" y="1790" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#194f7c" font-weight="700">Reporting window · FROM Orders</text>
+<text x="66" y="1814" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">The CTE reads order dates to produce one pair of bounds. The main query starts from individual orders because it</text>
+<text x="66" y="1837" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#142a3a">needs one result per qualifying order.</text>
+</g>
+<text x="52" y="1879" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Read Orders for the window bounds. December 31 minus six days is December 25. Both endpoints count.</text>
+<rect x="52" y="1895" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="1916" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">date(MAX(OrderDate), &#x27;-6 days&#x27;)</text>
+<rect x="68" y="1943" width="540.578" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="1958" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="1979" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">latest_order_date</text>
+<rect x="608.578" y="1943" width="495.422" height="47" rx="0" fill="#194f7c"/>
+<text x="619.578" y="1958" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="619.578" y="1979" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">window_start</text>
+<rect x="68" y="1990" width="540.578" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2009" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
+<path d="M68 2019L608.578 2019" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="608.578" y="1990" width="495.422" height="29" rx="0" fill="#d8e9f7"/>
+<text x="619.578" y="2009" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
+<path d="M608.578 2019L1104 2019" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="2048" width="1096" height="307" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="2078" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">STEP 4</text>
+<rect x="1000.38" y="2058" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="2077" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">3 → 2 rows</text>
+<text x="52" y="2113" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">Which orders fall inside those bounds?</text>
+<text x="52" y="2142" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">The date filter removes order 1 from the joined rows. December 25 (order 2) and December 31 (order 3) both</text>
+<text x="52" y="2167" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">qualify.</text>
+<rect x="52" y="2183" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2204" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">OrderDate BETWEEN window_start AND latest_order_date [CTE bounds]</text>
+<rect x="68" y="2231" width="232.641" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="2246" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="2267" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="300.641" y="2231" width="265.828" height="47" rx="0" fill="#194f7c"/>
+<text x="311.641" y="2246" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="311.641" y="2267" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="566.469" y="2231" width="268.766" height="47" rx="0" fill="#205e45"/>
+<text x="577.469" y="2246" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="577.469" y="2267" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">PaymentType</text>
+<rect x="835.234" y="2231" width="268.766" height="47" rx="0" fill="#903e48"/>
+<text x="846.234" y="2246" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Shippers</text>
+<text x="846.234" y="2267" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">CompanyName</text>
+<rect x="68" y="2278" width="232.641" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2297" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 2307L300.641 2307" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="300.641" y="2278" width="265.828" height="29" rx="0" fill="#d8e9f7"/>
+<text x="311.641" y="2297" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
+<path d="M300.641 2307L566.469 2307" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.469" y="2278" width="268.766" height="29" rx="0" fill="#eff7f2"/>
+<text x="577.469" y="2297" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
+<path d="M566.469 2307L835.234 2307" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="835.234" y="2278" width="268.766" height="29" rx="0" fill="#fcf1f2"/>
+<text x="846.234" y="2297" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">FastShip</text>
+<path d="M835.234 2307L1104 2307" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<path d="M54 2316.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="2307" width="232.641" height="29" rx="0" fill="#d8e9f7"/>
+<text x="79" y="2326" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 2336L300.641 2336" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="300.641" y="2307" width="265.828" height="29" rx="0" fill="#d8e9f7"/>
+<text x="311.641" y="2326" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
+<path d="M300.641 2336L566.469 2336" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="566.469" y="2307" width="268.766" height="29" rx="0" fill="#ffffff"/>
+<text x="577.469" y="2326" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38" font-style="italic">NULL</text>
+<path d="M566.469 2336L835.234 2336" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="835.234" y="2307" width="268.766" height="29" rx="0" fill="#ffffff"/>
+<text x="846.234" y="2326" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c" font-style="italic">NULL</text>
+<path d="M835.234 2336L1104 2336" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="32" y="2365" width="1096" height="282" rx="10" fill="white" stroke="#cbd8dd"/>
+<text x="52" y="2395" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#215e49" font-weight="700">FINAL RESULT</text>
+<rect x="1000.38" y="2375" width="107.625" height="28" rx="10" fill="#e6eeeb"/>
+<text x="1012.38" y="2394" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#254e3e" font-weight="700">2 → 2 rows</text>
+<text x="52" y="2430" font-family="DejaVu Sans, sans-serif" font-size="24" fill="#142a3a" font-weight="700">How should missing lookups read?</text>
+<text x="52" y="2459" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#142a3a">Order 3 appears first with Unknown in both fields. Order 2 follows with UPI and FastShip.</text>
+<rect x="52" y="2475" width="1056" height="35" rx="5" fill="#f0f4f6"/>
+<text x="64" y="2496" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#25495e">COALESCE(p.PaymentType, &#x27;Unknown&#x27;), COALESCE(s.CompanyName, &#x27;Unknown&#x27;)</text>
+<rect x="68" y="2523" width="228.125" height="47" rx="0" fill="#194f7c"/>
+<text x="79" y="2538" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="79" y="2559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderID</text>
+<rect x="296.125" y="2523" width="261.312" height="47" rx="0" fill="#194f7c"/>
+<text x="307.125" y="2538" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Orders</text>
+<text x="307.125" y="2559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">OrderDate</text>
+<rect x="557.438" y="2523" width="273.281" height="47" rx="0" fill="#205e45"/>
+<text x="568.438" y="2538" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Payments</text>
+<text x="568.438" y="2559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">payment_type</text>
+<rect x="830.719" y="2523" width="273.281" height="47" rx="0" fill="#903e48"/>
+<text x="841.719" y="2538" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#ffffff" font-weight="700">Shippers</text>
+<text x="841.719" y="2559" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ffffff" font-weight="700">shipper_name</text>
+<path d="M54 2579.5l8 5-8 5z" fill="#142a3a"/>
+<rect x="68" y="2570" width="228.125" height="29" rx="0" fill="#edf4fb"/>
+<text x="79" y="2589" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">3</text>
+<path d="M68 2599L296.125 2599" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="296.125" y="2570" width="261.312" height="29" rx="0" fill="#edf4fb"/>
+<text x="307.125" y="2589" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-31</text>
+<path d="M296.125 2599L557.438 2599" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="557.438" y="2570" width="273.281" height="29" rx="0" fill="#d6ecdf"/>
+<text x="568.438" y="2589" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">Unknown</text>
+<path d="M557.438 2599L830.719 2599" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="830.719" y="2570" width="273.281" height="29" rx="0" fill="#f7dfe1"/>
+<text x="841.719" y="2589" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">Unknown</text>
+<path d="M830.719 2599L1104 2599" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="68" y="2599" width="228.125" height="29" rx="0" fill="#ffffff"/>
+<text x="79" y="2618" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2</text>
+<path d="M68 2628L296.125 2628" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="296.125" y="2599" width="261.312" height="29" rx="0" fill="#ffffff"/>
+<text x="307.125" y="2618" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#174164">2025-12-25</text>
+<path d="M296.125 2628L557.438 2628" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="557.438" y="2599" width="273.281" height="29" rx="0" fill="#d6ecdf"/>
+<text x="568.438" y="2618" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#194d38">UPI</text>
+<path d="M557.438 2628L830.719 2628" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
+<rect x="830.719" y="2599" width="273.281" height="29" rx="0" fill="#f7dfe1"/>
+<text x="841.719" y="2618" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#77343c">FastShip</text>
+<path d="M830.719 2628L1104 2628" fill="none" stroke="#cbd8dd" stroke-width="0.8"/>
 </svg>

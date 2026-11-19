@@ -80,6 +80,8 @@ order by count(OrderID) desc ,OrderID asc
 
 ## Step-by-step walkthrough
 
+🟦 **FROM OrderDetails · one table is enough** · Each record is one packing line and includes `OrderID`, `ProductID` and `Quantity`. Those fields supply the line count, distinct-product count and units for each order.
+
 ### 1. Define and check one row per order
 
 **What to do.** Group the detail rows by OrderID and calculate each metric for the whole group.

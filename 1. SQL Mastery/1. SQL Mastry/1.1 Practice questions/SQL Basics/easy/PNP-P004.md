@@ -90,6 +90,8 @@ The learner's query logic is preserved. The saved version removes chat escaping 
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Customers · one table is enough** · The contact list needs one decision per person. The stored email and the identity of the person to contact are already on the same customer row.
+
 **How to start.** Which issue should win when several apply?
 
 Use the same sample throughout and check the output after each step.

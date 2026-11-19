@@ -99,9 +99,11 @@ One output row represents one order in the reporting window. Use the same sample
 
 ### 1. Attach payment and shipper details
 
-**What to do.** Match each lookup directly to its own ID on Orders.
+🟦 **First · FROM Orders** · The report needs an entry for each order in the date window, including orders with missing labels. Each order already carries both lookup IDs.
 
-**Why these joins.** Both lookups are optional. Each LEFT JOIN retains the order when its lookup has no match. The two lookups work independently, so an order with an unknown payment may still have a known shipper.
+🟩 **Second · LEFT JOIN Payments** · Look up `Orders.PaymentID` in Payments to get the payment type. A failed match leaves the order available for the shipper lookup.
+
+🟥 **Third · LEFT JOIN Shippers** · Match `Orders.ShipperID` to Shippers on the rows carried from step 1. A missing shipper leaves a NULL company name. Both lookups use separate order columns, so they can trade places.
 
 ```sql
 SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
@@ -237,7 +239,7 @@ The example uses the three Orders rows above throughout. Step tables use order I
 
 #### 1. Calculate the reporting window
 
-**What to do.** Find the latest order date with MAX and subtract six days to get the start. **Why.** The latest date itself counts as one of the seven calendar days. The aggregate yields one row for the entire table, so every order uses the same boundaries.
+🟦 **Reporting window · FROM Orders** · The CTE reads order dates to produce one pair of bounds. The main query starts from individual orders because it needs one result per qualifying order. Subtract six days from the latest date to get seven inclusive calendar dates.
 
 ```sql
 WITH reporting_window AS (
@@ -255,7 +257,11 @@ SELECT latest_order_date, window_start FROM reporting_window;
 
 #### 2. Join the lookup tables
 
-**What to do.** Use the order's PaymentID to look up the payment type and its ShipperID to look up the company name. **Why these joins.** Each LEFT JOIN preserves orders with missing or unrecognized IDs. Both join conditions refer directly to Orders, so a missing payment cannot block a shipper match.
+🟦 **First · FROM Orders** · The report needs an entry for each order in the date window, including orders with missing labels. Each order already carries both lookup IDs.
+
+🟩 **Second · LEFT JOIN Payments** · Look up `Orders.PaymentID` in Payments to get the payment type. A failed match leaves the order available for the shipper lookup.
+
+🟥 **Third · LEFT JOIN Shippers** · Match `Orders.ShipperID` to Shippers on the rows carried from step 1. A missing shipper leaves a NULL company name. Both lookups use separate order columns, so they can trade places.
 
 ```sql
 SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName

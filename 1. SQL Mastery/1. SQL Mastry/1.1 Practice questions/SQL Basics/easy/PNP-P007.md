@@ -94,6 +94,8 @@ Verified on the sample and additional cases covering missing prices, a zero sale
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Products · one table is enough** · Discounts compare two prices for the same product. Both prices sit beside its ID and name, including on the Sticker row where the market price is zero.
+
 **How to start.** Does an unusable price affect the row or its metrics?
 
 Use the same sample throughout and check the output after each step.

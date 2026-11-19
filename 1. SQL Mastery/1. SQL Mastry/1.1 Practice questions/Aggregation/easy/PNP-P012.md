@@ -89,6 +89,8 @@ The sample and extended tests passed, including multiple categories, missing and
 
 ## Step-by-step walkthrough
 
+🟦 **FROM Products · one table is enough** · The group key is the category ID already on each product. The same rows hold both price columns, so they supply the product count and every price statistic.
+
 Start by asking what one output row represents and which products should contribute to each metric. Use one extended example throughout. It includes the original sample, a zero market price, and a second category with a missing market price.
 
 | ProductID | CategoryID | Sale_Price | Market_Price |
