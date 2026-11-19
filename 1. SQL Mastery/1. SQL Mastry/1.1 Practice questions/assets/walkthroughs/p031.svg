@@ -6,10 +6,10 @@
   <text x="36" y="36" font-size="15" font-weight="700" fill="#445E73" font-family="DejaVu Sans Mono, monospace">P031  /  SUBQUERIES  /  SQLITE</text>
   <text x="36" y="84" font-size="37" font-weight="700" fill="#14283A">Why does only Asha qualify?</text>
   <text x="36" y="119" font-size="18" font-weight="400" fill="#324D63">Follow the locked query from the order rows to one customer above the average.</text>
-  <rect x="36" y="141" width="14" height="14" fill="#15558D" rx="2" />
-  <text x="57" y="154" font-size="16" font-weight="700" fill="#14283A">Orders</text>
-  <rect x="165" y="141" width="14" height="14" fill="#17674F" rx="2" />
-  <text x="186" y="154" font-size="16" font-weight="700" fill="#14283A">Customers</text>
+  <rect x="36" y="141" width="14" height="14" fill="#17674F" rx="2" />
+  <text x="57" y="154" font-size="16" font-weight="700" fill="#14283A">Customers</text>
+  <rect x="165" y="141" width="14" height="14" fill="#15558D" rx="2" />
+  <text x="186" y="154" font-size="16" font-weight="700" fill="#14283A">Orders</text>
   <text x="337" y="154" font-size="15" font-weight="400" fill="#324D63">ƒ  calculated field</text>
   <text x="535" y="154" font-size="15" font-weight="400" fill="#324D63">Double underline = join key</text>
   <line x1="36" y1="181" x2="924" y2="181" stroke="#C8D4DF" stroke-width="1" />
