@@ -23,6 +23,10 @@ One output row represents one usable brand, after disregarding surrounding space
 
 ### Practice example · Sample input
 
+#### Schema
+
+The exercise uses `Products`. The sample shows `ProductID` (integer) and `Brand` (nullable text). Only `Brand` is required to solve the problem.
+
 Quotes around text values make surrounding spaces visible.
 
 **🟦 `Products`**
@@ -60,17 +64,6 @@ Quotes around text values make surrounding spaces visible.
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-<details>
-<summary>Notes from the saved attempt</summary>
-
-### Schema
-
-The exercise uses `Products`. The sample shows `ProductID` (integer) and `Brand` (nullable text). Only `Brand` is required to solve the problem.
-
-The saved attempt treats padded versions of the same brand as a single displayed name.
-
-</details>
-
 ## Learner solution — SQLite
 
 ```sql
@@ -81,6 +74,13 @@ order by trim(Brand) asc
 ```
 
 The exact query was run against all eight sample rows in SQLite. The column name and all three rows matched the expected output in order.
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+The saved attempt treats padded versions of the same brand as a single displayed name.
+
+</details>
 
 ## Visual walkthrough
 

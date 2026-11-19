@@ -24,6 +24,19 @@ One output row represents one product and store combination with a known price.
 
 ### Assignment example · Sample input
 
+#### Schema
+
+`Products`:
+
+| Column Name | Type |
+|---|---|
+| product_id | int |
+| store1 | int |
+| store2 | int |
+| store3 | int |
+
+`product_id` is the primary key. Each store column holds a price, or `NULL` if the product is unavailable at that store.
+
 **🟦 `Products`**
 
 | 🟦 product_id | 🟦 store1 | 🟦 store2 | 🟦 store3 |
@@ -55,34 +68,6 @@ One output row represents one product and store combination with a known price.
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-<details>
-<summary>Notes from the saved attempt</summary>
-
-### Problem solving checklist
-
-1. **Define the output:** state what one result row represents, the required columns, and the ordering.
-2. **Understand the inputs:** identify table meanings, keys, relationships, duplicates, and NULLs.
-3. **Explain the logic:** describe the steps, calculations, and comparisons in plain English.
-4. **Choose SQL operations:** match each step to the SQL operations it needs.
-5. **Plan intermediate results:** list the needed columns and what each intermediate row represents.
-6. **Build gradually:** write one part, inspect its output, and check row counts after joins.
-7. **Verify the answer:** check the sample, duplicates, missing matches, NULLs, arithmetic, boundaries, ties, and sorting.
-
-## Schema
-
-`Products`:
-
-| Column Name | Type |
-|---|---|
-| product_id | int |
-| store1 | int |
-| store2 | int |
-| store3 | int |
-
-`product_id` is the primary key. Each store column holds a price, or `NULL` if the product is unavailable at that store.
-
-</details>
-
 ## My solution — SQLite
 
 ```sql
@@ -110,6 +95,21 @@ WHERE store3 IS NOT NULL
 
 ORDER BY store ASC;
 ```
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+### Problem solving checklist
+
+1. **Define the output:** state what one result row represents, the required columns, and the ordering.
+2. **Understand the inputs:** identify table meanings, keys, relationships, duplicates, and NULLs.
+3. **Explain the logic:** describe the steps, calculations, and comparisons in plain English.
+4. **Choose SQL operations:** match each step to the SQL operations it needs.
+5. **Plan intermediate results:** list the needed columns and what each intermediate row represents.
+6. **Build gradually:** write one part, inspect its output, and check row counts after joins.
+7. **Verify the answer:** check the sample, duplicates, missing matches, NULLs, arithmetic, boundaries, ties, and sorting.
+
+</details>
 
 ## Visual walkthrough
 

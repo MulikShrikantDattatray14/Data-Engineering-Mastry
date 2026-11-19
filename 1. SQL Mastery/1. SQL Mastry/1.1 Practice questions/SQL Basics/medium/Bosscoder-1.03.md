@@ -29,6 +29,10 @@ One output row represents one node in the binary tree.
 
 ### Assignment example · Sample input
 
+#### Schema
+
+BST has integer columns N and P. Each row describes one node N and its parent P.
+
 **🟦 `BST`**
 
 | 🟦 N | 🟦 P |
@@ -68,15 +72,6 @@ One output row represents one node in the binary tree.
 1. What does one row of the final output represent?
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
-
-<details>
-<summary>Notes from the saved attempt</summary>
-
-## Schema
-
-BST has integer columns N and P. Each row describes one node N and its parent P.
-
-</details>
 
 ## My final solution · SQLite
 

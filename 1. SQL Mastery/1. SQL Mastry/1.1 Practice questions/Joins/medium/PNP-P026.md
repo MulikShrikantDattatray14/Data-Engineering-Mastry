@@ -80,13 +80,6 @@ The five rows account for 🟦 `3 + 3 + 1 + 0 + 4 = 11` input units. Known value
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-<details>
-<summary>Notes from the saved attempt</summary>
-
-Return one row per catalogue category, including categories with no sales. Keep order lines with missing product or category references in the appropriate labeled groups. Show zero orders, units and value for an unsold category. Keep the value `NULL` when sales have no known price. Break ties by `category_name` in ascending order and put unknown values last.
-
-</details>
-
 ## Final learner solution — SQLite
 
 Built from Shri’s submitted clauses with guidance on the category labels, the empty-category value, and the sort syntax.
@@ -115,6 +108,13 @@ FULL OUTER JOIN Category AS c
 GROUP BY c.CategoryID, category_name
 ORDER BY list_price_value DESC NULLS LAST, category_name ASC;
 ```
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+Return one row per catalogue category, including categories with no sales. Keep order lines with missing product or category references in the appropriate labeled groups. Show zero orders, units and value for an unsold category. Keep the value `NULL` when sales have no known price. Break ties by `category_name` in ascending order and put unknown values last.
+
+</details>
 
 ## Visual walkthrough
 

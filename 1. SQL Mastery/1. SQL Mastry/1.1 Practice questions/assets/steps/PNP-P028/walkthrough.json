@@ -35,6 +35,16 @@
           12,
           2,
           300
+        ],
+        [
+          13,
+          99,
+          50
+        ],
+        [
+          14,
+          null,
+          150
         ]
       ]
     },
@@ -74,18 +84,25 @@
     ],
     "rows": [
       [
+        "Unknown",
+        2,
+        40.0,
+        200,
+        25.0
+      ],
+      [
         "UPI",
         2,
-        66.67,
+        40.0,
         300,
-        50.0
+        37.5
       ],
       [
         "Card",
         1,
-        33.33,
+        20.0,
         300,
-        50.0
+        37.5
       ]
     ]
   },
@@ -109,9 +126,9 @@
     {
       "id": "stage1",
       "title": "Why start with Orders?",
-      "change": "Orders supplies three payments to classify. Their order amounts are 100, 200 and 300.",
+      "change": "Orders supplies all five transactions and their amounts. Orders 13 and 14 contribute 50 and 150 even though neither has a usable payment ID.",
       "added_sql": "SELECT OrderID, PaymentID, Total_Order_Amount FROM Orders ORDER BY OrderID;",
-      "expected_count": 3,
+      "expected_count": 5,
       "inputs": [
         "Orders"
       ],
@@ -120,9 +137,9 @@
     {
       "id": "stage2",
       "title": "Why LEFT JOIN on PaymentID?",
-      "change": "Orders 10 and 11 receive UPI; order 12 receives Card. The left join would retain an order without a lookup match.",
+      "change": "Each order carries the lookup key. Orders 10 and 11 match UPI and order 12 matches Card. The LEFT JOIN keeps order 13 (ID 99 has no match) and order 14 (NULL payment ID) with NULL payment fields. Five input orders yield five rows.",
       "added_sql": "SELECT o.OrderID, o.PaymentID AS ordering_payment_id, p.PaymentID AS matched_payment_id, p.PaymentType, o.Total_Order_Amount FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID ORDER BY o.OrderID;",
-      "expected_count": 3,
+      "expected_count": 5,
       "inputs": [
         "stage1",
         "Payments"
@@ -132,25 +149,25 @@
     {
       "id": "stage3",
       "title": "Why name missing payment types before grouping?",
-      "change": "The label is UPI or Card on the sample. An order with no known payment type would receive Unknown.",
+      "change": "Orders 13 and 14 both receive Unknown. The matched labels on orders 10–12 stay UPI, UPI and Card. Each row keeps its original amount.",
       "added_sql": "SELECT o.OrderID, COALESCE(p.PaymentType, 'Unknown') AS payment_type, o.Total_Order_Amount FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID ORDER BY o.OrderID;",
-      "expected_count": 3,
+      "expected_count": 5,
       "sql": "SELECT o.OrderID, COALESCE(p.PaymentType, 'Unknown') AS payment_type, o.Total_Order_Amount FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID ORDER BY o.OrderID;"
     },
     {
       "id": "stage4",
       "title": "Why group by the displayed payment type?",
-      "change": "The two UPI orders share one payment group. The Card order forms the other group.",
+      "change": "The five orders form three groups: UPI contains 10 and 11, Card contains 12, and Unknown contains 13 and 14.",
       "added_sql": "SELECT COALESCE(p.PaymentType, 'Unknown') AS payment_type, COUNT(*) AS group_rows FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID GROUP BY payment_type;",
-      "expected_count": 2,
+      "expected_count": 3,
       "sql": "SELECT COALESCE(p.PaymentType, 'Unknown') AS payment_type, COUNT(*) AS group_rows FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID GROUP BY payment_type;"
     },
     {
       "id": "stage5",
       "title": "Why count order IDs and add order amounts?",
-      "change": "UPI has two orders and Card has one; each group contributes a total value of 300.",
+      "change": "UPI has two order IDs worth 100 + 200 = 300. Unknown has two worth 50 + 150 = 200. Card has one worth 300.",
       "added_sql": "SELECT COALESCE(p.PaymentType, 'Unknown') AS payment_type, COUNT(DISTINCT o.OrderID) AS orders, SUM(o.Total_Order_Amount) AS order_value FROM Orders AS o LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID GROUP BY payment_type;",
-      "expected_count": 2,
+      "expected_count": 3,
       "inputs": [
         "stage3",
         "stage4"
@@ -160,7 +177,7 @@
     {
       "id": "stage6",
       "title": "Why do both scalar subqueries read all five orders?",
-      "change": "The benchmark reads all three orders. There are 3 orders worth 600 in total; both denominators apply to each payment group.",
+      "change": "Both scalar subqueries read Orders independently of the payment groups. The common denominators are five orders and 100 + 200 + 300 + 50 + 150 = 800 in value.",
       "added_sql": "SELECT COUNT(*) AS all_orders, SUM(Total_Order_Amount) AS all_order_value FROM Orders;",
       "expected_count": 1,
       "inputs": [
@@ -171,9 +188,9 @@
     {
       "id": "stage7",
       "title": "Why do the two shares use different denominators?",
-      "change": "UPI is 66.67% of orders and 50% of value. Card is 33.33% of orders and also 50% of value.",
+      "change": "UPI contributes 2/5 = 40% of orders and 300/800 = 37.50% of value. Unknown contributes 40% and 25%. Card contributes 20% and 37.50%.",
       "added_sql": "SELECT\n    COALESCE(Payments.PaymentType, 'Unknown') AS payment_type,\n    COUNT(DISTINCT Orders.OrderID) AS orders,\n    ROUND(\n        COUNT(DISTINCT Orders.OrderID) * 100.0\n        / (SELECT COUNT(*) FROM Orders),\n        2\n    ) AS pct_of_orders,\n    SUM(Orders.Total_Order_Amount) AS order_value,\n    ROUND(\n        SUM(Orders.Total_Order_Amount) * 100.0\n        / (SELECT SUM(Total_Order_Amount) FROM Orders),\n        2\n    ) AS pct_of_value\nFROM Orders\nLEFT JOIN Payments\n    ON Orders.PaymentID = Payments.PaymentID\nGROUP BY payment_type;",
-      "expected_count": 2,
+      "expected_count": 3,
       "inputs": [
         "stage5",
         "stage6"
@@ -183,9 +200,9 @@
     {
       "id": "stage8",
       "title": "Why sort by the number of orders?",
-      "change": "Descending order count puts UPI (two orders) before Card (one).",
+      "change": "UPI and Unknown each have two orders, ahead of Card with one. The saved query specifies no second sort key, so either tied row can appear first. All five orders and all 800 in value are accounted for.",
       "added_sql": "ORDER BY orders DESC",
-      "expected_count": 2,
+      "expected_count": 3,
       "final": true
     }
   ],

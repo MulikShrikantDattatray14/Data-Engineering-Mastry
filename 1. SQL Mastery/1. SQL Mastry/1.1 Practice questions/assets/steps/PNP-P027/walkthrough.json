@@ -24,6 +24,26 @@
         [
           2,
           "Karnataka"
+        ],
+        [
+          3,
+          "Maharashtra"
+        ],
+        [
+          4,
+          null
+        ],
+        [
+          5,
+          "Unknown"
+        ],
+        [
+          6,
+          "Goa"
+        ],
+        [
+          7,
+          "Kerala"
         ]
       ]
     },
@@ -95,6 +115,201 @@
           10,
           2,
           100
+        ],
+        [
+          11,
+          99,
+          50
+        ],
+        [
+          12,
+          3,
+          200
+        ],
+        [
+          13,
+          3,
+          200
+        ],
+        [
+          14,
+          3,
+          200
+        ],
+        [
+          15,
+          3,
+          200
+        ],
+        [
+          16,
+          3,
+          200
+        ],
+        [
+          17,
+          3,
+          null
+        ],
+        [
+          18,
+          3,
+          null
+        ],
+        [
+          19,
+          3,
+          null
+        ],
+        [
+          20,
+          3,
+          null
+        ],
+        [
+          21,
+          3,
+          null
+        ],
+        [
+          22,
+          4,
+          50
+        ],
+        [
+          23,
+          4,
+          50
+        ],
+        [
+          24,
+          4,
+          50
+        ],
+        [
+          25,
+          4,
+          50
+        ],
+        [
+          26,
+          4,
+          50
+        ],
+        [
+          27,
+          5,
+          50
+        ],
+        [
+          28,
+          5,
+          50
+        ],
+        [
+          29,
+          5,
+          50
+        ],
+        [
+          30,
+          5,
+          50
+        ],
+        [
+          31,
+          6,
+          300
+        ],
+        [
+          32,
+          6,
+          300
+        ],
+        [
+          33,
+          6,
+          300
+        ],
+        [
+          34,
+          6,
+          300
+        ],
+        [
+          35,
+          6,
+          300
+        ],
+        [
+          36,
+          6,
+          300
+        ],
+        [
+          37,
+          6,
+          300
+        ],
+        [
+          38,
+          6,
+          300
+        ],
+        [
+          39,
+          6,
+          300
+        ],
+        [
+          40,
+          7,
+          null
+        ],
+        [
+          41,
+          7,
+          null
+        ],
+        [
+          42,
+          7,
+          null
+        ],
+        [
+          43,
+          7,
+          null
+        ],
+        [
+          44,
+          7,
+          null
+        ],
+        [
+          45,
+          7,
+          null
+        ],
+        [
+          46,
+          7,
+          null
+        ],
+        [
+          47,
+          7,
+          null
+        ],
+        [
+          48,
+          7,
+          null
+        ],
+        [
+          49,
+          7,
+          null
         ]
       ]
     }
@@ -109,11 +324,32 @@
     ],
     "rows": [
       [
+        "Maharashtra",
+        1,
+        10,
+        1000,
+        200
+      ],
+      [
         "Karnataka",
         2,
         10,
         1000,
-        100.0
+        100
+      ],
+      [
+        "Unknown",
+        3,
+        10,
+        500,
+        50
+      ],
+      [
+        "Kerala",
+        1,
+        10,
+        null,
+        null
       ]
     ]
   },
@@ -135,9 +371,9 @@
     {
       "id": "stage1",
       "title": "Why start with Orders?",
-      "change": "The sample has ten orders of 100 each, placed by two different customers. Each purchase contributes one input row.",
+      "change": "Each of the 49 purchases contributes one order ID, buyer ID and amount. Orders 17–21 count as purchases even though their amounts are NULL.",
       "added_sql": "SELECT OrderID, CustomerID, Total_Order_Amount FROM Orders ORDER BY OrderID;",
-      "expected_count": 10,
+      "expected_count": 49,
       "inputs": [
         "Orders"
       ],
@@ -146,9 +382,9 @@
     {
       "id": "stage2",
       "title": "Why LEFT JOIN Customers?",
-      "change": "Both buyers have a matching customer row, so all ten purchases acquire the state Karnataka.",
+      "change": "Orders already carries the buyer key. The LEFT JOIN matches order 12 to customer 3 in Maharashtra and keeps order 11 with its buyer ID 99 and a NULL customer match. All 49 orders survive.",
       "added_sql": "SELECT o.OrderID, o.CustomerID AS ordered_by, o.Total_Order_Amount,\n       c.CustomerID AS matched_customer, c.State\nFROM Orders AS o\nLEFT JOIN Customers AS c ON c.CustomerID = o.CustomerID\nORDER BY o.OrderID;",
-      "expected_count": 10,
+      "expected_count": 49,
       "inputs": [
         "stage1",
         "Customers"
@@ -158,25 +394,25 @@
     {
       "id": "stage3",
       "title": "Why label the state before GROUP BY?",
-      "change": "The saved expression normalizes a missing or blank state to Unknown. In this sample, all ten state labels remain Karnataka.",
+      "change": "Order 11 has no matched customer. Orders 22–26 match customer 4, whose state is NULL. Both receive Unknown, the same label already stored for customer 5 on orders 27–30.",
       "added_sql": "SELECT Orders.OrderID, Orders.CustomerID, COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, Orders.Total_Order_Amount FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID ORDER BY Orders.OrderID;",
-      "expected_count": 10,
+      "expected_count": 49,
       "sql": "SELECT Orders.OrderID, Orders.CustomerID, COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, Orders.Total_Order_Amount FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID ORDER BY Orders.OrderID;"
     },
     {
       "id": "stage4",
       "title": "Why group by the displayed state?",
-      "change": "All ten labelled orders share the same state and become one group.",
+      "change": "The 49 order rows form five state groups. Unknown collects orders 11 and 22–30. Goa has nine orders. Each other state group has ten.",
       "added_sql": "SELECT COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, COUNT(*) AS group_rows FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID\nGROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown');",
-      "expected_count": 1,
+      "expected_count": 5,
       "sql": "SELECT COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, COUNT(*) AS group_rows FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID\nGROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown');"
     },
     {
       "id": "stage5",
       "title": "Why count buyers and orders separately?",
-      "change": "Two distinct customer IDs occur across ten orders: each buyer placed five.",
+      "change": "In Unknown, buyer IDs 99, 4 and 5 contribute 1 + 5 + 4 orders. That gives three distinct buyers and ten orders. Maharashtra has ten orders from buyer 3 alone.",
       "added_sql": "SELECT COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state, COUNT(DISTINCT Orders.CustomerID) AS customers, COUNT(Orders.OrderID) AS orders FROM Orders LEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID",
-      "expected_count": 1,
+      "expected_count": 5,
       "inputs": [
         "stage3",
         "stage4"
@@ -186,9 +422,9 @@
     {
       "id": "stage6",
       "title": "Why do SUM and AVG read only known amounts?",
-      "change": "The ten amounts of 100 sum to 1000 and average 100. The metrics use one value per order.",
+      "change": "Maharashtra has five amounts of 200 and five NULLs. SUM gives 1000 and AVG uses the five known amounts, giving 200. Karnataka also totals 1000 but averages 100 across ten amounts. All ten Kerala amounts are NULL, so both metrics are NULL.",
       "added_sql": "SELECT\n    COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state,\n    COUNT(DISTINCT Orders.CustomerID) AS customers,\n    COUNT(Orders.OrderID) AS orders,\n    SUM(Orders.Total_Order_Amount) AS order_value,\n    AVG(Orders.Total_Order_Amount) AS avg_order_value\nFROM Orders\nLEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID",
-      "expected_count": 1,
+      "expected_count": 5,
       "inputs": [
         "stage3",
         "stage5"
@@ -198,17 +434,17 @@
     {
       "id": "stage7",
       "title": "Why use HAVING for the 10-order minimum?",
-      "change": "Karnataka has exactly ten orders. The inclusive ten-order threshold keeps it.",
+      "change": "Goa has nine orders and drops out. The four ten-order groups survive, including Kerala because eligibility counts order IDs even when amounts are missing.",
       "added_sql": "HAVING COUNT(Orders.OrderID) >= 10;",
-      "expected_count": 1,
+      "expected_count": 4,
       "sql": "SELECT\n    COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown') AS state,\n    COUNT(DISTINCT Orders.CustomerID) AS customers,\n    COUNT(Orders.OrderID) AS orders,\n    SUM(Orders.Total_Order_Amount) AS order_value,\n    AVG(Orders.Total_Order_Amount) AS avg_order_value\nFROM Orders\nLEFT JOIN Customers ON Customers.CustomerID = Orders.CustomerID\nGROUP BY COALESCE(NULLIF(TRIM(Customers.State), ''), 'Unknown')\nHAVING COUNT(Orders.OrderID) >= 10;"
     },
     {
       "id": "stage8",
       "title": "Why sort by average order value?",
-      "change": "The saved descending order ranks states by average order value. The one qualifying state remains the only row.",
+      "change": "The four surviving rows are ordered by average amount: Maharashtra (200), Karnataka (100), Unknown (50), then Kerala (NULL). Together they account for 40 orders.",
       "added_sql": "ORDER BY avg_order_value DESC",
-      "expected_count": 1,
+      "expected_count": 4,
       "final": true
     }
   ],

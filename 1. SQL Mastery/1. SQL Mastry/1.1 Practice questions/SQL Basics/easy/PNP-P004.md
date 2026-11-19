@@ -58,13 +58,6 @@ One output row represents one customer whose stored email fails at least one of 
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-<details>
-<summary>Notes from the saved attempt</summary>
-
-When an address has multiple issues, the saved attempt gives priority to `Missing`, followed by `Contains a space`, then `Not in name@domain.tld form`.
-
-</details>
-
 ## Learner solution — SQLite
 
 ```sql
@@ -81,6 +74,13 @@ ORDER BY CustomerID ASC;
 ```
 
 The learner's query logic is preserved. The saved version removes chat escaping and link formatting, uses regular spaces in the issue text, and uses single quotes for SQL string literals. SQLite checks covered the sample, empty emails, incomplete address parts, and label precedence.
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+When an address has multiple issues, the saved attempt gives priority to `Missing`, followed by `Contains a space`, then `Not in name@domain.tld form`.
+
+</details>
 
 ## Visual walkthrough
 

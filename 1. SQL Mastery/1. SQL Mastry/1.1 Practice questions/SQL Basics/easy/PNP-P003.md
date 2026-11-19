@@ -29,6 +29,10 @@ One output row represents one customer in one of the five named metros, regardle
 
 ### Practice example · Sample input
 
+#### Schema
+
+The relevant columns are `CustomerID` (integer identifier), `FirstName`, `LastName`, `City`, and `State` (text). Return them in that order.
+
 Quotes around text values make surrounding spaces visible.
 
 **🟦 `Customers`**
@@ -72,17 +76,6 @@ Quotes around text values make surrounding spaces visible.
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-<details>
-<summary>Notes from the saved attempt</summary>
-
-### Schema
-
-The relevant columns are `CustomerID` (integer identifier), `FirstName`, `LastName`, `City`, and `State` (text). Return them in that order.
-
-The saved attempt keeps the displayed city’s original spelling and capitalization and orders city names case-insensitively.
-
-</details>
-
 ## Learner solution — SQLite
 
 ```sql
@@ -93,6 +86,13 @@ order by trim(lower(City)) asc, CustomerID asc
 ```
 
 The exact submission passed in SQLite with double-quoted string literal compatibility enabled. Single quotes are the standard spelling for string literals and produce the same result in SQLite. The checks also covered a mixed-case city tied on the sort key, Hyderabad, NULL, and a spaces-only value.
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+The saved attempt keeps the displayed city’s original spelling and capitalization and orders city names case-insensitively.
+
+</details>
 
 ## Visual walkthrough
 

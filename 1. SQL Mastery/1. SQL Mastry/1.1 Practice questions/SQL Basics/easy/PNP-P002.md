@@ -26,6 +26,10 @@ One output row represents one priced product in the top ten. Lower product IDs t
 
 ### Practice example · Sample input
 
+#### Schema
+
+The relevant columns in `Products` are `ProductID` (integer identifier), `Product` and `Brand` (text), and `Sale_Price` (nullable number). Return those four columns in that order.
+
 **🟦 `Products`**
 
 | 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 Sale_Price |
@@ -72,15 +76,6 @@ One output row represents one priced product in the top ten. Lower product IDs t
 1. What does one row of the final output represent?
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
-
-<details>
-<summary>Notes from the saved attempt</summary>
-
-### Schema
-
-The relevant columns in `Products` are `ProductID` (integer identifier), `Product` and `Brand` (text), and `Sale_Price` (nullable number). Return those four columns in that order.
-
-</details>
 
 ## Learner solution — SQLite
 

@@ -23,6 +23,10 @@ One output row represents one employee, including employees who receive zero bon
 
 ### Assignment example · Sample input
 
+#### Schema
+
+Employees has integer employee_id (primary key), text name, and integer salary. Each row represents one employee.
+
 **🟦 `Employees`**
 
 | 🟦 employee_id | 🟦 name | 🟦 salary |
@@ -56,15 +60,6 @@ One output row represents one employee, including employees who receive zero bon
 1. What does one row of the final output represent?
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
-
-<details>
-<summary>Notes from the saved attempt</summary>
-
-## Schema
-
-Employees has integer employee_id (primary key), text name, and integer salary. Each row represents one employee.
-
-</details>
 
 ## My final solution · SQLite
 

@@ -56,13 +56,6 @@ One output row represents one supplier outside India or with missing country or 
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-<details>
-<summary>Notes from the saved attempt</summary>
-
-The saved attempt compares countries without surrounding spaces or case differences, and treats a blank or spaces-only email as missing. It preserves the original displayed values and puts the country issue first when both labels apply.
-
-</details>
-
 ## My final solution · SQLite
 
 ```sql
@@ -85,6 +78,13 @@ WHERE Country IS NULL
    OR LENGTH(TRIM(Email)) = 0
 ORDER BY SupplierID ASC;
 ```
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+The saved attempt compares countries without surrounding spaces or case differences, and treats a blank or spaces-only email as missing. It preserves the original displayed values and puts the country issue first when both labels apply.
+
+</details>
 
 ## Visual walkthrough
 

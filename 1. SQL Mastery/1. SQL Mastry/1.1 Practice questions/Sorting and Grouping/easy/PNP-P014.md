@@ -55,13 +55,6 @@ One output row represents one month with orders in 2025.
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-<details>
-<summary>Notes from the saved attempt</summary>
-
-The saved attempt reports months that have at least one order.
-
-</details>
-
 ## Learner solution — SQLite
 
 ```sql
@@ -75,6 +68,13 @@ ORDER BY strftime('%m', OrderDate) ASC;
 ```
 
 The submitted query was reformatted to remove chat markup. Tested on the sample, December and January year boundaries, and a July order placed after day one.
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+The saved attempt reports months that have at least one order.
+
+</details>
 
 ## Visual walkthrough
 

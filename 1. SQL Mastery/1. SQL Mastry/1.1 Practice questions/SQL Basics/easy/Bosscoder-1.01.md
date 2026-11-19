@@ -20,6 +20,18 @@ One output row represents one customer with strictly positive 2021 revenue.
 
 ### Assignment example · Sample input
 
+#### Schema
+
+`Customers`:
+
+| Column Name | Type |
+|---|---|
+| customer_id | int |
+| year | int |
+| revenue | int |
+
+`(customer_id, year)` is the primary key. Each row records one customer's revenue in one year; revenue may be negative.
+
 **🟦 `Customers`**
 
 | 🟦 customer_id | 🟦 year | 🟦 revenue |
@@ -53,6 +65,14 @@ One output row represents one customer with strictly positive 2021 revenue.
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
+## My solution — SQLite
+
+```sql
+SELECT customer_id
+FROM Customers
+WHERE year = 2021 AND revenue > 0;
+```
+
 <details>
 <summary>Notes from the saved attempt</summary>
 
@@ -66,27 +86,7 @@ One output row represents one customer with strictly positive 2021 revenue.
 6. **Build gradually:** write one part, inspect its output, and check row counts after joins.
 7. **Verify the answer:** check the sample, duplicates, missing matches, NULLs, arithmetic, boundaries, ties, and sorting.
 
-## Schema
-
-`Customers`:
-
-| Column Name | Type |
-|---|---|
-| customer_id | int |
-| year | int |
-| revenue | int |
-
-`(customer_id, year)` is the primary key. Each row records one customer's revenue in one year; revenue may be negative.
-
 </details>
-
-## My solution — SQLite
-
-```sql
-SELECT customer_id
-FROM Customers
-WHERE year = 2021 AND revenue > 0;
-```
 
 ## Visual walkthrough
 

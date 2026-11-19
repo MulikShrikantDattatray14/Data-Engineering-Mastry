@@ -29,6 +29,10 @@ One output row represents one input triangle triple, including triples that cann
 
 ### Assignment example · Sample input
 
+#### Schema
+
+TRIANGLES has integer columns A, B, C. Each input row supplies three side lengths. The saved example assumes non-NULL side lengths.
+
 **🟦 `TRIANGLES`**
 
 | 🟦 A | 🟦 B | 🟦 C |
@@ -63,15 +67,6 @@ One output row represents one input triangle triple, including triples that cann
 1. What does one row of the final output represent?
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
-
-<details>
-<summary>Notes from the saved attempt</summary>
-
-## Schema
-
-TRIANGLES has integer columns A, B, C. Each input row supplies three side lengths. This solution assumes non-NULL side lengths.
-
-</details>
 
 ## My final solution · SQLite
 

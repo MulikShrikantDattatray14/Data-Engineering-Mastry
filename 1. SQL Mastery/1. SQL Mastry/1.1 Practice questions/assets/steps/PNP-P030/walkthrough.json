@@ -110,8 +110,8 @@
     },
     {
       "id": "stage6",
-      "title": "Which rows belong in the denominator?",
-      "change": "The scalar subquery reads every row of `customer_order_counts`. It supplies the same denominator for both result rows. This is the denominator query after the same `WITH` clause.",
+      "title": "Calculate each customer type’s percentage and sort",
+      "change": "The outer query counts customer rows within each type and divides by the three customers from the denominator branch. One-time gives 2 ÷ 3 × 100 = 66.67%, and Repeat gives 1 ÷ 3 × 100 = 33.33%. Sorting by customer_type puts One-time first.",
       "added_sql": "SELECT\n    customer_type,\n    COUNT(total_orders) AS customers,\n    ROUND(\n        COUNT(total_orders) * 100.0\n        / (SELECT COUNT(*) FROM customer_order_counts),\n        2\n    ) AS pct_of_customers\nFROM customer_order_counts\nGROUP BY customer_type\nORDER BY customer_type;",
       "expected_count": 2,
       "inputs": [
