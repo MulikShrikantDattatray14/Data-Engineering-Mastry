@@ -5,11 +5,22 @@
 
 ## Question
 
-The operations team needs every order from the **last seven calendar days covered by the data**, ending on the latest `OrderDate` in `Orders`.
+**Business scenario.** Every morning the operations desk reviews the most recent week of orders: how each was paid and which courier took it. An order with a missing or unrecognised payment or shipper code is exactly what they need to chase, so it must appear on the list, not vanish from it.
 
-Return `OrderID`, `OrderDate`, `payment_type`, and `shipper_name`. Use `Payments.PaymentType` and `Shippers.CompanyName`. If an order’s payment or shipper ID is `NULL` or has no match, keep the order and show `Unknown` for that field. Sort by `OrderDate` descending, then `OrderID` descending.
+**Task.** For orders placed in the last 7 days covered by the data, return the payment type and shipper name. Show Unknown where the code is `NULL` or matches nothing. Sort newest first, then by `OrderID` descending.
 
-### Sample input
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P017.%20Orders%20with%20payment%20type%20and%20shipper.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `OrderID` | Order identifier. |
+| `OrderDate` | Date the order was placed. |
+| `payment_type` | Payment type name, or `Unknown` for a missing or unrecognized code. |
+| `shipper_name` | Shipper’s company name, or `Unknown` for a missing or unrecognized code. |
+
+### Practice example · Sample input
 
 **`Orders`**
 
@@ -38,7 +49,17 @@ Return `OrderID`, `OrderDate`, `payment_type`, and `shipper_name`. Use `Payments
 | 3 | 2025-12-31 | Unknown | Unknown |
 | 2 | 2025-12-25 | UPI | FastShip |
 
-The latest order date is December 31, so the seven-day window is **December 25–31 inclusive**. Order 3 stays in the report even though both IDs are missing.
+### How the sample produces this output
+
+The latest order date is December 31, so the seven calendar dates are **December 25–31 inclusive**. Order 3 falls on December 31 and both lookup IDs are missing. Its row shows **Unknown** for both payment type and shipper.
+
+Order 2 falls on December 25. Payment ID 1 is **UPI** and shipper ID 1 is **FastShip**. Order 1 falls on December 24 and is outside the window. Newest-first ordering puts order 3 before order 2.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

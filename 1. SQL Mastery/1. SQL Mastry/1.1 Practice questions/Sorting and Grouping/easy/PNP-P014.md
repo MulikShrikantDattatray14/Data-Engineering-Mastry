@@ -5,15 +5,23 @@
 
 ## Question
 
-From `Orders`, return **one row per month in 2025 that had at least one order**. Sort the result by month ascending.
+**Business scenario.** Operations plans warehouse staffing month by month and wants to see how 2025 actually went: how many `orders` each month and the order value they carried. Cancellations and refunds are not recorded in this dataset, so every row in `Orders` counts as a placed order.
 
-| Output column | What it should show |
+**Task.** For each month of 2025, return the first day of the month, the number of `orders` and the total `Total_Order_Amount`. Sort by month.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/3.%20Sorting%20and%20Grouping/P014.%20Orders%20per%20month%20in%202025.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
 |---|---|
-| `order_month` | First day of the order’s month, in `YYYY-MM-DD` format |
-| `orders` | Number of orders placed in that month |
-| `order_value` | Sum of `Total_Order_Amount` for that month |
+| `order_month` | First day of the month, as a date. |
+| `orders` | Number of orders placed that month. |
+| `order_value` | Total order amount for that month. |
 
-### Sample input
+### Practice example · Sample input
+
+**`Orders`**
 
 | OrderID | OrderDate | Total_Order_Amount |
 |---:|---|---:|
@@ -29,7 +37,24 @@ From `Orders`, return **one row per month in 2025 that had at least one order**.
 | 2025-01-01 | 2 | 150 |
 | 2025-03-01 | 1 | 200 |
 
-Both January orders belong to the same month. February has no orders, so it has no output row. The December 2024 order is outside the reporting period.
+### How the sample produces this output
+
+Orders 1 and 2 were placed on January 1 and January 31. Both belong to the row dated **2025-01-01**, with **2 orders** and an order value of `100 + 50 = 150`.
+
+March has only order 3, worth **200**, so the row dated **2025-03-01** has **1 order**. February has no orders in this sample and order 4 belongs to December 2024. The two reported months appear chronologically.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+The saved attempt reports months that have at least one order.
+
+</details>
 
 ## Visual walkthrough
 

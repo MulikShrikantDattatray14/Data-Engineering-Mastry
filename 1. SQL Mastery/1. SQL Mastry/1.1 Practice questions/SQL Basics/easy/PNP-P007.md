@@ -5,16 +5,26 @@
 
 ## Question
 
-The pricing team wants to see how much each product is discounted. Return **every product** from `Products` with these columns in order:
+**Business scenario.** The pricing team is checking how deep discounts run across the catalogue. `Market_Price` is the MRP printed on the pack and `Sale_Price` is what the store charges today. A missing or zero `Market_Price` means the MRP was never captured, so that product has no measurable discount.
 
-`ProductID`, `Product`, `Market_Price`, `Sale_Price`, `discount_amount`, `discount_pct`
+**Task.** For every product, return the discount in rupees and as a percentage of `Market_Price`, rounded to two decimals. `Products` with a missing or zero `Market_Price` get `NULL` for both. Sort by discount percentage, highest first, with NULLs at the end.
 
-- `discount_amount` is the market price minus the sale price.
-- `discount_pct` is the discount as a percentage of the market price, rounded to two decimal places.
-- If `Market_Price` is `NULL` or zero, return `NULL` for both calculated columns and keep the product in the result.
-- Sort by `discount_pct` highest first, with `NULL` values last.
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/P007.%20Discount%20amount%20and%20percentage%20per%20product.md#question-and-image)
 
-### Sample input
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `ProductID` | Product identifier. |
+| `Product` | Product name. |
+| `Market_Price` | Market price printed on the pack. |
+| `Sale_Price` | Current sale price. |
+| `discount_amount` | Market price minus sale price, in rupees. |
+| `discount_pct` | Discount as a percentage of market price, rounded to two decimals. |
+
+### Practice example · Sample input
+
+**`Products`**
 
 | ProductID | Product | Market_Price | Sale_Price |
 | --- | --- | --- | --- |
@@ -30,7 +40,17 @@ The pricing team wants to see how much each product is discounted. Return **ever
 | 1 | Mug | 100 | 80 | 20 | 20.00 |
 | 2 | Sticker | 0 | 0 | `NULL` | `NULL` |
 
-Lamp comes first because 50 is 25% of its market price. Sticker stays in the result, with both discount values unknown because its market price is zero.
+### How the sample produces this output
+
+Lamp saves `200 − 150 = 50`, which is `50 / 200 × 100 = 25.00%`. Mug saves `100 − 80 = 20`, or `20 / 100 × 100 = 20.00%`. Lamp therefore precedes Mug.
+
+Sticker’s market price is zero. The question assigns `NULL` to both discount fields for that product. The row still appears, after the two products with known percentages.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

@@ -5,11 +5,21 @@
 
 ## Question
 
-Return **every category** from `Category` with the number of products assigned to it. A category with no products must still appear with a count of `0`.
+**Business scenario.** The catalogue team is cleaning up the app's category menu. An empty category leads shoppers to a blank page, so they want every category with its product count, empty ones included and listed first.
 
-Return `CategoryID`, `CategoryName`, and `product_count`. Sort by `product_count` ascending, then by `CategoryID` ascending.
+**Task.** For every row in `Category`, return the number of products assigned to it. A category with no products must appear with 0. Sort by product count ascending, then `CategoryID`.
 
-### Sample input
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P015.%20Product%20count%20for%20every%20category.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `CategoryID` | Category identifier. |
+| `CategoryName` | Category name. |
+| `product_count` | Number of products assigned to the category, including zero for an empty category. |
+
+### Practice example · Sample input
 
 **`Category`**
 
@@ -31,6 +41,18 @@ Return `CategoryID`, `CategoryName`, and `product_count`. Sort by `product_count
 |---:|---|---:|
 | 2 | Toys | 0 |
 | 1 | Snacks | 2 |
+
+### How the sample produces this output
+
+Category 2, **Toys**, has no product assigned to it. It still appears in the report with a count of **0**. Category 1, **Snacks**, has product IDs 10 and 11, so its count is **2**.
+
+The report orders the counts from smallest to largest. That puts Toys first even though its category ID is larger.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

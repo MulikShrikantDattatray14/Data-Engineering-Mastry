@@ -4,7 +4,7 @@
 **Difficulty** ![EASY](../../../_badges/easy.svg)  
 **Revised** 2026-11-17
 
-## Question and image
+## Question
 
 For each row of `TRIANGLES`, use side lengths `A`, `B`, and `C` to return one `TriangleType`:
 
@@ -15,9 +15,17 @@ For each row of `TRIANGLES`, use side lengths `A`, `B`, and `C` to return one `T
 
 The prompt does not specify an output order.
 
-**Example 1**
+[Bosscoder assignment question](../../../1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/5.Sql%20Type%20Of%20Triangle.md#question-and-image)
 
-Input — `TRIANGLES`:
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `TriangleType` | Classification of a side-length triple as `Equilateral`, `Isosceles`, `Scalene` or `Not A Triangle`. |
+
+### Assignment example · Sample input
+
+**`TRIANGLES`**
 
 | A | B | C |
 |---:|---:|---:|
@@ -26,7 +34,7 @@ Input — `TRIANGLES`:
 | 20 | 21 | 22 |
 | 13 | 14 | 30 |
 
-Expected output, shown in the sample's input-row order:
+### Expected output
 
 | TriangleType |
 |---|
@@ -35,14 +43,29 @@ Expected output, shown in the sample's input-row order:
 | Scalene |
 | Not A Triangle |
 
-`(20, 20, 23)` has two equal sides; `(20, 20, 20)` has three. `(20, 21, 22)` has three different sides. `(13, 14, 30)` is invalid because `13 + 14` is not greater than `30`.
+### How the sample produces this output
 
-The question image was not supplied.
+- **20, 20, 23 → Isosceles.** The two shorter sides add to 40, greater than 23, and exactly two sides are equal.
+- **20, 20, 20 → Equilateral.** All three sides are equal and the sides form a triangle.
+- **20, 21, 22 → Scalene.** The three sides have different lengths and `20 + 21 > 22`.
+- **13, 14, 30 → Not A Triangle.** The two shorter sides add to 27, which is too short to reach a third side of length 30.
 
+The four labels are displayed in input order for this example. The assignment accepts any row order.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
 
 ## Schema
 
 TRIANGLES has integer columns A, B, C. Each input row supplies three side lengths. This solution assumes non-NULL side lengths.
+
+</details>
 
 ## Visual walkthrough
 

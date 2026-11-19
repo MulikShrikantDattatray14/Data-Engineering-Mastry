@@ -5,19 +5,23 @@
 
 ## Question
 
-Using the `Customers` table, count how many customers signed up in each calendar quarter of each year. `DateEntered` is the sign-up date.
+**Business scenario.** The growth team reports new-customer acquisition to the board every quarter. A sign-up is the day an account was created (`DateEntered`), whether or not the person has ordered. They want new accounts per year and quarter in time order, with undated accounts on their own line.
 
-Return these three columns.
+**Task.** Count customers by the year and quarter of `DateEntered`. Accounts with no `DateEntered` form one group with `NULL` year and quarter, listed last. Sort by year, then quarter.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/3.%20Sorting%20and%20Grouping/P025.%20Customer%20sign-ups%20by%20year%20and%20quarter.md#question-and-image)
+
+### Required output columns
 
 | Column | Meaning |
 |---|---|
-| signup_year | The year of the sign-up |
-| signup_quarter | The quarter number, from 1 to 4 |
-| new_customers | The number of customers in that year and quarter |
+| `signup_year` | Calendar year of sign-up, as an integer. |
+| `signup_quarter` | Calendar quarter of sign-up, from 1 to 4. |
+| `new_customers` | Number of accounts created in that year and quarter. |
 
-Q1 is January–March, Q2 is April–June, Q3 is July–September, and Q4 is October–December. Show only groups that occur in the data. If any customers have a NULL sign-up date, count them in one group with NULL for both year and quarter. Sort by year ascending, then quarter ascending, with the NULL group last.
+### Practice example · Sample input
 
-### Practice example
+**`Customers`**
 
 | CustomerID | DateEntered |
 |---:|---|
@@ -36,7 +40,17 @@ Q1 is January–March, Q2 is April–June, Q3 is July–September, and Q4 is Oct
 | 2025 | 2 | 1 |
 | NULL | NULL | 1 |
 
-January 1 and March 31 both fall in Q1 of 2025, so that row has a count of 2. April 1 starts Q2.
+### How the sample produces this output
+
+Customer 1 signed up on December 31, giving **2024 Q4** one account. Customers 2 and 3 signed up on January 1 and March 31, so **2025 Q1** has two. Customer 4 signed up on April 1, the first day of **2025 Q2**, giving that quarter one account.
+
+Customer 5 has no sign-up date and contributes one account to the final row with `NULL` year and quarter. The four counts add to `1 + 2 + 1 + 1 = 5`, accounting for every customer.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

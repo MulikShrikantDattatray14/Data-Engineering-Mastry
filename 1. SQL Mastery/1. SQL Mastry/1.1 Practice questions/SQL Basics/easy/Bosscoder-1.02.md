@@ -4,13 +4,22 @@
 **Difficulty** ![EASY](../../../_badges/easy.svg)  
 **Revision date** 2026-11-17
 
-## Question and image
+## Question
 
 Calculate a bonus for every employee. An employee receives 100% of their salary when their `employee_id` is odd **and** their name does not start with `M`. The bonus is `0` otherwise. Return `employee_id` and `bonus`, ordered by `employee_id`.
 
-**Example 1**
+[Bosscoder assignment question](../../../1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/2.Sql%20Calculate%20Special%20Bonus.md#question-and-image)
 
-Input — `Employees`:
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `employee_id` | Employee identifier. |
+| `bonus` | Bonus amount for that employee, including zero when applicable. |
+
+### Assignment example · Sample input
+
+**`Employees`**
 
 | employee_id | name | salary |
 |---:|---|---:|
@@ -20,7 +29,7 @@ Input — `Employees`:
 | 8 | Juan | 6100 |
 | 9 | Kannon | 7700 |
 
-Expected output:
+### Expected output
 
 | employee_id | bonus |
 |---:|---:|
@@ -30,14 +39,26 @@ Expected output:
 | 8 | 0 |
 | 9 | 7700 |
 
-Employees 2 and 8 have even IDs. Employee 3 has an odd ID, but the name starts with `M`. Employees 7 and 9 meet both requirements and receive their full salaries.
+### How the sample produces this output
 
-The question image was not supplied.
+Employees 7 (Addilyn) and 9 (Kannon) have odd IDs and names starting with A and K. They receive their full salaries, **7400** and **7700**.
 
+Employee 3 (Michael) has an odd ID but a name beginning with M. Employees 2 (Meir) and 8 (Juan) have even IDs. Those three employees each receive **0**. The output includes all five employees in ID order.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
 
 ## Schema
 
 Employees has integer employee_id (primary key), text name, and integer salary. Each row represents one employee.
+
+</details>
 
 ## Visual walkthrough
 

@@ -5,11 +5,22 @@
 
 ## Question
 
-The retention team wants one row per registered customer who **placed no order in the last 90 calendar days covered by the data**. The window ends on the latest `OrderDate` in `Orders`, and both boundary days count. Include customers who only ordered before the window and customers who never ordered.
+**Business scenario.** The retention team sends a "we miss you" offer to customers who have gone quiet. The list is every registered customer with no order in the last 90 days of data, whether they went quiet or never ordered at all; the team splits the two groups later. "Last 90 days" ends on the latest `OrderDate` in the table, not on today's date, because the extract may be weeks old.
 
-Return `CustomerID`, `customer_name` (first and last name joined with a space), `Email`, and `DateEntered`. Sort by `DateEntered` ascending, then by `CustomerID` ascending.
+**Task.** Return every customer who has no order dated within the 90 days ending on the latest `OrderDate` in `Orders`. Show their name, email and sign-up date. Sort by `DateEntered`, then `CustomerID`.
 
-### Sample input
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P018.%20Customers%20with%20no%20order%20in%20the%20last%2090%20days.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `CustomerID` | Customer identifier. |
+| `customer_name` | Customer’s first and last names, separated by a space. |
+| `Email` | Email address as stored. |
+| `DateEntered` | Customer’s sign-up date. |
+
+### Practice example · Sample input
 
 **`Customers`**
 
@@ -33,7 +44,17 @@ Return `CustomerID`, `customer_name` (first and last name joined with a space), 
 | 2 | Ben Das | ben@example.com | 2023-02-01 |
 | 3 | Cia Sen | cia@example.com | 2024-01-01 |
 
-Asha ordered within the window. Ben’s only order was before it, and Cia never ordered, so both qualify.
+### How the sample produces this output
+
+The latest order date is March 31, 2025. The 90 calendar dates ending that day run from **January 1 through March 31**. Asha placed order 10 on March 31 and is outside the outreach list.
+
+Ben’s only order was on December 1, 2024. Cia has no order in the sample. Both qualify, so their names, email addresses and sign-up dates appear. Ben signed up on February 1, 2023, before Cia on January 1, 2024, which explains their order.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

@@ -4,28 +4,24 @@
 
 ## Question
 
-**Business scenario.** The category management team splits next quarter's promotion budget across categories. For each category they want three numbers: how many orders included it, how many units moved, and what those units are worth at list price. Finance will tie the units column back to the order lines, so no line may go missing, even when its product or category reference is broken.
+**Business scenario.** The category management team splits next quarter's promotion budget across categories. For each category they want three numbers: how many `orders` included it, how many units moved, and what those units are worth at list price. Finance will tie the units column back to the order lines, so no line may go missing, even when its product or category reference is broken.
 
-**Task.** For every category, return the number of distinct orders that contained at least one of its products, the units sold, and the list-price value ( Quantity * Sale_Price ). Lines whose product points to a CategoryID with no Category row go under Unmapped . Lines whose ProductID is not in Products go under Unknown product . Sort by list-price value, highest first.
+**Task.** For every category, return the number of distinct `orders` that contained at least one of its products, the units sold, and the list-price value (`Quantity` * `Sale_Price`). Lines whose product points to a `CategoryID` with no `Category` row go under Unmapped. Lines whose `ProductID` is not in `Products` go under Unknown product. Sort by list-price value, highest first.
 
-**Expected output (as supplied):**
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P026.%20List-price%20value%20by%20category.md#question-and-image)
 
-```text
-category_name : CategoryName , Unmapped or Unknown product
-orders : distinct orders containing at least one line in the category
-units_sold : sum of Quantity
-list_price_value : sum of Quantity * Sale_Price
-```
+### Required output columns
 
-### Practice requirements
+| Column | Meaning |
+|---|---|
+| `category_name` | Category name, `Unmapped` or `Unknown product`. |
+| `orders` | Number of distinct orders containing a line in this category. |
+| `units_sold` | Total quantity across the category’s sale lines. |
+| `list_price_value` | Total of each line’s quantity multiplied by its product’s sale price. |
 
-Return one row per catalogue category, including categories with no sales. Keep order lines with missing product or category references in the appropriate labeled groups. Show zero orders, units and value for an unsold category. Keep the value `NULL` when sales have no known price. Break ties by `category_name` in ascending order and put unknown values last.
+### Practice example · Sample input
 
-### Sample input and expected output
-
-Use this same example throughout the walkthrough. The source book specifies the four output columns. The sample rows illustrate the practice question.
-
-**Input — `Category`**
+**`Category`**
 
 | CategoryID | CategoryName |
 |---:|---|
@@ -33,7 +29,7 @@ Use this same example throughout the walkthrough. The source book specifies the 
 | 2 | Snacks |
 | 3 | Stationery |
 
-**Input — `Products`**
+**`Products`**
 
 | ProductID | CategoryID | Sale_Price |
 |---:|---:|---:|
@@ -42,7 +38,7 @@ Use this same example throughout the walkthrough. The source book specifies the 
 | 20 | 2 | 5 |
 | 30 | 99 | 7 |
 
-**Input — `OrderDetails`**
+**`OrderDetails`**
 
 | OrderDetailID | OrderID | ProductID | Quantity |
 |---:|---:|---:|---:|
@@ -52,9 +48,7 @@ Use this same example throughout the walkthrough. The source book specifies the 
 | 4 | 101 | 30 | 3 |
 | 5 | 102 | 999 | 4 |
 
-Here, Stationery has no sales, product `30` points to a missing Category, product `999` is absent from Products, and order `100` has two Drinks lines. These rows form one example used throughout the solution.
-
-**Expected output**
+### Expected output
 
 | category_name | orders | units_sold | list_price_value |
 |---|---:|---:|---:|
@@ -64,7 +58,28 @@ Here, Stationery has no sales, product `30` points to a missing Category, produc
 | Stationery | 0 | 0 | 0 |
 | Unknown product | 1 | 4 | NULL |
 
-Order `100` contains two Drinks lines and one Snacks line. It counts once for each of those categories. The two Drinks lines contribute `2 × 10 + 1 × 8 = 28`. Order `101` contributes `3 × 7 = 21` to `Unmapped`. Order `102` contributes four units to `Unknown product` and has no known price. Stationery has no sale lines.
+### How the sample produces this output
+
+- **Drinks.** Order 100 contains two Drinks lines. They supply `2 + 1 = 3` units and `2 × 10 + 1 × 8 = 28` in value. Both lines belong to the same order, so the order count is 1.
+- **Unmapped.** Product 30 points to category 99, which has no category record. Its line in order 101 contributes 1 order, 3 units and `3 × 7 = 21` in value.
+- **Snacks.** Order 100 also has one Snacks unit priced at 5. Snacks therefore shows 1 order, 1 unit and a value of 5.
+- **Stationery.** This category has no sold units. Its order count, units and value are all zero in the saved example.
+- **Unknown product.** Order 102 contains 4 units of product 999. There is no product record supplying a price, so the row shows 1 order, 4 units and a `NULL` value.
+
+The five rows account for `3 + 3 + 1 + 0 + 4 = 11` input units. Known values appear in the order 28, 21, 5, 0, followed by the unknown value.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+Return one row per catalogue category, including categories with no sales. Keep order lines with missing product or category references in the appropriate labeled groups. Show zero orders, units and value for an unsold category. Keep the value `NULL` when sales have no known price. Break ties by `category_name` in ascending order and put unknown values last.
+
+</details>
 
 ## Visual walkthrough
 

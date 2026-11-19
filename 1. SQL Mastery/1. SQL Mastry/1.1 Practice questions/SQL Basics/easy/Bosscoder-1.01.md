@@ -2,13 +2,21 @@
 
 **Topic** SQL Basics · **Difficulty** ![EASY](../../../_badges/easy.svg) · Revised 2026-11-17
 
-## Question and image
+## Question
 
 Write a solution to report the customers with positive revenue in the year 2021. Revenue can be negative. Return `customer_id` in any order.
 
-**Example 1**
+[Bosscoder assignment question](../../../1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/1.Sql%20Find%20Customers%20With%20Positive%20Revenue%20This%20Year.md#question-and-image)
 
-Input — `Customers`:
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `customer_id` | Identifier of each customer with positive revenue in 2021. |
+
+### Assignment example · Sample input
+
+**`Customers`**
 
 | customer_id | year | revenue |
 |---:|---:|---:|
@@ -20,16 +28,27 @@ Input — `Customers`:
 | 3 | 2016 | 50 |
 | 4 | 2021 | 20 |
 
-Expected output:
+### Expected output
 
 | customer_id |
 |---:|
 | 1 |
 | 4 |
 
-Customer 1 earned 30 in 2021 and customer 4 earned 20. Customer 2's 2021 revenue is negative. Customer 3 has no 2021 row. Only customers 1 and 4 qualify.
+### How the sample produces this output
 
-The question image was not supplied.
+Customer 1 earned **30** in 2021 and customer 4 earned **20** that year, so both IDs appear. Customer 2’s 2021 revenue is **−50**, and customer 3’s positive revenues belong to earlier years.
+
+Customer 1 also has entries for 2018 and 2020. Neither changes the 2021 result. The assignment accepts either order for IDs 1 and 4.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
 
 ### Problem solving checklist
 
@@ -52,6 +71,8 @@ The question image was not supplied.
 | revenue | int |
 
 `(customer_id, year)` is the primary key. Each row records one customer's revenue in one year; revenue may be negative.
+
+</details>
 
 ## Visual walkthrough
 

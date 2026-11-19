@@ -5,14 +5,26 @@
 
 ## Question
 
-The logistics team wants a report for **every order placed in November 2025**. Return the order ID, all three dates, and two numbers in whole calendar days:
+**Business scenario.** The logistics team is reviewing November 2025 order by order. For each order they want two numbers: how many days the warehouse took to hand it to the courier, and how many days the customer waited from placing the order to receiving it.
 
-- `days_to_ship` is the number of days from `OrderDate` to `ShipDate`.
-- `days_to_deliver` is the number of days from `OrderDate` to `DeliveryDate`.
+**Task.** For every order placed in November 2025, return the three dates plus `days_to_ship` (order to ship) and `days_to_deliver` (order to delivery) in whole days. Missing dates must give `NULL`, not a made-up number. Sort by `OrderDate`, then `OrderID`.
 
-Keep orders with missing shipping or delivery dates. Return `NULL` for the corresponding calculation. Sort by `OrderDate` ascending, then `OrderID` ascending.
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/12.%20Dates%20and%20Time/P020.%20Days%20to%20ship%20and%20days%20to%20deliver.md#question-and-image)
 
-### Sample input · `Orders`
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `OrderID` | Order identifier. |
+| `OrderDate` | Date the order was placed. |
+| `ShipDate` | Date the order shipped. |
+| `DeliveryDate` | Date the order was delivered. |
+| `days_to_ship` | Whole days from order date to ship date. |
+| `days_to_deliver` | Whole days from order date to delivery date. |
+
+### Practice example · Sample input
+
+**`Orders`**
 
 | OrderID | OrderDate | ShipDate | DeliveryDate |
 |---:|---|---|---|
@@ -26,6 +38,18 @@ Keep orders with missing shipping or delivery dates. Return `NULL` for the corre
 |---:|---|---|---|---:|---:|
 | 1 | 2025-11-01 | 2025-11-03 | 2025-11-06 | 2 | 5 |
 | 2 | 2025-11-02 | `NULL` | `NULL` | `NULL` | `NULL` |
+
+### How the sample produces this output
+
+Order 1 was placed on November 1. It shipped on November 3 and arrived on November 6, so the elapsed times from the order date are **2 days** and **5 days**.
+
+Order 2 was placed on November 2 and qualifies for the report, but its ship and delivery dates are both missing. Its two elapsed times stay `NULL`. Order 3 was placed in October, even though it shipped in November, so it falls outside the report.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

@@ -5,13 +5,23 @@
 
 ## Question
 
-The catalogue team needs a list of brands for the app’s **Shop by brand** filter. Using the `Products` table, return one column named `Brand` with one row per clean brand name, sorted alphabetically.
+**Business scenario.** The catalogue team is building the "Shop by brand" page in the app. They need one clean list of brand names to load into the brand filter. `Products` sold without a brand, such as loose staples, should not create an empty entry in that filter.
 
-Treat surrounding spaces as insignificant, so `'Nike'` and `' Nike '` represent the same brand. Exclude `NULL`, empty strings, and values that contain only spaces.
+**Task.** Return each brand name in `Products` once, in alphabetical order. Leave out products whose `Brand` is `NULL`, empty or only spaces.
 
-### Sample input
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/0.%20SQL%20basics/P001.%20Brand%20directory.md#question-and-image)
 
-Only the relevant columns from `Products` are shown. Quotes make spaces visible and are used here to represent text values.
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `Brand` | One entry per usable brand name. |
+
+### Practice example · Sample input
+
+Quotes around text values make surrounding spaces visible.
+
+**`Products`**
 
 | ProductID | Brand |
 | ---: | --- |
@@ -32,11 +42,28 @@ Only the relevant columns from `Products` are shown. Quotes make spaces visible 
 | Nike |
 | Puma |
 
-Products 1 and 2 represent the same brand. Products 6 and 8 both represent Adidas. Products 3–5 have no usable brand, so the filter contains three names in alphabetical order.
+### How the sample produces this output
+
+Products 1 and 2 supply the same name, **Nike**, once the surrounding spaces are disregarded. Products 6 and 8 both supply **Adidas**, and product 7 supplies **Puma**.
+
+Products 3, 4 and 5 contain a missing value, an empty string and spaces only, respectively. They supply no brand name. The three usable names appear once each, in alphabetical order.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
 
 ### Schema
 
 The exercise uses `Products`. The sample shows `ProductID` (integer) and `Brand` (nullable text). Only `Brand` is required to solve the problem.
+
+The saved attempt treats padded versions of the same brand as a single displayed name.
+
+</details>
 
 ## Visual walkthrough
 

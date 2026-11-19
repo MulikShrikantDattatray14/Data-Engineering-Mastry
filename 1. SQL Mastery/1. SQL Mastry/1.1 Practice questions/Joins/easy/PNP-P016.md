@@ -5,11 +5,25 @@
 
 ## Question
 
-Customer support needs a call sheet for every order placed in **December 2025** that belongs to a **known customer**.
+**Business scenario.** Customer support is calling customers for feedback on orders placed in December 2025. Each agent's call sheet needs the order, the customer's full name and city, and the order amount, so the agent can greet the customer by name and confirm the right order.
 
-Return `OrderID`, `OrderDate`, `customer_name`, `City`, and `Total_Order_Amount`. Combine the customer’s first and last names with a space, and remove surrounding spaces from `City`. Sort by `OrderDate` ascending, then `OrderID` ascending.
+**Task.** List every December 2025 order that belongs to a known customer, with the customer's full name and city. Sort by `OrderDate`, then `OrderID`.
 
-### Sample input
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P016.%20December%202025%20orders%20with%20customer%20names.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `OrderID` | Order identifier. |
+| `OrderDate` | Date the order was placed. |
+| `customer_name` | Customer’s first and last names, separated by a space. |
+| `City` | Customer’s city with surrounding spaces removed. |
+| `Total_Order_Amount` | Value of the order. |
+
+### Practice example · Sample input
+
+Quotes around text values make surrounding spaces visible.
 
 **`Customers`**
 
@@ -29,6 +43,18 @@ Return `OrderID`, `OrderDate`, `customer_name`, `City`, and `Total_Order_Amount`
 | OrderID | OrderDate | customer_name | City | Total_Order_Amount |
 |---:|---|---|---|---:|
 | 10 | 2025-12-01 | Anu Sen | Delhi | 100 |
+
+### How the sample produces this output
+
+Customer 1 is Anu Sen and the stored city has spaces around Delhi. Order 10 belongs to that customer, was placed on **2025-12-01**, and is worth **100**. The call-sheet row therefore shows **Anu Sen**, **Delhi**, and **100**.
+
+Order 11 belongs to the same customer but was placed on **2026-01-01**, outside December 2025. Only order 10 appears.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

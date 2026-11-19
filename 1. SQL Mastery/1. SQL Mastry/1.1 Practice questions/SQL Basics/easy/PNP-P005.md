@@ -5,9 +5,24 @@
 
 ## Question
 
-From `Orders`, return every order placed from **January 1 through March 31, 2025**, inclusive. Return `OrderID`, `CustomerID`, `OrderDate`, and `Total_Order_Amount`. Sort by `OrderDate` ascending, then by `OrderID` ascending.
+**Business scenario.** Finance is closing January to March 2025 and needs the orders placed in that quarter to tie against the payment gateway report. Cancellations and refunds are not recorded in this dataset, so every row in `Orders` counts as a placed order.
 
-### Sample input
+**Task.** Return every order with an `OrderDate` from 1 January 2025 to 31 March 2025 inclusive. Sort by `OrderDate`, then `OrderID`.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/P005.%20Orders%20placed%20in%20Q1%202025.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `OrderID` | Order identifier. |
+| `CustomerID` | Customer identifier. |
+| `OrderDate` | Date the order was placed. |
+| `Total_Order_Amount` | Value of the order. |
+
+### Practice example · Sample input
+
+**`Orders`**
 
 | OrderID | CustomerID | OrderDate | Total_Order_Amount |
 | ---: | ---: | --- | ---: |
@@ -23,7 +38,17 @@ From `Orders`, return every order placed from **January 1 through March 31, 2025
 | 2 | 11 | 2025-01-01 | 100 |
 | 3 | 12 | 2025-03-31 | 200 |
 
-Both boundary dates qualify. December 31 and April 1 fall outside the quarter.
+### How the sample produces this output
+
+Order 2 falls on January 1, the first date of the quarter. Its customer is 11 and its amount is 100. Order 3 falls on March 31, the last date of the quarter. Its customer is 12 and its amount is 200.
+
+Order 1 falls one day before the quarter and order 4 falls one day after it. Only orders 2 and 3 appear, with the January order first.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

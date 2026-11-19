@@ -6,11 +6,22 @@ Save one file per verified solution, immediately after the question is complete.
 
 Practice topics in the original Bosscoder assignment order. Within each topic, practice PNP questions from Easy to Medium to Hard. Reattempt matching Bosscoder assignments after dinner. Count each PNP source ID once toward the 205-question restart and track Bosscoder separately.
 
-Copy the full question exactly as presented in the study chat, including requirements, sample input, expected output, and the sample explanation. Apply this to every PNP and Bosscoder write-up. Keep the learner solution, walkthrough, and official answer below the complete prompt.
+### Present each question
+
+Use this sequence in chat and in every saved question, including reattempts.
+
+1. Give the original PNP question word for word, including its business scenario and task. For a Bosscoder exercise, use its assignment wording. Link to the source in the saved record.
+2. List the required output columns in their specified order, with a plain-English meaning for each.
+3. Show the sample input as separate, named tables. Identify an example supplied by the assignment. Label any added data **Practice example**.
+4. Show the expected output as a table with those same columns.
+5. Explain how the sample rows produce each result. Trace the actual IDs and values, show the arithmetic where relevant, and explain the order or inclusion rules that affect the example.
+6. Only then begin **Step 1 · Your approach before writing SQL**. Invite the learner to explain what one output row represents, which table comes first, second, third and so on, and which join type and matching columns they would choose at each applicable step. A single-table or multi-source question can be answered without a join.
+
+Keep questions and sample explanations focused on the requested result. Include methods that the original source explicitly requires. Let the learner choose all other operations, table order and join types independently. Give hints when the learner asks. During a fresh attempt, pause at Step 1 for their answer. Place the verified visual walkthrough and solutions after the learner-facing exercise in the saved record.
 
 ### Explain the approach before coding
 
-Start with the full question and its sample tables. The learner gives one plain-English plan covering the following decisions as they apply to the question.
+After the worked sample, the learner gives one plain-English plan covering the following decisions as they apply to the question.
 
 1. What one output row represents and which columns it must contain.
 2. Which tables and keys supply the data, how to join them, and which unmatched rows must survive.
@@ -24,8 +35,6 @@ Rate the submitted approach out of 10 for coverage and correctness. Identify wha
 ### Walkthrough format
 
 Include the visual in the same commit as each newly verified PNP or Bosscoder solution. Embed a question-specific SVG in the question file under `## Visual walkthrough`, then link to its full-size view. Use relative paths and compare the diagram’s final rows with the saved query on the same sample. The written steps below the diagram provide the text version.
-
-For a join exercise, ask both questions in Step 1 alongside the row and column questions. Which table goes in `FROM`, and which table is added at each position? Which join connects each new table to the result so far, and which rows should survive a missing match?
 
 Use the same step-by-step approach during practice and in each PNP or Bosscoder write-up. Identify what one output row represents, then build the query one part at a time using the same example. For each step, explain what to do and why, show the SQL and output, and explain what the output demonstrates. When a join is used, explain why it fits and which unmatched rows it keeps. Explain whether each condition affects input rows, output groups, or one metric.
 
@@ -54,13 +63,13 @@ Show which rows form each group before calculating its measures. For each aggreg
 | P003 | [Customers in metro cities](SQL%20Basics/easy/PNP-P003.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P004 | [Customer emails that cannot be delivered](SQL%20Basics/easy/PNP-P004.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P005 | [Orders placed in Q1 2025](SQL%20Basics/easy/PNP-P005.md) | PNP | ![EASY](../_badges/easy.svg) |
-| P006 | [Most expensive products sold at full price](SQL%20Basics/easy/PNP-P006.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P006 | [Most expensive products that are never discounted](SQL%20Basics/easy/PNP-P006.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P007 | [Discount amount and percentage per product](SQL%20Basics/easy/PNP-P007.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P008 | [Price band labels](SQL%20Basics/easy/PNP-P008.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P009 | [Check how Active and Allowed are encoded](SQL%20Basics/easy/PNP-P009.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P010 | [Headline order KPIs](SQL%20Basics/easy/PNP-P010.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P020 | [Days to ship and days to deliver](SQL%20Basics/easy/PNP-P020.md) | PNP | ![EASY](../_badges/easy.svg) |
-| P023 | [Chocolate or cookie products under 250](SQL%20Basics/easy/PNP-P023.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P023 | [Chocolate or cookie products under 250, excluding sugar-free](SQL%20Basics/easy/PNP-P023.md) | PNP | ![EASY](../_badges/easy.svg) |
 | P024 | [Suppliers outside India or with no email](SQL%20Basics/easy/PNP-P024.md) | PNP | ![EASY](../_badges/easy.svg) |
 | B1.01 | [Find Customers With Positive Revenue This Year](SQL%20Basics/easy/Bosscoder-1.01.md) | Bosscoder | ![EASY](../_badges/easy.svg) |
 | B1.02 | [Calculate Special Bonus](SQL%20Basics/easy/Bosscoder-1.02.md) | Bosscoder | ![EASY](../_badges/easy.svg) |
@@ -73,7 +82,7 @@ Show which rows form each group before calculating its measures. For each aggreg
 | ID | Question | Set | Difficulty |
 | --- | --- | --- | --- |
 | P011 | [How much of the catalogue has ever sold?](Aggregation/easy/PNP-P011.md) | PNP | ![EASY](../_badges/easy.svg) |
-| P012 | [Price and discount statistics per category](Aggregation/easy/PNP-P012.md) | PNP | ![EASY](../_badges/easy.svg) |
+| P012 | [Price and discount statistics per category ID](Aggregation/easy/PNP-P012.md) | PNP | ![EASY](../_badges/easy.svg) |
 
 ### Sorting and Grouping
 
@@ -101,7 +110,7 @@ Show which rows form each group before calculating its measures. For each aggreg
 
 | ID | Question | Set | Difficulty |
 | --- | --- | --- | --- |
-| P028 | [Payment mix by order count and order value](Subqueries/medium/PNP-P028.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
+| P028 | [Payment mix: share of orders and value](Subqueries/medium/PNP-P028.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
 
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 

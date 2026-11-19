@@ -5,18 +5,24 @@
 
 ## Question
 
-Merchandising is adding a **Shop by budget** filter. Return every row from `Products` with exactly one label based on `Sale_Price`.
+**Business scenario.** Merchandising is adding a "Shop by budget" filter to the app. Each product must carry exactly one band based on its current `Sale_Price`: Budget below 200, Mid from 200 up to 699, Premium from 700. A product with no price should show Unknown so it can be fixed, not disappear from the filter.
 
-| Price band | Rule |
+**Task.** Label every product with a price band. Mid means 200 or more and less than 700, so a price of 699.50 is Mid. Sort by `ProductID`.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/P008.%20Price%20band%20labels.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
 |---|---|
-| `Budget` | Below 200 |
-| `Mid` | At least 200 and below 700 |
-| `Premium` | 700 or above |
-| `Unknown` | `NULL` price |
+| `ProductID` | Product identifier. |
+| `Product` | Product name. |
+| `Sale_Price` | Current sale price. |
+| `price_band` | One of `Budget`, `Mid`, `Premium` or `Unknown` for the product’s sale price. |
 
-Return `ProductID`, `Product`, `Sale_Price`, and `price_band`, sorted by `ProductID` ascending.
+### Practice example · Sample input
 
-### Sample input
+**`Products`**
 
 | ProductID | Product | Sale_Price |
 | --- | --- | --- |
@@ -36,7 +42,17 @@ Return `ProductID`, `Product`, `Sale_Price`, and `price_band`, sorted by `Produc
 | 4 | Watch | 700 | Premium |
 | 5 | Mystery | `NULL` | Unknown |
 
-`699.50` is still Mid. Premium starts at exactly `700`.
+### How the sample produces this output
+
+Pen at **199** is Budget. Book at **200** is exactly at the start of Mid, and Bag at **699.50** is still below 700, so both are Mid. Watch at **700** is the first price in Premium.
+
+Mystery has no price and receives Unknown. All five product IDs appear in ascending order.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

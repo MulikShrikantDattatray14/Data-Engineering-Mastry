@@ -2,22 +2,32 @@
 
 **Topic** SQL Basics · **Difficulty** ![EASY](../../../_badges/easy.svg) · Revised 2026-11-17
 
-## Question and image
+## Question
 
 Each row in `Products` gives one product's price in up to three stores. A `NULL` store price means the product is unavailable there.
 
 Rearrange the table so each output row contains `(product_id, store, price)`. Omit any product-store combination whose price is `NULL`. Return the result ordered by `store`.
 
-**Example 1**
+[Bosscoder assignment question](../../../1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/4.Sql%20Rearrange%20Products%20Table.md#question-and-image)
 
-Input — `Products`:
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `product_id` | Product identifier. |
+| `store` | Name of the store where the product is available. |
+| `price` | Price of the product in that store. |
+
+### Assignment example · Sample input
+
+**`Products`**
 
 | product_id | store1 | store2 | store3 |
 |---:|---:|---:|---:|
 | 0 | 95 | 100 | 105 |
 | 1 | 70 | NULL | 80 |
 
-Expected output:
+### Expected output
 
 | product_id | store | price |
 |---:|---|---:|
@@ -27,9 +37,20 @@ Expected output:
 | 0 | store3 | 105 |
 | 1 | store3 | 80 |
 
-Product 0 is available in all three stores. Product 1 is available in `store1` and `store3`, but not `store2`, so `(1, store2)` does not appear.
+### How the sample produces this output
 
-The question image was not supplied.
+Product 0 has a price at all three stores and supplies the pairs **store1 / 95**, **store2 / 100** and **store3 / 105**. Product 1 supplies **store1 / 70** and **store3 / 80**. Its store2 price is missing.
+
+That makes **3 + 2 = 5** product–store pairs. In store order, there are two rows for store1, one for store2 and two for store3. The assignment specifies the store order and permits either order within a store.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
 
 ### Problem solving checklist
 
@@ -53,6 +74,8 @@ The question image was not supplied.
 | store3 | int |
 
 `product_id` is the primary key. Each store column holds a price, or `NULL` if the product is unavailable at that store.
+
+</details>
 
 ## Visual walkthrough
 

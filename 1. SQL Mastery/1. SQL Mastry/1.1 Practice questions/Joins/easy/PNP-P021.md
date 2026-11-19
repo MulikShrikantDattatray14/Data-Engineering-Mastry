@@ -5,16 +5,23 @@
 
 ## Question
 
-The CRM team wants to reward its most frequent buyers. Rank customers by **how many orders they placed**. Order value doesn’t matter.
+**Business scenario.** The CRM team is sending thank-you hampers to its most frequent buyers, meaning the most orders placed, regardless of value. The budget covers five, but if customers tie for fifth place, the team would rather send an extra hamper than leave one out.
 
-- Return the **top five customers**, including everyone tied with the customer in fifth place. The result can contain more than five rows.
-- If a `CustomerID` appears in `Orders` but has no matching row in `Customers`, keep that ID eligible for the ranking and display `Unknown customer` as its name.
-- Return `CustomerID`, `customer_name` (first and last names joined with a space), and `orders_placed`.
-- Sort by `orders_placed` descending, then `CustomerID` ascending.
+**Task.** Return the customers with the five highest order counts, including everyone tied at fifth place. Show Unknown customer when the `CustomerID` on the orders has no match in `Customers`. Sort by orders placed, highest first, then `CustomerID`.
 
-### Extended sample input
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/3.%20Sorting%20and%20Grouping/P021.%20Top%20five%20customers%20by%20number%20of%20orders.md#question-and-image)
 
-**Customers**
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `CustomerID` | Customer identifier. |
+| `customer_name` | First and last name, or `Unknown customer` for an unrecognized customer ID. |
+| `orders_placed` | Number of orders placed by that customer ID. |
+
+### Practice example · Sample input
+
+**`Customers`**
 
 | CustomerID | FirstName | LastName |
 |---:|---|---|
@@ -26,7 +33,7 @@ The CRM team wants to reward its most frequent buyers. Rank customers by **how m
 | 6 | Farah | Ali |
 | 7 | Gita | Shah |
 
-**Orders**
+**`Orders`**
 
 | OrderID | CustomerID |
 |---:|---:|
@@ -52,7 +59,17 @@ The CRM team wants to reward its most frequent buyers. Rank customers by **how m
 | 5 | Ena Jain | 1 |
 | 6 | Farah Ali | 1 |
 
-ID 99 placed three orders and has no customer record. ID 7 placed none. The fifth row has one order, so everyone tied at that count qualifies.
+### How the sample produces this output
+
+Customer ID 99 placed orders 17, 18 and 19, giving it the highest count of **3**. Its ID has no customer record, so the displayed name is **Unknown customer**. Each of customer IDs 1 through 6 placed one order. Customer 7 placed none.
+
+The fifth buyer in descending order has **1 order**. All six one-order buyers meet that same cutoff. The report therefore has **7 rows**, with ID 99 first and the six tied buyers in ascending customer ID order.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

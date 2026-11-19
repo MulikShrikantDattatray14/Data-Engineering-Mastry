@@ -5,17 +5,23 @@
 
 ## Question
 
-Start with every product in `Products` and attach its matching `OrderDetails` rows by `ProductID`. Keep products that have never sold. Return **one summary row** with these five metrics:
+**Business scenario.** The merchandising head suspects the catalogue is far bigger than what customers actually buy. Before a clean-up, she wants four numbers in one row: how many products are listed, how many sale lines exist, how many distinct products have sold at least once, and what share of the catalogue that is.
 
-| Column | What it should show |
+**Task.** Starting from every product, attach its order lines. In one row, return the rows produced by that join, the number of order lines, the number of listed products, the number of products that sold at least once, and the percentage of listed products that sold.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/4.%20Aggregation/P011.%20How%20much%20of%20the%20catalogue%20has%20ever%20sold.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
 |---|---|
-| `rows_after_join` | Total rows after joining, including unsold products |
-| `sale_lines` | Number of order lines that matched a product |
-| `listed_products` | Number of distinct products in the catalogue |
-| `products_sold` | Number of distinct products with at least one matching order line |
-| `pct_sold` | Percentage of listed products that sold, rounded to two decimal places |
+| `rows_after_join` | Number of combined catalogue and sale-line rows, including a row for each unsold product. |
+| `sale_lines` | Number of sale lines matched to a listed product. |
+| `listed_products` | Number of distinct products in the catalogue. |
+| `products_sold` | Number of distinct catalogue products with at least one sale line. |
+| `pct_sold` | Sold products as a percentage of all listed products, rounded to two decimals. |
 
-### Sample input
+### Practice example · Sample input
 
 **`Products`**
 
@@ -39,7 +45,17 @@ Start with every product in `Products` and attach its matching `OrderDetails` ro
 |---:|---:|---:|---:|---:|
 | 4 | 3 | 3 | 2 | 66.67 |
 
-Pen contributes two joined rows, Bag contributes one, and the unsold Cup still contributes one. Two of the three listed products have sold.
+### How the sample produces this output
+
+The catalogue contains three products. Pen has two sale lines and Bag has one, giving **3 sale lines** across **2 sold products**. Cup has no sale, but still appears once in the catalogue comparison. The row total is **2 for Pen + 1 for Bag + 1 for Cup = 4**.
+
+The denominator for catalogue coverage includes all three listed products. Pen and Bag account for `2 / 3 × 100 = 66.67%` of the catalogue.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

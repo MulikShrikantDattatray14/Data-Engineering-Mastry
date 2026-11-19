@@ -1,19 +1,28 @@
-# PNP P023 — Chocolate or cookie products under 250
+# PNP P023 — Chocolate or cookie products under 250, excluding sugar-free
 
 **Topic:** SQL Basics  
 **Difficulty:** Easy
 
 ## Question
 
-From `Products`, return products that meet all three rules:
+**Business scenario.** Merchandising is building a "Sweet treats under 250" banner for Diwali. It should show products from the chocolate and cookie sub-categories priced below 250. Sugar-free products are going into a separate wellness banner, so they must be left out of this one.
 
-- `Sub_Category` contains **`chocolate` or `cookie`**, ignoring case.
-- `Sale_Price` is **strictly below 250**.
-- The `Product` name doesn’t mark it as **sugar-free**.
+**Task.** Return products whose `Sub_Category` contains "chocolate" or "cookie" (any case), whose `Sale_Price` is below 250, and whose name does not mark them as sugar-free. Sort by `Sale_Price`, then `ProductID`.
 
-Return `ProductID`, `Product`, `Sub_Category`, and `Sale_Price`. Sort by `Sale_Price` ascending, then `ProductID` ascending.
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/8.%20Advance%20string%20functions%2C%20regex%20and%20clause/P023.%20Chocolate%20or%20cookie%20products%20under%20250%2C%20excluding%20sugar-free.md#question-and-image)
 
-### Sample input · `Products`
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `ProductID` | Product identifier. |
+| `Product` | Product name. |
+| `Sub_Category` | Product subcategory as stored. |
+| `Sale_Price` | Current sale price. |
+
+### Practice example · Sample input
+
+**`Products`**
 
 | ProductID | Product | Sub_Category | Sale_Price |
 |---:|---|---|---:|
@@ -28,6 +37,18 @@ Return `ProductID`, `Product`, `Sub_Category`, and `Sale_Price`. Sort by `Sale_P
 |---:|---|---|---:|
 | 1 | Cocoa Cookie | Cookies | 200 |
 | 4 | Dark Bar | CHOCOLATE | 249 |
+
+### How the sample produces this output
+
+Cocoa Cookie (ID 1) belongs to Cookies and costs **200**. Dark Bar (ID 4) belongs to CHOCOLATE and costs **249**. Both qualify and the lower price puts Cocoa Cookie first.
+
+Sugar-free Choc costs 150 and belongs to Chocolate, but its name identifies it as sugar-free. Tea Biscuit costs 100 and belongs to Biscuits, outside both requested subcategories.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

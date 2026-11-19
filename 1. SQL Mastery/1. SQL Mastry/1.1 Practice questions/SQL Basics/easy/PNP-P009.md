@@ -5,11 +5,22 @@
 
 ## Question
 
-The data team wants to see how two flag columns are stored before using them in filters. Return **one result** that lists each distinct value in `Category.Active` and `Payments.Allowed`, with the number of rows holding that value.
+**Business scenario.** The data platform team is publishing shared views that filter on "active categories" and "allowed payment methods". `Category.Active` and `Payments.Allowed` came in through CSV loads from two systems, and nobody documented the encoding. The team wants to see every stored value first.
 
-Return four columns in this order: `source_table`, `flag_column`, `raw_value`, `row_count`. Show nonmissing values as text. Keep SQL `NULL` as its own group and count the rows in that group. Output order is flexible.
+**Task.** In one result, list each distinct raw value of `Category.Active` and `Payments.Allowed` with its row count. `NULL` counts as a value.
 
-### Sample input
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/3.%20Sorting%20and%20Grouping/P009.%20Check%20how%20Active%20and%20Allowed%20are%20encoded.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `source_table` | Name of the table that stores the flag (`Category` or `Payments`). |
+| `flag_column` | Name of the flag being reported (`Active` or `Allowed`). |
+| `raw_value` | Stored flag value as text, or `NULL` when missing. |
+| `row_count` | Number of source rows holding that raw value. |
+
+### Practice example · Sample input
 
 **`Category`**
 
@@ -38,7 +49,17 @@ Return four columns in this order: `source_table`, `flag_column`, `raw_value`, `
 | Payments | Allowed | `'Y'` | 1 |
 | Payments | Allowed | `'N'` | 2 |
 
-Category has two rows with `Active = 1` and one with a missing flag, so those values get counts of 2 and 1.
+### How the sample produces this output
+
+In Category, IDs 1 and 2 store the value 1, ID 3 stores 0, and ID 4 has a missing flag. Those three output rows have counts **2, 1 and 1**, accounting for all four categories.
+
+In Payments, ID 1 stores Y and IDs 2 and 3 store N. Those two rows have counts **1 and 2**, accounting for all three payments. The source and flag columns identify each set of counts. The known raw values are displayed as text and the missing value stays `NULL`.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

@@ -1,24 +1,28 @@
-# PNP P028 — Payment mix by order count and order value
+# PNP P028 — Payment mix: share of orders and value
 
 **Topic** Subqueries · **Difficulty** ![MEDIUM](../../../_badges/medium.svg)
 
 ## Question
 
-Shri, the payments team pays some gateway fees per transaction and others as a percentage of the money collected. They want to know how often customers use each payment type and how much of the total order value goes through it. [P028 on GitHub](<../../../2.PNP-%20foundations%20and%20practice/6.%20SubQueries/P028.%20Payment%20mix%20share%20of%20orders%20and%20value.md>)
+**Business scenario.** The payments team is renegotiating gateway fees, and fees are charged per transaction for some methods and as a share of value for others. They need each payment type's share of order count and its share of order value in one table. A method can carry many small `orders` or a few large ones, so the two shares can tell different stories.
 
-| Output column | What it represents |
+**Task.** For each payment type, return the number of `orders`, its percentage of all `orders`, the total order value and its percentage of all order value. `Orders` whose `PaymentID` is `NULL` or matches no payment row go under Unknown. Use scalar subqueries for the two denominators. Sort by `orders`, highest first.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/6.%20SubQueries/P028.%20Payment%20mix%20share%20of%20orders%20and%20value.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
 |---|---|
-| `payment_type` | Payment type name. Use `Unknown` when an order’s `PaymentID` is `NULL` or has no match in `Payments`. |
-| `orders` | Number of orders for this payment type. |
-| `pct_of_orders` | This type’s percentage of **all orders**, rounded to two decimal places. |
-| `order_value` | Sum of `Total_Order_Amount` for this payment type. |
-| `pct_of_value` | This type’s percentage of **total order value across all orders**, rounded to two decimal places. |
+| `payment_type` | Payment type name, or `Unknown` for a missing or unrecognized payment ID. |
+| `orders` | Number of orders for that payment type. |
+| `pct_of_orders` | This type’s share of all orders, as a percentage rounded to two decimals. |
+| `order_value` | Total amount of the orders for that payment type. |
+| `pct_of_value` | This type’s share of all order value, as a percentage rounded to two decimals. |
 
-The question requires a **scalar subquery** for each percentage’s denominator. A scalar subquery returns one value. Sort the report by `orders`, highest first.
+### Practice example · Sample input
 
-### Sample input
-
-**🟦 Orders**
+**`Orders`**
 
 | OrderID | PaymentID | Total_Order_Amount |
 |---:|---:|---:|
@@ -26,7 +30,7 @@ The question requires a **scalar subquery** for each percentage’s denominator.
 | 11 | 1 | 200 |
 | 12 | 2 | 300 |
 
-**🟩 Payments**
+**`Payments`**
 
 | PaymentID | PaymentType |
 |---:|---|
@@ -40,13 +44,31 @@ The question requires a **scalar subquery** for each percentage’s denominator.
 | UPI | 2 | 66.67 | 300 | 50.00 |
 | Card | 1 | 33.33 | 300 | 50.00 |
 
-UPI handled **2 of the 3 orders**, but those two orders together were worth **300 of the 600**. That’s why UPI accounts for **66.67% of orders** and **50.00% of value**.
+### How the sample produces this output
 
-### Step 1 · Decide which rows must survive
+Orders 10 and 11 used UPI, and order 12 used Card. There are **3 orders** altogether, worth `100 + 200 + 300 = 600`.
+
+- **UPI.** Two orders give `2 / 3 × 100 = 66.67%` of the order count. Their combined value is `100 + 200 = 300`, or `300 / 600 × 100 = 50.00%` of total value.
+- **Card.** One order gives `1 / 3 × 100 = 33.33%` of the count. That order is worth 300, also **50.00%** of the value.
+
+UPI appears first because it handled more orders. The two methods carried equal amounts of money.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+**Earlier practice check**
 
 Suppose one more order arrives in 🟦 `Orders` with `PaymentID = 99`. The 🟩 `Payments` table still looks exactly as shown.
 
 **Which table would you start from, and where should that order appear in the final report?** Give me your reasoning in plain English first.
+
+</details>
 
 ## Visual walkthrough
 

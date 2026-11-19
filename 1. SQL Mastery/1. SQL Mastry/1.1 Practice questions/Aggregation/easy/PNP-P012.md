@@ -1,4 +1,4 @@
-# PNP P012 — Price and discount statistics per category
+# PNP P012 — Price and discount statistics per category ID
 
 **Topic:** Aggregation  
 **Difficulty:** Easy  
@@ -6,19 +6,27 @@
 
 ## Question
 
-Return **one row per `CategoryID`** from `Products`, sorted by `CategoryID` ascending.
+**Business scenario.** The pricing team is preparing a quarterly review of category price ranges. For each category code they want the size of the range, the price spread, and how much of it is sold below the printed price (`Market_Price`), so they can spot categories that lean too hard on discounts.
 
-| Output column | What it should show |
+**Task.** For each `CategoryID` in `Products`, return the number of `products`, the lowest, highest and average `Sale_Price`, how many `products` sell at full price (`Sale_Price` = `Market_Price`), and the average discount percentage across the category. Round averages to two decimals. Sort by `CategoryID`.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/4.%20Aggregation/P012.%20Price%20and%20discount%20statistics%20per%20category%20ID.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
 |---|---|
-| `CategoryID` | Category ID |
-| `products` | Number of products in the category |
-| `min_price` | Lowest sale price |
-| `max_price` | Highest sale price |
-| `avg_price` | Average sale price, rounded to two decimals |
-| `full_price_products` | Number of products whose sale price equals their market price |
-| `avg_discount_pct` | Average of the individual product discount percentages, rounded to two decimals. Exclude products with a `NULL` or zero market price from this average. |
+| `CategoryID` | Category identifier. |
+| `products` | Number of products in the category. |
+| `min_price` | Lowest sale price. |
+| `max_price` | Highest sale price. |
+| `avg_price` | Average sale price, rounded to two decimals. |
+| `full_price_products` | Number of products whose sale and market prices are equal. |
+| `avg_discount_pct` | Average of the individual product discount percentages with a usable market price, rounded to two decimals. |
 
-### Sample input — `Products`
+### Practice example · Sample input
+
+**`Products`**
 
 | ProductID | CategoryID | Sale_Price | Market_Price |
 |---:|---:|---:|---:|
@@ -31,7 +39,17 @@ Return **one row per `CategoryID`** from `Products`, sorted by `CategoryID` asce
 |---:|---:|---:|---:|---:|---:|---:|
 | 10 | 2 | 80 | 100 | 90.00 | 1 | 10.00 |
 
-The two products are discounted by **20%** and **0%**, so their average discount is **10.00%**.
+### How the sample produces this output
+
+Both products belong to category 10. Their sale prices are 80 and 100, so the minimum is **80**, the maximum is **100**, and the average is `(80 + 100) / 2 = 90.00`.
+
+Product 1 sells for 80 against a market price of 100, a **20% discount**. Product 2 sells at its full market price of 100, a **0% discount**. That gives **1 full-price product** and an average product discount of `(20 + 0) / 2 = 10.00%`.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

@@ -4,7 +4,7 @@
 **Difficulty** ![MEDIUM](../../../_badges/medium.svg)  
 **Revised** 2026-11-17
 
-## Question and image
+## Question
 
 `BST` contains one row for each node of a binary tree. `N` is the node's value and `P` is the value of its parent. A missing `P` is `NULL`.
 
@@ -14,9 +14,18 @@ Report each node's type as `Root`, `Inner`, or `Leaf`, ordered by `N` ascending:
 - **Inner:** the node is neither the root nor a leaf.
 - **Leaf:** the node has no children.
 
-**Example 1**
+[Bosscoder assignment question](../../../1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/3.Sql%20Binary%20Tree%20Nodes.md#question-and-image)
 
-Input — `BST`:
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `N` | Node value. |
+| `NodeType` | One of the node roles `Root`, `Inner` or `Leaf`. |
+
+### Assignment example · Sample input
+
+**`BST`**
 
 | N | P |
 |---:|---:|
@@ -28,11 +37,9 @@ Input — `BST`:
 | 8 | 5 |
 | 5 | NULL |
 
-The supplied diagram shows the same relationships:
+![Binary tree supplied with the sample input](../../../1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/assets/3-binary-tree-nodes.png)
 
-Node 5 has children 2 and 8. Node 2 has children 1 and 3. Node 8 has children 6 and 9.
-
-Expected output:
+### Expected output
 
 | N | NodeType |
 |---:|---|
@@ -44,12 +51,26 @@ Expected output:
 | 8 | Inner |
 | 9 | Leaf |
 
-Node 5 has no parent, so it is the root. Nodes 2 and 8 have children and are inner nodes. Nodes 1, 3, 6, and 9 have no children, so they are leaves.
+### How the sample produces this output
 
+Node 5 has no parent, giving it the label **Root**. Nodes 2 and 8 both have a parent and children, giving them the label **Inner**. Node 2 is the parent of 1 and 3, and node 8 is the parent of 6 and 9.
+
+Nodes 1, 3, 6 and 9 have no children, so each is a **Leaf**. The one root, two inner nodes and four leaves account for all seven output rows, listed by ascending node value.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
 
 ## Schema
 
 BST has integer columns N and P. Each row describes one node N and its parent P.
+
+</details>
 
 ## Visual walkthrough
 

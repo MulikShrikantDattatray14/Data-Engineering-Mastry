@@ -5,19 +5,23 @@
 
 ## Question
 
-For each product that appears in `OrderDetails`, show its name and three metrics. Every order line counts as sold.
+**Business scenario.** Merchandising decides which products get the end-of-aisle display in the app. They look at three numbers per product: units sold, the number of order lines, and the number of distinct `orders`. A product bought in bulk by a few customers and one bought one at a time by many need different promotions. Cancellations and returns are not recorded here, so every order line counts as sold.
 
-| Output column | Meaning |
+**Task.** For each product that appears in `OrderDetails`, return units sold, order lines and distinct `orders`. Sort by units sold, highest first, then `ProductID`.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P019.%20Units%20sold%20per%20product.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
 |---|---|
-| `ProductID` | Product ID |
-| `Product` | Product name |
-| `units_sold` | Sum of `Quantity` |
-| `order_lines` | Number of order detail rows for the product |
-| `orders` | Number of distinct orders containing the product |
+| `ProductID` | Product identifier. |
+| `Product` | Product name. |
+| `units_sold` | Total quantity on the product’s sale lines. |
+| `order_lines` | Number of sale lines for the product. |
+| `orders` | Number of distinct orders containing that product. |
 
-Sort by `units_sold` **descending**, then `ProductID` **ascending**.
-
-### Sample input
+### Practice example · Sample input
 
 **`Products`**
 
@@ -42,7 +46,17 @@ Sort by `units_sold` **descending**, then `ProductID` **ascending**.
 | 1 | Pen | 5 | 2 | 2 |
 | 2 | Bag | 1 | 1 | 1 |
 
-Pen sold **5 units across 2 order lines and 2 distinct orders**. Cup has no order lines, so it doesn’t appear.
+### How the sample produces this output
+
+Pen appears on detail lines 1 and 2 with quantities 2 and 3. It therefore has **5 units**, **2 lines**, and **2 distinct orders** (10 and 11). Bag appears on line 3 of order 11 with quantity 1, giving it **1 unit, 1 line and 1 order**.
+
+Cup has no sale line. Pen comes first because 5 units exceeds 1. The output accounts for the same six units as the three input quantities.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

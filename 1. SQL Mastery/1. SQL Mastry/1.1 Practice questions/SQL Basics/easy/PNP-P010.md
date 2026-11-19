@@ -5,18 +5,26 @@
 
 ## Question
 
-Leadership needs **one summary row** for the entire `Orders` table. Every row counts as a placed order. Return these columns in order:
+**Business scenario.** Leadership opens every monthly review with one strip of numbers: how many orders, how many customers ordered, total order value, average order value (AOV), and the date range the data covers. Cancellations and refunds are not recorded here, so every row in `Orders` counts as a placed order.
 
-| Column | What it should show |
+**Task.** Return one row with the headline numbers for the whole `Orders` table. AOV is the average `Total_Order_Amount` per order, rounded to two decimals.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/4.%20Aggregation/P010.%20Headline%20order%20KPIs.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
 |---|---|
-| `total_orders` | Number of orders |
-| `ordering_customers` | Number of distinct customers who placed an order |
-| `total_order_value` | Sum of `Total_Order_Amount` |
-| `avg_order_value` | Average `Total_Order_Amount` per order, rounded to two decimal places |
-| `first_order_date` | Earliest `OrderDate` |
-| `last_order_date` | Latest `OrderDate` |
+| `total_orders` | Number of placed orders. |
+| `ordering_customers` | Number of distinct customers who placed an order. |
+| `total_order_value` | Total value of all orders. |
+| `avg_order_value` | Average order amount, rounded to two decimals. |
+| `first_order_date` | Earliest order date. |
+| `last_order_date` | Latest order date. |
 
-### Sample input
+### Practice example · Sample input
+
+**`Orders`**
 
 | OrderID | CustomerID | OrderDate | Total_Order_Amount |
 | ---: | ---: | --- | ---: |
@@ -30,7 +38,17 @@ Leadership needs **one summary row** for the entire `Orders` table. Every row co
 | ---: | ---: | ---: | ---: | --- | --- |
 | 3 | 2 | 600 | 200.00 | 2025-01-01 | 2025-01-03 |
 
-Customer `10` placed two orders and counts once toward `ordering_customers`. Both orders count toward the total and average order value.
+### How the sample produces this output
+
+Orders 1 and 2 belong to customer 10. Order 3 belongs to customer 20. That gives **3 orders** and **2 distinct ordering customers**.
+
+The three known amounts total `100 + 200 + 300 = 600`, giving an average of `600 / 3 = 200.00`. January 1 is the earliest order date and January 3 is the latest. All six values describe the same set of orders in a single row.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

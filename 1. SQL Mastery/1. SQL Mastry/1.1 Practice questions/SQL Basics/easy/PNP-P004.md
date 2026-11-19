@@ -5,15 +5,25 @@
 
 ## Question
 
-Marketing wants to catch obviously invalid email addresses before sending a campaign. From `Customers`, return only customers whose email fails the exercise’s validation rules. Label the issue using the first applicable rule in this order:
+**Business scenario.** The marketing operations team is about to send a re-engagement campaign. Every hard bounce hurts the sender reputation, so they want to catch addresses that cannot work before the send. A valid address here has no spaces and the shape `something@something.something`.
 
-1. `Missing` if `Email` is `NULL` or empty.
-2. `Contains a space` if `Email` contains a space.
-3. `Not in name@domain.tld form` if `Email` fails the required shape. The shape requires at least one character before `@`, at least one between `@` and the dot, and at least one after the dot.
+**Task.** Return every customer whose `Email` is missing, contains a space, or does not match the shape `_@_._` (at least one character, an @, at least one character, a dot, at least one character). Label the problem. Sort by `CustomerID`.
 
-Return `CustomerID`, `FirstName`, `LastName`, `Email`, and `issue`. Show `Email` as stored and sort by `CustomerID` ascending.
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/8.%20Advance%20string%20functions%2C%20regex%20and%20clause/P004.%20Customer%20emails%20that%20cannot%20be%20delivered.md#question-and-image)
 
-### Sample input
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `CustomerID` | Customer identifier. |
+| `FirstName` | Customer’s first name. |
+| `LastName` | Customer’s last name. |
+| `Email` | Email address as stored. |
+| `issue` | One of `Missing`, `Contains a space` or `Not in name@domain.tld form`. |
+
+### Practice example · Sample input
+
+**`Customers`**
 
 | CustomerID | FirstName | LastName | Email |
 | ---: | --- | --- | --- |
@@ -30,7 +40,24 @@ Return `CustomerID`, `FirstName`, `LastName`, `Email`, and `issue`. Show `Email`
 | 2 | Ben | Das | `ben das@example.com` | Contains a space |
 | 3 | Cia | Sen | `cia.example.com` | Not in name@domain.tld form |
 
-Dev’s address passes the exercise’s rules, so his row is excluded.
+### How the sample produces this output
+
+Asha (ID 1) has a missing address and receives `Missing`. Ben’s stored address contains a space between `ben` and `das`, so ID 2 receives `Contains a space`. Cia’s address has no `@`, so ID 3 receives `Not in name@domain.tld form`.
+
+Dev’s address satisfies the stated shape and has no spaces. The three customers with issues appear in ID order with their original email values.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+When an address has multiple issues, the saved attempt gives priority to `Missing`, followed by `Contains a space`, then `Not in name@domain.tld form`.
+
+</details>
 
 ## Visual walkthrough
 

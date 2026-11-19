@@ -5,15 +5,25 @@
 
 ## Question
 
-Using `Suppliers`, return every supplier with at least one of these issues.
+**Business scenario.** Procurement compliance runs a supplier review each quarter. `Suppliers` outside India need import paperwork on file, and suppliers with no email cannot receive purchase orders from the new e-procurement system. A supplier with no country recorded is also a problem, because nobody can confirm it is domestic.
 
-- `Country missing` when `Country` is SQL `NULL`.
-- `Outside India` when `Country` is present and differs from India after trimming spaces and ignoring case.
-- `No email` when `Email` is SQL `NULL`, empty, or contains only spaces.
+**Task.** Return every supplier whose country is not India, whose country is missing, or whose email is missing or blank. Add an `issue` column naming every problem found. Sort by `SupplierID`.
 
-Return `SupplierID`, `CompanyName`, `Country`, `Email`, and `issue`. Preserve the original values in the first four columns. When both issues apply, put the country issue first and separate the labels with `; `. Sort by `SupplierID` ascending.
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/11.%20NULL%20Logic/P024.%20Suppliers%20outside%20India%20or%20with%20no%20email.md#question-and-image)
 
-### Sample input
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `SupplierID` | Supplier identifier. |
+| `CompanyName` | Supplier’s company name. |
+| `Country` | Supplier country as stored. |
+| `Email` | Email address as stored. |
+| `issue` | Every applicable label among `Outside India`, `Country missing` and `No email`. A semicolon separates two labels. |
+
+### Practice example · Sample input
+
+**`Suppliers`**
 
 | SupplierID | CompanyName | Country | Email |
 |---:|---|---|---|
@@ -28,7 +38,24 @@ Return `SupplierID`, `CompanyName`, `Country`, `Email`, and `issue`. Preserve th
 | 2 | Global Goods | USA | NULL | Outside India; No email |
 | 3 | Mystery Supply | NULL | mystery@example.com | Country missing |
 
-Local Foods has neither issue. Global Goods is outside India and has no email. Mystery Supply has a missing country and a present email.
+### How the sample produces this output
+
+Global Goods (ID 2) lists **USA** and has no email. Both issues belong to the same supplier, so its single row reads `Outside India; No email`. Mystery Supply (ID 3) has an email but no country on file and receives `Country missing`.
+
+Local Foods (ID 1) lists India and a usable email, so it has no issue to report. IDs 2 and 3 appear in ascending order with their stored contact values.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
+
+The saved attempt compares countries without surrounding spaces or case differences, and treats a blank or spaces-only email as missing. It preserves the original displayed values and puts the country issue first when both labels apply.
+
+</details>
 
 ## Visual walkthrough
 

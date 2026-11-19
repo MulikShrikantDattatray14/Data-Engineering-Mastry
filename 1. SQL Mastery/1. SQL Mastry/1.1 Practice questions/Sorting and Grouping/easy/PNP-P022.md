@@ -5,18 +5,24 @@
 
 ## Question
 
-The fulfilment team sends orders with **more than eight line items** to a separate packing station. From `OrderDetails`, return one row per qualifying order with:
+**Business scenario.** The fulfilment centre sends orders with more than eight line items to a separate packing station with bigger cartons. The station supervisor wants to see those orders along with how many different products and how many units each one holds, so they can plan staffing for the station.
 
-| Output column | Meaning |
+**Task.** For every order with more than eight rows in `OrderDetails`, return the number of lines, the number of distinct products and the total units. Sort by line items, highest first, then `OrderID`.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/3.%20Sorting%20and%20Grouping/P022.%20Orders%20with%20more%20than%20eight%20line%20items.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
 |---|---|
-| `OrderID` | Order identifier |
-| `line_items` | Number of rows for that order |
-| `distinct_products` | Number of different product IDs in the order |
-| `total_units` | Sum of quantities across all its lines |
+| `OrderID` | Order identifier. |
+| `line_items` | Number of detail lines in the order. |
+| `distinct_products` | Number of different product IDs in the order. |
+| `total_units` | Total quantity across the order’s lines. |
 
-Sort by `line_items` **descending**, then `OrderID` **ascending**.
+### Practice example · Sample input
 
-### Sample input · `OrderDetails`
+**`OrderDetails`**
 
 | OrderDetailID | OrderID | ProductID | Quantity |
 |---:|---:|---:|---:|
@@ -37,7 +43,17 @@ Sort by `line_items` **descending**, then `OrderID` **ascending**.
 |---:|---:|---:|---:|
 | 10 | 9 | 8 | 9 |
 
-Order 10 qualifies because it has **9 lines**, even though product 1 appears twice and it has only **8 distinct products**. Order 11 has one line, so it’s excluded.
+### How the sample produces this output
+
+Order 10 contains detail lines 1 through 9. Each line has quantity 1, so there are **9 lines** and **9 units**. Product 1 appears on lines 1 and 9, giving **8 distinct products** across those nine lines.
+
+The cutoff is more than eight lines. Order 10 qualifies with nine. Order 11 has one line and falls below the cutoff.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

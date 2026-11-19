@@ -5,18 +5,29 @@
 
 ## Question
 
-Marketing is launching same-day delivery in **Bengaluru, Mumbai, Delhi, Hyderabad, and Chennai**. From `Customers`, return the customers who live in those cities.
+**Business scenario.** Marketing is launching same-day delivery in five metros: Bengaluru, Mumbai, Delhi, Hyderabad and Chennai. They need the customers in those cities for the launch campaign. `City` was typed in by hand at sign-up, so some values carry stray spaces or odd capitalisation.
 
-- Match city names regardless of letter case and surrounding spaces.
-- Include `Bangalore`, `Bombay`, and `New Delhi` as alternate names for Bengaluru, Mumbai, and Delhi.
-- Display `City` with surrounding spaces removed. Keep its original spelling and letter case.
-- Sort alphabetically by the displayed city, ignoring case, then by `CustomerID` ascending.
+**Task.** Return customers whose city is one of the five metros, matching regardless of case and surrounding spaces. Show the city with the spaces removed. Sort by city, then `CustomerID`.
 
-Return `CustomerID`, `FirstName`, `LastName`, `City`, and `State` in that order.
+**Dataset clarification.** The supplied data also calls Bengaluru `Bangalore`, Mumbai `Bombay`, and Delhi `New Delhi`. Treat those spellings as the same five metro areas.
 
-### Sample input
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/P003.%20Customers%20in%20metro%20cities.md#question-and-image)
 
-Quotes make surrounding spaces visible.
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `CustomerID` | Customer identifier. |
+| `FirstName` | Customer’s first name. |
+| `LastName` | Customer’s last name. |
+| `City` | City with surrounding spaces removed. |
+| `State` | Customer’s state as stored. |
+
+### Practice example · Sample input
+
+Quotes around text values make surrounding spaces visible.
+
+**`Customers`**
 
 | CustomerID | FirstName | LastName | City | State |
 | ---: | --- | --- | --- | --- |
@@ -43,11 +54,28 @@ Quotes make surrounding spaces visible.
 | 5 | Nisha | Shah | MUMBAI | Maharashtra |
 | 8 | Lea | Singh | New Delhi | Delhi |
 
-Pune is outside the launch area. Both Bengaluru rows qualify, and customer 7 comes before customer 12 because they have the same displayed city.
+### How the sample produces this output
+
+ID 21 lives in Pune, outside the five metro areas. The other eight customers qualify, including IDs 14, 6 and 8 under the dataset spellings Bangalore, Bombay and New Delhi. ID 5 qualifies with the stored spelling `MUMBAI`, which stays uppercase in the output.
+
+The displayed names for IDs 7 and 12 are both Bengaluru, so ID 7 appears first. Surrounding spaces also disappear from Chennai and Bombay. Reading the displayed cities alphabetically gives the ID sequence **14, 7, 12, 6, 9, 3, 5, 8**.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
+
+<details>
+<summary>Notes from the saved attempt</summary>
 
 ### Schema
 
 The relevant columns are `CustomerID` (integer identifier), `FirstName`, `LastName`, `City`, and `State` (text). Return them in that order.
+
+The saved attempt keeps the displayed city’s original spelling and capitalization and orders city names case-insensitively.
+
+</details>
 
 ## Visual walkthrough
 

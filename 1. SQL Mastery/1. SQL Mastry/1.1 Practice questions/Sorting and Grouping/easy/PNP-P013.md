@@ -5,9 +5,22 @@
 
 ## Question
 
-From `Customers`, count registered customers per state. Label missing states as `Unknown` and apply the same **at least five customers** threshold to that group. Return `State` and `customer_count`, sorted by customer count descending, then by state ascending.
+**Business scenario.** Regional sales is deciding where to place field representatives. A rep is only worth assigning to a state with at least five registered customers. They want the qualifying states with the biggest first. `Customers` with no state on file should be visible as their own line so the team can see how many cannot be placed.
 
-### Sample input
+**Task.** Count customers per state and keep only states with five or more. Label a missing state as Unknown. Sort by customer count, highest first, then by state.
+
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/3.%20Sorting%20and%20Grouping/P013.%20States%20with%20at%20least%20five%20customers.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `State` | State name, with `Unknown` for a missing state. |
+| `customer_count` | Number of customers registered in that state. |
+
+### Practice example · Sample input
+
+**`Customers`**
 
 | CustomerID | State |
 |---:|---|
@@ -24,7 +37,15 @@ From `Customers`, count registered customers per state. Label missing states as 
 |---|---:|
 | Karnataka | 5 |
 
-Karnataka meets the threshold exactly. Maharashtra has one customer, so it’s excluded.
+### How the sample produces this output
+
+Customer IDs 1 through 5 all belong to Karnataka. Their count is exactly **5**, which meets the minimum. Maharashtra has only customer 6, giving it a count of **1**. Karnataka is therefore the only output row.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

@@ -1,18 +1,30 @@
-# PNP P006 — Most expensive products sold at full price
+# PNP P006 — Most expensive products that are never discounted
 
 **Topic:** SQL Basics  
 **Difficulty:** Easy
 
 ## Question
 
-The promotions team needs up to ten of the most expensive products that currently sell at full price. Use the `Products` table.
+**Business scenario.** The promotions team is planning a festive sale and wants to start with high-value products that currently sell at the printed price, with no discount at all. They want a short list of the ten most expensive such products, with a discount column that reads "Full price" instead of a number, so the sheet is easy to scan.
 
-- Calculate the discount as `Market_Price - Sale_Price`. Represent a zero discount as `NULL`.
-- Exclude any product with a missing sale price or market price. Its discount is unknown.
-- Keep only full-price products and show `Full price` in `discount_display`.
-- Sort by `Sale_Price` descending, then `ProductID` ascending. Return up to ten rows.
+**Task.** Compute each product's discount amount as `Market_Price` - `Sale_Price`, but store "no discount" as `NULL` rather than 0. Return the ten most expensive products whose discount is `NULL`, with a `discount_display` column that shows the text Full price for them. A product with a missing `Sale_Price` or `Market_Price` has an unknown discount, not a full price, and must never take a slot. Sort by `Sale_Price` descending, then `ProductID`.
 
-### Sample input
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/11.%20NULL%20Logic/P006.%20Most%20expensive%20products%20that%20are%20never%20discounted.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
+|---|---|
+| `ProductID` | Product identifier. |
+| `Product` | Product name. |
+| `Brand` | Brand name. |
+| `Sale_Price` | Current sale price. |
+| `Market_Price` | Market price printed on the pack. |
+| `discount_display` | Discount as text, with `Full price` for a product sold at its printed price. |
+
+### Practice example · Sample input
+
+**`Products`**
 
 | ProductID | Product | Brand | Sale_Price | Market_Price |
 | --- | --- | --- | --- | --- |
@@ -28,7 +40,17 @@ The promotions team needs up to ten of the most expensive products that currentl
 | 2 | Lamp | Home | 150 | 150 | Full price |
 | 1 | Mug | Home | 100 | 100 | Full price |
 
-Lamp comes first because it has the higher sale price. Mystery has a missing price, and Bottle has a discount. Only two rows qualify.
+### How the sample produces this output
+
+Lamp’s two prices are both 150 and Mug’s two prices are both 100. Each has a zero price difference and receives the display label `Full price`. The higher sale price puts Lamp before Mug.
+
+Bottle has a discount of `100 − 90 = 10`. Mystery has a missing sale price, so its discount is unknown. The two full-price products are the only qualifying rows in this sample.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 

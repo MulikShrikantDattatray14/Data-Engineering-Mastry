@@ -4,30 +4,32 @@
 
 ## Question
 
-The regional marketing team wants to raise the free-delivery threshold in states where customers already place large orders. They’ll consider only states with **at least 10 orders**.
+**Business scenario.** The regional marketing team wants to raise the free-delivery threshold in states where baskets are already large. They need average order value (AOV) per customer `state`, but a `state` with a handful of `orders` gives a number nobody should act on. They have agreed to look only at states with at least 10 `orders`.
 
-For each qualifying state, return these five columns.
+**Task.** For each customer `state`, return the number of distinct ordering `customers`, the number of `orders`, the total order value and the average order value. Group `orders` whose customer has no `State`, or whose `CustomerID` matches no customer, under Unknown. Keep only states with 10 or more `orders`. Sort by AOV, highest first.
 
-| Column | What it represents |
+[PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P027.%20Average%20order%20value%20by%20customer%20state.md#question-and-image)
+
+### Required output columns
+
+| Column | Meaning |
 |---|---|
-| `state` | The customer’s state. Use `Unknown` when the state is missing or the order’s `CustomerID` has no matching customer. |
-| `customers` | Number of distinct customers who placed orders in that group. |
-| `orders` | Number of orders in the group, including orders with a missing amount. |
-| `order_value` | Sum of the known `Total_Order_Amount` values. |
-| `avg_order_value` | Total order value divided by the number of orders **with a known amount**. |
+| `state` | Customer’s state, or `Unknown` for a missing state or customer match. |
+| `customers` | Number of distinct ordering customers in the group. |
+| `orders` | Number of orders in the group. |
+| `order_value` | Sum of the group’s known order amounts. |
+| `avg_order_value` | Order value divided by the number of orders with a known amount. |
 
-Apply the same 10-order minimum to `Unknown`. Sort the result by **average order value, highest first**. [PNP source question](<../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P027.%20Average%20order%20value%20by%20customer%20state.md>)
+### Practice example · Sample input
 
-### Sample input and expected output
-
-**🟩 Customers**
+**`Customers`**
 
 | CustomerID | State |
 | ---: | --- |
 | 1 | Karnataka |
 | 2 | Karnataka |
 
-**🟦 Orders**
+**`Orders`**
 
 | OrderID | CustomerID | Total_Order_Amount |
 | --- | ---: | ---: |
@@ -42,13 +44,23 @@ Apply the same 10-order minimum to `Unknown`. Sort the result by **average order
 | 9 | 2 | 100 |
 | 10 | 2 | 100 |
 
-**Expected output**
+### Expected output
 
 | state | customers | orders | order_value | avg_order_value |
 | --- | ---: | ---: | ---: | ---: |
 | Karnataka | 2 | 10 | 1000 | 100.00 |
 
-Customers 1 and 2 placed five orders each in Karnataka. The ten order amounts of 100 sum to 1,000. All ten amounts are known, giving an average of 100.00.
+### How the sample produces this output
+
+Customer 1 placed orders 1–5 and customer 2 placed orders 6–10. Both are in Karnataka, so this row represents **2 distinct customers** and **10 orders**, meeting the minimum exactly.
+
+All ten orders have an amount of 100. Their combined value is `10 × 100 = 1,000`. All ten amounts are known, so the average order value is `1,000 / 10 = 100.00`. Karnataka is the only state in this sample.
+
+## Step 1 · Your approach before writing SQL
+
+1. What does one row of the final output represent?
+2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
+3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
 ## Visual walkthrough
 
