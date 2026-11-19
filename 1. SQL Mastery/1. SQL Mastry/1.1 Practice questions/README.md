@@ -125,6 +125,12 @@ Show which rows form each group before calculating its measures. For each aggreg
 | --- | --- | --- | --- |
 | P028 | [Payment mix: share of orders and value](Subqueries/medium/PNP-P028.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
 
+### CTEs
+
+| ID | Question | Set | Difficulty |
+| --- | --- | --- | --- |
+| P030 | [Repeat versus one-time customers](CTEs/medium/PNP-P030.md) | PNP | ![MEDIUM](../_badges/medium.svg) |
+
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
 ## Difficulty rubric
