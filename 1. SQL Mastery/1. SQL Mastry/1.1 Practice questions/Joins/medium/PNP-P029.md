@@ -67,8 +67,8 @@
 ## Step 1 · Your approach before writing SQL
 
 1. What does one row in the final report represent?
-2. Which table would you put in `FROM`? Which would you add second and third, and why?
-3. Which join would you choose at each step? Name the matching columns and explain your choices.
+2. Which source would you start from, and what does one row there represent? If you use other sources, in what order would you bring them in, and why?
+3. Would you use any joins? For each join you choose, what type would you use, and which columns would you match?
 
 ## Visual walkthrough
 
