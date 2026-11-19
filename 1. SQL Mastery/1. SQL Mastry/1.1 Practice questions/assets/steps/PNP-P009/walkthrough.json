@@ -109,11 +109,7 @@
     "CategoryID": "🟦",
     "Active": "🟦",
     "PaymentID": "🟩",
-    "Allowed": "🟩",
-    "source_table": "🟦",
-    "flag_column": "🟦",
-    "raw_value": "🟦",
-    "row_count": "🟦"
+    "Allowed": "🟩"
   },
   "steps": [
     {
@@ -125,7 +121,13 @@
       "inputs": [
         "Category"
       ],
-      "sql": "SELECT 'Category' AS source_table,\n       'Active' AS flag_column, CAST(Active AS TEXT) AS raw_value , count(*) as row_count\nfrom Category\nGroup by Active"
+      "sql": "SELECT 'Category' AS source_table,\n       'Active' AS flag_column, CAST(Active AS TEXT) AS raw_value , count(*) as row_count\nfrom Category\nGroup by Active",
+      "column_colors": {
+        "source_table": "🟦",
+        "flag_column": "🟦",
+        "raw_value": "🟦",
+        "row_count": "🟦"
+      }
     },
     {
       "id": "stage2",
@@ -136,7 +138,13 @@
       "inputs": [
         "Payments"
       ],
-      "sql": "SELECT 'Payments' AS source_table,\n       'Allowed' AS flag_column,\nCAST(Allowed AS TEXT) AS raw_value , count(*) as row_count\nfrom Payments\ngroup by Allowed"
+      "sql": "SELECT 'Payments' AS source_table,\n       'Allowed' AS flag_column,\nCAST(Allowed AS TEXT) AS raw_value , count(*) as row_count\nfrom Payments\ngroup by Allowed",
+      "column_colors": {
+        "source_table": "🟩",
+        "flag_column": "🟩",
+        "raw_value": "🟩",
+        "row_count": "🟩"
+      }
     },
     {
       "id": "stage3",
@@ -148,7 +156,8 @@
         "stage1",
         "stage2"
       ],
-      "final": true
+      "final": true,
+      "row_source_field": "source_table"
     }
   ],
   "unordered": true,

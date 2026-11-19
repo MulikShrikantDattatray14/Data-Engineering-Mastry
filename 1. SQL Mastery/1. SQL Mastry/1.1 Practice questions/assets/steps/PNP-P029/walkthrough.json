@@ -128,7 +128,7 @@
     ]
   },
   "column_colors": {
-    "ShipperID": "🟩",
+    "ShipperID": "🟦",
     "CompanyName": "🟩",
     "OrderID": "🟦",
     "Total_Order_Amount": "🟦",
@@ -137,7 +137,11 @@
     "shipper_name": "🟩",
     "orders": "🟦",
     "order_value": "🟦",
-    "units_shipped": "🟥"
+    "units_shipped": "🟥",
+    "total_units": "🟥",
+    "ordering_shipper_id": "🟦",
+    "matched_shipper_id": "🟩",
+    "summarized_order_id": "🟥"
   },
   "steps": [
     {
@@ -149,7 +153,10 @@
       "inputs": [
         "OrderDetails"
       ],
-      "sql": "WITH OrderDetails_2 AS (\n    SELECT OrderID, SUM(Quantity) AS total_units\n    FROM OrderDetails\n    GROUP BY OrderID\n)\nSELECT OrderID, total_units\nFROM OrderDetails_2\nORDER BY OrderID;"
+      "sql": "WITH OrderDetails_2 AS (\n    SELECT OrderID, SUM(Quantity) AS total_units\n    FROM OrderDetails\n    GROUP BY OrderID\n)\nSELECT OrderID, total_units\nFROM OrderDetails_2\nORDER BY OrderID;",
+      "column_colors": {
+        "OrderID": "🟥"
+      }
     },
     {
       "id": "stage2",

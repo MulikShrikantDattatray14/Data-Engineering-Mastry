@@ -118,7 +118,11 @@
     "PaymentType": "🟩",
     "CompanyName": "🟥",
     "payment_type": "🟩",
-    "shipper_name": "🟥"
+    "shipper_name": "🟥",
+    "latest_order_date": "🟦",
+    "window_start": "🟦",
+    "matched_payment_id": "🟩",
+    "matched_shipper_id": "🟥"
   },
   "steps": [
     {
@@ -133,17 +137,28 @@
       "sql": "WITH reporting_window AS (\n    SELECT\n        date(MAX(OrderDate)) AS latest_order_date,\n        date(MAX(OrderDate), '-6 days') AS window_start\n    FROM Orders\n)\nSELECT latest_order_date, window_start FROM reporting_window;"
     },
     {
-      "id": "stage2",
-      "title": "Join the lookup tables",
-      "change": "The report needs an entry for each order in the date window, including orders with missing labels. Each order already carries both lookup IDs.",
-      "added_sql": "SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName\nFROM Orders AS o\nLEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID\nLEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID\nORDER BY o.OrderID;",
-      "expected_count": 3,
+      "id": "payments",
+      "title": "Look up each order’s payment type",
       "inputs": [
         "Orders",
-        "Payments",
+        "Payments"
+      ],
+      "change": "Orders supplies the purchase rows and both lookup IDs. Orders 1 and 2 match UPI. LEFT JOIN also keeps order 3, whose payment ID is NULL.",
+      "added_sql": "FROM Orders AS o\nLEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID",
+      "sql": "SELECT o.OrderID, o.OrderDate, o.PaymentID, o.ShipperID,\n       p.PaymentID AS matched_payment_id, p.PaymentType\nFROM Orders AS o\nLEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID\nORDER BY o.OrderID;",
+      "expected_count": 3
+    },
+    {
+      "id": "stage2",
+      "title": "Look up the shipper for each order",
+      "change": "The working rows still carry Orders.ShipperID. Orders 1 and 2 match FastShip. Order 3 has no shipper ID and survives with NULL shipper fields. Both lookups use keys from Orders, so their positions can be exchanged.",
+      "added_sql": "s.ShipperID AS matched_shipper_id, s.CompanyName\nLEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID",
+      "expected_count": 3,
+      "inputs": [
+        "payments",
         "Shippers"
       ],
-      "sql": "SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName\nFROM Orders AS o\nLEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID\nLEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID\nORDER BY o.OrderID;"
+      "sql": "SELECT o.OrderID, o.OrderDate, o.PaymentID, o.ShipperID,\n       p.PaymentID AS matched_payment_id, p.PaymentType,\n       s.ShipperID AS matched_shipper_id, s.CompanyName\nFROM Orders AS o\nLEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID\nLEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID\nORDER BY o.OrderID;"
     },
     {
       "id": "stage3",

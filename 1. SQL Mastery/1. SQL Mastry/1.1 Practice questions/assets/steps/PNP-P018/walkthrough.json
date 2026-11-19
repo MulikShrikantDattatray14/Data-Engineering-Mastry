@@ -114,7 +114,11 @@
     "DateEntered": "🟦",
     "OrderID": "🟩",
     "OrderDate": "🟩",
-    "customer_name": "🟦"
+    "customer_name": "🟦",
+    "latest_order_date": "🟩",
+    "window_start": "🟩",
+    "matched_order_id": "🟩",
+    "matched_order_date": "🟩"
   },
   "steps": [
     {

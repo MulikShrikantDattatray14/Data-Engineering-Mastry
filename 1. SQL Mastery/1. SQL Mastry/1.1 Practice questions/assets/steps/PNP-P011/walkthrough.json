@@ -95,7 +95,8 @@
     "sale_lines": "🟩",
     "listed_products": "🟦",
     "products_sold": "🟩",
-    "pct_sold": "🟪"
+    "pct_sold": "🟪",
+    "matched_product_id": "🟩"
   },
   "steps": [
     {

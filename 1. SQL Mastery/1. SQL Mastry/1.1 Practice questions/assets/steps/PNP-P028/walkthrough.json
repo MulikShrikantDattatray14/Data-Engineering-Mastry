@@ -98,7 +98,12 @@
     "orders": "🟦",
     "pct_of_orders": "🟦",
     "order_value": "🟦",
-    "pct_of_value": "🟦"
+    "pct_of_value": "🟦",
+    "ordering_payment_id": "🟦",
+    "matched_payment_id": "🟩",
+    "group_rows": "🟦",
+    "all_orders": "🟦",
+    "all_order_value": "🟦"
   },
   "steps": [
     {

@@ -179,7 +179,12 @@
     "category_name": "🟪",
     "orders": "🟦",
     "units_sold": "🟦",
-    "list_price_value": "🟪"
+    "list_price_value": "🟪",
+    "ordered_product_id": "🟦",
+    "matched_product_id": "🟩",
+    "product_category_id": "🟩",
+    "line_value": "🟪",
+    "joined_rows": "🟪"
   },
   "steps": [
     {
@@ -197,25 +202,25 @@
       "id": "stage2",
       "title": "Why LEFT JOIN to Products?",
       "change": "🟩 `Products` comes second because it supplies the price and the category reference for each 🟦 sale line. The `LEFT JOIN` keeps line 5 and its four units even though product ID `999` has no match. The two product ID columns below distinguish the ID recorded on the order from the product actually found.",
-      "added_sql": "SELECT od.OrderDetailID, od.ProductID AS ordered_product_id,\n       p.ProductID AS matched_product_id, p.Sale_Price\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nORDER BY od.OrderDetailID;",
+      "added_sql": "SELECT od.OrderDetailID, od.OrderID, od.ProductID AS ordered_product_id, od.Quantity,\n       p.ProductID AS matched_product_id, p.CategoryID AS product_category_id, p.Sale_Price\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nORDER BY od.OrderDetailID;",
       "expected_count": 5,
       "inputs": [
         "stage1",
         "Products"
       ],
-      "sql": "SELECT od.OrderDetailID, od.ProductID AS ordered_product_id,\n       p.ProductID AS matched_product_id, p.Sale_Price\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nORDER BY od.OrderDetailID;"
+      "sql": "SELECT od.OrderDetailID, od.OrderID, od.ProductID AS ordered_product_id, od.Quantity,\n       p.ProductID AS matched_product_id, p.CategoryID AS product_category_id, p.Sale_Price\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nORDER BY od.OrderDetailID;"
     },
     {
       "id": "stage3",
       "title": "Why FULL OUTER JOIN to Category?",
       "change": "The 🟩 `Products.CategoryID` obtained in step 2 supplies the key to add 🟥 `Category` third. The `FULL OUTER JOIN` preserves both an unmatched sale and a catalogue category with no matching sales, such as Stationery. Follow the last three rows. They show a product with a broken category reference, a sale with no product match, and a category with no sales.",
-      "added_sql": "SELECT od.OrderDetailID, p.ProductID AS matched_product_id,\n       c.CategoryID, c.CategoryName\n-- …\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nORDER BY od.OrderDetailID NULLS LAST;",
+      "added_sql": "SELECT od.OrderDetailID, od.OrderID, od.ProductID AS ordered_product_id, od.Quantity,\n       p.ProductID AS matched_product_id, p.CategoryID AS product_category_id, p.Sale_Price,\n       c.CategoryID, c.CategoryName\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nORDER BY od.OrderDetailID NULLS LAST;",
       "expected_count": 6,
       "inputs": [
         "stage2",
         "Category"
       ],
-      "sql": "SELECT od.OrderDetailID, p.ProductID AS matched_product_id,\n       c.CategoryID, c.CategoryName\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nORDER BY od.OrderDetailID NULLS LAST;"
+      "sql": "SELECT od.OrderDetailID, od.OrderID, od.ProductID AS ordered_product_id, od.Quantity,\n       p.ProductID AS matched_product_id, p.CategoryID AS product_category_id, p.Sale_Price,\n       c.CategoryID, c.CategoryName\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nORDER BY od.OrderDetailID NULLS LAST;"
     },
     {
       "id": "stage4",
@@ -223,29 +228,26 @@
       "change": "Use the catalogue name whenever the category exists. For a missing category, check the product lookup. A matched product earns `Unmapped`, and a missing product earns `Unknown product`. Stationery still has a category ID and retains its own name.",
       "added_sql": "SELECT od.OrderDetailID, c.CategoryID,\n    CASE\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NULL\n            THEN 'Unknown product'\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NOT NULL\n            THEN 'Unmapped'\n        WHEN c.CategoryID IS NOT NULL\n            THEN c.CategoryName\n    END AS category_name",
       "expected_count": 6,
-      "sql": "SELECT od.OrderDetailID, c.CategoryID,\n    CASE\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NULL\n            THEN 'Unknown product'\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NOT NULL\n            THEN 'Unmapped'\n        WHEN c.CategoryID IS NOT NULL\n            THEN c.CategoryName\n    END AS category_name\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nORDER BY od.OrderDetailID NULLS LAST;"
+      "sql": "SELECT od.OrderDetailID, od.OrderID, od.Quantity, p.Sale_Price, c.CategoryID,\n    CASE\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NULL\n            THEN 'Unknown product'\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NOT NULL\n            THEN 'Unmapped'\n        WHEN c.CategoryID IS NOT NULL\n            THEN c.CategoryName\n    END AS category_name\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nORDER BY od.OrderDetailID NULLS LAST;"
     },
     {
       "id": "stage5",
       "title": "Why multiply price by quantity on each line?",
       "change": "Drinks has two different prices within order `100`. Pair each price with its own line’s quantity while those values are still on the same row.",
-      "added_sql": "SELECT od.OrderDetailID, p.Sale_Price, od.Quantity,\n       p.Sale_Price * od.Quantity AS line_value\n-- …\nLEFT JOIN Products AS p ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c ON c.CategoryID = p.CategoryID",
+      "added_sql": "p.Sale_Price * od.Quantity AS line_value",
       "expected_count": 6,
       "inputs": [
-        "stage4",
-        "Products",
-        "OrderDetails"
+        "stage4"
       ],
-      "sql": "SELECT od.OrderDetailID, p.Sale_Price, od.Quantity,\n       p.Sale_Price * od.Quantity AS line_value\nFROM OrderDetails AS od\nLEFT JOIN Products AS p ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c ON c.CategoryID = p.CategoryID\nORDER BY od.OrderDetailID NULLS LAST;"
+      "sql": "SELECT od.OrderDetailID, od.OrderID, od.Quantity, p.Sale_Price, c.CategoryID,\n    CASE\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NULL\n            THEN 'Unknown product'\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NOT NULL\n            THEN 'Unmapped'\n        WHEN c.CategoryID IS NOT NULL\n            THEN c.CategoryName\n    END AS category_name,\n    p.Sale_Price * od.Quantity AS line_value\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nORDER BY od.OrderDetailID NULLS LAST;"
     },
     {
       "id": "stage6",
       "title": "Why group by the category ID and its label?",
-      "change": "The label and category ID collect the joined rows into one group per reported category. All matched Drinks lines occupy the same group.",
+      "change": "The label and category ID collect the joined rows into one group per reported category. All matched Drinks lines occupy the same group. The purple joined-row count includes rows contributed by OrderDetails, Products and Category.",
       "added_sql": "GROUP BY c.CategoryID, category_name",
       "expected_count": 5,
       "inputs": [
-        "stage4",
         "stage5"
       ],
       "sql": "SELECT\n    CASE\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NULL\n            THEN 'Unknown product'\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NOT NULL\n            THEN 'Unmapped'\n        WHEN c.CategoryID IS NOT NULL\n            THEN c.CategoryName\n    END AS category_name, COUNT(*) AS joined_rows\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nGROUP BY c.CategoryID, category_name;"
@@ -253,10 +255,14 @@
     {
       "id": "stage7",
       "title": "Why count orders once but add every unit?",
-      "change": "Count different order IDs only once per category but sum the quantity and extended list price on every line. The unmatched category has zero units.",
+      "change": "Count different order IDs only once per category but sum the quantity and extended list price on every line. The unmatched category has zero units. The purple value uses OrderDetails.Quantity and Products.Sale_Price.",
       "added_sql": "END AS category_name,\n    COUNT(DISTINCT od.OrderID) AS orders,\n    COALESCE(SUM(od.Quantity), 0) AS units_sold,\n    CASE\n        WHEN COUNT(od.OrderDetailID) = 0 THEN 0\n        ELSE SUM(p.Sale_Price * od.Quantity)\n    END AS list_price_value",
       "expected_count": 5,
-      "sql": "SELECT\n    CASE\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NULL\n            THEN 'Unknown product'\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NOT NULL\n            THEN 'Unmapped'\n        WHEN c.CategoryID IS NOT NULL\n            THEN c.CategoryName\n    END AS category_name,\n    COUNT(DISTINCT od.OrderID) AS orders,\n    COALESCE(SUM(od.Quantity), 0) AS units_sold,\n    CASE\n        WHEN COUNT(od.OrderDetailID) = 0 THEN 0\n        ELSE SUM(p.Sale_Price * od.Quantity)\n    END AS list_price_value\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nGROUP BY c.CategoryID, category_name;"
+      "sql": "SELECT\n    CASE\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NULL\n            THEN 'Unknown product'\n        WHEN c.CategoryID IS NULL AND p.ProductID IS NOT NULL\n            THEN 'Unmapped'\n        WHEN c.CategoryID IS NOT NULL\n            THEN c.CategoryName\n    END AS category_name,\n    COUNT(DISTINCT od.OrderID) AS orders,\n    COALESCE(SUM(od.Quantity), 0) AS units_sold,\n    CASE\n        WHEN COUNT(od.OrderDetailID) = 0 THEN 0\n        ELSE SUM(p.Sale_Price * od.Quantity)\n    END AS list_price_value\nFROM OrderDetails AS od\nLEFT JOIN Products AS p\n    ON od.ProductID = p.ProductID\nFULL OUTER JOIN Category AS c\n    ON c.CategoryID = p.CategoryID\nGROUP BY c.CategoryID, category_name;",
+      "inputs": [
+        "stage5",
+        "stage6"
+      ]
     },
     {
       "id": "stage8",

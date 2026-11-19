@@ -118,7 +118,7 @@
     ]
   },
   "column_colors": {
-    "CustomerID": "🟩",
+    "CustomerID": "🟦",
     "State": "🟩",
     "OrderID": "🟦",
     "Total_Order_Amount": "🟦",
@@ -126,7 +126,10 @@
     "customers": "🟦",
     "orders": "🟦",
     "order_value": "🟦",
-    "avg_order_value": "🟦"
+    "avg_order_value": "🟦",
+    "ordered_by": "🟦",
+    "matched_customer": "🟩",
+    "group_rows": "🟦"
   },
   "steps": [
     {

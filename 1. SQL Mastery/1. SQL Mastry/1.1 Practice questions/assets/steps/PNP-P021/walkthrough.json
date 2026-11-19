@@ -162,7 +162,8 @@
     "LastName": "🟩",
     "OrderID": "🟦",
     "customer_name": "🟩",
-    "orders_placed": "🟦"
+    "orders_placed": "🟦",
+    "cutoff": "🟦"
   },
   "steps": [
     {

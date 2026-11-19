@@ -136,12 +136,20 @@ def build(manifest):
             inputs = step.get("inputs", [previous_id] if previous_id else [t["name"] for t in conf["tables"]])
             color_map = {**conf.get("column_colors", {}), **step.get("column_colors", {})}
             field_labels = [(color_map.get(c, "") + " " + c).strip() for c in cols]
+            shown_rows = rows
+            if source_field := step.get("row_source_field"):
+                source_index = cols.index(source_field)
+                palette = {t["name"]: t["color"] for t in conf["tables"]}
+                shown_rows = [
+                    [f"{palette[row[source_index]]} {display(cell)}" for cell in row]
+                    for row in rows
+                ]
             before = []
             for name in inputs:
                 title, fields, data = sources[name]
                 unit = "row" if len(data) == 1 else "rows"
                 before.extend([f"**{title} · {len(data)} {unit}**", "", markdown_table(fields, data), ""])
-            sources[key] = (step["title"], field_labels, rows)
+            sources[key] = (step["title"], field_labels, shown_rows)
             previous_id = key
             def button(direction, destination):
                 if destination is None:
@@ -153,7 +161,7 @@ def build(manifest):
                      "## SQL added or changed", "", "\x60\x60\x60sql", step["added_sql"], "\x60\x60\x60", "",
                      "## Input to this step", "", *before,
                      f"## Result · {len(rows)} " + ("row" if len(rows)==1 else "rows"), "",
-                     markdown_table(field_labels, rows), "",
+                     markdown_table(field_labels, shown_rows), "",
                      "<details>", "<summary>Full SQLite query for this step</summary>", "",
                      "\x60\x60\x60sql", sql, "\x60\x60\x60", "", "</details>", "", nav, "", f"[Back to the question and saved solutions]({record_href})", ""]
             pages[f"{i+1:02}.md"] = "\n".join(parts)
