@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** Merchandising is adding a "Shop by budget" filter to the app. Each product must carry exactly one band based on its current `Sale_Price`: Budget below 200, Mid from 200 up to 699, Premium from 700. A product with no price should show Unknown so it can be fixed, not disappear from the filter.
+**Table colors** · 🟦 `Products`
+
+**Business scenario.** Merchandising is adding a "Shop by budget" filter to the app. Each product must carry exactly one band based on its current 🟦 `Sale_Price`: Budget below 200, Mid from 200 up to 699, Premium from 700. A product with no price should show Unknown so it can be fixed, not disappear from the filter.
 
 **Task.** Label every product with a price band. Mid means 200 or more and less than 700, so a price of 699.50 is Mid. Sort by `ProductID`.
 
@@ -13,18 +15,18 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `ProductID` | Product identifier. |
-| `Product` | Product name. |
-| `Sale_Price` | Current sale price. |
-| `price_band` | One of `Budget`, `Mid`, `Premium` or `Unknown` for the product’s sale price. |
+| Column | Meaning | Source |
+|---|---|---|
+| `ProductID` | Product identifier. | 🟦 `Products` |
+| `Product` | Product name. | 🟦 `Products` |
+| `Sale_Price` | Current sale price. | 🟦 `Products` |
+| `price_band` | One of `Budget`, `Mid`, `Premium` or `Unknown` for the product’s sale price. | 🟦 `Products` |
 
 ### Practice example · Sample input
 
-**`Products`**
+**🟦 `Products`**
 
-| ProductID | Product | Sale_Price |
+| 🟦 ProductID | 🟦 Product | 🟦 Sale_Price |
 | --- | --- | --- |
 | 1 | Pen | 199 |
 | 2 | Book | 200 |
@@ -34,7 +36,7 @@
 
 ### Expected output
 
-| ProductID | Product | Sale_Price | price_band |
+| 🟦 ProductID | 🟦 Product | 🟦 Sale_Price | 🟦 price_band |
 | --- | --- | --- | --- |
 | 1 | Pen | 199 | Budget |
 | 2 | Book | 200 | Mid |
@@ -42,11 +44,13 @@
 | 4 | Watch | 700 | Premium |
 | 5 | Mystery | `NULL` | Unknown |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p008.svg?raw=1)
+
 ### How the sample produces this output
 
-Pen at **199** is Budget. Book at **200** is exactly at the start of Mid, and Bag at **699.50** is still below 700, so both are Mid. Watch at **700** is the first price in Premium.
+🟦 Pen at **199** is Budget. Book at **200** is exactly at the start of Mid, and Bag at **699.50** is still below 700, so both are Mid. Watch at **700** is the first price in Premium.
 
-Mystery has no price and receives Unknown. All five product IDs appear in ascending order.
+🟦 Mystery has no price and receives Unknown. All five product IDs appear in ascending order.
 
 ## Step 1 · Your approach before writing SQL
 

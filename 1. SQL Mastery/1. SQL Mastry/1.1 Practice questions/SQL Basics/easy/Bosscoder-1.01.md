@@ -4,21 +4,23 @@
 
 ## Question
 
-Write a solution to report the customers with positive revenue in the year 2021. Revenue can be negative. Return `customer_id` in any order.
+**Table colors** · 🟦 `Customers`
+
+Write a solution to report the customers with positive revenue in the year 2021. Revenue can be negative. Return 🟦 `customer_id` in any order.
 
 [Bosscoder assignment question](../../../1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/1.Sql%20Find%20Customers%20With%20Positive%20Revenue%20This%20Year.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `customer_id` | Identifier of each customer with positive revenue in 2021. |
+| Column | Meaning | Source |
+|---|---|---|
+| `customer_id` | Identifier of each customer with positive revenue in 2021. | 🟦 `Customers` |
 
 ### Assignment example · Sample input
 
-**`Customers`**
+**🟦 `Customers`**
 
-| customer_id | year | revenue |
+| 🟦 customer_id | 🟦 year | 🟦 revenue |
 |---:|---:|---:|
 | 1 | 2018 | 50 |
 | 1 | 2021 | 30 |
@@ -30,16 +32,18 @@ Write a solution to report the customers with positive revenue in the year 2021.
 
 ### Expected output
 
-| customer_id |
+| 🟦 customer_id |
 |---:|
 | 1 |
 | 4 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/b1-01.svg?raw=1)
+
 ### How the sample produces this output
 
-Customer 1 earned **30** in 2021 and customer 4 earned **20** that year, so both IDs appear. Customer 2’s 2021 revenue is **−50**, and customer 3’s positive revenues belong to earlier years.
+🟦 Customer 1 earned **30** in 2021 and customer 4 earned **20** that year, so both IDs appear. Customer 2’s 2021 revenue is **−50**, and customer 3’s positive revenues belong to earlier years.
 
-Customer 1 also has entries for 2018 and 2020. Neither changes the 2021 result. The assignment accepts either order for IDs 1 and 4.
+🟦 Customer 1 also has entries for 2018 and 2020. Neither changes the 2021 result. The assignment accepts either order for IDs 1 and 4.
 
 ## Step 1 · Your approach before writing SQL
 

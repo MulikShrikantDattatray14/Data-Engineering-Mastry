@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** Marketing is launching same-day delivery in five metros: Bengaluru, Mumbai, Delhi, Hyderabad and Chennai. They need the customers in those cities for the launch campaign. `City` was typed in by hand at sign-up, so some values carry stray spaces or odd capitalisation.
+**Table colors** · 🟦 `Customers`
+
+**Business scenario.** Marketing is launching same-day delivery in five metros: Bengaluru, Mumbai, Delhi, Hyderabad and Chennai. They need the customers in those cities for the launch campaign. 🟦 `City` was typed in by hand at sign-up, so some values carry stray spaces or odd capitalisation.
 
 **Task.** Return customers whose city is one of the five metros, matching regardless of case and surrounding spaces. Show the city with the spaces removed. Sort by city, then `CustomerID`.
 
@@ -15,21 +17,21 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `CustomerID` | Customer identifier. |
-| `FirstName` | Customer’s first name. |
-| `LastName` | Customer’s last name. |
-| `City` | City with surrounding spaces removed. |
-| `State` | Customer’s state as stored. |
+| Column | Meaning | Source |
+|---|---|---|
+| `CustomerID` | Customer identifier. | 🟦 `Customers` |
+| `FirstName` | Customer’s first name. | 🟦 `Customers` |
+| `LastName` | Customer’s last name. | 🟦 `Customers` |
+| `City` | City with surrounding spaces removed. | 🟦 `Customers` |
+| `State` | Customer’s state as stored. | 🟦 `Customers` |
 
 ### Practice example · Sample input
 
 Quotes around text values make surrounding spaces visible.
 
-**`Customers`**
+**🟦 `Customers`**
 
-| CustomerID | FirstName | LastName | City | State |
+| 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 City | 🟦 State |
 | ---: | --- | --- | --- | --- |
 | 12 | Asha | Rao | `' Bengaluru '` | Karnataka |
 | 5 | Nisha | Shah | `'MUMBAI'` | Maharashtra |
@@ -43,7 +45,7 @@ Quotes around text values make surrounding spaces visible.
 
 ### Expected output
 
-| CustomerID | FirstName | LastName | City | State |
+| 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 City | 🟦 State |
 | ---: | --- | --- | --- | --- |
 | 14 | Isha | Kumar | Bangalore | Karnataka |
 | 7 | Mira | Das | Bengaluru | Karnataka |
@@ -54,11 +56,13 @@ Quotes around text values make surrounding spaces visible.
 | 5 | Nisha | Shah | MUMBAI | Maharashtra |
 | 8 | Lea | Singh | New Delhi | Delhi |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p003.svg?raw=1)
+
 ### How the sample produces this output
 
-ID 21 lives in Pune, outside the five metro areas. The other eight customers qualify, including IDs 14, 6 and 8 under the dataset spellings Bangalore, Bombay and New Delhi. ID 5 qualifies with the stored spelling `MUMBAI`, which stays uppercase in the output.
+🟦 ID 21 lives in Pune, outside the five metro areas. The other eight customers qualify, including IDs 14, 6 and 8 under the dataset spellings Bangalore, Bombay and New Delhi. ID 5 qualifies with the stored spelling `MUMBAI`, which stays uppercase in the output.
 
-The displayed names for IDs 7 and 12 are both Bengaluru, so ID 7 appears first. Surrounding spaces also disappear from Chennai and Bombay. Reading the displayed cities alphabetically gives the ID sequence **14, 7, 12, 6, 9, 3, 5, 8**.
+🟦 The displayed names for IDs 7 and 12 are both Bengaluru, so ID 7 appears first. Surrounding spaces also disappear from Chennai and Bombay. Reading the displayed cities alphabetically gives the ID sequence **14, 7, 12, 6, 9, 3, 5, 8**.
 
 ## Step 1 · Your approach before writing SQL
 

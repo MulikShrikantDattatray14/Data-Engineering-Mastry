@@ -5,46 +5,50 @@
 
 ## Question
 
+**Table colors** · 🟦 `Category` · 🟩 `Products`
+
 **Business scenario.** The catalogue team is cleaning up the app's category menu. An empty category leads shoppers to a blank page, so they want every category with its product count, empty ones included and listed first.
 
-**Task.** For every row in `Category`, return the number of products assigned to it. A category with no products must appear with 0. Sort by product count ascending, then `CategoryID`.
+**Task.** For every row in 🟦 `Category`, return the number of products assigned to it. A category with no products must appear with 0. Sort by product count ascending, then `CategoryID`.
 
 [PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P015.%20Product%20count%20for%20every%20category.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `CategoryID` | Category identifier. |
-| `CategoryName` | Category name. |
-| `product_count` | Number of products assigned to the category, including zero for an empty category. |
+| Column | Meaning | Source |
+|---|---|---|
+| `CategoryID` | Category identifier. | 🟦 `Category` |
+| `CategoryName` | Category name. | 🟦 `Category` |
+| `product_count` | Number of products assigned to the category, including zero for an empty category. | 🟩 `Products` |
 
 ### Practice example · Sample input
 
-**`Category`**
+**🟦 `Category`**
 
-| CategoryID | CategoryName |
+| 🟦 CategoryID | 🟦 CategoryName |
 |---:|---|
 | 1 | Snacks |
 | 2 | Toys |
 
-**`Products`**
+**🟩 `Products`**
 
-| ProductID | CategoryID |
+| 🟩 ProductID | 🟩 CategoryID |
 |---:|---:|
 | 10 | 1 |
 | 11 | 1 |
 
 ### Expected output
 
-| CategoryID | CategoryName | product_count |
+| 🟦 CategoryID | 🟦 CategoryName | 🟩 product_count |
 |---:|---|---:|
 | 2 | Toys | 0 |
 | 1 | Snacks | 2 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p015.svg?raw=1)
+
 ### How the sample produces this output
 
-Category 2, **Toys**, has no product assigned to it. It still appears in the report with a count of **0**. Category 1, **Snacks**, has product IDs 10 and 11, so its count is **2**.
+Category 2, 🟦 **Toys**, has no product assigned to it. It still appears in the report with a count of 🟩 **0**. Category 1, 🟦 **Snacks**, has product IDs 10 and 11, so its count is 🟩 **2**.
 
 The report orders the counts from smallest to largest. That puts Toys first even though its category ID is larger.
 

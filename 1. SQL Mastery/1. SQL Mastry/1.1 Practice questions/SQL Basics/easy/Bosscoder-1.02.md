@@ -6,22 +6,24 @@
 
 ## Question
 
-Calculate a bonus for every employee. An employee receives 100% of their salary when their `employee_id` is odd **and** their name does not start with `M`. The bonus is `0` otherwise. Return `employee_id` and `bonus`, ordered by `employee_id`.
+**Table colors** · 🟦 `Employees`
+
+Calculate a bonus for every employee. An employee receives 100% of their salary when their 🟦 `employee_id` is odd **and** their name does not start with `M`. The bonus is `0` otherwise. Return `employee_id` and `bonus`, ordered by `employee_id`.
 
 [Bosscoder assignment question](../../../1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/2.Sql%20Calculate%20Special%20Bonus.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `employee_id` | Employee identifier. |
-| `bonus` | Bonus amount for that employee, including zero when applicable. |
+| Column | Meaning | Source |
+|---|---|---|
+| `employee_id` | Employee identifier. | 🟦 `Employees` |
+| `bonus` | Bonus amount for that employee, including zero when applicable. | 🟦 `Employees` |
 
 ### Assignment example · Sample input
 
-**`Employees`**
+**🟦 `Employees`**
 
-| employee_id | name | salary |
+| 🟦 employee_id | 🟦 name | 🟦 salary |
 |---:|---|---:|
 | 2 | Meir | 3000 |
 | 3 | Michael | 3800 |
@@ -31,7 +33,7 @@ Calculate a bonus for every employee. An employee receives 100% of their salary 
 
 ### Expected output
 
-| employee_id | bonus |
+| 🟦 employee_id | 🟦 bonus |
 |---:|---:|
 | 2 | 0 |
 | 3 | 0 |
@@ -39,11 +41,13 @@ Calculate a bonus for every employee. An employee receives 100% of their salary 
 | 8 | 0 |
 | 9 | 7700 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/b1-02.svg?raw=1)
+
 ### How the sample produces this output
 
-Employees 7 (Addilyn) and 9 (Kannon) have odd IDs and names starting with A and K. They receive their full salaries, **7400** and **7700**.
+🟦 Employees 7 (Addilyn) and 9 (Kannon) have odd IDs and names starting with A and K. They receive their full salaries, **7400** and **7700**.
 
-Employee 3 (Michael) has an odd ID but a name beginning with M. Employees 2 (Meir) and 8 (Juan) have even IDs. Those three employees each receive **0**. The output includes all five employees in ID order.
+🟦 Employee 3 (Michael) has an odd ID but a name beginning with M. Employees 2 (Meir) and 8 (Juan) have even IDs. Those three employees each receive **0**. The output includes all five employees in ID order.
 
 ## Step 1 · Your approach before writing SQL
 

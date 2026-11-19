@@ -5,26 +5,28 @@
 
 ## Question
 
+**Table colors** · 🟦 `OrderDetails`
+
 **Business scenario.** The fulfilment centre sends orders with more than eight line items to a separate packing station with bigger cartons. The station supervisor wants to see those orders along with how many different products and how many units each one holds, so they can plan staffing for the station.
 
-**Task.** For every order with more than eight rows in `OrderDetails`, return the number of lines, the number of distinct products and the total units. Sort by line items, highest first, then `OrderID`.
+**Task.** For every order with more than eight rows in 🟦 `OrderDetails`, return the number of lines, the number of distinct products and the total units. Sort by line items, highest first, then `OrderID`.
 
 [PNP source question](../../../2.PNP-%20foundations%20and%20practice/3.%20Sorting%20and%20Grouping/P022.%20Orders%20with%20more%20than%20eight%20line%20items.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `OrderID` | Order identifier. |
-| `line_items` | Number of detail lines in the order. |
-| `distinct_products` | Number of different product IDs in the order. |
-| `total_units` | Total quantity across the order’s lines. |
+| Column | Meaning | Source |
+|---|---|---|
+| `OrderID` | Order identifier. | 🟦 `OrderDetails` |
+| `line_items` | Number of detail lines in the order. | 🟦 `OrderDetails` |
+| `distinct_products` | Number of different product IDs in the order. | 🟦 `OrderDetails` |
+| `total_units` | Total quantity across the order’s lines. | 🟦 `OrderDetails` |
 
 ### Practice example · Sample input
 
-**`OrderDetails`**
+**🟦 `OrderDetails`**
 
-| OrderDetailID | OrderID | ProductID | Quantity |
+| 🟦 OrderDetailID | 🟦 OrderID | 🟦 ProductID | 🟦 Quantity |
 |---:|---:|---:|---:|
 | 1 | 10 | 1 | 1 |
 | 2 | 10 | 2 | 1 |
@@ -39,15 +41,17 @@
 
 ### Expected output
 
-| OrderID | line_items | distinct_products | total_units |
+| 🟦 OrderID | 🟦 line_items | 🟦 distinct_products | 🟦 total_units |
 |---:|---:|---:|---:|
 | 10 | 9 | 8 | 9 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p022.svg?raw=1)
+
 ### How the sample produces this output
 
-Order 10 contains detail lines 1 through 9. Each line has quantity 1, so there are **9 lines** and **9 units**. Product 1 appears on lines 1 and 9, giving **8 distinct products** across those nine lines.
+🟦 Order 10 contains detail lines 1 through 9. Each line has quantity 1, so there are **9 lines** and **9 units**. Product 1 appears on lines 1 and 9, giving **8 distinct products** across those nine lines.
 
-The cutoff is more than eight lines. Order 10 qualifies with nine. Order 11 has one line and falls below the cutoff.
+🟦 The cutoff is more than eight lines. Order 10 qualifies with nine. Order 11 has one line and falls below the cutoff.
 
 ## Step 1 · Your approach before writing SQL
 

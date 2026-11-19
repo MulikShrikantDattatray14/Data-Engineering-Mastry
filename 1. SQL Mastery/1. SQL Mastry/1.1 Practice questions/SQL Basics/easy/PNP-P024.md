@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** Procurement compliance runs a supplier review each quarter. `Suppliers` outside India need import paperwork on file, and suppliers with no email cannot receive purchase orders from the new e-procurement system. A supplier with no country recorded is also a problem, because nobody can confirm it is domestic.
+**Table colors** · 🟦 `Suppliers`
+
+**Business scenario.** Procurement compliance runs a supplier review each quarter. 🟦 `Suppliers` outside India need import paperwork on file, and suppliers with no email cannot receive purchase orders from the new e-procurement system. A supplier with no country recorded is also a problem, because nobody can confirm it is domestic.
 
 **Task.** Return every supplier whose country is not India, whose country is missing, or whose email is missing or blank. Add an `issue` column naming every problem found. Sort by `SupplierID`.
 
@@ -13,19 +15,19 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `SupplierID` | Supplier identifier. |
-| `CompanyName` | Supplier’s company name. |
-| `Country` | Supplier country as stored. |
-| `Email` | Email address as stored. |
-| `issue` | Every applicable label among `Outside India`, `Country missing` and `No email`. A semicolon separates two labels. |
+| Column | Meaning | Source |
+|---|---|---|
+| `SupplierID` | Supplier identifier. | 🟦 `Suppliers` |
+| `CompanyName` | Supplier’s company name. | 🟦 `Suppliers` |
+| `Country` | Supplier country as stored. | 🟦 `Suppliers` |
+| `Email` | Email address as stored. | 🟦 `Suppliers` |
+| `issue` | Every applicable label among `Outside India`, `Country missing` and `No email`. A semicolon separates two labels. | 🟦 `Suppliers` |
 
 ### Practice example · Sample input
 
-**`Suppliers`**
+**🟦 `Suppliers`**
 
-| SupplierID | CompanyName | Country | Email |
+| 🟦 SupplierID | 🟦 CompanyName | 🟦 Country | 🟦 Email |
 |---:|---|---|---|
 | 1 | Local Foods | India | local@example.com |
 | 2 | Global Goods | USA | NULL |
@@ -33,16 +35,18 @@
 
 ### Expected output
 
-| SupplierID | CompanyName | Country | Email | issue |
+| 🟦 SupplierID | 🟦 CompanyName | 🟦 Country | 🟦 Email | 🟦 issue |
 |---:|---|---|---|---|
 | 2 | Global Goods | USA | NULL | Outside India; No email |
 | 3 | Mystery Supply | NULL | mystery@example.com | Country missing |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p024.svg?raw=1)
+
 ### How the sample produces this output
 
-Global Goods (ID 2) lists **USA** and has no email. Both issues belong to the same supplier, so its single row reads `Outside India; No email`. Mystery Supply (ID 3) has an email but no country on file and receives `Country missing`.
+🟦 Global Goods (ID 2) lists **USA** and has no email. Both issues belong to the same supplier, so its single row reads `Outside India; No email`. Mystery Supply (ID 3) has an email but no country on file and receives `Country missing`.
 
-Local Foods (ID 1) lists India and a usable email, so it has no issue to report. IDs 2 and 3 appear in ascending order with their stored contact values.
+🟦 Local Foods (ID 1) lists India and a usable email, so it has no issue to report. IDs 2 and 3 appear in ascending order with their stored contact values.
 
 ## Step 1 · Your approach before writing SQL
 

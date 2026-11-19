@@ -4,43 +4,45 @@
 
 ## Question
 
-**Business scenario.** The category management team splits next quarter's promotion budget across categories. For each category they want three numbers: how many `orders` included it, how many units moved, and what those units are worth at list price. Finance will tie the units column back to the order lines, so no line may go missing, even when its product or category reference is broken.
+**Table colors** · 🟥 `Category` · 🟩 `Products` · 🟦 `OrderDetails` · 🟪 multiple sources
 
-**Task.** For every category, return the number of distinct `orders` that contained at least one of its products, the units sold, and the list-price value (`Quantity` * `Sale_Price`). Lines whose product points to a `CategoryID` with no `Category` row go under Unmapped. Lines whose `ProductID` is not in `Products` go under Unknown product. Sort by list-price value, highest first.
+**Business scenario.** The category management team splits next quarter's promotion budget across categories. For each category they want three numbers: how many 🟦 `orders` included it, how many units moved, and what those units are worth at list price. Finance will tie the units column back to the order lines, so no line may go missing, even when its product or category reference is broken.
+
+**Task.** For every category, return the number of distinct `orders` that contained at least one of its products, the units sold, and the list-price value (`Quantity` * 🟩 `Sale_Price`). Lines whose product points to a `CategoryID` with no 🟥 `Category` row go under Unmapped. Lines whose `ProductID` is not in `Products` go under Unknown product. Sort by list-price value, highest first.
 
 [PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P026.%20List-price%20value%20by%20category.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `category_name` | Category name, `Unmapped` or `Unknown product`. |
-| `orders` | Number of distinct orders containing a line in this category. |
-| `units_sold` | Total quantity across the category’s sale lines. |
-| `list_price_value` | Total of each line’s quantity multiplied by its product’s sale price. |
+| Column | Meaning | Source |
+|---|---|---|
+| `category_name` | Category name, `Unmapped` or `Unknown product`. | 🟪 `Products` + `Category` |
+| `orders` | Number of distinct orders containing a line in this category. | 🟦 `OrderDetails` |
+| `units_sold` | Total quantity across the category’s sale lines. | 🟦 `OrderDetails` |
+| `list_price_value` | Total of each line’s quantity multiplied by its product’s sale price. | 🟪 `OrderDetails` + `Products` |
 
 ### Practice example · Sample input
 
-**`Category`**
+**🟥 `Category`**
 
-| CategoryID | CategoryName |
+| 🟥 CategoryID | 🟥 CategoryName |
 |---:|---|
 | 1 | Drinks |
 | 2 | Snacks |
 | 3 | Stationery |
 
-**`Products`**
+**🟩 `Products`**
 
-| ProductID | CategoryID | Sale_Price |
+| 🟩 ProductID | 🟩 CategoryID | 🟩 Sale_Price |
 |---:|---:|---:|
 | 10 | 1 | 10 |
 | 11 | 1 | 8 |
 | 20 | 2 | 5 |
 | 30 | 99 | 7 |
 
-**`OrderDetails`**
+**🟦 `OrderDetails`**
 
-| OrderDetailID | OrderID | ProductID | Quantity |
+| 🟦 OrderDetailID | 🟦 OrderID | 🟦 ProductID | 🟦 Quantity |
 |---:|---:|---:|---:|
 | 1 | 100 | 10 | 2 |
 | 2 | 100 | 11 | 1 |
@@ -50,7 +52,7 @@
 
 ### Expected output
 
-| category_name | orders | units_sold | list_price_value |
+| 🟪 category_name | 🟦 orders | 🟦 units_sold | 🟪 list_price_value |
 |---|---:|---:|---:|
 | Drinks | 1 | 3 | 28 |
 | Unmapped | 1 | 3 | 21 |
@@ -58,15 +60,17 @@
 | Stationery | 0 | 0 | 0 |
 | Unknown product | 1 | 4 | NULL |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p026.svg?raw=1)
+
 ### How the sample produces this output
 
-- **Drinks.** Order 100 contains two Drinks lines. They supply `2 + 1 = 3` units and `2 × 10 + 1 × 8 = 28` in value. Both lines belong to the same order, so the order count is 1.
-- **Unmapped.** Product 30 points to category 99, which has no category record. Its line in order 101 contributes 1 order, 3 units and `3 × 7 = 21` in value.
-- **Snacks.** Order 100 also has one Snacks unit priced at 5. Snacks therefore shows 1 order, 1 unit and a value of 5.
-- **Stationery.** This category has no sold units. Its order count, units and value are all zero in the saved example.
-- **Unknown product.** Order 102 contains 4 units of product 999. There is no product record supplying a price, so the row shows 1 order, 4 units and a `NULL` value.
+- 🟥 **Drinks.** Order 100 contains two Drinks lines. They supply 🟦 `2 + 1 = 3` units and 🟪 `2 × 10 + 1 × 8 = 28` in value. Both lines belong to the same order, so the order count is 1.
+- 🟪 **Unmapped.** 🟩 Product 30 points to category 99, which has no category record. Its line in 🟦 order 101 contributes 1 order, 3 units and 🟪 `3 × 7 = 21` in value.
+- 🟥 **Snacks.** Order 100 also has one Snacks unit priced at 5. Snacks therefore shows 1 order, 1 unit and a value of 5.
+- 🟥 **Stationery.** This category has no sold units. Its order count, units and value are all zero in the saved example.
+- 🟪 **Unknown product.** Order 102 contains 4 units of product 999. There is no product record supplying a price, so the row shows 1 order, 4 units and a `NULL` value.
 
-The five rows account for `3 + 3 + 1 + 0 + 4 = 11` input units. Known values appear in the order 28, 21, 5, 0, followed by the unknown value.
+The five rows account for 🟦 `3 + 3 + 1 + 0 + 4 = 11` input units. Known values appear in the order 28, 21, 5, 0, followed by the unknown value.
 
 ## Step 1 · Your approach before writing SQL
 

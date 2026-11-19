@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** Merchandising decides which products get the end-of-aisle display in the app. They look at three numbers per product: units sold, the number of order lines, and the number of distinct `orders`. A product bought in bulk by a few customers and one bought one at a time by many need different promotions. Cancellations and returns are not recorded here, so every order line counts as sold.
+**Table colors** · 🟩 `Products` · 🟦 `OrderDetails`
+
+**Business scenario.** Merchandising decides which products get the end-of-aisle display in the app. They look at three numbers per product: units sold, the number of order lines, and the number of distinct 🟦 `orders`. A product bought in bulk by a few customers and one bought one at a time by many need different promotions. Cancellations and returns are not recorded here, so every order line counts as sold.
 
 **Task.** For each product that appears in `OrderDetails`, return units sold, order lines and distinct `orders`. Sort by units sold, highest first, then `ProductID`.
 
@@ -13,27 +15,27 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `ProductID` | Product identifier. |
-| `Product` | Product name. |
-| `units_sold` | Total quantity on the product’s sale lines. |
-| `order_lines` | Number of sale lines for the product. |
-| `orders` | Number of distinct orders containing that product. |
+| Column | Meaning | Source |
+|---|---|---|
+| `ProductID` | Product identifier. | 🟦 `OrderDetails` |
+| `Product` | Product name. | 🟩 `Products` |
+| `units_sold` | Total quantity on the product’s sale lines. | 🟦 `OrderDetails` |
+| `order_lines` | Number of sale lines for the product. | 🟦 `OrderDetails` |
+| `orders` | Number of distinct orders containing that product. | 🟦 `OrderDetails` |
 
 ### Practice example · Sample input
 
-**`Products`**
+**🟩 `Products`**
 
-| ProductID | Product |
+| 🟩 ProductID | 🟩 Product |
 |---:|---|
 | 1 | Pen |
 | 2 | Bag |
 | 3 | Cup |
 
-**`OrderDetails`**
+**🟦 `OrderDetails`**
 
-| OrderDetailID | OrderID | ProductID | Quantity |
+| 🟦 OrderDetailID | 🟦 OrderID | 🟦 ProductID | 🟦 Quantity |
 |---:|---:|---:|---:|
 | 1 | 10 | 1 | 2 |
 | 2 | 11 | 1 | 3 |
@@ -41,14 +43,16 @@
 
 ### Expected output
 
-| ProductID | Product | units_sold | order_lines | orders |
+| 🟦 ProductID | 🟩 Product | 🟦 units_sold | 🟦 order_lines | 🟦 orders |
 |---:|---|---:|---:|---:|
 | 1 | Pen | 5 | 2 | 2 |
 | 2 | Bag | 1 | 1 | 1 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p019.svg?raw=1)
+
 ### How the sample produces this output
 
-Pen appears on detail lines 1 and 2 with quantities 2 and 3. It therefore has **5 units**, **2 lines**, and **2 distinct orders** (10 and 11). Bag appears on line 3 of order 11 with quantity 1, giving it **1 unit, 1 line and 1 order**.
+🟩 Pen appears on detail lines 1 and 2 with quantities 2 and 3. It therefore has 🟦 **5 units**, **2 lines**, and **2 distinct orders** (10 and 11). 🟩 Bag appears on line 3 of order 11 with quantity 1, giving it 🟦 **1 unit, 1 line and 1 order**.
 
 Cup has no sale line. Pen comes first because 5 units exceeds 1. The output accounts for the same six units as the three input quantities.
 

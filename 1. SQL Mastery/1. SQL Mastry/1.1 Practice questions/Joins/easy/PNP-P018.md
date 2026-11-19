@@ -5,50 +5,54 @@
 
 ## Question
 
-**Business scenario.** The retention team sends a "we miss you" offer to customers who have gone quiet. The list is every registered customer with no order in the last 90 days of data, whether they went quiet or never ordered at all; the team splits the two groups later. "Last 90 days" ends on the latest `OrderDate` in the table, not on today's date, because the extract may be weeks old.
+**Table colors** · 🟦 `Customers` · 🟩 `Orders`
 
-**Task.** Return every customer who has no order dated within the 90 days ending on the latest `OrderDate` in `Orders`. Show their name, email and sign-up date. Sort by `DateEntered`, then `CustomerID`.
+**Business scenario.** The retention team sends a "we miss you" offer to customers who have gone quiet. The list is every registered customer with no order in the last 90 days of data, whether they went quiet or never ordered at all; the team splits the two groups later. "Last 90 days" ends on the latest 🟩 `OrderDate` in the table, not on today's date, because the extract may be weeks old.
+
+**Task.** Return every customer who has no order dated within the 90 days ending on the latest `OrderDate` in `Orders`. Show their name, email and sign-up date. Sort by 🟦 `DateEntered`, then `CustomerID`.
 
 [PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P018.%20Customers%20with%20no%20order%20in%20the%20last%2090%20days.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `CustomerID` | Customer identifier. |
-| `customer_name` | Customer’s first and last names, separated by a space. |
-| `Email` | Email address as stored. |
-| `DateEntered` | Customer’s sign-up date. |
+| Column | Meaning | Source |
+|---|---|---|
+| `CustomerID` | Customer identifier. | 🟦 `Customers` |
+| `customer_name` | Customer’s first and last names, separated by a space. | 🟦 `Customers` |
+| `Email` | Email address as stored. | 🟦 `Customers` |
+| `DateEntered` | Customer’s sign-up date. | 🟦 `Customers` |
 
 ### Practice example · Sample input
 
-**`Customers`**
+**🟦 `Customers`**
 
-| CustomerID | FirstName | LastName | Email | DateEntered |
+| 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 Email | 🟦 DateEntered |
 |---:|---|---|---|---|
 | 1 | Asha | Rao | asha@example.com | 2023-01-01 |
 | 2 | Ben | Das | ben@example.com | 2023-02-01 |
 | 3 | Cia | Sen | cia@example.com | 2024-01-01 |
 
-**`Orders`**
+**🟩 `Orders`**
 
-| OrderID | CustomerID | OrderDate |
+| 🟩 OrderID | 🟩 CustomerID | 🟩 OrderDate |
 |---:|---:|---|
 | 10 | 1 | 2025-03-31 |
 | 11 | 2 | 2024-12-01 |
 
 ### Expected output
 
-| CustomerID | customer_name | Email | DateEntered |
+| 🟦 CustomerID | 🟦 customer_name | 🟦 Email | 🟦 DateEntered |
 |---:|---|---|---|
 | 2 | Ben Das | ben@example.com | 2023-02-01 |
 | 3 | Cia Sen | cia@example.com | 2024-01-01 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p018.svg?raw=1)
+
 ### How the sample produces this output
 
-The latest order date is March 31, 2025. The 90 calendar dates ending that day run from **January 1 through March 31**. Asha placed order 10 on March 31 and is outside the outreach list.
+The latest order date is March 31, 2025. The 90 calendar dates ending that day run from 🟩 **January 1 through March 31**. Asha placed 🟩 order 10 on March 31 and is outside the outreach list.
 
-Ben’s only order was on December 1, 2024. Cia has no order in the sample. Both qualify, so their names, email addresses and sign-up dates appear. Ben signed up on February 1, 2023, before Cia on January 1, 2024, which explains their order.
+Ben’s only order was on December 1, 2024. Cia has no order in the sample. Both qualify, so their names, email addresses and sign-up dates appear. 🟦 Ben signed up on February 1, 2023, before Cia on January 1, 2024, which explains their order.
 
 ## Step 1 · Your approach before writing SQL
 

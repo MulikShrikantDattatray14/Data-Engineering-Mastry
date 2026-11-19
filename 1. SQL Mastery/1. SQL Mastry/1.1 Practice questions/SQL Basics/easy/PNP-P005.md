@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** Finance is closing January to March 2025 and needs the orders placed in that quarter to tie against the payment gateway report. Cancellations and refunds are not recorded in this dataset, so every row in `Orders` counts as a placed order.
+**Table colors** · 🟦 `Orders`
+
+**Business scenario.** Finance is closing January to March 2025 and needs the orders placed in that quarter to tie against the payment gateway report. Cancellations and refunds are not recorded in this dataset, so every row in 🟦 `Orders` counts as a placed order.
 
 **Task.** Return every order with an `OrderDate` from 1 January 2025 to 31 March 2025 inclusive. Sort by `OrderDate`, then `OrderID`.
 
@@ -13,18 +15,18 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `OrderID` | Order identifier. |
-| `CustomerID` | Customer identifier. |
-| `OrderDate` | Date the order was placed. |
-| `Total_Order_Amount` | Value of the order. |
+| Column | Meaning | Source |
+|---|---|---|
+| `OrderID` | Order identifier. | 🟦 `Orders` |
+| `CustomerID` | Customer identifier. | 🟦 `Orders` |
+| `OrderDate` | Date the order was placed. | 🟦 `Orders` |
+| `Total_Order_Amount` | Value of the order. | 🟦 `Orders` |
 
 ### Practice example · Sample input
 
-**`Orders`**
+**🟦 `Orders`**
 
-| OrderID | CustomerID | OrderDate | Total_Order_Amount |
+| 🟦 OrderID | 🟦 CustomerID | 🟦 OrderDate | 🟦 Total_Order_Amount |
 | ---: | ---: | --- | ---: |
 | 1 | 10 | 2024-12-31 | 50 |
 | 2 | 11 | 2025-01-01 | 100 |
@@ -33,16 +35,18 @@
 
 ### Expected output
 
-| OrderID | CustomerID | OrderDate | Total_Order_Amount |
+| 🟦 OrderID | 🟦 CustomerID | 🟦 OrderDate | 🟦 Total_Order_Amount |
 | ---: | ---: | --- | ---: |
 | 2 | 11 | 2025-01-01 | 100 |
 | 3 | 12 | 2025-03-31 | 200 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p005.svg?raw=1)
+
 ### How the sample produces this output
 
-Order 2 falls on January 1, the first date of the quarter. Its customer is 11 and its amount is 100. Order 3 falls on March 31, the last date of the quarter. Its customer is 12 and its amount is 200.
+🟦 Order 2 falls on January 1, the first date of the quarter. Its customer is 11 and its amount is 100. Order 3 falls on March 31, the last date of the quarter. Its customer is 12 and its amount is 200.
 
-Order 1 falls one day before the quarter and order 4 falls one day after it. Only orders 2 and 3 appear, with the January order first.
+🟦 Order 1 falls one day before the quarter and order 4 falls one day after it. Only orders 2 and 3 appear, with the January order first.
 
 ## Step 1 · Your approach before writing SQL
 

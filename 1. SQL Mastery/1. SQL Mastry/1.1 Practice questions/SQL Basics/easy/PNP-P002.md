@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** The merchandising team fills a "Premium picks" carousel on the home page. It has exactly ten slots and shows the ten products with the highest current `Sale_Price`. The job runs every night, and the carousel must not reshuffle when nothing has changed, so a tie for the last slot needs a fixed rule.
+**Table colors** · 🟦 `Products`
+
+**Business scenario.** The merchandising team fills a "Premium picks" carousel on the home page. It has exactly ten slots and shows the ten products with the highest current 🟦 `Sale_Price`. The job runs every night, and the carousel must not reshuffle when nothing has changed, so a tie for the last slot needs a fixed rule.
 
 **Task.** Return the ten products with the highest `Sale_Price`, highest first. A product with no price must never take a slot. If products tie on price at the cut-off, the lower `ProductID` wins.
 
@@ -13,18 +15,18 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `ProductID` | Product identifier. |
-| `Product` | Product name. |
-| `Brand` | Brand name. |
-| `Sale_Price` | Current sale price. |
+| Column | Meaning | Source |
+|---|---|---|
+| `ProductID` | Product identifier. | 🟦 `Products` |
+| `Product` | Product name. | 🟦 `Products` |
+| `Brand` | Brand name. | 🟦 `Products` |
+| `Sale_Price` | Current sale price. | 🟦 `Products` |
 
 ### Practice example · Sample input
 
-**`Products`**
+**🟦 `Products`**
 
-| ProductID | Product | Brand | Sale_Price |
+| 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 Sale_Price |
 | ---: | --- | --- | ---: |
 | 4 | Mug | Home | 100 |
 | 20 | Bottle | Home | 100 |
@@ -42,7 +44,7 @@
 
 ### Expected output
 
-| ProductID | Product | Brand | Sale_Price |
+| 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 Sale_Price |
 | ---: | --- | --- | ---: |
 | 101 | Headphones | Nova | 900 |
 | 102 | Tablet | Nova | 800 |
@@ -55,11 +57,13 @@
 | 109 | Lamp | Home | 150 |
 | 4 | Mug | Home | 100 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p002.svg?raw=1)
+
 ### How the sample produces this output
 
-Nine products have prices above 100. They fill positions 1–9 in descending price order, from Headphones (ID 101, price 900) to Lamp (ID 109, price 150).
+🟦 Nine products have prices above 100. They fill positions 1–9 in descending price order, from Headphones (ID 101, price 900) to Lamp (ID 109, price 150).
 
-Mug (ID 4) and Bottle (ID 20) both cost 100. The smaller ID gives Mug the tenth slot. Sticker has a known price of 0 and falls below the cutoff. Mystery item has no recorded price.
+🟦 Mug (ID 4) and Bottle (ID 20) both cost 100. The smaller ID gives Mug the tenth slot. Sticker has a known price of 0 and falls below the cutoff. Mystery item has no recorded price.
 
 ## Step 1 · Your approach before writing SQL
 

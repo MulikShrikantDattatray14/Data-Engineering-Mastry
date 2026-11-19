@@ -6,7 +6,9 @@
 
 ## Question
 
-`BST` contains one row for each node of a binary tree. `N` is the node's value and `P` is the value of its parent. A missing `P` is `NULL`.
+**Table colors** · 🟦 `BST`
+
+🟦 `BST` contains one row for each node of a binary tree. `N` is the node's value and `P` is the value of its parent. A missing `P` is `NULL`.
 
 Report each node's type as `Root`, `Inner`, or `Leaf`, ordered by `N` ascending:
 
@@ -18,16 +20,16 @@ Report each node's type as `Root`, `Inner`, or `Leaf`, ordered by `N` ascending:
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `N` | Node value. |
-| `NodeType` | One of the node roles `Root`, `Inner` or `Leaf`. |
+| Column | Meaning | Source |
+|---|---|---|
+| `N` | Node value. | 🟦 `BST` |
+| `NodeType` | One of the node roles `Root`, `Inner` or `Leaf`. | 🟦 `BST` |
 
 ### Assignment example · Sample input
 
-**`BST`**
+**🟦 `BST`**
 
-| N | P |
+| 🟦 N | 🟦 P |
 |---:|---:|
 | 1 | 2 |
 | 3 | 2 |
@@ -41,7 +43,7 @@ Report each node's type as `Root`, `Inner`, or `Leaf`, ordered by `N` ascending:
 
 ### Expected output
 
-| N | NodeType |
+| 🟦 N | 🟦 NodeType |
 |---:|---|
 | 1 | Leaf |
 | 2 | Inner |
@@ -51,11 +53,13 @@ Report each node's type as `Root`, `Inner`, or `Leaf`, ordered by `N` ascending:
 | 8 | Inner |
 | 9 | Leaf |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/b1-03.svg?raw=1)
+
 ### How the sample produces this output
 
-Node 5 has no parent, giving it the label **Root**. Nodes 2 and 8 both have a parent and children, giving them the label **Inner**. Node 2 is the parent of 1 and 3, and node 8 is the parent of 6 and 9.
+🟦 Node 5 has no parent, giving it the label **Root**. Nodes 2 and 8 both have a parent and children, giving them the label **Inner**. Node 2 is the parent of 1 and 3, and node 8 is the parent of 6 and 9.
 
-Nodes 1, 3, 6 and 9 have no children, so each is a **Leaf**. The one root, two inner nodes and four leaves account for all seven output rows, listed by ascending node value.
+🟦 Nodes 1, 3, 6 and 9 have no children, so each is a **Leaf**. The one root, two inner nodes and four leaves account for all seven output rows, listed by ascending node value.
 
 ## Step 1 · Your approach before writing SQL
 

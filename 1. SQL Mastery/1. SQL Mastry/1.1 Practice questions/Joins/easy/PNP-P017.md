@@ -5,55 +5,59 @@
 
 ## Question
 
+**Table colors** · 🟦 `Orders` · 🟩 `Payments` · 🟥 `Shippers`
+
 **Business scenario.** Every morning the operations desk reviews the most recent week of orders: how each was paid and which courier took it. An order with a missing or unrecognised payment or shipper code is exactly what they need to chase, so it must appear on the list, not vanish from it.
 
-**Task.** For orders placed in the last 7 days covered by the data, return the payment type and shipper name. Show Unknown where the code is `NULL` or matches nothing. Sort newest first, then by `OrderID` descending.
+**Task.** For orders placed in the last 7 days covered by the data, return the payment type and shipper name. Show Unknown where the code is `NULL` or matches nothing. Sort newest first, then by 🟦 `OrderID` descending.
 
 [PNP source question](../../../2.PNP-%20foundations%20and%20practice/2.%20Joins/P017.%20Orders%20with%20payment%20type%20and%20shipper.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `OrderID` | Order identifier. |
-| `OrderDate` | Date the order was placed. |
-| `payment_type` | Payment type name, or `Unknown` for a missing or unrecognized code. |
-| `shipper_name` | Shipper’s company name, or `Unknown` for a missing or unrecognized code. |
+| Column | Meaning | Source |
+|---|---|---|
+| `OrderID` | Order identifier. | 🟦 `Orders` |
+| `OrderDate` | Date the order was placed. | 🟦 `Orders` |
+| `payment_type` | Payment type name, or `Unknown` for a missing or unrecognized code. | 🟩 `Payments` |
+| `shipper_name` | Shipper’s company name, or `Unknown` for a missing or unrecognized code. | 🟥 `Shippers` |
 
 ### Practice example · Sample input
 
-**`Orders`**
+**🟦 `Orders`**
 
-| OrderID | OrderDate | PaymentID | ShipperID |
+| 🟦 OrderID | 🟦 OrderDate | 🟦 PaymentID | 🟦 ShipperID |
 |---:|---|---:|---:|
 | 1 | 2025-12-24 | 1 | 1 |
 | 2 | 2025-12-25 | 1 | 1 |
 | 3 | 2025-12-31 | `NULL` | `NULL` |
 
-**`Payments`**
+**🟩 `Payments`**
 
-| PaymentID | PaymentType |
+| 🟩 PaymentID | 🟩 PaymentType |
 |---:|---|
 | 1 | UPI |
 
-**`Shippers`**
+**🟥 `Shippers`**
 
-| ShipperID | CompanyName |
+| 🟥 ShipperID | 🟥 CompanyName |
 |---:|---|
 | 1 | FastShip |
 
 ### Expected output
 
-| OrderID | OrderDate | payment_type | shipper_name |
+| 🟦 OrderID | 🟦 OrderDate | 🟩 payment_type | 🟥 shipper_name |
 |---:|---|---|---|
 | 3 | 2025-12-31 | Unknown | Unknown |
 | 2 | 2025-12-25 | UPI | FastShip |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p017.svg?raw=1)
+
 ### How the sample produces this output
 
-The latest order date is December 31, so the seven calendar dates are **December 25–31 inclusive**. Order 3 falls on December 31 and both lookup IDs are missing. Its row shows **Unknown** for both payment type and shipper.
+The latest order date is December 31, so the seven calendar dates are 🟦 **December 25–31 inclusive**. Order 3 falls on December 31 and both lookup IDs are missing. Its row shows **Unknown** for both payment type and shipper.
 
-Order 2 falls on December 25. Payment ID 1 is **UPI** and shipper ID 1 is **FastShip**. Order 1 falls on December 24 and is outside the window. Newest-first ordering puts order 3 before order 2.
+Order 2 falls on December 25. Payment ID 1 is 🟩 **UPI** and shipper ID 1 is 🟥 **FastShip**. Order 1 falls on December 24 and is outside the window. Newest-first ordering puts order 3 before order 2.
 
 ## Step 1 · Your approach before writing SQL
 

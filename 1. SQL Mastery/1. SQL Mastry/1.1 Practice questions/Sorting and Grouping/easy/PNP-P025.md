@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** The growth team reports new-customer acquisition to the board every quarter. A sign-up is the day an account was created (`DateEntered`), whether or not the person has ordered. They want new accounts per year and quarter in time order, with undated accounts on their own line.
+**Table colors** · 🟦 `Customers`
+
+**Business scenario.** The growth team reports new-customer acquisition to the board every quarter. A sign-up is the day an account was created (🟦 `DateEntered`), whether or not the person has ordered. They want new accounts per year and quarter in time order, with undated accounts on their own line.
 
 **Task.** Count customers by the year and quarter of `DateEntered`. Accounts with no `DateEntered` form one group with `NULL` year and quarter, listed last. Sort by year, then quarter.
 
@@ -13,17 +15,17 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `signup_year` | Calendar year of sign-up, as an integer. |
-| `signup_quarter` | Calendar quarter of sign-up, from 1 to 4. |
-| `new_customers` | Number of accounts created in that year and quarter. |
+| Column | Meaning | Source |
+|---|---|---|
+| `signup_year` | Calendar year of sign-up, as an integer. | 🟦 `Customers` |
+| `signup_quarter` | Calendar quarter of sign-up, from 1 to 4. | 🟦 `Customers` |
+| `new_customers` | Number of accounts created in that year and quarter. | 🟦 `Customers` |
 
 ### Practice example · Sample input
 
-**`Customers`**
+**🟦 `Customers`**
 
-| CustomerID | DateEntered |
+| 🟦 CustomerID | 🟦 DateEntered |
 |---:|---|
 | 1 | 2024-12-31 |
 | 2 | 2025-01-01 |
@@ -33,18 +35,20 @@
 
 ### Expected output
 
-| signup_year | signup_quarter | new_customers |
+| 🟦 signup_year | 🟦 signup_quarter | 🟦 new_customers |
 |---:|---:|---:|
 | 2024 | 4 | 1 |
 | 2025 | 1 | 2 |
 | 2025 | 2 | 1 |
 | NULL | NULL | 1 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p025.svg?raw=1)
+
 ### How the sample produces this output
 
-Customer 1 signed up on December 31, giving **2024 Q4** one account. Customers 2 and 3 signed up on January 1 and March 31, so **2025 Q1** has two. Customer 4 signed up on April 1, the first day of **2025 Q2**, giving that quarter one account.
+🟦 Customer 1 signed up on December 31, giving **2024 Q4** one account. Customers 2 and 3 signed up on January 1 and March 31, so **2025 Q1** has two. Customer 4 signed up on April 1, the first day of **2025 Q2**, giving that quarter one account.
 
-Customer 5 has no sign-up date and contributes one account to the final row with `NULL` year and quarter. The four counts add to `1 + 2 + 1 + 1 = 5`, accounting for every customer.
+🟦 Customer 5 has no sign-up date and contributes one account to the final row with `NULL` year and quarter. The four counts add to `1 + 2 + 1 + 1 = 5`, accounting for every customer.
 
 ## Step 1 · Your approach before writing SQL
 

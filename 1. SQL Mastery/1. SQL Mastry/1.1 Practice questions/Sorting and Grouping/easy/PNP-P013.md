@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** Regional sales is deciding where to place field representatives. A rep is only worth assigning to a state with at least five registered customers. They want the qualifying states with the biggest first. `Customers` with no state on file should be visible as their own line so the team can see how many cannot be placed.
+**Table colors** · 🟦 `Customers`
+
+**Business scenario.** Regional sales is deciding where to place field representatives. A rep is only worth assigning to a state with at least five registered customers. They want the qualifying states with the biggest first. 🟦 `Customers` with no state on file should be visible as their own line so the team can see how many cannot be placed.
 
 **Task.** Count customers per state and keep only states with five or more. Label a missing state as Unknown. Sort by customer count, highest first, then by state.
 
@@ -13,16 +15,16 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `State` | State name, with `Unknown` for a missing state. |
-| `customer_count` | Number of customers registered in that state. |
+| Column | Meaning | Source |
+|---|---|---|
+| `State` | State name, with `Unknown` for a missing state. | 🟦 `Customers` |
+| `customer_count` | Number of customers registered in that state. | 🟦 `Customers` |
 
 ### Practice example · Sample input
 
-**`Customers`**
+**🟦 `Customers`**
 
-| CustomerID | State |
+| 🟦 CustomerID | 🟦 State |
 |---:|---|
 | 1 | Karnataka |
 | 2 | Karnataka |
@@ -33,13 +35,15 @@
 
 ### Expected output
 
-| State | customer_count |
+| 🟦 State | 🟦 customer_count |
 |---|---:|
 | Karnataka | 5 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p013.svg?raw=1)
+
 ### How the sample produces this output
 
-Customer IDs 1 through 5 all belong to Karnataka. Their count is exactly **5**, which meets the minimum. Maharashtra has only customer 6, giving it a count of **1**. Karnataka is therefore the only output row.
+🟦 Customer IDs 1 through 5 all belong to Karnataka. Their count is exactly **5**, which meets the minimum. Maharashtra has only customer 6, giving it a count of **1**. Karnataka is therefore the only output row.
 
 ## Step 1 · Your approach before writing SQL
 

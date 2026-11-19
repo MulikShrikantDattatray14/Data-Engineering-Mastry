@@ -4,7 +4,9 @@
 
 ## Question
 
-**Business scenario.** The regional marketing team wants to raise the free-delivery threshold in states where baskets are already large. They need average order value (AOV) per customer `state`, but a `state` with a handful of `orders` gives a number nobody should act on. They have agreed to look only at states with at least 10 `orders`.
+**Table colors** · 🟩 `Customers` · 🟦 `Orders`
+
+**Business scenario.** The regional marketing team wants to raise the free-delivery threshold in states where baskets are already large. They need average order value (AOV) per customer 🟩 `state`, but a `state` with a handful of 🟦 `orders` gives a number nobody should act on. They have agreed to look only at states with at least 10 `orders`.
 
 **Task.** For each customer `state`, return the number of distinct ordering `customers`, the number of `orders`, the total order value and the average order value. Group `orders` whose customer has no `State`, or whose `CustomerID` matches no customer, under Unknown. Keep only states with 10 or more `orders`. Sort by AOV, highest first.
 
@@ -12,26 +14,26 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `state` | Customer’s state, or `Unknown` for a missing state or customer match. |
-| `customers` | Number of distinct ordering customers in the group. |
-| `orders` | Number of orders in the group. |
-| `order_value` | Sum of the group’s known order amounts. |
-| `avg_order_value` | Order value divided by the number of orders with a known amount. |
+| Column | Meaning | Source |
+|---|---|---|
+| `state` | Customer’s state, or `Unknown` for a missing state or customer match. | 🟩 `Customers` |
+| `customers` | Number of distinct ordering customers in the group. | 🟦 `Orders` |
+| `orders` | Number of orders in the group. | 🟦 `Orders` |
+| `order_value` | Sum of the group’s known order amounts. | 🟦 `Orders` |
+| `avg_order_value` | Order value divided by the number of orders with a known amount. | 🟦 `Orders` |
 
 ### Practice example · Sample input
 
-**`Customers`**
+**🟩 `Customers`**
 
-| CustomerID | State |
+| 🟩 CustomerID | 🟩 State |
 | ---: | --- |
 | 1 | Karnataka |
 | 2 | Karnataka |
 
-**`Orders`**
+**🟦 `Orders`**
 
-| OrderID | CustomerID | Total_Order_Amount |
+| 🟦 OrderID | 🟦 CustomerID | 🟦 Total_Order_Amount |
 | --- | ---: | ---: |
 | 1 | 1 | 100 |
 | 2 | 1 | 100 |
@@ -46,15 +48,17 @@
 
 ### Expected output
 
-| state | customers | orders | order_value | avg_order_value |
+| 🟩 state | 🟦 customers | 🟦 orders | 🟦 order_value | 🟦 avg_order_value |
 | --- | ---: | ---: | ---: | ---: |
 | Karnataka | 2 | 10 | 1000 | 100.00 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p027.svg?raw=1)
+
 ### How the sample produces this output
 
-Customer 1 placed orders 1–5 and customer 2 placed orders 6–10. Both are in Karnataka, so this row represents **2 distinct customers** and **10 orders**, meeting the minimum exactly.
+Customer 1 placed orders 1–5 and customer 2 placed orders 6–10. Both are in 🟩 Karnataka, so this row represents 🟦 **2 distinct customers** and **10 orders**, meeting the minimum exactly.
 
-All ten orders have an amount of 100. Their combined value is `10 × 100 = 1,000`. All ten amounts are known, so the average order value is `1,000 / 10 = 100.00`. Karnataka is the only state in this sample.
+All ten orders have an amount of 100. Their combined value is 🟦 `10 × 100 = 1,000`. All ten amounts are known, so the average order value is 🟦 `1,000 / 10 = 100.00`. Karnataka is the only state in this sample.
 
 ## Step 1 · Your approach before writing SQL
 

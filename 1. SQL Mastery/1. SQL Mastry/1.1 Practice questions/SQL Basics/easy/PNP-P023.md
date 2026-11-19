@@ -5,26 +5,28 @@
 
 ## Question
 
+**Table colors** · 🟦 `Products`
+
 **Business scenario.** Merchandising is building a "Sweet treats under 250" banner for Diwali. It should show products from the chocolate and cookie sub-categories priced below 250. Sugar-free products are going into a separate wellness banner, so they must be left out of this one.
 
-**Task.** Return products whose `Sub_Category` contains "chocolate" or "cookie" (any case), whose `Sale_Price` is below 250, and whose name does not mark them as sugar-free. Sort by `Sale_Price`, then `ProductID`.
+**Task.** Return products whose 🟦 `Sub_Category` contains "chocolate" or "cookie" (any case), whose `Sale_Price` is below 250, and whose name does not mark them as sugar-free. Sort by `Sale_Price`, then `ProductID`.
 
 [PNP source question](../../../2.PNP-%20foundations%20and%20practice/8.%20Advance%20string%20functions%2C%20regex%20and%20clause/P023.%20Chocolate%20or%20cookie%20products%20under%20250%2C%20excluding%20sugar-free.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `ProductID` | Product identifier. |
-| `Product` | Product name. |
-| `Sub_Category` | Product subcategory as stored. |
-| `Sale_Price` | Current sale price. |
+| Column | Meaning | Source |
+|---|---|---|
+| `ProductID` | Product identifier. | 🟦 `Products` |
+| `Product` | Product name. | 🟦 `Products` |
+| `Sub_Category` | Product subcategory as stored. | 🟦 `Products` |
+| `Sale_Price` | Current sale price. | 🟦 `Products` |
 
 ### Practice example · Sample input
 
-**`Products`**
+**🟦 `Products`**
 
-| ProductID | Product | Sub_Category | Sale_Price |
+| 🟦 ProductID | 🟦 Product | 🟦 Sub_Category | 🟦 Sale_Price |
 |---:|---|---|---:|
 | 1 | Cocoa Cookie | Cookies | 200 |
 | 2 | Sugar-free Choc | Chocolate | 150 |
@@ -33,16 +35,18 @@
 
 ### Expected output
 
-| ProductID | Product | Sub_Category | Sale_Price |
+| 🟦 ProductID | 🟦 Product | 🟦 Sub_Category | 🟦 Sale_Price |
 |---:|---|---|---:|
 | 1 | Cocoa Cookie | Cookies | 200 |
 | 4 | Dark Bar | CHOCOLATE | 249 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p023.svg?raw=1)
+
 ### How the sample produces this output
 
-Cocoa Cookie (ID 1) belongs to Cookies and costs **200**. Dark Bar (ID 4) belongs to CHOCOLATE and costs **249**. Both qualify and the lower price puts Cocoa Cookie first.
+🟦 Cocoa Cookie (ID 1) belongs to Cookies and costs **200**. Dark Bar (ID 4) belongs to CHOCOLATE and costs **249**. Both qualify and the lower price puts Cocoa Cookie first.
 
-Sugar-free Choc costs 150 and belongs to Chocolate, but its name identifies it as sugar-free. Tea Biscuit costs 100 and belongs to Biscuits, outside both requested subcategories.
+🟦 Sugar-free Choc costs 150 and belongs to Chocolate, but its name identifies it as sugar-free. Tea Biscuit costs 100 and belongs to Biscuits, outside both requested subcategories.
 
 ## Step 1 · Your approach before writing SQL
 

@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** The pricing team is checking how deep discounts run across the catalogue. `Market_Price` is the MRP printed on the pack and `Sale_Price` is what the store charges today. A missing or zero `Market_Price` means the MRP was never captured, so that product has no measurable discount.
+**Table colors** · 🟦 `Products`
+
+**Business scenario.** The pricing team is checking how deep discounts run across the catalogue. 🟦 `Market_Price` is the MRP printed on the pack and `Sale_Price` is what the store charges today. A missing or zero `Market_Price` means the MRP was never captured, so that product has no measurable discount.
 
 **Task.** For every product, return the discount in rupees and as a percentage of `Market_Price`, rounded to two decimals. `Products` with a missing or zero `Market_Price` get `NULL` for both. Sort by discount percentage, highest first, with NULLs at the end.
 
@@ -13,20 +15,20 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `ProductID` | Product identifier. |
-| `Product` | Product name. |
-| `Market_Price` | Market price printed on the pack. |
-| `Sale_Price` | Current sale price. |
-| `discount_amount` | Market price minus sale price, in rupees. |
-| `discount_pct` | Discount as a percentage of market price, rounded to two decimals. |
+| Column | Meaning | Source |
+|---|---|---|
+| `ProductID` | Product identifier. | 🟦 `Products` |
+| `Product` | Product name. | 🟦 `Products` |
+| `Market_Price` | Market price printed on the pack. | 🟦 `Products` |
+| `Sale_Price` | Current sale price. | 🟦 `Products` |
+| `discount_amount` | Market price minus sale price, in rupees. | 🟦 `Products` |
+| `discount_pct` | Discount as a percentage of market price, rounded to two decimals. | 🟦 `Products` |
 
 ### Practice example · Sample input
 
-**`Products`**
+**🟦 `Products`**
 
-| ProductID | Product | Market_Price | Sale_Price |
+| 🟦 ProductID | 🟦 Product | 🟦 Market_Price | 🟦 Sale_Price |
 | --- | --- | --- | --- |
 | 1 | Mug | 100 | 80 |
 | 2 | Sticker | 0 | 0 |
@@ -34,17 +36,19 @@
 
 ### Expected output
 
-| ProductID | Product | Market_Price | Sale_Price | discount_amount | discount_pct |
+| 🟦 ProductID | 🟦 Product | 🟦 Market_Price | 🟦 Sale_Price | 🟦 discount_amount | 🟦 discount_pct |
 | --- | --- | --- | --- | --- | --- |
 | 3 | Lamp | 200 | 150 | 50 | 25.00 |
 | 1 | Mug | 100 | 80 | 20 | 20.00 |
 | 2 | Sticker | 0 | 0 | `NULL` | `NULL` |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p007.svg?raw=1)
+
 ### How the sample produces this output
 
-Lamp saves `200 − 150 = 50`, which is `50 / 200 × 100 = 25.00%`. Mug saves `100 − 80 = 20`, or `20 / 100 × 100 = 20.00%`. Lamp therefore precedes Mug.
+🟦 Lamp saves `200 − 150 = 50`, which is `50 / 200 × 100 = 25.00%`. Mug saves `100 − 80 = 20`, or `20 / 100 × 100 = 20.00%`. Lamp therefore precedes Mug.
 
-Sticker’s market price is zero. The question assigns `NULL` to both discount fields for that product. The row still appears, after the two products with known percentages.
+🟦 Sticker’s market price is zero. The question assigns `NULL` to both discount fields for that product. The row still appears, after the two products with known percentages.
 
 ## Step 1 · Your approach before writing SQL
 

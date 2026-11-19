@@ -5,28 +5,30 @@
 
 ## Question
 
+**Table colors** · 🟦 `Orders`
+
 **Business scenario.** The logistics team is reviewing November 2025 order by order. For each order they want two numbers: how many days the warehouse took to hand it to the courier, and how many days the customer waited from placing the order to receiving it.
 
-**Task.** For every order placed in November 2025, return the three dates plus `days_to_ship` (order to ship) and `days_to_deliver` (order to delivery) in whole days. Missing dates must give `NULL`, not a made-up number. Sort by `OrderDate`, then `OrderID`.
+**Task.** For every order placed in November 2025, return the three dates plus 🟦 `days_to_ship` (order to ship) and `days_to_deliver` (order to delivery) in whole days. Missing dates must give `NULL`, not a made-up number. Sort by `OrderDate`, then `OrderID`.
 
 [PNP source question](../../../2.PNP-%20foundations%20and%20practice/12.%20Dates%20and%20Time/P020.%20Days%20to%20ship%20and%20days%20to%20deliver.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `OrderID` | Order identifier. |
-| `OrderDate` | Date the order was placed. |
-| `ShipDate` | Date the order shipped. |
-| `DeliveryDate` | Date the order was delivered. |
-| `days_to_ship` | Whole days from order date to ship date. |
-| `days_to_deliver` | Whole days from order date to delivery date. |
+| Column | Meaning | Source |
+|---|---|---|
+| `OrderID` | Order identifier. | 🟦 `Orders` |
+| `OrderDate` | Date the order was placed. | 🟦 `Orders` |
+| `ShipDate` | Date the order shipped. | 🟦 `Orders` |
+| `DeliveryDate` | Date the order was delivered. | 🟦 `Orders` |
+| `days_to_ship` | Whole days from order date to ship date. | 🟦 `Orders` |
+| `days_to_deliver` | Whole days from order date to delivery date. | 🟦 `Orders` |
 
 ### Practice example · Sample input
 
-**`Orders`**
+**🟦 `Orders`**
 
-| OrderID | OrderDate | ShipDate | DeliveryDate |
+| 🟦 OrderID | 🟦 OrderDate | 🟦 ShipDate | 🟦 DeliveryDate |
 |---:|---|---|---|
 | 1 | 2025-11-01 | 2025-11-03 | 2025-11-06 |
 | 2 | 2025-11-02 | `NULL` | `NULL` |
@@ -34,16 +36,18 @@
 
 ### Expected output
 
-| OrderID | OrderDate | ShipDate | DeliveryDate | days_to_ship | days_to_deliver |
+| 🟦 OrderID | 🟦 OrderDate | 🟦 ShipDate | 🟦 DeliveryDate | 🟦 days_to_ship | 🟦 days_to_deliver |
 |---:|---|---|---|---:|---:|
 | 1 | 2025-11-01 | 2025-11-03 | 2025-11-06 | 2 | 5 |
 | 2 | 2025-11-02 | `NULL` | `NULL` | `NULL` | `NULL` |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p020.svg?raw=1)
+
 ### How the sample produces this output
 
-Order 1 was placed on November 1. It shipped on November 3 and arrived on November 6, so the elapsed times from the order date are **2 days** and **5 days**.
+🟦 Order 1 was placed on November 1. It shipped on November 3 and arrived on November 6, so the elapsed times from the order date are **2 days** and **5 days**.
 
-Order 2 was placed on November 2 and qualifies for the report, but its ship and delivery dates are both missing. Its two elapsed times stay `NULL`. Order 3 was placed in October, even though it shipped in November, so it falls outside the report.
+🟦 Order 2 was placed on November 2 and qualifies for the report, but its ship and delivery dates are both missing. Its two elapsed times stay `NULL`. Order 3 was placed in October, even though it shipped in November, so it falls outside the report.
 
 ## Step 1 · Your approach before writing SQL
 

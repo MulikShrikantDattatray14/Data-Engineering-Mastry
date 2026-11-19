@@ -5,27 +5,29 @@
 
 ## Question
 
+**Table colors** · 🟦 `Customers`
+
 **Business scenario.** The marketing operations team is about to send a re-engagement campaign. Every hard bounce hurts the sender reputation, so they want to catch addresses that cannot work before the send. A valid address here has no spaces and the shape `something@something.something`.
 
-**Task.** Return every customer whose `Email` is missing, contains a space, or does not match the shape `_@_._` (at least one character, an @, at least one character, a dot, at least one character). Label the problem. Sort by `CustomerID`.
+**Task.** Return every customer whose 🟦 `Email` is missing, contains a space, or does not match the shape `_@_._` (at least one character, an @, at least one character, a dot, at least one character). Label the problem. Sort by `CustomerID`.
 
 [PNP source question](../../../2.PNP-%20foundations%20and%20practice/8.%20Advance%20string%20functions%2C%20regex%20and%20clause/P004.%20Customer%20emails%20that%20cannot%20be%20delivered.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `CustomerID` | Customer identifier. |
-| `FirstName` | Customer’s first name. |
-| `LastName` | Customer’s last name. |
-| `Email` | Email address as stored. |
-| `issue` | One of `Missing`, `Contains a space` or `Not in name@domain.tld form`. |
+| Column | Meaning | Source |
+|---|---|---|
+| `CustomerID` | Customer identifier. | 🟦 `Customers` |
+| `FirstName` | Customer’s first name. | 🟦 `Customers` |
+| `LastName` | Customer’s last name. | 🟦 `Customers` |
+| `Email` | Email address as stored. | 🟦 `Customers` |
+| `issue` | One of `Missing`, `Contains a space` or `Not in name@domain.tld form`. | 🟦 `Customers` |
 
 ### Practice example · Sample input
 
-**`Customers`**
+**🟦 `Customers`**
 
-| CustomerID | FirstName | LastName | Email |
+| 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 Email |
 | ---: | --- | --- | --- |
 | 1 | Asha | Rao | `NULL` |
 | 2 | Ben | Das | `ben das@example.com` |
@@ -34,17 +36,19 @@
 
 ### Expected output
 
-| CustomerID | FirstName | LastName | Email | issue |
+| 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 Email | 🟦 issue |
 | ---: | --- | --- | --- | --- |
 | 1 | Asha | Rao | `NULL` | Missing |
 | 2 | Ben | Das | `ben das@example.com` | Contains a space |
 | 3 | Cia | Sen | `cia.example.com` | Not in name@domain.tld form |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p004.svg?raw=1)
+
 ### How the sample produces this output
 
-Asha (ID 1) has a missing address and receives `Missing`. Ben’s stored address contains a space between `ben` and `das`, so ID 2 receives `Contains a space`. Cia’s address has no `@`, so ID 3 receives `Not in name@domain.tld form`.
+🟦 Asha (ID 1) has a missing address and receives `Missing`. Ben’s stored address contains a space between `ben` and `das`, so ID 2 receives `Contains a space`. Cia’s address has no `@`, so ID 3 receives `Not in name@domain.tld form`.
 
-Dev’s address satisfies the stated shape and has no spaces. The three customers with issues appear in ID order with their original email values.
+🟦 Dev’s address satisfies the stated shape and has no spaces. The three customers with issues appear in ID order with their original email values.
 
 ## Step 1 · Your approach before writing SQL
 

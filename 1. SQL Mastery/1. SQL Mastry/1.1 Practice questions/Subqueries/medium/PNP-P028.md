@@ -4,7 +4,9 @@
 
 ## Question
 
-**Business scenario.** The payments team is renegotiating gateway fees, and fees are charged per transaction for some methods and as a share of value for others. They need each payment type's share of order count and its share of order value in one table. A method can carry many small `orders` or a few large ones, so the two shares can tell different stories.
+**Table colors** · 🟦 `Orders` · 🟩 `Payments`
+
+**Business scenario.** The payments team is renegotiating gateway fees, and fees are charged per transaction for some methods and as a share of value for others. They need each payment type's share of order count and its share of order value in one table. A method can carry many small 🟦 `orders` or a few large ones, so the two shares can tell different stories.
 
 **Task.** For each payment type, return the number of `orders`, its percentage of all `orders`, the total order value and its percentage of all order value. `Orders` whose `PaymentID` is `NULL` or matches no payment row go under Unknown. Use scalar subqueries for the two denominators. Sort by `orders`, highest first.
 
@@ -12,44 +14,46 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `payment_type` | Payment type name, or `Unknown` for a missing or unrecognized payment ID. |
-| `orders` | Number of orders for that payment type. |
-| `pct_of_orders` | This type’s share of all orders, as a percentage rounded to two decimals. |
-| `order_value` | Total amount of the orders for that payment type. |
-| `pct_of_value` | This type’s share of all order value, as a percentage rounded to two decimals. |
+| Column | Meaning | Source |
+|---|---|---|
+| `payment_type` | Payment type name, or `Unknown` for a missing or unrecognized payment ID. | 🟩 `Payments` |
+| `orders` | Number of orders for that payment type. | 🟦 `Orders` |
+| `pct_of_orders` | This type’s share of all orders, as a percentage rounded to two decimals. | 🟦 `Orders` |
+| `order_value` | Total amount of the orders for that payment type. | 🟦 `Orders` |
+| `pct_of_value` | This type’s share of all order value, as a percentage rounded to two decimals. | 🟦 `Orders` |
 
 ### Practice example · Sample input
 
-**`Orders`**
+**🟦 `Orders`**
 
-| OrderID | PaymentID | Total_Order_Amount |
+| 🟦 OrderID | 🟦 PaymentID | 🟦 Total_Order_Amount |
 |---:|---:|---:|
 | 10 | 1 | 100 |
 | 11 | 1 | 200 |
 | 12 | 2 | 300 |
 
-**`Payments`**
+**🟩 `Payments`**
 
-| PaymentID | PaymentType |
+| 🟩 PaymentID | 🟩 PaymentType |
 |---:|---|
 | 1 | UPI |
 | 2 | Card |
 
 ### Expected output
 
-| payment_type | orders | pct_of_orders | order_value | pct_of_value |
+| 🟩 payment_type | 🟦 orders | 🟦 pct_of_orders | 🟦 order_value | 🟦 pct_of_value |
 |---|---:|---:|---:|---:|
 | UPI | 2 | 66.67 | 300 | 50.00 |
 | Card | 1 | 33.33 | 300 | 50.00 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p028.svg?raw=1)
+
 ### How the sample produces this output
 
-Orders 10 and 11 used UPI, and order 12 used Card. There are **3 orders** altogether, worth `100 + 200 + 300 = 600`.
+Orders 10 and 11 used UPI, and order 12 used Card. There are 🟦 **3 orders** altogether, worth 🟦 `100 + 200 + 300 = 600`.
 
-- **UPI.** Two orders give `2 / 3 × 100 = 66.67%` of the order count. Their combined value is `100 + 200 = 300`, or `300 / 600 × 100 = 50.00%` of total value.
-- **Card.** One order gives `1 / 3 × 100 = 33.33%` of the count. That order is worth 300, also **50.00%** of the value.
+- 🟩 **UPI.** Two orders give 🟦 `2 / 3 × 100 = 66.67%` of the order count. Their combined value is 🟦 `100 + 200 = 300`, or 🟦 `300 / 600 × 100 = 50.00%` of total value.
+- 🟩 **Card.** One order gives 🟦 `1 / 3 × 100 = 33.33%` of the count. That order is worth 300, also **50.00%** of the value.
 
 UPI appears first because it handled more orders. The two methods carried equal amounts of money.
 

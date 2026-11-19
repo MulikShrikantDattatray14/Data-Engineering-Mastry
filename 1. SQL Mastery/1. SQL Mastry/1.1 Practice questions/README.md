@@ -17,6 +17,12 @@ Use this sequence in chat and in every saved question, including reattempts.
 5. Explain how the sample rows produce each result. Trace the actual IDs and values, show the arithmetic where relevant, and explain the order or inclusion rules that affect the example.
 6. Only then begin **Step 1 · Your approach before writing SQL**. Invite the learner to explain what one output row represents, which table comes first, second, third and so on, and which join type and matching columns they would choose at each applicable step. A single-table or multi-source question can be answered without a join.
 
+Show each question’s **Table colors** key alongside the original wording in chat and on GitHub. Label every swatch with its table name. Use the same assignment in the question, the sample and the eventual walkthrough. List the key in the sample’s display order. Table order and join choices belong to the learner.
+
+Mark table captions and input headers, identify the source of each required column, and carry its color into the expected output and the worked sample arithmetic. Keep single-source calculations in the source table’s color. Use 🟪 for a result that combines values from several tables and name those sources. When different result rows draw independently from different tables, mark each row with its own source. Give missing cells the same color as their column or row. Use 🟨 for a fourth table and an unused, labeled color for any further table.
+
+In GitHub Markdown, use colored squares and keep the sample data selectable. Provide a linked view with source-colored cells for the same input and output tables. Keep this view limited to the given data and expected result so the learner can still choose an approach at Step 1.
+
 Keep questions and sample explanations focused on the requested result. Include methods that the original source explicitly requires. Let the learner choose all other operations, table order and join types independently. Give hints when the learner asks. During a fresh attempt, pause at Step 1 for their answer. Place the verified visual walkthrough and solutions after the learner-facing exercise in the saved record.
 
 ### Explain the approach before coding

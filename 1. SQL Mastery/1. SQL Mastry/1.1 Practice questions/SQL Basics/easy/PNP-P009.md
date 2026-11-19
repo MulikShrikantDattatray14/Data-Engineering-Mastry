@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** The data platform team is publishing shared views that filter on "active categories" and "allowed payment methods". `Category.Active` and `Payments.Allowed` came in through CSV loads from two systems, and nobody documented the encoding. The team wants to see every stored value first.
+**Table colors** · 🟦 `Category` · 🟩 `Payments`
+
+**Business scenario.** The data platform team is publishing shared views that filter on "active categories" and "allowed payment methods". 🟦 `Category.Active` and 🟩 `Payments.Allowed` came in through CSV loads from two systems, and nobody documented the encoding. The team wants to see every stored value first.
 
 **Task.** In one result, list each distinct raw value of `Category.Active` and `Payments.Allowed` with its row count. `NULL` counts as a value.
 
@@ -13,27 +15,27 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `source_table` | Name of the table that stores the flag (`Category` or `Payments`). |
-| `flag_column` | Name of the flag being reported (`Active` or `Allowed`). |
-| `raw_value` | Stored flag value as text, or `NULL` when missing. |
-| `row_count` | Number of source rows holding that raw value. |
+| Column | Meaning | Source |
+|---|---|---|
+| `source_table` | Name of the table that stores the flag (`Category` or `Payments`). | 🟦 `Category` or 🟩 `Payments` (by row) |
+| `flag_column` | Name of the flag being reported (`Active` or `Allowed`). | 🟦 `Category` or 🟩 `Payments` (by row) |
+| `raw_value` | Stored flag value as text, or `NULL` when missing. | 🟦 `Category` or 🟩 `Payments` (by row) |
+| `row_count` | Number of source rows holding that raw value. | 🟦 `Category` or 🟩 `Payments` (by row) |
 
 ### Practice example · Sample input
 
-**`Category`**
+**🟦 `Category`**
 
-| CategoryID | Active |
+| 🟦 CategoryID | 🟦 Active |
 | --- | --- |
 | 1 | 1 |
 | 2 | 1 |
 | 3 | 0 |
 | 4 | `NULL` |
 
-**`Payments`**
+**🟩 `Payments`**
 
-| PaymentID | Allowed |
+| 🟩 PaymentID | 🟩 Allowed |
 | --- | --- |
 | 1 | Y |
 | 2 | N |
@@ -43,17 +45,19 @@
 
 | source_table | flag_column | raw_value | row_count |
 | --- | --- | --- | --- |
-| Category | Active | `'1'` | 2 |
-| Category | Active | `'0'` | 1 |
-| Category | Active | `NULL` | 1 |
-| Payments | Allowed | `'Y'` | 1 |
-| Payments | Allowed | `'N'` | 2 |
+| 🟦 Category | Active | `'1'` | 2 |
+| 🟦 Category | Active | `'0'` | 1 |
+| 🟦 Category | Active | `NULL` | 1 |
+| 🟩 Payments | Allowed | `'Y'` | 1 |
+| 🟩 Payments | Allowed | `'N'` | 2 |
+
+[View sample inputs and output with colored cells](../../assets/question-samples/p009.svg?raw=1)
 
 ### How the sample produces this output
 
-In Category, IDs 1 and 2 store the value 1, ID 3 stores 0, and ID 4 has a missing flag. Those three output rows have counts **2, 1 and 1**, accounting for all four categories.
+In 🟦 Category, IDs 1 and 2 store the value 1, ID 3 stores 0, and ID 4 has a missing flag. Those three output rows have counts **2, 1 and 1**, accounting for all four categories.
 
-In Payments, ID 1 stores Y and IDs 2 and 3 store N. Those two rows have counts **1 and 2**, accounting for all three payments. The source and flag columns identify each set of counts. The known raw values are displayed as text and the missing value stays `NULL`.
+In 🟩 Payments, ID 1 stores Y and IDs 2 and 3 store N. Those two rows have counts **1 and 2**, accounting for all three payments. The source and flag columns identify each set of counts. The known raw values are displayed as text and the missing value stays `NULL`.
 
 ## Step 1 · Your approach before writing SQL
 

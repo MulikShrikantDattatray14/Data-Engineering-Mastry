@@ -6,7 +6,9 @@
 
 ## Question
 
-For each row of `TRIANGLES`, use side lengths `A`, `B`, and `C` to return one `TriangleType`:
+**Table colors** · 🟦 `TRIANGLES`
+
+For each row of 🟦 `TRIANGLES`, use side lengths `A`, `B`, and `C` to return one `TriangleType`:
 
 - `Equilateral`: all three sides have equal length.
 - `Isosceles`: two sides have equal length.
@@ -19,15 +21,15 @@ The prompt does not specify an output order.
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `TriangleType` | Classification of a side-length triple as `Equilateral`, `Isosceles`, `Scalene` or `Not A Triangle`. |
+| Column | Meaning | Source |
+|---|---|---|
+| `TriangleType` | Classification of a side-length triple as `Equilateral`, `Isosceles`, `Scalene` or `Not A Triangle`. | 🟦 `TRIANGLES` |
 
 ### Assignment example · Sample input
 
-**`TRIANGLES`**
+**🟦 `TRIANGLES`**
 
-| A | B | C |
+| 🟦 A | 🟦 B | 🟦 C |
 |---:|---:|---:|
 | 20 | 20 | 23 |
 | 20 | 20 | 20 |
@@ -36,21 +38,23 @@ The prompt does not specify an output order.
 
 ### Expected output
 
-| TriangleType |
+| 🟦 TriangleType |
 |---|
 | Isosceles |
 | Equilateral |
 | Scalene |
 | Not A Triangle |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/b1-05.svg?raw=1)
+
 ### How the sample produces this output
 
-- **20, 20, 23 → Isosceles.** The two shorter sides add to 40, greater than 23, and exactly two sides are equal.
-- **20, 20, 20 → Equilateral.** All three sides are equal and the sides form a triangle.
-- **20, 21, 22 → Scalene.** The three sides have different lengths and `20 + 21 > 22`.
-- **13, 14, 30 → Not A Triangle.** The two shorter sides add to 27, which is too short to reach a third side of length 30.
+- 🟦 **20, 20, 23 → Isosceles.** The two shorter sides add to 40, greater than 23, and exactly two sides are equal.
+- 🟦 **20, 20, 20 → Equilateral.** All three sides are equal and the sides form a triangle.
+- 🟦 **20, 21, 22 → Scalene.** The three sides have different lengths and `20 + 21 > 22`.
+- 🟦 **13, 14, 30 → Not A Triangle.** The two shorter sides add to 27, which is too short to reach a third side of length 30.
 
-The four labels are displayed in input order for this example. The assignment accepts any row order.
+🟦 The four labels are displayed in input order for this example. The assignment accepts any row order.
 
 ## Step 1 · Your approach before writing SQL
 

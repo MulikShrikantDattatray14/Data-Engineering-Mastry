@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** Leadership opens every monthly review with one strip of numbers: how many orders, how many customers ordered, total order value, average order value (AOV), and the date range the data covers. Cancellations and refunds are not recorded here, so every row in `Orders` counts as a placed order.
+**Table colors** · 🟦 `Orders`
+
+**Business scenario.** Leadership opens every monthly review with one strip of numbers: how many orders, how many customers ordered, total order value, average order value (AOV), and the date range the data covers. Cancellations and refunds are not recorded here, so every row in 🟦 `Orders` counts as a placed order.
 
 **Task.** Return one row with the headline numbers for the whole `Orders` table. AOV is the average `Total_Order_Amount` per order, rounded to two decimals.
 
@@ -13,20 +15,20 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `total_orders` | Number of placed orders. |
-| `ordering_customers` | Number of distinct customers who placed an order. |
-| `total_order_value` | Total value of all orders. |
-| `avg_order_value` | Average order amount, rounded to two decimals. |
-| `first_order_date` | Earliest order date. |
-| `last_order_date` | Latest order date. |
+| Column | Meaning | Source |
+|---|---|---|
+| `total_orders` | Number of placed orders. | 🟦 `Orders` |
+| `ordering_customers` | Number of distinct customers who placed an order. | 🟦 `Orders` |
+| `total_order_value` | Total value of all orders. | 🟦 `Orders` |
+| `avg_order_value` | Average order amount, rounded to two decimals. | 🟦 `Orders` |
+| `first_order_date` | Earliest order date. | 🟦 `Orders` |
+| `last_order_date` | Latest order date. | 🟦 `Orders` |
 
 ### Practice example · Sample input
 
-**`Orders`**
+**🟦 `Orders`**
 
-| OrderID | CustomerID | OrderDate | Total_Order_Amount |
+| 🟦 OrderID | 🟦 CustomerID | 🟦 OrderDate | 🟦 Total_Order_Amount |
 | ---: | ---: | --- | ---: |
 | 1 | 10 | 2025-01-01 | 100 |
 | 2 | 10 | 2025-01-02 | 200 |
@@ -34,15 +36,17 @@
 
 ### Expected output
 
-| total_orders | ordering_customers | total_order_value | avg_order_value | first_order_date | last_order_date |
+| 🟦 total_orders | 🟦 ordering_customers | 🟦 total_order_value | 🟦 avg_order_value | 🟦 first_order_date | 🟦 last_order_date |
 | ---: | ---: | ---: | ---: | --- | --- |
 | 3 | 2 | 600 | 200.00 | 2025-01-01 | 2025-01-03 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p010.svg?raw=1)
+
 ### How the sample produces this output
 
-Orders 1 and 2 belong to customer 10. Order 3 belongs to customer 20. That gives **3 orders** and **2 distinct ordering customers**.
+🟦 Orders 1 and 2 belong to customer 10. Order 3 belongs to customer 20. That gives **3 orders** and **2 distinct ordering customers**.
 
-The three known amounts total `100 + 200 + 300 = 600`, giving an average of `600 / 3 = 200.00`. January 1 is the earliest order date and January 3 is the latest. All six values describe the same set of orders in a single row.
+🟦 The three known amounts total `100 + 200 + 300 = 600`, giving an average of `600 / 3 = 200.00`. January 1 is the earliest order date and January 3 is the latest. All six values describe the same set of orders in a single row.
 
 ## Step 1 · Your approach before writing SQL
 

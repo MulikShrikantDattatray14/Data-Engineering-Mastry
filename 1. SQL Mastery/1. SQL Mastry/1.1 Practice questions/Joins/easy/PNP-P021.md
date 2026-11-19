@@ -5,25 +5,27 @@
 
 ## Question
 
+**Table colors** · 🟩 `Customers` · 🟦 `Orders`
+
 **Business scenario.** The CRM team is sending thank-you hampers to its most frequent buyers, meaning the most orders placed, regardless of value. The budget covers five, but if customers tie for fifth place, the team would rather send an extra hamper than leave one out.
 
-**Task.** Return the customers with the five highest order counts, including everyone tied at fifth place. Show Unknown customer when the `CustomerID` on the orders has no match in `Customers`. Sort by orders placed, highest first, then `CustomerID`.
+**Task.** Return the customers with the five highest order counts, including everyone tied at fifth place. Show Unknown customer when the `CustomerID` on the orders has no match in 🟩 `Customers`. Sort by orders placed, highest first, then `CustomerID`.
 
 [PNP source question](../../../2.PNP-%20foundations%20and%20practice/3.%20Sorting%20and%20Grouping/P021.%20Top%20five%20customers%20by%20number%20of%20orders.md#question-and-image)
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `CustomerID` | Customer identifier. |
-| `customer_name` | First and last name, or `Unknown customer` for an unrecognized customer ID. |
-| `orders_placed` | Number of orders placed by that customer ID. |
+| Column | Meaning | Source |
+|---|---|---|
+| `CustomerID` | Customer identifier. | 🟦 `Orders` |
+| `customer_name` | First and last name, or `Unknown customer` for an unrecognized customer ID. | 🟩 `Customers` |
+| `orders_placed` | Number of orders placed by that customer ID. | 🟦 `Orders` |
 
 ### Practice example · Sample input
 
-**`Customers`**
+**🟩 `Customers`**
 
-| CustomerID | FirstName | LastName |
+| 🟩 CustomerID | 🟩 FirstName | 🟩 LastName |
 |---:|---|---|
 | 1 | Asha | Rao |
 | 2 | Ben | Das |
@@ -33,9 +35,9 @@
 | 6 | Farah | Ali |
 | 7 | Gita | Shah |
 
-**`Orders`**
+**🟦 `Orders`**
 
-| OrderID | CustomerID |
+| 🟦 OrderID | 🟦 CustomerID |
 |---:|---:|
 | 11 | 1 |
 | 12 | 2 |
@@ -49,7 +51,7 @@
 
 ### Expected output
 
-| CustomerID | customer_name | orders_placed |
+| 🟦 CustomerID | 🟩 customer_name | 🟦 orders_placed |
 |---:|---|---:|
 | 99 | Unknown customer | 3 |
 | 1 | Asha Rao | 1 |
@@ -59,11 +61,13 @@
 | 5 | Ena Jain | 1 |
 | 6 | Farah Ali | 1 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p021.svg?raw=1)
+
 ### How the sample produces this output
 
-Customer ID 99 placed orders 17, 18 and 19, giving it the highest count of **3**. Its ID has no customer record, so the displayed name is **Unknown customer**. Each of customer IDs 1 through 6 placed one order. Customer 7 placed none.
+Customer ID 99 placed orders 17, 18 and 19, giving it the highest count of 🟦 **3**. Its ID has no customer record, so the displayed name is 🟩 **Unknown customer**. Each of customer IDs 1 through 6 placed one order. Customer 7 placed none.
 
-The fifth buyer in descending order has **1 order**. All six one-order buyers meet that same cutoff. The report therefore has **7 rows**, with ID 99 first and the six tied buyers in ascending customer ID order.
+The fifth buyer in descending order has 🟦 **1 order**. All six one-order buyers meet that same cutoff. The report therefore has **7 rows**, with ID 99 first and the six tied buyers in ascending customer ID order.
 
 ## Step 1 · Your approach before writing SQL
 

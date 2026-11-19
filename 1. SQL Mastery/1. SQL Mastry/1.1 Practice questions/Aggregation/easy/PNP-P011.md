@@ -5,6 +5,8 @@
 
 ## Question
 
+**Table colors** · 🟦 `Products` · 🟩 `OrderDetails` · 🟪 multiple sources
+
 **Business scenario.** The merchandising head suspects the catalogue is far bigger than what customers actually buy. Before a clean-up, she wants four numbers in one row: how many products are listed, how many sale lines exist, how many distinct products have sold at least once, and what share of the catalogue that is.
 
 **Task.** Starting from every product, attach its order lines. In one row, return the rows produced by that join, the number of order lines, the number of listed products, the number of products that sold at least once, and the percentage of listed products that sold.
@@ -13,27 +15,27 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `rows_after_join` | Number of combined catalogue and sale-line rows, including a row for each unsold product. |
-| `sale_lines` | Number of sale lines matched to a listed product. |
-| `listed_products` | Number of distinct products in the catalogue. |
-| `products_sold` | Number of distinct catalogue products with at least one sale line. |
-| `pct_sold` | Sold products as a percentage of all listed products, rounded to two decimals. |
+| Column | Meaning | Source |
+|---|---|---|
+| `rows_after_join` | Number of combined catalogue and sale-line rows, including a row for each unsold product. | 🟪 `Products` + `OrderDetails` |
+| `sale_lines` | Number of sale lines matched to a listed product. | 🟩 `OrderDetails` |
+| `listed_products` | Number of distinct products in the catalogue. | 🟦 `Products` |
+| `products_sold` | Number of distinct catalogue products with at least one sale line. | 🟩 `OrderDetails` |
+| `pct_sold` | Sold products as a percentage of all listed products, rounded to two decimals. | 🟪 `Products` + `OrderDetails` |
 
 ### Practice example · Sample input
 
-**`Products`**
+**🟦 `Products`**
 
-| ProductID | Product |
+| 🟦 ProductID | 🟦 Product |
 |---:|---|
 | 1 | Pen |
 | 2 | Bag |
 | 3 | Cup |
 
-**`OrderDetails`**
+**🟩 `OrderDetails`**
 
-| OrderDetailID | OrderID | ProductID |
+| 🟩 OrderDetailID | 🟩 OrderID | 🟩 ProductID |
 |---:|---:|---:|
 | 1 | 10 | 1 |
 | 2 | 11 | 1 |
@@ -41,15 +43,17 @@
 
 ### Expected output
 
-| rows_after_join | sale_lines | listed_products | products_sold | pct_sold |
+| 🟪 rows_after_join | 🟩 sale_lines | 🟦 listed_products | 🟩 products_sold | 🟪 pct_sold |
 |---:|---:|---:|---:|---:|
 | 4 | 3 | 3 | 2 | 66.67 |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p011.svg?raw=1)
+
 ### How the sample produces this output
 
-The catalogue contains three products. Pen has two sale lines and Bag has one, giving **3 sale lines** across **2 sold products**. Cup has no sale, but still appears once in the catalogue comparison. The row total is **2 for Pen + 1 for Bag + 1 for Cup = 4**.
+The catalogue contains 🟦 three products. Pen has two sale lines and Bag has one, giving 🟩 **3 sale lines** across 🟩 **2 sold products**. Cup has no sale, but still appears once in the catalogue comparison. The row total is 🟪 **2 for Pen + 1 for Bag + 1 for Cup = 4**.
 
-The denominator for catalogue coverage includes all three listed products. Pen and Bag account for `2 / 3 × 100 = 66.67%` of the catalogue.
+The denominator for catalogue coverage includes all three listed products. Pen and Bag account for 🟪 `2 / 3 × 100 = 66.67%` of the catalogue.
 
 ## Step 1 · Your approach before writing SQL
 

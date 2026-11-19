@@ -5,7 +5,9 @@
 
 ## Question
 
-**Business scenario.** The catalogue team is building the "Shop by brand" page in the app. They need one clean list of brand names to load into the brand filter. `Products` sold without a brand, such as loose staples, should not create an empty entry in that filter.
+**Table colors** · 🟦 `Products`
+
+**Business scenario.** The catalogue team is building the "Shop by brand" page in the app. They need one clean list of brand names to load into the brand filter. 🟦 `Products` sold without a brand, such as loose staples, should not create an empty entry in that filter.
 
 **Task.** Return each brand name in `Products` once, in alphabetical order. Leave out products whose `Brand` is `NULL`, empty or only spaces.
 
@@ -13,17 +15,17 @@
 
 ### Required output columns
 
-| Column | Meaning |
-|---|---|
-| `Brand` | One entry per usable brand name. |
+| Column | Meaning | Source |
+|---|---|---|
+| `Brand` | One entry per usable brand name. | 🟦 `Products` |
 
 ### Practice example · Sample input
 
 Quotes around text values make surrounding spaces visible.
 
-**`Products`**
+**🟦 `Products`**
 
-| ProductID | Brand |
+| 🟦 ProductID | 🟦 Brand |
 | ---: | --- |
 | 1 | `'Nike'` |
 | 2 | `' Nike '` |
@@ -36,17 +38,19 @@ Quotes around text values make surrounding spaces visible.
 
 ### Expected output
 
-| Brand |
+| 🟦 Brand |
 | --- |
 | Adidas |
 | Nike |
 | Puma |
 
+[View sample inputs and output with colored cells](../../assets/question-samples/p001.svg?raw=1)
+
 ### How the sample produces this output
 
-Products 1 and 2 supply the same name, **Nike**, once the surrounding spaces are disregarded. Products 6 and 8 both supply **Adidas**, and product 7 supplies **Puma**.
+🟦 Products 1 and 2 supply the same name, **Nike**, once the surrounding spaces are disregarded. Products 6 and 8 both supply **Adidas**, and product 7 supplies **Puma**.
 
-Products 3, 4 and 5 contain a missing value, an empty string and spaces only, respectively. They supply no brand name. The three usable names appear once each, in alphabetical order.
+🟦 Products 3, 4 and 5 contain a missing value, an empty string and spaces only, respectively. They supply no brand name. The three usable names appear once each, in alphabetical order.
 
 ## Step 1 · Your approach before writing SQL
 
