@@ -86,21 +86,21 @@
       [
         "Unknown",
         2,
-        40.0,
+        40,
         200,
-        25.0
+        25
       ],
       [
         "UPI",
         2,
-        40.0,
+        40,
         300,
         37.5
       ],
       [
         "Card",
         1,
-        20.0,
+        20,
         300,
         37.5
       ]
@@ -206,5 +206,6 @@
       "final": true
     }
   ],
-  "record": "../../../Subqueries/medium/PNP-P028.md"
+  "record": "../../../Subqueries/medium/PNP-P028.md",
+  "unordered": true
 }
