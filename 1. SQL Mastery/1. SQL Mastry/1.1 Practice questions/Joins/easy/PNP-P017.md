@@ -420,3 +420,18 @@ The SQLite adaptation passed the sample and extended fixture. The SQL Server ada
 ## Verification
 
 The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P017/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.
+
+
+### Additional timestamp validation — latest-day timestamps
+
+The existing verification above passes on the date-only sample. A separate SQLite edge-case test added order 4 at `2025-12-31 23:59:59`, on the same latest calendar day as order 3. **The locked query excludes order 4** because its upper bound is the date string `2025-12-31` (midnight), while the order value contains a time. This does not change the saved learner query or its original sample verification.
+
+To include timestamps throughout the latest calendar day, the SQLite filter needs to normalize the order side to a date:
+
+```sql
+WHERE date(o.OrderDate) BETWEEN
+    (SELECT window_start FROM reporting_window)
+    AND (SELECT latest_order_date FROM reporting_window)
+```
+
+The corresponding SQL Server filter is `CAST(o.OrderDate AS date) BETWEEN ...`. On the extended fixture, the normalized SQLite filter returns orders **4, 3 and 2**; the locked query returns only **3 and 2**. The original course answer’s lower-bound-only date filter also avoids this upper-bound-midnight exclusion.
