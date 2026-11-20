@@ -26,17 +26,24 @@ One output row represents one state group with at least ten orders, including th
 
 ### Practice example · Sample input
 
+**Sample table key · display order:** 🟩 `Customers` · 🟦 `Orders` · 🟪 `Unknown` combines `Orders.CustomerID` and `Customers.State`.
+
 **🟩 `Customers`**
 
 | 🟩 CustomerID | 🟩 State |
-| ---: | --- |
+| :--- | :--- |
 | 1 | Karnataka |
 | 2 | Karnataka |
+| 3 | Maharashtra |
+| 4 | `NULL` |
+| 5 | Unknown |
+| 6 | Goa |
+| 7 | Kerala |
 
 **🟦 `Orders`**
 
 | 🟦 OrderID | 🟦 CustomerID | 🟦 Total_Order_Amount |
-| --- | ---: | ---: |
+| :--- | :--- | :--- |
 | 1 | 1 | 100 |
 | 2 | 1 | 100 |
 | 3 | 1 | 100 |
@@ -47,20 +54,68 @@ One output row represents one state group with at least ten orders, including th
 | 8 | 2 | 100 |
 | 9 | 2 | 100 |
 | 10 | 2 | 100 |
+| 11 | 99 | 50 |
+| 12 | 3 | 200 |
+| 13 | 3 | 200 |
+| 14 | 3 | 200 |
+| 15 | 3 | 200 |
+| 16 | 3 | 200 |
+| 17 | 3 | `NULL` |
+| 18 | 3 | `NULL` |
+| 19 | 3 | `NULL` |
+| 20 | 3 | `NULL` |
+| 21 | 3 | `NULL` |
+| 22 | 4 | 50 |
+| 23 | 4 | 50 |
+| 24 | 4 | 50 |
+| 25 | 4 | 50 |
+| 26 | 4 | 50 |
+| 27 | 5 | 50 |
+| 28 | 5 | 50 |
+| 29 | 5 | 50 |
+| 30 | 5 | 50 |
+| 31 | 6 | 300 |
+| 32 | 6 | 300 |
+| 33 | 6 | 300 |
+| 34 | 6 | 300 |
+| 35 | 6 | 300 |
+| 36 | 6 | 300 |
+| 37 | 6 | 300 |
+| 38 | 6 | 300 |
+| 39 | 6 | 300 |
+| 40 | 7 | `NULL` |
+| 41 | 7 | `NULL` |
+| 42 | 7 | `NULL` |
+| 43 | 7 | `NULL` |
+| 44 | 7 | `NULL` |
+| 45 | 7 | `NULL` |
+| 46 | 7 | `NULL` |
+| 47 | 7 | `NULL` |
+| 48 | 7 | `NULL` |
+| 49 | 7 | `NULL` |
 
 ### Expected output
 
 | 🟩 state | 🟦 customers | 🟦 orders | 🟦 order_value | 🟦 avg_order_value |
-| --- | ---: | ---: | ---: | ---: |
-| Karnataka | 2 | 10 | 1000 | 100.00 |
+| :--- | :--- | :--- | :--- | :--- |
+| 🟩 Maharashtra | 🟦 1 | 🟦 10 | 🟦 1000 | 🟦 200.00 |
+| 🟩 Karnataka | 🟦 2 | 🟦 10 | 🟦 1000 | 🟦 100.00 |
+| 🟪 Unknown | 🟦 3 | 🟦 10 | 🟦 500 | 🟦 50.00 |
+| 🟩 Kerala | 🟦 1 | 🟦 10 | 🟦 `NULL` | 🟦 `NULL` |
 
-[View sample inputs and output with colored cells](../../assets/question-samples/p027.svg?raw=1)
+![PNP P027 practice input tables and expected output](../../assets/question-samples/p027.svg)
+
+[Open the full-size sample SVG](../../assets/question-samples/p027.svg?raw=1)
 
 ### How the sample produces this output
 
-Customer 1 placed orders 1–5 and customer 2 placed orders 6–10. Both are in 🟩 Karnataka, so this row represents 🟦 **2 distinct customers** and **10 orders**, meeting the minimum exactly.
+- **Maharashtra:** Customer 3 has orders 12–21. Five known amounts of 200 total **5 × 200 = 1,000**; the other five amounts are `NULL`. There are 10 orders and 1 customer. `AVG` ignores the five missing amounts, so the average is **200.00**.
+- **Karnataka:** Customers 1 and 2 have orders 1–5 and 6–10. That is **2 customers and 10 orders**. All amounts are 100, so **10 × 100 = 1,000** and the average is **100.00**.
+- **Unknown:** Order 11 (customer ID 99) contributes 50; customer 4 contributes orders 22–26 (**5 × 50 = 250**) and customer 5 contributes orders 27–30 (**4 × 50 = 200**). Their missing or unmatched state labels are grouped as Unknown. Together that is **3 customer IDs, 10 orders, 500 total and 50.00 average**.
+- **Goa:** Customer 6 has orders 31–39, so **9 × 300 = 2,700** and an average of 300.00. The group is excluded because it has fewer than 10 orders, even though its average is the highest.
+- **Kerala:** Customer 7 has orders 40–49, all with missing amounts. It has 10 orders and qualifies on the count, but its total and average remain `NULL` because no amount is known.
 
-All ten orders have an amount of 100. Their combined value is 🟦 `10 × 100 = 1,000`. All ten amounts are known, so the average order value is 🟦 `1,000 / 10 = 100.00`. Karnataka is the only state in this sample.
+The expected rows are ordered by average order value descending: 200.00, 100.00, 50.00, then `NULL`.
 
 ## Step 1 · Your approach before writing SQL
 
