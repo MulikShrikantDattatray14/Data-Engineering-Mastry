@@ -20,44 +20,52 @@ One output row represents one payment type represented on orders, including Unkn
 | --- | --- | --- | --- |
 | `payment_type` | 🟩 `Payments` | Payment type name, or `Unknown` for a missing or unrecognized payment ID. | UPI |
 | `orders` | 🟦 `Orders` | Number of orders for that payment type. | 2 |
-| `pct_of_orders` | 🟦 `Orders` | This type’s share of all orders, as a percentage rounded to two decimals. | 66.67 |
+| `pct_of_orders` | 🟦 `Orders` | This type’s share of all orders, as a percentage rounded to two decimals. | 40.00 |
 | `order_value` | 🟦 `Orders` | Total amount of the orders for that payment type. | 300 |
-| `pct_of_value` | 🟦 `Orders` | This type’s share of all order value, as a percentage rounded to two decimals. | 50.00 |
+| `pct_of_value` | 🟦 `Orders` | This type’s share of all order value, as a percentage rounded to two decimals. | 37.50 |
 
 ### Practice example · Sample input
+
+**Sample table key · display order:** 🟦 `Orders` · 🟩 `Payments` · 🟪 `Unknown` combines `Orders.PaymentID` and `Payments.PaymentType`.
 
 **🟦 `Orders`**
 
 | 🟦 OrderID | 🟦 PaymentID | 🟦 Total_Order_Amount |
-|---:|---:|---:|
+| :--- | :--- | :--- |
 | 10 | 1 | 100 |
 | 11 | 1 | 200 |
 | 12 | 2 | 300 |
+| 13 | 99 | 50 |
+| 14 | `NULL` | 150 |
 
 **🟩 `Payments`**
 
 | 🟩 PaymentID | 🟩 PaymentType |
-|---:|---|
+| :--- | :--- |
 | 1 | UPI |
 | 2 | Card |
 
 ### Expected output
 
 | 🟩 payment_type | 🟦 orders | 🟦 pct_of_orders | 🟦 order_value | 🟦 pct_of_value |
-|---|---:|---:|---:|---:|
-| UPI | 2 | 66.67 | 300 | 50.00 |
-| Card | 1 | 33.33 | 300 | 50.00 |
+| :--- | :--- | :--- | :--- | :--- |
+| 🟪 Unknown | 🟦 2 | 🟦 40.00 | 🟦 200 | 🟦 25.00 |
+| 🟩 UPI | 🟦 2 | 🟦 40.00 | 🟦 300 | 🟦 37.50 |
+| 🟩 Card | 🟦 1 | 🟦 20.00 | 🟦 300 | 🟦 37.50 |
 
-[View sample inputs and output with colored cells](../../assets/question-samples/p028.svg?raw=1)
+![PNP P028 practice input tables and expected output](../../assets/question-samples/p028.svg)
+
+[Open the full-size sample SVG](../../assets/question-samples/p028.svg?raw=1)
 
 ### How the sample produces this output
 
-Orders 10 and 11 used UPI, and order 12 used Card. There are 🟦 **3 orders** altogether, worth 🟦 `100 + 200 + 300 = 600`.
+There are **5 orders** worth **100 + 200 + 300 + 50 + 150 = 800** in total.
 
-- 🟩 **UPI.** Two orders give 🟦 `2 / 3 × 100 = 66.67%` of the order count. Their combined value is 🟦 `100 + 200 = 300`, or 🟦 `300 / 600 × 100 = 50.00%` of total value.
-- 🟩 **Card.** One order gives 🟦 `1 / 3 × 100 = 33.33%` of the count. That order is worth 300, also **50.00%** of the value.
+- **UPI:** orders 10 and 11. The count is **2 / 5 × 100 = 40.00%**. Their value is **100 + 200 = 300**, or **300 / 800 × 100 = 37.50%**.
+- **Card:** order 12. The count is **1 / 5 × 100 = 20.00%**. Its value is **300**, or **300 / 800 × 100 = 37.50%**.
+- **Unknown:** order 13 uses payment ID 99, which has no lookup row, and order 14 has a missing payment ID. Together they are **2 / 5 × 100 = 40.00%** of orders, worth **50 + 150 = 200**, or **200 / 800 × 100 = 25.00%**.
 
-UPI appears first because it handled more orders. The two methods carried equal amounts of money.
+The count sort places the two-order groups before Card. Unknown and UPI tie at two orders, so their relative order is not guaranteed by the source task.
 
 ## Step 1 · Your approach before writing SQL
 
