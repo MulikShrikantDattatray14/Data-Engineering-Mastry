@@ -56,11 +56,11 @@ One output row represents one category represented on sale lines, including line
 
 | 🟪 category_name | 🟦 orders | 🟦 units_sold | 🟪 list_price_value |
 |---|---:|---:|---:|
-| Drinks | 1 | 3 | 28 |
-| Unmapped | 1 | 3 | 21 |
-| Snacks | 1 | 1 | 5 |
-| Stationery | 0 | 0 | 0 |
-| Unknown product | 1 | 4 | NULL |
+| 🟥 Drinks | 🟦 1 | 🟦 3 | 🟪 28 |
+| 🟪 Unmapped | 🟦 1 | 🟦 3 | 🟪 21 |
+| 🟥 Snacks | 🟦 1 | 🟦 1 | 🟪 5 |
+| 🟥 Stationery | 🟦 0 | 🟦 0 | 🟪 0 |
+| 🟪 Unknown product | 🟦 1 | 🟦 4 | 🟪 NULL |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p026.svg?raw=1)
 
