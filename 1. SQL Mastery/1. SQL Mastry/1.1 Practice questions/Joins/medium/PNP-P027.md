@@ -22,7 +22,7 @@ One output row represents one state group with at least ten orders, including th
 | `customers` | 🟦 `Orders` | Number of distinct ordering customers in the group. | 2 |
 | `orders` | 🟦 `Orders` | Number of orders in the group. | 10 |
 | `order_value` | 🟦 `Orders` | Sum of the group’s known order amounts. | 1000 |
-| `avg_order_value` | 🟦 `Orders` | Order value divided by the number of orders with a known amount. | 100.00 |
+| `avg_order_value` | 🟦 `Orders` | Order value divided by the number of orders with a known amount. The learner query keeps full numeric precision; the sample is displayed to two decimals. The official answer rounds to two decimals. | 100.00 |
 
 ### Practice example · Sample input
 
