@@ -19,7 +19,7 @@ One output row represents one state with at least five customers, with missing s
 
 | Output column | Source or calculation | Meaning and applicable rules | Example value |
 | --- | --- | --- | --- |
-| `State` | 🟦 `Customers.State` | State name, with `Unknown` for a missing state. | Karnataka |
+| `State` | 🟦 `Customers.State` | Stored state name, with `Unknown` for SQL NULL. The learner query does not trim; padded state values remain separate from the official answer’s trimmed grouping. | Karnataka |
 | `customer_count` | 🟦 `Customers` | Number of customers registered in that state. | 5 |
 
 ### Practice example · Sample input
