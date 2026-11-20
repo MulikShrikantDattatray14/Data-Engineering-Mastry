@@ -26,7 +26,7 @@ One output row represents one category ID represented in the product catalogue.
 | `max_price` | 🟦 `Products` | Highest sale price. | 100 |
 | `avg_price` | 🟦 `Products` | Average sale price, rounded to two decimals. | 90.00 |
 | `full_price_products` | 🟦 `Products` | Number of products whose sale and market prices are equal. | 1 |
-| `avg_discount_pct` | 🟦 `Products` | Average of the individual product discount percentages with a usable market price, rounded to two decimals. | 10.00 |
+| `avg_discount_pct` | 🟦 `Products` | Average of per-product discount percentages only where `Sale_Price` is non-NULL and `Market_Price` is non-NULL and nonzero; rows with an unusable price contribute no percentage. Round the average to two decimals. | 10.00 |
 
 ### Practice example · Sample input
 
