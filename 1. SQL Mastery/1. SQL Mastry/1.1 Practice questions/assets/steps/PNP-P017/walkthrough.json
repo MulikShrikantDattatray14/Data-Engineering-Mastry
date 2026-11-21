@@ -128,7 +128,7 @@
     {
       "id": "stage1",
       "title": "Calculate the reporting window",
-      "change": "Orders supplies OrderDate to the reporting_window CTE; its single row represents the latest date and inclusive window bounds, not report orders. The outer query starts from individual Orders rows because it needs one result per qualifying order. Subtract six days from the latest date to get seven inclusive calendar dates.",
+      "change": "Orders supplies OrderDate to the reporting_window CTE; its single row represents the latest date and inclusive window bounds, not report orders. The outer query starts from individual Orders rows because it needs one result per qualifying order. Subtract six days from the latest date to get seven inclusive calendar dates. This date CTE is independent of the payment and shipper lookup joins, so it can be prepared separately.",
       "added_sql": "WITH reporting_window AS (\n    SELECT\n        date(MAX(OrderDate)) AS latest_order_date,\n        date(MAX(OrderDate), '-6 days') AS window_start\n    FROM Orders\n)\nSELECT latest_order_date, window_start FROM reporting_window;",
       "expected_count": 1,
       "inputs": [
