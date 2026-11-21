@@ -81,7 +81,7 @@
     {
       "id": "stage1",
       "title": "Keep only 2021 records",
-      "change": "The question asks about revenue *in 2021*. Other years cannot decide whether a customer qualifies.",
+      "change": "The question asks about revenue *in 2021*. Other years cannot decide whether a customer qualifies. Customers is the only source because each row already contains the customer ID, year and revenue needed to qualify the customer for 2021.",
       "added_sql": "SELECT customer_id, year, revenue\nFROM Customers\nWHERE year = 2021\nORDER BY customer_id;",
       "expected_count": 3,
       "sql": "SELECT customer_id, year, revenue\nFROM Customers\nWHERE year = 2021\nORDER BY customer_id;"

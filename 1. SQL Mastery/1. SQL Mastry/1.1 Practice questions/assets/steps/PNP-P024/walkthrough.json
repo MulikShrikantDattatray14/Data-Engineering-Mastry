@@ -82,7 +82,7 @@
     {
       "id": "stage1",
       "title": "Decide what one output row represents",
-      "change": "Each row is a supplier with its original spelling and contact fields. The sample contains three suppliers.",
+      "change": "Each row is a supplier with its original spelling and contact fields. The sample contains three suppliers. Suppliers is the only source because country, email and supplier identity are all on one supplier record; each supplier can be checked independently.",
       "added_sql": "SELECT SupplierID, CompanyName, Country, Email FROM Suppliers ORDER BY SupplierID;",
       "expected_count": 3,
       "sql": "SELECT SupplierID, CompanyName, Country, Email FROM Suppliers ORDER BY SupplierID;"

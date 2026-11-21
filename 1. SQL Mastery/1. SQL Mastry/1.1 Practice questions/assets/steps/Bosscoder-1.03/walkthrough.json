@@ -93,7 +93,7 @@
     {
       "id": "stage1",
       "title": "Understand one input row",
-      "change": "The row N = 1, P = 2 says node 1 has parent 2. To learn whether node 1 has children, look for its value in other rows' P column. Each output row will classify one N. Every node stays in the result.",
+      "change": "The row N = 1, P = 2 says node 1 has parent 2. To learn whether node 1 has children, look for its value in other rows' P column. Each output row will classify one N. Every node stays in the result. BST is the only source because each row is one node with its parent; classifying a node needs only its own N/P values and a subquery over that same node list.",
       "added_sql": "SELECT N, P FROM BST ORDER BY N;",
       "expected_count": 7,
       "sql": "SELECT N, P FROM BST ORDER BY N;"

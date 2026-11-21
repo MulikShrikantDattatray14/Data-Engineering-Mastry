@@ -86,7 +86,7 @@
     {
       "id": "stage1",
       "title": "Turn `store1` into rows",
-      "change": "The text `'store1'` becomes the output store label, while the value in column `store1` becomes `price`.",
+      "change": "The text `'store1'` becomes the output store label, while the value in column `store1` becomes `price`. Products is the only source because all three store price columns are on each product row; each store branch reshapes that row into product/store pairs without a lookup.",
       "added_sql": "SELECT product_id,\n       'store1' AS store,\n       store1 AS price\nFROM Products\nWHERE store1 IS NOT NULL;",
       "expected_count": 2,
       "inputs": [

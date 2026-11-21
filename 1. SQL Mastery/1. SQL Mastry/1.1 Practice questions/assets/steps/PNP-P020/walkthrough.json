@@ -86,7 +86,7 @@
     {
       "id": "stage1",
       "title": "Keep November 2025 orders",
-      "change": "The reporting period depends on when the order was placed. Order 3 was shipped in November but placed in October. Order 2 stays even though it has no shipping or delivery date.",
+      "change": "The reporting period depends on when the order was placed. Order 3 was shipped in November but placed in October. Order 2 stays even though it has no shipping or delivery date. Orders is the only source because the date filter and all three date/ID fields belong to each order; the report measures elapsed time on order rows.",
       "added_sql": "SELECT OrderID, OrderDate, ShipDate, DeliveryDate\nFROM Orders\nWHERE strftime(\"%m\", OrderDate) = '11' AND strftime(\"%Y\", OrderDate) = '2025'\nORDER BY OrderDate ASC, `OrderID` ASC;",
       "expected_count": 2,
       "sql": "SELECT OrderID, OrderDate, ShipDate, DeliveryDate\nFROM Orders\nWHERE strftime(\"%m\", OrderDate) = '11' AND strftime(\"%Y\", OrderDate) = '2025'\nORDER BY OrderDate ASC, `OrderID` ASC;"
