@@ -60,7 +60,7 @@
         3,
         2,
         600,
-        200.0,
+        200,
         "2025-01-01",
         "2025-01-03"
       ]
@@ -82,7 +82,7 @@
     {
       "id": "stage1",
       "title": "Count orders and distinct customers",
-      "change": "Order volume and customer reach count different things.",
+      "change": "Order volume and customer reach count different things. Orders is the only source because the report's headline measures all describe transactions and each row already supplies order ID, customer ID, amount and date.",
       "added_sql": "SELECT COUNT(OrderID) AS total_orders,\n       COUNT(DISTINCT CustomerID) AS ordering_customers\nFROM Orders;",
       "expected_count": 1,
       "sql": "SELECT COUNT(OrderID) AS total_orders,\n       COUNT(DISTINCT CustomerID) AS ordering_customers\nFROM Orders;"

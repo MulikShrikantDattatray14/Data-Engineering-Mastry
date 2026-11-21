@@ -65,7 +65,7 @@
     {
       "id": "stage1",
       "title": "Group and count the customer rows",
-      "change": "The five Karnataka customers form one group; Maharashtra forms another with just one customer.",
+      "change": "The five Karnataka customers form one group; Maharashtra forms another with just one customer. Customers is the only source because each customer row already carries State; grouping by that field needs no lookup.",
       "added_sql": "SELECT State, COUNT(CustomerID) AS customer_count FROM Customers GROUP BY State ORDER BY State;",
       "expected_count": 2,
       "sql": "SELECT State, COUNT(CustomerID) AS customer_count FROM Customers GROUP BY State ORDER BY State;"

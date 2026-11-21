@@ -115,7 +115,7 @@
     {
       "id": "stage1",
       "title": "Summarize Category",
-      "change": "Each distinct Active value is one category branch row, including NULL. The two active categories share one group.",
+      "change": "Each distinct Active value is one category branch row, including NULL. The two active categories share one group. Category is this branch's source because its rows are the category population; the branch counts each raw Active value without pairing it to Payments.",
       "added_sql": "SELECT 'Category' AS source_table,\n       'Active' AS flag_column, CAST(Active AS TEXT) AS raw_value , count(*) as row_count\nfrom Category\nGroup by Active",
       "expected_count": 3,
       "inputs": [

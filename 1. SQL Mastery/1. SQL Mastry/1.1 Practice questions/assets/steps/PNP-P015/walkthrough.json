@@ -82,7 +82,7 @@
     {
       "id": "stage1",
       "title": "Attach matching products to every category",
-      "change": "Snacks contributes two matched rows. Toys gets one unmatched row.",
+      "change": "Snacks contributes two matched rows. Toys gets one unmatched row. Category supplies the requested all-category population, so it must start the report; adding Products with LEFT JOIN counts matches while preserving Toys.",
       "added_sql": "SELECT c.CategoryID, c.CategoryName, p.ProductID\nFROM Category AS c\nLEFT JOIN Products AS p ON c.CategoryID = p.CategoryID\nORDER BY c.CategoryID, p.ProductID;",
       "expected_count": 3,
       "inputs": [

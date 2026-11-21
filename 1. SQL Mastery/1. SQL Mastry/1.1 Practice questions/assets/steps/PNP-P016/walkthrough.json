@@ -103,7 +103,7 @@
     {
       "id": "stage1",
       "title": "Match each order to its customer",
-      "change": "Both sample orders match Anu, so both remain before the date filter.",
+      "change": "Both sample orders match Anu, so both remain before the date filter. Customers is the chosen starting source because it supplies the call-sheet name and city; INNER JOIN Orders keeps only orders for known customers, as this report requests.",
       "added_sql": "SELECT o.OrderID, c.CustomerID, c.FirstName, c.LastName, c.City, o.OrderDate, o.Total_Order_Amount\nFROM Customers AS c\nINNER JOIN Orders AS o ON c.CustomerID = o.CustomerID\nORDER BY o.OrderID;",
       "expected_count": 2,
       "sql": "SELECT o.OrderID, c.CustomerID, c.FirstName, c.LastName, c.City, o.OrderDate, o.Total_Order_Amount\nFROM Customers AS c\nINNER JOIN Orders AS o ON c.CustomerID = o.CustomerID\nORDER BY o.OrderID;"

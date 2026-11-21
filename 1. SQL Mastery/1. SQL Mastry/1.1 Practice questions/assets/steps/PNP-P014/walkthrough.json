@@ -75,7 +75,7 @@
     {
       "id": "stage1",
       "title": "Keep only 2025 orders",
-      "change": "Both the monthly counts and the totals must use only 2025 orders.",
+      "change": "Both the monthly counts and the totals must use only 2025 orders. Orders is the only source because OrderDate identifies the 2025 month and Total_Order_Amount belongs to each order.",
       "added_sql": "SELECT OrderID, OrderDate, Total_Order_Amount\nFROM Orders\nWHERE strftime('%Y', OrderDate) = '2025'\nORDER BY OrderID;",
       "expected_count": 3,
       "sql": "SELECT OrderID, OrderDate, Total_Order_Amount\nFROM Orders\nWHERE strftime('%Y', OrderDate) = '2025'\nORDER BY OrderID;"

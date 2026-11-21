@@ -169,7 +169,7 @@
     {
       "id": "stage1",
       "title": "Build one row per customer ID that placed an order",
-      "change": "These are the candidate counts before the cutoff. The learner's COALESCE also supplies the fallback when a matched customer's name has a NULL part.",
+      "change": "These are the candidate counts before the cutoff. The learner's COALESCE also supplies the fallback when a matched customer's name has a NULL part. The CTE starts from Orders because only customer IDs with at least one purchase are candidates for the ranking; its one row per customer summarizes those orders before the outer query.",
       "added_sql": "WITH customer_counts AS (\n    SELECT\n        o.CustomerID,\n        COALESCE(c.FirstName || ' ' || c.LastName, 'Unknown customer') AS customer_name,\n        COUNT(o.OrderID) AS orders_placed\n    FROM Orders AS o\n    LEFT JOIN Customers AS c ON o.CustomerID = c.CustomerID\n    GROUP BY o.CustomerID, c.FirstName, c.LastName\n)\nSELECT * FROM customer_counts\nORDER BY orders_placed DESC, CustomerID ASC;",
       "expected_count": 7,
       "sql": "WITH customer_counts AS (\n    SELECT\n        o.CustomerID,\n        COALESCE(c.FirstName || ' ' || c.LastName, 'Unknown customer') AS customer_name,\n        COUNT(o.OrderID) AS orders_placed\n    FROM Orders AS o\n    LEFT JOIN Customers AS c ON o.CustomerID = c.CustomerID\n    GROUP BY o.CustomerID, c.FirstName, c.LastName\n)\nSELECT * FROM customer_counts\nORDER BY orders_placed DESC, CustomerID ASC;"

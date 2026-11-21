@@ -84,7 +84,7 @@
     {
       "id": "stage1",
       "title": "Find the two eligible subcategories",
-      "change": "Percent signs are wildcards in LIKE. The substring cookie also matches Cookies, and chocolate matches longer labels such as Dark Chocolate. Tea Biscuit drops out.",
+      "change": "Percent signs are wildcards in LIKE. The substring cookie also matches Cookies, and chocolate matches longer labels such as Dark Chocolate. Tea Biscuit drops out. Products is the only source because Product, Sub_Category and Sale_Price needed for the filters and result all belong to catalogue rows.",
       "added_sql": "select `ProductID`,Product,Sub_Category,Sale_Price\nfrom Products\nwhere ( trim(lower(Sub_Category)) like \"%cookie%\" or  trim(lower(Sub_Category)) like \"%chocolate%\")\norder by ProductID;",
       "expected_count": 3,
       "sql": "select `ProductID`,Product,Sub_Category,Sale_Price\nfrom Products\nwhere ( trim(lower(Sub_Category)) like \"%cookie%\" or  trim(lower(Sub_Category)) like \"%chocolate%\")\norder by ProductID;"
