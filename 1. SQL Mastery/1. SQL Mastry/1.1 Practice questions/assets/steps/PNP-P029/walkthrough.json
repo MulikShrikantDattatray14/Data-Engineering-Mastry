@@ -147,7 +147,7 @@
     {
       "id": "stage1",
       "title": "Why prepare OrderDetails_2 first?",
-      "change": "One order can have several detail lines. Sum the quantities for each OrderID so the summary can match an order at most once.",
+      "change": "OrderDetails supplies every detail line because each line contributes quantity. Grouping by OrderID makes one CTE row per order; Orders supplies the outer report’s starting rows.",
       "added_sql": "WITH OrderDetails_2 AS (\n    SELECT OrderID, SUM(Quantity) AS total_units\n    FROM OrderDetails\n    GROUP BY OrderID\n)\nSELECT OrderID, total_units\nFROM OrderDetails_2\nORDER BY OrderID;",
       "expected_count": 3,
       "inputs": [
