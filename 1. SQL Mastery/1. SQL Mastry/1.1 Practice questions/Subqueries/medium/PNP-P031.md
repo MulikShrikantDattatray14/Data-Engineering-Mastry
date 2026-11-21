@@ -25,8 +25,8 @@ The course asks for one row per ordering customer whose lifetime spend exceeds t
 | 1 | `CustomerID` | 🟦 `Orders.CustomerID` | Return the ordering customer's ID. The course excludes orders with a missing ID and preserves known IDs even if their customer record is missing. | 1 |
 | 2 | `customer_name` | 🟩 `Customers.FirstName`, `Customers.LastName` | Look up the name for the ordering ID. The course displays the first and last name or `Unknown customer` when no customer row matches. | Asha Rao |
 | 3 | `total_spend` | 🟦 `Orders.Total_Order_Amount` | Sum the gross amount of all orders placed by this customer. Multiple orders still contribute a single customer total to the benchmark. | 300 |
-| 4 | `avg_customer_spend` | 🟦 Calculated from the customer totals | Average one lifetime total per ordering customer. The same benchmark appears on each output row. Display it to two decimals. | 200.00 |
-| 5 | `pct_above_avg` | 🟦 Calculated from the customer total and benchmark | Calculate 100 × (customer total − benchmark) ÷ benchmark, guard against a zero denominator, and display the percentage to two decimals. | 50.00 |
+| 4 | `avg_customer_spend` | 🟦 Calculated from the customer totals | Course display rule: two decimals. The locked learner query does not round this benchmark, so it returns the unrounded average of one lifetime total per ordering customer. | 200.0 |
+| 5 | `pct_above_avg` | 🟦 Calculated from the customer total and benchmark | Course display rule: two decimals. The locked learner query does not `ROUND` this calculation; it computes 100 × (customer total − benchmark) ÷ benchmark and guards against a zero denominator. | 50.0 |
 
 **Selection and ordering.** Compare each customer total with the unrounded benchmark using strict greater-than. Equal spend is excluded. Sort by total spend descending. The course answer uses customer ID ascending as its tie-breaker.
 
@@ -57,6 +57,10 @@ The course asks for one row per ordering customer whose lifetime spend exceeds t
 | 🟦 `CustomerID` | 🟩 `customer_name` | 🟦 `total_spend` | 🟦 `avg_customer_spend` | 🟦 `pct_above_avg` |
 | ---: | --- | ---: | ---: | ---: |
 | 1 | Asha Rao | 300 | 200.00 | 50.00 |
+
+**Precision note.** The expected table follows the course’s two-decimal display. The locked learner query returns unrounded numeric values; for this sample SQLite returns `avg_customer_spend = 200.0` and `pct_above_avg = 50.0`. Other inputs can yield additional decimal places. This documented difference is preserved; the selected SQL is unchanged.
+
+
 
 [View the source-colored sample tables](../../assets/question-samples/p031.svg?raw=1)
 
