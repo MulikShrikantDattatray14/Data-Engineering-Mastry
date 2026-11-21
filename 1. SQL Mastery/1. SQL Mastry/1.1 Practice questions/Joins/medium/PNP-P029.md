@@ -201,6 +201,8 @@ The previous result still carries Orders.OrderID. Attach the prepared units tota
 
 The added key is 🟥 `od.OrderID` = 🟦 `o.OrderID`. The left input is the result of the first join. Writing `od.OrderID` first inside the equality gives the same matches.
 
+**Independent lookups can be exchanged.** `Shippers` and `OrderDetails_2` both look up values using keys already carried by `Orders`. Neither lookup needs the other’s columns, so—once the one-row-per-OrderID summary is prepared—the two joins can trade places. The dependency is inside the detail branch: `OrderDetails` must first be grouped into `OrderDetails_2` so several lines do not multiply a single order amount.
+
 ```sql
 WITH OrderDetails_2 AS (
     SELECT OrderID, SUM(Quantity) AS total_units
