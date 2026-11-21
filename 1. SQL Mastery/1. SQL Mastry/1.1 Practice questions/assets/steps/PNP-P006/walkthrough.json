@@ -101,7 +101,7 @@
     {
       "id": "stage1",
       "title": "Compare the two prices on each row",
-      "change": "The comparison can be true, false, or unknown.",
+      "change": "The comparison can be true, false, or unknown. Products is the only source because Sale_Price and Market_Price sit on each product row, so the full-price comparison needs no join.",
       "added_sql": "SELECT ProductID, Product, Sale_Price, Market_Price,\n       Market_Price = Sale_Price AS prices_match\nFROM Products\nORDER BY ProductID;",
       "expected_count": 4,
       "sql": "SELECT ProductID, Product, Sale_Price, Market_Price,\n       Market_Price = Sale_Price AS prices_match\nFROM Products\nORDER BY ProductID;"

@@ -99,7 +99,7 @@
     {
       "id": "stage1",
       "title": "Label prices below 200",
-      "change": "Budget ends immediately before 200.",
+      "change": "Budget ends immediately before 200. Products is the only source because its ID, name and Sale_Price supply the product and its price-band label; no lookup is needed.",
       "added_sql": "SELECT ProductID, Product, Sale_Price,\n       CASE\n           WHEN Sale_Price < 200 THEN 'Budget'\n       END AS price_band\nFROM Products\nORDER BY ProductID ASC;",
       "expected_count": 5,
       "sql": "SELECT ProductID, Product, Sale_Price,\n       CASE\n           WHEN Sale_Price < 200 THEN 'Budget'\n       END AS price_band\nFROM Products\nORDER BY ProductID ASC;"

@@ -95,7 +95,7 @@
     {
       "id": "stage1",
       "title": "Assign the issue to each customer",
-      "change": "Each customer needs the first applicable label.",
+      "change": "Each customer needs the first applicable label. Customers is the only source because the task assigns an email issue to each person and both identity and Email are already on each customer row.",
       "added_sql": "SELECT CustomerID, FirstName, LastName, Email,\n       (CASE\n          WHEN Email IS NULL OR LENGTH(Email) == 0 THEN 'Missing'\n          WHEN Email LIKE '% %' THEN 'Contains a space'\n          WHEN Email NOT LIKE '%_@_%._%' THEN 'Not in name@domain.tld form'\n        END) AS issue\nFROM Customers\nORDER BY CustomerID ASC;",
       "expected_count": 4,
       "sql": "SELECT CustomerID, FirstName, LastName, Email,\n       (CASE\n          WHEN Email IS NULL OR LENGTH(Email) == 0 THEN 'Missing'\n          WHEN Email LIKE '% %' THEN 'Contains a space'\n          WHEN Email NOT LIKE '%_@_%._%' THEN 'Not in name@domain.tld form'\n        END) AS issue\nFROM Customers\nORDER BY CustomerID ASC;"

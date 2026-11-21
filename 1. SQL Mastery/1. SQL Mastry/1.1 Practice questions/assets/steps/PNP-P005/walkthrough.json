@@ -84,7 +84,7 @@
     {
       "id": "stage1",
       "title": "Keep orders from the start of the quarter",
-      "change": "The first day belongs to the quarter.",
+      "change": "The first day belongs to the quarter. Orders is the only source because each output row is an order, and OrderDate determines eligibility while OrderID and amount are already present.",
       "added_sql": "select OrderID, CustomerID, OrderDate,Total_Order_Amount\nfrom Orders\nwhere OrderDate>= '2025-01-01'\norder by OrderDate asc , OrderID asc",
       "expected_count": 3,
       "sql": "select OrderID, CustomerID, OrderDate,Total_Order_Amount\nfrom Orders\nwhere OrderDate>= '2025-01-01'\norder by OrderDate asc , OrderID asc"

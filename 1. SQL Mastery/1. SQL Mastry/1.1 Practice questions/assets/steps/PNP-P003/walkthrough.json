@@ -175,7 +175,7 @@
     {
       "id": "stage1",
       "title": "Check the displayed value and the matching value",
-      "change": "Case-insensitive matching can coexist with original display case.",
+      "change": "Case-insensitive matching can coexist with original display case. Customers is the only source because the report returns customer rows and City already lives on each customer; trim and case-normalize for matching without another lookup.",
       "added_sql": "SELECT CustomerID, City AS OriginalCity, TRIM(City) AS City,\n       TRIM(LOWER(City)) AS MatchCity\nFROM Customers\nORDER BY CustomerID;",
       "expected_count": 9,
       "sql": "SELECT CustomerID, City AS OriginalCity, TRIM(City) AS City,\n       TRIM(LOWER(City)) AS MatchCity\nFROM Customers\nORDER BY CustomerID;"

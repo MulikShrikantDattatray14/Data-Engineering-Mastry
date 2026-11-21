@@ -186,7 +186,7 @@
     {
       "id": "filter",
       "title": "Keep known prices",
-      "change": "One of the 13 catalogue rows has a missing price. Sticker still qualifies for ranking at a price of zero.",
+      "change": "One of the 13 catalogue rows has a missing price. Sticker still qualifies for ranking at a price of zero. Products is the only source because each catalogue row supplies its name and sale price for ranking; no lookup is needed to identify the top-priced items.",
       "added_sql": "WHERE Sale_Price IS NOT NULL",
       "expected_count": 12,
       "sql": "SELECT ProductID, Product, Brand, Sale_Price FROM Products WHERE Sale_Price IS NOT NULL ORDER BY ProductID;"

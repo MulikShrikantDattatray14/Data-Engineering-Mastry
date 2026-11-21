@@ -77,7 +77,7 @@
     {
       "id": "trim",
       "title": "Clean the stored brand names",
-      "change": "TRIM turns the padded Nike entry into Nike. A string of three spaces becomes an empty string. All eight product rows remain.",
+      "change": "TRIM turns the padded Nike entry into Nike. A string of three spaces becomes an empty string. All eight product rows remain. Products is the only source because each directory entry comes from a product row; TRIM changes the brand text without changing which products are listed.",
       "added_sql": "TRIM(Brand) AS CleanBrand",
       "expected_count": 8,
       "sql": "SELECT ProductID, Brand, TRIM(Brand) AS CleanBrand FROM Products ORDER BY ProductID;"
