@@ -124,7 +124,7 @@
     {
       "id": "stage1",
       "title": "Calculate the 90-day window",
-      "change": "The date window depends on the most recent transaction. The CTE returns one pair of dates for the whole report. Subtract 89 days because the latest date counts as one of the 90.",
+      "change": "The date window depends on the most recent transaction. The CTE returns one pair of dates for the whole report. Subtract 89 days because the latest date counts as one of the 90. Orders supplies the OrderDate values for this date-bound CTE; its one row is the latest date and the inclusive window bounds, not the outer customer population.",
       "added_sql": "WITH reporting_window AS (\n    SELECT date(MAX(OrderDate)) AS latest_order_date,\n           date(MAX(OrderDate), '-89 days') AS window_start\n    FROM Orders\n)\nSELECT latest_order_date, window_start FROM reporting_window;",
       "expected_count": 1,
       "inputs": [
