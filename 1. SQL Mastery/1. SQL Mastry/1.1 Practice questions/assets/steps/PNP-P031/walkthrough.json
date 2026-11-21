@@ -104,8 +104,8 @@
         1,
         "Asha Rao",
         300,
-        200.0,
-        50.0
+        200,
+        50
       ]
     ]
   },
@@ -113,7 +113,7 @@
     {
       "id": "orders",
       "title": "Start with the orders",
-      "change": "Each purchase supplies an amount and ordering customer ID. Order 10 contributes 300 for customer 1.",
+      "change": "`Orders` is the first `FROM` source because the report must retain each ordering customer’s purchase amount as the starting row before forming customer totals. It supplies both the customer ID and spend; order 10 contributes 300 for customer 1.",
       "added_sql": "FROM Orders AS o",
       "inputs": [
         "Orders"
