@@ -74,7 +74,7 @@
     {
       "id": "stage1",
       "title": "Start with one row per set of side lengths",
-      "change": "Every row must receive a classification. Read TRIANGLES and calculate the label in SELECT.",
+      "change": "FROM TRIANGLES supplies one row per candidate triangle because the output needs exactly one classification for each input triple. Each row already contains all three sides, so no join can add required information or change the row grain.",
       "added_sql": "SELECT A, B, C FROM TRIANGLES;",
       "expected_count": 4,
       "sql": "SELECT A, B, C FROM TRIANGLES;"
