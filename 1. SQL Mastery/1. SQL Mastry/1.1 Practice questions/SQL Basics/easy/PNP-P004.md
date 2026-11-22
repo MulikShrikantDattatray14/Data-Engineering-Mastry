@@ -235,7 +235,27 @@ SQLite adaptation executed on representative fixtures. SQL Server adaptation rev
 
 ## Comparison with the course answer
 
-The locked query labels only `NULL` and zero-length email strings as `Missing`, then labels any email containing a space as `Contains a space`. The course answer treats whitespace-only strings as `Missing` by checking `TRIM(Email) = ''`. A spaces-only email is therefore included by both queries but receives a different label. The practice sample does not include this edge case; the locked query and its sample verification remain unchanged.
+The locked query labels only `NULL` and zero-length email strings as `Missing`, then labels any email containing a space as `Contains a space`. The course answer treats whitespace-only strings as `Missing` by checking `TRIM(Email) = ''`. A spaces-only email is therefore included by both queries but receives a different label. The original practice sample remains unchanged; this difference is tested separately below.
+
+## Edge-case verification · Branch fixture (Practice example)
+
+The following two rows were added only to test the locked query's label precedence; they are not part of the assignment's original sample.
+
+**🟦 Customers**
+
+| 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 Email |
+| ---: | --- | --- | --- |
+| 5 | Esha | Patil | `'   '` |
+| 6 | Farid | Khan | `''` |
+
+**SQLite result comparison**
+
+| 🟦 CustomerID | 🟦 Email | 🟦 Locked learner label | 🟦 Course label |
+| ---: | --- | --- | --- |
+| 5 | `'   '` | Contains a space | Missing |
+| 6 | `''` | Missing | Missing |
+
+Customer 5 has three spaces: `LENGTH(Email) = 3`, so the learner query reaches the space check and returns `Contains a space`; the official query sees `TRIM(Email) = ''` first and returns `Missing`. Customer 6 is a zero-length string, so both label it `Missing`. Both SQLite queries were executed against these two rows. The SQL Server adaptation remains review-by-inspection, not engine-executed.
 
 
 ## Verification
