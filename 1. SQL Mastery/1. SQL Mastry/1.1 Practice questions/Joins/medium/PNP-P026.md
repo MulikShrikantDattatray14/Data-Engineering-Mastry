@@ -134,7 +134,7 @@ One result row represents a category. Before aggregating, keep enough detail to 
 
 ### 1. Why start with OrderDetails?
 
-Finance wants sold units to add back to the original sales. One row here represents a sale line. Order `100` spans three lines, each with its own product and quantity.
+FROM OrderDetails supplies one row per sale line—the OrderID and Quantity Finance must trace even when product or category lookups fail. Order `100` spans three lines, each with its own product and quantity.
 
 ```sql
 SELECT OrderDetailID, OrderID, ProductID, Quantity

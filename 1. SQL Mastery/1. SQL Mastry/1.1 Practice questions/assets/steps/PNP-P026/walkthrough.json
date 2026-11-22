@@ -190,7 +190,7 @@
     {
       "id": "stage1",
       "title": "Why start with OrderDetails?",
-      "change": "Finance wants sold units to add back to the original sales. One row here represents a sale line. Order `100` spans three lines, each with its own product and quantity.",
+      "change": "FROM OrderDetails supplies one row per sale line—the OrderID and Quantity Finance must trace even when product or category lookups fail. Order `100` spans three lines, each with its own product and quantity.",
       "added_sql": "SELECT OrderDetailID, OrderID, ProductID, Quantity\nFROM OrderDetails\nORDER BY OrderDetailID;",
       "expected_count": 5,
       "inputs": [

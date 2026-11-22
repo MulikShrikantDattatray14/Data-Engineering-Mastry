@@ -220,7 +220,7 @@ The diagram keeps the original ten orders and adds examples from practice. Follo
 
 ### 1. Why start with Orders?
 
-An order is the event being counted. The example below uses the same 49 orders and seven customers in every step. In the blue table, each OrderID within a range has the listed CustomerID and amount.
+FROM Orders supplies one row per purchase because the report counts order IDs and their amounts, even when a customer is missing or an amount is NULL. The example below uses the same 49 orders and seven customers in every step. In the blue table, each OrderID within a range has the listed CustomerID and amount.
 
 **🟦 Orders**
 

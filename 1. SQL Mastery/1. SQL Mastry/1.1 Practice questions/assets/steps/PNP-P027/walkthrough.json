@@ -371,7 +371,7 @@
     {
       "id": "stage1",
       "title": "Why start with Orders?",
-      "change": "Each of the 49 purchases contributes one order ID, buyer ID and amount. Orders 17–21 count as purchases even though their amounts are NULL.",
+      "change": "FROM Orders supplies one row per purchase because the report counts order IDs and amounts. Orders 17–21 still count despite NULL amounts, and a purchase with a missing customer must remain.",
       "added_sql": "SELECT OrderID, CustomerID, Total_Order_Amount FROM Orders ORDER BY OrderID;",
       "expected_count": 49,
       "inputs": [
