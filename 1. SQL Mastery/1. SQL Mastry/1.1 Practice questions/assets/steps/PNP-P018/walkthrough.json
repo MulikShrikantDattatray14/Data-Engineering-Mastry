@@ -135,7 +135,7 @@
     {
       "id": "stage2",
       "title": "Match only orders inside the window",
-      "change": "Every customer is a candidate for outreach, including Cia, who has never ordered. Only the customer list contains everyone to test.",
+      "change": "Start the outer report from Customers because every registered customer is a candidate, even Cia with no order. Add Orders second with a LEFT JOIN on CustomerID; that key is already on both sides, so no lookup dependency is missing. Keep the date-range condition in ON to restrict matches rather than filter customers. Asha matches order 10 on March 31 and stays with a match. Ben’s order 11 (December 1) falls outside the window, so his row survives with NULL order columns; Cia has no order and also survives with NULLs. The later anti-match filter removes Asha and keeps Ben and Cia",
       "added_sql": "SELECT Customers.CustomerID, Orders.OrderID AS matched_order_id, Orders.OrderDate AS matched_order_date\nFROM Customers\nLEFT JOIN Orders\n    ON Orders.CustomerID = Customers.CustomerID\n   AND date(Orders.OrderDate) BETWEEN\n       (SELECT window_start FROM reporting_window)\n       AND (SELECT latest_order_date FROM reporting_window)\nORDER BY Customers.CustomerID;",
       "expected_count": 3,
       "inputs": [
