@@ -135,7 +135,7 @@ Use the original three orders and the two we added during practice. Order **13**
 
 ### 1. Why start with Orders?
 
-The report measures transactions. OrderID identifies one transaction, including one with a missing payment method.
+FROM Orders supplies one row per transaction; every order amount counts, even when PaymentID is missing.
 
 ```sql
 SELECT OrderID, PaymentID, Total_Order_Amount FROM Orders ORDER BY OrderID;
