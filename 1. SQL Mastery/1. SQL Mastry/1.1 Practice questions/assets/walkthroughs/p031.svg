@@ -151,7 +151,7 @@
   <line x1="36" y1="801" x2="924" y2="801" stroke="#C8D4DF" stroke-width="1" />
   <text x="36" y="835" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">03</text>
   <text x="81" y="835" font-size="24" font-weight="700" fill="#14283A">What is one customer’s total spend?</text>
-  <text x="81" y="863" font-size="16" font-weight="400" fill="#324D63">Group by o.CustomerID, c.FirstName and c.LastName. SUM adds the amounts inside each group.</text>
+  <text x="81" y="863" font-size="16" font-weight="400" fill="#324D63">One CTE row per CustomerID/name group (including NULL IDs). SUM adds all order amounts inside that group.</text>
   <rect x="36" y="879" width="888" height="34" fill="#F1F4F7" rx="4" />
   <rect x="36" y="879" width="3" height="34" fill="#687E90" />
   <text x="48" y="901" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">SUM(o.Total_Order_Amount) AS total_spend</text>
@@ -196,12 +196,12 @@
   <rect x="653" y="1044" width="271" height="28" fill="#DBEBFA" />
   <text x="663" y="1064" font-size="16" font-weight="700" fill="#123B60">200</text>
   <line x1="36" y1="1072" x2="924" y2="1072" stroke="#C8D4DF" stroke-width="1" />
-  <text x="36" y="1098" font-size="15" font-weight="400" fill="#324D63">customer_spend has 3 customer rows. Each customer has one order in this practice example.</text>
+  <text x="36" y="1098" font-size="15" font-weight="400" fill="#324D63">customer_spend groups orders into one CustomerID/name row, even when several orders contribute.</text>
   <text x="36" y="1120" font-size="15" font-weight="400" fill="#324D63">If Asha’s 300 were split into orders of 100 and 200, her group would still produce one total of 300.</text>
   <line x1="36" y1="1146" x2="924" y2="1146" stroke="#C8D4DF" stroke-width="1" />
   <text x="36" y="1180" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">04</text>
   <text x="81" y="1180" font-size="24" font-weight="700" fill="#14283A">Why does the same average appear three times?</text>
-  <text x="81" y="1208" font-size="16" font-weight="400" fill="#324D63">The scalar subquery reads the totals in customer_spend. It returns one value for all three rows.</text>
+  <text x="81" y="1208" font-size="16" font-weight="400" fill="#324D63">FROM customer_spend keeps one row per group. The scalar AVG reads all 3 totals and attaches 200 to each.</text>
   <rect x="36" y="1224" width="888" height="34" fill="#F1F4F7" rx="4" />
   <rect x="36" y="1224" width="3" height="34" fill="#687E90" />
   <text x="48" y="1246" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">(SELECT AVG(total_spend) FROM customer_spend) AS avg_customer_spend</text>

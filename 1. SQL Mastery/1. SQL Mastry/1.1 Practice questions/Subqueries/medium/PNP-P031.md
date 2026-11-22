@@ -164,7 +164,7 @@ ORDER BY o.OrderID;
 
 ### 3. What does one customer spend?
 
-The first CTE groups by the ordering ID and matched name fields. `SUM` adds every order amount in that group. The three input orders produce three customer rows in this example.
+The `customer_spend` CTE is prepared from raw `Orders` and `Customers`, not from the preceding joined step. `FROM Orders AS o` supplies every order amount; `LEFT JOIN Customers AS c ON o.CustomerID = c.CustomerID` attaches names and preserves orders without a match. `GROUP BY` returns one row per `CustomerID`/name group (including a `NULL`-ID group if present), so several orders contribute to one `total_spend`. The three sample orders produce three groups.
 
 ```sql
 SELECT
@@ -186,7 +186,7 @@ In a separate check, replacing order 10 with two orders of 100 and 200 for Asha 
 
 ### 4. Why does every customer get the same average?
 
-The second CTE starts with `customer_spend AS cs`. The scalar subquery reads all three customer totals. Its one result is (300 + 100 + 200) ÷ 3 = 200. The outer `SELECT` puts that number alongside each customer.
+The second CTE reads `customer_spend`, which contains one row per `CustomerID`/name group (including a `NULL`-ID group if present). `FROM customer_spend AS cs` supplies those customer totals to the outer query. The scalar subquery separately reads all group totals and returns (300 + 100 + 200) ÷ 3 = 200 for this sample, then attaches it to each group. The locked query includes a `NULL`-ID group in this benchmark; the course answer excludes it.
 
 ```sql
 SELECT

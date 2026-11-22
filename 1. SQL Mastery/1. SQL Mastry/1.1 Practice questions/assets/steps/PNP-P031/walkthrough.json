@@ -136,18 +136,22 @@
     {
       "id": "totals",
       "title": "Sum each customer’s orders",
-      "change": "The customer groups produce totals of 300, 100 and 200. If Asha places two orders worth 100 and 200, her group still contributes one total of 300.",
+      "change": "The `customer_spend` CTE is prepared from the original `Orders` and `Customers` tables, not from the preceding joined stage. `FROM Orders AS o` supplies every order amount; `LEFT JOIN Customers` on `CustomerID` adds names and keeps unmatched orders. `GROUP BY` produces one row per `CustomerID`/name group (including a `NULL`-ID group if present), so multiple orders contribute to one total. Order 10 contributes 300 for Asha.",
       "added_sql": "SUM(o.Total_Order_Amount) AS total_spend\n-- one group per ordering ID and matched name\nGROUP BY o.CustomerID, c.FirstName, c.LastName",
       "with": [
         "customer_spend"
       ],
       "expected_count": 3,
-      "sql": "SELECT CustomerID, customer_name, total_spend\nFROM customer_spend ORDER BY CustomerID;"
+      "sql": "SELECT CustomerID, customer_name, total_spend\nFROM customer_spend ORDER BY CustomerID;",
+      "inputs": [
+        "Orders",
+        "Customers"
+      ]
     },
     {
       "id": "average",
       "title": "Attach the customer average",
-      "change": "The scalar subquery averages (300 + 100 + 200) ÷ 3 = 200. All three customer rows receive that value.",
+      "change": "`customer_spend` contains one row per `CustomerID`/name group, including a `NULL`-ID group if present. The outer `FROM customer_spend AS cs` starts from those totals; the scalar subquery reads all three sample totals (300 + 100 + 200) ÷ 3 = 200 and attaches that benchmark to every group. The locked query includes a `NULL`-ID group in the average, unlike the course answer.",
       "added_sql": "(SELECT AVG(total_spend) FROM customer_spend) AS avg_customer_spend",
       "with": [
         "customer_spend",
