@@ -247,6 +247,11 @@ The answer key returns the stored brand text. The learner query also trims the d
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
 
+## Comparison with the course answer
+
+The locked query deliberately applies `TRIM(Brand)` before both displaying and deduplicating brand names. The course answer deduplicates the raw `Brand` values, so the sample's `Nike` and `' Nike '` remain separate in the course result but merge into one `Nike` in the learner result. The learner query also removes empty and whitespace-only values and sorts by the cleaned name. This is the selected normalization behavior; the query and its verified three-row sample output remain unchanged.
+
+
 ## Verification
 
 The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P001/walkthrough.json). The column names and all 3 expected rows matched in the displayed order.

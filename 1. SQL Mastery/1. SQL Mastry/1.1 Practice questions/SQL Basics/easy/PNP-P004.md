@@ -233,6 +233,11 @@ ORDER BY c.CustomerID;
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
 
+## Comparison with the course answer
+
+The locked query labels only `NULL` and zero-length email strings as `Missing`, then labels any email containing a space as `Contains a space`. The course answer treats whitespace-only strings as `Missing` by checking `TRIM(Email) = ''`. A spaces-only email is therefore included by both queries but receives a different label. The practice sample does not include this edge case; the locked query and its sample verification remain unchanged.
+
+
 ## Verification
 
 The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P004/walkthrough.json). The column names and all 3 expected rows matched in the displayed order.
