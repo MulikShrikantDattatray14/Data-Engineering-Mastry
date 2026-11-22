@@ -62,7 +62,9 @@ One output row represents one category represented on sale lines, including line
 | 🟥 Stationery | 🟦 0 | 🟦 0 | 🟪 0 |
 | 🟪 Unknown product | 🟦 1 | 🟦 4 | 🟪 NULL |
 
-[View sample inputs and output with colored cells](../../assets/question-samples/p026.svg?raw=1)
+![PNP P026 sample inputs and expected output](../../assets/question-samples/p026.svg)
+
+[Open the full-size sample SVG](../../assets/question-samples/p026.svg?raw=1)
 
 ### How the sample produces this output
 
