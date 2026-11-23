@@ -473,6 +473,10 @@ GROUP BY category_name
 ORDER BY list_price_value DESC, category_name ASC;
 ```
 
+## Comparison with the course answer
+
+The locked query uses a `FULL OUTER JOIN` to `Category` after keeping all sale lines from `OrderDetails` and looking up `Products`. This preserves category rows with no sold product, so the practice output includes **Stationery with zero orders, units, and value**. The official answer uses a `LEFT JOIN` from sale lines to `Category`, so category-only rows never enter its report; that is why the official query returns four rows while the learner query returns five. Both keep unmatched order-line product IDs through the earlier `LEFT JOIN Products`, labelled `Unknown product`. The selected query and its five-row expected output remain unchanged.
+
 ## Verification
 
 Ran the learner and official SQLite queries on SQLite 3.53.1. All five expected rows, output names and ordering matched for the learner query. The published query returned four rows. Additional learner checks covered an empty `OrderDetails` table, two catalogue categories with the same name, a real category named `Unmapped`, tied values, and a category whose sold products all had missing prices. The SQL Server adaptations were checked against the same sample using their SQLite-compatible statements. A native SQL Server run is pending.
