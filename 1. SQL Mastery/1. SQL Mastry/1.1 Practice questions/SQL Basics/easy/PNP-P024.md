@@ -96,7 +96,7 @@ Follow the sample rows through each query step. **Predict the result.** Supplier
 
 [Open the full-size walkthrough](../../assets/walkthroughs/p024.svg?raw=1)
 
-## Walkthrough
+## Step-by-step walkthrough
 
 🟦 **FROM Suppliers · one table is enough** · The country and email checks apply to one supplier. ID 2 can trigger both checks on its own record and still contribute just one follow-up row.
 
