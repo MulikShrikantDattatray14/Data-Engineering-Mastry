@@ -309,6 +309,12 @@ ORDER BY top5.orders_placed DESC, top5.CustomerID;
 
 The official versions distinguish unmatched customer IDs from matched customers with missing name parts. The SQLite adaptation was executed on the sample and boundary fixtures. SQL Server versions were reviewed by inspection.
 
+## Comparison with the course answer
+
+The locked query uses the fifth customer's order count as a cutoff and keeps every group at or above it. That is equivalent to the official `FETCH FIRST 5 ROWS WITH TIES` / `RANK() <= 5` behavior. `COUNT(OrderID)` is equivalent to `COUNT(*)` for real order rows because `OrderID` is non-NULL.
+
+The name expression differs: the learner query returns `Unknown customer` when either name part makes the `||` concatenation NULL, even if a matched customer has the other name part. The official answer labels an unmatched CustomerID as `Unknown customer`, but `CONCAT_WS` (and the SQLite adaptation) preserves a present name part. **Practice example (added only for this comparison):** customer 7 with `FirstName = NULL`, `LastName = 'Rao'`, and one order appears as `Unknown customer` in the locked query and `Rao` in the official adaptation. The saved query is unchanged.
+
 ## Verification
 
 The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P021/walkthrough.json). The column names and all 7 expected rows matched in the displayed order.
