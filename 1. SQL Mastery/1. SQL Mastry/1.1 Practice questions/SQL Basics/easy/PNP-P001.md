@@ -214,7 +214,7 @@ This adaptation uses SQL Server's `LEN` and sorts by the output alias. It was re
 
 ## Official solution
 
-The [repository's PNP P001 source notes](<../../../2.PNP- foundations and practice/0. SQL basics/P001. Brand directory.md>) reproduce this query from the PNP answer key.
+The [repository's PNP P001 source notes](../../../2.PNP-%20foundations%20and%20practice/0.%20SQL%20basics/P001.%20Brand%20directory.md) reproduce this query from the PNP answer key.
 
 ```sql
 SELECT DISTINCT p.Brand
