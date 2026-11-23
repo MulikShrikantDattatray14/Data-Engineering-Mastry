@@ -286,6 +286,12 @@ Descending order places NULL percentages last in both target engines.
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
 
+## Comparison with the course answer
+
+The locked query sorts by `discount_pct DESC` only. The official answer adds `ProductID` as a secondary sort key and explicitly places NULL percentages last. SQLite's descending sort places NULLs last by default, so the NULL placement matches here, but rows tied on percentage are not guaranteed to have a stable order in the learner query. The official query makes that order deterministic.
+
+**Practice tie example (added for comparison; not part of the assignment sample):** two products with Market_Price 100 and Sale_Price 80 both have a 20.00% discount. The official answer puts the lower `ProductID` first. The locked learner query may return either tied row first; the original three-row sample has no tie, so its displayed order is unaffected. The query is preserved exactly as selected.
+
 ## Verification
 
 The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P007/walkthrough.json). The column names and all 3 expected rows matched in the displayed order.
