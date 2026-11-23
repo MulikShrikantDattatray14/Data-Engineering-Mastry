@@ -299,6 +299,12 @@ SQLite supports the source FILTER and NULLS LAST clauses. The SQL Server adaptat
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
 
+## Comparison with the course answer
+
+The locked query's `COUNT(ProductID)` counts products just like the official `COUNT(*)` because `ProductID` is the non-NULL primary key. Its `SUM(CASE ...)` full-price count is equivalent to the official filtered count, and its discount-average expression excludes NULL and zero market prices, like the official `NULLIF` denominator.
+
+The one output-order difference is `ORDER BY CategoryID ASC`: SQLite puts a NULL category first by default, while the official query specifies `NULLS LAST`. The supplied sample has only CategoryID 10, so this is not visible in the sample. **Practice example (added only to check the NULL-category sort):** adding a product with CategoryID NULL and both prices 10 produces the same two groups and metrics, but the learner query puts the NULL group before category 10; the official query puts it after category 10. The locked learner query is preserved.
+
 ## Verification
 
 The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P012/walkthrough.json). The column names and all 1 expected row matched in the displayed order.
