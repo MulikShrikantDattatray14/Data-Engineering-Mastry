@@ -184,7 +184,7 @@
     {
       "id": "stage4",
       "title": "Why LEFT JOIN the units summary third?",
-      "change": "Order 10 looks up five units from the two detail lines. Keeping one summary per order preserves its single amount of 100.",
+      "change": "The outer query already has `Orders.OrderID`, so it can attach the prepared `OrderDetails_2` total with a `LEFT JOIN` on `od.OrderID = o.OrderID`. The CTE contributes at most one units row per order; order 10 matches its two lines (2 + 3 = 5). Because this lookup is independent of the `Shippers` lookup—both keys come directly from `Orders`—either join can come first. A missing summary (like the separate OtherShip check for order 16) leaves the order and its amount 80 in place, with units NULL until `COALESCE` makes it 0.",
       "added_sql": "WITH OrderDetails_2 AS (\n    SELECT OrderID, SUM(Quantity) AS total_units\n    FROM OrderDetails\n    GROUP BY OrderID\n)\n-- …\n       s.ShipperID AS matched_shipper_id, s.CompanyName,\n       od.OrderID AS summarized_order_id, od.total_units\n-- …\nLEFT JOIN `OrderDetails_2` AS od\n    ON od.OrderID = o.OrderID",
       "expected_count": 3,
       "inputs": [
