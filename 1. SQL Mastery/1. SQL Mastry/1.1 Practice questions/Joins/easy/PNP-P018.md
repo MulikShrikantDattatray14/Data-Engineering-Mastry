@@ -283,6 +283,12 @@ ORDER BY c.DateEntered, c.CustomerID;
 
 The official version needs only a lower-bound check because its window ends on the latest order date in the same table. Its name formatting skips missing name parts. The SQLite adaptation was executed on the sample and extended fixtures. The SQL Server versions were reviewed by inspection.
 
+## Comparison with the course answer
+
+The official answer uses `CONCAT_WS` (and its SQLite adaptation) to skip missing name parts. The locked query concatenates with `||`, so if either name part is `NULL`, the whole `customer_name` becomes `NULL`. The original sample has complete names, so both queries return the same displayed names.
+
+**Practice example (added only to check missing-name behavior):** a customer with `FirstName = NULL`, `LastName = 'Rao'`, and no order in the recent window remains eligible in both queries. The locked query displays a NULL name; the official SQLite adaptation displays `Rao`. The learner query is preserved.
+
 ## Verification
 
 The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P018/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.
