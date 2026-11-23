@@ -184,6 +184,10 @@ ORDER BY line_items DESC, od.OrderID;
 
 The official answer counts rows with COUNT(*). The learner uses COUNT(OrderID), which gives the same result when OrderID is non-NULL. The SQL Server versions were reviewed by inspection.
 
+## Comparison with the course answer
+
+The official answer uses `COUNT(*)` for the number of detail rows; the locked query uses `COUNT(OrderID)`. These counts agree for rows with a non-NULL OrderID. However, `OrderDetails.OrderID` is nullable in the supplied schema. **Practice example (added only to check this difference):** nine detail rows with `OrderID = NULL` form a NULL group. The official query reports 9 line items and passes its `HAVING COUNT(*) > 8`; the locked query counts 0 OrderIDs and excludes the group. A NULL OrderID group is not a valid identifiable order, so this edge-case difference is retained and documented rather than silently changing the learner's query.
+
 ## Verification
 
 The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P022/walkthrough.json). The column names and all 1 expected row matched in the displayed order.
