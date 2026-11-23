@@ -205,6 +205,12 @@ ORDER BY units_sold DESC, p.ProductID;
 
 Descending order places NULL totals last in both engines. The SQLite adaptation passed the sample and extended fixture. The SQL Server adaptation was reviewed by inspection.
 
+## Comparison with the course answer
+
+The locked query uses `LEFT JOIN Products` from `OrderDetails`, so every detail-line ProductID remains in the result, including an ID with no matching product row. The official answer uses an inner `JOIN` and excludes those unmatched IDs. The original sample contains only matching product IDs, so the expected sample output is unchanged.
+
+**Practice example (added only to test unmatched products):** add `OrderDetails(4, 12, 999, 5)` with no `Products.ProductID = 999`. The learner query returns `ProductID = 999`, `Product = NULL`, `units_sold = 5`, `order_lines = 1`, and `orders = 1`; the official inner join drops it. The selected learner query is preserved.
+
 ## Verification
 
 The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P019/walkthrough.json). The column names and all 2 expected rows matched in the displayed order.
