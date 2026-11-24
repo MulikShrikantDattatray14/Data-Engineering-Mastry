@@ -31,24 +31,24 @@ One output row represents one supplier outside India or with missing country or 
 
 | 🟦 SupplierID | 🟦 CompanyName | 🟦 Country | 🟦 Email |
 |---:|---|---|---|
-| 1 | Local Foods | India | local@example.com |
-| 2 | Global Goods | USA | NULL |
-| 3 | Mystery Supply | NULL | mystery@example.com |
+| 🟦 1 | 🟦 Local Foods | 🟦 India | 🟦 local@example.com |
+| 🟦 2 | 🟦 Global Goods | 🟦 USA | 🟦 NULL |
+| 🟦 3 | 🟦 Mystery Supply | 🟦 NULL | 🟦 mystery@example.com |
 
 ### Expected output
 
 | 🟦 SupplierID | 🟦 CompanyName | 🟦 Country | 🟦 Email | 🟦 issue |
 |---:|---|---|---|---|
-| 2 | Global Goods | USA | NULL | Outside India; No email |
-| 3 | Mystery Supply | NULL | mystery@example.com | Country missing |
+| 🟦 2 | 🟦 Global Goods | 🟦 USA | 🟦 NULL | 🟦 Outside India; No email |
+| 🟦 3 | 🟦 Mystery Supply | 🟦 NULL | 🟦 mystery@example.com | 🟦 Country missing |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p024.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Global Goods (ID 2) lists **USA** and has no email. Both issues belong to the same supplier, so its single row reads `Outside India; No email`. Mystery Supply (ID 3) has an email but no country on file and receives `Country missing`.
+🟦 Global Goods (ID 🟦 2) lists **🟦 USA** and has no email. Both issues belong to the same supplier, so its single row reads `🟦 Outside 🟦 India; No email`. 🟦 Mystery Supply (ID 🟦 3) has an email but no country on file and receives `🟦 Country missing`.
 
-🟦 Local Foods (ID 1) lists India and a usable email, so it has no issue to report. IDs 2 and 3 appear in ascending order with their stored contact values.
+🟦 Local Foods (ID 🟦 1) lists 🟦 India and a usable email, so it has no issue to report. IDs 🟦 2 and 🟦 3 appear in ascending order with their stored contact values.
 
 ## Step 1 · Your approach before writing SQL
 
