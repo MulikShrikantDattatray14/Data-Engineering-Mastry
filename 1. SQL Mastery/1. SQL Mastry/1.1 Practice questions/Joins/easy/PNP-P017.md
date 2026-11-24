@@ -30,36 +30,36 @@ One output row represents one order in the seven calendar dates ending on the la
 
 | 🟦 OrderID | 🟦 OrderDate | 🟦 PaymentID | 🟦 ShipperID |
 |---:|---|---:|---:|
-| 1 | 2025-12-24 | 1 | 1 |
-| 2 | 2025-12-25 | 1 | 1 |
-| 3 | 2025-12-31 | `NULL` | `NULL` |
+| 🟦 1 | 🟦 2025-12-24 | 🟦 1 | 🟦 1 |
+| 🟦 2 | 🟦 2025-12-25 | 🟦 1 | 🟦 1 |
+| 🟦 3 | 🟦 2025-12-31 | 🟦 `NULL` | 🟦 `NULL` |
 
 **🟩 `Payments`**
 
 | 🟩 PaymentID | 🟩 PaymentType |
 |---:|---|
-| 1 | UPI |
+| 🟩 1 | 🟩 UPI |
 
 **🟥 `Shippers`**
 
 | 🟥 ShipperID | 🟥 CompanyName |
 |---:|---|
-| 1 | FastShip |
+| 🟥 1 | 🟥 FastShip |
 
 ### Expected output
 
 | 🟦 OrderID | 🟦 OrderDate | 🟩 payment_type | 🟥 shipper_name |
 |---:|---|---|---|
-| 3 | 2025-12-31 | Unknown | Unknown |
-| 2 | 2025-12-25 | UPI | FastShip |
+| 🟦 3 | 🟦 2025-12-31 | 🟩 Unknown | 🟥 Unknown |
+| 🟦 2 | 🟦 2025-12-25 | 🟩 UPI | 🟥 FastShip |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p017.svg?raw=1)
 
 ### How the sample produces this output
 
-The latest order date is December 31, so the seven calendar dates are 🟦 **December 25–31 inclusive**. Order 3 falls on December 31 and both lookup IDs are missing. Its row shows **Unknown** for both payment type and shipper.
+The latest order date is December 31, so the seven calendar dates are 🟦 **December 25–31 inclusive**. Order 🟦 3 falls on December 31 and both lookup IDs are missing. Its row shows **🟪 Unknown** for both payment type and shipper.
 
-Order 2 falls on December 25. Payment ID 1 is 🟩 **UPI** and shipper ID 1 is 🟥 **FastShip**. Order 1 falls on December 24 and is outside the window. Newest-first ordering puts order 3 before order 2.
+Order 🟦 2 falls on December 25. Payment ID 🟪 1 is 🟩 **UPI** and shipper ID 🟪 1 is 🟥 **FastShip**. Order 🟪 1 falls on December 24 and is outside the window. Newest-first ordering puts order 🟦 3 before order 🟦 2.
 
 ## Step 1 · Your approach before writing SQL
 
