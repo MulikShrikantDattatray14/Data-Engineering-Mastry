@@ -31,21 +31,21 @@ Employees has integer employee_id (primary key), text name, and integer salary. 
 
 | 🟦 employee_id | 🟦 name | 🟦 salary |
 |---:|---|---:|
-| 2 | Meir | 3000 |
-| 3 | Michael | 3800 |
-| 7 | Addilyn | 7400 |
-| 8 | Juan | 6100 |
-| 9 | Kannon | 7700 |
+| 🟦 2 | 🟦 Meir | 🟦 3000 |
+| 🟦 3 | 🟦 Michael | 🟦 3800 |
+| 🟦 7 | 🟦 Addilyn | 🟦 7400 |
+| 🟦 8 | 🟦 Juan | 🟦 6100 |
+| 🟦 9 | 🟦 Kannon | 🟦 7700 |
 
 ### Expected output
 
 | 🟦 employee_id | 🟦 bonus |
 |---:|---:|
-| 2 | 0 |
-| 3 | 0 |
-| 7 | 7400 |
-| 8 | 0 |
-| 9 | 7700 |
+| 🟦 2 | 🟦 0 |
+| 🟦 3 | 🟦 0 |
+| 🟦 7 | 🟦 7400 |
+| 🟦 8 | 🟦 0 |
+| 🟦 9 | 🟦 7700 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/b1-02.svg?raw=1)
 
