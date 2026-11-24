@@ -32,18 +32,18 @@ One output row represents one payment type represented on orders, including Unkn
 
 | 🟦 OrderID | 🟦 PaymentID | 🟦 Total_Order_Amount |
 | :--- | :--- | :--- |
-| 10 | 1 | 100 |
-| 11 | 1 | 200 |
-| 12 | 2 | 300 |
-| 13 | 99 | 50 |
-| 14 | `NULL` | 150 |
+| 🟦 10 | 🟦 1 | 🟦 100 |
+| 🟦 11 | 🟦 1 | 🟦 200 |
+| 🟦 12 | 🟦 2 | 🟦 300 |
+| 🟦 13 | 🟦 99 | 🟦 50 |
+| 🟦 14 | 🟦 `NULL` | 🟦 150 |
 
 **🟩 `Payments`**
 
 | 🟩 PaymentID | 🟩 PaymentType |
 | :--- | :--- |
-| 1 | UPI |
-| 2 | Card |
+| 🟩 1 | 🟩 UPI |
+| 🟩 2 | 🟩 Card |
 
 ### Expected output
 
@@ -59,11 +59,11 @@ One output row represents one payment type represented on orders, including Unkn
 
 ### How the sample produces this output
 
-There are **5 orders** worth **100 + 200 + 300 + 50 + 150 = 800** in total.
+There are **🟦 5 orders** worth **🟦 100 + 🟦 200 + 🟦 300 + 🟦 50 + 🟦 150 = 🟦 800** in total.
 
-- **UPI:** orders 10 and 11. The count is **2 / 5 × 100 = 40.00%**. Their value is **100 + 200 = 300**, or **300 / 800 × 100 = 37.50%**.
-- **Card:** order 12. The count is **1 / 5 × 100 = 20.00%**. Its value is **300**, or **300 / 800 × 100 = 37.50%**.
-- **Unknown:** order 13 uses payment ID 99, which has no lookup row, and order 14 has a missing payment ID. Together they are **2 / 5 × 100 = 40.00%** of orders, worth **50 + 150 = 200**, or **200 / 800 × 100 = 25.00%**.
+- **🟩 UPI:** orders 🟦 10 and 🟦 11. The count is **🟦 2 / 🟦 5 × 100 = 🟦 40.00%**. Their value is **🟦 100 + 🟦 200 = 🟦 300**, or **🟦 300 / 🟦 800 × 100 = 🟦 37.50%**.
+- **🟩 Card:** order 🟦 12. The count is **🟦 1 / 🟦 5 × 100 = 🟦 20.00%**. Its value is **🟦 300**, or **🟦 300 / 🟦 800 × 100 = 🟦 37.50%**.
+- **🟪 Unknown:** order 🟦 13 uses payment ID 🟦 99, which has no lookup row, and order 🟦 14 has a missing payment ID. Together they are **🟦 2 / 🟦 5 × 100 = 🟦 40.00%** of orders, worth **🟦 50 + 🟦 150 = 🟦 200**, or **🟦 200 / 🟦 800 × 100 = 🟦 25.00%**.
 
 The count sort places the two-order groups before Card. Unknown and UPI tie at two orders, so their relative order is not guaranteed by the source task.
 
