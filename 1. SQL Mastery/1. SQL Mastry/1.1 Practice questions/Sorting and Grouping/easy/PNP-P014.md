@@ -29,25 +29,25 @@ One output row represents one month with orders in 2025.
 
 | 🟦 OrderID | 🟦 OrderDate | 🟦 Total_Order_Amount |
 |---:|---|---:|
-| 1 | 2025-01-01 | 100 |
-| 2 | 2025-01-31 | 50 |
-| 3 | 2025-03-01 | 200 |
-| 4 | 2024-12-01 | 300 |
+| 🟦 1 | 🟦 2025-01-01 | 🟦 100 |
+| 🟦 2 | 🟦 2025-01-31 | 🟦 50 |
+| 🟦 3 | 🟦 2025-03-01 | 🟦 200 |
+| 🟦 4 | 🟦 2024-12-01 | 🟦 300 |
 
 ### Expected output
 
 | 🟦 order_month | 🟦 orders | 🟦 order_value |
 |---|---:|---:|
-| 2025-01-01 | 2 | 150 |
-| 2025-03-01 | 1 | 200 |
+| 🟦 2025-01-01 | 🟦 2 | 🟦 150 |
+| 🟦 2025-03-01 | 🟦 1 | 🟦 200 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p014.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Orders 1 and 2 were placed on January 1 and January 31. Both belong to the row dated **2025-01-01**, with **2 orders** and an order value of `100 + 50 = 150`.
+🟦 Orders 🟦 1 and 🟦 2 were placed on January 🟦 1 and January 🟦 31. Both belong to the row dated **🟦 2025-01-01**, with **🟦 2 orders** and an order value of `🟦 100 + 🟦 50 = 🟦 150`.
 
-🟦 March has only order 3, worth **200**, so the row dated **2025-03-01** has **1 order**. February has no orders in this sample and order 4 belongs to December 2024. The two reported months appear chronologically.
+🟦 March has only order 🟦 3, worth **🟦 200**, so the row dated **🟦 2025-03-01** has **🟦 1 order**. February has no orders in this sample and order 🟦 4 belongs to December 🟦 2024. The two reported months appear chronologically.
 
 ## Step 1 · Your approach before writing SQL
 
