@@ -31,24 +31,24 @@ One output row represents one customer whose stored email fails at least one of 
 
 | 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 Email |
 | ---: | --- | --- | --- |
-| 1 | Asha | Rao | `NULL` |
-| 2 | Ben | Das | `ben das@example.com` |
-| 3 | Cia | Sen | `cia.example.com` |
-| 4 | Dev | Roy | `dev@example.com` |
+| 🟦 1 | 🟦 Asha | 🟦 Rao | 🟦 `NULL` |
+| 🟦 2 | 🟦 Ben | 🟦 Das | 🟦 `ben das@example.com` |
+| 🟦 3 | 🟦 Cia | 🟦 Sen | 🟦 `cia.example.com` |
+| 🟦 4 | 🟦 Dev | 🟦 Roy | 🟦 `dev@example.com` |
 
 ### Expected output
 
 | 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 Email | 🟦 issue |
 | ---: | --- | --- | --- | --- |
-| 1 | Asha | Rao | `NULL` | Missing |
-| 2 | Ben | Das | `ben das@example.com` | Contains a space |
-| 3 | Cia | Sen | `cia.example.com` | Not in name@domain.tld form |
+| 🟦 1 | 🟦 Asha | 🟦 Rao | 🟦 `NULL` | 🟦 Missing |
+| 🟦 2 | 🟦 Ben | 🟦 Das | 🟦 `ben das@example.com` | 🟦 Contains a space |
+| 🟦 3 | 🟦 Cia | 🟦 Sen | 🟦 `cia.example.com` | 🟦 Not in name@domain.tld form |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p004.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Asha (ID 1) has a missing address and receives `Missing`. Ben’s stored address contains a space between `ben` and `das`, so ID 2 receives `Contains a space`. Cia’s address has no `@`, so ID 3 receives `Not in name@domain.tld form`.
+🟦 Asha (ID 🟦 1) has a missing address and receives `🟦 Missing`. 🟦 Ben’s stored address contains a space between `ben` and `das`, so ID 🟦 2 receives `🟦 Contains a space`. 🟦 Cia’s address has no `@`, so ID 🟦 3 receives `🟦 Not in name@domain.tld form`.
 
 🟦 Dev’s address satisfies the stated shape and has no spaces. The three customers with issues appear in ID order with their original email values.
 
