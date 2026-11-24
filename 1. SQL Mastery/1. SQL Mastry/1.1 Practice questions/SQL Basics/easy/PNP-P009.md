@@ -20,9 +20,9 @@ One output row represents one distinct raw flag value within one source column, 
 | Output column | Source or calculation | Meaning and applicable rules | Example value |
 | --- | --- | --- | --- |
 | `source_table` | 🟦 `Category` or 🟩 `Payments` (by row) | Name of the table that stores the flag (`Category` or `Payments`). | 🟦 Category |
-| `flag_column` | 🟦 `Category` or 🟩 `Payments` (by row) | Name of the flag being reported (`Active` or `Allowed`). | Active |
-| `raw_value` | 🟦 `Category` or 🟩 `Payments` (by row) | Stored flag value as text, or `NULL` when missing. | `'1'` |
-| `row_count` | 🟦 `Category` or 🟩 `Payments` (by row) | Number of source rows holding that raw value. | 2 |
+| `flag_column` | 🟦 `Category` or 🟩 `Payments` (by row) | Name of the flag being reported (`Active` or `Allowed`). | 🟦 Active |
+| `raw_value` | 🟦 `Category` or 🟩 `Payments` (by row) | Stored flag value as text, or `NULL` when missing. | 🟦 '1' |
+| `row_count` | 🟦 `Category` or 🟩 `Payments` (by row) | Number of source rows holding that raw value. | 🟦 2 |
 
 ### Practice example · Sample input
 
@@ -47,19 +47,19 @@ One output row represents one distinct raw flag value within one source column, 
 
 | source_table | flag_column | raw_value | row_count |
 | --- | --- | --- | --- |
-| 🟦 Category | Active | `'1'` | 2 |
-| 🟦 Category | Active | `'0'` | 1 |
-| 🟦 Category | Active | `NULL` | 1 |
-| 🟩 Payments | Allowed | `'Y'` | 1 |
-| 🟩 Payments | Allowed | `'N'` | 2 |
+| 🟦 Category | 🟦 Active | 🟦 `'1'` | 🟦 2 |
+| 🟦 Category | 🟦 Active | 🟦 `'0'` | 🟦 1 |
+| 🟦 Category | 🟦 Active | 🟦 `NULL` | 🟦 1 |
+| 🟩 Payments | 🟩 Allowed | 🟩 `'Y'` | 🟩 1 |
+| 🟩 Payments | 🟩 Allowed | 🟩 `'N'` | 🟩 2 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p009.svg?raw=1)
 
 ### How the sample produces this output
 
-In 🟦 🟩 Category, IDs 🟩 1 and 🟩 2 store the value 🟩 1, ID 🟩 3 stores 🟩 0, and ID 🟩 4 has a missing flag. Those three output rows have counts **🟩 2, 🟩 1 and 🟩 1**, accounting for all four categories.
+In 🟦 Category, IDs 🟦 1 and 🟦 2 store the value 🟦 1, ID 🟦 3 stores 🟦 0, and ID 🟦 4 has a missing flag. Those three output rows have counts **🟦 2, 🟦 1 and 🟦 1**, accounting for all four categories.
 
-In 🟩 Payments, ID 🟩 1 stores Y and IDs 🟩 2 and 🟩 3 store N. Those two rows have counts **🟩 1 and 🟩 2**, accounting for all three payments. The source and flag columns identify each set of counts. The known raw values are displayed as text and the missing value stays `NULL`.
+In 🟩 Payments, ID 🟩 1 stores 🟩 Y and IDs 🟩 2 and 🟩 3 store 🟩 N. Those two rows have counts **🟩 1 and 🟩 2**, accounting for all three payments. The source and flag columns identify each set of counts. The known raw values are displayed as text and the missing value stays `NULL`.
 
 ## Step 1 · Your approach before writing SQL
 
@@ -115,11 +115,11 @@ from Category
 Group by Active
 ```
 
-| source_table | flag_column | raw_value | row_count |
+| 🟦 source_table | 🟦 flag_column | 🟦 raw_value | 🟦 row_count |
 | --- | --- | --- | --- |
-| Category | Active | `NULL` | 1 |
-| Category | Active | `'0'` | 1 |
-| Category | Active | `'1'` | 2 |
+| 🟦 Category | 🟦 Active | 🟦 `NULL` | 🟦 1 |
+| 🟦 Category | 🟦 Active | 🟦 `'0'` | 🟦 1 |
+| 🟦 Category | 🟦 Active | 🟦 `'1'` | 🟦 2 |
 
 ### 2. Summarize Payments
 
@@ -135,10 +135,10 @@ from Payments
 group by Allowed
 ```
 
-| source_table | flag_column | raw_value | row_count |
+| 🟩 source_table | 🟩 flag_column | 🟩 raw_value | 🟩 row_count |
 | --- | --- | --- | --- |
-| Payments | Allowed | `'N'` | 2 |
-| Payments | Allowed | `'Y'` | 1 |
+| 🟩 Payments | 🟩 Allowed | 🟩 `'N'` | 🟩 2 |
+| 🟩 Payments | 🟩 Allowed | 🟩 `'Y'` | 🟩 1 |
 
 ### 3. Combine both summaries
 
@@ -163,11 +163,11 @@ group by Allowed
 
 | source_table | flag_column | raw_value | row_count |
 | --- | --- | --- | --- |
-| Category | Active | `NULL` | 1 |
-| Category | Active | `'0'` | 1 |
-| Category | Active | `'1'` | 2 |
-| Payments | Allowed | `'N'` | 2 |
-| Payments | Allowed | `'Y'` | 1 |
+| 🟦 Category | 🟦 Active | 🟦 `NULL` | 🟦 1 |
+| 🟦 Category | 🟦 Active | 🟦 `'0'` | 🟦 1 |
+| 🟦 Category | 🟦 Active | 🟦 `'1'` | 🟦 2 |
+| 🟩 Payments | 🟩 Allowed | 🟩 `'N'` | 🟩 2 |
+| 🟩 Payments | 🟩 Allowed | 🟩 `'Y'` | 🟩 1 |
 
 ## Learner solution — SQL Server
 
