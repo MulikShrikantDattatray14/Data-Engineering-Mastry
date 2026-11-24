@@ -116,7 +116,7 @@ The main example uses the three original orders throughout. The preview queries 
 
 ### 1. Why prepare OrderDetails_2 first?
 
-One order can have several detail lines. Sum the quantities for each OrderID so the summary can match an order at most once.
+`FROM OrderDetails` supplies every sale line because each line contributes its `Quantity`; starting here preserves the full detail-line population before grouping. Grouping by `OrderID` produces one `OrderDetails_2` CTE row per order—not one row per detail line—so the summary can match an order at most once.
 
 The 🟥 CTE keeps `OrderID` and the sum of `Quantity`. Individual detail IDs have already served their purpose once each line has contributed its units.
 
