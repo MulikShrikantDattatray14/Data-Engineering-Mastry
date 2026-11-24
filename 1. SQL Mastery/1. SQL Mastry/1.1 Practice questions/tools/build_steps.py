@@ -149,7 +149,7 @@ def build(manifest):
 
             def colored_cell(value, color):
                 rendered = display(value)
-                if not color or re.match(r"^[🟥🟧🟨🟩🟦🟪]", rendered):
+                if not color or rendered.startswith(("🟥", "🟧", "🟨", "🟩", "🟦", "🟪")):
                     return rendered
                 return f"{color} {rendered}"
 
