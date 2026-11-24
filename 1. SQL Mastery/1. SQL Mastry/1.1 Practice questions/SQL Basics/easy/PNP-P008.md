@@ -30,29 +30,29 @@ One output row represents one catalogue product, including products whose sale p
 
 | 🟦 ProductID | 🟦 Product | 🟦 Sale_Price |
 | --- | --- | --- |
-| 1 | Pen | 199 |
-| 2 | Book | 200 |
-| 3 | Bag | 699.50 |
-| 4 | Watch | 700 |
-| 5 | Mystery | `NULL` |
+| 🟦 1 | 🟦 Pen | 🟦 199 |
+| 🟦 2 | 🟦 Book | 🟦 200 |
+| 🟦 3 | 🟦 Bag | 🟦 699.50 |
+| 🟦 4 | 🟦 Watch | 🟦 700 |
+| 🟦 5 | 🟦 Mystery | 🟦 `NULL` |
 
 ### Expected output
 
 | 🟦 ProductID | 🟦 Product | 🟦 Sale_Price | 🟦 price_band |
 | --- | --- | --- | --- |
-| 1 | Pen | 199 | Budget |
-| 2 | Book | 200 | Mid |
-| 3 | Bag | 699.50 | Mid |
-| 4 | Watch | 700 | Premium |
-| 5 | Mystery | `NULL` | Unknown |
+| 🟦 1 | 🟦 Pen | 🟦 199 | 🟦 Budget |
+| 🟦 2 | 🟦 Book | 🟦 200 | 🟦 Mid |
+| 🟦 3 | 🟦 Bag | 🟦 699.50 | 🟦 Mid |
+| 🟦 4 | 🟦 Watch | 🟦 700 | 🟦 Premium |
+| 🟦 5 | 🟦 Mystery | 🟦 `NULL` | 🟦 Unknown |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p008.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Pen at **199** is Budget. Book at **200** is exactly at the start of Mid, and Bag at **699.50** is still below 700, so both are Mid. Watch at **700** is the first price in Premium.
+🟦 Pen at **🟦 199** is 🟦 Budget. 🟦 Book at **🟦 200** is exactly at the start of 🟦 Mid, and 🟦 Bag at **🟦 699.50** is still below 🟦 700, so both are 🟦 Mid. 🟦 Watch at **🟦 700** is the first price in 🟦 Premium.
 
-🟦 Mystery has no price and receives Unknown. All five product IDs appear in ascending order.
+🟦 Mystery has no price and receives 🟦 Unknown. All five product IDs appear in ascending order.
 
 ## Step 1 · Your approach before writing SQL
 
