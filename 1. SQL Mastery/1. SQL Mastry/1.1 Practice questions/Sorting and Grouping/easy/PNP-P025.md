@@ -29,28 +29,28 @@ One output row represents one sign-up year and quarter, with undated accounts in
 
 | 🟦 CustomerID | 🟦 DateEntered |
 |---:|---|
-| 1 | 2024-12-31 |
-| 2 | 2025-01-01 |
-| 3 | 2025-03-31 |
-| 4 | 2025-04-01 |
-| 5 | NULL |
+| 🟦 1 | 🟦 2024-12-31 |
+| 🟦 2 | 🟦 2025-01-01 |
+| 🟦 3 | 🟦 2025-03-31 |
+| 🟦 4 | 🟦 2025-04-01 |
+| 🟦 5 | 🟦 NULL |
 
 ### Expected output
 
 | 🟦 signup_year | 🟦 signup_quarter | 🟦 new_customers |
 |---:|---:|---:|
-| 2024 | 4 | 1 |
-| 2025 | 1 | 2 |
-| 2025 | 2 | 1 |
-| NULL | NULL | 1 |
+| 🟦 2024 | 🟦 4 | 🟦 1 |
+| 🟦 2025 | 🟦 1 | 🟦 2 |
+| 🟦 2025 | 🟦 2 | 🟦 1 |
+| 🟦 NULL | 🟦 NULL | 🟦 1 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p025.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Customer 1 signed up on December 31, giving **2024 Q4** one account. Customers 2 and 3 signed up on January 1 and March 31, so **2025 Q1** has two. Customer 4 signed up on April 1, the first day of **2025 Q2**, giving that quarter one account.
+🟦 Customer 🟦 1 signed up on December 🟦 31, giving **🟦 2024 Q4** one account. Customers 🟦 2 and 🟦 3 signed up on January 🟦 1 and March 🟦 31, so **🟦 2025 Q1** has two. Customer 🟦 4 signed up on April 🟦 1, the first day of **🟦 2025 Q2**, giving that quarter one account.
 
-🟦 Customer 5 has no sign-up date and contributes one account to the final row with `NULL` year and quarter. The four counts add to `1 + 2 + 1 + 1 = 5`, accounting for every customer.
+🟦 Customer 🟦 5 has no sign-up date and contributes one account to the final row with `NULL` year and quarter. The four counts add to `🟦 1 + 🟦 2 + 🟦 1 + 🟦 1 = 🟦 5`, accounting for every customer.
 
 ## Step 1 · Your approach before writing SQL
 
