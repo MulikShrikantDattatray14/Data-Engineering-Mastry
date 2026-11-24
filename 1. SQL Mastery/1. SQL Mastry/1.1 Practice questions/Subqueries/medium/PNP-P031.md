@@ -392,3 +392,42 @@ ORDER BY cs.total_spend DESC, cs.CustomerID;
 ## Verification
 
 Both SQLite queries return 🟩 Asha Rao on the practice sample. On the course CSVs (🟦 46,438 orders and 🟩 5,072 customer records), the locked query returns 🟪 1,317 rows and the course SQLite query returns 🟪 1,317 rows. 🟦 0 orders have a missing customer ID. The separate edge checks above explain how an unrecognized or missing ID changes the result.
+
+
+## Important learnings from P031
+
+### 1. Establish the customer-level grain before calculating the overall average
+
+The first CTE groups order rows by CustomerID and calculates one total_spend per customer. The next CTE attaches the same average of those customer totals to every customer row. The average is therefore an **average customer spend**, not an average order amount.
+
+### 2. Keep the comparison population and row grain clear
+
+- `customer_spend` changes the grain from one row per order to one row per CustomerID group.
+- `spend_with_avg` preserves those customer rows and adds one scalar benchmark.
+- The final WHERE clause filters customer rows whose total spend is strictly greater than the benchmark.
+- Do not calculate the average from raw order rows; customers with many orders would then contribute multiple times.
+
+### 3. LEFT JOIN and missing customer details
+
+The learner query starts from Orders and LEFT JOINs Customers, preserving order groups even when customer details are unavailable. The `COALESCE` fallback labels a missing name as Unknown. However, a NULL CustomerID forms its own group, and an unmatched non-NULL ID can also have missing name details. These are distinct data-quality cases and should not be conflated.
+
+### 4. NULL, string concatenation and dialect differences
+
+- In SQLite, concatenating a NULL name part with `||` yields NULL; the full-name expression then falls back to Unknown.
+- The learner's fallback does not preserve a single available name part. The official adaptation handles partial names differently. This difference is documented and must not be silently rewritten.
+- `NULLIF(avg_customer_spend, 0)` protects the percentage denominator from division by zero.
+- The percentage calculation uses 100.0 to avoid unintended integer arithmetic.
+
+### 5. Precision, sorting and source comparison
+
+The learner query keeps the average and percentage unrounded and sorts by total_spend descending. The course answer rounds displayed values and adds a CustomerID tie-breaker. Both compare total spend against the unrounded average. Keep the selected learner query verbatim and record the display/order differences separately.
+
+## Verification
+
+- The practice sample returns Asha Rao as the qualifying customer.
+- On the course CSVs, Orders contains 46,438 rows and Customers contains 5,072 rows.
+- The locked learner query and course SQLite query each return 1,317 rows on the course data.
+- The course Orders file has zero rows with a missing CustomerID.
+- Separate edge checks cover a NULL CustomerID, an unmatched customer ID, and partial customer-name values; the saved comparison section records where learner and official outputs differ.
+- SQL Server adaptation is documented but native SQL Server execution is unverified.
+- The verification is specific to the stored sample, course files and listed edge cases.
