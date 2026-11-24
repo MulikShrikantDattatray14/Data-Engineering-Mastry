@@ -55,9 +55,9 @@ One output row represents one customer with strictly positive 2021 revenue.
 
 ### How the sample produces this output
 
-🟦 Customer 1 earned **30** in 2021 and customer 4 earned **20** that year, so both IDs appear. Customer 2’s 2021 revenue is **−50**, and customer 3’s positive revenues belong to earlier years.
+🟦 Customer 🟦 1 earned **🟦 30** in 🟦 2021 and customer 🟦 4 earned **🟦 20** that year, so both IDs appear. Customer 🟦 2’s 🟦 2021 revenue is **−🟦 50**, and customer 🟦 3’s positive revenues belong to earlier years.
 
-🟦 Customer 1 also has entries for 2018 and 2020. Neither changes the 2021 result. The assignment accepts either order for IDs 1 and 4.
+🟦 Customer 🟦 1 also has entries for 🟦 2018 and 🟦 2020. Neither changes the 🟦 2021 result. The assignment accepts either order for IDs 🟦 1 and 🟦 4.
 
 ## Step 1 · Your approach before writing SQL
 
