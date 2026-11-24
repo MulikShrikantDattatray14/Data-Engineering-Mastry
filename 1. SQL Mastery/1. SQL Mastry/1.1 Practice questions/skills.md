@@ -64,3 +64,31 @@ Use the same section sequence and equivalent level of completeness as PNP-P026.m
 ## Previous-question repair rule
 
 When auditing an older record, compare it against PNP-P026.md and this checklist. Add missing material without losing existing content. Do not claim an older record is compliant until its full contents, assets and saved query have been checked. Keep an audit list of checked, repaired and still-pending question IDs.
+
+## Exact PNP-P026 section order — mandatory, not approximate
+
+The heading sequence in PNP-P026.md is the required canonical order. Every completed PNP and Bosscoder record must use the same sequence and heading names, adapting only the question title, source dialect, and truly inapplicable content:
+
+1. `# PNP Pxxx — <question title>` or `# Bosscoder x.xx — <question title>`
+2. `## Question`
+3. `### Required output columns`
+4. `### Practice example · Sample input` (or clearly labeled assignment-provided example)
+5. `### Expected output`
+6. `### How the sample produces this output`
+7. `## Step 1 · Your approach before writing SQL`
+8. `## Final learner solution — SQLite` (or `## My solution — SQLite`; preserve the repo's established exact label for the record once standardized)
+9. `## Important learnings from <ID>`
+10. `## Visual walkthrough`
+11. `## Step-by-step walkthrough`
+12. `## Learner solution — SQL Server adaptation`
+13. `## Official solution`
+14. `## Comparison with the course answer`
+15. `## Verification`
+
+The content under each section must meet the depth demonstrated by P026. Do not substitute headings such as `Progressive walkthrough`, `Step-by-step solution`, `Step-by-step explanation`, or `Written step-by-step explanation`: standardize them to the exact heading `## Step-by-step walkthrough`. A question with no join still needs the walkthrough; explain its single-table, scalar, CTE, or set-operation stages instead of inventing a join.
+
+For Bosscoder records, retain the assignment's original statement and official solution, but use the same section order and exact walkthrough heading. If a section is genuinely not applicable, keep its heading and state why it is not applicable; do not silently omit it.
+
+## Completion gate
+
+A record is **not complete** merely because it has SQL, a visual, or a verification section. Before marking it solved/complete, fetch the saved file and check every section above in order, plus the query, worked sample, visual, written walkthrough, official answer, comparison and verification. If any item is missing, the record remains **needs repair**. Apply the same gate to all future records.
