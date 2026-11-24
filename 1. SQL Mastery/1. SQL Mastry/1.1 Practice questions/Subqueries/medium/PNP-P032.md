@@ -220,17 +220,106 @@ The learner-selected SQL is retained exactly; these differences are documented r
 
 [Open the full-size walkthrough SVG](../../assets/walkthroughs/p032.svg?raw=1) · [Open Previous / Next walkthrough, stage 1](../../assets/steps/PNP-P032/01.md) · [Open the walkthrough fixture](../../assets/steps/PNP-P032/walkthrough.json)
 
-### Written step-by-step explanation
+## Step-by-step walkthrough
 
-1. **Start with `Products`.** It supplies every catalogue candidate and all requested output fields. The first CTE filters CategoryID 5009, taking the four input rows to three Beverages product rows. No other table is needed.
-2. **Prepare `required_table`.** One CTE row represents one eligible product. Tea, Coffee and Juice remain; Bread is removed before the benchmark is calculated.
-3. **Prepare `avg_sale_price`.** The aggregate CTE returns one row representing the category-wide benchmark: (100 + 200 + 300) ÷ 3 = 200.00. Below-average and equal-priced products still contribute.
-4. **Return to the outer query.** The outer query starts from the three rows in `required_table`, not from the one-row average CTE. Its scalar subquery repeats the same benchmark beside each product; no join is necessary because this is one selected category and one scalar value.
-5. **Apply the strict comparison and order.** Tea at 100 is below the benchmark; Coffee at 200 equals it and is excluded; Juice at 300 survives. The final query orders by CategoryID ascending and Sale_Price descending.
+The query uses one source table, `Products`. There is no join: the category benchmark is a scalar aggregate, not a second row-level source that needs to be joined.
+
+### 1. Which rows do we start with?
+
+Start from `Products`, because it contains every product candidate and all five requested output fields. The practice input has four rows: Tea, Coffee, Juice and Bread.
+
+```sql
+WITH required_table AS (
+    SELECT
+        ProductID,
+        Product,
+        CategoryID,
+        Sale_Price
+    FROM Products
+    WHERE CategoryID = 5009
+)
+```
+
+The CategoryID filter keeps the three Beverages rows (Tea, Coffee and Juice) and removes Bread, whose CategoryID is 5010. Row count: **4 input products → 3 required_table rows**.
+
+| ProductID | Product | CategoryID | Sale_Price |
+|---:|---|---:|---:|
+| 1 | Tea | 5009 | 100 |
+| 2 | Coffee | 5009 | 200 |
+| 3 | Juice | 5009 | 300 |
+
+### 2. What population contributes to the average?
+
+Calculate the average from all rows in `required_table`, before removing products that are not above average.
+
+```sql
+avg_sale_price AS (
+    SELECT
+        AVG(Sale_Price) AS category_avg_price
+    FROM required_table
+)
+```
+
+The CTE returns **one row** and one scalar benchmark:
+
+`(100 + 200 + 300) / 3 = 200.00`
+
+Tea and Coffee must contribute even though neither will appear in the final result. If we filtered to above-average products before calculating the average, we would change the population used to define the benchmark.
+
+### 3. Which rows does the outer query start from?
+
+The outer query starts from `required_table`, so it still has one row per Beverages product. It does not start from the one-row aggregate CTE.
+
+```sql
+SELECT
+    ProductID,
+    Product,
+    CategoryID,
+    Sale_Price,
+    (SELECT category_avg_price FROM avg_sale_price) AS category_avg_price
+FROM required_table
+```
+
+The scalar subquery supplies the same category average beside each of the three product rows. No join is required: this query asks for one scalar value, not matching rows from a second detail table.
+
+| Product | Sale_Price | category_avg_price |
+|---|---:|---:|
+| Tea | 100 | 200.00 |
+| Coffee | 200 | 200.00 |
+| Juice | 300 | 200.00 |
+
+### 4. Why does the strict comparison keep only Juice?
+
+```sql
+WHERE Sale_Price > (
+    SELECT category_avg_price
+    FROM avg_sale_price
+)
+```
+
+- Tea: 100 is below 200, so it is removed.
+- Coffee: 200 equals 200. The strict `>` condition is false, so it is removed.
+- Juice: 300 is greater than 200, so it remains.
+
+The filter changes the row count from **3 product rows → 1 qualifying row**. A NULL Sale_Price would not pass this comparison because a comparison with NULL is UNKNOWN, not TRUE.
+
+### 5. How is the final result ordered?
+
+```sql
+ORDER BY
+    CategoryID ASC,
+    Sale_Price DESC;
+```
+
+CategoryID is ascending; within a category, Sale_Price is descending. The sample has one qualifying product, so the final output is:
+
+| ProductID | Product | CategoryID | Sale_Price | category_avg_price |
+|---:|---|---:|---:|---:|
+| 3 | Juice | 5009 | 300 | 200.0 |
+
+The saved learner query returns the same row. SQLite displays the unrounded numeric average as `200.0`; the specification's two-decimal presentation is `200.00`. The course answer explicitly rounds the displayed benchmark, while the locked learner query is preserved without that display-rounding change.
 
 The final stage in the linked walkthrough reads the exact locked learner SQLite query and is checked against the expected output above.
-
-
 ## Important learnings from P032
 
 ### 1. Define the comparison population before calculating an average
