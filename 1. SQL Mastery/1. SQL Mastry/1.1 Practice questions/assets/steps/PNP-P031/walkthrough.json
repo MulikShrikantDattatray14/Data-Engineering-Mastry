@@ -181,5 +181,417 @@
       "expected_count": 1
     }
   ],
-  "record": "../../../Subqueries/medium/PNP-P031.md"
+  "record": "../../../Subqueries/medium/PNP-P031.md",
+  "validation_cases": [
+    {
+      "name": "NULL customer ID forms its own spend group",
+      "tables": [
+        {
+          "name": "Orders",
+          "label": "🟦 Orders",
+          "color": "🟦",
+          "columns": [
+            [
+              "OrderID",
+              "INTEGER"
+            ],
+            [
+              "CustomerID",
+              "INTEGER"
+            ],
+            [
+              "Total_Order_Amount",
+              "NUMERIC"
+            ]
+          ],
+          "rows": [
+            [
+              10,
+              1,
+              300
+            ],
+            [
+              11,
+              2,
+              100
+            ],
+            [
+              12,
+              3,
+              200
+            ],
+            [
+              13,
+              null,
+              1000
+            ]
+          ]
+        },
+        {
+          "name": "Customers",
+          "label": "🟩 Customers",
+          "color": "🟩",
+          "columns": [
+            [
+              "CustomerID",
+              "INTEGER"
+            ],
+            [
+              "FirstName",
+              "TEXT"
+            ],
+            [
+              "LastName",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Asha",
+              "Rao"
+            ],
+            [
+              2,
+              "Ben",
+              "Das"
+            ],
+            [
+              3,
+              "Cia",
+              "Sen"
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "CustomerID",
+          "customer_name",
+          "total_spend",
+          "avg_customer_spend",
+          "pct_above_avg"
+        ],
+        "rows": [
+          [
+            null,
+            "Unknown",
+            1000,
+            400,
+            150
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Unmatched customer ID uses the learner fallback",
+      "tables": [
+        {
+          "name": "Orders",
+          "label": "🟦 Orders",
+          "color": "🟦",
+          "columns": [
+            [
+              "OrderID",
+              "INTEGER"
+            ],
+            [
+              "CustomerID",
+              "INTEGER"
+            ],
+            [
+              "Total_Order_Amount",
+              "NUMERIC"
+            ]
+          ],
+          "rows": [
+            [
+              10,
+              1,
+              300
+            ],
+            [
+              11,
+              2,
+              100
+            ],
+            [
+              12,
+              3,
+              200
+            ],
+            [
+              13,
+              99,
+              1000
+            ]
+          ]
+        },
+        {
+          "name": "Customers",
+          "label": "🟩 Customers",
+          "color": "🟩",
+          "columns": [
+            [
+              "CustomerID",
+              "INTEGER"
+            ],
+            [
+              "FirstName",
+              "TEXT"
+            ],
+            [
+              "LastName",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Asha",
+              "Rao"
+            ],
+            [
+              2,
+              "Ben",
+              "Das"
+            ],
+            [
+              3,
+              "Cia",
+              "Sen"
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "CustomerID",
+          "customer_name",
+          "total_spend",
+          "avg_customer_spend",
+          "pct_above_avg"
+        ],
+        "rows": [
+          [
+            99,
+            "Unknown",
+            1000,
+            400,
+            150
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Matched customer with first name only uses the learner fallback",
+      "tables": [
+        {
+          "name": "Orders",
+          "label": "🟦 Orders",
+          "color": "🟦",
+          "columns": [
+            [
+              "OrderID",
+              "INTEGER"
+            ],
+            [
+              "CustomerID",
+              "INTEGER"
+            ],
+            [
+              "Total_Order_Amount",
+              "NUMERIC"
+            ]
+          ],
+          "rows": [
+            [
+              10,
+              1,
+              300
+            ],
+            [
+              11,
+              2,
+              100
+            ],
+            [
+              12,
+              3,
+              200
+            ],
+            [
+              13,
+              4,
+              1000
+            ]
+          ]
+        },
+        {
+          "name": "Customers",
+          "label": "🟩 Customers",
+          "color": "🟩",
+          "columns": [
+            [
+              "CustomerID",
+              "INTEGER"
+            ],
+            [
+              "FirstName",
+              "TEXT"
+            ],
+            [
+              "LastName",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Asha",
+              "Rao"
+            ],
+            [
+              2,
+              "Ben",
+              "Das"
+            ],
+            [
+              3,
+              "Cia",
+              "Sen"
+            ],
+            [
+              4,
+              "Khan",
+              null
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "CustomerID",
+          "customer_name",
+          "total_spend",
+          "avg_customer_spend",
+          "pct_above_avg"
+        ],
+        "rows": [
+          [
+            4,
+            "Unknown",
+            1000,
+            400,
+            150
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Matched customer with last name only uses the learner fallback",
+      "tables": [
+        {
+          "name": "Orders",
+          "label": "🟦 Orders",
+          "color": "🟦",
+          "columns": [
+            [
+              "OrderID",
+              "INTEGER"
+            ],
+            [
+              "CustomerID",
+              "INTEGER"
+            ],
+            [
+              "Total_Order_Amount",
+              "NUMERIC"
+            ]
+          ],
+          "rows": [
+            [
+              10,
+              1,
+              300
+            ],
+            [
+              11,
+              2,
+              100
+            ],
+            [
+              12,
+              3,
+              200
+            ],
+            [
+              13,
+              4,
+              1000
+            ]
+          ]
+        },
+        {
+          "name": "Customers",
+          "label": "🟩 Customers",
+          "color": "🟩",
+          "columns": [
+            [
+              "CustomerID",
+              "INTEGER"
+            ],
+            [
+              "FirstName",
+              "TEXT"
+            ],
+            [
+              "LastName",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Asha",
+              "Rao"
+            ],
+            [
+              2,
+              "Ben",
+              "Das"
+            ],
+            [
+              3,
+              "Cia",
+              "Sen"
+            ],
+            [
+              4,
+              null,
+              "Lina"
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "CustomerID",
+          "customer_name",
+          "total_spend",
+          "avg_customer_spend",
+          "pct_above_avg"
+        ],
+        "rows": [
+          [
+            4,
+            "Unknown",
+            1000,
+            400,
+            150
+          ]
+        ]
+      }
+    }
+  ]
 }

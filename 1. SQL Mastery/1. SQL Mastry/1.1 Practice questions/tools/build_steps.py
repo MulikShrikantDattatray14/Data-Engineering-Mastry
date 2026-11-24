@@ -5,6 +5,7 @@
 
 Paths inside a manifest are relative to that manifest. The final query is read
 from the learner's saved Markdown. Each SELECT runs against the same fixture.
+Optional validation_cases run the final learner query against independent edge-case fixtures.
 """
 
 import argparse
@@ -87,6 +88,30 @@ def same_result(actual, expected, unordered):
     return True
 
 
+def validate_case(case, sql, unordered, record):
+    """Run the saved learner query against one independent edge-case fixture."""
+    case_name = case.get("name", "unnamed")
+    with sqlite3.connect(":memory:") as db:
+        db.execute("PRAGMA trusted_schema=OFF")
+        seen = set()
+        for table in case["tables"]:
+            name = table["name"]
+            if name in seen:
+                raise ValueError(f"{record.name}: duplicate table {name} in validation case {case_name}")
+            seen.add(name)
+            columns = table["columns"]
+            if any(kind not in {"INTEGER", "TEXT", "REAL", "NUMERIC", "BLOB"} for _, kind in columns):
+                raise ValueError(f"Unknown column type in {name} ({case_name})")
+            ddl = ", ".join(f"{ident(field)} {kind}" for field, kind in columns)
+            db.execute(f"CREATE TABLE {ident(name)} ({ddl})")
+            marks = ", ".join("?" for _ in columns)
+            db.executemany(f"INSERT INTO {ident(name)} VALUES ({marks})", table["rows"])
+        db.execute("PRAGMA query_only=ON")
+        actual = dataset(db, sql)
+        if not same_result(actual, case["expected"], case.get("unordered", unordered)):
+            raise ValueError(f"{record.name}: validation case '{case_name}' differs from its expected result")
+
+
 def build(manifest):
     conf = json.loads(manifest.read_text(encoding="utf-8"))
     record = manifest.parent / conf["record"]
@@ -136,6 +161,9 @@ def build(manifest):
             cols, rows = dataset(db, sql)
             if step.get("final") and not same_result((cols, rows), conf["expected"], conf.get("unordered", False)):
                 raise ValueError(f"{record.name}: final saved SQLite result differs from the expected fixture")
+            if step.get("final"):
+                for case in conf.get("validation_cases", []):
+                    validate_case(case, final_sql, conf.get("unordered", False), record)
             if "expected_count" in step and len(rows) != step["expected_count"]:
                 raise ValueError(f"{key}: expected {step['expected_count']} rows, got {len(rows)}")
             inputs = step.get("inputs", [previous_id] if previous_id else [t["name"] for t in conf["tables"]])

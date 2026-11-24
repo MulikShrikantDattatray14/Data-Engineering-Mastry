@@ -255,6 +255,8 @@ Executed in SQLite on the 🟦 three orders in the practice example. 🟩 Asha, 
 
 ## Comparison with the course answer
 
+The four edge cases below are also stored as independent `validation_cases` in the [P031 walkthrough manifest](../../assets/steps/PNP-P031/walkthrough.json). The shared `build_steps.py --check` command runs the exact locked SQLite query against each fixture.
+
 - Adding a 🟦 order worth 🟦 1000 with a 🟦 `NULL` customer ID to the practice data produces a 🟪 fourth group in the submitted query. SQLite returns that group with a 🟦 total of 🟦 1000 and an average of 🟦 400. The course answer excludes orders with a 🟦 `NULL` customer ID before it calculates the average.
 - Giving that same 🟦 order customer ID 🟦 99, which has no 🟩 customer record, returns 🟪 `Unknown` in the submission. The course uses 🟪 `Unknown customer` for an unmatched ID and joins the available 🟩 name parts for a matched customer. When only one name part is present, the learner's `FirstName || ' ' || LastName` expression also becomes 🟩 `NULL`, so `COALESCE` returns 🟪 `Unknown`; the official SQLite adaptation keeps the available 🟩 part (for example, `Khan` or `Lina`). I verified both partial-name cases with a separate SQLite fixture.
 - The submission returns the unrounded average and percentage and sorts by descending spend. The course rounds both displayed calculations to two decimals and uses customer ID to break spending ties. Both compare totals with the unrounded average.
