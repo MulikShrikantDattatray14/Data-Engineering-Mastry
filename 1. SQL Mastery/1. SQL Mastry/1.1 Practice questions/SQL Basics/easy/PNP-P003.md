@@ -39,36 +39,36 @@ Quotes around text values make surrounding spaces visible.
 
 | 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 City | 🟦 State |
 | ---: | --- | --- | --- | --- |
-| 12 | Asha | Rao | `' Bengaluru '` | Karnataka |
-| 5 | Nisha | Shah | `'MUMBAI'` | Maharashtra |
-| 21 | Riya | Patil | `'Pune'` | Maharashtra |
-| 3 | Dev | Kumar | `'Delhi'` | Delhi |
-| 7 | Mira | Das | `'Bengaluru'` | Karnataka |
-| 9 | Farah | Ali | `' Chennai '` | Tamil Nadu |
-| 14 | Isha | Kumar | `'Bangalore'` | Karnataka |
-| 6 | Omar | Khan | `' Bombay '` | Maharashtra |
-| 8 | Lea | Singh | `'New Delhi'` | Delhi |
+| 🟦 12 | 🟦 Asha | 🟦 Rao | 🟦 `' Bengaluru '` | 🟦 Karnataka |
+| 🟦 5 | 🟦 Nisha | 🟦 Shah | 🟦 `'MUMBAI'` | 🟦 Maharashtra |
+| 🟦 21 | 🟦 Riya | 🟦 Patil | 🟦 `'Pune'` | 🟦 Maharashtra |
+| 🟦 3 | 🟦 Dev | 🟦 Kumar | 🟦 `'Delhi'` | 🟦 Delhi |
+| 🟦 7 | 🟦 Mira | 🟦 Das | 🟦 `'Bengaluru'` | 🟦 Karnataka |
+| 🟦 9 | 🟦 Farah | 🟦 Ali | 🟦 `' Chennai '` | 🟦 Tamil Nadu |
+| 🟦 14 | 🟦 Isha | 🟦 Kumar | 🟦 `'Bangalore'` | 🟦 Karnataka |
+| 🟦 6 | 🟦 Omar | 🟦 Khan | 🟦 `' Bombay '` | 🟦 Maharashtra |
+| 🟦 8 | 🟦 Lea | 🟦 Singh | 🟦 `'New Delhi'` | 🟦 Delhi |
 
 ### Expected output
 
 | 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 City | 🟦 State |
 | ---: | --- | --- | --- | --- |
-| 14 | Isha | Kumar | Bangalore | Karnataka |
-| 7 | Mira | Das | Bengaluru | Karnataka |
-| 12 | Asha | Rao | Bengaluru | Karnataka |
-| 6 | Omar | Khan | Bombay | Maharashtra |
-| 9 | Farah | Ali | Chennai | Tamil Nadu |
-| 3 | Dev | Kumar | Delhi | Delhi |
-| 5 | Nisha | Shah | MUMBAI | Maharashtra |
-| 8 | Lea | Singh | New Delhi | Delhi |
+| 🟦 14 | 🟦 Isha | 🟦 Kumar | 🟦 Bangalore | 🟦 Karnataka |
+| 🟦 7 | 🟦 Mira | 🟦 Das | 🟦 Bengaluru | 🟦 Karnataka |
+| 🟦 12 | 🟦 Asha | 🟦 Rao | 🟦 Bengaluru | 🟦 Karnataka |
+| 🟦 6 | 🟦 Omar | 🟦 Khan | 🟦 Bombay | 🟦 Maharashtra |
+| 🟦 9 | 🟦 Farah | 🟦 Ali | 🟦 Chennai | 🟦 Tamil Nadu |
+| 🟦 3 | 🟦 Dev | 🟦 Kumar | 🟦 Delhi | 🟦 Delhi |
+| 🟦 5 | 🟦 Nisha | 🟦 Shah | 🟦 MUMBAI | 🟦 Maharashtra |
+| 🟦 8 | 🟦 Lea | 🟦 Singh | 🟦 New Delhi | 🟦 Delhi |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p003.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 ID 21 lives in Pune, outside the five metro areas. The other eight customers qualify, including IDs 14, 6 and 8 under the dataset spellings Bangalore, Bombay and New Delhi. ID 5 qualifies with the stored spelling `MUMBAI`, which stays uppercase in the output.
+🟦 ID 🟦 21 lives in 🟦 Pune, outside the five metro areas. The other eight customers qualify, including IDs 🟦 14, 🟦 6 and 🟦 8 under the dataset spellings 🟦 Bangalore, 🟦 Bombay and 🟦 New Delhi. ID 🟦 5 qualifies with the stored spelling `🟦 MUMBAI`, which stays uppercase in the output.
 
-🟦 The displayed names for IDs 7 and 12 are both Bengaluru, so ID 7 appears first. Surrounding spaces also disappear from Chennai and Bombay. Reading the displayed cities alphabetically gives the ID sequence **14, 7, 12, 6, 9, 3, 5, 8**.
+🟦 The displayed names for IDs 🟦 7 and 🟦 12 are both 🟦 Bengaluru, so ID 🟦 7 appears first. Surrounding spaces also disappear from 🟦 Chennai and 🟦 Bombay. Reading the displayed cities alphabetically gives the ID sequence **🟦 14, 🟦 7, 🟦 12, 🟦 6, 🟦 9, 🟦 3, 🟦 5, 🟦 8**.
 
 ## Step 1 · Your approach before writing SQL
 
