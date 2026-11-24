@@ -172,7 +172,7 @@ Use the original 🟦 three orders and the two we added during practice. 🟦 Or
 
 [Open the full-size walkthrough](../../assets/p028-payment-mix-walkthrough.svg?raw=1)
 
-## Step-by-step solution
+## Step-by-step walkthrough
 
 ### 1. Why start with Orders?
 
