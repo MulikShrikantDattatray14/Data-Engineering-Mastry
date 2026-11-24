@@ -84,7 +84,7 @@ Follow the sample rows through each query step. **Predict the result.** Michael 
 
 [Open the full-size walkthrough](../../assets/walkthroughs/b1-02.svg?raw=1)
 
-## Progressive walkthrough
+## Step-by-step walkthrough
 
 🟦 **FROM Employees · one table is enough** · Each employee row holds the ID and name that determine eligibility, plus the salary that determines the payout. Employees who receive zero still have an output row.
 
