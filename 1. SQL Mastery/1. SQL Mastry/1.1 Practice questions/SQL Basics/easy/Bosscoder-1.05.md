@@ -98,7 +98,7 @@ Follow the sample rows through each query step. **Predict the result.** Why must
 
 [Open the full-size walkthrough](../../assets/walkthroughs/b1-05.svg?raw=1)
 
-## Progressive walkthrough
+## Step-by-step walkthrough
 
 🟦 **FROM TRIANGLES · one table is enough** · The three sides on one input row describe one candidate triangle. Testing `A`, `B` and `C` on that same row produces exactly one label for the triple.
 
