@@ -24,6 +24,43 @@ One output row represents one payment type represented on orders, including Unkn
 | `order_value` | 🟦 `Orders` | Total amount of the orders for that payment type. | 300 |
 | `pct_of_value` | 🟦 `Orders` | This type’s share of all order value, as a percentage rounded to two decimals. | 37.50 |
 
+### Assignment example · PNP Example 1
+
+*This is the input and expected result supplied in the linked PNP Q028 source. It is the assignment example, not added practice data.*
+
+**Sample table key · display order:** 🟦 `Orders` · 🟩 `Payments`
+
+**🟦 `Orders`**
+
+| 🟦 OrderID | 🟦 PaymentID | 🟦 Total_Order_Amount |
+| :--- | :--- | :--- |
+| 🟦 10 | 🟦 1 | 🟦 100 |
+| 🟦 11 | 🟦 1 | 🟦 200 |
+| 🟦 12 | 🟦 2 | 🟦 300 |
+
+**🟩 `Payments`**
+
+| 🟩 PaymentID | 🟩 PaymentType |
+| :--- | :--- |
+| 🟩 1 | 🟩 UPI |
+| 🟩 2 | 🟩 Card |
+
+**Expected output · Assignment example**
+
+| 🟩 payment_type | 🟦 orders | 🟦 pct_of_orders | 🟦 order_value | 🟦 pct_of_value |
+| :--- | ---: | ---: | ---: | ---: |
+| 🟩 UPI | 🟦 2 | 🟦 66.67 | 🟦 300 | 🟦 50.00 |
+| 🟩 Card | 🟦 1 | 🟦 33.33 | 🟦 300 | 🟦 50.00 |
+
+**How the assignment example produces this output**
+
+There are **🟦 3 orders** worth **🟦 100 + 🟦 200 + 🟦 300 = 🟦 600**.
+
+- **🟩 UPI:** orders 🟦 10 and 🟦 11. Its count share is **🟦 2 / 🟦 3 × 100 = 🟦 66.67%**. Their value is **🟦 100 + 🟦 200 = 🟦 300**, or **🟦 300 / 🟦 600 × 100 = 🟦 50.00%**.
+- **🟩 Card:** order 🟦 12. Its count share is **🟦 1 / 🟦 3 × 100 = 🟦 33.33%**. Its value is **🟦 300**, or **🟦 300 / 🟦 600 × 100 = 🟦 50.00%**.
+
+The assignment example has no missing or unmatched payment ID, so it does not produce an Unknown row. The following **Practice example** extends these inputs with both cases to make the Unknown rule visible.
+
 ### Practice example · Sample input
 
 **Sample table key · display order:** 🟦 `Orders` · 🟩 `Payments` · 🟪 `Unknown` combines `Orders.PaymentID` and `Payments.PaymentType`.
@@ -45,7 +82,7 @@ One output row represents one payment type represented on orders, including Unkn
 | 🟩 1 | 🟩 UPI |
 | 🟩 2 | 🟩 Card |
 
-### Expected output
+### Expected output · Practice example
 
 | 🟩 payment_type | 🟦 orders | 🟦 pct_of_orders | 🟦 order_value | 🟦 pct_of_value |
 | :--- | :--- | :--- | :--- | :--- |
@@ -57,7 +94,7 @@ One output row represents one payment type represented on orders, including Unkn
 
 [Open the full-size sample SVG](../../assets/question-samples/p028.svg?raw=1)
 
-### How the sample produces this output
+### How the practice example produces this output
 
 There are **🟦 5 orders** worth **🟦 100 + 🟦 200 + 🟦 300 + 🟦 50 + 🟦 150 = 🟦 800** in total.
 
