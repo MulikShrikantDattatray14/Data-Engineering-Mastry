@@ -20,11 +20,11 @@ One result row represents one qualifying Beverages product. All five columns are
 
 | # | Output column | Source | Requirement for this product row | Example |
 | ---: | --- | --- | --- | --- |
-| 1 | `ProductID` | ðŸŸ¦ `Products.ProductID` | Return the identifier of the individual product whose price qualifies. It identifies the item in the pricing review. | í ½ 3 |
-| 2 | `Product` | ðŸŸ¦ `Products.Product` | Return the catalogue name belonging to that same product ID. | í ½ Juice |
-| 3 | `CategoryID` | ðŸŸ¦ `Products.CategoryID` | Return the productâ€™s category ID. The report is limited to Beverages, so every output row carries 5009. | í ½ 5009 |
-| 4 | `Sale_Price` | ðŸŸ¦ `Products.Sale_Price` | Return the individual productâ€™s stored sale price. It qualifies only when strictly greater than the unrounded average for its own category. Equality does not qualify. | í ½ 300 |
-| 5 | `category_avg_price` | ðŸŸ¦ Calculated from `Products.Sale_Price` within the same `CategoryID` | Show the mean of all known sale prices in the productâ€™s category, including this product. Below-average and equal-priced products contribute too. Display the benchmark to two decimals. | í ½ 200.00 |
+| 1 | `ProductID` | ðŸŸ¦ `Products.ProductID` | Return the identifier of the individual product whose price qualifies. It identifies the item in the pricing review. | ðŸŸ¦ 3 |
+| 2 | `Product` | ðŸŸ¦ `Products.Product` | Return the catalogue name belonging to that same product ID. | ðŸŸ¦ Juice |
+| 3 | `CategoryID` | ðŸŸ¦ `Products.CategoryID` | Return the productâ€™s category ID. The report is limited to Beverages, so every output row carries 5009. | ðŸŸ¦ 5009 |
+| 4 | `Sale_Price` | ðŸŸ¦ `Products.Sale_Price` | Return the individual productâ€™s stored sale price. It qualifies only when strictly greater than the unrounded average for its own category. Equality does not qualify. | ðŸŸ¦ 300 |
+| 5 | `category_avg_price` | ðŸŸ¦ Calculated from `Products.Sale_Price` within the same `CategoryID` | Show the mean of all known sale prices in the productâ€™s category, including this product. Below-average and equal-priced products contribute too. Display the benchmark to two decimals. | ðŸŸ¦ 200.00 |
 
 **Row eligibility and ordering.** Compare using the unrounded category average. A product with a missing sale price cannot pass the comparison. Sort by `CategoryID` ascending, then `Sale_Price` descending. The prompt gives no further rule for equal prices.
 
@@ -38,16 +38,16 @@ One result row represents one qualifying Beverages product. All five columns are
 
 | ðŸŸ¦ ProductID | ðŸŸ¦ Product | ðŸŸ¦ CategoryID | ðŸŸ¦ Sale_Price |
 | --- | --- | --- | --- |
-| í ½ 1 | í ½ Tea | í ½ 5009 | í ½ 100 |
-| í ½ 2 | í ½ Coffee | í ½ 5009 | í ½ 200 |
-| í ½ 3 | í ½ Juice | í ½ 5009 | í ½ 300 |
-| í ½ 4 | í ½ Bread | í ½ 5010 | í ½ 500 |
+| ðŸŸ¦ 1 | ðŸŸ¦ Tea | ðŸŸ¦ 5009 | ðŸŸ¦ 100 |
+| ðŸŸ¦ 2 | ðŸŸ¦ Coffee | ðŸŸ¦ 5009 | ðŸŸ¦ 200 |
+| ðŸŸ¦ 3 | ðŸŸ¦ Juice | ðŸŸ¦ 5009 | ðŸŸ¦ 300 |
+| ðŸŸ¦ 4 | ðŸŸ¦ Bread | ðŸŸ¦ 5010 | ðŸŸ¦ 500 |
 
 ### Expected output
 
 | ðŸŸ¦ ProductID | ðŸŸ¦ Product | ðŸŸ¦ CategoryID | ðŸŸ¦ Sale_Price | ðŸŸ¦ category_avg_price |
 | --- | --- | --- | --- | --- |
-| í ½ 3 | í ½ Juice | í ½ 5009 | í ½ 300 | í ½ 200.00 |
+| ðŸŸ¦ 3 | ðŸŸ¦ Juice | ðŸŸ¦ 5009 | ðŸŸ¦ 300 | ðŸŸ¦ 200.00 |
 
 [View the source-colored sample tables](../../assets/question-samples/p032.svg)
 

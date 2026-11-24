@@ -22,11 +22,11 @@ The course asks for one row per ordering customer whose lifetime spend exceeds t
 
 | # | Output column | Source | Requirement for one result row | Practice example |
 | ---: | --- | --- | --- | --- |
-| 1 | `CustomerID` | ğŸŸ¦ `Orders.CustomerID` | Return the ordering customer's ID. The course excludes orders with a missing ID and preserves known IDs even if their customer record is missing. | í ½ 1 |
-| 2 | `customer_name` | ğŸŸ© `Customers.FirstName`, `Customers.LastName` | Look up the name for the ordering ID. The course displays the first and last name or `Unknown customer` when no customer row matches. | í ½ Asha Rao |
-| 3 | `total_spend` | ğŸŸ¦ `Orders.Total_Order_Amount` | Sum the gross amount of all orders placed by this customer. Multiple orders still contribute a single customer total to the benchmark. | í ½ 300 |
-| 4 | `avg_customer_spend` | ğŸŸ¦ Calculated from the customer totals | Course display rule: two decimals. The locked learner query does not round this benchmark, so it returns the unrounded average of one lifetime total per ordering customer. | í ½ 200.0 |
-| 5 | `pct_above_avg` | ğŸŸ¦ Calculated from the customer total and benchmark | Course display rule: two decimals. The locked learner query does not `ROUND` this calculation; it computes 100 Ã— (customer total âˆ’ benchmark) Ã· benchmark and guards against a zero denominator. | í ½ 50.0 |
+| 1 | `CustomerID` | ğŸŸ¦ `Orders.CustomerID` | Return the ordering customer's ID. The course excludes orders with a missing ID and preserves known IDs even if their customer record is missing. | ğŸŸ¦ 1 |
+| 2 | `customer_name` | ğŸŸ© `Customers.FirstName`, `Customers.LastName` | Look up the name for the ordering ID. The course displays the first and last name or `Unknown customer` when no customer row matches. | ğŸŸ© Asha Rao |
+| 3 | `total_spend` | ğŸŸ¦ `Orders.Total_Order_Amount` | Sum the gross amount of all orders placed by this customer. Multiple orders still contribute a single customer total to the benchmark. | ğŸŸ¦ 300 |
+| 4 | `avg_customer_spend` | ğŸŸ¦ Calculated from the customer totals | Course display rule: two decimals. The locked learner query does not round this benchmark, so it returns the unrounded average of one lifetime total per ordering customer. | ğŸŸ¦ 200.0 |
+| 5 | `pct_above_avg` | ğŸŸ¦ Calculated from the customer total and benchmark | Course display rule: two decimals. The locked learner query does not `ROUND` this calculation; it computes 100 Ã— (customer total âˆ’ benchmark) Ã· benchmark and guards against a zero denominator. | ğŸŸ¦ 50.0 |
 
 **Selection and ordering.** Compare each customer total with the unrounded benchmark using strict greater-than. Equal spend is excluded. Sort by total spend descending. The course answer uses customer ID ascending as its tie-breaker.
 
@@ -42,23 +42,23 @@ The course asks for one row per ordering customer whose lifetime spend exceeds t
 
 | ğŸŸ© `CustomerID` | ğŸŸ© `FirstName` | ğŸŸ© `LastName` |
 | ---: | --- | --- |
-| í ½ 1 | í ½ Asha | í ½ Rao |
-| í ½ 2 | í ½ Ben | í ½ Das |
-| í ½ 3 | í ½ Cia | í ½ Sen |
+| ğŸŸ© 1 | ğŸŸ© Asha | ğŸŸ© Rao |
+| ğŸŸ© 2 | ğŸŸ© Ben | ğŸŸ© Das |
+| ğŸŸ© 3 | ğŸŸ© Cia | ğŸŸ© Sen |
 
 **ğŸŸ¦ `Orders`**
 
 | ğŸŸ¦ `OrderID` | ğŸŸ¦ `CustomerID` | ğŸŸ¦ `Total_Order_Amount` |
 | ---: | ---: | ---: |
-| í ½ 10 | í ½ 1 | í ½ 300 |
-| í ½ 11 | í ½ 2 | í ½ 100 |
-| í ½ 12 | í ½ 3 | í ½ 200 |
+| ğŸŸ¦ 10 | ğŸŸ¦ 1 | ğŸŸ¦ 300 |
+| ğŸŸ¦ 11 | ğŸŸ¦ 2 | ğŸŸ¦ 100 |
+| ğŸŸ¦ 12 | ğŸŸ¦ 3 | ğŸŸ¦ 200 |
 
 ### Expected output
 
 | ğŸŸ¦ `CustomerID` | ğŸŸ© `customer_name` | ğŸŸ¦ `total_spend` | ğŸŸ¦ `avg_customer_spend` | ğŸŸ¦ `pct_above_avg` |
 | ---: | --- | ---: | ---: | ---: |
-| í ½ 1 | í ½ Asha Rao | í ½ 300 | í ½ 200.00 | í ½ 50.00 |
+| ğŸŸ¦ 1 | ğŸŸ© Asha Rao | ğŸŸ¦ 300 | ğŸŸ¦ 200.00 | ğŸŸ¦ 50.00 |
 
 **Precision note.** The expected table follows the courseâ€™s two-decimal display. The locked learner query returns unrounded numeric values; for this sample SQLite returns `avg_customer_spend = 200.0` and `pct_above_avg = 50.0`. Other inputs can yield additional decimal places. This documented difference is preserved; the selected SQL is unchanged.
 
@@ -134,17 +134,17 @@ SELECT CustomerID, FirstName, LastName FROM Customers ORDER BY CustomerID;
 
 | ğŸŸ¦ OrderID | ğŸŸ¦ CustomerID | ğŸŸ¦ Total_Order_Amount |
 | --- | --- | --- |
-| í ½ 10 | í ½ 1 | í ½ 300 |
-| í ½ 11 | í ½ 2 | í ½ 100 |
-| í ½ 12 | í ½ 3 | í ½ 200 |
+| ğŸŸ¦ 10 | ğŸŸ¦ 1 | ğŸŸ¦ 300 |
+| ğŸŸ¦ 11 | ğŸŸ¦ 2 | ğŸŸ¦ 100 |
+| ğŸŸ¦ 12 | ğŸŸ¦ 3 | ğŸŸ¦ 200 |
 
 **ğŸŸ© Customers**
 
 | ğŸŸ© CustomerID | ğŸŸ© FirstName | ğŸŸ© LastName |
 | --- | --- | --- |
-| í ½ 1 | í ½ Asha | í ½ Rao |
-| í ½ 2 | í ½ Ben | í ½ Das |
-| í ½ 3 | í ½ Cia | í ½ Sen |
+| ğŸŸ© 1 | ğŸŸ© Asha | ğŸŸ© Rao |
+| ğŸŸ© 2 | ğŸŸ© Ben | ğŸŸ© Das |
+| ğŸŸ© 3 | ğŸŸ© Cia | ğŸŸ© Sen |
 
 ### 2. How does each order get a name?
 
@@ -160,9 +160,9 @@ ORDER BY o.OrderID;
 
 | ğŸŸ¦ OrderID | ğŸŸ¦ o.CustomerID | ğŸŸ¦ Total_Order_Amount | ğŸŸ© c.CustomerID | ğŸŸ© FirstName | ğŸŸ© LastName |
 | --- | --- | --- | --- | --- | --- |
-| í ½ 10 | í ½ 1 | í ½ 300 | í ½ 1 | í ½ Asha | í ½ Rao |
-| í ½ 11 | í ½ 2 | í ½ 100 | í ½ 2 | í ½ Ben | í ½ Das |
-| í ½ 12 | í ½ 3 | í ½ 200 | í ½ 3 | í ½ Cia | í ½ Sen |
+| ğŸŸ¦ 10 | ğŸŸ¦ 1 | ğŸŸ¦ 300 | ğŸŸ© 1 | ğŸŸ© Asha | ğŸŸ© Rao |
+| ğŸŸ¦ 11 | ğŸŸ¦ 2 | ğŸŸ¦ 100 | ğŸŸ© 2 | ğŸŸ© Ben | ğŸŸ© Das |
+| ğŸŸ¦ 12 | ğŸŸ¦ 3 | ğŸŸ¦ 200 | ğŸŸ© 3 | ğŸŸ© Cia | ğŸŸ© Sen |
 
 ### 3. What does one customer spend?
 
@@ -180,9 +180,9 @@ GROUP BY o.CustomerID, c.FirstName, c.LastName;
 
 | ğŸŸ¦ CustomerID | ğŸŸ© customer_name | ğŸŸ¦ total_spend |
 | --- | --- | --- |
-| í ½ 1 | í ½ Asha Rao | í ½ 300 |
-| í ½ 2 | í ½ Ben Das | í ½ 100 |
-| í ½ 3 | í ½ Cia Sen | í ½ 200 |
+| ğŸŸ¦ 1 | ğŸŸ© Asha Rao | ğŸŸ¦ 300 |
+| ğŸŸ¦ 2 | ğŸŸ© Ben Das | ğŸŸ¦ 100 |
+| ğŸŸ¦ 3 | ğŸŸ© Cia Sen | ğŸŸ¦ 200 |
 
 In a separate check, replacing order 10 with two orders of 100 and 200 for Asha produced the same total of 300 and the same final row.
 
@@ -199,9 +199,9 @@ FROM customer_spend AS cs;
 
 | ğŸŸ¦ CustomerID | ğŸŸ© customer_name | ğŸŸ¦ total_spend | ğŸŸ¦ avg_customer_spend |
 | --- | --- | --- | --- |
-| í ½ 1 | í ½ Asha Rao | í ½ 300 | í ½ 200.0 |
-| í ½ 2 | í ½ Ben Das | í ½ 100 | í ½ 200.0 |
-| í ½ 3 | í ½ Cia Sen | í ½ 200 | í ½ 200.0 |
+| ğŸŸ¦ 1 | ğŸŸ© Asha Rao | ğŸŸ¦ 300 | ğŸŸ¦ 200.0 |
+| ğŸŸ¦ 2 | ğŸŸ© Ben Das | ğŸŸ¦ 100 | ğŸŸ¦ 200.0 |
+| ğŸŸ¦ 3 | ğŸŸ© Cia Sen | ğŸŸ¦ 200 | ğŸŸ¦ 200.0 |
 
 ### 5. Who passes the filter?
 
@@ -216,9 +216,9 @@ ORDER BY CustomerID;
 
 | ğŸŸ© customer_name | ğŸŸ¦ total_spend | ğŸŸ¦ avg_customer_spend | ğŸŸ¦ qualifies |
 | --- | --- | --- | --- |
-| í ½ Asha Rao | í ½ 300 | í ½ 200.0 | í ½ 1 |
-| í ½ Ben Das | í ½ 100 | í ½ 200.0 | í ½ 0 |
-| í ½ Cia Sen | í ½ 200 | í ½ 200.0 | í ½ 0 |
+| ğŸŸ© Asha Rao | ğŸŸ¦ 300 | ğŸŸ¦ 200.0 | ğŸŸ¦ 1 |
+| ğŸŸ© Ben Das | ğŸŸ¦ 100 | ğŸŸ¦ 200.0 | ğŸŸ¦ 0 |
+| ğŸŸ© Cia Sen | ğŸŸ¦ 200 | ğŸŸ¦ 200.0 | ğŸŸ¦ 0 |
 
 The filter keeps Asha. Ben falls below 200. Cia is exactly at 200, so the strict greater-than comparison excludes her.
 
@@ -241,7 +241,7 @@ ORDER BY total_spend DESC;
 
 | ğŸŸ¦ CustomerID | ğŸŸ© customer_name | ğŸŸ¦ total_spend | ğŸŸ¦ avg_customer_spend | ğŸŸ¦ pct_above_avg |
 | --- | --- | --- | --- | --- |
-| í ½ 1 | í ½ Asha Rao | í ½ 300 | í ½ 200.0 | í ½ 50.0 |
+| ğŸŸ¦ 1 | ğŸŸ© Asha Rao | ğŸŸ¦ 300 | ğŸŸ¦ 200.0 | ğŸŸ¦ 50.0 |
 
 ## Sample verification
 
@@ -249,7 +249,7 @@ Executed in SQLite on the three orders in the practice example. Asha, Ben and Ci
 
 | ğŸŸ¦ CustomerID | ğŸŸ© customer_name | ğŸŸ¦ total_spend | ğŸŸ¦ avg_customer_spend | ğŸŸ¦ pct_above_avg |
 | ---: | --- | ---: | ---: | ---: |
-| í ½ 1 | í ½ Asha Rao | í ½ 300 | í ½ 200.0 | í ½ 50.0 |
+| ğŸŸ¦ 1 | ğŸŸ© Asha Rao | ğŸŸ¦ 300 | ğŸŸ¦ 200.0 | ğŸŸ¦ 50.0 |
 
 ## Comparison with the course answer
 

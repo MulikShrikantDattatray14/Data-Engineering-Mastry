@@ -113,7 +113,12 @@ def build(manifest):
                 raise ValueError(f"Duplicate fixture table {name}")
             source_color = table.get("color", "")
             fields = [(source_color + " " + col[0]).strip() for col in columns]
-            sources[name] = (table.get("label", name), fields, table["rows"])
+            source_rows = [
+                [f"{source_color} {display(value)}".strip() if source_color else display(value)
+                 for value in row]
+                for row in table["rows"]
+            ]
+            sources[name] = (table.get("label", name), fields, source_rows)
         db.execute("PRAGMA query_only=ON")
         pages = {}
         previous_id = None
@@ -134,14 +139,31 @@ def build(manifest):
             if "expected_count" in step and len(rows) != step["expected_count"]:
                 raise ValueError(f"{key}: expected {step['expected_count']} rows, got {len(rows)}")
             inputs = step.get("inputs", [previous_id] if previous_id else [t["name"] for t in conf["tables"]])
-            color_map = {**conf.get("column_colors", {}), **step.get("column_colors", {})}
+            color_map = {}
+            for table in conf["tables"]:
+                for field, _kind in table["columns"]:
+                    color_map.setdefault(field, table.get("color", ""))
+            color_map.update(conf.get("column_colors", {}))
+            color_map.update(step.get("column_colors", {}))
             field_labels = [(color_map.get(c, "") + " " + c).strip() for c in cols]
+
+            def colored_cell(value, color):
+                rendered = display(value)
+                if not color or re.match(r"^[🟥🟧🟨🟩🟦🟪]", rendered):
+                    return rendered
+                return f"{color} {rendered}"
+
             shown_rows = rows
             if source_field := step.get("row_source_field"):
                 source_index = cols.index(source_field)
                 palette = {t["name"]: t["color"] for t in conf["tables"]}
                 shown_rows = [
-                    [f"{palette[row[source_index]]} {display(cell)}" for cell in row]
+                    [colored_cell(cell, palette.get(row[source_index], "")) for cell in row]
+                    for row in rows
+                ]
+            else:
+                shown_rows = [
+                    [colored_cell(value, color_map.get(col, "")) for col, value in zip(cols, row)]
                     for row in rows
                 ]
             before = []
