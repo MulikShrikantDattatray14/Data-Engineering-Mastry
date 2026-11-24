@@ -229,3 +229,43 @@ The learner-selected SQL is retained exactly; these differences are documented r
 5. **Apply the strict comparison and order.** Tea at 100 is below the benchmark; Coffee at 200 equals it and is excluded; Juice at 300 survives. The final query orders by CategoryID ascending and Sale_Price descending.
 
 The final stage in the linked walkthrough reads the exact locked learner SQLite query and is checked against the expected output above.
+
+
+## Important learnings from P032
+
+### 1. Define the comparison population before calculating an average
+
+The benchmark must represent **all known sale prices in the target category**, not only products that eventually qualify. Filter to CategoryID 5009 first, calculate its average, and only then compare each product against that scalar result. If the above-average predicate is applied before the average is calculated, the benchmark population becomes circular and incorrect.
+
+### 2. Keep the row grain separate from the aggregate grain
+
+- `required_table` retains one row per eligible product.
+- `avg_sale_price` returns one row containing one category-wide scalar benchmark.
+- The outer query starts from the product rows and compares each one with that scalar. The aggregate CTE does not replace the product rows.
+- No `GROUP BY` is needed in the outer query because the task returns qualifying product rows, not one summary row.
+
+### 3. Strict comparison and NULL behaviour
+
+- `>` excludes a product whose price equals the average; `>=` would change the requirement.
+- A NULL sale price cannot satisfy the comparison because comparisons with NULL are UNKNOWN, not TRUE.
+- `AVG(Sale_Price)` ignores NULL prices. The benchmark is the average of known prices in the selected category.
+- Do not round the benchmark before filtering. Display rounding and comparison precision are separate concerns.
+
+### 4. Filtering and ordering
+
+- Restrict the benchmark population to CategoryID 5009, because the requested report is specifically for Beverages.
+- Sort by CategoryID ascending, then Sale_Price descending. Do not invent a required tie-breaker when the prompt does not specify one; if a deterministic tie-breaker is added, document it as an implementation choice.
+
+### 5. Learner query versus official answer
+
+The learner's CTE version and the course's correlated-subquery version express the same category benchmark for this single-category task. The official answer rounds the displayed average to two decimals and adds ProductID as a tie-breaker; the learner query preserves an unrounded benchmark and the stated sort only. Preserve the learner's selected query verbatim and describe these differences rather than silently changing it.
+
+## Verification
+
+- Illustrative fixture: Tea 100, Coffee 200, Juice 300 in CategoryID 5009; Bread 500 in CategoryID 5010.
+- Category 5009 benchmark: (100 + 200 + 300) / 3 = 200.
+- Strict greater-than result: Juice only; Tea is below and Coffee equals the benchmark.
+- Confirmed the learner SQLite query returns ProductID 3, Juice, CategoryID 5009, Sale_Price 300 and category_avg_price 200.0 for the illustrative fixture.
+- Display precision note: the specification/example presents 200.00; the locked learner query returns 200.0 in SQLite. The original course answer rounds to two decimal places. Keep this difference explicit.
+- SQL Server adaptation is documented; do not describe it as natively executed unless a SQL Server engine run is performed.
+- This verification is limited to the stated fixture; it is not a proof over every possible dataset.
