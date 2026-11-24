@@ -146,18 +146,18 @@ SELECT PaymentID, PaymentType FROM Payments ORDER BY PaymentID;
 
 | 🟦 `OrderID` | 🟦 `PaymentID` | 🟦 `Total_Order_Amount` |
 | ---: | ---: | ---: |
-| 10 | 1 | 100 |
-| 11 | 1 | 200 |
-| 12 | 2 | 300 |
-| 13 | 99 | 50 |
-| 14 | `NULL` | 150 |
+| 🟦 10 | 🟦 1 | 🟦 100 |
+| 🟦 11 | 🟦 1 | 🟦 200 |
+| 🟦 12 | 🟦 2 | 🟦 300 |
+| 🟦 13 | 🟦 99 | 🟦 50 |
+| 🟦 14 | 🟦 `NULL` | 🟦 150 |
 
 **Two payment methods**
 
 | 🟩 `PaymentID` | 🟩 `PaymentType` |
 | ---: | --- |
-| 1 | UPI |
-| 2 | Card |
+| 🟩 1 | 🟩 UPI |
+| 🟩 2 | 🟩 Card |
 
 Orders 10–12 are the original sample. Our practice example adds order 13 for 50 and order 14 for 150.
 
@@ -177,11 +177,11 @@ ORDER BY o.OrderID;
 
 | 🟦 `OrderID` | 🟦 `PaymentID` | 🟦 `Total_Order_Amount` | 🟩 `PaymentID` | 🟩 `PaymentType` |
 | ---: | ---: | ---: | ---: | --- |
-| 10 | 1 | 100 | 1 | UPI |
-| 11 | 1 | 200 | 1 | UPI |
-| 12 | 2 | 300 | 2 | Card |
-| 13 | 99 | 50 | `NULL` | `NULL` |
-| 14 | `NULL` | 150 | `NULL` | `NULL` |
+| 🟦 10 | 🟦 1 | 🟦 100 | 🟩 1 | 🟩 UPI |
+| 🟦 11 | 🟦 1 | 🟦 200 | 🟩 1 | 🟩 UPI |
+| 🟦 12 | 🟦 2 | 🟦 300 | 🟩 2 | 🟩 Card |
+| 🟦 13 | 🟦 99 | 🟦 50 | 🟩 `NULL` | 🟩 `NULL` |
+| 🟦 14 | 🟦 `NULL` | 🟦 150 | 🟩 `NULL` | 🟩 `NULL` |
 
 Order 13 has payment ID 99. Order 14 has a missing ID. Both keep their blue order values and receive green NULLs.
 
@@ -202,11 +202,11 @@ ORDER BY o.OrderID;
 
 | 🟦 `OrderID` | 🟦 `PaymentID` | 🟦 `Total_Order_Amount` | 🟩 `PaymentID` | 🟩 `PaymentType` | 🟩 `payment_type` |
 | ---: | ---: | ---: | ---: | --- | --- |
-| 10 | 1 | 100 | 1 | UPI | UPI |
-| 11 | 1 | 200 | 1 | UPI | UPI |
-| 12 | 2 | 300 | 2 | Card | Card |
-| 13 | 99 | 50 | `NULL` | `NULL` | Unknown |
-| 14 | `NULL` | 150 | `NULL` | `NULL` | Unknown |
+| 🟦 10 | 🟦 1 | 🟦 100 | 🟩 1 | 🟩 UPI | 🟩 UPI |
+| 🟦 11 | 🟦 1 | 🟦 200 | 🟩 1 | 🟩 UPI | 🟩 UPI |
+| 🟦 12 | 🟦 2 | 🟦 300 | 🟩 2 | 🟩 Card | 🟩 Card |
+| 🟦 13 | 🟦 99 | 🟦 50 | 🟩 `NULL` | 🟩 `NULL` | 🟩 Unknown |
+| 🟦 14 | 🟦 `NULL` | 🟦 150 | 🟩 `NULL` | 🟩 `NULL` | 🟩 Unknown |
 
 Orders 13 and 14 now have the same display label. Grouping by the original order-side payment ID would split them.
 
@@ -234,9 +234,9 @@ ORDER BY MIN(OrderID);
 
 | 🟩 `payment_type` | 🟦 `OrderIDs in group` | 🟦 `Amounts in group` |
 | --- | --- | --- |
-| UPI | 10, 11 | 100 + 200 |
-| Card | 12 | 300 |
-| Unknown | 13, 14 | 50 + 150 |
+| 🟩 UPI | 🟦 10, 11 | 🟦 100 + 200 |
+| 🟩 Card | 🟦 12 | 🟦 300 |
+| 🟩 Unknown | 🟦 13, 14 | 🟦 50 + 150 |
 
 Orders 10 and 11 belong to UPI. Orders 13 and 14 belong to Unknown. Each order is in exactly one group.
 
@@ -260,19 +260,19 @@ ORDER BY MIN(o.OrderID);
 
 | 🟦 `OrderID` | 🟦 `Total_Order_Amount` | 🟩 `payment_type` |
 | ---: | ---: | --- |
-| 10 | 100 | UPI |
-| 11 | 200 | UPI |
-| 12 | 300 | Card |
-| 13 | 50 | Unknown |
-| 14 | 150 | Unknown |
+| 🟦 10 | 🟦 100 | 🟩 UPI |
+| 🟦 11 | 🟦 200 | 🟩 UPI |
+| 🟦 12 | 🟦 300 | 🟩 Card |
+| 🟦 13 | 🟦 50 | 🟩 Unknown |
+| 🟦 14 | 🟦 150 | 🟩 Unknown |
 
 **Three group totals**
 
 | 🟩 `payment_type` | 🟦 `orders` | 🟦 `order_value` |
 | --- | ---: | ---: |
-| UPI | 2 | 300 |
-| Card | 1 | 300 |
-| Unknown | 2 | 200 |
+| 🟩 UPI | 🟦 2 | 🟦 300 |
+| 🟩 Card | 🟦 1 | 🟦 300 |
+| 🟩 Unknown | 🟦 2 | 🟦 200 |
 
 UPI counts orders 10 and 11 and adds 100 + 200. Card reaches the same value of 300 with one order.
 
@@ -294,17 +294,17 @@ SELECT
 
 | 🟦 `OrderID` | 🟦 `Total_Order_Amount` |
 | ---: | ---: |
-| 10 | 100 |
-| 11 | 200 |
-| 12 | 300 |
-| 13 | 50 |
-| 14 | 150 |
+| 🟦 10 | 🟦 100 |
+| 🟦 11 | 🟦 200 |
+| 🟦 12 | 🟦 300 |
+| 🟦 13 | 🟦 50 |
+| 🟦 14 | 🟦 150 |
 
 **The same two totals for every group**
 
 | 🟦 `all_orders` | 🟦 `all_value` |
 | ---: | ---: |
-| 5 | 800 |
+| 🟦 5 | 🟦 800 |
 
 Five order rows give a count of 5. Their amounts add to 100 + 200 + 300 + 50 + 150 = 800.
 
@@ -334,9 +334,9 @@ ORDER BY MIN(o.OrderID);
 
 | 🟩 `payment_type` | 🟦 `orders` | 🟦 `all_orders` | 🟦 `pct_of_orders` | 🟦 `order_value` | 🟦 `all_value` | 🟦 `pct_of_value` |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| UPI | 2 | 5 | 40.00 | 300 | 800 | 37.50 |
-| Card | 1 | 5 | 20.00 | 300 | 800 | 37.50 |
-| Unknown | 2 | 5 | 40.00 | 200 | 800 | 25.00 |
+| 🟩 UPI | 🟦 2 | 🟦 5 | 🟦 40.00 | 🟦 300 | 🟦 800 | 🟦 37.50 |
+| 🟩 Card | 🟦 1 | 🟦 5 | 🟦 20.00 | 🟦 300 | 🟦 800 | 🟦 37.50 |
+| 🟩 Unknown | 🟦 2 | 🟦 5 | 🟦 40.00 | 🟦 200 | 🟦 800 | 🟦 25.00 |
 
 UPI has 2 of 5 orders, or 40.00%. Its 300 out of 800 in value gives 37.50%.
 
@@ -374,9 +374,9 @@ ORDER BY orders DESC;
 
 | 🟩 `payment_type` | 🟦 `orders` | 🟦 `pct_of_orders` | 🟦 `order_value` | 🟦 `pct_of_value` |
 | --- | ---: | ---: | ---: | ---: |
-| UPI | 2 | 40.00 | 300 | 37.50 |
-| Unknown | 2 | 40.00 | 200 | 25.00 |
-| Card | 1 | 20.00 | 300 | 37.50 |
+| 🟩 UPI | 🟦 2 | 🟦 40.00 | 🟦 300 | 🟦 37.50 |
+| 🟩 Unknown | 🟦 2 | 🟦 40.00 | 🟦 200 | 🟦 25.00 |
+| 🟩 Card | 🟦 1 | 🟦 20.00 | 🟦 300 | 🟦 37.50 |
 
 The rows account for 2 + 2 + 1 = 5 orders and 300 + 200 + 300 = 800. Both shares sum to 100.00% in this example.
 
