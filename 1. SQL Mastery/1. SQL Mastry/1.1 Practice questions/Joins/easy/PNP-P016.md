@@ -33,28 +33,28 @@ Quotes around text values make surrounding spaces visible.
 
 | 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 City |
 |---:|---|---|---|
-| 1 | Anu | Sen | `' Delhi '` |
+| 🟦 1 | 🟦 Anu | 🟦 Sen | 🟦 `' Delhi '` |
 
 **🟩 `Orders`**
 
 | 🟩 OrderID | 🟩 CustomerID | 🟩 OrderDate | 🟩 Total_Order_Amount |
 |---:|---:|---|---:|
-| 10 | 1 | 2025-12-01 | 100 |
-| 11 | 1 | 2026-01-01 | 150 |
+| 🟩 10 | 🟩 1 | 🟩 2025-12-01 | 🟩 100 |
+| 🟩 11 | 🟩 1 | 🟩 2026-01-01 | 🟩 150 |
 
 ### Expected output
 
 | 🟩 OrderID | 🟩 OrderDate | 🟦 customer_name | 🟦 City | 🟩 Total_Order_Amount |
 |---:|---|---|---|---:|
-| 10 | 2025-12-01 | Anu Sen | Delhi | 100 |
+| 🟩 10 | 🟩 2025-12-01 | 🟦 Anu Sen | 🟦 Delhi | 🟩 100 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p016.svg?raw=1)
 
 ### How the sample produces this output
 
-Customer 1 is 🟦 Anu Sen and the stored city has spaces around Delhi. Order 10 belongs to that customer, was placed on 🟩 **2025-12-01**, and is worth 🟩 **100**. The call-sheet row therefore shows 🟦 **Anu Sen**, **Delhi**, and 🟩 **100**.
+Customer 🟪 1 is 🟦 Anu Sen and the stored city has spaces around 🟦 Delhi. Order 🟩 10 belongs to that customer, was placed on 🟩 **2025-12-🟪 01**, and is worth 🟩 **🟩 100**. The call-sheet row therefore shows 🟦 **Anu 🟦 Sen**, **🟦 Delhi**, and 🟩 **🟩 100**.
 
-Order 11 belongs to the same customer but was placed on 🟩 **2026-01-01**, outside December 2025. Only order 10 appears.
+Order 🟩 11 belongs to the same customer but was placed on 🟩 **2026-🟪 01-🟪 01**, outside December 2025. Only order 🟩 10 appears.
 
 ## Step 1 · Your approach before writing SQL
 
