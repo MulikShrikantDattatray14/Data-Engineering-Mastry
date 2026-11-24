@@ -14,7 +14,7 @@
 
 ### Required output columns
 
-One output row represents one category represented on sale lines, including lines with an unknown product or unmapped category.
+One output row represents one category label: a catalogue category (including one with no sale lines) or a fallback label for unmatched sale lines. `Unmapped` and `Unknown product` remain separate groups.
 
 | Output column | Source or calculation | Meaning and applicable rules | Example value |
 | --- | --- | --- | --- |
@@ -132,7 +132,7 @@ Follow ðŸŸ¦ **line 5** to see why the first join must preserve sales. Follow ðŸŸ
 
 ## Step-by-step walkthrough
 
-One result row represents a category. Before aggregating, keep enough detail to tell whether an order line, product and category actually matched.
+One result row represents one category label. The FULL OUTER JOIN preserves catalogue categories with no sale lines, while the fallback labels keep unmatched sale lines in the report. Before aggregating, keep enough detail to tell whether an order line, product and category actually matched.
 
 ### 1. Why start with OrderDetails?
 
