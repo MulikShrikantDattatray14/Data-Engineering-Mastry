@@ -63,3 +63,84 @@ One result row represents a product that has never appeared in an order line. Re
 4. Why does even one order line disqualify a product, regardless of quantity?
 5. How would you apply the requested ordering?
 6. Trace Pen and Cup through your proposed logic and explain why only Cup remains.
+
+## Agreed approach
+
+1. Keep `Products` as the driving (left) table because every catalogue product must be considered, including products with no order history.
+2. LEFT JOIN `OrderDetails` using `Products.ProductID = OrderDetails.ProductID`.
+3. A product with no matching order-detail row receives NULLs in the right-side columns.
+4. Filter those unmatched rows with `OD.OrderDetailID IS NULL`. `OrderDetailID` is a non-null identifier for an actual order-detail row.
+5. Return the five requested columns from `Products` and sort by `CategoryID` ascending, then `ProductID` ascending.
+
+**Pattern:** LEFT ANTI JOIN — preserve left-side rows that have no match on the right.
+
+## My solution — SQLite
+
+**Final learner solution.** Sample-checked on 24 November 2026 using the illustrative Example 3 below.
+
+```sql
+SELECT
+    P.ProductID,
+    P.Product,
+    P.Brand,
+    P.CategoryID,
+    P.Sale_Price
+FROM Products P
+LEFT JOIN OrderDetails OD
+    ON P.ProductID = OD.ProductID
+WHERE OD.OrderDetailID IS NULL
+ORDER BY
+    P.CategoryID ASC,
+    P.ProductID ASC;
+```
+
+### Sample verification
+
+**Practice example 3 · Products**
+
+| 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 CategoryID | 🟦 Sale_Price |
+|---:|---|---|---:|---:|
+| 201 | SQL Basics | TechBooks | 10 | 450 |
+| 202 | Python Guide | CodePress | 10 | 600 |
+| 203 | Data Science | LearnHub | 10 | 800 |
+| 204 | Cloud Computing | TechBooks | 20 | 900 |
+| 205 | Linux Essentials | CodePress | 20 | 550 |
+| 206 | System Design | LearnHub | 20 | 750 |
+
+**Practice example 3 · OrderDetails**
+
+| 🟩 OrderDetailID | 🟩 OrderID | 🟩 ProductID |
+|---:|---:|---:|
+| 1 | 5001 | 201 |
+| 2 | 5001 | 203 |
+| 3 | 5002 | 204 |
+| 4 | 5003 | 201 |
+| 5 | 5004 | 206 |
+
+**Expected and verified output**
+
+| 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 CategoryID | 🟦 Sale_Price |
+|---:|---|---|---:|---:|
+| 202 | Python Guide | CodePress | 10 | 600 |
+| 205 | Linux Essentials | CodePress | 20 | 550 |
+
+**Checks performed**
+
+- Product 201 has two matching order-detail rows. It is excluded; duplicate matches do not make it eligible.
+- Products 203, 204 and 206 each have at least one match and are excluded.
+- Products 202 and 205 have no matching order-detail row and are retained.
+- The output contains exactly the five requested columns.
+- Sorting is CategoryID ascending, then ProductID ascending.
+- No `DISTINCT` is required: the `IS NULL` filter removes every matched row, and unmatched left-side product rows occur once.
+
+## My solution — SQL Server
+
+Pending. Adapt and verify the saved SQLite query separately.
+
+## Official solution
+
+Pending source extraction and comparison. Preserve the supplied answer verbatim when added.
+
+## Visual walkthrough
+
+Pending. The learner's final query and sample output are saved. Add the interactive staged walkthrough and SVG after building and checking the question-specific fixture against this exact query.
