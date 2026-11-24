@@ -31,40 +31,40 @@ One output row represents one shipper represented on orders, including Unknown s
 
 | 🟩 ShipperID | 🟩 CompanyName |
 |---|---|
-| 1 | FastShip |
-| 2 | SlowShip |
+| 🟩 1 | 🟩 FastShip |
+| 🟩 2 | 🟩 SlowShip |
 
 **🟦 `Orders`**
 
 | 🟦 OrderID | 🟦 ShipperID | 🟦 Total_Order_Amount |
 |---|---|---|
-| 10 | 1 | 100 |
-| 11 | 1 | 200 |
-| 12 | 2 | 50 |
+| 🟦 10 | 🟦 1 | 🟦 100 |
+| 🟦 11 | 🟦 1 | 🟦 200 |
+| 🟦 12 | 🟦 2 | 🟦 50 |
 
 **🟥 `OrderDetails`**
 
 | 🟥 OrderDetailID | 🟥 OrderID | 🟥 Quantity |
 |---|---|---|
-| 1 | 10 | 2 |
-| 2 | 10 | 3 |
-| 3 | 11 | 4 |
-| 4 | 12 | 1 |
+| 🟥 1 | 🟥 10 | 🟥 2 |
+| 🟥 2 | 🟥 10 | 🟥 3 |
+| 🟥 3 | 🟥 11 | 🟥 4 |
+| 🟥 4 | 🟥 12 | 🟥 1 |
 
 ### Expected output
 
 | 🟩 shipper_name | 🟦 orders | 🟦 order_value | 🟥 units_shipped |
 |---|---|---|---|
-| FastShip | 2 | 300 | 9 |
-| SlowShip | 1 | 50 | 1 |
+| 🟩 FastShip | 🟦 2 | 🟦 300 | 🟥 9 |
+| 🟩 SlowShip | 🟦 1 | 🟦 50 | 🟥 1 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p029.svg?raw=1)
 
 ### How the sample produces this output
 
-🟩 **FastShip** carried orders 10 and 11, worth 🟦 `100 + 200 = 300`. Order 10 contains 🟥 `2 + 3 = 5` units and order 11 contains another 4, giving 🟥 `5 + 4 = 9` units across two orders.
+🟩 **FastShip** carried orders 🟪 10 and 🟪 11, worth 🟦 `🟦 100 + 🟦 200 = 🟦 300`. Order 🟪 10 contains 🟥 `🟪 2 + 🟥 3 = 5` units and order 🟪 11 contains another 🟥 4, giving 🟥 `5 + 🟥 4 = 🟥 9` units across two orders.
 
-🟩 **SlowShip** carried order 12, worth 🟦 **50**, with 🟥 **1 unit**. FastShip appears first because its order value is higher. Every sample order has a recognized shipper ID.
+🟩 **SlowShip** carried order 🟪 12, worth 🟦 **🟦 50**, with 🟥 **🟪 1 unit**. 🟩 FastShip appears first because its order value is higher. Every sample order has a recognized shipper ID.
 
 ## Step 1 · Your approach before writing SQL
 
