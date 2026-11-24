@@ -49,7 +49,9 @@ One result row represents one qualifying Beverages product. All five columns are
 | --- | --- | --- | --- | --- |
 | 🟦 3 | 🟦 Juice | 🟦 5009 | 🟦 300 | 🟦 200.00 |
 
-[View the source-colored sample tables](../../assets/question-samples/p032.svg)
+![P032 source-colored practice inputs and expected output](../../assets/question-samples/p032.svg)
+
+[Open the sample SVG full size](../../assets/question-samples/p032.svg?raw=1)
 
 [Open the sample SVG full size](../../assets/question-samples/p032.svg?raw=1)
 
