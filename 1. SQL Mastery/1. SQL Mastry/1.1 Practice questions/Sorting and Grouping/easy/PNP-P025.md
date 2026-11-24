@@ -92,7 +92,7 @@ Follow the sample rows through each query step. **Predict the result.** Where do
 
 [Open the full-size walkthrough](../../assets/walkthroughs/p025.svg?raw=1)
 
-## Progressive walkthrough
+## Step-by-step walkthrough
 
 🟦 **FROM Customers · one table is enough** · Each customer ID represents one sign-up. The sign-up date on that row supplies its year and quarter, including the missing-date group for customer 5.
 
