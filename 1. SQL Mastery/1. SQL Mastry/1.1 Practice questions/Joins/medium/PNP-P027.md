@@ -204,6 +204,20 @@ ORDER BY avg_order_value DESC;
 | Which edge cases matter? | Missing customers and missing states share `Unknown`. A zero amount is known. A state with ten missing amounts qualifies with a `NULL` sum and average. |
 | How can I check the order? | Two states can each total 1,000. With five known amounts the AOV is 200, and with ten it is 100. The 200 row appears first. |
 
+## Important learnings from PNP-P027
+
+### 1. Let Orders define the reporting population
+The report counts purchases and their amounts, so Orders supplies one starting row per order. A LEFT JOIN to Customers adds state labels without losing an order whose CustomerID is missing or unmatched.
+
+### 2. Normalize the state before grouping
+TRIM removes surrounding spaces, NULLIF turns an empty result into NULL, and COALESCE labels NULL, blank and unmatched states as Unknown. Group by that displayed label so those cases form one reporting group.
+
+### 3. Keep customer count, order count and amount count distinct
+COUNT(DISTINCT CustomerID) counts known buyer IDs once. COUNT(OrderID) counts every order, including one with a NULL amount. SUM and AVG ignore NULL amounts, so the average denominator is the number of known amounts rather than the number of orders.
+
+### 4. Apply the minimum after grouping
+The ten-order requirement is a group rule, so HAVING belongs after GROUP BY. Use the order count for eligibility; do not use the count of known amounts.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P027/01.md)
@@ -379,7 +393,7 @@ ORDER BY avg_order_value DESC;
 
 The qualifying rows account for **🟦 40 orders**. Together with 🟩 Goa’s 🟦 nine excluded orders, they reconcile to the original **🟦 49**. Even though 🟩 Maharashtra and 🟩 Karnataka have the same 🟦 total value, their different counts of known amounts put 🟩 Maharashtra first.
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ### Single-query solution for SQL Server
 
@@ -482,6 +496,10 @@ GROUP BY COALESCE(NULLIF(TRIM(c.State), ''), 'Unknown')
 HAVING COUNT(*) >= 10
 ORDER BY avg_order_value DESC, state;
 ```
+
+## Comparison with the course answer
+
+The learner query uses AVG(Total_Order_Amount); SQLite AVG ignores NULL amounts, so it uses the same known-amount denominator as the course answer's SUM divided by COUNT(Total_Order_Amount). The learner leaves the average unrounded, while the course answer rounds it to two decimals. COUNT(OrderID) in the learner query is equivalent to the course COUNT(*) because OrderID is non-NULL for every order row. Both queries normalize state and preserve unmatched orders with a LEFT JOIN. The course answer adds explicit NULLS LAST handling and state as a tie-breaker; the learner query sorts only by average order value. The locked query is preserved.
 
 ## Verification
 

@@ -68,7 +68,7 @@ One result row represents a product that has never appeared in an order line. Re
 5. How would you apply the requested ordering?
 6. Trace Pen and Cup through your proposed logic and explain why only Cup remains.
 
-## Agreed approach
+### Agreed approach
 
 1. Keep `Products` as the driving (left) table because every catalogue product must be considered, including products with no order history.
 2. LEFT JOIN `OrderDetails` using `Products.ProductID = OrderDetails.ProductID`.
@@ -137,84 +137,36 @@ ORDER BY
 - Sorting is CategoryID ascending, then ProductID ascending.
 - No `DISTINCT` is required: the `IS NULL` filter removes every matched row, and unmatched left-side product rows occur once.
 
-## My solution — SQL Server
+## Important learnings from P033
 
-**Learner-query SQL Server adaptation.** The anti-join pattern and NULL test are supported directly in SQL Server; the selected SQLite query's row logic is unchanged.
+### 1. Identify the driving table from the requested output population
+
+The task asks for products that have never appeared in order lines. Every catalogue product must be considered, including products with no matching order history. Therefore, start from `Products`; starting from `OrderDetails` would lose the very products the report is trying to find.
+
+### 2. LEFT ANTI JOIN pattern
+
+The saved learner query uses:
 
 ```sql
-SELECT
-    P.ProductID,
-    P.Product,
-    P.Brand,
-    P.CategoryID,
-    P.Sale_Price
 FROM Products P
 LEFT JOIN OrderDetails OD
     ON P.ProductID = OD.ProductID
 WHERE OD.OrderDetailID IS NULL
-ORDER BY
-    P.CategoryID ASC,
-    P.ProductID ASC;
 ```
 
-## Official solution
+- The LEFT JOIN preserves every product.
+- A product with one or more order-detail matches receives a non-NULL OrderDetailID and is excluded.
+- A product with no match receives NULL in the right-side columns and is retained.
+- `OrderDetailID` is the non-null primary key of an actual order line, so it is a reliable unmatched-row test.
+- A product with multiple order lines may repeat in the intermediate join result, but every matched copy is filtered out. No DISTINCT is needed for the remaining unmatched products.
 
-### Original course answer — PostgreSQL 16
+### 3. Equivalent anti-match approaches
 
-Source: [`all_100_solutions.sql`, Q33, lines 410–423](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L410-L423). Preserved as supplied.
+The official `NOT EXISTS` solution expresses the same business rule as the learner's LEFT JOIN plus NULL filter. Both ask whether any matching order-detail row exists. Keep the selected learner query unchanged and explain the alternative separately.
 
-```sql
-SELECT p.ProductID,
-       p.Product,
-       p.Brand,
-       p.CategoryID,
-       p.Sale_Price
-FROM Products AS p
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM OrderDetails AS od
-    WHERE od.ProductID = p.ProductID
-)
-ORDER BY p.CategoryID, p.ProductID;
-```
+### 4. Sorting and output grain
 
-### Official-answer SQLite adaptation
-
-```sql
-SELECT p.ProductID,
-       p.Product,
-       p.Brand,
-       p.CategoryID,
-       p.Sale_Price
-FROM Products AS p
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM OrderDetails AS od
-    WHERE od.ProductID = p.ProductID
-)
-ORDER BY p.CategoryID, p.ProductID;
-```
-
-### Official-answer SQL Server adaptation
-
-```sql
-SELECT p.ProductID,
-       p.Product,
-       p.Brand,
-       p.CategoryID,
-       p.Sale_Price
-FROM Products AS p
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM OrderDetails AS od
-    WHERE od.ProductID = p.ProductID
-)
-ORDER BY p.CategoryID, p.ProductID;
-```
-
-### Difference from the locked learner query
-
-The course answer uses correlated `NOT EXISTS`; the learner uses a `LEFT JOIN` followed by `OD.OrderDetailID IS NULL`. Both implement the same anti-match requirement. The dataset defines `OrderDetailID` as a primary key, so it cannot be NULL on a real matched row; the learner's NULL test reliably identifies an unmatched product. A product with multiple order lines repeats at the intermediate LEFT JOIN stage, but every matched copy is removed by the NULL filter. The learner's selected query is preserved verbatim.
+One output row represents one never-ordered product. Return the five requested catalogue columns and sort by CategoryID ascending, then ProductID ascending. Quantity does not determine eligibility: even one order line disqualifies the product.
 
 ## Visual walkthrough
 
@@ -304,36 +256,84 @@ The small fixture returns Cup only. In the larger saved practice example, produc
 | 205 | Linux Essentials | CodePress | 20 | 550 |
 
 The final stage in the linked walkthrough reads the exact locked learner SQLite query and is checked against both the small practice fixture and the saved larger verification case.
-## Important learnings from P033
+## Learner solution — SQL Server adaptation
 
-### 1. Identify the driving table from the requested output population
-
-The task asks for products that have never appeared in order lines. Every catalogue product must be considered, including products with no matching order history. Therefore, start from `Products`; starting from `OrderDetails` would lose the very products the report is trying to find.
-
-### 2. LEFT ANTI JOIN pattern
-
-The saved learner query uses:
+**Learner-query SQL Server adaptation.** The anti-join pattern and NULL test are supported directly in SQL Server; the selected SQLite query's row logic is unchanged.
 
 ```sql
+SELECT
+    P.ProductID,
+    P.Product,
+    P.Brand,
+    P.CategoryID,
+    P.Sale_Price
 FROM Products P
 LEFT JOIN OrderDetails OD
     ON P.ProductID = OD.ProductID
 WHERE OD.OrderDetailID IS NULL
+ORDER BY
+    P.CategoryID ASC,
+    P.ProductID ASC;
 ```
 
-- The LEFT JOIN preserves every product.
-- A product with one or more order-detail matches receives a non-NULL OrderDetailID and is excluded.
-- A product with no match receives NULL in the right-side columns and is retained.
-- `OrderDetailID` is the non-null primary key of an actual order line, so it is a reliable unmatched-row test.
-- A product with multiple order lines may repeat in the intermediate join result, but every matched copy is filtered out. No DISTINCT is needed for the remaining unmatched products.
+## Official solution
 
-### 3. Equivalent anti-match approaches
+### Original course answer — PostgreSQL 16
 
-The official `NOT EXISTS` solution expresses the same business rule as the learner's LEFT JOIN plus NULL filter. Both ask whether any matching order-detail row exists. Keep the selected learner query unchanged and explain the alternative separately.
+Source: [`all_100_solutions.sql`, Q33, lines 410–423](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L410-L423). Preserved as supplied.
 
-### 4. Sorting and output grain
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Brand,
+       p.CategoryID,
+       p.Sale_Price
+FROM Products AS p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM OrderDetails AS od
+    WHERE od.ProductID = p.ProductID
+)
+ORDER BY p.CategoryID, p.ProductID;
+```
 
-One output row represents one never-ordered product. Return the five requested catalogue columns and sort by CategoryID ascending, then ProductID ascending. Quantity does not determine eligibility: even one order line disqualifies the product.
+### Official-answer SQLite adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Brand,
+       p.CategoryID,
+       p.Sale_Price
+FROM Products AS p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM OrderDetails AS od
+    WHERE od.ProductID = p.ProductID
+)
+ORDER BY p.CategoryID, p.ProductID;
+```
+
+### Official-answer SQL Server adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Brand,
+       p.CategoryID,
+       p.Sale_Price
+FROM Products AS p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM OrderDetails AS od
+    WHERE od.ProductID = p.ProductID
+)
+ORDER BY p.CategoryID, p.ProductID;
+```
+
+## Comparison with the course answer
+
+The course answer uses correlated `NOT EXISTS`; the learner uses a `LEFT JOIN` followed by `OD.OrderDetailID IS NULL`. Both implement the same anti-match requirement. The dataset defines `OrderDetailID` as a primary key, so it cannot be NULL on a real matched row; the learner's NULL test reliably identifies an unmatched product. A product with multiple order lines repeats at the intermediate LEFT JOIN stage, but every matched copy is removed by the NULL filter. The learner's selected query is preserved verbatim.
 
 ## Verification
 

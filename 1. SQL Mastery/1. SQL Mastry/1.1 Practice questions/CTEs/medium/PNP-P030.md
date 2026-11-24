@@ -93,6 +93,35 @@ ORDER BY customer_type;
 
 **10/10 after revision.** Use 🟦 `Orders` because it supplies both order and customer IDs. Count each identified customer’s orders, classify the customer, then count customers in each class. The denominator reads every customer row from the CTE. The report has one row for each populated class.
 
+## Important learnings from P030
+
+### 1. Define the population before grouping
+
+The report classifies identified customers. Filter `CustomerID IS NOT NULL` before grouping so missing customer IDs do not become a fake customer group. If two orders have NULL CustomerID, GROUP BY would place them together and could incorrectly label them as a repeat customer.
+
+### 2. CTE grain and classification
+
+- `customer_order_counts` has one row per identified CustomerID.
+- `COUNT(OrderID)` counts that customer's orders.
+- The CASE expression labels a customer with exactly one order as One-time; otherwise the customer is Repeat.
+- The outer query groups those customer-level rows into the two customer types.
+
+### 3. Numerator and denominator must use the same population
+
+The numerator counts customer rows in each type. The denominator counts all rows in `customer_order_counts`, meaning all identified customers. Both must use the same filtered population. Counting raw Orders in the denominator would measure orders rather than customers and produce the wrong percentage.
+
+### 4. Why COUNT(total_orders) works here
+
+Each CTE row has a non-NULL numeric `total_orders` because it comes from COUNT(OrderID). Therefore `COUNT(total_orders)` counts one customer per CTE row. `COUNT(*)` would also count each CTE row; the selected expression is valid because the CTE guarantees total_orders is non-NULL.
+
+### 5. Percentage arithmetic and rounding
+
+Multiplying by 100.0 ensures fractional arithmetic rather than integer division. ROUND(..., 2) controls the displayed percentage precision. The two customer-type percentages should total 100.00% when the denominator is nonzero, subject to displayed rounding.
+
+### 6. Missing IDs and verification
+
+The hypothetical NULL-customer order changes the unfiltered grouping: it creates a group and affects both numerator and denominator. Filtering before GROUP BY prevents that distortion. The course file itself contains no NULL CustomerID rows, so the hypothetical case is a separate edge test, not a claim about the source data.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P030/01.md)
@@ -267,7 +296,7 @@ ORDER BY customer_type;
 
 The two group counts reconcile to all 🟦 three customers. The shares in this sample sum to 🟦 **100.00%**.
 
-## Missing customer ID check
+### Missing customer ID check
 
 Add one hypothetical 🟦 order to the 🟦 four-order practice sample. 🟦 Order **5** has a 🟦 `NULL` customer ID. Grouping first gives this order its own group, an order count of 🟦 **1** and the label `One-time`. That adds an unidentified customer to the numerator and denominator. The filter removes the row before either count.
 
@@ -278,7 +307,7 @@ Add one hypothetical 🟦 order to the 🟦 four-order practice sample. 🟦 Ord
 
 The course schema declares `CustomerID` as a nullable integer. Two orders with missing IDs would also form one group and give the unfiltered draft an extra repeat customer. [Orders table definition](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/data/load_dataset_v2.sql#L88-L97)
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 The leading statement terminator lets the CTE follow another statement in a SQL Server batch.
 
@@ -390,6 +419,10 @@ ORDER BY customer_type;
 
 </details>
 
+## Comparison with the course answer
+
+Both solutions first exclude NULL CustomerID values and produce one CTE row per ordering customer, then classify each customer as One-time or Repeat and calculate the share of all ordering customers. The learner uses COUNT(OrderID) while the course answer uses COUNT(*); OrderID is non-NULL for every order, so the input counts agree. In the outer grouping, the learner uses COUNT(total_orders) and the course answer uses COUNT(*); every customer CTE row has a non-NULL count, so those counts also agree. The denominator in both queries is the number of customer rows in the CTE. The selected learner query is preserved.
+
 ## Verification
 
 SQLite reproduced the two practice rows shown above. The revised learner query and course query also agreed with an independent count on **39 inputs**, including empty data, missing IDs, a single populated class, customers with different repeat counts, mixed groups, and the full course file. The SQL Server forms use the same expressions. Native execution was verified in SQLite.
@@ -403,37 +436,7 @@ The commerce file contains **46,438 orders** from **4,427 identified customers**
 
 [Practice index](../../README.md)
 
-
-## Important learnings from P030
-
-### 1. Define the population before grouping
-
-The report classifies identified customers. Filter `CustomerID IS NOT NULL` before grouping so missing customer IDs do not become a fake customer group. If two orders have NULL CustomerID, GROUP BY would place them together and could incorrectly label them as a repeat customer.
-
-### 2. CTE grain and classification
-
-- `customer_order_counts` has one row per identified CustomerID.
-- `COUNT(OrderID)` counts that customer's orders.
-- The CASE expression labels a customer with exactly one order as One-time; otherwise the customer is Repeat.
-- The outer query groups those customer-level rows into the two customer types.
-
-### 3. Numerator and denominator must use the same population
-
-The numerator counts customer rows in each type. The denominator counts all rows in `customer_order_counts`, meaning all identified customers. Both must use the same filtered population. Counting raw Orders in the denominator would measure orders rather than customers and produce the wrong percentage.
-
-### 4. Why COUNT(total_orders) works here
-
-Each CTE row has a non-NULL numeric `total_orders` because it comes from COUNT(OrderID). Therefore `COUNT(total_orders)` counts one customer per CTE row. `COUNT(*)` would also count each CTE row; the selected expression is valid because the CTE guarantees total_orders is non-NULL.
-
-### 5. Percentage arithmetic and rounding
-
-Multiplying by 100.0 ensures fractional arithmetic rather than integer division. ROUND(..., 2) controls the displayed percentage precision. The two customer-type percentages should total 100.00% when the denominator is nonzero, subject to displayed rounding.
-
-### 6. Missing IDs and verification
-
-The hypothetical NULL-customer order changes the unfiltered grouping: it creates a group and affects both numerator and denominator. Filtering before GROUP BY prevents that distortion. The course file itself contains no NULL CustomerID rows, so the hypothetical case is a separate edge test, not a claim about the source data.
-
-## Verification
+---
 
 - The four-order practice fixture produces One-time and Repeat groups as shown in the record.
 - A hypothetical fifth order with NULL CustomerID is excluded before grouping; the record's before/after table shows the resulting percentage change.
@@ -441,3 +444,4 @@ The hypothetical NULL-customer order changes the unfiltered grouping: it creates
 - The course Orders file contains 46,438 rows and 4,427 identified customers; the saved output is One-time 702 (15.86%) and Repeat 3,725 (84.14%).
 - SQLite execution is verified. SQL Server syntax is provided as an adaptation; do not imply native SQL Server execution.
 - These checks cover the listed fixtures and cases, not every possible database state.
+

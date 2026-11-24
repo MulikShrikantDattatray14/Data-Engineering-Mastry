@@ -101,6 +101,20 @@ ORDER BY order_value DESC;
 
 The final approach after revision scored **10/10**. First, give each 🟥 order ID one units total. Then start the report with one 🟦 order per row and use two left joins to add the 🟩 name and 🟥 units. Group the orders by the displayed shipper name, total their amounts and units, and sort by total value. The last revision makes a group with zero recorded units display **0** even when every joined units value is `NULL`.
 
+## Important learnings from PNP-P029
+
+### 1. Aggregate detail lines before joining them to orders
+OrderDetails can contain several lines for one OrderID. The CTE groups those lines into one total_units row per order before the outer query joins it to Orders. This prevents one order amount from repeating once per detail line.
+
+### 2. Let Orders drive the outer report
+Orders supplies one row per order, the order amount and both lookup keys. Shippers and the prepared units summary are independent lookups from keys already on Orders, so their join order can be exchanged once the summary is ready.
+
+### 3. Preserve orders with missing lookups
+Both lookups use LEFT JOIN because an order must remain even if its shipper is unknown or it has no detail lines. COALESCE labels missing shipper names as Unknown shipper; COALESCE on the units sum displays zero when a group has no detail quantity.
+
+### 4. Aggregate at shipper grain
+After the one-row-per-order joins, count orders and add each order amount once. Add the pre-aggregated units totals for the units measure. Group by the displayed shipper label so missing and unrecognised IDs share one row.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P029/01.md)
@@ -342,7 +356,7 @@ ORDER BY order_value DESC;
 
 Only the units expression has this zero fallback. If every 🟦 amount in a shipper group is 🟦 `NULL`, its `order_value` remains 🟦 `NULL`. The exercise gives no secondary ordering for ties.
 
-## Current and expected output
+### Current and expected output
 
 The pasted draft has two commas between `AS orders` and the next `SUM`. SQLite reports a syntax error there. Keep one comma and run the final `SELECT` in the same statement as `WITH OrderDetails_2 AS (...)` to see the draft’s result.
 
@@ -356,7 +370,7 @@ The pasted draft has two commas between `AS orders` and the next `SUM`. SQLite r
 
 The second `LEFT JOIN` keeps 🟦 order 16 and supplies 🟥 `NULL` for its missing units. `SUM` has no numeric 🟥 units to add for 🟩 OtherShip. `COALESCE(SUM(od.total_units), 0)` displays 🟥 zero for that group.
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 Repeat the shipper-name expression in `GROUP BY` and use the unquoted CTE name. The order count, amounts and unit fallback follow the learner’s SQLite query.
 
@@ -443,6 +457,10 @@ LEFT JOIN order_units AS ou ON ou.OrderID   = o.OrderID
 GROUP BY COALESCE(sh.CompanyName, 'Unknown shipper')
 ORDER BY order_value DESC;
 ```
+
+## Comparison with the course answer
+
+Both queries first aggregate OrderDetails to one row per OrderID, then LEFT JOIN that summary and Shippers to the Orders population. The CTE names differ, but the row grain and purpose are the same. The learner uses COUNT(DISTINCT o.OrderID), whereas the course answer uses COUNT(*); after the one-row-per-order summary and unique shipper lookup, each outer row is one order, so the counts agree. The learner groups by the shipper_name alias; the course answer repeats the COALESCE expression. The official answer explicitly says NULL order values sort last. The learner's SQLite descending sort also places NULL last, but it does not add a tie-breaker. The locked query remains unchanged.
 
 ## Verification
 

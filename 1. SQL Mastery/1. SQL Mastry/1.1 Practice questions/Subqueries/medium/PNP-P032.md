@@ -109,110 +109,34 @@ ORDER BY
 
 The benchmark includes all known sale prices in CategoryID 5009, including products that do not qualify. Equality is excluded by the strict `>` comparison.
 
-## My solution — SQL Server
+## Important learnings from P032
 
-**Learner-query SQL Server adaptation.** This keeps the selected CTE structure and the unrounded benchmark. The source dataset defines `Sale_Price` as `NUMERIC(10,2)`, so SQL Server's `AVG` returns a decimal result.
+### 1. Define the comparison population before calculating an average
 
-```sql
-WITH required_table AS (
-    SELECT
-        ProductID,
-        Product,
-        CategoryID,
-        Sale_Price
-    FROM Products
-    WHERE CategoryID = 5009
-),
+The benchmark must represent **all known sale prices in the target category**, not only products that eventually qualify. Filter to CategoryID 5009 first, calculate its average, and only then compare each product against that scalar result. If the above-average predicate is applied before the average is calculated, the benchmark population becomes circular and incorrect.
 
-avg_sale_price AS (
-    SELECT
-        AVG(Sale_Price) AS category_avg_price
-    FROM required_table
-)
+### 2. Keep the row grain separate from the aggregate grain
 
-SELECT
-    ProductID,
-    Product,
-    CategoryID,
-    Sale_Price,
-    (SELECT category_avg_price FROM avg_sale_price) AS category_avg_price
-FROM required_table
-WHERE Sale_Price > (
-    SELECT category_avg_price
-    FROM avg_sale_price
-)
-ORDER BY
-    CategoryID ASC,
-    Sale_Price DESC;
-```
+- `required_table` retains one row per eligible product.
+- `avg_sale_price` returns one row containing one category-wide scalar benchmark.
+- The outer query starts from the product rows and compares each one with that scalar. The aggregate CTE does not replace the product rows.
+- No `GROUP BY` is needed in the outer query because the task returns qualifying product rows, not one summary row.
 
-## Official solution
+### 3. Strict comparison and NULL behaviour
 
-### Original course answer — PostgreSQL 16
+- `>` excludes a product whose price equals the average; `>=` would change the requirement.
+- A NULL sale price cannot satisfy the comparison because comparisons with NULL are UNKNOWN, not TRUE.
+- `AVG(Sale_Price)` ignores NULL prices. The benchmark is the average of known prices in the selected category.
+- Do not round the benchmark before filtering. Display rounding and comparison precision are separate concerns.
 
-Source: [`all_100_solutions.sql`, Q32, lines 395–409](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L395-L409). Preserved as supplied.
+### 4. Filtering and ordering
 
-```sql
-SELECT p.ProductID,
-       p.Product,
-       p.CategoryID,
-       p.Sale_Price,
-       ROUND((SELECT AVG(p2.Sale_Price)
-              FROM Products AS p2
-              WHERE p2.CategoryID = p.CategoryID), 2) AS category_avg_price
-FROM Products AS p
-WHERE p.CategoryID = 5009
-  AND p.Sale_Price > (SELECT AVG(p2.Sale_Price)
-                      FROM Products AS p2
-                      WHERE p2.CategoryID = p.CategoryID)
-ORDER BY p.CategoryID, p.Sale_Price DESC, p.ProductID;
-```
+- Restrict the benchmark population to CategoryID 5009, because the requested report is specifically for Beverages.
+- Sort by CategoryID ascending, then Sale_Price descending. Do not invent a required tie-breaker when the prompt does not specify one; if a deterministic tie-breaker is added, document it as an implementation choice.
 
-### Official-answer SQLite adaptation
+### 5. Learner query versus official answer
 
-```sql
-SELECT p.ProductID,
-       p.Product,
-       p.CategoryID,
-       p.Sale_Price,
-       ROUND((SELECT AVG(p2.Sale_Price)
-              FROM Products AS p2
-              WHERE p2.CategoryID = p.CategoryID), 2) AS category_avg_price
-FROM Products AS p
-WHERE p.CategoryID = 5009
-  AND p.Sale_Price > (SELECT AVG(p2.Sale_Price)
-                      FROM Products AS p2
-                      WHERE p2.CategoryID = p.CategoryID)
-ORDER BY p.CategoryID, p.Sale_Price DESC, p.ProductID;
-```
-
-### Official-answer SQL Server adaptation
-
-```sql
-SELECT p.ProductID,
-       p.Product,
-       p.CategoryID,
-       p.Sale_Price,
-       ROUND((SELECT AVG(p2.Sale_Price)
-              FROM Products AS p2
-              WHERE p2.CategoryID = p.CategoryID), 2) AS category_avg_price
-FROM Products AS p
-WHERE p.CategoryID = 5009
-  AND p.Sale_Price > (SELECT AVG(p2.Sale_Price)
-                      FROM Products AS p2
-                      WHERE p2.CategoryID = p.CategoryID)
-ORDER BY p.CategoryID, p.Sale_Price DESC, p.ProductID;
-```
-
-### Difference from the locked learner query
-
-- The course answer uses correlated scalar subqueries; the learner uses `required_table` and `avg_sale_price` CTEs.
-- The learner filters to CategoryID 5009 before calculating the average. That is equivalent for this report because it is restricted to Beverages; the benchmark still includes every known Beverages price before the above-average filter.
-- The course answer rounds the displayed average to two decimals. The locked learner query returns the unrounded value.
-- The course answer adds ProductID as a final tie-breaker. The prompt does not specify a tie-breaker after price, so the learner's ordering satisfies the stated requirement.
-
-The learner-selected SQL is retained exactly; these differences are documented rather than silently normalised.
-
+The learner's CTE version and the course's correlated-subquery version express the same category benchmark for this single-category task. The official answer rounds the displayed average to two decimals and adds ProductID as a tie-breaker; the learner query preserves an unrounded benchmark and the stated sort only. Preserve the learner's selected query verbatim and describe these differences rather than silently changing it.
 
 ## Visual walkthrough
 
@@ -320,34 +244,109 @@ CategoryID is ascending; within a category, Sale_Price is descending. The sample
 The saved learner query returns the same row. SQLite displays the unrounded numeric average as `200.0`; the specification's two-decimal presentation is `200.00`. The course answer explicitly rounds the displayed benchmark, while the locked learner query is preserved without that display-rounding change.
 
 The final stage in the linked walkthrough reads the exact locked learner SQLite query and is checked against the expected output above.
-## Important learnings from P032
+## Learner solution — SQL Server adaptation
 
-### 1. Define the comparison population before calculating an average
+**Learner-query SQL Server adaptation.** This keeps the selected CTE structure and the unrounded benchmark. The source dataset defines `Sale_Price` as `NUMERIC(10,2)`, so SQL Server's `AVG` returns a decimal result.
 
-The benchmark must represent **all known sale prices in the target category**, not only products that eventually qualify. Filter to CategoryID 5009 first, calculate its average, and only then compare each product against that scalar result. If the above-average predicate is applied before the average is calculated, the benchmark population becomes circular and incorrect.
+```sql
+WITH required_table AS (
+    SELECT
+        ProductID,
+        Product,
+        CategoryID,
+        Sale_Price
+    FROM Products
+    WHERE CategoryID = 5009
+),
 
-### 2. Keep the row grain separate from the aggregate grain
+avg_sale_price AS (
+    SELECT
+        AVG(Sale_Price) AS category_avg_price
+    FROM required_table
+)
 
-- `required_table` retains one row per eligible product.
-- `avg_sale_price` returns one row containing one category-wide scalar benchmark.
-- The outer query starts from the product rows and compares each one with that scalar. The aggregate CTE does not replace the product rows.
-- No `GROUP BY` is needed in the outer query because the task returns qualifying product rows, not one summary row.
+SELECT
+    ProductID,
+    Product,
+    CategoryID,
+    Sale_Price,
+    (SELECT category_avg_price FROM avg_sale_price) AS category_avg_price
+FROM required_table
+WHERE Sale_Price > (
+    SELECT category_avg_price
+    FROM avg_sale_price
+)
+ORDER BY
+    CategoryID ASC,
+    Sale_Price DESC;
+```
 
-### 3. Strict comparison and NULL behaviour
+## Official solution
 
-- `>` excludes a product whose price equals the average; `>=` would change the requirement.
-- A NULL sale price cannot satisfy the comparison because comparisons with NULL are UNKNOWN, not TRUE.
-- `AVG(Sale_Price)` ignores NULL prices. The benchmark is the average of known prices in the selected category.
-- Do not round the benchmark before filtering. Display rounding and comparison precision are separate concerns.
+### Original course answer — PostgreSQL 16
 
-### 4. Filtering and ordering
+Source: [`all_100_solutions.sql`, Q32, lines 395–409](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L395-L409). Preserved as supplied.
 
-- Restrict the benchmark population to CategoryID 5009, because the requested report is specifically for Beverages.
-- Sort by CategoryID ascending, then Sale_Price descending. Do not invent a required tie-breaker when the prompt does not specify one; if a deterministic tie-breaker is added, document it as an implementation choice.
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.CategoryID,
+       p.Sale_Price,
+       ROUND((SELECT AVG(p2.Sale_Price)
+              FROM Products AS p2
+              WHERE p2.CategoryID = p.CategoryID), 2) AS category_avg_price
+FROM Products AS p
+WHERE p.CategoryID = 5009
+  AND p.Sale_Price > (SELECT AVG(p2.Sale_Price)
+                      FROM Products AS p2
+                      WHERE p2.CategoryID = p.CategoryID)
+ORDER BY p.CategoryID, p.Sale_Price DESC, p.ProductID;
+```
 
-### 5. Learner query versus official answer
+### Official-answer SQLite adaptation
 
-The learner's CTE version and the course's correlated-subquery version express the same category benchmark for this single-category task. The official answer rounds the displayed average to two decimals and adds ProductID as a tie-breaker; the learner query preserves an unrounded benchmark and the stated sort only. Preserve the learner's selected query verbatim and describe these differences rather than silently changing it.
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.CategoryID,
+       p.Sale_Price,
+       ROUND((SELECT AVG(p2.Sale_Price)
+              FROM Products AS p2
+              WHERE p2.CategoryID = p.CategoryID), 2) AS category_avg_price
+FROM Products AS p
+WHERE p.CategoryID = 5009
+  AND p.Sale_Price > (SELECT AVG(p2.Sale_Price)
+                      FROM Products AS p2
+                      WHERE p2.CategoryID = p.CategoryID)
+ORDER BY p.CategoryID, p.Sale_Price DESC, p.ProductID;
+```
+
+### Official-answer SQL Server adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.CategoryID,
+       p.Sale_Price,
+       ROUND((SELECT AVG(p2.Sale_Price)
+              FROM Products AS p2
+              WHERE p2.CategoryID = p.CategoryID), 2) AS category_avg_price
+FROM Products AS p
+WHERE p.CategoryID = 5009
+  AND p.Sale_Price > (SELECT AVG(p2.Sale_Price)
+                      FROM Products AS p2
+                      WHERE p2.CategoryID = p.CategoryID)
+ORDER BY p.CategoryID, p.Sale_Price DESC, p.ProductID;
+```
+
+## Comparison with the course answer
+
+- The course answer uses correlated scalar subqueries; the learner uses `required_table` and `avg_sale_price` CTEs.
+- The learner filters to CategoryID 5009 before calculating the average. That is equivalent for this report because it is restricted to Beverages; the benchmark still includes every known Beverages price before the above-average filter.
+- The course answer rounds the displayed average to two decimals. The locked learner query returns the unrounded value.
+- The course answer adds ProductID as a final tie-breaker. The prompt does not specify a tie-breaker after price, so the learner's ordering satisfies the stated requirement.
+
+The learner-selected SQL is retained exactly; these differences are documented rather than silently normalised.
 
 ## Verification
 

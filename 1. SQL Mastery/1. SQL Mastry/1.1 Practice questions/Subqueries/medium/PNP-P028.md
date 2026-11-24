@@ -160,6 +160,20 @@ ORDER BY orders DESC;
 | What about missing values and ties? | Missing payments share the Unknown label. A missing amount still belongs to a counted order. With the learner’s sort, equal order counts can appear in either order. |
 | Can we check one group by hand? | UPI contains orders 10 and 11. That is 2 of 5 orders and 300 of 800 in value. |
 
+## Important learnings from PNP-P028
+
+### 1. Orders is the transaction population
+Start from Orders because every transaction contributes to the report, even when PaymentID is NULL or has no matching Payments row. A LEFT JOIN adds the payment label without dropping those orders.
+
+### 2. Group by the reporting label
+Apply COALESCE before grouping so both a missing key and an unrecognised key become Unknown. Grouping by the raw PaymentID would keep those two cases separate even though the requested output combines them.
+
+### 3. Keep the two denominators independent
+The source explicitly requires scalar subqueries. The order-share denominator counts every row in Orders; the value-share denominator sums every order amount. Neither denominator should be limited to orders with a known payment type.
+
+### 4. Count transactions and value separately
+COUNT(DISTINCT OrderID) measures orders; SUM(Total_Order_Amount) measures money. The two percentages therefore use different numerators and denominators, and each is rounded to two decimal places.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P028/01.md)
@@ -423,7 +437,7 @@ The rows account for 🟦 2 + 🟦 2 + 🟦 1 = 🟦 5 orders and 🟦 300 + �
 
 In other datasets, rounding each percentage separately can make the displayed shares add to 99.99% or 100.01%.
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 SQL Server groups by the full payment-label expression. The `NULLIF` guards make a zero denominator yield `NULL`. The decimal literal `100.0` preserves fractional percentages on integer-valued sample inputs.
 
@@ -502,6 +516,10 @@ LEFT JOIN Payments AS p ON p.PaymentID = o.PaymentID
 GROUP BY COALESCE(p.PaymentType, 'Unknown')
 ORDER BY orders DESC, payment_type;
 ```
+
+## Comparison with the course answer
+
+Both queries start from Orders, LEFT JOIN Payments, group by the displayed payment type and use the two scalar subqueries required by the source. The learner counts DISTINCT OrderID while the course answer uses COUNT(*); with one row per order and a unique Payments key, those counts agree on the supplied schema. The official answer wraps both denominators in NULLIF to guard a zero denominator; the learner SQLite query is kept verbatim, and its SQL Server adaptation must retain a safe denominator guard. The learner sorts only by order count, while the course answer adds payment_type as a deterministic tie-breaker. These differences do not change the supplied sample output.
 
 ## Verification
 
