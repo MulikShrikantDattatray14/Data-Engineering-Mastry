@@ -1,0 +1,476 @@
+{
+  "question": "PNP P033 · Products that have never been ordered",
+  "record": "../../../Subqueries/medium/PNP-P033.md",
+  "solution_heading": "My solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "Products",
+      "color": "🟦",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Product",
+          "TEXT"
+        ],
+        [
+          "Brand",
+          "TEXT"
+        ],
+        [
+          "CategoryID",
+          "INTEGER"
+        ],
+        [
+          "Sale_Price",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Pen",
+          "Nova",
+          10,
+          5
+        ],
+        [
+          2,
+          "Cup",
+          "Home",
+          20,
+          10
+        ]
+      ]
+    },
+    {
+      "name": "OrderDetails",
+      "label": "OrderDetails",
+      "color": "🟩",
+      "columns": [
+        [
+          "OrderDetailID",
+          "INTEGER"
+        ],
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "ProductID",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          10,
+          100,
+          1
+        ]
+      ]
+    }
+  ],
+  "column_colors": {
+    "OrderDetailID": "🟩",
+    "OrderID": "🟩",
+    "matched_ProductID": "🟩"
+  },
+  "steps": [
+    {
+      "id": "catalogue_products",
+      "title": "Why does Products drive the anti-match check?",
+      "change": "Start from 🟦 Products because the requested output is a list of catalogue products, including products that have no order history. Starting from 🟩 OrderDetails would lose exactly those never-ordered products before they could be tested.",
+      "sql": "SELECT ProductID, Product, Brand, CategoryID, Sale_Price\nFROM Products\nORDER BY ProductID;",
+      "added_sql": "FROM Products",
+      "inputs": [
+        "Products"
+      ],
+      "expected_count": 2
+    },
+    {
+      "id": "left_joined",
+      "title": "Why add OrderDetails with a LEFT JOIN?",
+      "change": "🟩 OrderDetails is added after Products because ProductID is already available from the driving catalogue row. The LEFT JOIN on Products.ProductID = OrderDetails.ProductID preserves every product: Pen matches order-detail row 10, while Cup has no match and receives NULL in the green OrderDetails columns. If one product has several order lines, its matched row repeats once per line at this intermediate stage.",
+      "sql": "SELECT P.ProductID, P.Product, P.Brand, P.CategoryID, P.Sale_Price,\n       OD.OrderDetailID, OD.OrderID, OD.ProductID AS matched_ProductID\nFROM Products AS P\nLEFT JOIN OrderDetails AS OD\n    ON P.ProductID = OD.ProductID\nORDER BY P.ProductID, OD.OrderDetailID;",
+      "added_sql": "LEFT JOIN OrderDetails AS OD\n    ON P.ProductID = OD.ProductID",
+      "inputs": [
+        "Products",
+        "OrderDetails"
+      ],
+      "expected_count": 2
+    },
+    {
+      "id": "anti_filter_result",
+      "title": "Why keep only rows with no order-detail match?",
+      "change": "Filter the joined result with OD.OrderDetailID IS NULL. OrderDetailID is the non-null primary key of an actual order-detail row, so NULL identifies a product for which the LEFT JOIN found no order row. Pen is removed because row 10 matched; Cup survives because its right-side key is NULL. A product with multiple matches would have all of its repeated joined rows removed.",
+      "sql": "SELECT P.ProductID, P.Product, P.Brand, P.CategoryID, P.Sale_Price\nFROM Products AS P\nLEFT JOIN OrderDetails AS OD\n    ON P.ProductID = OD.ProductID\nWHERE OD.OrderDetailID IS NULL;",
+      "added_sql": "WHERE OD.OrderDetailID IS NULL",
+      "inputs": [
+        "left_joined"
+      ],
+      "expected_count": 1
+    },
+    {
+      "id": "final",
+      "title": "Why sort the retained catalogue products?",
+      "change": "The final stage is the exact locked learner query. It returns the five requested Products columns and orders retained products by CategoryID, then ProductID, both ascending.",
+      "added_sql": "ORDER BY P.CategoryID ASC, P.ProductID ASC",
+      "inputs": [
+        "anti_filter_result"
+      ],
+      "final": true,
+      "expected_count": 1
+    }
+  ],
+  "expected": {
+    "columns": [
+      "ProductID",
+      "Product",
+      "Brand",
+      "CategoryID",
+      "Sale_Price"
+    ],
+    "rows": [
+      [
+        2,
+        "Cup",
+        "Home",
+        20,
+        10
+      ]
+    ]
+  },
+  "validation_cases": [
+    {
+      "name": "repeated order lines do not make an ordered product eligible",
+      "tables": [
+        {
+          "name": "Products",
+          "columns": [
+            [
+              "ProductID",
+              "INTEGER"
+            ],
+            [
+              "Product",
+              "TEXT"
+            ],
+            [
+              "Brand",
+              "TEXT"
+            ],
+            [
+              "CategoryID",
+              "INTEGER"
+            ],
+            [
+              "Sale_Price",
+              "INTEGER"
+            ]
+          ],
+          "rows": [
+            [
+              201,
+              "SQL Basics",
+              "TechBooks",
+              10,
+              450
+            ],
+            [
+              202,
+              "Python Guide",
+              "CodePress",
+              10,
+              600
+            ],
+            [
+              203,
+              "Data Science",
+              "LearnHub",
+              10,
+              800
+            ],
+            [
+              204,
+              "Cloud Computing",
+              "TechBooks",
+              20,
+              900
+            ],
+            [
+              205,
+              "Linux Essentials",
+              "CodePress",
+              20,
+              550
+            ],
+            [
+              206,
+              "System Design",
+              "LearnHub",
+              20,
+              750
+            ]
+          ]
+        },
+        {
+          "name": "OrderDetails",
+          "columns": [
+            [
+              "OrderDetailID",
+              "INTEGER"
+            ],
+            [
+              "OrderID",
+              "INTEGER"
+            ],
+            [
+              "ProductID",
+              "INTEGER"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              5001,
+              201
+            ],
+            [
+              2,
+              5001,
+              203
+            ],
+            [
+              3,
+              5002,
+              204
+            ],
+            [
+              4,
+              5003,
+              201
+            ],
+            [
+              5,
+              5004,
+              206
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "ProductID",
+          "Product",
+          "Brand",
+          "CategoryID",
+          "Sale_Price"
+        ],
+        "rows": [
+          [
+            202,
+            "Python Guide",
+            "CodePress",
+            10,
+            600
+          ],
+          [
+            205,
+            "Linux Essentials",
+            "CodePress",
+            20,
+            550
+          ]
+        ]
+      }
+    },
+    {
+      "name": "duplicate matches and NULL foreign keys",
+      "tables": [
+        {
+          "name": "Products",
+          "columns": [
+            [
+              "ProductID",
+              "INTEGER"
+            ],
+            [
+              "Product",
+              "TEXT"
+            ],
+            [
+              "Brand",
+              "TEXT"
+            ],
+            [
+              "CategoryID",
+              "INTEGER"
+            ],
+            [
+              "Sale_Price",
+              "INTEGER"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Pen",
+              "Nova",
+              10,
+              5
+            ],
+            [
+              2,
+              "Cup",
+              "Home",
+              20,
+              10
+            ],
+            [
+              3,
+              "Bottle",
+              "Home",
+              20,
+              15
+            ]
+          ]
+        },
+        {
+          "name": "OrderDetails",
+          "columns": [
+            [
+              "OrderDetailID",
+              "INTEGER"
+            ],
+            [
+              "OrderID",
+              "INTEGER"
+            ],
+            [
+              "ProductID",
+              "INTEGER"
+            ]
+          ],
+          "rows": [
+            [
+              10,
+              100,
+              1
+            ],
+            [
+              11,
+              101,
+              1
+            ],
+            [
+              12,
+              102,
+              null
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "ProductID",
+          "Product",
+          "Brand",
+          "CategoryID",
+          "Sale_Price"
+        ],
+        "rows": [
+          [
+            2,
+            "Cup",
+            "Home",
+            20,
+            10
+          ],
+          [
+            3,
+            "Bottle",
+            "Home",
+            20,
+            15
+          ]
+        ]
+      }
+    },
+    {
+      "name": "all catalogue products have appeared in orders",
+      "tables": [
+        {
+          "name": "Products",
+          "columns": [
+            [
+              "ProductID",
+              "INTEGER"
+            ],
+            [
+              "Product",
+              "TEXT"
+            ],
+            [
+              "Brand",
+              "TEXT"
+            ],
+            [
+              "CategoryID",
+              "INTEGER"
+            ],
+            [
+              "Sale_Price",
+              "INTEGER"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Pen",
+              "Nova",
+              10,
+              5
+            ]
+          ]
+        },
+        {
+          "name": "OrderDetails",
+          "columns": [
+            [
+              "OrderDetailID",
+              "INTEGER"
+            ],
+            [
+              "OrderID",
+              "INTEGER"
+            ],
+            [
+              "ProductID",
+              "INTEGER"
+            ]
+          ],
+          "rows": [
+            [
+              10,
+              100,
+              1
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "ProductID",
+          "Product",
+          "Brand",
+          "CategoryID",
+          "Sale_Price"
+        ],
+        "rows": []
+      }
+    }
+  ]
+}

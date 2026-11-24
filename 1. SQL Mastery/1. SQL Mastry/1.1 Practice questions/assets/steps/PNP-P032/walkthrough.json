@@ -1,0 +1,320 @@
+{
+  "question": "PNP P032 · Products priced above their category average",
+  "record": "../../../Subqueries/medium/PNP-P032.md",
+  "solution_heading": "My solution — SQLite",
+  "tables": [
+    {
+      "name": "Products",
+      "label": "Products",
+      "color": "🟦",
+      "columns": [
+        [
+          "ProductID",
+          "INTEGER"
+        ],
+        [
+          "Product",
+          "TEXT"
+        ],
+        [
+          "CategoryID",
+          "INTEGER"
+        ],
+        [
+          "Sale_Price",
+          "REAL"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Tea",
+          5009,
+          100
+        ],
+        [
+          2,
+          "Coffee",
+          5009,
+          200
+        ],
+        [
+          3,
+          "Juice",
+          5009,
+          300
+        ],
+        [
+          4,
+          "Bread",
+          5010,
+          500
+        ]
+      ]
+    }
+  ],
+  "column_colors": {
+    "category_avg_price": "🟦"
+  },
+  "ctes": {
+    "required_table": "SELECT\n    ProductID,\n    Product,\n    CategoryID,\n    Sale_Price\nFROM Products\nWHERE CategoryID = 5009",
+    "avg_sale_price": "SELECT\n    AVG(Sale_Price) AS category_avg_price\nFROM required_table"
+  },
+  "steps": [
+    {
+      "id": "filtered_products",
+      "title": "Why does Products supply the rows for this review?",
+      "change": "Start from 🟦 Products because the report needs one candidate row for each catalogue product. The saved query's first CTE filters that source to Beverages (CategoryID 5009), leaving Tea, Coffee and Juice; Bread is outside the requested category and is removed before the benchmark is calculated.",
+      "with": [
+        "required_table"
+      ],
+      "sql": "SELECT ProductID, Product, CategoryID, Sale_Price\nFROM required_table\nORDER BY ProductID;",
+      "added_sql": "required_table AS (\n    SELECT ProductID, Product, CategoryID, Sale_Price\n    FROM Products\n    WHERE CategoryID = 5009\n)",
+      "inputs": [
+        "Products"
+      ],
+      "expected_count": 3
+    },
+    {
+      "id": "category_benchmark",
+      "title": "Why does the average CTE return one row?",
+      "change": "The average is calculated from the three eligible Beverages prices, including products that will not qualify. One row in avg_sale_price represents the single category-wide benchmark (100 + 200 + 300) ÷ 3 = 200.00; it is not one row per product.",
+      "with": [
+        "required_table",
+        "avg_sale_price"
+      ],
+      "sql": "SELECT category_avg_price\nFROM avg_sale_price;",
+      "added_sql": "avg_sale_price AS (\n    SELECT AVG(Sale_Price) AS category_avg_price\n    FROM required_table\n)",
+      "inputs": [
+        "filtered_products"
+      ],
+      "expected_count": 1
+    },
+    {
+      "id": "products_with_benchmark",
+      "title": "Why attach the same benchmark to each product row?",
+      "change": "The outer query still starts from required_table, so its three rows remain one per Beverages product. The scalar subquery reads the one-row avg_sale_price CTE and repeats 200.0 beside each candidate; no join is needed because the benchmark is a single scalar for the selected category.",
+      "with": [
+        "required_table",
+        "avg_sale_price"
+      ],
+      "sql": "SELECT ProductID, Product, CategoryID, Sale_Price,\n       (SELECT category_avg_price FROM avg_sale_price) AS category_avg_price\nFROM required_table\nORDER BY ProductID;",
+      "added_sql": "(SELECT category_avg_price FROM avg_sale_price) AS category_avg_price",
+      "inputs": [
+        "filtered_products",
+        "category_benchmark"
+      ],
+      "expected_count": 3
+    },
+    {
+      "id": "above_average",
+      "title": "Why keep only prices above the benchmark?",
+      "change": "Compare each product's own Sale_Price with the shared benchmark. Tea (100) is below 200, Coffee (200) equals 200 and fails the strict > rule, while Juice (300) is above it and survives. The benchmark is not recalculated from only the surviving product.",
+      "with": [
+        "required_table",
+        "avg_sale_price"
+      ],
+      "sql": "SELECT ProductID, Product, CategoryID, Sale_Price,\n       (SELECT category_avg_price FROM avg_sale_price) AS category_avg_price\nFROM required_table\nWHERE Sale_Price > (SELECT category_avg_price FROM avg_sale_price);",
+      "added_sql": "WHERE Sale_Price > (SELECT category_avg_price FROM avg_sale_price)",
+      "inputs": [
+        "products_with_benchmark"
+      ],
+      "expected_count": 1
+    },
+    {
+      "id": "final",
+      "title": "Why apply the requested final ordering?",
+      "change": "The last stage is the exact locked learner query. It keeps the one qualifying product and applies CategoryID ascending, then Sale_Price descending. The result matches the saved expected output.",
+      "added_sql": "ORDER BY CategoryID ASC, Sale_Price DESC",
+      "inputs": [
+        "above_average"
+      ],
+      "final": true,
+      "expected_count": 1
+    }
+  ],
+  "expected": {
+    "columns": [
+      "ProductID",
+      "Product",
+      "CategoryID",
+      "Sale_Price",
+      "category_avg_price"
+    ],
+    "rows": [
+      [
+        3,
+        "Juice",
+        5009,
+        300,
+        200
+      ]
+    ]
+  },
+  "validation_cases": [
+    {
+      "name": "NULL sale price is ignored by AVG and cannot qualify",
+      "tables": [
+        {
+          "name": "Products",
+          "columns": [
+            [
+              "ProductID",
+              "INTEGER"
+            ],
+            [
+              "Product",
+              "TEXT"
+            ],
+            [
+              "CategoryID",
+              "INTEGER"
+            ],
+            [
+              "Sale_Price",
+              "REAL"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Tea",
+              5009,
+              100
+            ],
+            [
+              2,
+              "Coffee",
+              5009,
+              null
+            ],
+            [
+              3,
+              "Juice",
+              5009,
+              300
+            ],
+            [
+              4,
+              "Bread",
+              5010,
+              500
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "ProductID",
+          "Product",
+          "CategoryID",
+          "Sale_Price",
+          "category_avg_price"
+        ],
+        "rows": [
+          [
+            3,
+            "Juice",
+            5009,
+            300,
+            200
+          ]
+        ]
+      }
+    },
+    {
+      "name": "strict comparison excludes an equal-only category",
+      "tables": [
+        {
+          "name": "Products",
+          "columns": [
+            [
+              "ProductID",
+              "INTEGER"
+            ],
+            [
+              "Product",
+              "TEXT"
+            ],
+            [
+              "CategoryID",
+              "INTEGER"
+            ],
+            [
+              "Sale_Price",
+              "REAL"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Tea",
+              5009,
+              200
+            ],
+            [
+              2,
+              "Coffee",
+              5009,
+              200
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "ProductID",
+          "Product",
+          "CategoryID",
+          "Sale_Price",
+          "category_avg_price"
+        ],
+        "rows": []
+      }
+    },
+    {
+      "name": "one product category has no above-average product",
+      "tables": [
+        {
+          "name": "Products",
+          "columns": [
+            [
+              "ProductID",
+              "INTEGER"
+            ],
+            [
+              "Product",
+              "TEXT"
+            ],
+            [
+              "CategoryID",
+              "INTEGER"
+            ],
+            [
+              "Sale_Price",
+              "REAL"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Tea",
+              5009,
+              125
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "ProductID",
+          "Product",
+          "CategoryID",
+          "Sale_Price",
+          "category_avg_price"
+        ],
+        "rows": []
+      }
+    }
+  ]
+}

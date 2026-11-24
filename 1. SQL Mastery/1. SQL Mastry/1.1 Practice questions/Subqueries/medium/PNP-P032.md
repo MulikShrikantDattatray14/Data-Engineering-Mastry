@@ -53,6 +53,8 @@ One result row represents one qualifying Beverages product. All five columns are
 
 [Open the sample SVG full size](../../assets/question-samples/p032.svg?raw=1)
 
+**Precision note.** The required output specification asks for the category average to display to two decimal places. The locked learner query deliberately leaves the benchmark unrounded, so SQLite returns `200.0` for this fixture; the expected display is `200.00`. The original course answer rounds the displayed benchmark to two decimals. The learner query is preserved verbatim.
+
 ### How the sample produces this output
 
 For 🟦 Beverages (CategoryID 🟦 5009), Tea, Coffee and Juice contribute **🟦 100 + 🟦 200 + 🟦 300 = 🟦 600**. Dividing by the three known prices gives **🟦 600 ÷ 3 = 🟦 200.00**. Tea at 🟦 100 is below the average. Coffee at 🟦 200 equals it, so it does not meet the strict greater-than condition. Juice (ProductID 🟦 3) at 🟦 300 is above 🟦 200 and is the only qualifying row. Bread (ID 🟦 4) is in CategoryID 🟦 5010 and does not contribute to this category’s average or appear in the Beverages report.
@@ -109,8 +111,121 @@ The benchmark includes all known sale prices in CategoryID 5009, including produ
 
 ## My solution — SQL Server
 
-Pending. The learner-selected SQLite solution is saved; a SQL Server adaptation remains to be prepared and verified.
+**Learner-query SQL Server adaptation.** This keeps the selected CTE structure and the unrounded benchmark. The source dataset defines `Sale_Price` as `NUMERIC(10,2)`, so SQL Server's `AVG` returns a decimal result.
+
+```sql
+WITH required_table AS (
+    SELECT
+        ProductID,
+        Product,
+        CategoryID,
+        Sale_Price
+    FROM Products
+    WHERE CategoryID = 5009
+),
+
+avg_sale_price AS (
+    SELECT
+        AVG(Sale_Price) AS category_avg_price
+    FROM required_table
+)
+
+SELECT
+    ProductID,
+    Product,
+    CategoryID,
+    Sale_Price,
+    (SELECT category_avg_price FROM avg_sale_price) AS category_avg_price
+FROM required_table
+WHERE Sale_Price > (
+    SELECT category_avg_price
+    FROM avg_sale_price
+)
+ORDER BY
+    CategoryID ASC,
+    Sale_Price DESC;
+```
 
 ## Official solution
 
-Pending source extraction and comparison. The supplied PDF and ZIP retain the original answer.
+### Original course answer — PostgreSQL 16
+
+Source: [`all_100_solutions.sql`, Q32, lines 395–409](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L395-L409). Preserved as supplied.
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.CategoryID,
+       p.Sale_Price,
+       ROUND((SELECT AVG(p2.Sale_Price)
+              FROM Products AS p2
+              WHERE p2.CategoryID = p.CategoryID), 2) AS category_avg_price
+FROM Products AS p
+WHERE p.CategoryID = 5009
+  AND p.Sale_Price > (SELECT AVG(p2.Sale_Price)
+                      FROM Products AS p2
+                      WHERE p2.CategoryID = p.CategoryID)
+ORDER BY p.CategoryID, p.Sale_Price DESC, p.ProductID;
+```
+
+### Official-answer SQLite adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.CategoryID,
+       p.Sale_Price,
+       ROUND((SELECT AVG(p2.Sale_Price)
+              FROM Products AS p2
+              WHERE p2.CategoryID = p.CategoryID), 2) AS category_avg_price
+FROM Products AS p
+WHERE p.CategoryID = 5009
+  AND p.Sale_Price > (SELECT AVG(p2.Sale_Price)
+                      FROM Products AS p2
+                      WHERE p2.CategoryID = p.CategoryID)
+ORDER BY p.CategoryID, p.Sale_Price DESC, p.ProductID;
+```
+
+### Official-answer SQL Server adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.CategoryID,
+       p.Sale_Price,
+       ROUND((SELECT AVG(p2.Sale_Price)
+              FROM Products AS p2
+              WHERE p2.CategoryID = p.CategoryID), 2) AS category_avg_price
+FROM Products AS p
+WHERE p.CategoryID = 5009
+  AND p.Sale_Price > (SELECT AVG(p2.Sale_Price)
+                      FROM Products AS p2
+                      WHERE p2.CategoryID = p.CategoryID)
+ORDER BY p.CategoryID, p.Sale_Price DESC, p.ProductID;
+```
+
+### Difference from the locked learner query
+
+- The course answer uses correlated scalar subqueries; the learner uses `required_table` and `avg_sale_price` CTEs.
+- The learner filters to CategoryID 5009 before calculating the average. That is equivalent for this report because it is restricted to Beverages; the benchmark still includes every known Beverages price before the above-average filter.
+- The course answer rounds the displayed average to two decimals. The locked learner query returns the unrounded value.
+- The course answer adds ProductID as a final tie-breaker. The prompt does not specify a tie-breaker after price, so the learner's ordering satisfies the stated requirement.
+
+The learner-selected SQL is retained exactly; these differences are documented rather than silently normalised.
+
+
+## Visual walkthrough
+
+![PNP P032 — Products priced above their category average, from the Products source through the category benchmark and final comparison](../../assets/walkthroughs/p032.svg)
+
+[Open the full-size walkthrough SVG](../../assets/walkthroughs/p032.svg?raw=1) · [Open Previous / Next walkthrough, stage 1](../../assets/steps/PNP-P032/01.md) · [Open the walkthrough fixture](../../assets/steps/PNP-P032/walkthrough.json)
+
+### Written step-by-step explanation
+
+1. **Start with `Products`.** It supplies every catalogue candidate and all requested output fields. The first CTE filters CategoryID 5009, taking the four input rows to three Beverages product rows. No other table is needed.
+2. **Prepare `required_table`.** One CTE row represents one eligible product. Tea, Coffee and Juice remain; Bread is removed before the benchmark is calculated.
+3. **Prepare `avg_sale_price`.** The aggregate CTE returns one row representing the category-wide benchmark: (100 + 200 + 300) ÷ 3 = 200.00. Below-average and equal-priced products still contribute.
+4. **Return to the outer query.** The outer query starts from the three rows in `required_table`, not from the one-row average CTE. Its scalar subquery repeats the same benchmark beside each product; no join is necessary because this is one selected category and one scalar value.
+5. **Apply the strict comparison and order.** Tea at 100 is below the benchmark; Coffee at 200 equals it and is excluded; Juice at 300 survives. The final query orders by CategoryID ascending and Sale_Price descending.
+
+The final stage in the linked walkthrough reads the exact locked learner SQLite query and is checked against the expected output above.

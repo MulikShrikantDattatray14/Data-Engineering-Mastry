@@ -139,12 +139,94 @@ ORDER BY
 
 ## My solution — SQL Server
 
-Pending. Adapt and verify the saved SQLite query separately.
+**Learner-query SQL Server adaptation.** The anti-join pattern and NULL test are supported directly in SQL Server; the selected SQLite query's row logic is unchanged.
+
+```sql
+SELECT
+    P.ProductID,
+    P.Product,
+    P.Brand,
+    P.CategoryID,
+    P.Sale_Price
+FROM Products P
+LEFT JOIN OrderDetails OD
+    ON P.ProductID = OD.ProductID
+WHERE OD.OrderDetailID IS NULL
+ORDER BY
+    P.CategoryID ASC,
+    P.ProductID ASC;
+```
 
 ## Official solution
 
-Pending source extraction and comparison. Preserve the supplied answer verbatim when added.
+### Original course answer — PostgreSQL 16
+
+Source: [`all_100_solutions.sql`, Q33, lines 410–423](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L410-L423). Preserved as supplied.
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Brand,
+       p.CategoryID,
+       p.Sale_Price
+FROM Products AS p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM OrderDetails AS od
+    WHERE od.ProductID = p.ProductID
+)
+ORDER BY p.CategoryID, p.ProductID;
+```
+
+### Official-answer SQLite adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Brand,
+       p.CategoryID,
+       p.Sale_Price
+FROM Products AS p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM OrderDetails AS od
+    WHERE od.ProductID = p.ProductID
+)
+ORDER BY p.CategoryID, p.ProductID;
+```
+
+### Official-answer SQL Server adaptation
+
+```sql
+SELECT p.ProductID,
+       p.Product,
+       p.Brand,
+       p.CategoryID,
+       p.Sale_Price
+FROM Products AS p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM OrderDetails AS od
+    WHERE od.ProductID = p.ProductID
+)
+ORDER BY p.CategoryID, p.ProductID;
+```
+
+### Difference from the locked learner query
+
+The course answer uses correlated `NOT EXISTS`; the learner uses a `LEFT JOIN` followed by `OD.OrderDetailID IS NULL`. Both implement the same anti-match requirement. The dataset defines `OrderDetailID` as a primary key, so it cannot be NULL on a real matched row; the learner's NULL test reliably identifies an unmatched product. A product with multiple order lines repeats at the intermediate LEFT JOIN stage, but every matched copy is removed by the NULL filter. The learner's selected query is preserved verbatim.
 
 ## Visual walkthrough
 
-Pending. The learner's final query and sample output are saved. Add the interactive staged walkthrough and SVG after building and checking the question-specific fixture against this exact query.
+![PNP P033 — Products that have never been ordered, showing the Products and OrderDetails source bands, LEFT JOIN keys, unmatched NULLs and anti-join result](../../assets/walkthroughs/p033.svg)
+
+[Open the full-size walkthrough SVG](../../assets/walkthroughs/p033.svg?raw=1) · [Open Previous / Next walkthrough, stage 1](../../assets/steps/PNP-P033/01.md) · [Open the walkthrough fixture](../../assets/steps/PNP-P033/walkthrough.json)
+
+### Written step-by-step explanation
+
+1. **Start with `Products`.** It supplies every catalogue row because the report must include products even when they have no order history. Starting from `OrderDetails` would lose never-ordered products before they could be tested.
+2. **Add `OrderDetails` second.** `Products.ProductID` is already available, so it can match `OrderDetails.ProductID`. The learner's LEFT JOIN keeps both catalogue rows: Pen matches detail row 10, while Cup has no match and receives NULLs in the green OrderDetails columns.
+3. **Keep only the unmatched row.** `OrderDetailID` is the non-null primary key for a real order line. `OD.OrderDetailID IS NULL` therefore removes Pen and retains Cup. If a product had multiple order lines, it would repeat at the join stage, but every matched copy would be removed.
+4. **Return and sort the required product fields.** The final query keeps the five Products columns and orders by CategoryID, then ProductID, ascending. No DISTINCT is needed because only unmatched left-side products survive, once each.
+
+The final stage in the linked walkthrough reads the exact locked learner SQLite query and is checked against both the small practice fixture and the saved larger verification case.
