@@ -42,6 +42,7 @@ One output row represents one order placed from 1 January through 31 March 2025,
 | 🟦 2 | 🟦 11 | 🟦 2025-01-01 | 🟦 100 |
 | 🟦 3 | 🟦 12 | 🟦 2025-03-31 | 🟦 200 |
 
+![PNP P005 sample inputs and expected output](../../assets/question-samples/p005.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p005.svg?raw=1)
 
 ### How the sample produces this output

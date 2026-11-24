@@ -41,6 +41,7 @@ One output row represents one state with at least five customers, with missing s
 |---|---:|
 | 🟦 Karnataka | 🟦 5 |
 
+![PNP P013 sample inputs and expected output](../../assets/question-samples/p013.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p013.svg?raw=1)
 
 ### How the sample produces this output

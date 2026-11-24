@@ -54,6 +54,7 @@ One output row represents one product and store combination with a known price.
 | 🟦 0 | 🟦 store3 | 🟦 105 |
 | 🟦 1 | 🟦 store3 | 🟦 80 |
 
+![Bosscoder 1.04 sample inputs and expected output](../../assets/question-samples/b1-04.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/b1-04.svg?raw=1)
 
 ### How the sample produces this output

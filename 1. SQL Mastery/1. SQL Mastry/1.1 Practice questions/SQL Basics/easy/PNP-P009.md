@@ -53,6 +53,7 @@ One output row represents one distinct raw flag value within one source column, 
 | 🟩 Payments | 🟩 Allowed | 🟩 `'Y'` | 🟩 1 |
 | 🟩 Payments | 🟩 Allowed | 🟩 `'N'` | 🟩 2 |
 
+![PNP P009 sample inputs and expected output](../../assets/question-samples/p009.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p009.svg?raw=1)
 
 ### How the sample produces this output

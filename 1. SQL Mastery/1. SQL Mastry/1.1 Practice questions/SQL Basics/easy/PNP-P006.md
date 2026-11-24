@@ -44,6 +44,7 @@ One output row represents one full-price product in the ten most expensive. Both
 | 🟦 2 | 🟦 Lamp | 🟦 Home | 🟦 150 | 🟦 150 | 🟦 Full price |
 | 🟦 1 | 🟦 Mug | 🟦 Home | 🟦 100 | 🟦 100 | 🟦 Full price |
 
+![PNP P006 sample inputs and expected output](../../assets/question-samples/p006.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p006.svg?raw=1)
 
 ### How the sample produces this output

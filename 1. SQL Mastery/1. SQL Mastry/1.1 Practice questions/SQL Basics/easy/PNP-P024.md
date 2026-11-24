@@ -42,6 +42,7 @@ One output row represents one supplier outside India or with missing country or 
 | 🟦 2 | 🟦 Global Goods | 🟦 USA | 🟦 NULL | 🟦 Outside India; No email |
 | 🟦 3 | 🟦 Mystery Supply | 🟦 NULL | 🟦 mystery@example.com | 🟦 Country missing |
 
+![PNP P024 sample inputs and expected output](../../assets/question-samples/p024.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p024.svg?raw=1)
 
 ### How the sample produces this output

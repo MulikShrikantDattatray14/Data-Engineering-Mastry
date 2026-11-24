@@ -46,6 +46,7 @@ One output row represents one catalogue product, including products whose sale p
 | 🟦 4 | 🟦 Watch | 🟦 700 | 🟦 Premium |
 | 🟦 5 | 🟦 Mystery | 🟦 `NULL` | 🟦 Unknown |
 
+![PNP P008 sample inputs and expected output](../../assets/question-samples/p008.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p008.svg?raw=1)
 
 ### How the sample produces this output

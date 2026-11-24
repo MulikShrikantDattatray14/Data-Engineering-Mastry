@@ -49,6 +49,7 @@ One output row represents one catalogue-wide sales summary, including products w
 |---:|---:|---:|---:|---:|
 | 🟪 4 | 🟩 3 | 🟦 3 | 🟩 2 | 🟪 66.67 |
 
+![PNP P011 sample inputs and expected output](../../assets/question-samples/p011.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p011.svg?raw=1)
 
 ### How the sample produces this output

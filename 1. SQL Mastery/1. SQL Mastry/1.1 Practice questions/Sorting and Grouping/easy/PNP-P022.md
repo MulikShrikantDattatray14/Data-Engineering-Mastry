@@ -47,6 +47,7 @@ One output row represents one order with more than eight detail lines.
 |---:|---:|---:|---:|
 | 🟦 10 | 🟦 9 | 🟦 8 | 🟦 9 |
 
+![PNP P022 sample inputs and expected output](../../assets/question-samples/p022.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p022.svg?raw=1)
 
 ### How the sample produces this output

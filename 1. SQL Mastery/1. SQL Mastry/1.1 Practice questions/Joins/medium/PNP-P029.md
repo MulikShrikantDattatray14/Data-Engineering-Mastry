@@ -58,6 +58,7 @@ One output row represents one shipper represented on orders, including Unknown s
 | 🟩 FastShip | 🟦 2 | 🟦 300 | 🟥 9 |
 | 🟩 SlowShip | 🟦 1 | 🟦 50 | 🟥 1 |
 
+![PNP P029 sample inputs and expected output](../../assets/question-samples/p029.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p029.svg?raw=1)
 
 ### How the sample produces this output

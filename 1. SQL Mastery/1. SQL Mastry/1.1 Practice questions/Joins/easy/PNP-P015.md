@@ -46,6 +46,7 @@ One output row represents one catalogue category, including a category with no p
 | 🟦 2 | 🟦 Toys | 🟩 0 |
 | 🟦 1 | 🟦 Snacks | 🟩 2 |
 
+![PNP P015 sample inputs and expected output](../../assets/question-samples/p015.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p015.svg?raw=1)
 
 ### How the sample produces this output

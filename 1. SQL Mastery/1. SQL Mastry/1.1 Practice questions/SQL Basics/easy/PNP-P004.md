@@ -44,6 +44,7 @@ One output row represents one customer whose stored email fails at least one of 
 | 🟦 2 | 🟦 Ben | 🟦 Das | 🟦 `ben das@example.com` | 🟦 Contains a space |
 | 🟦 3 | 🟦 Cia | 🟦 Sen | 🟦 `cia.example.com` | 🟦 Not in name@domain.tld form |
 
+![PNP P004 sample inputs and expected output](../../assets/question-samples/p004.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p004.svg?raw=1)
 
 ### How the sample produces this output

@@ -42,6 +42,7 @@ One output row represents one customer type represented among customers who plac
 | 🟦 One-time | 🟦 2 | 🟦 66.67 |
 | 🟦 Repeat | 🟦 1 | 🟦 33.33 |
 
+![PNP P030 sample inputs and expected output](../../assets/question-samples/p030.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p030.svg?raw=1)
 
 ### How the sample produces this output

@@ -43,6 +43,7 @@ One output row represents one category ID represented in the product catalogue.
 |---:|---:|---:|---:|---:|---:|---:|
 | 🟦 10 | 🟦 2 | 🟦 80 | 🟦 100 | 🟦 90.00 | 🟦 1 | 🟦 10.00 |
 
+![PNP P012 sample inputs and expected output](../../assets/question-samples/p012.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p012.svg?raw=1)
 
 ### How the sample produces this output

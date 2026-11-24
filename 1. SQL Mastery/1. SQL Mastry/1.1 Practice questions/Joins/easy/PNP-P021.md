@@ -63,6 +63,7 @@ One output row represents one ordering customer in the top five by order count, 
 | 🟦 5 | 🟩 Ena Jain | 🟦 1 |
 | 🟦 6 | 🟩 Farah Ali | 🟦 1 |
 
+![PNP P021 sample inputs and expected output](../../assets/question-samples/p021.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p021.svg?raw=1)
 
 ### How the sample produces this output

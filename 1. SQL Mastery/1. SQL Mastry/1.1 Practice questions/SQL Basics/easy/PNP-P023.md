@@ -42,6 +42,7 @@ One output row represents one qualifying chocolate or cookie product priced belo
 | 🟦 1 | 🟦 Cocoa Cookie | 🟦 Cookies | 🟦 200 |
 | 🟦 4 | 🟦 Dark Bar | 🟦 CHOCOLATE | 🟦 249 |
 
+![PNP P023 sample inputs and expected output](../../assets/question-samples/p023.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p023.svg?raw=1)
 
 ### How the sample produces this output

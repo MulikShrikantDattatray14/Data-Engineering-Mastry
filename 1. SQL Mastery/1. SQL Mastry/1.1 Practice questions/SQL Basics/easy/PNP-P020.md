@@ -43,6 +43,7 @@ One output row represents one order placed in November 2025, including orders wi
 | 🟦 1 | 🟦 2025-11-01 | 🟦 2025-11-03 | 🟦 2025-11-06 | 🟦 2 | 🟦 5 |
 | 🟦 2 | 🟦 2025-11-02 | 🟦 `NULL` | 🟦 `NULL` | 🟦 `NULL` | 🟦 `NULL` |
 
+![PNP P020 sample inputs and expected output](../../assets/question-samples/p020.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p020.svg?raw=1)
 
 ### How the sample produces this output

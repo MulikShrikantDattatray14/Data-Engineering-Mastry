@@ -59,6 +59,7 @@ BST has integer columns N and P. Each row describes one node N and its parent P.
 | 🟦 8 | 🟦 Inner |
 | 🟦 9 | 🟦 Leaf |
 
+![Bosscoder 1.03 sample inputs and expected output](../../assets/question-samples/b1-03.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/b1-03.svg?raw=1)
 
 ### How the sample produces this output

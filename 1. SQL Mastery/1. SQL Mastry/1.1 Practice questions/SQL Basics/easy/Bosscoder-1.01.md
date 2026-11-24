@@ -51,6 +51,7 @@ One output row represents one customer with strictly positive 2021 revenue.
 | 🟦 1 |
 | 🟦 4 |
 
+![Bosscoder 1.01 sample inputs and expected output](../../assets/question-samples/b1-01.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/b1-01.svg?raw=1)
 
 ### How the sample produces this output

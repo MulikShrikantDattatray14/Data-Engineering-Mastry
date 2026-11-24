@@ -53,6 +53,7 @@ One output row represents one order in the seven calendar dates ending on the la
 | 🟦 3 | 🟦 2025-12-31 | 🟩 Unknown | 🟥 Unknown |
 | 🟦 2 | 🟦 2025-12-25 | 🟩 UPI | 🟥 FastShip |
 
+![PNP P017 sample inputs and expected output](../../assets/question-samples/p017.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p017.svg?raw=1)
 
 ### How the sample produces this output

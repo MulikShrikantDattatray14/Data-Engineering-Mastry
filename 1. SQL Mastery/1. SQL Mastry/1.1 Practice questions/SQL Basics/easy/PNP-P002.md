@@ -63,6 +63,7 @@ The relevant columns in `Products` are `ProductID` (integer identifier), `Produc
 | 🟦 109 | 🟦 Lamp | 🟦 Home | 🟦 150 |
 | 🟦 4 | 🟦 Mug | 🟦 Home | 🟦 100 |
 
+![PNP P002 sample inputs and expected output](../../assets/question-samples/p002.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p002.svg?raw=1)
 
 ### How the sample produces this output

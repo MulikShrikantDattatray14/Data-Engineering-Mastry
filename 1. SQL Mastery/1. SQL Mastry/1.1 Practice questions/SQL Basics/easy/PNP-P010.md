@@ -42,6 +42,7 @@ One output row represents one report covering every order in the input.
 | ---: | ---: | ---: | ---: | --- | --- |
 | 🟦 3 | 🟦 2 | 🟦 600 | 🟦 200.00 | 🟦 2025-01-01 | 🟦 2025-01-03 |
 
+![PNP P010 sample inputs and expected output](../../assets/question-samples/p010.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p010.svg?raw=1)
 
 ### How the sample produces this output

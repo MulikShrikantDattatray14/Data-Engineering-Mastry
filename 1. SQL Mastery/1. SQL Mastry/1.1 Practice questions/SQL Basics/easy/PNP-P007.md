@@ -44,6 +44,7 @@ One output row represents one catalogue product, including products with missing
 | 🟦 1 | 🟦 Mug | 🟦 100 | 🟦 80 | 🟦 20 | 🟦 20.00 |
 | 🟦 2 | 🟦 Sticker | 🟦 0 | 🟦 0 | 🟦 `NULL` | 🟦 `NULL` |
 
+![PNP P007 sample inputs and expected output](../../assets/question-samples/p007.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p007.svg?raw=1)
 
 ### How the sample produces this output

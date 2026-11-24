@@ -48,6 +48,7 @@ Quotes around text values make surrounding spaces visible.
 |---:|---|---|---|---:|
 | 🟩 10 | 🟩 2025-12-01 | 🟦 Anu Sen | 🟦 Delhi | 🟩 100 |
 
+![PNP P016 sample inputs and expected output](../../assets/question-samples/p016.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p016.svg?raw=1)
 
 ### How the sample produces this output

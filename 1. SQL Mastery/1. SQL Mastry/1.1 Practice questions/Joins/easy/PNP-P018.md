@@ -48,6 +48,7 @@ One output row represents one customer with no order in the 90-day reporting win
 | 🟦 2 | 🟦 Ben Das | 🟦 ben@example.com | 🟦 2023-02-01 |
 | 🟦 3 | 🟦 Cia Sen | 🟦 cia@example.com | 🟦 2024-01-01 |
 
+![PNP P018 sample inputs and expected output](../../assets/question-samples/p018.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p018.svg?raw=1)
 
 ### How the sample produces this output

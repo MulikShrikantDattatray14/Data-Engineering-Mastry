@@ -47,6 +47,7 @@ Employees has integer employee_id (primary key), text name, and integer salary. 
 | 🟦 8 | 🟦 0 |
 | 🟦 9 | 🟦 7700 |
 
+![Bosscoder 1.02 sample inputs and expected output](../../assets/question-samples/b1-02.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/b1-02.svg?raw=1)
 
 ### How the sample produces this output

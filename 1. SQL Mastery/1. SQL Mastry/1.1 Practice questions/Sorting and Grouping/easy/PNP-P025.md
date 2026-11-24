@@ -44,6 +44,7 @@ One output row represents one sign-up year and quarter, with undated accounts in
 | 🟦 2025 | 🟦 2 | 🟦 1 |
 | 🟦 NULL | 🟦 NULL | 🟦 1 |
 
+![PNP P025 sample inputs and expected output](../../assets/question-samples/p025.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p025.svg?raw=1)
 
 ### How the sample produces this output

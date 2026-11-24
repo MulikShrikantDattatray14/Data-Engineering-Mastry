@@ -62,6 +62,7 @@ Quotes around text values make surrounding spaces visible.
 | 🟦 5 | 🟦 Nisha | 🟦 Shah | 🟦 MUMBAI | 🟦 Maharashtra |
 | 🟦 8 | 🟦 Lea | 🟦 Singh | 🟦 New Delhi | 🟦 Delhi |
 
+![PNP P003 sample inputs and expected output](../../assets/question-samples/p003.svg)
 [View sample inputs and output with colored cells](../../assets/question-samples/p003.svg?raw=1)
 
 ### How the sample produces this output
