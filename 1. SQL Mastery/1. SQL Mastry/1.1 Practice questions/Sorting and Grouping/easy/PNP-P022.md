@@ -30,30 +30,30 @@ One output row represents one order with more than eight detail lines.
 
 | 🟦 OrderDetailID | 🟦 OrderID | 🟦 ProductID | 🟦 Quantity |
 |---:|---:|---:|---:|
-| 1 | 10 | 1 | 1 |
-| 2 | 10 | 2 | 1 |
-| 3 | 10 | 3 | 1 |
-| 4 | 10 | 4 | 1 |
-| 5 | 10 | 5 | 1 |
-| 6 | 10 | 6 | 1 |
-| 7 | 10 | 7 | 1 |
-| 8 | 10 | 8 | 1 |
-| 9 | 10 | 1 | 1 |
-| 10 | 11 | 2 | 1 |
+| 🟦 1 | 🟦 10 | 🟦 1 | 🟦 1 |
+| 🟦 2 | 🟦 10 | 🟦 2 | 🟦 1 |
+| 🟦 3 | 🟦 10 | 🟦 3 | 🟦 1 |
+| 🟦 4 | 🟦 10 | 🟦 4 | 🟦 1 |
+| 🟦 5 | 🟦 10 | 🟦 5 | 🟦 1 |
+| 🟦 6 | 🟦 10 | 🟦 6 | 🟦 1 |
+| 🟦 7 | 🟦 10 | 🟦 7 | 🟦 1 |
+| 🟦 8 | 🟦 10 | 🟦 8 | 🟦 1 |
+| 🟦 9 | 🟦 10 | 🟦 1 | 🟦 1 |
+| 🟦 10 | 🟦 11 | 🟦 2 | 🟦 1 |
 
 ### Expected output
 
 | 🟦 OrderID | 🟦 line_items | 🟦 distinct_products | 🟦 total_units |
 |---:|---:|---:|---:|
-| 10 | 9 | 8 | 9 |
+| 🟦 10 | 🟦 9 | 🟦 8 | 🟦 9 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p022.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Order 10 contains detail lines 1 through 9. Each line has quantity 1, so there are **9 lines** and **9 units**. Product 1 appears on lines 1 and 9, giving **8 distinct products** across those nine lines.
+🟦 Order 🟦 10 contains detail lines 🟦 1 through 🟦 9. Each line has quantity 🟦 1, so there are **🟦 9 lines** and **🟦 9 units**. Product 🟦 1 appears on lines 🟦 1 and 🟦 9, giving **🟦 8 distinct products** across those nine lines.
 
-🟦 The cutoff is more than eight lines. Order 10 qualifies with nine. Order 11 has one line and falls below the cutoff.
+🟦 The cutoff is more than eight lines. Order 🟦 10 qualifies with nine. Order 🟦 11 has one line and falls below the cutoff.
 
 ## Step 1 · Your approach before writing SQL
 
