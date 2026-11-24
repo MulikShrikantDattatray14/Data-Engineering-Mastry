@@ -83,6 +83,25 @@ The learner's CASE labels NULL state as Unknown. The course answer also trims su
 ### 3. Keep the group expression consistent
 Use the same normalized state expression in SELECT and GROUP BY. In SQLite, a GROUP BY name that matches an input column can resolve to that source column rather than a same-named SELECT alias; the stored learner query's behavior is documented in the comparison section.
 
+### Alternative method — COALESCE (SQLite and SQL Server)
+
+`COALESCE` returns the first non-NULL value. It keeps a known state or uses `Unknown` for SQL NULL. The grouping, threshold, and sort are the same as in the CASE version.
+
+```sql
+select 
+COALESCE(State, 'Unknown') AS State
+
+, count(CustomerID) as customer_count
+from Customers
+group by state
+having count(CustomerID)>=5
+order by  count(CustomerID) desc, State asc;
+
+```
+
+Both expressions returned the same results in SQLite on the original and extended examples. The SQL Server versions were reviewed by inspection.
+
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P013/01.md)
