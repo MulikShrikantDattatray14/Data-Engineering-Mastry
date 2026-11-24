@@ -122,7 +122,7 @@ Follow the sample rows through each query step. **Predict the result.** Two prod
 
 [Open the full-size walkthrough](../../assets/walkthroughs/b1-04.svg?raw=1)
 
-## Step-by-step explanation with one example
+## Step-by-step walkthrough
 
 🟦 **Each branch · FROM Products** · All three store prices are already on each product row. Read one store column per branch so a product can contribute a separate row to every store that has a price.
 
