@@ -29,47 +29,47 @@ One output row represents one ordering customer in the top five by order count, 
 
 | 🟩 CustomerID | 🟩 FirstName | 🟩 LastName |
 |---:|---|---|
-| 1 | Asha | Rao |
-| 2 | Ben | Das |
-| 3 | Cia | Sen |
-| 4 | Dev | Roy |
-| 5 | Ena | Jain |
-| 6 | Farah | Ali |
-| 7 | Gita | Shah |
+| 🟩 1 | 🟩 Asha | 🟩 Rao |
+| 🟩 2 | 🟩 Ben | 🟩 Das |
+| 🟩 3 | 🟩 Cia | 🟩 Sen |
+| 🟩 4 | 🟩 Dev | 🟩 Roy |
+| 🟩 5 | 🟩 Ena | 🟩 Jain |
+| 🟩 6 | 🟩 Farah | 🟩 Ali |
+| 🟩 7 | 🟩 Gita | 🟩 Shah |
 
 **🟦 `Orders`**
 
 | 🟦 OrderID | 🟦 CustomerID |
 |---:|---:|
-| 11 | 1 |
-| 12 | 2 |
-| 13 | 3 |
-| 14 | 4 |
-| 15 | 5 |
-| 16 | 6 |
-| 17 | 99 |
-| 18 | 99 |
-| 19 | 99 |
+| 🟦 11 | 🟦 1 |
+| 🟦 12 | 🟦 2 |
+| 🟦 13 | 🟦 3 |
+| 🟦 14 | 🟦 4 |
+| 🟦 15 | 🟦 5 |
+| 🟦 16 | 🟦 6 |
+| 🟦 17 | 🟦 99 |
+| 🟦 18 | 🟦 99 |
+| 🟦 19 | 🟦 99 |
 
 ### Expected output
 
 | 🟦 CustomerID | 🟩 customer_name | 🟦 orders_placed |
 |---:|---|---:|
-| 99 | Unknown customer | 3 |
-| 1 | Asha Rao | 1 |
-| 2 | Ben Das | 1 |
-| 3 | Cia Sen | 1 |
-| 4 | Dev Roy | 1 |
-| 5 | Ena Jain | 1 |
-| 6 | Farah Ali | 1 |
+| 🟦 99 | 🟩 Unknown customer | 🟦 3 |
+| 🟦 1 | 🟩 Asha Rao | 🟦 1 |
+| 🟦 2 | 🟩 Ben Das | 🟦 1 |
+| 🟦 3 | 🟩 Cia Sen | 🟦 1 |
+| 🟦 4 | 🟩 Dev Roy | 🟦 1 |
+| 🟦 5 | 🟩 Ena Jain | 🟦 1 |
+| 🟦 6 | 🟩 Farah Ali | 🟦 1 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p021.svg?raw=1)
 
 ### How the sample produces this output
 
-Customer ID 99 placed orders 17, 18 and 19, giving it the highest count of 🟦 **3**. Its ID has no customer record, so the displayed name is 🟩 **Unknown customer**. Each of customer IDs 1 through 6 placed one order. Customer 7 placed none.
+Customer ID 🟦 99 placed orders 🟦 17, 🟦 18 and 🟦 19, giving it the highest count of 🟦 **🟪 3**. Its ID has no customer record, so the displayed name is 🟩 **Unknown customer**. Each of customer IDs 🟪 1 through 🟪 6 placed one order. Customer 🟩 7 placed none.
 
-The fifth buyer in descending order has 🟦 **1 order**. All six one-order buyers meet that same cutoff. The report therefore has **7 rows**, with ID 99 first and the six tied buyers in ascending customer ID order.
+The fifth buyer in descending order has 🟦 **🟪 1 order**. All six one-order buyers meet that same cutoff. The report therefore has **🟩 7 rows**, with ID 🟦 99 first and the six tied buyers in ascending customer ID order.
 
 ## Step 1 · Your approach before writing SQL
 
