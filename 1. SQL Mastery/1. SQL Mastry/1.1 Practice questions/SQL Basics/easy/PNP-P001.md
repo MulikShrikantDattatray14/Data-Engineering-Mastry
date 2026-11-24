@@ -33,30 +33,30 @@ Quotes around text values make surrounding spaces visible.
 
 | 🟦 ProductID | 🟦 Brand |
 | ---: | --- |
-| 1 | `'Nike'` |
-| 2 | `' Nike '` |
-| 3 | `NULL` |
-| 4 | `''` |
-| 5 | `'   '` |
-| 6 | `'Adidas'` |
-| 7 | `'Puma'` |
-| 8 | `'Adidas'` |
+| 🟦 1 | 🟦 `'Nike'` |
+| 🟦 2 | 🟦 `' Nike '` |
+| 🟦 3 | 🟦 `NULL` |
+| 🟦 4 | 🟦 `''` |
+| 🟦 5 | 🟦 `'   '` |
+| 🟦 6 | 🟦 `'Adidas'` |
+| 🟦 7 | 🟦 `'Puma'` |
+| 🟦 8 | 🟦 `'Adidas'` |
 
 ### Expected output
 
 | 🟦 Brand |
 | --- |
-| Adidas |
-| Nike |
-| Puma |
+| 🟦 Adidas |
+| 🟦 Nike |
+| 🟦 Puma |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p001.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Products 1 and 2 supply the same name, **Nike**, once the surrounding spaces are disregarded. Products 6 and 8 both supply **Adidas**, and product 7 supplies **Puma**.
+🟦 Products 🟦 1 and 🟦 2 supply the same name, **🟦 Nike**, once the surrounding spaces are disregarded. Products 🟦 6 and 🟦 8 both supply **🟦 Adidas**, and product 🟦 7 supplies **🟦 Puma**.
 
-🟦 Products 3, 4 and 5 contain a missing value, an empty string and spaces only, respectively. They supply no brand name. The three usable names appear once each, in alphabetical order.
+🟦 Products 🟦 3, 🟦 4 and 🟦 5 contain a missing value, an empty string and spaces only, respectively. They supply no brand name. The three usable names appear once each, in alphabetical order.
 
 ## Step 1 · Your approach before writing SQL
 
