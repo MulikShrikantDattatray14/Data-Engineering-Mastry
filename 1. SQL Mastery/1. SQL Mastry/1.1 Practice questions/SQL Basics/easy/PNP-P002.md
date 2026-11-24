@@ -34,42 +34,42 @@ The relevant columns in `Products` are `ProductID` (integer identifier), `Produc
 
 | 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 Sale_Price |
 | ---: | --- | --- | ---: |
-| 4 | Mug | Home | 100 |
-| 20 | Bottle | Home | 100 |
-| 30 | Sticker | Home | 0 |
-| 31 | Mystery item | Home | `NULL` |
-| 101 | Headphones | Nova | 900 |
-| 102 | Tablet | Nova | 800 |
-| 103 | Monitor | Pixel | 700 |
-| 104 | Keyboard | Typeco | 600 |
-| 105 | Speaker | Nova | 500 |
-| 106 | Router | Netco | 400 |
-| 107 | Camera | Pixel | 300 |
-| 108 | Mouse | Typeco | 200 |
-| 109 | Lamp | Home | 150 |
+| 🟦 4 | 🟦 Mug | 🟦 Home | 🟦 100 |
+| 🟦 20 | 🟦 Bottle | 🟦 Home | 🟦 100 |
+| 🟦 30 | 🟦 Sticker | 🟦 Home | 🟦 0 |
+| 🟦 31 | 🟦 Mystery item | 🟦 Home | 🟦 `NULL` |
+| 🟦 101 | 🟦 Headphones | 🟦 Nova | 🟦 900 |
+| 🟦 102 | 🟦 Tablet | 🟦 Nova | 🟦 800 |
+| 🟦 103 | 🟦 Monitor | 🟦 Pixel | 🟦 700 |
+| 🟦 104 | 🟦 Keyboard | 🟦 Typeco | 🟦 600 |
+| 🟦 105 | 🟦 Speaker | 🟦 Nova | 🟦 500 |
+| 🟦 106 | 🟦 Router | 🟦 Netco | 🟦 400 |
+| 🟦 107 | 🟦 Camera | 🟦 Pixel | 🟦 300 |
+| 🟦 108 | 🟦 Mouse | 🟦 Typeco | 🟦 200 |
+| 🟦 109 | 🟦 Lamp | 🟦 Home | 🟦 150 |
 
 ### Expected output
 
 | 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 Sale_Price |
 | ---: | --- | --- | ---: |
-| 101 | Headphones | Nova | 900 |
-| 102 | Tablet | Nova | 800 |
-| 103 | Monitor | Pixel | 700 |
-| 104 | Keyboard | Typeco | 600 |
-| 105 | Speaker | Nova | 500 |
-| 106 | Router | Netco | 400 |
-| 107 | Camera | Pixel | 300 |
-| 108 | Mouse | Typeco | 200 |
-| 109 | Lamp | Home | 150 |
-| 4 | Mug | Home | 100 |
+| 🟦 101 | 🟦 Headphones | 🟦 Nova | 🟦 900 |
+| 🟦 102 | 🟦 Tablet | 🟦 Nova | 🟦 800 |
+| 🟦 103 | 🟦 Monitor | 🟦 Pixel | 🟦 700 |
+| 🟦 104 | 🟦 Keyboard | 🟦 Typeco | 🟦 600 |
+| 🟦 105 | 🟦 Speaker | 🟦 Nova | 🟦 500 |
+| 🟦 106 | 🟦 Router | 🟦 Netco | 🟦 400 |
+| 🟦 107 | 🟦 Camera | 🟦 Pixel | 🟦 300 |
+| 🟦 108 | 🟦 Mouse | 🟦 Typeco | 🟦 200 |
+| 🟦 109 | 🟦 Lamp | 🟦 Home | 🟦 150 |
+| 🟦 4 | 🟦 Mug | 🟦 Home | 🟦 100 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p002.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Nine products have prices above 100. They fill positions 1–9 in descending price order, from Headphones (ID 101, price 900) to Lamp (ID 109, price 150).
+🟦 Nine products have prices above 🟦 100. They fill positions 🟦 1–🟦 9 in descending price order, from 🟦 Headphones (ID 🟦 101, price 🟦 900) to 🟦 Lamp (ID 🟦 109, price 🟦 150).
 
-🟦 Mug (ID 4) and Bottle (ID 20) both cost 100. The smaller ID gives Mug the tenth slot. Sticker has a known price of 0 and falls below the cutoff. Mystery item has no recorded price.
+🟦 Mug (ID 🟦 4) and 🟦 Bottle (ID 🟦 20) both cost 🟦 100. The smaller ID gives 🟦 Mug the tenth slot. 🟦 Sticker has a known price of 🟦 0 and falls below the cutoff. 🟦 Mystery item has no recorded price.
 
 ## Step 1 · Your approach before writing SQL
 
