@@ -32,23 +32,23 @@ One output row represents one catalogue product, including products with missing
 
 | 🟦 ProductID | 🟦 Product | 🟦 Market_Price | 🟦 Sale_Price |
 | --- | --- | --- | --- |
-| 1 | Mug | 100 | 80 |
-| 2 | Sticker | 0 | 0 |
-| 3 | Lamp | 200 | 150 |
+| 🟦 1 | 🟦 Mug | 🟦 100 | 🟦 80 |
+| 🟦 2 | 🟦 Sticker | 🟦 0 | 🟦 0 |
+| 🟦 3 | 🟦 Lamp | 🟦 200 | 🟦 150 |
 
 ### Expected output
 
 | 🟦 ProductID | 🟦 Product | 🟦 Market_Price | 🟦 Sale_Price | 🟦 discount_amount | 🟦 discount_pct |
 | --- | --- | --- | --- | --- | --- |
-| 3 | Lamp | 200 | 150 | 50 | 25.00 |
-| 1 | Mug | 100 | 80 | 20 | 20.00 |
-| 2 | Sticker | 0 | 0 | `NULL` | `NULL` |
+| 🟦 3 | 🟦 Lamp | 🟦 200 | 🟦 150 | 🟦 50 | 🟦 25.00 |
+| 🟦 1 | 🟦 Mug | 🟦 100 | 🟦 80 | 🟦 20 | 🟦 20.00 |
+| 🟦 2 | 🟦 Sticker | 🟦 0 | 🟦 0 | 🟦 `NULL` | 🟦 `NULL` |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p007.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Lamp saves `200 − 150 = 50`, which is `50 / 200 × 100 = 25.00%`. Mug saves `100 − 80 = 20`, or `20 / 100 × 100 = 20.00%`. Lamp therefore precedes Mug.
+🟦 Lamp saves `🟦 200 − 🟦 150 = 🟦 50`, which is `🟦 50 / 🟦 200 × 🟦 100 = 🟦 25.00%`. 🟦 Mug saves `🟦 100 − 🟦 80 = 🟦 20`, or `🟦 20 / 🟦 100 × 🟦 100 = 🟦 20.00%`. 🟦 Lamp therefore precedes 🟦 Mug.
 
 🟦 Sticker’s market price is zero. The question assigns `NULL` to both discount fields for that product. The row still appears, after the two products with known percentages.
 
