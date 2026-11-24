@@ -32,23 +32,23 @@ One output row represents one report covering every order in the input.
 
 | 🟦 OrderID | 🟦 CustomerID | 🟦 OrderDate | 🟦 Total_Order_Amount |
 | ---: | ---: | --- | ---: |
-| 1 | 10 | 2025-01-01 | 100 |
-| 2 | 10 | 2025-01-02 | 200 |
-| 3 | 20 | 2025-01-03 | 300 |
+| 🟦 1 | 🟦 10 | 🟦 2025-01-01 | 🟦 100 |
+| 🟦 2 | 🟦 10 | 🟦 2025-01-02 | 🟦 200 |
+| 🟦 3 | 🟦 20 | 🟦 2025-01-03 | 🟦 300 |
 
 ### Expected output
 
 | 🟦 total_orders | 🟦 ordering_customers | 🟦 total_order_value | 🟦 avg_order_value | 🟦 first_order_date | 🟦 last_order_date |
 | ---: | ---: | ---: | ---: | --- | --- |
-| 3 | 2 | 600 | 200.00 | 2025-01-01 | 2025-01-03 |
+| 🟦 3 | 🟦 2 | 🟦 600 | 🟦 200.00 | 🟦 2025-01-01 | 🟦 2025-01-03 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p010.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Orders 1 and 2 belong to customer 10. Order 3 belongs to customer 20. That gives **3 orders** and **2 distinct ordering customers**.
+🟦 Orders 🟦 1 and 🟦 2 belong to customer 🟦 10. Order 🟦 3 belongs to customer 🟦 20. That gives **🟦 3 orders** and **🟦 2 distinct ordering customers**.
 
-🟦 The three known amounts total `100 + 200 + 300 = 600`, giving an average of `600 / 3 = 200.00`. January 1 is the earliest order date and January 3 is the latest. All six values describe the same set of orders in a single row.
+🟦 The three known amounts total `🟦 100 + 🟦 200 + 🟦 300 = 🟦 600`, giving an average of `🟦 600 / 🟦 3 = 🟦 200.00`. January 🟦 1 is the earliest order date and January 🟦 3 is the latest. All six values describe the same set of orders in a single row.
 
 ## Step 1 · Your approach before writing SQL
 
