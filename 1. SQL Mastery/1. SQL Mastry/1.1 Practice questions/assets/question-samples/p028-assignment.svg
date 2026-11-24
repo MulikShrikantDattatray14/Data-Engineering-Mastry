@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="590" viewBox="0 0 1040 590" role="img" aria-labelledby="title desc" font-family="DejaVu Sans, Arial, sans-serif">
+  <title id="title">PNP P028 assignment example inputs and expected output</title>
+  <desc id="desc">The original PNP assignment example. Three Orders rows match two Payments rows. UPI has two orders and Card has one; both represent half the order value.</desc>
+  <rect x="0" y="0" width="1040" height="590" fill="#FFFFFF"/>
+  <text x="36" y="45" font-size="15" font-weight="700" fill="#445E73">PNP P028 / SUBQUERIES / ASSIGNMENT EXAMPLE</text>
+  <text x="36" y="82" font-size="29" font-weight="700" fill="#14283A">Payment mix: share of orders and value</text>
+  <text x="36" y="112" font-size="16" fill="#324D63">Original Example 1 · given input tables and expected output</text>
+  <rect x="36" y="137" width="14" height="14" rx="2" fill="#15558D"/>
+  <text x="58" y="150" font-size="15" font-weight="700" fill="#14283A">Orders</text>
+  <rect x="150" y="137" width="14" height="14" rx="2" fill="#17674F"/>
+  <text x="172" y="150" font-size="15" font-weight="700" fill="#14283A">Payments</text>
+  <text x="36" y="171" font-size="14" fill="#52677B">Sample table key · display order: Orders, then Payments</text>
+  <rect x="36" y="190" width="550" height="34" rx="3" fill="#15558D"/>
+  <text x="50" y="213" font-size="16" font-weight="700" fill="#FFFFFF">Orders · 3 rows</text>
+  <rect x="36" y="224" width="100" height="38" fill="#DBEBFA"/>
+  <rect x="136" y="224" width="140" height="38" fill="#DBEBFA"/>
+  <rect x="276" y="224" width="310" height="38" fill="#DBEBFA"/>
+  <text x="48" y="249" font-size="14" font-weight="700" fill="#123B60">OrderID</text>
+  <text x="148" y="249" font-size="14" font-weight="700" fill="#123B60">PaymentID</text>
+  <text x="288" y="249" font-size="14" font-weight="700" fill="#123B60">Total_Order_Amount</text>
+  <g fill="#123B60" font-size="15">
+    <rect x="36" y="262" width="100" height="34" fill="#F4F8FE"/><text x="48" y="284">10</text>
+    <rect x="136" y="262" width="140" height="34" fill="#F4F8FE"/><text x="148" y="284">1</text>
+    <rect x="276" y="262" width="310" height="34" fill="#F4F8FE"/><text x="288" y="284">100</text>
+    <rect x="36" y="296" width="100" height="34" fill="#FFFFFF"/><text x="48" y="318">11</text>
+    <rect x="136" y="296" width="140" height="34" fill="#FFFFFF"/><text x="148" y="318">1</text>
+    <rect x="276" y="296" width="310" height="34" fill="#FFFFFF"/><text x="288" y="318">200</text>
+    <rect x="36" y="330" width="100" height="34" fill="#F4F8FE"/><text x="48" y="352">12</text>
+    <rect x="136" y="330" width="140" height="34" fill="#F4F8FE"/><text x="148" y="352">2</text>
+    <rect x="276" y="330" width="310" height="34" fill="#F4F8FE"/><text x="288" y="352">300</text>
+  </g>
+  <g stroke="#C8D4DF" stroke-width="1" fill="none">
+    <rect x="36" y="224" width="550" height="140"/><path d="M136 224V364 M276 224V364 M36 262H586 M36 296H586 M36 330H586"/>
+  </g>
+  <rect x="610" y="190" width="394" height="34" rx="3" fill="#17674F"/>
+  <text x="624" y="213" font-size="16" font-weight="700" fill="#FFFFFF">Payments · 2 rows</text>
+  <rect x="610" y="224" width="130" height="38" fill="#D8EDE3"/>
+  <rect x="740" y="224" width="264" height="38" fill="#D8EDE3"/>
+  <text x="622" y="249" font-size="14" font-weight="700" fill="#164D3C">PaymentID</text>
+  <text x="752" y="249" font-size="14" font-weight="700" fill="#164D3C">PaymentType</text>
+  <g fill="#164D3C" font-size="15">
+    <rect x="610" y="262" width="130" height="34" fill="#F1F8F4"/><text x="622" y="284">1</text>
+    <rect x="740" y="262" width="264" height="34" fill="#F1F8F4"/><text x="752" y="284">UPI</text>
+    <rect x="610" y="296" width="130" height="34" fill="#FFFFFF"/><text x="622" y="318">2</text>
+    <rect x="740" y="296" width="264" height="34" fill="#FFFFFF"/><text x="752" y="318">Card</text>
+  </g>
+  <g stroke="#C8D4DF" stroke-width="1" fill="none">
+    <rect x="610" y="224" width="394" height="106"/><path d="M740 224V330 M610 262H1004 M610 296H1004"/>
+  </g>
+  <text x="36" y="405" font-size="19" font-weight="700" fill="#385369">Expected output · assignment example</text>
+  <rect x="155" y="423" width="160" height="34" fill="#17674F"/>
+  <rect x="315" y="423" width="570" height="34" fill="#15558D"/>
+  <text x="167" y="445" font-size="15" font-weight="700" fill="#FFFFFF">Payments</text>
+  <text x="327" y="445" font-size="15" font-weight="700" fill="#FFFFFF">Orders · counts, shares and value</text>
+  <rect x="155" y="457" width="160" height="38" fill="#D8EDE3"/>
+  <rect x="315" y="457" width="110" height="38" fill="#DBEBFA"/>
+  <rect x="425" y="457" width="150" height="38" fill="#DBEBFA"/>
+  <rect x="575" y="457" width="150" height="38" fill="#DBEBFA"/>
+  <rect x="725" y="457" width="160" height="38" fill="#DBEBFA"/>
+  <g font-size="13" font-weight="700">
+    <text x="167" y="481" fill="#164D3C">payment_type</text>
+    <text x="327" y="481" fill="#123B60">orders</text>
+    <text x="437" y="481" fill="#123B60">pct_of_orders</text>
+    <text x="587" y="481" fill="#123B60">order_value</text>
+    <text x="737" y="481" fill="#123B60">pct_of_value</text>
+  </g>
+  <rect x="155" y="495" width="160" height="36" fill="#F1F8F4"/>
+  <rect x="315" y="495" width="110" height="36" fill="#F4F8FE"/>
+  <rect x="425" y="495" width="150" height="36" fill="#F4F8FE"/>
+  <rect x="575" y="495" width="150" height="36" fill="#F4F8FE"/>
+  <rect x="725" y="495" width="160" height="36" fill="#F4F8FE"/>
+  <rect x="155" y="531" width="160" height="36" fill="#FFFFFF"/>
+  <rect x="315" y="531" width="110" height="36" fill="#FFFFFF"/>
+  <rect x="425" y="531" width="150" height="36" fill="#FFFFFF"/>
+  <rect x="575" y="531" width="150" height="36" fill="#FFFFFF"/>
+  <rect x="725" y="531" width="160" height="36" fill="#FFFFFF"/>
+  <g font-size="15">
+    <text x="167" y="519" fill="#164D3C">UPI</text>
+    <text x="327" y="519" fill="#123B60">2</text>
+    <text x="437" y="519" fill="#123B60">66.67</text>
+    <text x="587" y="519" fill="#123B60">300</text>
+    <text x="737" y="519" fill="#123B60">50.00</text>
+    <text x="167" y="555" fill="#164D3C">Card</text>
+    <text x="327" y="555" fill="#123B60">1</text>
+    <text x="437" y="555" fill="#123B60">33.33</text>
+    <text x="587" y="555" fill="#123B60">300</text>
+    <text x="737" y="555" fill="#123B60">50.00</text>
+  </g>
+  <g stroke="#C8D4DF" stroke-width="1" fill="none">
+    <rect x="155" y="457" width="730" height="110"/>
+    <path d="M315 457V567 M425 457V567 M575 457V567 M725 457V567 M155 495H885 M155 531H885"/>
+  </g>
+</svg>

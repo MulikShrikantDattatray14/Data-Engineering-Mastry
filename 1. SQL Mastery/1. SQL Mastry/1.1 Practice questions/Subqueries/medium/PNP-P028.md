@@ -52,6 +52,10 @@ One output row represents one payment type represented on orders, including Unkn
 | 🟩 UPI | 🟦 2 | 🟦 66.67 | 🟦 300 | 🟦 50.00 |
 | 🟩 Card | 🟦 1 | 🟦 33.33 | 🟦 300 | 🟦 50.00 |
 
+![PNP P028 assignment example inputs and expected output](../../assets/question-samples/p028-assignment.svg)
+
+[Open the assignment-example SVG full size](../../assets/question-samples/p028-assignment.svg?raw=1)
+
 **How the assignment example produces this output**
 
 There are **🟦 3 orders** worth **🟦 100 + 🟦 200 + 🟦 300 = 🟦 600**.
