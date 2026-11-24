@@ -32,25 +32,25 @@ One output row represents one full-price product in the ten most expensive. Both
 
 | 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 Sale_Price | 🟦 Market_Price |
 | --- | --- | --- | --- | --- |
-| 1 | Mug | Home | 100 | 100 |
-| 2 | Lamp | Home | 150 | 150 |
-| 3 | Mystery | Home | `NULL` | 100 |
-| 4 | Bottle | Home | 90 | 100 |
+| 🟦 1 | 🟦 Mug | 🟦 Home | 🟦 100 | 🟦 100 |
+| 🟦 2 | 🟦 Lamp | 🟦 Home | 🟦 150 | 🟦 150 |
+| 🟦 3 | 🟦 Mystery | 🟦 Home | 🟦 `NULL` | 🟦 100 |
+| 🟦 4 | 🟦 Bottle | 🟦 Home | 🟦 90 | 🟦 100 |
 
 ### Expected output
 
 | 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 Sale_Price | 🟦 Market_Price | 🟦 discount_display |
 | --- | --- | --- | --- | --- | --- |
-| 2 | Lamp | Home | 150 | 150 | Full price |
-| 1 | Mug | Home | 100 | 100 | Full price |
+| 🟦 2 | 🟦 Lamp | 🟦 Home | 🟦 150 | 🟦 150 | 🟦 Full price |
+| 🟦 1 | 🟦 Mug | 🟦 Home | 🟦 100 | 🟦 100 | 🟦 Full price |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p006.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Lamp’s two prices are both 150 and Mug’s two prices are both 100. Each has a zero price difference and receives the display label `Full price`. The higher sale price puts Lamp before Mug.
+🟦 Lamp’s two prices are both 🟦 150 and 🟦 Mug’s two prices are both 🟦 100. Each has a zero price difference and receives the display label `🟦 Full price`. The higher sale price puts 🟦 Lamp before 🟦 Mug.
 
-🟦 Bottle has a discount of `100 − 90 = 10`. Mystery has a missing sale price, so its discount is unknown. The two full-price products are the only qualifying rows in this sample.
+🟦 Bottle has a discount of `🟦 100 − 🟦 90 = 🟦 10`. 🟦 Mystery has a missing sale price, so its discount is unknown. The two full-price products are the only qualifying rows in this sample.
 
 ## Step 1 · Your approach before writing SQL
 
