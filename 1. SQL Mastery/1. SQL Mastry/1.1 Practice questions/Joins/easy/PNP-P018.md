@@ -89,6 +89,20 @@ ORDER BY c.DateEntered ASC, c.CustomerID ASC;
 
 Guided submission. This final version uses table aliases and a single-quoted space. Verified on the sample, a first-day timestamp for a customer with an older order, and an empty Orders table.
 
+## Important learnings from P018
+
+### 1. Customers defines the population to test
+The report asks which customers have no recent order, so start with every customer. LEFT JOIN preserves customers even when no order matches.
+
+### 2. Put the recent-date condition in ON
+The join should match only orders in the rolling window. A customer with an old order or no order receives NULL order columns; putting the date condition in WHERE would remove the NULL-extended rows.
+
+### 3. The NULL test is an anti-match
+OrderID is a non-NULL key on a real order row. WHERE OrderID IS NULL therefore keeps only customers without a matching recent order, one row per customer.
+
+### 4. Name formatting is a separate display rule
+The learner's concatenation expression returns NULL if either name part is NULL; the official adaptation can preserve a single available name part. That difference is recorded separately.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P018/01.md)
@@ -209,7 +223,7 @@ ORDER BY c.DateEntered ASC, c.CustomerID ASC;
 
 The SQLite checks covered the original sample, a customer with both old and recent orders, timestamps on both boundary dates, tied sign-up dates, and empty Orders.
 
-## Learner submission — SQL Server adaptation
+## Learner solution — SQL Server adaptation
 
 ```sql
 ;WITH reporting_window AS (

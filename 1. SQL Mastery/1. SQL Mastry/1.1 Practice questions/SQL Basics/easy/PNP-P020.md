@@ -71,6 +71,20 @@ ORDER BY OrderDate ASC, `OrderID` ASC;
 
 Guided submission. Chat formatting was cleaned up. The tested SQLite configuration accepts the double-quoted format strings. Single quotes are the standard spelling.
 
+## Important learnings from P020
+
+### 1. Orders contains every requested field
+One row represents one order placed in November 2025. The single Orders source already has OrderDate, ShipDate and DeliveryDate, so no join is needed.
+
+### 2. Compare calendar dates, not elapsed time
+The SQLite julianday(date(...)) expression removes the time component before subtracting. The result is a whole calendar-day difference, not a count of completed 24-hour periods.
+
+### 3. Missing milestones remain visible
+A NULL ShipDate or DeliveryDate produces a NULL day difference. The query does not filter those orders out, so the report can show orders that have not shipped or arrived.
+
+### 4. Use a half-open month boundary
+The November start is included and December 1 is excluded. This keeps all November timestamps without relying on a fabricated end-of-day time.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P020/01.md)
@@ -127,7 +141,7 @@ ORDER BY OrderDate ASC, `OrderID` ASC;
 
 SQLite checks covered the sample, each missing date independently, late November orders, a midnight crossing, orders outside the month or year, and ties.
 
-## Learner submission — SQL Server adaptation
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT OrderID, OrderDate, ShipDate, DeliveryDate,
@@ -188,6 +202,10 @@ ORDER BY o.OrderDate, o.OrderID;
 ```
 
 The official answer uses an inclusive November 1 lower bound and an exclusive December 1 upper bound. The SQLite adaptation was checked against the learner query on the sample and a boundary fixture. The SQL Server versions were reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner calculates calendar-day differences with julianday(date(ShipDate)) - julianday(date(OrderDate)) and the corresponding delivery expression. The official SQLite adaptation uses the same date-normalized Julian-day difference; the source dialect subtracts dates directly and the SQL Server adaptation uses DATEDIFF(day). These forms agree on the supplied date-only fixture and preserve NULL when a milestone date is missing. The half-open November filter is equivalent to the course date interval.
 
 ## Verification
 

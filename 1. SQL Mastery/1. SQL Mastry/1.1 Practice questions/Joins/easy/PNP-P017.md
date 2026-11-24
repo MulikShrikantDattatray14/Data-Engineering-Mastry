@@ -96,6 +96,40 @@ ORDER BY o.OrderDate DESC, o.OrderID DESC;
 
 The learner selected the two LEFT JOINs, join keys, MAX, six-day offset, and CTE approach. The completed query incorporates help with SQLite syntax and connecting the CTE.
 
+### Earlier learner solution — SQLite
+
+```sql
+SELECT
+    o.OrderID,
+    o.OrderDate,
+    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
+    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE date(o.OrderDate) >= (
+    SELECT date(MAX(OrderDate), '-6 days')
+    FROM Orders
+)
+ORDER BY o.OrderDate DESC, o.OrderID DESC;
+```
+
+This was a guided submission. The SQLite checks covered the sample, missing and unmatched lookup IDs, a rolling window crossing into a new year, a first-day timestamp, equal timestamps, and an empty Orders table.
+
+## Important learnings from P017
+
+### 1. Orders supplies the report rows
+Each output row is an order in the latest seven-calendar-date window. Orders already carries PaymentID and ShipperID, so both lookups can be attached independently.
+
+### 2. Keep both lookups optional
+LEFT JOIN Payments and LEFT JOIN Shippers preserve an order when either key is NULL or unmatched. COALESCE turns the missing display values into Unknown after the joins.
+
+### 3. The reporting-window CTE is a one-row date calculation
+The CTE returns one row containing the latest order date and the window start. It does not replace Orders as the outer query's row source; the outer SELECT still starts with every order and filters that population.
+
+### 4. Distinguish date-only from timestamp data
+The saved BETWEEN upper bound is the latest date at midnight. It matches the date-only practice sample, but a timestamp later on that same day is excluded; the separate timestamp validation records this limitation without changing the locked query.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P017/01.md)
@@ -106,7 +140,99 @@ Follow the sample rows through each query step. **Predict the result.** Order 3 
 
 [Open the full-size walkthrough](../../assets/walkthroughs/p017.svg?raw=1)
 
-## Selected query walkthrough
+## Step-by-step walkthrough
+
+One output row represents one order in the reporting window. Use the same sample for each step.
+
+### 1. Attach payment and shipper details
+
+🟦 **First · FROM Orders** · The report needs an entry for each order in the date window, including orders with missing labels. Each order already carries both lookup IDs.
+
+🟩 **Second · LEFT JOIN Payments** · Look up `Orders.PaymentID` in Payments to get the payment type. A failed match leaves the order available for the shipper lookup.
+
+🟥 **Third · LEFT JOIN Shippers** · Match `Orders.ShipperID` to Shippers on the rows carried from step 1. A missing shipper leaves a NULL company name. Both lookups use separate order columns, so they can trade places.
+
+```sql
+SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+ORDER BY o.OrderID;
+```
+
+| OrderID | OrderDate | PaymentType | CompanyName |
+|---:|---|---|---|
+| 1 | 2025-12-24 | UPI | FastShip |
+| 2 | 2025-12-25 | UPI | FastShip |
+| 3 | 2025-12-31 | `NULL` | `NULL` |
+
+### 2. Find the data's latest date and window start
+
+**What to do.** Take the maximum order date and subtract six calendar days.
+
+**Why.** The latest day itself counts as one of the seven days. Using MAX makes the window move as new orders arrive.
+
+```sql
+SELECT date(MAX(OrderDate)) AS latest_order_date,
+       date(MAX(OrderDate), '-6 days') AS window_start
+FROM Orders;
+```
+
+| latest_order_date | window_start |
+|---|---|
+| 2025-12-31 | 2025-12-25 |
+
+### 3. Keep orders on or after the start
+
+**What to do.** Use the calculated start in WHERE. Keep the original OrderDate in the output while comparing its calendar date.
+
+**Why.** December 25 is included. No upper bound is needed because no order has a date later than the maximum of the same Orders table.
+
+```sql
+SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE date(o.OrderDate) >= (
+    SELECT date(MAX(OrderDate), '-6 days')
+    FROM Orders
+)
+ORDER BY o.OrderID;
+```
+
+| OrderID | OrderDate | PaymentType | CompanyName |
+|---:|---|---|---|
+| 2 | 2025-12-25 | UPI | FastShip |
+| 3 | 2025-12-31 | `NULL` | `NULL` |
+
+### 4. Label missing values and sort newest first
+
+**What to do.** Apply COALESCE to each lookup label and sort by date descending, then ID descending.
+
+**Why.** Missing lookups should be visible as Unknown. Order ID resolves a tie on OrderDate.
+
+```sql
+SELECT
+    o.OrderID,
+    o.OrderDate,
+    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
+    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
+FROM Orders AS o
+LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
+LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
+WHERE date(o.OrderDate) >= (
+    SELECT date(MAX(OrderDate), '-6 days')
+    FROM Orders
+)
+ORDER BY o.OrderDate DESC, o.OrderID DESC;
+```
+
+| OrderID | OrderDate | payment_type | shipper_name |
+|---:|---|---|---|
+| 3 | 2025-12-31 | Unknown | Unknown |
+| 2 | 2025-12-25 | UPI | FastShip |
+
+### Selected query walkthrough
 
 <a name="step-by-step-walkthrough-1"></a>
 
@@ -214,7 +340,7 @@ ORDER BY o.OrderDate DESC, o.OrderID DESC;
 
 Verified in SQLite on the original sample and on date-only fixtures for the rolling window, missing matches, sort ties, and empty input.
 
-## SQL Server adaptation
+## Learner solution — SQL Server adaptation
 
 ```sql
 ;WITH reporting_window AS (
@@ -240,119 +366,7 @@ ORDER BY o.OrderDate DESC, o.OrderID DESC;
 
 Assumes a date-only OrderDate column. Reviewed by inspection.
 
-## Earlier learner solution — SQLite
-
-```sql
-SELECT
-    o.OrderID,
-    o.OrderDate,
-    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
-    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
-FROM Orders AS o
-LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
-LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
-WHERE date(o.OrderDate) >= (
-    SELECT date(MAX(OrderDate), '-6 days')
-    FROM Orders
-)
-ORDER BY o.OrderDate DESC, o.OrderID DESC;
-```
-
-This was a guided submission. The SQLite checks covered the sample, missing and unmatched lookup IDs, a rolling window crossing into a new year, a first-day timestamp, equal timestamps, and an empty Orders table.
-
-## Step-by-step walkthrough
-
-One output row represents one order in the reporting window. Use the same sample for each step.
-
-### 1. Attach payment and shipper details
-
-🟦 **First · FROM Orders** · The report needs an entry for each order in the date window, including orders with missing labels. Each order already carries both lookup IDs.
-
-🟩 **Second · LEFT JOIN Payments** · Look up `Orders.PaymentID` in Payments to get the payment type. A failed match leaves the order available for the shipper lookup.
-
-🟥 **Third · LEFT JOIN Shippers** · Match `Orders.ShipperID` to Shippers on the rows carried from step 1. A missing shipper leaves a NULL company name. Both lookups use separate order columns, so they can trade places.
-
-```sql
-SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
-FROM Orders AS o
-LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
-LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
-ORDER BY o.OrderID;
-```
-
-| OrderID | OrderDate | PaymentType | CompanyName |
-|---:|---|---|---|
-| 1 | 2025-12-24 | UPI | FastShip |
-| 2 | 2025-12-25 | UPI | FastShip |
-| 3 | 2025-12-31 | `NULL` | `NULL` |
-
-### 2. Find the data's latest date and window start
-
-**What to do.** Take the maximum order date and subtract six calendar days.
-
-**Why.** The latest day itself counts as one of the seven days. Using MAX makes the window move as new orders arrive.
-
-```sql
-SELECT date(MAX(OrderDate)) AS latest_order_date,
-       date(MAX(OrderDate), '-6 days') AS window_start
-FROM Orders;
-```
-
-| latest_order_date | window_start |
-|---|---|
-| 2025-12-31 | 2025-12-25 |
-
-### 3. Keep orders on or after the start
-
-**What to do.** Use the calculated start in WHERE. Keep the original OrderDate in the output while comparing its calendar date.
-
-**Why.** December 25 is included. No upper bound is needed because no order has a date later than the maximum of the same Orders table.
-
-```sql
-SELECT o.OrderID, o.OrderDate, p.PaymentType, s.CompanyName
-FROM Orders AS o
-LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
-LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
-WHERE date(o.OrderDate) >= (
-    SELECT date(MAX(OrderDate), '-6 days')
-    FROM Orders
-)
-ORDER BY o.OrderID;
-```
-
-| OrderID | OrderDate | PaymentType | CompanyName |
-|---:|---|---|---|
-| 2 | 2025-12-25 | UPI | FastShip |
-| 3 | 2025-12-31 | `NULL` | `NULL` |
-
-### 4. Label missing values and sort newest first
-
-**What to do.** Apply COALESCE to each lookup label and sort by date descending, then ID descending.
-
-**Why.** Missing lookups should be visible as Unknown. Order ID resolves a tie on OrderDate.
-
-```sql
-SELECT
-    o.OrderID,
-    o.OrderDate,
-    COALESCE(p.PaymentType, 'Unknown') AS payment_type,
-    COALESCE(s.CompanyName, 'Unknown') AS shipper_name
-FROM Orders AS o
-LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
-LEFT JOIN Shippers AS s ON o.ShipperID = s.ShipperID
-WHERE date(o.OrderDate) >= (
-    SELECT date(MAX(OrderDate), '-6 days')
-    FROM Orders
-)
-ORDER BY o.OrderDate DESC, o.OrderID DESC;
-```
-
-| OrderID | OrderDate | payment_type | shipper_name |
-|---:|---|---|---|
-| 3 | 2025-12-31 | Unknown | Unknown |
-| 2 | 2025-12-25 | UPI | FastShip |
-
-## Earlier learner solution — SQL Server adaptation
+### Earlier learner solution — SQL Server adaptation
 
 ```sql
 SELECT
@@ -417,6 +431,10 @@ ORDER BY o.OrderDate DESC, o.OrderID DESC;
 ```
 
 The SQLite adaptation passed the sample and extended fixture. The SQL Server adaptations were reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner's final query calculates latest_order_date and window_start in a one-row CTE, then uses those scalar values in BETWEEN. The course answer uses a scalar subquery for the lower bound and no upper bound. On the date-only sample both return the same seven-calendar-date window. The separate timestamp check shows the learner's upper bound at midnight excludes a timestamp later on the latest date; the course lower-bound-only form does not. The earlier guided query and its adaptations remain in the record as history. The final learner query is not rewritten.
 
 ## Verification
 

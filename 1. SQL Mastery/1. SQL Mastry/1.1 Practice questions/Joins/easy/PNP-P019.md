@@ -75,6 +75,17 @@ group by O.ProductID
 order by sum (O.Quantity) desc , O.ProductID asc
 ```
 
+## Important learnings from P019
+
+### 1. OrderDetails supplies sold-product evidence
+Each detail line carries ProductID, OrderID and Quantity. Starting from this table means the report includes products that actually appear on a sale line; catalogue products with no sale line do not create a group.
+
+### 2. The product lookup adds a name
+LEFT JOIN Products attaches the descriptive product name while retaining a detail line whose ProductID has no catalogue match. The official inner join intentionally drops such orphaned IDs; the locked learner query keeps them.
+
+### 3. The measures have different grains
+SUM(Quantity) counts units, COUNT(OrderDetailID) counts lines, and COUNT(DISTINCT OrderID) counts orders. Group by ProductID so repeated lines for the same product contribute to one product row.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P019/01.md)
@@ -148,7 +159,7 @@ order by sum (O.Quantity) desc , O.ProductID asc
 
 SQLite checks covered the sample, a repeated product within one order, tied sales totals, and a missing catalogue match. The repeated-order fixture returned nine units, three lines and two distinct orders for Pen.
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 select O.ProductID,P.Product,sum (O.Quantity) as units_sold, count(OrderDetailID)  as order_lines, count(distinct(OrderID)) as orders

@@ -75,6 +75,17 @@ order by o.OrderDate asc,o.OrderID asc;
 
 The query was cleaned up to remove chat markup. It passed the sample, a same-date tie, an unmatched order, and the year and month boundaries. The tested SQLite configuration accepts double-quoted string literals. Single quotes are the standard form.
 
+## Important learnings from P016
+
+### 1. The INNER JOIN defines the matched population
+The report needs order fields plus customer name and city. The inner join keeps only customer/order pairs with a matching CustomerID; an order with no customer match is excluded.
+
+### 2. The date predicate selects the month
+The December 2025 condition applies to OrderDate before the final sort. It is a row-level filter, not a grouping rule.
+
+### 3. Name and city are display values
+The name expression combines first and last names, while TRIM removes surrounding spaces from City. The output remains one row per qualifying order, even when a customer has several December orders.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P016/01.md)
@@ -145,7 +156,7 @@ order by o.OrderDate asc,o.OrderID asc;
 |---:|---|---|---|---:|
 | 10 | 2025-12-01 | Anu Sen | Delhi | 100 |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 select o.OrderID, o.OrderDate, (c.FirstName + ' ' + c.LastName) as customer_name, trim(c.City) as City, o.Total_Order_Amount
@@ -209,6 +220,10 @@ ORDER BY o.OrderDate, o.OrderID;
 ```
 
 The official answer uses a half-open date range and skips missing name parts. The SQLite adaptation preserves that behavior with CASE. With the learner's concatenation, either missing name part yields a NULL customer name. Both SQLite versions were checked on complete and missing names. The SQL Server versions were reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner starts with Customers and INNER JOINs Orders; the course answer starts with Orders and joins Customers. INNER JOIN is commutative for the matched pairs, so both retain the same December orders with a customer match. The learner uses strftime to select December 2025, while the course answer uses a half-open date interval. The name expression differs: FirstName || ' ' || LastName becomes NULL when either part is NULL, while the official CONCAT_WS/CASE adaptation preserves a present part. The sample has complete names, so this difference is not visible there.
 
 ## Verification
 
