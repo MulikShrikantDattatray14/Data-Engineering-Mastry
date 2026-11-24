@@ -37,13 +37,13 @@ BST has integer columns N and P. Each row describes one node N and its parent P.
 
 | 🟦 N | 🟦 P |
 |---:|---:|
-| 1 | 2 |
-| 3 | 2 |
-| 6 | 8 |
-| 9 | 8 |
-| 2 | 5 |
-| 8 | 5 |
-| 5 | NULL |
+| 🟦 1 | 🟦 2 |
+| 🟦 3 | 🟦 2 |
+| 🟦 6 | 🟦 8 |
+| 🟦 9 | 🟦 8 |
+| 🟦 2 | 🟦 5 |
+| 🟦 8 | 🟦 5 |
+| 🟦 5 | 🟦 NULL |
 
 ![Binary tree supplied with the sample input](../../../1.Bosscoder%20Academy%20-%20foundational%20notes%20and%20Assignments/1.%20Intro%20to%20SQL%20and%20Advanced%20Select/assets/3-binary-tree-nodes.png)
 
@@ -51,21 +51,21 @@ BST has integer columns N and P. Each row describes one node N and its parent P.
 
 | 🟦 N | 🟦 NodeType |
 |---:|---|
-| 1 | Leaf |
-| 2 | Inner |
-| 3 | Leaf |
-| 5 | Root |
-| 6 | Leaf |
-| 8 | Inner |
-| 9 | Leaf |
+| 🟦 1 | 🟦 Leaf |
+| 🟦 2 | 🟦 Inner |
+| 🟦 3 | 🟦 Leaf |
+| 🟦 5 | 🟦 Root |
+| 🟦 6 | 🟦 Leaf |
+| 🟦 8 | 🟦 Inner |
+| 🟦 9 | 🟦 Leaf |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/b1-03.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Node 5 has no parent, giving it the label **Root**. Nodes 2 and 8 both have a parent and children, giving them the label **Inner**. Node 2 is the parent of 1 and 3, and node 8 is the parent of 6 and 9.
+🟦 Node 🟦 5 has no parent, giving it the label **🟦 Root**. Nodes 🟦 2 and 🟦 8 both have a parent and children, giving them the label **🟦 Inner**. Node 🟦 2 is the parent of 🟦 1 and 🟦 3, and node 🟦 8 is the parent of 🟦 6 and 🟦 9.
 
-🟦 Nodes 1, 3, 6 and 9 have no children, so each is a **Leaf**. The one root, two inner nodes and four leaves account for all seven output rows, listed by ascending node value.
+🟦 Nodes 🟦 1, 🟦 3, 🟦 6 and 🟦 9 have no children, so each is a **🟦 Leaf**. The one root, two inner nodes and four leaves account for all seven output rows, listed by ascending node value.
 
 ## Step 1 · Your approach before writing SQL
 
