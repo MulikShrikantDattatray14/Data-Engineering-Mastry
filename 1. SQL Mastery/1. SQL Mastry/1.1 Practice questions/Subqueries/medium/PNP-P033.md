@@ -16,7 +16,7 @@
 
 One result row represents a product that has never appeared in an order line. Return the five columns in this order.
 
-| # | Output column | Source | Requirement for this product row | Example |
+| # | Output column | Source / calculation | Meaning per output row, eligibility and precision rules | Example value |
 | ---: | --- | --- | --- | --- |
 | 1 | `ProductID` | 🟦 `Products.ProductID` | Identifier of the catalogue product being checked for any order-line appearance. | 🟦 2 |
 | 2 | `Product` | 🟦 `Products.Product` | Product name belonging to that catalogue ID. | 🟦 Cup |
@@ -45,7 +45,7 @@ One result row represents a product that has never appeared in an order line. Re
 | ---: | ---: | ---: |
 | 🟩 10 | 🟩 100 | 🟩 1 |
 
-### Expected output · Practice example
+### Expected output
 
 | 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 CategoryID | 🟦 Sale_Price |
 | ---: | --- | --- | ---: | ---: |
@@ -55,7 +55,7 @@ One result row represents a product that has never appeared in an order line. Re
 
 [Open the practice-example SVG full size](../../assets/question-samples/p033.svg?raw=1)
 
-### How the practice example produces this output
+### How the sample produces this output
 
 🟦 Pen (ProductID 1) appears in 🟩 OrderDetails row 10, so it is excluded. 🟦 Cup (ProductID 2) has no matching order-detail row, so it qualifies. The result contains one product.
 
@@ -68,7 +68,6 @@ One result row represents a product that has never appeared in an order line. Re
 5. How would you apply the requested ordering?
 6. Trace Pen and Cup through your proposed logic and explain why only Cup remains.
 
-### Agreed approach
 
 1. Keep `Products` as the driving (left) table because every catalogue product must be considered, including products with no order history.
 2. LEFT JOIN `OrderDetails` using `Products.ProductID = OrderDetails.ProductID`.
@@ -167,6 +166,8 @@ The official `NOT EXISTS` solution expresses the same business rule as the learn
 ### 4. Sorting and output grain
 
 One output row represents one never-ordered product. Return the five requested catalogue columns and sort by CategoryID ascending, then ProductID ascending. Quantity does not determine eligibility: even one order line disqualifies the product.
+
+### Agreed approach (after the learner attempt)
 
 ## Visual walkthrough
 

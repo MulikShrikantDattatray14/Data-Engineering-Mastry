@@ -18,7 +18,7 @@
 
 One result row represents one qualifying Beverages product. All five columns are supplied by, or calculated from, 🟦 `Products`. Return them in this order.
 
-| # | Output column | Source | Requirement for this product row | Example |
+| # | Output column | Source / calculation | Meaning per output row, eligibility and precision rules | Example value |
 | ---: | --- | --- | --- | --- |
 | 1 | `ProductID` | 🟦 `Products.ProductID` | Return the identifier of the individual product whose price qualifies. It identifies the item in the pricing review. | 🟦 3 |
 | 2 | `Product` | 🟦 `Products.Product` | Return the catalogue name belonging to that same product ID. | 🟦 Juice |

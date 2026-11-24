@@ -20,7 +20,7 @@
 
 The course asks for one row per ordering customer whose lifetime spend exceeds the average lifetime spend across ordering customers.
 
-| # | Output column | Source | Requirement for one result row | Practice example |
+| # | Output column | Source / calculation | Meaning per output row, eligibility and precision rules | Example value |
 | ---: | --- | --- | --- | --- |
 | 1 | `CustomerID` | 🟦 `Orders.CustomerID` | Return the ordering customer's ID. The course excludes orders with a missing ID and preserves known IDs even if their customer record is missing. | 🟦 1 |
 | 2 | `customer_name` | 🟩 `Customers.FirstName`, `Customers.LastName` | Look up the name for the ordering ID. The course displays the first and last name or `Unknown customer` when no customer row matches. | 🟩 Asha Rao |

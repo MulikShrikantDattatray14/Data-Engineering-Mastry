@@ -86,7 +86,7 @@ The assignment example has no missing or unmatched payment ID, so it does not pr
 | 🟩 1 | 🟩 UPI |
 | 🟩 2 | 🟩 Card |
 
-### Expected output · Practice example
+### Expected output
 
 | 🟩 payment_type | 🟦 orders | 🟦 pct_of_orders | 🟦 order_value | 🟦 pct_of_value |
 | :--- | :--- | :--- | :--- | :--- |
@@ -98,7 +98,7 @@ The assignment example has no missing or unmatched payment ID, so it does not pr
 
 [Open the full-size sample SVG](../../assets/question-samples/p028.svg?raw=1)
 
-### How the practice example produces this output
+### How the sample produces this output
 
 There are **🟦 5 orders** worth **🟦 100 + 🟦 200 + 🟦 300 + 🟦 50 + 🟦 150 = 🟦 800** in total.
 
@@ -114,16 +114,7 @@ The count sort places the two-order groups before Card. Unknown and UPI tie at t
 2. Which table would you put in `FROM`? If you need other tables, which comes second, third, and so on, and why?
 3. Would you use a join at any step? For each join you choose, name its type and matching columns and explain why it fits the question.
 
-<details>
-<summary>Notes from the saved attempt</summary>
 
-**Earlier practice check**
-
-Suppose one more order arrives in 🟦 `Orders` with `PaymentID = 99`. The 🟩 `Payments` table still looks exactly as shown.
-
-**Which table would you start from, and where should that order appear in the final report?** Give me your reasoning in plain English first.
-
-</details>
 
 ## Final learner solution — SQLite
 
@@ -173,6 +164,19 @@ The source explicitly requires scalar subqueries. The order-share denominator co
 
 ### 4. Count transactions and value separately
 COUNT(DISTINCT OrderID) measures orders; SUM(Total_Order_Amount) measures money. The two percentages therefore use different numerators and denominators, and each is rounded to two decimal places.
+
+### Saved practice check (after the learner attempt)
+
+<details>
+<summary>Saved practice check</summary>
+
+**Earlier practice check**
+
+Suppose one more order arrives in 🟦 `Orders` with `PaymentID = 99`. The 🟩 `Payments` table still looks exactly as shown.
+
+**Which table would you start from, and where should that order appear in the final report?** Give me your reasoning in plain English first.
+
+</details>
 
 ## Visual walkthrough
 
