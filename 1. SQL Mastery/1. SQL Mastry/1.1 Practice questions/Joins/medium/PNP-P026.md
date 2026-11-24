@@ -146,11 +146,11 @@ ORDER BY OrderDetailID;
 
 | 🟦 OrderDetailID | 🟦 OrderID | 🟦 ProductID | 🟦 Quantity |
 | ---: | ---: | ---: | ---: |
-| 1 | 100 | 10 | 2 |
-| 2 | 100 | 11 | 1 |
-| 3 | 100 | 20 | 1 |
-| 4 | 101 | 30 | 3 |
-| 5 | 102 | 999 | 4 |
+| 🟦 1 | 🟦 100 | 🟦 10 | 🟦 2 |
+| 🟦 2 | 🟦 100 | 🟦 11 | 🟦 1 |
+| 🟦 3 | 🟦 100 | 🟦 20 | 🟦 1 |
+| 🟦 4 | 🟦 101 | 🟦 30 | 🟦 3 |
+| 🟦 5 | 🟦 102 | 🟦 999 | 🟦 4 |
 
 There are five sale lines and eleven units. These are the numbers we can check as the joins change the table.
 
@@ -169,11 +169,11 @@ ORDER BY od.OrderDetailID;
 
 | 🟦 OrderDetailID | 🟦 ordered_product_id | 🟩 matched_product_id | 🟩 Sale_Price |
 | --- | --- | --- | --- |
-| 1 | 10 | 10 | 10 |
-| 2 | 11 | 11 | 8 |
-| 3 | 20 | 20 | 5 |
-| 4 | 30 | 30 | 7 |
-| ▸ 5 | **999** | **`NULL`** | `NULL` |
+| 🟦 1 | 🟦 10 | 🟩 10 | 🟩 10 |
+| 🟦 2 | 🟦 11 | 🟩 11 | 🟩 8 |
+| 🟦 3 | 🟦 20 | 🟩 20 | 🟩 5 |
+| 🟦 4 | 🟦 30 | 🟩 30 | 🟩 7 |
+| 🟦 ▸ 5 | 🟦 **999** | 🟩 **`NULL`** | 🟩 `NULL` |
 
 ### 3. Why FULL OUTER JOIN to Category?
 
@@ -192,12 +192,12 @@ ORDER BY od.OrderDetailID NULLS LAST;
 
 | 🟦 OrderDetailID | 🟩 matched_product_id | 🟥 CategoryID | 🟥 CategoryName |
 | --- | --- | --- | --- |
-| 1 | 10 | 1 | Drinks |
-| 2 | 11 | 1 | Drinks |
-| 3 | 20 | 2 | Snacks |
-| ▸ **4** | **30** | **`NULL`** | **`NULL`** |
-| ▸ **5** | **`NULL`** | **`NULL`** | **`NULL`** |
-| ▸ **`NULL`** | **`NULL`** | **3** | **Stationery** |
+| 🟦 1 | 🟩 10 | 🟥 1 | 🟥 Drinks |
+| 🟦 2 | 🟩 11 | 🟥 1 | 🟥 Drinks |
+| 🟦 3 | 🟩 20 | 🟥 2 | 🟥 Snacks |
+| 🟦 ▸ **4** | 🟩 **30** | 🟥 **`NULL`** | 🟥 **`NULL`** |
+| 🟦 ▸ **5** | 🟩 **`NULL`** | 🟥 **`NULL`** | 🟥 **`NULL`** |
+| 🟦 ▸ **`NULL`** | 🟩 **`NULL`** | 🟥 **3** | 🟥 **Stationery** |
 
 ### 4. Why label missing matches before grouping?
 
@@ -223,12 +223,12 @@ ORDER BY od.OrderDetailID NULLS LAST;
 
 | 🟦 OrderDetailID | 🟥 CategoryID | 🟪 category_name |
 | --- | --- | --- |
-| 1 | 1 | Drinks |
-| 2 | 1 | Drinks |
-| 3 | 2 | Snacks |
-| ▸ 4 | **`NULL`** | **Unmapped** |
-| ▸ 5 | **`NULL`** | **Unknown product** |
-| ▸ `NULL` | **3** | **Stationery** |
+| 🟦 1 | 🟥 1 | 🟪 Drinks |
+| 🟦 2 | 🟥 1 | 🟪 Drinks |
+| 🟦 3 | 🟥 2 | 🟪 Snacks |
+| 🟦 ▸ 4 | 🟥 **`NULL`** | 🟪 **Unmapped** |
+| 🟦 ▸ 5 | 🟥 **`NULL`** | 🟪 **Unknown product** |
+| 🟦 ▸ `NULL` | 🟥 **3** | 🟪 **Stationery** |
 
 ### 5. Why multiply price by quantity on each line?
 
@@ -245,12 +245,12 @@ ORDER BY od.OrderDetailID NULLS LAST;
 
 | 🟦 OrderDetailID | 🟩 Sale_Price | 🟦 Quantity | 🟪 line_value |
 | ---: | ---: | ---: | ---: |
-| ▸ 1 | **10** | **2** | **20** |
-| ▸ 2 | **8** | **1** | **8** |
-| 3 | 5 | 1 | 5 |
-| 4 | 7 | 3 | 21 |
-| 5 | `NULL` | 4 | `NULL` |
-| `NULL` | `NULL` | `NULL` | `NULL` |
+| 🟦 ▸ 1 | 🟩 **10** | 🟦 **2** | 🟪 **20** |
+| 🟦 ▸ 2 | 🟩 **8** | 🟦 **1** | 🟪 **8** |
+| 🟦 3 | 🟩 5 | 🟦 1 | 🟪 5 |
+| 🟦 4 | 🟩 7 | 🟦 3 | 🟪 21 |
+| 🟦 5 | 🟩 `NULL` | 🟦 4 | 🟪 `NULL` |
+| 🟦 `NULL` | 🟩 `NULL` | 🟦 `NULL` | 🟪 `NULL` |
 
 The final query uses this multiplication inside `SUM`. The `line_value` column here makes each contribution visible.
 
@@ -266,11 +266,11 @@ These are the groups that clause forms from the same six rows. The last column s
 
 | 🟥 CategoryID | 🟪 category_name | 🟦 Sale line IDs |
 | ---: | --- | --- |
-| 1 | Drinks | 1, 2 |
-| 2 | Snacks | 3 |
-| 3 | Stationery | No sale line |
-| `NULL` | Unknown product | 5 |
-| `NULL` | Unmapped | 4 |
+| 🟥 1 | 🟪 Drinks | 🟦 1, 2 |
+| 🟥 2 | 🟪 Snacks | 🟦 3 |
+| 🟥 3 | 🟪 Stationery | 🟦 No sale line |
+| 🟥 `NULL` | 🟪 Unknown product | 🟦 5 |
+| 🟥 `NULL` | 🟪 Unmapped | 🟦 4 |
 
 ### 7. Why count orders once but add every unit?
 
@@ -301,11 +301,11 @@ ORDER BY category_name ASC;
 
 | 🟪 category_name | 🟦 orders | 🟦 units_sold |
 | --- | --- | --- |
-| ▸ Drinks | **1** | **3** |
-| Snacks | 1 | 1 |
-| ▸ Stationery | **0** | **0** |
-| Unknown product | 1 | 4 |
-| Unmapped | 1 | 3 |
+| 🟪 ▸ Drinks | 🟦 **1** | 🟦 **3** |
+| 🟪 Snacks | 🟦 1 | 🟦 1 |
+| 🟪 ▸ Stationery | 🟦 **0** | 🟦 **0** |
+| 🟪 Unknown product | 🟦 1 | 🟦 4 |
+| 🟪 Unmapped | 🟦 1 | 🟦 3 |
 
 #### Why does Stationery get a zero and Unknown product get NULL?
 
@@ -337,11 +337,11 @@ ORDER BY category_name ASC;
 
 | 🟪 category_name | 🟦 matching_lines | 🟪 list_price_value |
 | --- | --- | --- |
-| Drinks | 2 | 28 |
-| Snacks | 1 | 5 |
-| ▸ Stationery | **0** | **0** |
-| ▸ Unknown product | **1** | **`NULL`** |
-| Unmapped | 1 | 21 |
+| 🟪 Drinks | 🟦 2 | 🟪 28 |
+| 🟪 Snacks | 🟦 1 | 🟪 5 |
+| 🟪 ▸ Stationery | 🟦 **0** | 🟪 **0** |
+| 🟪 ▸ Unknown product | 🟦 **1** | 🟪 **`NULL`** |
+| 🟪 Unmapped | 🟦 1 | 🟪 21 |
 
 The zero check changes only `list_price_value`. The row for the unknown product still contributes one order and four units.
 
@@ -355,11 +355,11 @@ ORDER BY list_price_value DESC NULLS LAST, category_name ASC;
 
 | 🟪 category_name | 🟦 orders | 🟦 units_sold | 🟪 list_price_value |
 | --- | --- | --- | --- |
-| ▸ Drinks | 1 | 3 | **28** |
-| Unmapped | 1 | 3 | 21 |
-| Snacks | 1 | 1 | 5 |
-| Stationery | 0 | 0 | 0 |
-| ▸ Unknown product | 1 | 4 | **`NULL`** |
+| 🟪 ▸ Drinks | 🟦 1 | 🟦 3 | 🟪 **28** |
+| 🟪 Unmapped | 🟦 1 | 🟦 3 | 🟪 21 |
+| 🟪 Snacks | 🟦 1 | 🟦 1 | 🟪 5 |
+| 🟪 Stationery | 🟦 0 | 🟦 0 | 🟪 0 |
+| 🟪 ▸ Unknown product | 🟦 1 | 🟦 4 | 🟪 **`NULL`** |
 
 All **11 units** are accounted for. The five order lines contain `2 + 1 + 1 + 3 + 4 = 11` units. The output contains `3 + 3 + 1 + 0 + 4 = 11`.
 
