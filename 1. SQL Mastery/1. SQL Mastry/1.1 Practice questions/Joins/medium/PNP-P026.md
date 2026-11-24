@@ -87,28 +87,51 @@ The five rows account for 🟦 `🟪 3 + 🟪 3 + 🟪 1 + 🟪 0 + 🟦 4 = �
 Built from Shri’s submitted clauses with guidance on the category labels, the empty-category value, and the sort syntax.
 
 ```sql
+WITH joined_data AS (
+    SELECT
+        od.OrderDetailID,
+        od.OrderID,
+        od.Quantity,
+        p.Sale_Price,
+        p.ProductID,
+        p.CategoryID AS product_category_id,
+        c.CategoryID AS category_id,
+        c.CategoryName,
+
+        COALESCE(
+            c.CategoryName,
+            CASE
+                WHEN p.ProductID IS NULL THEN 'Unknown product'
+                ELSE 'Unmapped'
+            END
+        ) AS category_name
+
+    FROM OrderDetails AS od
+    LEFT JOIN Products AS p
+        ON od.ProductID = p.ProductID
+
+    FULL OUTER JOIN Category AS c
+        ON p.CategoryID = c.CategoryID
+)
+
 SELECT
+    category_name,
+    COALESCE(COUNT(DISTINCT OrderID), 0) AS orders,
+    COALESCE(SUM(Quantity), 0) AS units_sold,
+
     CASE
-        WHEN c.CategoryID IS NULL AND p.ProductID IS NULL
-            THEN 'Unknown product'
-        WHEN c.CategoryID IS NULL AND p.ProductID IS NOT NULL
-            THEN 'Unmapped'
-        WHEN c.CategoryID IS NOT NULL
-            THEN c.CategoryName
-    END AS category_name,
-    COUNT(DISTINCT od.OrderID) AS orders,
-    COALESCE(SUM(od.Quantity), 0) AS units_sold,
-    CASE
-        WHEN COUNT(od.OrderDetailID) = 0 THEN 0
-        ELSE SUM(p.Sale_Price * od.Quantity)
+        WHEN COUNT(OrderDetailID) = 0 THEN 0
+        ELSE SUM(Sale_Price * Quantity)
     END AS list_price_value
-FROM OrderDetails AS od
-LEFT JOIN Products AS p
-    ON od.ProductID = p.ProductID
-FULL OUTER JOIN Category AS c
-    ON c.CategoryID = p.CategoryID
-GROUP BY c.CategoryID, category_name
-ORDER BY list_price_value DESC NULLS LAST, category_name ASC;
+
+FROM joined_data
+
+GROUP BY
+    category_id,
+    category_name
+
+ORDER BY
+    list_price_value DESC NULLS LAST;
 ```
 
 <details>
@@ -117,6 +140,91 @@ ORDER BY list_price_value DESC NULLS LAST, category_name ASC;
 Return one row per catalogue category, including categories with no sales. Keep order lines with missing product or category references in the appropriate labeled groups. Show zero orders, units and value for an unsold category. Keep the value `NULL` when sales have no known price. Break ties by `category_name` in ascending order and put unknown values last.
 
 </details>
+
+## Important learnings from P026
+
+### 1. Choosing JOIN types and table order from the question wording
+
+Do not guess JOIN types from table names. First identify which records the question says must be preserved, including records without a match.
+
+| Wording or requirement | SQL decision in this question |
+|---|---|
+| “No line may go missing” / broken product reference must still be reported | Preserve every `OrderDetails` row. Start with `OrderDetails`. |
+| “Lines whose ProductID is not in Products go under Unknown product” | Use `OrderDetails LEFT JOIN Products`. The order line stays even when its product lookup is missing. |
+| “For every category” / include categories with no sales | Preserve unmatched rows from `Category` too. Add `FULL OUTER JOIN Category`. |
+| Product points to a CategoryID with no Category row | Keep the sale line and label it `Unmapped`. |
+
+**Table ordering rule:** With a `LEFT JOIN`, put the table whose rows must all survive on the left. Here, `OrderDetails` comes first because every sale line must remain; `Products` comes second because it supplies optional product details. `Category` comes third because the query must also retain category-only rows.
+
+The resulting structure is:
+
+```sql
+FROM OrderDetails AS od
+LEFT JOIN Products AS p
+    ON od.ProductID = p.ProductID
+FULL OUTER JOIN Category AS c
+    ON p.CategoryID = c.CategoryID
+```
+
+A question usually does not name the JOIN type explicitly. Derive it from its preservation requirements.
+
+### 2. Why the two tested JOIN approaches can show the same final report
+
+- `OrderDetails FULL OUTER JOIN Products` retains unmatched Products too, including products never ordered.
+- `OrderDetails LEFT JOIN Products` retains every order line but does not independently retain products never ordered.
+- With the P026 sample, and even after adding an un-ordered product, the final aggregates we tested were the same because that extra product contributed no order quantity or price value.
+- That observed equality is not a guarantee for every possible dataset or platform test. The approaches have different intermediate rows and different preservation semantics. Choose the JOIN that matches the question, not merely one that happens to give the same sample output.
+
+For P026, the `LEFT JOIN` from `OrderDetails` to `Products`, followed by `FULL OUTER JOIN` to `Category`, directly expresses the required row preservation.
+
+### 3. NULL, zero, COUNT and SUM
+
+| Expression / rule | Meaning |
+|---|---|
+| `COUNT(*)` | Counts every row, including rows where columns contain `NULL`. |
+| `COUNT(column)` | Counts only rows where that column is not `NULL`. |
+| `COUNT(DISTINCT OrderID)` | Counts unique, non-NULL order IDs. It returns `0` when there are no non-NULL order IDs; wrapping it in `COALESCE(..., 0)` is safe but redundant. |
+| `SUM(column)` | Ignores individual NULL values; returns `NULL` when there are no non-NULL values to sum. |
+| `COALESCE(SUM(Quantity), 0)` | Displays zero when the sum is NULL, as required for an unsold category. |
+| `COALESCE(SUM(Sale_Price * Quantity), 0)` | Would turn both an unsold category and an unknown product price into zero. That would incorrectly change P026's expected `Unknown product` value. |
+| `COALESCE(expression, NULL)` | Does not provide a fallback; it behaves like the original expression. |
+
+**Why the list-price CASE is needed:**
+
+```sql
+CASE
+    WHEN COUNT(OrderDetailID) = 0 THEN 0
+    ELSE SUM(Sale_Price * Quantity)
+END AS list_price_value
+```
+
+- **Stationery:** The FULL OUTER JOIN creates a category-only row. Its `OrderDetailID` is NULL, so `COUNT(OrderDetailID) = 0`. Return `0` because there were no order lines.
+- **Unknown product:** An actual order line exists, so `COUNT(OrderDetailID) = 1`. Its `Sale_Price` is NULL because the product lookup failed. The ELSE expression returns NULL, correctly representing an unknown value rather than zero.
+- **Unmapped:** The product exists and has a price, but its category reference has no Category row. Its price calculation is still known.
+
+**Key distinction:** Zero means a known absence/no activity. NULL means the value is unknown or unavailable. Do not replace every NULL with zero automatically.
+
+### 4. Grouping and output columns
+
+- `category_id` is intentionally kept in the CTE and `GROUP BY`, even though it is not displayed in the final output. It keeps distinct catalogue categories separate if they share the same name.
+- `category_name` is also in the `GROUP BY` because `Unmapped` and `Unknown product` both have a NULL category ID and must remain separate groups.
+- A column can be used internally for grouping without appearing in the final `SELECT`.
+
+### 5. Aggregation details
+
+- Use `COUNT(DISTINCT OrderID)` for the number of orders, not `COUNT(OrderID)`, because one order can contain multiple lines in the same category.
+- Use `SUM(Quantity)` to add every sale-line quantity.
+- Calculate `Sale_Price * Quantity` at the order-line level before summing, so each line uses its own product price and quantity.
+- `ORDER BY list_price_value DESC NULLS LAST` sorts the largest known list-price value first and places unknown values last.
+
+### 6. Final verification checks
+
+- All five sample order lines remain represented.
+- Total units reconcile: `2 + 1 + 1 + 3 + 4 = 11`; report units also total `3 + 3 + 1 + 0 + 4 = 11`.
+- Drinks counts OrderID 100 once even though it has two Drinks lines.
+- Stationery has 0 orders, 0 units and 0 list-price value.
+- Unknown product has 1 order, 4 units and NULL list-price value.
+- Unmapped retains its known product price and contributes 21.
 
 ## Visual walkthrough
 
