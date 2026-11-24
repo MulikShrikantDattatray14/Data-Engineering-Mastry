@@ -32,24 +32,24 @@ One output row represents one order placed in November 2025, including orders wi
 
 | 🟦 OrderID | 🟦 OrderDate | 🟦 ShipDate | 🟦 DeliveryDate |
 |---:|---|---|---|
-| 1 | 2025-11-01 | 2025-11-03 | 2025-11-06 |
-| 2 | 2025-11-02 | `NULL` | `NULL` |
-| 3 | 2025-10-31 | 2025-11-01 | 2025-11-04 |
+| 🟦 1 | 🟦 2025-11-01 | 🟦 2025-11-03 | 🟦 2025-11-06 |
+| 🟦 2 | 🟦 2025-11-02 | 🟦 `NULL` | 🟦 `NULL` |
+| 🟦 3 | 🟦 2025-10-31 | 🟦 2025-11-01 | 🟦 2025-11-04 |
 
 ### Expected output
 
 | 🟦 OrderID | 🟦 OrderDate | 🟦 ShipDate | 🟦 DeliveryDate | 🟦 days_to_ship | 🟦 days_to_deliver |
 |---:|---|---|---|---:|---:|
-| 1 | 2025-11-01 | 2025-11-03 | 2025-11-06 | 2 | 5 |
-| 2 | 2025-11-02 | `NULL` | `NULL` | `NULL` | `NULL` |
+| 🟦 1 | 🟦 2025-11-01 | 🟦 2025-11-03 | 🟦 2025-11-06 | 🟦 2 | 🟦 5 |
+| 🟦 2 | 🟦 2025-11-02 | 🟦 `NULL` | 🟦 `NULL` | 🟦 `NULL` | 🟦 `NULL` |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p020.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Order 1 was placed on November 1. It shipped on November 3 and arrived on November 6, so the elapsed times from the order date are **2 days** and **5 days**.
+🟦 Order 🟦 1 was placed on November 🟦 1. It shipped on November 🟦 3 and arrived on November 🟦 6, so the elapsed times from the order date are **🟦 2 days** and **🟦 5 days**.
 
-🟦 Order 2 was placed on November 2 and qualifies for the report, but its ship and delivery dates are both missing. Its two elapsed times stay `NULL`. Order 3 was placed in October, even though it shipped in November, so it falls outside the report.
+🟦 Order 🟦 2 was placed on November 🟦 2 and qualifies for the report, but its ship and delivery dates are both missing. Its two elapsed times stay `NULL`. Order 🟦 3 was placed in October, even though it shipped in November, so it falls outside the report.
 
 ## Step 1 · Your approach before writing SQL
 
