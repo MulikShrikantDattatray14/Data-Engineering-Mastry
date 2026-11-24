@@ -101,7 +101,7 @@ ORDER BY order_value DESC;
 
 The final approach after revision scored **10/10**. First, give each 🟥 order ID one units total. Then start the report with one 🟦 order per row and use two left joins to add the 🟩 name and 🟥 units. Group the orders by the displayed shipper name, total their amounts and units, and sort by total value. The last revision makes a group with zero recorded units display **0** even when every joined units value is `NULL`.
 
-## Important learnings from PNP-P029
+## Important learnings from P029
 
 ### 1. Aggregate detail lines before joining them to orders
 OrderDetails can contain several lines for one OrderID. The CTE groups those lines into one total_units row per order before the outer query joins it to Orders. This prevents one order amount from repeating once per detail line.

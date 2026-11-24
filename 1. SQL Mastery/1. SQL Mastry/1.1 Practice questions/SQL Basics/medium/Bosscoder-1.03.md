@@ -91,6 +91,14 @@ FROM BST
 ORDER BY N;
 ```
 
+## Important learnings from B1.03
+
+Yes—**if the `NOT IN` list contains `NULL`, a value with no matching entry produces UNKNOWN**, so its `WHEN` branch won’t run.
+
+If the value **does match** an entry, `NOT IN` returns FALSE. That’s why we remove `NULL` from the parent list.
+
+For this nonempty parent list, checking node 1 without removing NULL behaves like comparing 1 against each known value and also against NULL. A comparison with NULL is unknown. CASE uses a WHEN branch only when its condition is true, so an unknown leaf test would incorrectly reach Inner.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.03/01.md)
@@ -229,14 +237,6 @@ SELECT N,
 FROM BST
 ORDER BY N;
 ```
-
-## Important learnings from B1.03
-
-Yes—**if the `NOT IN` list contains `NULL`, a value with no matching entry produces UNKNOWN**, so its `WHEN` branch won’t run.
-
-If the value **does match** an entry, `NOT IN` returns FALSE. That’s why we remove `NULL` from the parent list.
-
-For this nonempty parent list, checking node 1 without removing NULL behaves like comparing 1 against each known value and also against NULL. A comparison with NULL is unknown. CASE uses a WHEN branch only when its condition is true, so an unknown leaf test would incorrectly reach Inner.
 
 ## Official solution
 

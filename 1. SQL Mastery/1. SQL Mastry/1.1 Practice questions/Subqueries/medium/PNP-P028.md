@@ -160,7 +160,7 @@ ORDER BY orders DESC;
 | What about missing values and ties? | Missing payments share the Unknown label. A missing amount still belongs to a counted order. With the learner’s sort, equal order counts can appear in either order. |
 | Can we check one group by hand? | UPI contains orders 10 and 11. That is 2 of 5 orders and 300 of 800 in value. |
 
-## Important learnings from PNP-P028
+## Important learnings from P028
 
 ### 1. Orders is the transaction population
 Start from Orders because every transaction contributes to the report, even when PaymentID is NULL or has no matching Payments row. A LEFT JOIN adds the payment label without dropping those orders.

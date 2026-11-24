@@ -204,7 +204,7 @@ ORDER BY avg_order_value DESC;
 | Which edge cases matter? | Missing customers and missing states share `Unknown`. A zero amount is known. A state with ten missing amounts qualifies with a `NULL` sum and average. |
 | How can I check the order? | Two states can each total 1,000. With five known amounts the AOV is 200, and with ten it is 100. The 200 row appears first. |
 
-## Important learnings from PNP-P027
+## Important learnings from P027
 
 ### 1. Let Orders define the reporting population
 The report counts purchases and their amounts, so Orders supplies one starting row per order. A LEFT JOIN to Customers adds state labels without losing an order whose CustomerID is missing or unmatched.
