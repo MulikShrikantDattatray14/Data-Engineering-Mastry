@@ -29,30 +29,30 @@ One output row represents one catalogue category, including a category with no p
 
 | 🟦 CategoryID | 🟦 CategoryName |
 |---:|---|
-| 1 | Snacks |
-| 2 | Toys |
+| 🟦 1 | 🟦 Snacks |
+| 🟦 2 | 🟦 Toys |
 
 **🟩 `Products`**
 
 | 🟩 ProductID | 🟩 CategoryID |
 |---:|---:|
-| 10 | 1 |
-| 11 | 1 |
+| 🟩 10 | 🟩 1 |
+| 🟩 11 | 🟩 1 |
 
 ### Expected output
 
 | 🟦 CategoryID | 🟦 CategoryName | 🟩 product_count |
 |---:|---|---:|
-| 2 | Toys | 0 |
-| 1 | Snacks | 2 |
+| 🟦 2 | 🟦 Toys | 🟩 0 |
+| 🟦 1 | 🟦 Snacks | 🟩 2 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p015.svg?raw=1)
 
 ### How the sample produces this output
 
-Category 2, 🟦 **Toys**, has no product assigned to it. It still appears in the report with a count of 🟩 **0**. Category 1, 🟦 **Snacks**, has product IDs 10 and 11, so its count is 🟩 **2**.
+Category 🟪 2, 🟦 **Toys**, has no product assigned to it. It still appears in the report with a count of 🟩 **🟩 0**. Category 🟪 1, 🟦 **Snacks**, has product IDs 🟩 10 and 🟩 11, so its count is 🟩 **🟪 2**.
 
-The report orders the counts from smallest to largest. That puts Toys first even though its category ID is larger.
+The report orders the counts from smallest to largest. That puts 🟦 Toys first even though its category ID is larger.
 
 ## Step 1 · Your approach before writing SQL
 
