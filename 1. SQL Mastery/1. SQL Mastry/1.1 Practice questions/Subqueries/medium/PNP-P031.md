@@ -64,7 +64,9 @@ The course asks for one row per ordering customer whose lifetime spend exceeds t
 
 
 
-[View the source-colored sample tables](../../assets/question-samples/p031.svg?raw=1)
+![P031 source-colored practice inputs and expected output](../../assets/question-samples/p031.svg)
+
+[Open the sample SVG full size](../../assets/question-samples/p031.svg?raw=1)
 
 ### How the sample produces this output
 
