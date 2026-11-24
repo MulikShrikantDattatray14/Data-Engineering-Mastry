@@ -28,24 +28,24 @@ One output row represents one state with at least five customers, with missing s
 
 | 🟦 CustomerID | 🟦 State |
 |---:|---|
-| 1 | Karnataka |
-| 2 | Karnataka |
-| 3 | Karnataka |
-| 4 | Karnataka |
-| 5 | Karnataka |
-| 6 | Maharashtra |
+| 🟦 1 | 🟦 Karnataka |
+| 🟦 2 | 🟦 Karnataka |
+| 🟦 3 | 🟦 Karnataka |
+| 🟦 4 | 🟦 Karnataka |
+| 🟦 5 | 🟦 Karnataka |
+| 🟦 6 | 🟦 Maharashtra |
 
 ### Expected output
 
 | 🟦 State | 🟦 customer_count |
 |---|---:|
-| Karnataka | 5 |
+| 🟦 Karnataka | 🟦 5 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p013.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Customer IDs 1 through 5 all belong to Karnataka. Their count is exactly **5**, which meets the minimum. Maharashtra has only customer 6, giving it a count of **1**. Karnataka is therefore the only output row.
+🟦 Customer IDs 🟦 1 through 🟦 5 all belong to 🟦 Karnataka. Their count is exactly **🟦 5**, which meets the minimum. 🟦 Maharashtra has only customer 🟦 6, giving it a count of **🟦 1**. 🟦 Karnataka is therefore the only output row.
 
 ## Step 1 · Your approach before writing SQL
 
