@@ -22,7 +22,7 @@
         ],
         [
           "Sale_Price",
-          "REAL"
+          "INTEGER"
         ]
       ],
       "rows": [
@@ -172,7 +172,7 @@
             ],
             [
               "Sale_Price",
-              "REAL"
+              "INTEGER"
             ]
           ],
           "rows": [
@@ -242,7 +242,7 @@
             ],
             [
               "Sale_Price",
-              "REAL"
+              "INTEGER"
             ]
           ],
           "rows": [
@@ -292,7 +292,7 @@
             ],
             [
               "Sale_Price",
-              "REAL"
+              "INTEGER"
             ]
           ],
           "rows": [
