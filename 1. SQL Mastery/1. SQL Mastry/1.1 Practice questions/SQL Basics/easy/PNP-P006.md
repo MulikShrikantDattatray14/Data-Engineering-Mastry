@@ -72,6 +72,17 @@ LIMIT 10;
 
 The equality filter returns the requested rows directly. The original exercise also asks for an intermediate zero-to-NULL discount calculation, which is shown in the official solution below. SQLite checks covered the sample, missing prices, a sale price above market price, ties, and the ten-row limit.
 
+## Important learnings from P006
+
+### 1. Equality identifies a full-price sale
+When Sale_Price equals Market_Price, the observed discount is zero. A NULL price does not prove equality: SQL comparison with NULL is UNKNOWN, so it must not qualify as full price.
+
+### 2. Filter eligible products before ranking
+The non-NULL equality test determines which products qualify. Sort those rows by Sale_Price descending, then ProductID ascending, before taking the ten highest.
+
+### 3. Keep the displayed label tied to the condition
+The selected rows are all full-price products, so the literal Full price is a valid label for each returned row. No join or aggregate is needed.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P006/01.md)
@@ -154,7 +165,7 @@ LIMIT 10;
 | 2 | Lamp | Home | 150 | 150 | Full price |
 | 1 | Mug | Home | 100 | 100 | Full price |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT TOP (10) ProductID, Product, Brand, Sale_Price, Market_Price,
@@ -330,6 +341,10 @@ ORDER BY p.Sale_Price DESC, p.ProductID;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner filters with Market_Price = Sale_Price and labels qualifying rows Full price. The course answer calculates the difference with NULLIF and COALESCE, then filters to a zero difference with both prices present. Those conditions select the same full-price products on the supplied data; the official form makes the NULL and zero handling explicit. Both sort by Sale_Price descending, use ProductID as a tie-breaker and return ten rows. The selected query is preserved.
 
 ## Verification
 

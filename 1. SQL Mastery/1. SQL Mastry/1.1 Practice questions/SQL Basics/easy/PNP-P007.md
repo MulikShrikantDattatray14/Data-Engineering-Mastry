@@ -87,6 +87,17 @@ order by discount_pct desc
 
 Verified on the sample and additional cases covering missing prices, a zero sale price, a sale price above market price, and a 3.33% discount. SQLite may display a numeric value like 25.00 as 25.0. The tables show two decimal places for readability.
 
+## Important learnings from P007
+
+### 1. Calculate amount and percentage separately
+Discount amount is Market_Price minus Sale_Price. Discount percentage divides that amount by Market_Price and multiplies by 100; it is not the same measure as the currency amount.
+
+### 2. Guard the denominator
+A zero or missing Market_Price cannot produce a meaningful percentage. The locked CASE returns NULL for both measures in those cases; the course answer expresses the zero guard with NULLIF.
+
+### 3. Round only the displayed percentage
+ROUND(..., 2) controls percentage precision. The amount remains in its original numeric precision, and NULL percentages stay visible rather than being fabricated as zero.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P007/01.md)
@@ -211,7 +222,7 @@ order by discount_pct desc
 | 1 | Mug | 100 | 80 | 20 | 20.00 |
 | 2 | Sticker | 0 | 0 | `NULL` | `NULL` |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 select 

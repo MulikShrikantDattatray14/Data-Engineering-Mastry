@@ -75,6 +75,17 @@ FROM Orders;
 
 Verified in SQLite with the sample and an additional order that makes the average 175.25. The submitted query's chat formatting and extra comma were cleaned up. SQLite may display 200.00 as 200.0.
 
+## Important learnings from P010
+
+### 1. One aggregate query returns one report row
+There is no GROUP BY, so the six measures summarize the complete Orders population rather than one row per customer or date.
+
+### 2. Order count and customer count measure different things
+COUNT(OrderID) counts orders; COUNT(DISTINCT CustomerID) counts each ordering customer once even when that customer has several orders.
+
+### 3. NULL amounts affect only amount-based measures
+SUM and AVG ignore NULL Total_Order_Amount values, while MIN and MAX read the available dates. COUNT(OrderID) still counts the order row because it counts a different column.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P010/01.md)
@@ -151,7 +162,7 @@ FROM Orders;
 | ---: | ---: | ---: | ---: | --- | --- |
 | 3 | 2 | 600 | 200.00 | 2025-01-01 | 2025-01-03 |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT COUNT(OrderID) AS total_orders,
@@ -206,6 +217,10 @@ FROM Orders AS o;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner uses COUNT(OrderID) for total_orders while the course answer uses COUNT(*). OrderID is the non-NULL order key, so the counts agree on the supplied schema. Both count distinct CustomerID values, sum and average order amounts, and report the first and last order dates. The SQL Server adaptation casts the amount to a decimal before AVG so the average retains fractional precision; the locked SQLite query is unchanged.
 
 ## Verification
 

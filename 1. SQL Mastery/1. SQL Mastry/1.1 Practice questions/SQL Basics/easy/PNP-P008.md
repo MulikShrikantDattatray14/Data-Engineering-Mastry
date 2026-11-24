@@ -80,6 +80,17 @@ order by ProductID asc
 
 The exact query passed in the tested SQLite configuration, which accepts double-quoted string literals. Checks covered the sample, output names and order, NULL, and fractional prices just below each threshold.
 
+## Important learnings from P008
+
+### 1. CASE uses the first matching boundary
+Prices below 200 are Budget; 200 through values below 700 are Mid; 700 and above are Premium. The order of the WHEN clauses makes the boundary ownership explicit.
+
+### 2. NULL is not a numeric price
+Comparisons with NULL do not evaluate to true. The ELSE branch therefore labels a missing price Unknown, while every product row remains in the result.
+
+### 3. This is a row-level classification
+Each product supplies its own Sale_Price and receives one price_band. No grouping or join is needed.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P008/01.md)
@@ -180,7 +191,7 @@ order by ProductID asc
 | 4 | Watch | 700 | Premium |
 | 5 | Mystery | `NULL` | Unknown |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 select ProductID,Product,Sale_Price,
@@ -252,6 +263,10 @@ ORDER BY p.ProductID;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner writes all three numeric ranges explicitly and uses ELSE 'Unknown'. The course answer checks Sale_Price IS NULL first, then uses the same 200 and 700 boundaries with a final Premium branch. Both classify 199 as Budget, 200 and 699 as Mid, 700 as Premium, and NULL as Unknown. The official CASE is shorter because the second and third branches need only their upper boundary after the earlier branch has failed.
 
 ## Verification
 

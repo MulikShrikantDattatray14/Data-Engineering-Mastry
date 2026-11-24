@@ -87,6 +87,17 @@ group by Allowed
 
 Verified the sample, the output column names and text types, and additional cases with two missing payment flags and a flag value shared by both sources. Chat formatting was removed when assembling the submitted SQL.
 
+## Important learnings from P009
+
+### 1. UNION ALL stacks independent summaries
+Category.Active and Payments.Allowed describe different source populations. Summarize each source in its own SELECT, then stack the result rows; joining the tables would create unrelated combinations.
+
+### 2. Preserve the source and field labels
+The literal source_table and flag_column values explain where each raw value came from. Casting the flags to text gives both branches a common output type.
+
+### 3. Group the raw values, including NULL
+GROUP BY creates one row per distinct flag value in each source. A NULL flag forms its own group; it should not be replaced with zero or dropped.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P009/01.md)
@@ -170,7 +181,7 @@ group by Allowed
 | 🟩 Payments | 🟩 Allowed | 🟩 `'N'` | 🟩 2 |
 | 🟩 Payments | 🟩 Allowed | 🟩 `'Y'` | 🟩 1 |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT 'Category' AS source_table,
@@ -257,6 +268,10 @@ ORDER BY source_table, CASE WHEN raw_value IS NULL THEN 1 ELSE 0 END, raw_value;
 The SQL Server outer sort keeps a missing flag after the nonmissing flags within each source.
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Comparison with the course answer
+
+Both answers aggregate Category.Active and Payments.Allowed separately and combine the summaries with UNION ALL, preserving the source_table and flag_column labels. The learner query does not specify ORDER BY, so the result row order is not guaranteed; the course answer orders by source_table and raw_value with NULLs last. The grouped values and counts are the same; only the presentation order is made deterministic by the official answer.
 
 ## Verification
 
