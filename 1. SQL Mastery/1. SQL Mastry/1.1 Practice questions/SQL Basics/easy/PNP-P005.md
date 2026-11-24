@@ -30,25 +30,25 @@ One output row represents one order placed from 1 January through 31 March 2025,
 
 | 🟦 OrderID | 🟦 CustomerID | 🟦 OrderDate | 🟦 Total_Order_Amount |
 | ---: | ---: | --- | ---: |
-| 1 | 10 | 2024-12-31 | 50 |
-| 2 | 11 | 2025-01-01 | 100 |
-| 3 | 12 | 2025-03-31 | 200 |
-| 4 | 13 | 2025-04-01 | 300 |
+| 🟦 1 | 🟦 10 | 🟦 2024-12-31 | 🟦 50 |
+| 🟦 2 | 🟦 11 | 🟦 2025-01-01 | 🟦 100 |
+| 🟦 3 | 🟦 12 | 🟦 2025-03-31 | 🟦 200 |
+| 🟦 4 | 🟦 13 | 🟦 2025-04-01 | 🟦 300 |
 
 ### Expected output
 
 | 🟦 OrderID | 🟦 CustomerID | 🟦 OrderDate | 🟦 Total_Order_Amount |
 | ---: | ---: | --- | ---: |
-| 2 | 11 | 2025-01-01 | 100 |
-| 3 | 12 | 2025-03-31 | 200 |
+| 🟦 2 | 🟦 11 | 🟦 2025-01-01 | 🟦 100 |
+| 🟦 3 | 🟦 12 | 🟦 2025-03-31 | 🟦 200 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p005.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Order 2 falls on January 1, the first date of the quarter. Its customer is 11 and its amount is 100. Order 3 falls on March 31, the last date of the quarter. Its customer is 12 and its amount is 200.
+🟦 Order 🟦 2 falls on January 🟦 1, the first date of the quarter. Its customer is 🟦 11 and its amount is 🟦 100. Order 🟦 3 falls on March 🟦 31, the last date of the quarter. Its customer is 🟦 12 and its amount is 🟦 200.
 
-🟦 Order 1 falls one day before the quarter and order 4 falls one day after it. Only orders 2 and 3 appear, with the January order first.
+🟦 Order 🟦 1 falls one day before the quarter and order 🟦 4 falls one day after it. Only orders 🟦 2 and 🟦 3 appear, with the January order first.
 
 ## Step 1 · Your approach before writing SQL
 
