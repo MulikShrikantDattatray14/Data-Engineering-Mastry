@@ -92,3 +92,15 @@ For Bosscoder records, retain the assignment's original statement and official s
 ## Completion gate
 
 A record is **not complete** merely because it has SQL, a visual, or a verification section. Before marking it solved/complete, fetch the saved file and check every section above in order, plus the query, worked sample, visual, written walkthrough, official answer, comparison and verification. If any item is missing, the record remains **needs repair**. Apply the same gate to all future records.
+
+## Index update — mandatory finalization step
+
+Immediately after a question is solved, its final learner solution is reviewed and confirmed 100% correct for the stated requirements, and its saved Markdown file passes the PNP-P026 structure/completion gate, update the practice-question index in the same completion workflow.
+
+- Update the relevant category index/README and the main practice-question `README.md` wherever that question is listed or counted.
+- Add the question exactly once, under the correct category and difficulty, with the correct ID, title, and working relative link.
+- Update any totals, progress counts, status tables, or navigation lists affected by the new completed question.
+- Do not index a question as solved/completed while its final solution is unverified, its required sections are missing, or its file has not been saved.
+- After the index write, fetch the updated index file(s) from GitHub and verify the entry, link, category, counts, and absence of duplicates.
+- Treat the question and its index entry as one completion transaction: if the index cannot be updated or verified, report the question as solution-complete but index-pending; do not claim full completion.
+- Apply this to every future PNP and Bosscoder question and when repairing historical records whose index entries are missing or incorrect.
