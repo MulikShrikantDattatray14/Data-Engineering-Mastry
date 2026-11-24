@@ -60,7 +60,7 @@ The course asks for one row per ordering customer whose lifetime spend exceeds t
 | ---: | --- | ---: | ---: | ---: |
 | 🟦 1 | 🟩 Asha Rao | 🟦 300 | 🟦 200.00 | 🟦 50.00 |
 
-**Precision note.** The expected table follows the course’s two-decimal display. The locked learner query returns unrounded numeric values; for this sample SQLite returns `avg_customer_spend = 200.0` and `pct_above_avg = 50.0`. Other inputs can yield additional decimal places. This documented difference is preserved; the selected SQL is unchanged.
+**Precision note.** The expected table follows the course’s two-decimal display. The locked learner query returns unrounded numeric values; for this sample SQLite returns `avg_customer_spend = 🟦 200.0` and `pct_above_avg = 🟦 50.0`. Other inputs can yield additional decimal places. This documented difference is preserved; the selected SQL is unchanged.
 
 
 
@@ -150,7 +150,7 @@ SELECT CustomerID, FirstName, LastName FROM Customers ORDER BY CustomerID;
 
 ### 2. How does each order get a name?
 
-The left side starts with the three orders. Each order already carries the customer ID needed for the next lookup. The learner adds Customers here so the matching name is available before grouping. The LEFT JOIN keeps the purchase amount even if the name lookup fails. Order 10 matches customer 1. With one match per order, the join produces three rows. An unmatched order survives with missing customer fields. The name expression in the next step displays `Unknown` for it.
+The left side starts with the 🟦 three orders. Each order already carries the 🟦 customer ID needed for the next lookup. The learner adds 🟩 Customers here so the matching name is available before grouping. The LEFT JOIN keeps the 🟦 purchase amount even if the name lookup fails. 🟦 Order 10 matches 🟩 customer 1. With one match per order, the join produces 🟦 three rows. An unmatched order survives with missing 🟩 customer fields. The name expression in the next step displays 🟪 `Unknown` for it.
 
 ```sql
 SELECT o.OrderID, o.CustomerID, o.Total_Order_Amount,
@@ -186,11 +186,11 @@ GROUP BY o.CustomerID, c.FirstName, c.LastName;
 | 🟦 2 | 🟩 Ben Das | 🟦 100 |
 | 🟦 3 | 🟩 Cia Sen | 🟦 200 |
 
-In a separate check, replacing order 10 with two orders of 100 and 200 for Asha produced the same total of 300 and the same final row.
+In a separate check, replacing 🟦 order 10 with two 🟦 orders of 🟦 100 and 🟦 200 for 🟩 Asha produced the same 🟦 total of 🟦 300 and the same final row.
 
 ### 4. Why does every customer get the same average?
 
-The second CTE reads `customer_spend`, which contains one row per `CustomerID`/name group (including a `NULL`-ID group if present). `FROM customer_spend AS cs` supplies those customer totals to the outer query. The scalar subquery separately reads all group totals and returns (300 + 100 + 200) ÷ 3 = 200 for this sample, then attaches it to each group. The locked query includes a `NULL`-ID group in this benchmark; the course answer excludes it.
+The second CTE reads `customer_spend`, which contains one row per 🟪 `CustomerID`/name group (including a 🟦 `NULL`-ID group if present). `FROM customer_spend AS cs` supplies those customer totals to the outer query. The scalar subquery separately reads all group totals and returns 🟦 (300 + 100 + 200) ÷ 3 = 200 for this sample, then attaches it to each 🟪 group. The locked query includes a 🟦 `NULL`-ID group in this benchmark; the course answer excludes it.
 
 ```sql
 SELECT
@@ -222,11 +222,11 @@ ORDER BY CustomerID;
 | 🟩 Ben Das | 🟦 100 | 🟦 200.0 | 🟦 0 |
 | 🟩 Cia Sen | 🟦 200 | 🟦 200.0 | 🟦 0 |
 
-The filter keeps Asha. Ben falls below 200. Cia is exactly at 200, so the strict greater-than comparison excludes her.
+The filter keeps 🟩 Asha. 🟩 Ben falls below 🟦 200. 🟩 Cia is exactly at 🟦 200, so the strict greater-than comparison excludes her.
 
 ### 6. How far above average is Asha?
 
-Apply the final projection and sort the surviving rows by descending spend. Asha is 100 above the average. Dividing that difference by 200 and multiplying by 100 gives 50 percent. `NULLIF` guards against dividing by zero.
+Apply the final projection and sort the surviving rows by descending spend. 🟩 Asha is 🟦 100 above the average. Dividing that difference by 🟦 200 and multiplying by 100 gives 🟦 50 percent. `NULLIF` guards against dividing by zero.
 
 ```sql
 SELECT
@@ -247,7 +247,7 @@ ORDER BY total_spend DESC;
 
 ## Sample verification
 
-Executed in SQLite on the three orders in the practice example. Asha, Ben and Cia spend 300, 100 and 200 respectively. The scalar subquery returns 200. The strict comparison excludes Cia, whose total equals the average.
+Executed in SQLite on the 🟦 three orders in the practice example. 🟩 Asha, 🟩 Ben and 🟩 Cia spend 🟦 300, 🟦 100 and 🟦 200 respectively. The scalar subquery returns 🟦 200. The strict comparison excludes 🟩 Cia, whose 🟦 total equals the average.
 
 | 🟦 CustomerID | 🟩 customer_name | 🟦 total_spend | 🟦 avg_customer_spend | 🟦 pct_above_avg |
 | ---: | --- | ---: | ---: | ---: |
@@ -255,8 +255,8 @@ Executed in SQLite on the three orders in the practice example. Asha, Ben and Ci
 
 ## Comparison with the course answer
 
-- Adding an order worth 1000 with a `NULL` customer ID to the practice data produces a fourth group in the submitted query. SQLite returns that group with a total of 1000 and an average of 400. The course answer excludes orders with a `NULL` customer ID before it calculates the average.
-- Giving that same order customer ID 99, which has no customer record, returns `Unknown` in the submission. The course uses `Unknown customer` for an unmatched ID and joins the available name parts for a matched customer. When only one name part is present, the learner's `FirstName || ' ' || LastName` expression also becomes `NULL`, so `COALESCE` returns `Unknown`; the official SQLite adaptation keeps the available part (for example, `Khan` or `Lina`). I verified both partial-name cases with a separate SQLite fixture.
+- Adding a 🟦 order worth 🟦 1000 with a 🟦 `NULL` customer ID to the practice data produces a 🟪 fourth group in the submitted query. SQLite returns that group with a 🟦 total of 🟦 1000 and an average of 🟦 400. The course answer excludes orders with a 🟦 `NULL` customer ID before it calculates the average.
+- Giving that same 🟦 order customer ID 🟦 99, which has no 🟩 customer record, returns 🟪 `Unknown` in the submission. The course uses 🟪 `Unknown customer` for an unmatched ID and joins the available 🟩 name parts for a matched customer. When only one name part is present, the learner's `FirstName || ' ' || LastName` expression also becomes 🟩 `NULL`, so `COALESCE` returns 🟪 `Unknown`; the official SQLite adaptation keeps the available 🟩 part (for example, `Khan` or `Lina`). I verified both partial-name cases with a separate SQLite fixture.
 - The submission returns the unrounded average and percentage and sorts by descending spend. The course rounds both displayed calculations to two decimals and uses customer ID to break spending ties. Both compare totals with the unrounded average.
 
 [Official PostgreSQL answer, Q31](https://github.com/MulikShrikantDattatray14/Data-Engineering-Mastry/blob/fa70de6416696e0d6ab94faee964e048f9552ecd/1.%20SQL%20Mastery/1.%20SQL%20Mastry/2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L370-L393)
@@ -389,4 +389,4 @@ ORDER BY cs.total_spend DESC, cs.CustomerID;
 
 ## Verification
 
-Both SQLite queries return Asha Rao on the practice sample. On the course CSVs (46,438 orders and 5,072 customer records), the locked query returns 1,317 rows and the course SQLite query returns 1,317 rows. 0 orders have a missing customer ID. The separate edge checks above explain how an unrecognized or missing ID changes the result.
+Both SQLite queries return 🟩 Asha Rao on the practice sample. On the course CSVs (🟦 46,438 orders and 🟩 5,072 customer records), the locked query returns 🟪 1,317 rows and the course SQLite query returns 🟪 1,317 rows. 🟦 0 orders have a missing customer ID. The separate edge checks above explain how an unrecognized or missing ID changes the result.

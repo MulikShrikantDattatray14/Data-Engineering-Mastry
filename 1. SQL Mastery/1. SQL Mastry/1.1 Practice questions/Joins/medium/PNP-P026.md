@@ -124,7 +124,7 @@ Return one row per catalogue category, including categories with no sales. Keep 
 
 🟦 **OrderDetails** supplies the sale lines. 🟩 **Products** supplies each product’s price and category reference. 🟥 **Category** supplies the catalogue names. The same colors identify those columns after every join, including any `NULL` cells. A violet (🟪) result combines sources. A double underline marks the join keys, and ▸ marks a row worth following.
 
-Follow **line 5** to see why the first join must preserve sales. Follow **Stationery** to see why the second must also preserve unsold categories. In the grouping step, the two Drinks lines meet again under the same order ID. The aggregation step shows exactly which cells give Drinks **1 order, 3 units and 28 in list-price value**.
+Follow 🟦 **line 5** to see why the first join must preserve sales. Follow 🟥 **Stationery** to see why the second must also preserve unsold categories. In the grouping step, the two 🟥 Drinks lines meet again under the same 🟦 order ID. The aggregation step shows exactly which cells give 🟥 Drinks **🟦 1 order, 🟦 3 units and 🟪 28 in list-price value**.
 
 ![Eight illustrated decisions trace five sale lines and an unsold category into five report rows. Each heading explains why the operation is needed. Source-colored keys, group membership, arithmetic and a final eleven-unit check connect the steps.](../../assets/p026-from-inputs-to-result.svg)
 
@@ -136,7 +136,7 @@ One result row represents a category. Before aggregating, keep enough detail to 
 
 ### 1. Why start with OrderDetails?
 
-FROM OrderDetails supplies one row per sale line—the OrderID and Quantity Finance must trace even when product or category lookups fail. Order `100` spans three lines, each with its own product and quantity.
+FROM 🟦 OrderDetails supplies one row per sale line—the 🟦 OrderID and Quantity Finance must trace even when 🟩 product or 🟥 category lookups fail. 🟦 Order `100` spans 🟦 three lines, each with its own 🟩 product and 🟦 quantity.
 
 ```sql
 SELECT OrderDetailID, OrderID, ProductID, Quantity
@@ -232,7 +232,7 @@ ORDER BY od.OrderDetailID NULLS LAST;
 
 ### 5. Why multiply price by quantity on each line?
 
-Drinks has two different prices within order `100`. Pair each price with its own line’s quantity while those values are still on the same row.
+🟥 Drinks has two different 🟩 prices within 🟦 order `100`. Pair each 🟩 price with its own 🟦 line’s quantity while those values are still on the same row.
 
 ```sql
 SELECT od.OrderDetailID, p.Sale_Price, od.Quantity,
@@ -274,7 +274,7 @@ These are the groups that clause forms from the same six rows. The last column s
 
 ### 7. Why count orders once but add every unit?
 
-Trace the two marked Drinks lines. They share order ID `100`, so Drinks gets one order. Both quantities contribute to units sold, giving `2 + 1 = 3`. Stationery has no matched quantity. `COALESCE` gives it zero units.
+Trace the two marked 🟥 Drinks lines. They share 🟦 order ID `100`, so 🟥 Drinks gets 🟦 one order. Both 🟦 quantities contribute to units sold, giving `🟦 2 + 🟦 1 = 🟦 3`. 🟥 Stationery has no matched quantity. `COALESCE` gives it 🟦 zero units.
 
 ![In the two highlighted Drinks rows the OrderID is 100.](../../assets/p026-orders-focus.svg)
 
@@ -309,7 +309,7 @@ ORDER BY category_name ASC;
 
 #### Why does Stationery get a zero and Unknown product get NULL?
 
-Multiply quantity by the price on that line before summing. To decide whether zero is justified, count `od.OrderDetailID`. The outer join gives Stationery a placeholder with a `NULL` line ID, so its count is zero. For `Unknown product`, order line 5 exists. Multiplication by its missing price gives `NULL`, and its group has no priced line to add.
+Multiply 🟦 quantity by the 🟩 price on that line before summing. To decide whether zero is justified, count 🟦 `od.OrderDetailID`. The outer join gives 🟥 Stationery a placeholder with a 🟦 `NULL` line ID, so its count is 🟦 zero. For 🟪 `Unknown product`, 🟦 order line 5 exists. Multiplication by its missing 🟩 price gives 🟪 `NULL`, and its group has no priced line to add.
 
 ```sql
 SELECT
@@ -361,7 +361,7 @@ ORDER BY list_price_value DESC NULLS LAST, category_name ASC;
 | 🟪 Stationery | 🟦 0 | 🟦 0 | 🟪 0 |
 | 🟪 ▸ Unknown product | 🟦 1 | 🟦 4 | 🟪 **`NULL`** |
 
-All **11 units** are accounted for. The five order lines contain `2 + 1 + 1 + 3 + 4 = 11` units. The output contains `3 + 3 + 1 + 0 + 4 = 11`.
+All **🟦 11 units** are accounted for. The five 🟦 order lines contain `🟦 2 + 🟦 1 + 🟦 1 + 🟦 3 + 🟦 4 = 🟦 11` units. The output contains `🟦 3 + 🟦 3 + 🟦 1 + 🟦 0 + 🟦 4 = 🟦 11`.
 
 ## Learner solution — SQL Server adaptation
 

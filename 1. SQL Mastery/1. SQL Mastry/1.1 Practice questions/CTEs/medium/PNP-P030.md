@@ -97,7 +97,7 @@ ORDER BY customer_type;
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P030/01.md)
 
-Customer **20** is the row to follow. The triangle points to its two orders, its single CTE row and its contribution to the `Repeat` result. The final panel adds one hypothetical order to explain the approved filter.
+🟦 Customer **20** is the row to follow. The triangle points to its 🟦 two orders, its 🟦 single CTE row and its contribution to the `Repeat` result. The final panel adds one hypothetical order to explain the approved filter.
 
 ![Four Orders rows become three identified customers and two customer groups. A separate check follows an order with a missing customer ID.](../../assets/walkthroughs/p030.svg)
 
@@ -125,7 +125,7 @@ ORDER BY OrderID;
 | 🟦 3 | 🟦 20 |
 | 🟦 4 | 🟦 30 |
 
-All four sample orders have customer IDs. Orders **2** and **3** both belong to customer **20**.
+All 🟦 four sample orders have customer IDs. 🟦 Orders **2** and **3** both belong to 🟦 customer **20**.
 
 ### 2. How many orders did each customer place?
 
@@ -147,7 +147,7 @@ ORDER BY CustomerID;
 | 🟦 20 | 🟦 2 |
 | 🟦 30 | 🟦 1 |
 
-Customer **20** has orders **2** and **3**, so `COUNT(OrderID)` returns **2**. Customers **10** and **30** each have one order.
+🟦 Customer **20** has orders **2** and **3**, so `COUNT(OrderID)` returns 🟦 **2**. 🟦 Customers **10** and **30** each have 🟦 one order.
 
 ### 3. Which label does the CTE give each customer?
 
@@ -211,7 +211,7 @@ ORDER BY customer_type, CustomerID;
 | 🟦 One-time | 🟦 30 | 🟦 1 |
 | 🟦 Repeat | 🟦 20 | 🟦 2 |
 
-The `One-time` group contains customers **10** and **30**, with one numeric `total_orders` value on each row. The `Repeat` group contains customer **20**. Their value is **2**, and `COUNT(total_orders)` counts that value once.
+The `One-time` group contains 🟦 customers **10** and **30**, with one numeric 🟦 `total_orders` value on each row. The `Repeat` group contains 🟦 customer **20**. Their value is 🟦 **2**, and `COUNT(total_orders)` counts that value once.
 
 After the same `WITH` clause, the grouped preview is
 
@@ -265,11 +265,11 @@ ORDER BY customer_type;
 | 🟦 One-time | 🟦 2 | 🟦 66.67 |
 | 🟦 Repeat | 🟦 1 | 🟦 33.33 |
 
-The two group counts reconcile to all three customers. The shares in this sample sum to **100.00%**.
+The two group counts reconcile to all 🟦 three customers. The shares in this sample sum to 🟦 **100.00%**.
 
 ## Missing customer ID check
 
-Add one hypothetical order to the four-order practice sample. Order **5** has a `NULL` customer ID. Grouping first gives this order its own group, an order count of **1** and the label `One-time`. That adds an unidentified customer to the numerator and denominator. The filter removes the row before either count.
+Add one hypothetical 🟦 order to the 🟦 four-order practice sample. 🟦 Order **5** has a 🟦 `NULL` customer ID. Grouping first gives this order its own group, an order count of 🟦 **1** and the label `One-time`. That adds an unidentified customer to the numerator and denominator. The filter removes the row before either count.
 
 | 🟦 `customer_type` | Submitted customer count | Submitted share | Revised customer count | Revised share |
 |---|---:|---:|---:|---:|

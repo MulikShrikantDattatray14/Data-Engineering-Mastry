@@ -123,7 +123,7 @@ ORDER BY orders DESC;
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P028/01.md)
 
-Use the original three orders and the two we added during practice. Order **13** carries payment ID **99** and an amount of **50**. Order **14** carries a missing payment ID and an amount of **150**. These five orders stay in view through the last step.
+Use the original 🟦 three orders and the two we added during practice. 🟦 Order **13** carries payment ID **99** and an amount of **50**. 🟦 Order **14** carries a missing payment ID and an amount of **150**. These 🟦 five orders stay in view through the last step.
 
 🟦 **Orders** supplies IDs and amounts. 🟩 **Payments** supplies labels. The two join keys have a double underline. A ▸ marks a focus row, and darker cells show the inputs to the current calculation. The ƒ symbol identifies calculated columns in their source colors.
 
@@ -159,7 +159,7 @@ SELECT PaymentID, PaymentType FROM Payments ORDER BY PaymentID;
 | 🟩 1 | 🟩 UPI |
 | 🟩 2 | 🟩 Card |
 
-Orders 10–12 are the original sample. Our practice example adds order 13 for 50 and order 14 for 150.
+🟦 Orders 10–12 are the original sample. Our practice example adds 🟦 order 13 for 🟦 50 and 🟦 order 14 for 🟦 150.
 
 ### 2. Why LEFT JOIN on PaymentID?
 
@@ -173,7 +173,7 @@ LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
 ORDER BY o.OrderID;
 ```
 
-**5 order rows → 5 joined rows**
+**🟦 5 order rows → 🟪 5 joined rows**
 
 | 🟦 `OrderID` | 🟦 `PaymentID` | 🟦 `Total_Order_Amount` | 🟩 `PaymentID` | 🟩 `PaymentType` |
 | ---: | ---: | ---: | ---: | --- |
@@ -183,7 +183,7 @@ ORDER BY o.OrderID;
 | 🟦 13 | 🟦 99 | 🟦 50 | 🟩 `NULL` | 🟩 `NULL` |
 | 🟦 14 | 🟦 `NULL` | 🟦 150 | 🟩 `NULL` | 🟩 `NULL` |
 
-Order 13 has payment ID 99. Order 14 has a missing ID. Both keep their blue order values and receive green NULLs.
+🟦 Order 13 has payment ID 🟦 99. 🟦 Order 14 has a missing ID. Both keep their 🟦 order values and receive 🟩 `NULL`s.
 
 ### 3. Why name missing payment types before grouping?
 
@@ -198,7 +198,7 @@ LEFT JOIN Payments AS p ON o.PaymentID = p.PaymentID
 ORDER BY o.OrderID;
 ```
 
-**5 joined rows → 5 labeled rows**
+**🟪 5 joined rows → 🟪 5 labeled rows**
 
 | 🟦 `OrderID` | 🟦 `PaymentID` | 🟦 `Total_Order_Amount` | 🟩 `PaymentID` | 🟩 `PaymentType` | 🟩 `payment_type` |
 | ---: | ---: | ---: | ---: | --- | --- |
@@ -208,7 +208,7 @@ ORDER BY o.OrderID;
 | 🟦 13 | 🟦 99 | 🟦 50 | 🟩 `NULL` | 🟩 `NULL` | 🟩 Unknown |
 | 🟦 14 | 🟦 `NULL` | 🟦 150 | 🟩 `NULL` | 🟩 `NULL` | 🟩 Unknown |
 
-Orders 13 and 14 now have the same display label. Grouping by the original order-side payment ID would split them.
+🟦 Orders 13 and 14 now have the same 🟪 display label. Grouping by the original 🟦 order-side payment ID would split them.
 
 ### 4. Why group by the displayed payment type?
 
@@ -230,7 +230,7 @@ GROUP BY payment_type
 ORDER BY MIN(OrderID);
 ```
 
-**5 labeled orders → 3 groups**
+**🟦 5 labeled orders → 🟪 3 groups**
 
 | 🟩 `payment_type` | 🟦 `OrderIDs in group` | 🟦 `Amounts in group` |
 | --- | --- | --- |
@@ -238,13 +238,13 @@ ORDER BY MIN(OrderID);
 | 🟩 Card | 🟦 12 | 🟦 300 |
 | 🟩 Unknown | 🟦 13, 14 | 🟦 50 + 150 |
 
-Orders 10 and 11 belong to UPI. Orders 13 and 14 belong to Unknown. Each order is in exactly one group.
+🟦 Orders 10 and 11 belong to 🟩 UPI. 🟦 Orders 13 and 14 belong to 🟪 Unknown. Each 🟦 order is in exactly one 🟪 group.
 
 ### 5. Why count order IDs and add order amounts?
 
 One measure counts transactions. The other measures the money collected by that payment type.
 
-For this intermediate table, the first OrderID in each group determines display order. The final sort appears in step 8.
+For this intermediate table, the first 🟦 OrderID in each group determines display order. The final sort appears in step 8.
 
 ```sql
 SELECT COALESCE(p.PaymentType, 'Unknown') AS payment_type,
@@ -274,9 +274,9 @@ ORDER BY MIN(o.OrderID);
 | 🟩 Card | 🟦 1 | 🟦 300 |
 | 🟩 Unknown | 🟦 2 | 🟦 200 |
 
-UPI counts orders 10 and 11 and adds 100 + 200. Card reaches the same value of 300 with one order.
+🟩 UPI counts 🟦 orders 10 and 11 and adds 🟦 100 + 🟦 200 = 🟦 300. 🟩 Card reaches the same 🟦 value of 🟦 300 with 🟦 one order.
 
-The order-side IDs 13 and 14 are both present. Counting the matched payment IDs would give zero for the Unknown group.
+The 🟦 order-side IDs 13 and 14 are both present. Counting the matched 🟩 payment IDs would give 🟩 zero for the 🟪 Unknown group.
 
 ### 6. Why do both scalar subqueries read all five orders?
 
@@ -306,13 +306,13 @@ SELECT
 | ---: | ---: |
 | 🟦 5 | 🟦 800 |
 
-Five order rows give a count of 5. Their amounts add to 100 + 200 + 300 + 50 + 150 = 800.
+🟦 Five order rows give a count of 🟦 5. Their amounts add to 🟦 100 + 🟦 200 + 🟦 300 + 🟦 50 + 🟦 150 = 🟦 800.
 
 ### 7. Why do the two shares use different denominators?
 
 Compare a group’s order count with all orders and its value with all order value. Round each percentage to two decimal places.
 
-For this intermediate table, the first OrderID in each group determines display order. The final sort appears in step 8.
+For this intermediate table, the first 🟦 OrderID in each group determines display order. The final sort appears in step 8.
 
 ```sql
 SELECT COALESCE(p.PaymentType, 'Unknown') AS payment_type,
@@ -338,9 +338,9 @@ ORDER BY MIN(o.OrderID);
 | 🟩 Card | 🟦 1 | 🟦 5 | 🟦 20.00 | 🟦 300 | 🟦 800 | 🟦 37.50 |
 | 🟩 Unknown | 🟦 2 | 🟦 5 | 🟦 40.00 | 🟦 200 | 🟦 800 | 🟦 25.00 |
 
-UPI has 2 of 5 orders, or 40.00%. Its 300 out of 800 in value gives 37.50%.
+🟩 UPI has 🟦 2 of 🟦 5 orders, or 🟦 40.00%. Its 🟦 300 out of 🟦 800 in value gives 🟦 37.50%.
 
-The decimal literal `100.0` preserves the fraction. Round only after the division. For Unknown the two shares are 2 × 100 ÷ 5 = 40.00% and 200 × 100 ÷ 800 = 25.00%.
+The decimal literal `100.0` preserves the fraction. Round only after the division. For 🟪 Unknown the two shares are 🟦 2 × 100 ÷ 🟦 5 = 🟦 40.00% and 🟦 200 × 100 ÷ 🟦 800 = 🟦 25.00%.
 
 ![Two blue strips show UPI’s orders 10 and 11 as two of five equal count segments, and the first 300 of 800 units of money when segment widths follow order value.](../../assets/p028-payment-shares.svg)
 
@@ -370,7 +370,7 @@ GROUP BY payment_type
 ORDER BY orders DESC;
 ```
 
-**3 output rows · 5 orders · 800 in value**
+**🟪 3 output rows · 🟦 5 orders · 🟦 800 in value**
 
 | 🟩 `payment_type` | 🟦 `orders` | 🟦 `pct_of_orders` | 🟦 `order_value` | 🟦 `pct_of_value` |
 | --- | ---: | ---: | ---: | ---: |
@@ -378,7 +378,7 @@ ORDER BY orders DESC;
 | 🟩 Unknown | 🟦 2 | 🟦 40.00 | 🟦 200 | 🟦 25.00 |
 | 🟩 Card | 🟦 1 | 🟦 20.00 | 🟦 300 | 🟦 37.50 |
 
-The rows account for 2 + 2 + 1 = 5 orders and 300 + 200 + 300 = 800. Both shares sum to 100.00% in this example.
+The rows account for 🟦 2 + 🟦 2 + 🟦 1 = 🟦 5 orders and 🟦 300 + 🟦 200 + 🟦 300 = 🟦 800. Both shares sum to 🟦 100.00% in this example.
 
 In other datasets, rounding each percentage separately can make the displayed shares add to 99.99% or 100.01%.
 

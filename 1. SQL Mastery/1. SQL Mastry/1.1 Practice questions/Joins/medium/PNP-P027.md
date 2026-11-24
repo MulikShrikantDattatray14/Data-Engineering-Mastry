@@ -112,7 +112,7 @@ One output row represents one state group with at least ten orders, including th
 - **🟩 Maharashtra:** Customer 🟪 3 has orders 🟦 12–🟦 21. Five known amounts of 🟦 200 total **🟪 5 × 🟦 200 = 🟦 1,000**; the other five amounts are `🟪 NULL`. There are 🟦 10 orders and 🟪 1 customer. `AVG` ignores the five missing amounts, so the average is **🟦 200.00**.
 - **🟩 Karnataka:** Customers 🟪 1 and 🟪 2 have orders 🟪 1–🟪 5 and 🟪 6–🟦 10. That is **🟪 2 customers and 🟦 10 orders**. All amounts are 🟦 100, so **🟦 10 × 🟦 100 = 🟦 1,000** and the average is **🟦 100.00**.
 - **🟩 Unknown:** Order 🟦 11 (customer ID 🟦 99) contributes 🟦 50; customer 🟪 4 contributes orders 🟦 22–🟦 26 (**🟪 5 × 🟦 50 = 250**) and customer 🟪 5 contributes orders 🟦 27–🟦 30 (**🟪 4 × 🟦 50 = 🟦 200**). Their missing or unmatched state labels are grouped as 🟩 Unknown. Together that is **🟪 3 customer IDs, 🟦 10 orders, 🟦 500 total and 🟦 50.00 average**.
-- **🟩 Goa:** Customer 🟪 6 has orders 🟦 31–🟦 39, so **🟦 9 × 🟦 300 = 2,700** and an average of 🟦 300.00. The group is excluded because it has fewer than 🟦 10 orders, even though its average is the highest.
+- **🟩 Goa:** Customer 🟪 6 has orders 🟦 31–🟦 39, so **🟦 9 × 🟦 300 = 🟦 2,700** and an average of 🟦 300.00. The group is excluded because it has fewer than 🟦 10 orders, even though its average is the highest.
 - **🟩 Kerala:** Customer 🟪 7 has orders 🟦 40–🟦 49, all with missing amounts. It has 🟦 10 orders and qualifies on the count, but its total and average remain `🟪 NULL` because no amount is known.
 
 The expected rows are ordered by average order value descending: 🟦 200.00, 🟦 100.00, 🟦 50.00, then `🟪 NULL`.
@@ -162,7 +162,7 @@ HAVING COUNT(Orders.OrderID) >= 10
 ORDER BY avg_order_value DESC;
 ```
 
-On the 49-order example, SQLite resolves `GROUP BY state` to `Customers.State`. The six orders with a raw `NULL` and the four with a stored `Unknown` form two groups. Both fall below ten, so the submitted query drops the `Unknown` row. Grouping by the displayed expression combines them. The corrected result for that state is three buyers, ten orders, 500 total value and 50 average order value.
+On the 🟦 49-order example, SQLite resolves `GROUP BY state` to `Customers.State`. The 🟦 six orders with a raw 🟩 `NULL` and the 🟦 four with a stored 🟩 `Unknown` form two groups. Both fall below 🟦 ten, so the submitted query drops the 🟪 `Unknown` row. Grouping by the displayed expression combines them. The corrected result for that 🟪 state is 🟪 three buyers, 🟦 ten orders, 🟦 500 total value and 🟦 50 average order value.
 
 </details>
 
@@ -210,7 +210,7 @@ ORDER BY avg_order_value DESC;
 
 🟦 **Orders** supplies the order IDs, buyer IDs and amounts. 🟩 **Customers** supplies the state. Each color stays with its source through the join, including any `NULL` cell. A double underline marks the join keys, ▸ marks a focus row, and ƒ marks a calculated column in its source color.
 
-The diagram keeps the original ten orders and adds examples from practice. Follow **order 11** through the missing customer lookup. Then follow **Maharashtra** through the two counts used in this report. Lists such as `12–16` show inclusive OrderID ranges. Each number is a separate order.
+The diagram keeps the original 🟦 ten orders and adds examples from practice. Follow 🟦 **order 11** through the missing 🟩 customer lookup. Then follow 🟩 **Maharashtra** through the two counts used in this report. Lists such as 🟦 `12–16` show inclusive OrderID ranges. Each number is a separate 🟦 order.
 
 ![Eight illustrated decisions follow 49 orders through the customer lookup, normalized state, grouping, aggregates, ten-order cutoff and final AOV sort. Coloured cells show the values used at each step.](../../assets/p027-from-inputs-to-result.svg)
 
@@ -220,7 +220,7 @@ The diagram keeps the original ten orders and adds examples from practice. Follo
 
 ### 1. Why start with Orders?
 
-FROM Orders supplies one row per purchase because the report counts order IDs and their amounts, even when a customer is missing or an amount is NULL. The example below uses the same 49 orders and seven customers in every step. In the blue table, each OrderID within a range has the listed CustomerID and amount.
+FROM 🟦 Orders supplies one row per purchase because the report counts 🟦 order IDs and their 🟦 amounts, even when a customer is missing or an amount is 🟦 `NULL`. The example below uses the same 🟦 49 orders and 🟩 seven customers in every step. In the blue table, each 🟦 OrderID within a range has the listed 🟦 CustomerID and amount.
 
 **🟦 Orders**
 
@@ -248,7 +248,7 @@ FROM Orders supplies one row per purchase because the report counts order IDs an
 | 🟩 6 | 🟩 Goa |
 | 🟩 7 | 🟩 Kerala |
 
-Order 11 carries buyer ID 99 even though the customer table has no row for 99.
+🟦 Order 11 carries buyer ID 🟦 99 even though the 🟩 customer table has no row for that ID.
 
 ### 2. Why LEFT JOIN Customers?
 
@@ -308,7 +308,7 @@ Read the `Unknown` row as one unmatched order, five orders for a customer whose 
 
 ### 5. Why count buyers and orders separately?
 
-Count the buyer ID on the order side. For order 11 that value is 99 even though the customer lookup returned `NULL`. Repeated purchases by one buyer count once in `customers` and once per purchase in `orders`. If the order’s own buyer ID is SQL `NULL`, `COUNT(DISTINCT ...)` skips that unknown ID and the order itself still counts.
+Count the buyer ID on the order side. For 🟦 order 11 that value is 🟦 99 even though the 🟩 customer lookup returned 🟩 `NULL`. Repeated purchases by one buyer count once in 🟦 `customers` and once per purchase in 🟦 `orders`. If the order’s own buyer ID is SQL 🟦 `NULL`, `COUNT(DISTINCT ...)` skips that unknown ID and the 🟦 order itself still counts.
 
 ```sql
 COUNT(DISTINCT Orders.CustomerID) AS customers,
@@ -340,7 +340,7 @@ AVG(Orders.Total_Order_Amount) AS avg_order_value
 | 🟩 Maharashtra | 🟦 1 | 🟦 10 | 🟦 5 | 🟦 1000 | 🟦 200.00 |
 | 🟩 Unknown | 🟦 3 | 🟦 10 | 🟦 10 | 🟦 500 | 🟦 50.00 |
 
-Maharashtra has five amounts of 200 and five missing amounts. Its `orders` is 10, its `order_value` is 1,000, and its `avg_order_value` is 1,000 ÷ 5 = 200.00. The **Known amounts** column illustrates the denominator and appears only in the walkthrough.
+🟩 Maharashtra has five 🟦 amounts of 🟦 200 and five 🟦 missing amounts. Its 🟦 `orders` is 🟦 10, its 🟦 `order_value` is 🟦 1,000, and its 🟦 `avg_order_value` is 🟦 1,000 ÷ 🟦 5 = 🟦 200.00. The **Known amounts** column illustrates the denominator and appears only in the walkthrough.
 
 ![Maharashtra has ten orders and five known amounts, Karnataka ten and ten, and Kerala ten and zero. Their respective averages are 200, 100 and NULL.](../../assets/p027-average-focus.svg)
 
@@ -377,7 +377,7 @@ ORDER BY avg_order_value DESC;
 | 🟩 Unknown | 🟦 3 | 🟦 10 | 🟦 500 | 🟦 50.00 |
 | 🟩 Kerala | 🟦 1 | 🟦 10 | 🟦 `NULL` | 🟦 `NULL` |
 
-The qualifying rows account for **40 orders**. Together with Goa’s nine excluded orders, they reconcile to the original **49**. Even though Maharashtra and Karnataka have the same total value, their different counts of known amounts put Maharashtra first.
+The qualifying rows account for **🟦 40 orders**. Together with 🟩 Goa’s 🟦 nine excluded orders, they reconcile to the original **🟦 49**. Even though 🟩 Maharashtra and 🟩 Karnataka have the same 🟦 total value, their different counts of known amounts put 🟩 Maharashtra first.
 
 ## Learner solution — SQL Server
 

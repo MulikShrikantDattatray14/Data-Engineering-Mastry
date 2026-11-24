@@ -63,9 +63,9 @@ One output row represents one shipper represented on orders, including Unknown s
 
 ### How the sample produces this output
 
-🟩 **FastShip** carried orders 🟪 10 and 🟪 11, worth 🟦 `🟦 100 + 🟦 200 = 🟦 300`. Order 🟪 10 contains 🟥 `🟪 2 + 🟥 3 = 5` units and order 🟪 11 contains another 🟥 4, giving 🟥 `5 + 🟥 4 = 🟥 9` units across two orders.
+🟩 **FastShip** carried orders 🟦 10 and 🟦 11, worth 🟦 `🟦 100 + 🟦 200 = 🟦 300`. 🟦 Order 10 contains 🟥 `🟥 2 + 🟥 3 = 🟥 5` units and 🟦 order 11 contains another 🟥 4, giving 🟥 `🟥 5 + 🟥 4 = 🟥 9` units across two orders.
 
-🟩 **SlowShip** carried order 🟪 12, worth 🟦 **🟦 50**, with 🟥 **🟪 1 unit**. 🟩 FastShip appears first because its order value is higher. Every sample order has a recognized shipper ID.
+🟩 **SlowShip** carried 🟦 order 12, worth 🟦 **50**, with 🟥 **1 unit**. 🟩 FastShip appears first because its 🟦 order value is higher. Every sample order has a recognized shipper ID.
 
 ## Step 1 · Your approach before writing SQL
 
@@ -75,7 +75,7 @@ One output row represents one shipper represented on orders, including Unknown s
 
 ## Final learner solution — SQLite
 
-Shri’s final SQLite solution uses the per-order CTE and both left joins. In the saved query, `COALESCE(SUM(od.total_units), 0)` gives OtherShip zero units when its only order has no detail rows.
+Shri’s final SQLite solution uses the per-order CTE and both left joins. In the saved query, `COALESCE(SUM(od.total_units), 0)` gives 🟩 OtherShip 🟥 zero units when its only order has no 🟥 detail rows.
 
 ```sql
 WITH OrderDetails_2 AS (
@@ -132,7 +132,7 @@ FROM OrderDetails_2
 ORDER BY OrderID;
 ```
 
-**One units total per order** · 4 detail lines → 3 orders
+**One units total per order** · 🟥 4 detail lines → 🟥 3 orders
 
 | 🟥 `OrderID` | 🟥 `total_units` |
 | ---: | ---: |
@@ -140,7 +140,7 @@ ORDER BY OrderID;
 | 🟥 11 | 🟥 4 |
 | 🟥 12 | 🟥 1 |
 
-Order 10 contributes 2 + 3 = 5 units. The other orders contribute 4 and 1. All 10 units are accounted for.
+🟥 Order 10 contributes 🟥 2 + 🟥 3 = 🟥 5 units. The other orders contribute 🟥 4 and 🟥 1. All 🟥 10 units are accounted for.
 
 ### 2. Why start the outer query with Orders?
 
@@ -152,7 +152,7 @@ A CTE can be declared before the outer query uses it. The outer `FROM Orders` de
 SELECT OrderID, ShipperID, Total_Order_Amount FROM Orders ORDER BY OrderID;
 ```
 
-**Report starts with these three orders** · 3 orders → 3 rows
+**Report starts with these three orders** · 🟦 3 orders → 🟦 3 rows
 
 | 🟦 `OrderID` | 🟦 `ShipperID` | 🟦 `Total_Order_Amount` |
 | ---: | ---: | ---: |
@@ -160,7 +160,7 @@ SELECT OrderID, ShipperID, Total_Order_Amount FROM Orders ORDER BY OrderID;
 | 🟦 11 | 🟦 1 | 🟦 200 |
 | 🟦 12 | 🟦 2 | 🟦 50 |
 
-Order 10 enters with its amount of 100 on a single row. An order can enter even when its shipper or its detail rows are missing.
+🟦 Order 10 enters with its amount of 🟦 100 on a single row. An order can enter even when its shipper or its detail rows are missing.
 
 ### 3. Why add Shippers with a LEFT JOIN?
 
@@ -177,7 +177,7 @@ LEFT JOIN Shippers AS s
 ORDER BY o.OrderID;
 ```
 
-**Orders with their shipper lookup** · 3 orders → 3 joined rows
+**Orders with their shipper lookup** · 🟦 3 orders → 🟪 3 joined rows
 
 | 🟦 `o.OrderID` | 🟦 `o.ShipperID` | 🟦 `o.Total_Order_Amount` | 🟩 `s.ShipperID` | 🟩 `s.CompanyName` |
 | ---: | ---: | ---: | ---: | --- |
@@ -185,16 +185,16 @@ ORDER BY o.OrderID;
 | 🟦 11 | 🟦 1 | 🟦 200 | 🟩 1 | 🟩 FastShip |
 | 🟦 12 | 🟦 2 | 🟦 50 | 🟩 2 | 🟩 SlowShip |
 
-Orders 10 and 11 both find FastShip. A missing lookup would leave the green columns NULL. A shipper with no orders supplies no report row.
+🟦 Orders 10 and 11 both find 🟩 FastShip. A missing lookup would leave the 🟩 columns 🟩 `NULL`. A shipper with no orders supplies no report row.
 
-**Separate check · missing and unrecognised shippers.** Add order 15 with `ShipperID = 99`, amount 40 and a detail quantity of 3. Add order 17 with a missing `ShipperID`, amount 30 and a detail quantity of 2. The first join returns these two additional rows.
+**Separate check · missing and unrecognised shippers.** Add 🟦 order 15 with 🟦 `ShipperID = 99`, amount 🟦 40 and a detail quantity of 🟥 3. Add 🟦 order 17 with a missing 🟦 `ShipperID`, amount 🟦 30 and a detail quantity of 🟥 2. The first join returns these two additional rows.
 
 | 🟦 `o.OrderID` | 🟦 `o.ShipperID` | 🟦 `o.Total_Order_Amount` | 🟩 `s.ShipperID` | 🟩 `s.CompanyName` |
 | ---: | ---: | ---: | ---: | --- |
 | 🟦 15 | 🟦 99 | 🟦 40 | 🟩 `NULL` | 🟩 `NULL` |
 | 🟦 17 | 🟦 `NULL` | 🟦 30 | 🟩 `NULL` | 🟩 `NULL` |
 
-Both shipper names are `NULL`, so the displayed label puts these two orders together. 🟩 `Unknown shipper` receives 🟦 **2 orders** worth **40 + 30 = 70**, and 🟥 **3 + 2 = 5 units**.
+Both 🟩 shipper names are 🟩 `NULL`, so the displayed label puts these two 🟦 orders together. 🟪 `Unknown shipper` receives 🟦 **2 orders** worth 🟦 **40 + 30 = 70**, and 🟥 **3 + 2 = 5 units**.
 
 ### 4. Why LEFT JOIN the units summary third?
 
@@ -221,7 +221,7 @@ LEFT JOIN `OrderDetails_2` AS od
 ORDER BY o.OrderID;
 ```
 
-**One joined row per order** · 3 joined rows → 3 joined rows
+**One joined row per order** · 🟪 3 joined rows → 🟪 3 joined rows
 
 | 🟦 `o.OrderID` | 🟦 `o.ShipperID` | 🟦 `o.Total_Order_Amount` | 🟩 `s.ShipperID` | 🟩 `s.CompanyName` | 🟥 `od.OrderID` | 🟥 `od.total_units` |
 | ---: | ---: | ---: | ---: | --- | ---: | ---: |
@@ -229,17 +229,17 @@ ORDER BY o.OrderID;
 | 🟦 11 | 🟦 1 | 🟦 200 | 🟩 1 | 🟩 FastShip | 🟥 11 | 🟥 4 |
 | 🟦 12 | 🟦 2 | 🟦 50 | 🟩 2 | 🟩 SlowShip | 🟥 12 | 🟥 1 |
 
-Order 10 now carries amount 100 and 5 units. Both joins match directly to Orders, so these two lookups can trade places once the units summary is ready.
+🟦 Order 10 now carries amount 🟦 100 and 🟥 5 units. Both joins match directly to 🟦 Orders, so these two lookups can trade places once the units summary is ready.
 
-**Why order 10’s amount stays at 100.** Joining the two raw detail lines would repeat its 🟦 amount twice. FastShip would then show `100 + 100 + 200 = 400`. The CTE gives order 10 one match and FastShip the correct `100 + 200 = 300`. Distinct order IDs alone only fix the order count.
+**Why 🟦 order 10’s amount stays at 🟦 100.** Joining the two raw detail lines would repeat its 🟦 amount twice. 🟩 FastShip would then show `🟦 100 + 🟦 100 + 🟦 200 = 🟦 400`. The CTE gives 🟦 order 10 one match and 🟩 FastShip the correct `🟦 100 + 🟦 200 = 🟦 300`. Distinct order IDs alone only fix the 🟦 order count.
 
-**Separate check · one order with no details.** Start again from the original sample. Add 🟩 OtherShip with ID 3 and its only 🟦 order, ID 16, worth 80. Give order 16 no detail rows. Immediately after the second join the order looks like this.
+**Separate check · one order with no details.** Start again from the original sample. Add 🟩 OtherShip with 🟩 ID 3 and its only 🟦 order, ID 16, worth 🟦 80. Give 🟦 order 16 no 🟥 detail rows. Immediately after the second join the order looks like this.
 
 | 🟦 `o.OrderID` | 🟦 `o.ShipperID` | 🟦 `o.Total_Order_Amount` | 🟩 `s.ShipperID` | 🟩 `s.CompanyName` | 🟥 `od.OrderID` | 🟥 `od.total_units` |
 | ---: | ---: | ---: | ---: | --- | ---: | ---: |
 | 🟦 16 | 🟦 3 | 🟦 80 | 🟩 3 | 🟩 OtherShip | 🟥 `NULL` | 🟥 `NULL` |
 
-The 🟥 `od.OrderID` and `od.total_units` cells are `NULL`. Both come from the missing lookup row. Compare the two unit expressions for the resulting OtherShip group.
+The 🟥 `od.OrderID` and `od.total_units` cells are 🟥 `NULL`. Both come from the missing lookup row. Compare the two unit expressions for the resulting 🟩 OtherShip group.
 
 ```sql
 WITH OrderDetails_2 AS (
@@ -266,7 +266,7 @@ ORDER BY order_value DESC;
 | --- | ---: | ---: | ---: | ---: |
 | 🟩 OtherShip | 🟦 1 | 🟦 80 | 🟥 `NULL` | 🟥 0 |
 
-The raw 🟥 sum is `NULL` because there are no known units to add. The outside `COALESCE` changes the displayed units to **0**. The 🟦 order count stays **1** and the amount stays **80**.
+The raw 🟥 sum is 🟥 `NULL` because there are no known units to add. The outside `COALESCE` changes the displayed units to 🟥 **0**. The 🟦 order count stays 🟦 **1** and the amount stays 🟦 **80**.
 
 ### 5. Why use the displayed shipper name for grouping?
 
@@ -290,7 +290,7 @@ LEFT JOIN `OrderDetails_2` AS od
 ORDER BY shipper_name, o.OrderID;
 ```
 
-**Members of each group** · 3 orders → 2 shipper groups
+**Members of each group** · 🟦 3 orders → 🟪 2 shipper groups
 
 | 🟩 `shipper_name` | 🟦 `OrderID` | 🟦 `Total_Order_Amount` | 🟥 `total_units` |
 | --- | ---: | ---: | ---: |
@@ -298,7 +298,7 @@ ORDER BY shipper_name, o.OrderID;
 | 🟩 FastShip | 🟦 11 | 🟦 200 | 🟥 4 |
 | 🟩 SlowShip | 🟦 12 | 🟦 50 | 🟥 1 |
 
-FastShip receives orders 10 and 11. SlowShip receives order 12. All three order IDs occur exactly once before the shipper totals are calculated.
+🟩 FastShip receives 🟦 orders 10 and 11. 🟩 SlowShip receives 🟦 order 12. All three 🟦 order IDs occur exactly once before the shipper totals are calculated.
 
 ### 6. Why count, add and then sort?
 
@@ -331,22 +331,22 @@ GROUP BY shipper_name
 ORDER BY order_value DESC;
 ```
 
-**Final output · original practice sample** · 2 groups → 2 report rows
+**Final output · original practice sample** · 🟪 2 groups → 🟪 2 report rows
 
 | 🟩 `shipper_name` | 🟦 `orders` | 🟦 `order_value` | 🟥 `units_shipped` |
 | --- | ---: | ---: | ---: |
 | 🟩 FastShip | 🟦 2 | 🟦 300 | 🟥 9 |
 | 🟩 SlowShip | 🟦 1 | 🟦 50 | 🟥 1 |
 
-FastShip comes first because 300 exceeds 50. The two rows account for all 3 orders, 350 in order value and 10 units.
+🟩 FastShip comes first because 🟦 300 exceeds 🟦 50. The two rows account for all 🟦 3 orders, 🟦 350 in order value and 🟥 10 units.
 
-Only the units expression has this zero fallback. If every 🟦 amount in a shipper group is `NULL`, its `order_value` remains `NULL`. The exercise gives no secondary ordering for ties.
+Only the units expression has this zero fallback. If every 🟦 amount in a shipper group is 🟦 `NULL`, its `order_value` remains 🟦 `NULL`. The exercise gives no secondary ordering for ties.
 
 ## Current and expected output
 
 The pasted draft has two commas between `AS orders` and the next `SUM`. SQLite reports a syntax error there. Keep one comma and run the final `SELECT` in the same statement as `WITH OrderDetails_2 AS (...)` to see the draft’s result.
 
-FastShip and SlowShip are the two original sample rows. For this check only, add OtherShip with a single order, ID 16, worth 80 and with no detail rows. The current units column uses `SUM(od.total_units)`. The expected units column comes from the PNP reference query.
+🟩 FastShip and 🟩 SlowShip are the two original sample rows. For this check only, add 🟩 OtherShip with a single 🟦 order, ID 16, worth 🟦 80 and with no 🟥 detail rows. The current units column uses `SUM(od.total_units)`. The expected units column comes from the PNP reference query.
 
 | 🟩 `shipper_name` | 🟦 `orders` | 🟦 `order_value` | 🟥 Current `units_shipped` | 🟥 Expected `units_shipped` |
 | --- | ---: | ---: | ---: | ---: |
@@ -354,7 +354,7 @@ FastShip and SlowShip are the two original sample rows. For this check only, add
 | 🟩 OtherShip | 🟦 1 | 🟦 80 | 🟥 `NULL` | 🟥 0 |
 | 🟩 SlowShip | 🟦 1 | 🟦 50 | 🟥 1 | 🟥 1 |
 
-The second `LEFT JOIN` keeps order 16 and supplies `NULL` for its missing units. `SUM` has no numeric units to add for OtherShip. `COALESCE(SUM(od.total_units), 0)` displays zero for that group.
+The second `LEFT JOIN` keeps 🟦 order 16 and supplies 🟥 `NULL` for its missing units. `SUM` has no numeric 🟥 units to add for 🟩 OtherShip. `COALESCE(SUM(od.total_units), 0)` displays 🟥 zero for that group.
 
 ## Learner solution — SQL Server
 
@@ -446,7 +446,7 @@ ORDER BY order_value DESC;
 
 ## Verification
 
-The learner and published reference produced the same 9 shipper rows on the PNP commerce data (46,438 orders and 168,567 detail lines). An independent calculation added each order amount once and reconciled every shipper’s count, value and units.
+The learner and published reference produced the same 🟪 9 shipper rows on the PNP commerce data (🟦 46,438 orders and 🟥 168,567 detail lines). An independent calculation added each 🟦 order amount once and reconciled every shipper’s count, value and 🟥 units.
 
 Ten SQLite fixtures covered the practice sample, multiple lines on one order, equal order amounts, orders without details, all-NULL quantities, mixed quantities, missing and unrecognised shipper IDs, repeated or missing company names, unused shippers, missing amounts, ties and empty input. The SQL Server versions passed the same logical checks in SQLite. Native SQL Server execution was not tested.
 
