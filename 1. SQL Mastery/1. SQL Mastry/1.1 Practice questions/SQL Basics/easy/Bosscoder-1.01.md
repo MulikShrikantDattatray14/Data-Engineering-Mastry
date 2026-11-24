@@ -99,7 +99,7 @@ Follow the sample rows through each query step. **Predict the result.** Can a cu
 
 [Open the full-size walkthrough](../../assets/walkthroughs/b1-01.svg?raw=1)
 
-## Step-by-step explanation with one example
+## Step-by-step walkthrough
 
 🟦 **FROM Customers · one table is enough** · The input records revenue for one customer in one year. Each row contains the year to test, the revenue to check and the customer ID to return.
 
