@@ -30,25 +30,25 @@ One output row represents one qualifying chocolate or cookie product priced belo
 
 | 🟦 ProductID | 🟦 Product | 🟦 Sub_Category | 🟦 Sale_Price |
 |---:|---|---|---:|
-| 1 | Cocoa Cookie | Cookies | 200 |
-| 2 | Sugar-free Choc | Chocolate | 150 |
-| 3 | Tea Biscuit | Biscuits | 100 |
-| 4 | Dark Bar | CHOCOLATE | 249 |
+| 🟦 1 | 🟦 Cocoa Cookie | 🟦 Cookies | 🟦 200 |
+| 🟦 2 | 🟦 Sugar-free Choc | 🟦 Chocolate | 🟦 150 |
+| 🟦 3 | 🟦 Tea Biscuit | 🟦 Biscuits | 🟦 100 |
+| 🟦 4 | 🟦 Dark Bar | 🟦 CHOCOLATE | 🟦 249 |
 
 ### Expected output
 
 | 🟦 ProductID | 🟦 Product | 🟦 Sub_Category | 🟦 Sale_Price |
 |---:|---|---|---:|
-| 1 | Cocoa Cookie | Cookies | 200 |
-| 4 | Dark Bar | CHOCOLATE | 249 |
+| 🟦 1 | 🟦 Cocoa Cookie | 🟦 Cookies | 🟦 200 |
+| 🟦 4 | 🟦 Dark Bar | 🟦 CHOCOLATE | 🟦 249 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p023.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Cocoa Cookie (ID 1) belongs to Cookies and costs **200**. Dark Bar (ID 4) belongs to CHOCOLATE and costs **249**. Both qualify and the lower price puts Cocoa Cookie first.
+🟦 Cocoa Cookie (ID 🟦 1) belongs to 🟦 Cookies and costs **🟦 200**. 🟦 Dark Bar (ID 🟦 4) belongs to 🟦 CHOCOLATE and costs **🟦 249**. Both qualify and the lower price puts 🟦 Cocoa Cookie first.
 
-🟦 Sugar-free Choc costs 150 and belongs to Chocolate, but its name identifies it as sugar-free. Tea Biscuit costs 100 and belongs to Biscuits, outside both requested subcategories.
+🟦 Sugar-free Choc costs 🟦 150 and belongs to 🟦 Chocolate, but its name identifies it as sugar-free. 🟦 Tea Biscuit costs 🟦 100 and belongs to 🟦 Biscuits, outside both requested subcategories.
 
 ## Step 1 · Your approach before writing SQL
 
