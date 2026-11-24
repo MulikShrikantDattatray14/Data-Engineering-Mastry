@@ -58,9 +58,9 @@ One output row represents one product and store combination with a known price.
 
 ### How the sample produces this output
 
-🟦 Product 0 has a price at all three stores and supplies the pairs **store1 / 95**, **store2 / 100** and **store3 / 105**. Product 1 supplies **store1 / 70** and **store3 / 80**. Its store2 price is missing.
+🟦 Product 🟦 0 has a price at all three stores and supplies the pairs **store1 / 🟦 95**, **store2 / 🟦 100** and **store3 / 🟦 105**. Product 🟦 1 supplies **store1 / 🟦 70** and **store3 / 🟦 80**. Its store2 price is missing.
 
-🟦 That makes **3 + 2 = 5** product–store pairs. In store order, there are two rows for store1, one for store2 and two for store3. The assignment specifies the store order and permits either order within a store.
+🟦 That makes **🟦 3 + 🟦 2 = 🟦 5** product–store pairs. In store order, there are two rows for store1, one for store2 and two for store3. The assignment specifies the store order and permits either order within a store.
 
 ## Step 1 · Your approach before writing SQL
 
