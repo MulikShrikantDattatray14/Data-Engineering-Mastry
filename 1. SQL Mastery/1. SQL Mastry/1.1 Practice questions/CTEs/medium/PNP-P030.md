@@ -119,10 +119,10 @@ ORDER BY OrderID;
 
 | 🟦 `OrderID` | 🟦 `CustomerID` |
 | ---: | ---: |
-| 1 | 10 |
-| 2 | 20 |
-| 3 | 20 |
-| 4 | 30 |
+| 🟦 1 | 🟦 10 |
+| 🟦 2 | 🟦 20 |
+| 🟦 3 | 🟦 20 |
+| 🟦 4 | 🟦 30 |
 
 All four sample orders have customer IDs. Orders **2** and **3** both belong to customer **20**.
 
@@ -142,9 +142,9 @@ ORDER BY CustomerID;
 
 | 🟦 `CustomerID` | 🟦 `total_orders` |
 | ---: | ---: |
-| 10 | 1 |
-| 20 | 2 |
-| 30 | 1 |
+| 🟦 10 | 🟦 1 |
+| 🟦 20 | 🟦 2 |
+| 🟦 30 | 🟦 1 |
 
 Customer **20** has orders **2** and **3**, so `COUNT(OrderID)` returns **2**. Customers **10** and **30** each have one order.
 
@@ -174,9 +174,9 @@ ORDER BY CustomerID;
 
 | 🟦 `CustomerID` | 🟦 `total_orders` | 🟦 `customer_type` |
 | ---: | ---: | --- |
-| 10 | 1 | One-time |
-| 20 | 2 | Repeat |
-| 30 | 1 | One-time |
+| 🟦 10 | 🟦 1 | 🟦 One-time |
+| 🟦 20 | 🟦 2 | 🟦 Repeat |
+| 🟦 30 | 🟦 1 | 🟦 One-time |
 
 Each customer now has one row with both `total_orders` and `customer_type`. A customer with five orders would also occupy one `Repeat` row.
 
@@ -206,9 +206,9 @@ ORDER BY customer_type, CustomerID;
 
 | 🟦 `customer_type` | 🟦 `CustomerID` | 🟦 `total_orders` |
 | --- | ---: | ---: |
-| One-time | 10 | 1 |
-| One-time | 30 | 1 |
-| Repeat | 20 | 2 |
+| 🟦 One-time | 🟦 10 | 🟦 1 |
+| 🟦 One-time | 🟦 30 | 🟦 1 |
+| 🟦 Repeat | 🟦 20 | 🟦 2 |
 
 The `One-time` group contains customers **10** and **30**, with one numeric `total_orders` value on each row. The `Repeat` group contains customer **20**. Their value is **2**, and `COUNT(total_orders)` counts that value once.
 
@@ -225,8 +225,8 @@ ORDER BY customer_type;
 
 | 🟦 `customer_type` | 🟦 `customers` |
 | --- | ---: |
-| One-time | 2 |
-| Repeat | 1 |
+| 🟦 One-time | 🟦 2 |
+| 🟦 Repeat | 🟦 1 |
 
 ### 5. Which rows belong in the denominator?
 
@@ -239,7 +239,7 @@ FROM customer_order_counts;
 
 | 🟦 `ordering_customers` |
 | ---: |
-| 3 |
+| 🟦 3 |
 
 For `One-time`, 🟦 **2 ÷ 3 × 100 = 66.67%**. For `Repeat`, 🟦 **1 ÷ 3 × 100 = 33.33%**. The decimal literal `100.0` preserves the fractional share, `ROUND(..., 2)` rounds the display value and `ORDER BY customer_type` puts `One-time` first.
 
@@ -261,8 +261,8 @@ ORDER BY customer_type;
 
 | 🟦 `customer_type` | 🟦 `customers` | 🟦 `pct_of_customers` |
 | --- | ---: | ---: |
-| One-time | 2 | 66.67 |
-| Repeat | 1 | 33.33 |
+| 🟦 One-time | 🟦 2 | 🟦 66.67 |
+| 🟦 Repeat | 🟦 1 | 🟦 33.33 |
 
 The two group counts reconcile to all three customers. The shares in this sample sum to **100.00%**.
 
@@ -272,8 +272,8 @@ Add one hypothetical order to the four-order practice sample. Order **5** has a 
 
 | 🟦 `customer_type` | Submitted customer count | Submitted share | Revised customer count | Revised share |
 |---|---:|---:|---:|---:|
-| One-time | 3 | 75.00% | 2 | 66.67% |
-| Repeat | 1 | 25.00% | 1 | 33.33% |
+| 🟦 One-time | 3 | 75.00% | 2 | 66.67% |
+| 🟦 Repeat | 1 | 25.00% | 1 | 33.33% |
 
 The course schema declares `CustomerID` as a nullable integer. Two orders with missing IDs would also form one group and give the unfiltered draft an extra repeat customer. [Orders table definition](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/data/load_dataset_v2.sql#L88-L97)
 
@@ -397,7 +397,7 @@ The commerce file contains **46,438 orders** from **4,427 identified customers**
 
 | 🟦 `customer_type` | 🟦 `customers` | 🟦 `pct_of_customers` |
 | --- | ---: | ---: |
-| One-time | 702 | 15.86 |
-| Repeat | 3725 | 84.14 |
+| 🟦 One-time | 🟦 702 | 🟦 15.86 |
+| 🟦 Repeat | 🟦 3725 | 🟦 84.14 |
 
 [Practice index](../../README.md)
