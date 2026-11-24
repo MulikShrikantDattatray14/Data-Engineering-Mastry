@@ -87,6 +87,20 @@ The saved attempt compares countries without surrounding spaces or case differen
 
 </details>
 
+## Important learnings from P024
+
+### 1. Eligibility is the OR of three conditions
+A supplier qualifies when Country is NULL, Country is not India after trimming and case normalization, or Email is NULL/blank after trimming. Any one condition is sufficient.
+
+### 2. CASE labels combinations in a deliberate order
+When both country and email are missing, the combined label is returned first. Otherwise the first matching single issue is used. This keeps the display label aligned with the actual row conditions.
+
+### 3. Normalize before comparing
+TRIM removes surrounding spaces and LOWER makes the India comparison case-insensitive. TRIM also makes a whitespace-only email count as missing.
+
+### 4. Keep the original supplier row
+All requested fields come from Suppliers, so a single-table filter is enough. The query reports each qualifying supplier once.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P024/01.md)
@@ -128,7 +142,7 @@ Add `CASE` to the select list. SQLite returns the first matching branch, so chec
 
 Add `ORDER BY SupplierID ASC` to guarantee the sample order of 2, then 3. The SQLite checks also covered a NULL country with a spaces-only email, a padded mixed-case India with an empty email, a padded foreign country with a present email, and a padded India with a present email.
 
-## My solution · SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT SupplierID, CompanyName, Country, Email,
@@ -151,7 +165,7 @@ WHERE Country IS NULL
 ORDER BY SupplierID ASC;
 ```
 
-## Official answer · Source dialect
+## Official solution
 
 ```sql
 SELECT s.SupplierID,
@@ -172,7 +186,7 @@ WHERE s.Country IS NULL
 ORDER BY s.SupplierID;
 ```
 
-## Official answer · SQLite adaptation
+### Official answer · SQLite adaptation
 
 ```sql
 SELECT s.SupplierID,
@@ -193,7 +207,7 @@ WHERE s.Country IS NULL
 ORDER BY s.SupplierID;
 ```
 
-## Official answer · SQL Server adaptation
+### Official answer · SQL Server adaptation
 
 ```sql
 SELECT s.SupplierID,
@@ -215,6 +229,10 @@ ORDER BY s.SupplierID;
 ```
 
 The official SQL Server form uses `CONCAT_WS` and `TRIM`, available in SQL Server 2017 and later.
+
+## Comparison with the course answer
+
+The learner enumerates the combined and individual issue labels with CASE; the course answer uses CONCAT_WS to combine the applicable labels. Both trim the email, normalize Country for the India comparison and retain suppliers with any of the three issue conditions. When both country and email are missing, the combined label is preserved. The source dialect and its SQLite/SQL Server adaptations remain separate from the learner query.
 
 ## Verification
 

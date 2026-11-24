@@ -82,6 +82,17 @@ ORDER BY signup_year ASC NULLS LAST,
          signup_quarter ASC NULLS LAST;
 ```
 
+## Important learnings from P025
+
+### 1. Derive year and quarter from each signup date
+The year separates customers from different calendar years. The quarter groups months 1–3, 4–6, 7–9 and 10–12 into Q1 through Q4.
+
+### 2. Group at year-quarter grain
+One output row represents one signup year and quarter. COUNT(CustomerID) counts customer records in that group; the quarter expression is a derived grouping key.
+
+### 3. Missing dates form a NULL group
+A NULL DateEntered cannot supply a year or quarter, so the CASE returns NULL and those rows group together. The final sort places missing year/quarter after dated groups.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P025/01.md)
@@ -179,7 +190,7 @@ Add ORDER BY signup_year ASC NULLS LAST, signup_quarter ASC NULLS LAST, as shown
 
 No WHERE or HAVING condition is needed because every customer and every resulting group is requested.
 
-## My solution · SQL Server
+## Learner solution — SQL Server adaptation
 
 Equivalent adaptation for non-NULL CustomerID values.
 
@@ -193,7 +204,7 @@ ORDER BY CASE WHEN YEAR(DateEntered) IS NULL THEN 1 ELSE 0 END,
          signup_year, signup_quarter;
 ```
 
-## Official solution · Source dialect
+## Official solution
 
 ```sql
 SELECT EXTRACT(YEAR FROM c.DateEntered)::int AS signup_year,
@@ -205,7 +216,7 @@ GROUP BY EXTRACT(YEAR FROM c.DateEntered)::int,
 ORDER BY signup_year NULLS LAST, signup_quarter NULLS LAST;
 ```
 
-## Official solution · SQLite adaptation
+### Official answer · SQLite adaptation
 
 ```sql
 SELECT
@@ -228,7 +239,7 @@ ORDER BY signup_year ASC NULLS LAST,
          signup_quarter ASC NULLS LAST;
 ```
 
-## Official solution · SQL Server adaptation
+### Official answer · SQL Server adaptation
 
 ```sql
 SELECT YEAR(DateEntered) AS signup_year,
@@ -239,6 +250,10 @@ GROUP BY YEAR(DateEntered), DATEPART(QUARTER, DateEntered)
 ORDER BY CASE WHEN YEAR(DateEntered) IS NULL THEN 1 ELSE 0 END,
          signup_year, signup_quarter;
 ```
+
+## Comparison with the course answer
+
+The learner maps month numbers to quarters with CASE; the course answer uses EXTRACT(QUARTER), while the SQLite and SQL Server adaptations use their dialect-specific date functions. COUNT(CustomerID) agrees with the official COUNT(*) because CustomerID is the non-NULL customer key in the supplied schema. Both group by year and quarter, retain the NULL-date group, and sort missing year/quarter values last.
 
 ## Verification
 

@@ -68,6 +68,17 @@ order by `Sale_Price` asc, `ProductID` asc
 
 Guided submission. Chat formatting was cleaned up. SQLite accepted the double-quoted patterns in the tested configuration. Single quotes are standard for string literals. The submitted sugar-free match uses SQLite's default case-insensitive ASCII LIKE behavior.
 
+## Important learnings from P023
+
+### 1. Parentheses keep the category alternatives together
+A product qualifies when its Sub_Category contains chocolate or cookie and its Sale_Price is strictly below 250. The price rule must apply to both text alternatives.
+
+### 2. Exclude sugar-free names separately
+The product-name exclusion is an additional AND condition. The pattern matches sugar followed later by free, with any characters between them.
+
+### 3. Match text without depending on stored case
+LOWER plus LIKE gives a case-insensitive match for the supplied text. The result remains one row per product and is sorted by price then ProductID.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P023/01.md)
@@ -142,7 +153,7 @@ order by `Sale_Price` asc, `ProductID` asc
 
 Verified in SQLite with the sample and additional rows for a singular Cookie label, mixed case, a price of 250, and tied prices.
 
-## Learner submission — SQL Server adaptation
+## Learner solution — SQL Server adaptation
 
 ```sql
 select ProductID,Product,Sub_Category,Sale_Price
@@ -198,6 +209,10 @@ ORDER BY p.Sale_Price, p.ProductID;
 ```
 
 The official answer's broader pattern also excludes `Sugar free bar` without the hyphen. The learner pattern excludes the literal hyphenated marker. Both versions match the supplied sample. The SQLite variants were checked on the unhyphenated example. The SQL Server variants were reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner uses LOWER(...) with LIKE for the two sub-category alternatives and the sugar-free exclusion. The course answer uses PostgreSQL ILIKE for the same case-insensitive patterns. The learner's parentheses keep the chocolate/cookie OR together before the Sale_Price and Product-name exclusions are applied. Both use the strict Sale_Price < 250 boundary and the same price/ProductID ordering. The selected query is preserved.
 
 ## Verification
 

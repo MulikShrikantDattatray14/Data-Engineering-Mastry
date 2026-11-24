@@ -73,6 +73,17 @@ having count(OrderID) > 8
 order by count(OrderID) desc ,OrderID asc
 ```
 
+## Important learnings from P022
+
+### 1. GROUP BY creates one row per order
+OrderDetails has one row per line item. Grouping by OrderID combines all lines belonging to the same order before calculating the requested measures.
+
+### 2. The three measures answer different questions
+COUNT(OrderID) counts line rows with a known order ID, COUNT(DISTINCT ProductID) counts unique products on those lines, and SUM(Quantity) counts total units.
+
+### 3. HAVING filters completed groups
+The more-than-eight condition applies to the line-item count for each order, so it belongs in HAVING after GROUP BY. A WHERE clause would filter individual detail rows before counting.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P022/01.md)
@@ -129,7 +140,7 @@ order by count(OrderID) desc ,OrderID asc
 
 Verified in SQLite on the sample and an extended case. An order with exactly eight lines and 20 units was excluded. Two nine-line orders were sorted by ID even though their unit totals differed.
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 select OrderID,count(OrderID)  as line_items, count(distinct(ProductID)) as distinct_products,

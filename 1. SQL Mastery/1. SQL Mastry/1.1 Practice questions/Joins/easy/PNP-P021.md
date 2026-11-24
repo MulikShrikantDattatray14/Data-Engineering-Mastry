@@ -106,6 +106,20 @@ ORDER BY orders_placed DESC, CustomerID ASC;
 
 Guided submission. The learner chose grouping by customer ID, counting orders, and preserving unmatched customer IDs. The cutoff subquery was developed with guidance.
 
+## Important learnings from P021
+
+### 1. The order population drives the ranking
+Orders supplies one row per purchase, so it is the correct starting source for customers ranked by order count. LEFT JOIN Customers adds names while preserving an order whose customer record is missing.
+
+### 2. Group before ranking
+Group the order rows by CustomerID and the customer-name fields, then count orders. One grouped row represents one customer ID, not one order.
+
+### 3. Keep ties at the fifth-place cutoff
+RANK or an equivalent WITH TIES rule includes every customer whose count equals the fifth-highest count. A plain LIMIT 5 can discard a tied customer.
+
+### 4. Treat unknown and partial names separately
+An unmatched customer ID receives Unknown customer. A matched row with one missing name part is a different case; the saved comparison records how concatenation behaves.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P021/01.md)
@@ -214,7 +228,7 @@ ORDER BY orders_placed DESC, CustomerID ASC;
 
 In an extended boundary test with counts 9, 8, 7, 6, 5, 5, and 4, the cutoff was 5 and six customers qualified. SQLite also passed the original sample, fewer than five candidates, and an empty Orders table.
 
-## Learner submission — SQL Server adaptation
+## Learner solution — SQL Server adaptation
 
 ```sql
 WITH customer_counts AS (
