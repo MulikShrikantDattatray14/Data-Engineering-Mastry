@@ -29,28 +29,28 @@ One output row represents one category represented on sale lines, including line
 
 | 🟥 CategoryID | 🟥 CategoryName |
 |---:|---|
-| 1 | Drinks |
-| 2 | Snacks |
-| 3 | Stationery |
+| 🟥 1 | 🟥 Drinks |
+| 🟥 2 | 🟥 Snacks |
+| 🟥 3 | 🟥 Stationery |
 
 **🟩 `Products`**
 
 | 🟩 ProductID | 🟩 CategoryID | 🟩 Sale_Price |
 |---:|---:|---:|
-| 10 | 1 | 10 |
-| 11 | 1 | 8 |
-| 20 | 2 | 5 |
-| 30 | 99 | 7 |
+| 🟩 10 | 🟩 1 | 🟩 10 |
+| 🟩 11 | 🟩 1 | 🟩 8 |
+| 🟩 20 | 🟩 2 | 🟩 5 |
+| 🟩 30 | 🟩 99 | 🟩 7 |
 
 **🟦 `OrderDetails`**
 
 | 🟦 OrderDetailID | 🟦 OrderID | 🟦 ProductID | 🟦 Quantity |
 |---:|---:|---:|---:|
-| 1 | 100 | 10 | 2 |
-| 2 | 100 | 11 | 1 |
-| 3 | 100 | 20 | 1 |
-| 4 | 101 | 30 | 3 |
-| 5 | 102 | 999 | 4 |
+| 🟦 1 | 🟦 100 | 🟦 10 | 🟦 2 |
+| 🟦 2 | 🟦 100 | 🟦 11 | 🟦 1 |
+| 🟦 3 | 🟦 100 | 🟦 20 | 🟦 1 |
+| 🟦 4 | 🟦 101 | 🟦 30 | 🟦 3 |
+| 🟦 5 | 🟦 102 | 🟦 999 | 🟦 4 |
 
 ### Expected output
 
@@ -68,13 +68,13 @@ One output row represents one category represented on sale lines, including line
 
 ### How the sample produces this output
 
-- 🟥 **Drinks.** Order 100 contains two Drinks lines. They supply 🟦 `2 + 1 = 3` units and 🟪 `2 × 10 + 1 × 8 = 28` in value. Both lines belong to the same order, so the order count is 1.
-- 🟪 **Unmapped.** 🟩 Product 30 points to category 99, which has no category record. Its line in 🟦 order 101 contributes 1 order, 3 units and 🟪 `3 × 7 = 21` in value.
-- 🟥 **Snacks.** Order 100 also has one Snacks unit priced at 5. Snacks therefore shows 1 order, 1 unit and a value of 5.
+- 🟥 **Drinks.** Order 🟦 100 contains two 🟪 Drinks lines. They supply 🟦 `🟪 2 + 🟪 1 = 🟪 3` units and 🟪 `🟪 2 × 🟪 10 + 🟪 1 × 🟩 8 = 🟪 28` in value. Both lines belong to the same order, so the order count is 🟪 1.
+- 🟪 **Unmapped.** 🟩 Product 🟪 30 points to category 🟩 99, which has no category record. Its line in 🟦 order 🟦 101 contributes 🟪 1 order, 🟪 3 units and 🟪 `🟪 3 × 🟩 7 = 🟪 21` in value.
+- 🟥 **Snacks.** Order 🟦 100 also has one 🟪 Snacks unit priced at 🟪 5. 🟪 Snacks therefore shows 🟪 1 order, 🟪 1 unit and a value of 🟪 5.
 - 🟥 **Stationery.** This category has no sold units. Its order count, units and value are all zero in the saved example.
-- 🟪 **Unknown product.** Order 102 contains 4 units of product 999. There is no product record supplying a price, so the row shows 1 order, 4 units and a `NULL` value.
+- 🟪 **Unknown product.** Order 🟦 102 contains 🟦 4 units of product 🟦 999. There is no product record supplying a price, so the row shows 🟪 1 order, 🟦 4 units and a `🟪 NULL` value.
 
-The five rows account for 🟦 `3 + 3 + 1 + 0 + 4 = 11` input units. Known values appear in the order 28, 21, 5, 0, followed by the unknown value.
+The five rows account for 🟦 `🟪 3 + 🟪 3 + 🟪 1 + 🟪 0 + 🟦 4 = 🟪 11` input units. Known values appear in the order 🟪 28, 🟪 21, 🟪 5, 🟪 0, followed by the unknown value.
 
 ## Step 1 · Your approach before writing SQL
 
