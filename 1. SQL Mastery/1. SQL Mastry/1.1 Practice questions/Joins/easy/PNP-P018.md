@@ -30,31 +30,31 @@ One output row represents one customer with no order in the 90-day reporting win
 
 | 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 Email | 🟦 DateEntered |
 |---:|---|---|---|---|
-| 1 | Asha | Rao | asha@example.com | 2023-01-01 |
-| 2 | Ben | Das | ben@example.com | 2023-02-01 |
-| 3 | Cia | Sen | cia@example.com | 2024-01-01 |
+| 🟦 1 | 🟦 Asha | 🟦 Rao | 🟦 asha@example.com | 🟦 2023-01-01 |
+| 🟦 2 | 🟦 Ben | 🟦 Das | 🟦 ben@example.com | 🟦 2023-02-01 |
+| 🟦 3 | 🟦 Cia | 🟦 Sen | 🟦 cia@example.com | 🟦 2024-01-01 |
 
 **🟩 `Orders`**
 
 | 🟩 OrderID | 🟩 CustomerID | 🟩 OrderDate |
 |---:|---:|---|
-| 10 | 1 | 2025-03-31 |
-| 11 | 2 | 2024-12-01 |
+| 🟩 10 | 🟩 1 | 🟩 2025-03-31 |
+| 🟩 11 | 🟩 2 | 🟩 2024-12-01 |
 
 ### Expected output
 
 | 🟦 CustomerID | 🟦 customer_name | 🟦 Email | 🟦 DateEntered |
 |---:|---|---|---|
-| 2 | Ben Das | ben@example.com | 2023-02-01 |
-| 3 | Cia Sen | cia@example.com | 2024-01-01 |
+| 🟦 2 | 🟦 Ben Das | 🟦 ben@example.com | 🟦 2023-02-01 |
+| 🟦 3 | 🟦 Cia Sen | 🟦 cia@example.com | 🟦 2024-01-01 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p018.svg?raw=1)
 
 ### How the sample produces this output
 
-The latest order date is March 31, 2025. The 90 calendar dates ending that day run from 🟩 **January 1 through March 31**. Asha placed 🟩 order 10 on March 31 and is outside the outreach list.
+The latest order date is March 31, 2025. The 90 calendar dates ending that day run from 🟩 **January 🟪 1 through March 31**. 🟦 Asha placed 🟩 order 🟩 10 on March 31 and is outside the outreach list.
 
-Ben’s only order was on December 1, 2024. Cia has no order in the sample. Both qualify, so their names, email addresses and sign-up dates appear. 🟦 Ben signed up on February 1, 2023, before Cia on January 1, 2024, which explains their order.
+🟦 Ben’s only order was on December 🟪 1, 2024. 🟦 Cia has no order in the sample. Both qualify, so their names, email addresses and sign-up dates appear. 🟦 Ben signed up on February 🟪 1, 2023, before 🟦 Cia on January 🟪 1, 2024, which explains their order.
 
 ## Step 1 · Your approach before writing SQL
 
