@@ -230,3 +230,45 @@ The course answer uses correlated `NOT EXISTS`; the learner uses a `LEFT JOIN` f
 4. **Return and sort the required product fields.** The final query keeps the five Products columns and orders by CategoryID, then ProductID, ascending. No DISTINCT is needed because only unmatched left-side products survive, once each.
 
 The final stage in the linked walkthrough reads the exact locked learner SQLite query and is checked against both the small practice fixture and the saved larger verification case.
+
+
+## Important learnings from P033
+
+### 1. Identify the driving table from the requested output population
+
+The task asks for products that have never appeared in order lines. Every catalogue product must be considered, including products with no matching order history. Therefore, start from `Products`; starting from `OrderDetails` would lose the very products the report is trying to find.
+
+### 2. LEFT ANTI JOIN pattern
+
+The saved learner query uses:
+
+```sql
+FROM Products P
+LEFT JOIN OrderDetails OD
+    ON P.ProductID = OD.ProductID
+WHERE OD.OrderDetailID IS NULL
+```
+
+- The LEFT JOIN preserves every product.
+- A product with one or more order-detail matches receives a non-NULL OrderDetailID and is excluded.
+- A product with no match receives NULL in the right-side columns and is retained.
+- `OrderDetailID` is the non-null primary key of an actual order line, so it is a reliable unmatched-row test.
+- A product with multiple order lines may repeat in the intermediate join result, but every matched copy is filtered out. No DISTINCT is needed for the remaining unmatched products.
+
+### 3. Equivalent anti-match approaches
+
+The official `NOT EXISTS` solution expresses the same business rule as the learner's LEFT JOIN plus NULL filter. Both ask whether any matching order-detail row exists. Keep the selected learner query unchanged and explain the alternative separately.
+
+### 4. Sorting and output grain
+
+One output row represents one never-ordered product. Return the five requested catalogue columns and sort by CategoryID ascending, then ProductID ascending. Quantity does not determine eligibility: even one order line disqualifies the product.
+
+## Verification
+
+- Small practice fixture: Pen (ProductID 1) has an order-detail match; Cup (ProductID 2) has none. Only Cup is returned.
+- Larger practice fixture: products 201–206; order lines reference 201, 203, 204 and 206. Products 202 and 205 are the only unmatched products and are returned in CategoryID/ProductID order.
+- Product 201 has duplicate order-line matches; it remains excluded, confirming that one or many matches both disqualify the product.
+- Confirmed the result contains exactly the five requested Products columns.
+- No DISTINCT is required because only unmatched left-side products survive once each.
+- The SQL Server adaptation uses the same LEFT ANTI JOIN pattern; native SQL Server execution should be marked pending unless run on that engine.
+- Verification covers the saved fixtures and stated edge cases; it does not claim proof for every possible dataset.
