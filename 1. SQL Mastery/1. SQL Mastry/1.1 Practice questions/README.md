@@ -1,5 +1,8 @@
 # SQL practice questions
 
+> **Canonical record standard:** [skills.md](skills.md) defines the mandatory structure and workflow for every PNP and Bosscoder question. **PNP-P026.md is the reference example.** Read it before starting or updating a question. Existing records must be audited and repaired without deleting their valid content.
+
+
 This folder tracks the restart of all 205 PNP SQL questions and the Bosscoder SQL assignment reattempts.
 
 Save one file per verified solution, immediately after the question is complete. Use `PNP-<source-id>.md` or `Bosscoder-<source-id>.md` and include the source question ID, topic, difficulty, final SQL, and the checks used to verify it. Use the same topic and difficulty labels in the study session and here.
