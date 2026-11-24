@@ -31,32 +31,32 @@ One output row represents one product ID appearing on a sale line.
 
 | 🟩 ProductID | 🟩 Product |
 |---:|---|
-| 1 | Pen |
-| 2 | Bag |
-| 3 | Cup |
+| 🟩 1 | 🟩 Pen |
+| 🟩 2 | 🟩 Bag |
+| 🟩 3 | 🟩 Cup |
 
 **🟦 `OrderDetails`**
 
 | 🟦 OrderDetailID | 🟦 OrderID | 🟦 ProductID | 🟦 Quantity |
 |---:|---:|---:|---:|
-| 1 | 10 | 1 | 2 |
-| 2 | 11 | 1 | 3 |
-| 3 | 11 | 2 | 1 |
+| 🟦 1 | 🟦 10 | 🟦 1 | 🟦 2 |
+| 🟦 2 | 🟦 11 | 🟦 1 | 🟦 3 |
+| 🟦 3 | 🟦 11 | 🟦 2 | 🟦 1 |
 
 ### Expected output
 
 | 🟦 ProductID | 🟩 Product | 🟦 units_sold | 🟦 order_lines | 🟦 orders |
 |---:|---|---:|---:|---:|
-| 1 | Pen | 5 | 2 | 2 |
-| 2 | Bag | 1 | 1 | 1 |
+| 🟦 1 | 🟩 Pen | 🟦 5 | 🟦 2 | 🟦 2 |
+| 🟦 2 | 🟩 Bag | 🟦 1 | 🟦 1 | 🟦 1 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p019.svg?raw=1)
 
 ### How the sample produces this output
 
-🟩 Pen appears on detail lines 1 and 2 with quantities 2 and 3. It therefore has 🟦 **5 units**, **2 lines**, and **2 distinct orders** (10 and 11). 🟩 Bag appears on line 3 of order 11 with quantity 1, giving it 🟦 **1 unit, 1 line and 1 order**.
+🟩 Pen appears on detail lines 🟪 1 and 🟪 2 with quantities 🟪 2 and 🟪 3. It therefore has 🟦 **🟦 5 units**, **🟪 2 lines**, and **🟪 2 distinct orders** (🟦 10 and 🟦 11). 🟩 Bag appears on line 🟪 3 of order 🟦 11 with quantity 🟪 1, giving it 🟦 **🟪 1 unit, 🟪 1 line and 🟪 1 order**.
 
-Cup has no sale line. Pen comes first because 5 units exceeds 1. The output accounts for the same six units as the three input quantities.
+🟩 Cup has no sale line. 🟩 Pen comes first because 🟦 5 units exceeds 🟪 1. The output accounts for the same six units as the three input quantities.
 
 ## Step 1 · Your approach before writing SQL
 
