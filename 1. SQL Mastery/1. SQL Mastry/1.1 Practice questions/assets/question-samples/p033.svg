@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="548" viewBox="0 0 1160 548" role="img" aria-labelledby="title desc">
+  <title id="title">PNP P033 — Practice input and expected output</title>
+  <desc id="desc">Source-colored Products and OrderDetails practice tables, followed by the expected output containing the product with no order-detail row.</desc>
+  <rect width="1160" height="548" fill="#F1F5F9"/>
+  <text x="48" y="38" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#075BCC">PNP P033 / PRACTICE EXAMPLE</text>
+  <text x="48" y="78" font-family="DejaVu Sans, Arial, sans-serif" font-size="27" font-weight="700" fill="#172C40">Products that have never been ordered</text>
+  <text x="48" y="108" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#415569">Illustrative input data · the source specifies output columns but supplies no sample rows</text>
+  <rect x="48" y="124" width="13" height="13" rx="2" fill="#075BCC"/>
+  <text x="69" y="136" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#415569">Products</text>
+  <rect x="170" y="124" width="13" height="13" rx="2" fill="#087F5B"/>
+  <text x="191" y="136" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#415569">OrderDetails</text>
+  <text x="48" y="164" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="700" fill="#415569">Sample inputs · display order: Products, then OrderDetails</text>
+  <g aria-label="Products input table" data-source="Products">
+    <rect x="48" y="178" width="640" height="34" rx="2" fill="#075BCC"/>
+    <text x="62" y="201" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Products</text>
+    <g font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#10376B">
+      <rect x="48" y="213" width="110" height="38" fill="#CEE3FF"/><text x="58" y="237">ProductID</text>
+      <rect x="158" y="213" width="160" height="38" fill="#CEE3FF"/><text x="168" y="237">Product</text>
+      <rect x="318" y="213" width="130" height="38" fill="#CEE3FF"/><text x="328" y="237">Brand</text>
+      <rect x="448" y="213" width="120" height="38" fill="#CEE3FF"/><text x="458" y="237">CategoryID</text>
+      <rect x="568" y="213" width="120" height="38" fill="#CEE3FF"/><text x="578" y="237">Sale_Price</text>
+    </g>
+    <g font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#10376B">
+      <rect x="48" y="251" width="110" height="38" fill="#EAF3FF"/><text x="58" y="275">1</text>
+      <rect x="158" y="251" width="160" height="38" fill="#EAF3FF"/><text x="168" y="275">Pen</text>
+      <rect x="318" y="251" width="130" height="38" fill="#EAF3FF"/><text x="328" y="275">Nova</text>
+      <rect x="448" y="251" width="120" height="38" fill="#EAF3FF"/><text x="458" y="275">10</text>
+      <rect x="568" y="251" width="120" height="38" fill="#EAF3FF"/><text x="578" y="275">5</text>
+      <rect x="48" y="289" width="110" height="38" fill="#F5F9FF"/><text x="58" y="313">2</text>
+      <rect x="158" y="289" width="160" height="38" fill="#F5F9FF"/><text x="168" y="313">Cup</text>
+      <rect x="318" y="289" width="130" height="38" fill="#F5F9FF"/><text x="328" y="313">Home</text>
+      <rect x="448" y="289" width="120" height="38" fill="#F5F9FF"/><text x="458" y="313">20</text>
+      <rect x="568" y="289" width="120" height="38" fill="#F5F9FF"/><text x="578" y="313">10</text>
+    </g>
+  </g>
+  <g aria-label="OrderDetails input table" data-source="OrderDetails">
+    <rect x="728" y="178" width="384" height="34" rx="2" fill="#087F5B"/>
+    <text x="742" y="201" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">OrderDetails</text>
+    <g font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#07543E">
+      <rect x="728" y="213" width="140" height="38" fill="#CDEFE2"/><text x="738" y="237">OrderDetailID</text>
+      <rect x="868" y="213" width="110" height="38" fill="#CDEFE2"/><text x="878" y="237">OrderID</text>
+      <rect x="978" y="213" width="134" height="38" fill="#CDEFE2"/><text x="988" y="237">ProductID</text>
+    </g>
+    <g font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#07543E">
+      <rect x="728" y="251" width="140" height="38" fill="#E7F7F0"/><text x="738" y="275">10</text>
+      <rect x="868" y="251" width="110" height="38" fill="#E7F7F0"/><text x="878" y="275">100</text>
+      <rect x="978" y="251" width="134" height="38" fill="#E7F7F0"/><text x="988" y="275">1</text>
+    </g>
+  </g>
+  <text x="48" y="378" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="700" fill="#415569">Expected output</text>
+  <g aria-label="Expected output sourced from Products" data-source="Products">
+    <rect x="48" y="392" width="1064" height="34" rx="2" fill="#075BCC"/>
+    <text x="62" y="415" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Products · required output columns</text>
+    <g font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#10376B">
+      <rect x="48" y="427" width="150" height="38" fill="#CEE3FF"/><text x="60" y="451">ProductID</text>
+      <rect x="198" y="427" width="230" height="38" fill="#CEE3FF"/><text x="210" y="451">Product</text>
+      <rect x="428" y="427" width="190" height="38" fill="#CEE3FF"/><text x="440" y="451">Brand</text>
+      <rect x="618" y="427" width="210" height="38" fill="#CEE3FF"/><text x="630" y="451">CategoryID</text>
+      <rect x="828" y="427" width="284" height="38" fill="#CEE3FF"/><text x="840" y="451">Sale_Price</text>
+    </g>
+    <g font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#10376B">
+      <rect x="48" y="465" width="150" height="38" fill="#EAF3FF"/><text x="60" y="489">2</text>
+      <rect x="198" y="465" width="230" height="38" fill="#EAF3FF"/><text x="210" y="489">Cup</text>
+      <rect x="428" y="465" width="190" height="38" fill="#EAF3FF"/><text x="440" y="489">Home</text>
+      <rect x="618" y="465" width="210" height="38" fill="#EAF3FF"/><text x="630" y="489">20</text>
+      <rect x="828" y="465" width="284" height="38" fill="#EAF3FF"/><text x="840" y="489">10</text>
+    </g>
+  </g>
+  <text x="48" y="530" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" fill="#64748B">Practice example · one row per input record · source colors identify the originating table</text>
+</svg>

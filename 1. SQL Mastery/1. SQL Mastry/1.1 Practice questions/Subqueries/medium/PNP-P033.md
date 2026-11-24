@@ -45,22 +45,26 @@ One result row represents a product that has never appeared in an order line. Re
 | ---: | ---: | ---: |
 | 🟩 10 | 🟩 100 | 🟩 1 |
 
-### Expected output
+### Expected output · Practice example
 
 | 🟦 ProductID | 🟦 Product | 🟦 Brand | 🟦 CategoryID | 🟦 Sale_Price |
 | ---: | --- | --- | ---: | ---: |
 | 🟦 2 | 🟦 Cup | 🟦 Home | 🟦 20 | 🟦 10 |
 
-### How the sample produces this output
+![PNP P033 practice inputs and expected output](../../assets/question-samples/p033.svg)
+
+[Open the practice-example SVG full size](../../assets/question-samples/p033.svg?raw=1)
+
+### How the practice example produces this output
 
 🟦 Pen (ProductID 1) appears in 🟩 OrderDetails row 10, so it is excluded. 🟦 Cup (ProductID 2) has no matching order-detail row, so it qualifies. The result contains one product.
 
 ## Step 1 · Your approach before writing SQL
 
 1. What does one output row represent, and which five columns should it contain?
-2. Which table should supply the products being evaluated? Which table tells us whether a product has ever been ordered?
-3. How would you test whether a product has no matching order-detail row?
-4. Why does even one order line disqualify a product, regardless of quantity?
+2. Which source should supply the products being evaluated, and what role does the other source play?
+3. Which table would you place first, and how would you use the other source? If you choose a join, what join type and matching key(s) would you use? If you choose a subquery or set operation, what membership test would it perform?
+4. How does even one order line affect eligibility, regardless of quantity?
 5. How would you apply the requested ordering?
 6. Trace Pen and Cup through your proposed logic and explain why only Cup remains.
 
