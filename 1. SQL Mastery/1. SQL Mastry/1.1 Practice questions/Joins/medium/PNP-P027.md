@@ -226,27 +226,27 @@ FROM Orders supplies one row per purchase because the report counts order IDs an
 
 | 🟦 OrderID | 🟦 CustomerID | 🟦 Total_Order_Amount |
 | --- | ---: | ---: |
-| 1–5 | 1 | 100 |
-| 6–10 | 2 | 100 |
-| 11 | 99 | 50 |
-| 12–16 | 3 | 200 |
-| 17–21 | 3 | `NULL` |
-| 22–26 | 4 | 50 |
-| 27–30 | 5 | 50 |
-| 31–39 | 6 | 300 |
-| 40–49 | 7 | `NULL` |
+| 🟦 1–5 | 🟦 1 | 🟦 100 |
+| 🟦 6–10 | 🟦 2 | 🟦 100 |
+| 🟦 11 | 🟦 99 | 🟦 50 |
+| 🟦 12–16 | 🟦 3 | 🟦 200 |
+| 🟦 17–21 | 🟦 3 | 🟦 `NULL` |
+| 🟦 22–26 | 🟦 4 | 🟦 50 |
+| 🟦 27–30 | 🟦 5 | 🟦 50 |
+| 🟦 31–39 | 🟦 6 | 🟦 300 |
+| 🟦 40–49 | 🟦 7 | 🟦 `NULL` |
 
 **🟩 Customers**
 
 | 🟩 CustomerID | 🟩 State |
 | ---: | --- |
-| 1 | Karnataka |
-| 2 | Karnataka |
-| 3 | Maharashtra |
-| 4 | `NULL` |
-| 5 | Unknown |
-| 6 | Goa |
-| 7 | Kerala |
+| 🟩 1 | 🟩 Karnataka |
+| 🟩 2 | 🟩 Karnataka |
+| 🟩 3 | 🟩 Maharashtra |
+| 🟩 4 | 🟩 `NULL` |
+| 🟩 5 | 🟩 Unknown |
+| 🟩 6 | 🟩 Goa |
+| 🟩 7 | 🟩 Kerala |
 
 Order 11 carries buyer ID 99 even though the customer table has no row for 99.
 
@@ -266,9 +266,9 @@ These rows show the three routes into the `Unknown` group. Color identifies the 
 
 | 🟦 OrderID | 🟦 CustomerID | 🟦 Total_Order_Amount | 🟩 CustomerID | 🟩 State |
 | --- | ---: | ---: | ---: | --- |
-| 11 | 99 | 50 | `NULL` | `NULL` |
-| 22–26 | 4 | 50 | 4 | `NULL` |
-| 27–30 | 5 | 50 | 5 | Unknown |
+| 🟦 11 | 🟦 99 | 🟦 50 | 🟩 `NULL` | 🟩 `NULL` |
+| 🟦 22–26 | 🟦 4 | 🟦 50 | 🟩 4 | 🟩 `NULL` |
+| 🟦 27–30 | 🟦 5 | 🟦 50 | 🟩 5 | 🟩 Unknown |
 
 ### 3. Why label the state before GROUP BY?
 
@@ -280,10 +280,10 @@ COALESCE(NULLIF(TRIM(c.State), ''), 'Unknown') AS state
 
 | 🟦 OrderID | 🟩 CustomerID | 🟩 State | 🟩 state |
 | --- | ---: | --- | --- |
-| 1–5 | 1 | Karnataka | Karnataka |
-| 11 | `NULL` | `NULL` | Unknown |
-| 22–26 | 4 | `NULL` | Unknown |
-| 27–30 | 5 | Unknown | Unknown |
+| 🟦 1–5 | 🟩 1 | 🟩 Karnataka | 🟩 Karnataka |
+| 🟦 11 | 🟩 `NULL` | 🟩 `NULL` | 🟩 Unknown |
+| 🟦 22–26 | 🟩 4 | 🟩 `NULL` | 🟩 Unknown |
+| 🟦 27–30 | 🟩 5 | 🟩 Unknown | 🟩 Unknown |
 
 The full CTE is in the final learner solution. Before grouping, the working table still contains one row per order.
 
@@ -298,11 +298,11 @@ GROUP BY state
 
 | 🟩 state | 🟦 OrderIDs in this group | 🟦 orders |
 | --- | --- | ---: |
-| Goa | 31–39 | 9 |
-| Karnataka | 1–10 | 10 |
-| Kerala | 40–49 | 10 |
-| Maharashtra | 12–21 | 10 |
-| Unknown | 11, 22–30 | 10 |
+| 🟩 Goa | 🟦 31–39 | 🟦 9 |
+| 🟩 Karnataka | 🟦 1–10 | 🟦 10 |
+| 🟩 Kerala | 🟦 40–49 | 🟦 10 |
+| 🟩 Maharashtra | 🟦 12–21 | 🟦 10 |
+| 🟩 Unknown | 🟦 11, 22–30 | 🟦 10 |
 
 Read the `Unknown` row as one unmatched order, five orders for a customer whose state is missing, and four whose stored state is already `Unknown`. All ten share a label.
 
@@ -317,11 +317,11 @@ COUNT(Orders.OrderID) AS orders
 
 | 🟩 state | 🟦 Distinct CustomerIDs | 🟦 customers | 🟦 orders |
 | --- | --- | ---: | ---: |
-| Goa | 6 | 1 | 9 |
-| Karnataka | 1, 2 | 2 | 10 |
-| Kerala | 7 | 1 | 10 |
-| Maharashtra | 3 | 1 | 10 |
-| Unknown | 4, 5, 99 | 3 | 10 |
+| 🟩 Goa | 🟦 6 | 🟦 1 | 🟦 9 |
+| 🟩 Karnataka | 🟦 1, 2 | 🟦 2 | 🟦 10 |
+| 🟩 Kerala | 🟦 7 | 🟦 1 | 🟦 10 |
+| 🟩 Maharashtra | 🟦 3 | 🟦 1 | 🟦 10 |
+| 🟩 Unknown | 🟦 4, 5, 99 | 🟦 3 | 🟦 10 |
 
 ### 6. Why do SUM and AVG read only known amounts?
 
@@ -334,11 +334,11 @@ AVG(Orders.Total_Order_Amount) AS avg_order_value
 
 | 🟩 state | 🟦 customers | 🟦 orders | 🟦 Known amounts | 🟦 order_value | 🟦 avg_order_value |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Goa | 1 | 9 | 9 | 2700 | 300.00 |
-| Karnataka | 2 | 10 | 10 | 1000 | 100.00 |
-| Kerala | 1 | 10 | 0 | `NULL` | `NULL` |
-| Maharashtra | 1 | 10 | 5 | 1000 | 200.00 |
-| Unknown | 3 | 10 | 10 | 500 | 50.00 |
+| 🟩 Goa | 🟦 1 | 🟦 9 | 🟦 9 | 🟦 2700 | 🟦 300.00 |
+| 🟩 Karnataka | 🟦 2 | 🟦 10 | 🟦 10 | 🟦 1000 | 🟦 100.00 |
+| 🟩 Kerala | 🟦 1 | 🟦 10 | 🟦 0 | 🟦 `NULL` | 🟦 `NULL` |
+| 🟩 Maharashtra | 🟦 1 | 🟦 10 | 🟦 5 | 🟦 1000 | 🟦 200.00 |
+| 🟩 Unknown | 🟦 3 | 🟦 10 | 🟦 10 | 🟦 500 | 🟦 50.00 |
 
 Maharashtra has five amounts of 200 and five missing amounts. Its `orders` is 10, its `order_value` is 1,000, and its `avg_order_value` is 1,000 ÷ 5 = 200.00. The **Known amounts** column illustrates the denominator and appears only in the walkthrough.
 
@@ -354,11 +354,11 @@ HAVING COUNT(Orders.OrderID) >= 10
 
 | 🟩 state | 🟦 orders | 🟦 Known amounts | 🟦 10-order cutoff |
 | --- | ---: | ---: | --- |
-| Goa | 9 | 9 | Drop |
-| Karnataka | 10 | 10 | Keep |
-| Kerala | 10 | 0 | Keep |
-| Maharashtra | 10 | 5 | Keep |
-| Unknown | 10 | 10 | Keep |
+| 🟩 Goa | 🟦 9 | 🟦 9 | 🟦 Drop |
+| 🟩 Karnataka | 🟦 10 | 🟦 10 | 🟦 Keep |
+| 🟩 Kerala | 🟦 10 | 🟦 0 | 🟦 Keep |
+| 🟩 Maharashtra | 🟦 10 | 🟦 5 | 🟦 Keep |
+| 🟩 Unknown | 🟦 10 | 🟦 10 | 🟦 Keep |
 
 Goa has the largest average among the five candidate states but only nine orders. Kerala qualifies with ten orders and zero known amounts.
 
@@ -372,10 +372,10 @@ ORDER BY avg_order_value DESC;
 
 | 🟩 state | 🟦 customers | 🟦 orders | 🟦 order_value | 🟦 avg_order_value |
 | --- | ---: | ---: | ---: | ---: |
-| Maharashtra | 1 | 10 | 1000 | 200.00 |
-| Karnataka | 2 | 10 | 1000 | 100.00 |
-| Unknown | 3 | 10 | 500 | 50.00 |
-| Kerala | 1 | 10 | `NULL` | `NULL` |
+| 🟩 Maharashtra | 🟦 1 | 🟦 10 | 🟦 1000 | 🟦 200.00 |
+| 🟩 Karnataka | 🟦 2 | 🟦 10 | 🟦 1000 | 🟦 100.00 |
+| 🟩 Unknown | 🟦 3 | 🟦 10 | 🟦 500 | 🟦 50.00 |
+| 🟩 Kerala | 🟦 1 | 🟦 10 | 🟦 `NULL` | 🟦 `NULL` |
 
 The qualifying rows account for **40 orders**. Together with Goa’s nine excluded orders, they reconcile to the original **49**. Even though Maharashtra and Karnataka have the same total value, their different counts of known amounts put Maharashtra first.
 
