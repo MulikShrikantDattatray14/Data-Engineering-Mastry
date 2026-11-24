@@ -112,6 +112,20 @@ ORDER BY store ASC;
 
 </details>
 
+## Important learnings from B1.04
+
+### 1. The three SELECT branches unpivot the wide row
+Each source product row can contribute up to three output rows: one for store1, one for store2 and one for store3. The literal store label identifies which input column supplied the price.
+
+### 2. Filter missing prices inside each branch
+A NULL store price does not create an output row. The product can still appear for another store whose price is present.
+
+### 3. UNION ALL preserves each product/store contribution
+UNION ALL stacks the branches without removing duplicate-looking rows. That is appropriate because each branch represents a different store contribution.
+
+### 4. Sort after the set operation
+The final ordering applies to the combined rows, not separately to each SELECT branch. The saved query sorts by store.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.04/01.md)
@@ -212,7 +226,7 @@ ORDER BY store ASC;
 
 This is the sample output. The question only specifies sorting by `store`; rows tied within one store can appear in either product order. If a fixed order within each store were required, add `product_id` as a second sort key. `UNION ALL` keeps all rows without a duplicate-removal step.
 
-## My solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 The same query works in SQL Server:
 
@@ -270,7 +284,7 @@ For **this** question's added sorting requirement, the user's final query correc
 
 **Common mistakes:** Using `<> NULL` instead of `IS NOT NULL`, forgetting to remove missing prices, or applying `ORDER BY` to one branch instead of the final combined result.
 
-## Official solution · SQLite adaptation
+### Official answer · SQLite adaptation
 
 ```sql
 SELECT product_id, 'store1' AS store, store1 AS price
@@ -287,7 +301,7 @@ WHERE store3 IS NOT NULL
 ORDER BY store ASC;
 ```
 
-## Official solution · SQL Server adaptation
+### Official answer · SQL Server adaptation
 
 ```sql
 SELECT product_id, 'store1' AS store, store1 AS price
@@ -304,6 +318,10 @@ WHERE store3 IS NOT NULL
 ORDER BY store ASC;
 ```
 
-## Revision verification
+## Comparison with the course answer
+
+Both answers use three SELECT branches and UNION ALL to turn the store1, store2 and store3 columns into product/store/price rows, filtering NULL prices in each branch. The learner query and the SQLite/SQL Server adaptations add ORDER BY store; the supplied source answer does not specify a final order. The row values are the same, while the saved learner query provides deterministic store ordering.
+
+## Verification
 
 The learner submitted the three UNION ALL branches shown in My solution — SQLite, ordered by store ascending. Executed the query in SQLite on the sample and additional zero-price and all-NULL-price rows. All passed. The zero price remains, and the product with all prices NULL contributes no rows. SQL Server was not executed.

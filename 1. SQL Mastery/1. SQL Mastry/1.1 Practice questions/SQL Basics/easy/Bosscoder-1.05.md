@@ -88,6 +88,20 @@ SELECT
 FROM TRIANGLES;
 ```
 
+## Important learnings from B1.05
+
+### 1. Validate the triangle before naming its type
+If any two sides sum to no more than the third, the row is Not A Triangle. This condition must precede the equal-side checks.
+
+### 2. Check Equilateral before Isosceles
+All three equal sides also satisfy pairwise equality. The first matching CASE branch must therefore identify Equilateral before the broader Isosceles condition.
+
+### 3. Scalene is the remaining valid case
+After invalid and equal-side cases are handled, a valid triangle with no equal pair is Scalene. The learner query spells this out with three inequality checks; the official answer uses ELSE.
+
+### 4. One input row produces one label
+TRIANGLES already contains all three side lengths. The single-table CASE expression classifies each row without a join or grouping.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.05/01.md)
@@ -197,7 +211,7 @@ FROM TRIANGLES;
 
 No grouping is needed because each row is classified independently. The final SELECT returns only the requested TriangleType column.
 
-## My final solution · SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT
@@ -216,7 +230,7 @@ SELECT
 FROM TRIANGLES;
 ```
 
-## Official solution · As supplied
+## Official solution
 
 ```sql
 SELECT
@@ -229,7 +243,7 @@ SELECT
 FROM TRIANGLES;
 ```
 
-## Official solution · SQLite adaptation
+### Official answer · SQLite adaptation
 
 ```sql
 SELECT
@@ -242,7 +256,7 @@ SELECT
 FROM TRIANGLES;
 ```
 
-## Official solution · SQL Server adaptation
+### Official answer · SQL Server adaptation
 
 ```sql
 SELECT
@@ -256,6 +270,10 @@ FROM TRIANGLES;
 ```
 
 The official query checks invalid sides, then Equilateral, then any equal pair, and uses ELSE for Scalene. Your explicit pair conditions give the same labels for the supported non-NULL side lengths.
+
+## Comparison with the course answer
+
+Both queries test the triangle inequality first and then classify equal-side cases. The learner explicitly checks all three pairwise equalities for Equilateral and all three pairwise inequalities for Scalene; the course answer uses the shorter A = B AND B = C test and lets the remaining valid case fall through to Scalene. After the invalid-triangle and Equilateral branches, the learner's Isosceles predicate is equivalent to the official OR condition. The locked query is retained.
 
 ## Verification
 

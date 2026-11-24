@@ -89,6 +89,17 @@ WHERE year = 2021 AND revenue > 0;
 
 </details>
 
+## Important learnings from B1.01
+
+### 1. Keep the year and revenue rules together
+A customer qualifies only when the row's year is 2021 and revenue is strictly greater than zero. Zero and negative revenue do not qualify.
+
+### 2. Return the requested key only
+The result is one customer_id per qualifying Customers row. No grouping, join or aggregate is required.
+
+### 3. Do not confuse filtering with ranking
+The task asks for every qualifying customer, not a top-N subset. The WHERE clause determines eligibility and the selected column is only customer_id.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.01/01.md)
@@ -163,7 +174,7 @@ WHERE year = 2021 AND revenue > 0;
 
 No `DISTINCT` is needed because `(customer_id, year)` is unique and only one year is selected. The question permits any order, so no final `ORDER BY` is required. The shown order matches the example, but SQL does not guarantee it without `ORDER BY`.
 
-## My solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 The same query works in SQL Server:
 
@@ -207,6 +218,10 @@ FROM Customers
 WHERE year = 2021 AND revenue > 0;
 ```
 
-## Revision verification
+## Comparison with the course answer
+
+The learner SQLite query is identical to the official answer: both select customer_id where year = 2021 and revenue > 0. The SQL Server adaptation preserves the same predicates and output column. No semantic or dialect difference is introduced in the saved solution.
+
+## Verification
 
 The learner submitted SELECT customer_id FROM Customers WHERE year=2021 AND revenue >0. Executed in SQLite against the sample plus a zero-revenue row. Returned customer IDs 1 and 4. The official solution and both dialect versions above use the same logic. SQL Server was not executed.

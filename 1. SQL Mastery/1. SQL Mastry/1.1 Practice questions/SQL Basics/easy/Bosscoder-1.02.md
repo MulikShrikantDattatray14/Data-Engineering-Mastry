@@ -74,6 +74,17 @@ FROM Employees
 ORDER BY employee_id ASC;
 ```
 
+## Important learnings from B1.02
+
+### 1. CASE keeps every employee
+The assignment asks for a bonus value for each employee. Do not filter out ineligible employees; return them with bonus 0.
+
+### 2. Both conditions must be true
+The employee ID must be odd (employee_id % 2 = 1) and the name must not start with M. AND requires both conditions; otherwise the ELSE branch returns zero.
+
+### 3. Sort the complete output
+ORDER BY employee_id ASC is applied after each employee receives a bonus value, so eligible and ineligible employees remain in the same ordered result.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/Bosscoder-1.02/01.md)
@@ -146,7 +157,7 @@ ORDER BY employee_id ASC;
 
 Five employees produce five output rows. No grouping is required because the calculation applies to each employee individually.
 
-## My final solution · SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT employee_id,
@@ -160,7 +171,7 @@ ORDER BY employee_id ASC;
 
 Text matching in SQL Server depends on collation. This version was reviewed and was not executed.
 
-## Official solution · As supplied
+## Official solution
 
 ```sql
 SELECT employee_id,
@@ -169,7 +180,7 @@ FROM Employees
 ORDER BY employee_id;
 ```
 
-## Official solution · SQLite
+### Official answer · SQLite adaptation
 
 The supplied query above runs in SQLite, where the Boolean expression acts as 1 or 0 for the sample. A NULL name may yield NULL with this multiplication method. The learner's CASE returns zero when eligibility is unknown.
 
@@ -181,7 +192,7 @@ FROM Employees
 ORDER BY employee_id;
 ```
 
-## Official solution · SQL Server adaptation
+### Official answer · SQL Server adaptation
 
 SQL Server uses CASE to choose the numeric bonus.
 
@@ -194,6 +205,10 @@ SELECT employee_id,
 FROM Employees
 ORDER BY employee_id ASC;
 ```
+
+## Comparison with the course answer
+
+The learner uses CASE to return salary when the employee ID is odd and the name does not start with M, otherwise zero. The supplied course answer multiplies salary by a boolean condition; the SQLite and SQL Server adaptations use the same CASE logic as the learner. Both return every employee and order by employee_id. LIKE case sensitivity depends on the engine's collation/settings; the saved adaptation preserves the assignment predicate rather than silently changing it.
 
 ## Verification
 

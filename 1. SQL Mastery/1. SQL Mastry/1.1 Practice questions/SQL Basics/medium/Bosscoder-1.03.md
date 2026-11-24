@@ -213,7 +213,7 @@ ORDER BY N;
 
 Nodes 2 and 8 have parents and appear in the parent list, so both are Inner. All seven nodes remain in the output. No grouping is needed because each node is classified individually.
 
-## My final solution · SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT N,
@@ -230,7 +230,7 @@ FROM BST
 ORDER BY N;
 ```
 
-## New learning · NOT IN and NULL
+## Important learnings from B1.03
 
 Yes—**if the `NOT IN` list contains `NULL`, a value with no matching entry produces UNKNOWN**, so its `WHEN` branch won’t run.
 
@@ -238,7 +238,7 @@ If the value **does match** an entry, `NOT IN` returns FALSE. That’s why we re
 
 For this nonempty parent list, checking node 1 without removing NULL behaves like comparing 1 against each known value and also against NULL. A comparison with NULL is unknown. CASE uses a WHEN branch only when its condition is true, so an unknown leaf test would incorrectly reach Inner.
 
-## Official solution · As supplied
+## Official solution
 
 ```sql
 SELECT N,
@@ -251,7 +251,7 @@ FROM BST
 ORDER BY N;
 ```
 
-## Official solution · SQLite adaptation
+### Official answer · SQLite adaptation
 
 ```sql
 SELECT N,
@@ -264,7 +264,7 @@ FROM BST
 ORDER BY N;
 ```
 
-## Official solution · SQL Server adaptation
+### Official answer · SQL Server adaptation
 
 ```sql
 SELECT N,
@@ -278,6 +278,10 @@ ORDER BY N;
 ```
 
 DISTINCT removes duplicates from the parent list. The learner's solution works without DISTINCT because duplicates do not affect NOT IN membership.
+
+## Comparison with the course answer
+
+The learner and course answers both classify P IS NULL as Root, use NOT IN over non-NULL parent values for Leaf, and otherwise return Inner. The official answer adds DISTINCT to the subquery; duplicates do not affect IN/NOT IN membership, so the extra DISTINCT does not change the result. Excluding NULL parent values is essential in both queries. The selected learner query is preserved.
 
 ## Verification
 
