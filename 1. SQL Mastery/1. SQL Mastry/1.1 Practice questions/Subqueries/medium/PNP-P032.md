@@ -66,3 +66,51 @@ For 🟦 Beverages (CategoryID 🟦 5009), Tea, Coffee and Juice contribute **�
 5. How would you apply the Beverages restriction and the requested ordering?
 6. Trace Tea, Coffee and Juice through your proposed steps, then explain why Bread is treated separately.
 
+## My solution — SQLite
+
+**Final learner-selected solution.** Checked against the illustrative sample in SQLite on 24 November 2026. It returns Juice (ProductID 3) at 300, with a category average of 200.0.
+
+```sql
+WITH required_table AS (
+    SELECT
+        ProductID,
+        Product,
+        CategoryID,
+        Sale_Price
+    FROM Products
+    WHERE CategoryID = 5009
+),
+
+avg_sale_price AS (
+    SELECT
+        AVG(Sale_Price) AS category_avg_price
+    FROM required_table
+)
+
+SELECT
+    ProductID,
+    Product,
+    CategoryID,
+    Sale_Price,
+    (SELECT category_avg_price FROM avg_sale_price) AS category_avg_price
+FROM required_table
+WHERE Sale_Price > (
+    SELECT category_avg_price
+    FROM avg_sale_price
+)
+ORDER BY
+    CategoryID ASC,
+    Sale_Price DESC;
+```
+
+**Why no `GROUP BY` is needed:** `required_table` retains one row per product. `avg_sale_price` calculates one benchmark for the filtered category. The outer query compares each product row against that scalar benchmark, so individual product rows are not collapsed.
+
+The benchmark includes all known sale prices in CategoryID 5009, including products that do not qualify. Equality is excluded by the strict `>` comparison.
+
+## My solution — SQL Server
+
+Pending. The learner-selected SQLite solution is saved; a SQL Server adaptation remains to be prepared and verified.
+
+## Official solution
+
+Pending source extraction and comparison. The supplied PDF and ZIP retain the original answer.
