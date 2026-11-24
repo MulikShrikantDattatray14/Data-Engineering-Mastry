@@ -31,31 +31,31 @@ One output row represents one catalogue-wide sales summary, including products w
 
 | 🟦 ProductID | 🟦 Product |
 |---:|---|
-| 1 | Pen |
-| 2 | Bag |
-| 3 | Cup |
+| 🟦 1 | 🟦 Pen |
+| 🟦 2 | 🟦 Bag |
+| 🟦 3 | 🟦 Cup |
 
 **🟩 `OrderDetails`**
 
 | 🟩 OrderDetailID | 🟩 OrderID | 🟩 ProductID |
 |---:|---:|---:|
-| 1 | 10 | 1 |
-| 2 | 11 | 1 |
-| 3 | 11 | 2 |
+| 🟩 1 | 🟩 10 | 🟩 1 |
+| 🟩 2 | 🟩 11 | 🟩 1 |
+| 🟩 3 | 🟩 11 | 🟩 2 |
 
 ### Expected output
 
 | 🟪 rows_after_join | 🟩 sale_lines | 🟦 listed_products | 🟩 products_sold | 🟪 pct_sold |
 |---:|---:|---:|---:|---:|
-| 4 | 3 | 3 | 2 | 66.67 |
+| 🟪 4 | 🟩 3 | 🟦 3 | 🟩 2 | 🟪 66.67 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p011.svg?raw=1)
 
 ### How the sample produces this output
 
-The catalogue contains 🟦 three products. Pen has two sale lines and Bag has one, giving 🟩 **3 sale lines** across 🟩 **2 sold products**. Cup has no sale, but still appears once in the catalogue comparison. The row total is 🟪 **2 for Pen + 1 for Bag + 1 for Cup = 4**.
+The catalogue contains 🟦 three products. 🟩 Pen has two sale lines and 🟩 Bag has one, giving 🟩 **🟩 3 sale lines** across 🟩 **🟩 2 sold products**. 🟩 Cup has no sale, but still appears once in the catalogue comparison. The row total is 🟪 **🟩 2 for 🟩 Pen + 🟩 1 for 🟩 Bag + 🟩 1 for 🟩 Cup = 🟩 4**.
 
-The denominator for catalogue coverage includes all three listed products. Pen and Bag account for 🟪 `2 / 3 × 100 = 66.67%` of the catalogue.
+The denominator for catalogue coverage includes all three listed products. 🟩 Pen and 🟩 Bag account for 🟪 `🟩 2 / 🟩 3 × 🟩 100 = 🟩 66.67%` of the catalogue.
 
 ## Step 1 · Your approach before writing SQL
 
