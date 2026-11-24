@@ -53,8 +53,6 @@ One result row represents one qualifying Beverages product. All five columns are
 
 [Open the sample SVG full size](../../assets/question-samples/p032.svg?raw=1)
 
-[Open the sample SVG full size](../../assets/question-samples/p032.svg?raw=1)
-
 ### How the sample produces this output
 
 For 🟦 Beverages (CategoryID 🟦 5009), Tea, Coffee and Juice contribute **🟦 100 + 🟦 200 + 🟦 300 = 🟦 600**. Dividing by the three known prices gives **🟦 600 ÷ 3 = 🟦 200.00**. Tea at 🟦 100 is below the average. Coffee at 🟦 200 equals it, so it does not meet the strict greater-than condition. Juice (ProductID 🟦 3) at 🟦 300 is above 🟦 200 and is the only qualifying row. Bread (ID 🟦 4) is in CategoryID 🟦 5010 and does not contribute to this category’s average or appear in the Beverages report.
