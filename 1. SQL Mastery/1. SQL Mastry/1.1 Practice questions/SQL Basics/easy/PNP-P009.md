@@ -30,18 +30,18 @@ One output row represents one distinct raw flag value within one source column, 
 
 | 🟦 CategoryID | 🟦 Active |
 | --- | --- |
-| 1 | 1 |
-| 2 | 1 |
-| 3 | 0 |
-| 4 | `NULL` |
+| 🟦 1 | 🟦 1 |
+| 🟦 2 | 🟦 1 |
+| 🟦 3 | 🟦 0 |
+| 🟦 4 | 🟦 `NULL` |
 
 **🟩 `Payments`**
 
 | 🟩 PaymentID | 🟩 Allowed |
 | --- | --- |
-| 1 | Y |
-| 2 | N |
-| 3 | N |
+| 🟩 1 | 🟩 Y |
+| 🟩 2 | 🟩 N |
+| 🟩 3 | 🟩 N |
 
 ### Expected output
 
@@ -57,9 +57,9 @@ One output row represents one distinct raw flag value within one source column, 
 
 ### How the sample produces this output
 
-In 🟦 Category, IDs 1 and 2 store the value 1, ID 3 stores 0, and ID 4 has a missing flag. Those three output rows have counts **2, 1 and 1**, accounting for all four categories.
+In 🟦 🟩 Category, IDs 🟩 1 and 🟩 2 store the value 🟩 1, ID 🟩 3 stores 🟩 0, and ID 🟩 4 has a missing flag. Those three output rows have counts **🟩 2, 🟩 1 and 🟩 1**, accounting for all four categories.
 
-In 🟩 Payments, ID 1 stores Y and IDs 2 and 3 store N. Those two rows have counts **1 and 2**, accounting for all three payments. The source and flag columns identify each set of counts. The known raw values are displayed as text and the missing value stays `NULL`.
+In 🟩 Payments, ID 🟩 1 stores Y and IDs 🟩 2 and 🟩 3 store N. Those two rows have counts **🟩 1 and 🟩 2**, accounting for all three payments. The source and flag columns identify each set of counts. The known raw values are displayed as text and the missing value stays `NULL`.
 
 ## Step 1 · Your approach before writing SQL
 
