@@ -68,15 +68,6 @@ One result row represents a product that has never appeared in an order line. Re
 5. How would you apply the requested ordering?
 6. Trace Pen and Cup through your proposed logic and explain why only Cup remains.
 
-
-1. Keep `Products` as the driving (left) table because every catalogue product must be considered, including products with no order history.
-2. LEFT JOIN `OrderDetails` using `Products.ProductID = OrderDetails.ProductID`.
-3. A product with no matching order-detail row receives NULLs in the right-side columns.
-4. Filter those unmatched rows with `OD.OrderDetailID IS NULL`. `OrderDetailID` is a non-null identifier for an actual order-detail row.
-5. Return the five requested columns from `Products` and sort by `CategoryID` ascending, then `ProductID` ascending.
-
-**Pattern:** LEFT ANTI JOIN — preserve left-side rows that have no match on the right.
-
 ## My solution — SQLite
 
 **Final learner solution.** Sample-checked on 24 November 2026 using the illustrative Example 3 below.
@@ -167,7 +158,17 @@ The official `NOT EXISTS` solution expresses the same business rule as the learn
 
 One output row represents one never-ordered product. Return the five requested catalogue columns and sort by CategoryID ascending, then ProductID ascending. Quantity does not determine eligibility: even one order line disqualifies the product.
 
+
 ### Agreed approach (after the learner attempt)
+
+1. Keep `Products` as the driving (left) table because every catalogue product must be considered, including products with no order history.
+2. LEFT JOIN `OrderDetails` using `Products.ProductID = OrderDetails.ProductID`.
+3. A product with no matching order-detail row receives NULLs in the right-side columns.
+4. Filter those unmatched rows with `OD.OrderDetailID IS NULL`. `OrderDetailID` is a non-null identifier for an actual order-detail row.
+5. Return the five requested columns from `Products` and sort by `CategoryID` ascending, then `ProductID` ascending.
+
+**Pattern:** LEFT ANTI JOIN — preserve left-side rows that have no match on the right.
+
 
 ## Visual walkthrough
 
