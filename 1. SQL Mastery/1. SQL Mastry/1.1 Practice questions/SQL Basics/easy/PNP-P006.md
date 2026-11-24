@@ -83,101 +83,7 @@ The non-NULL equality test determines which products qualify. Sort those rows by
 ### 3. Keep the displayed label tied to the condition
 The selected rows are all full-price products, so the literal Full price is a valid label for each returned row. No join or aggregate is needed.
 
-## Visual walkthrough
-
-[Open the Previous / Next walkthrough](../../assets/steps/PNP-P006/01.md)
-
-Follow the sample rows through each query step. **Predict the result.** Does a missing sale price prove the product was sold at full price?
-
-![Most expensive products sold at full price. Lamp costs 150 and Mug costs 100. Only two products qualify for the ten available places.](../../assets/walkthroughs/p006.svg)
-
-[Open the full-size walkthrough](../../assets/walkthroughs/p006.svg?raw=1)
-
-## Step-by-step walkthrough
-
-🟦 **FROM Products · one table is enough** · A product row contains both prices used to decide whether it is full price. That same row supplies its ID, name, brand and sale price for the ranking.
-
-**How to start.** What distinguishes an equal price from a missing price?
-
-Use the same sample throughout and check the output after each step.
-
-### 1. Compare the two prices on each row
-
-**What to do.** Compare the two prices on each row.
-
-**Why.** The comparison can be true, false, or unknown.
-
-This preview shows what SQLite evaluates for each product. It returns 1 for equal prices, 0 for unequal prices, and NULL when either price is missing.
-
-```sql
-SELECT ProductID, Product, Sale_Price, Market_Price,
-       Market_Price = Sale_Price AS prices_match
-FROM Products
-ORDER BY ProductID;
-```
-
-| ProductID | Product | Sale_Price | Market_Price | prices_match |
-| --- | --- | --- | --- | --- |
-| 1 | Mug | 100 | 100 | 1 |
-| 2 | Lamp | 150 | 150 | 1 |
-| 3 | Mystery | `NULL` | 100 | `NULL` |
-| 4 | Bottle | 90 | 100 | 0 |
-
-### 2. Keep products with equal prices
-
-**What to do.** Keep products with equal prices.
-
-**Why.** Only true comparisons qualify.
-
-The `WHERE` clause keeps only comparisons that are true. Mug and Lamp pass. Mystery drops out because its comparison is unknown, and Bottle drops out because its prices differ.
-
-```sql
-SELECT ProductID, Product, Brand, Sale_Price, Market_Price
-FROM Products
-WHERE Market_Price = Sale_Price
-ORDER BY ProductID;
-```
-
-| ProductID | Product | Brand | Sale_Price | Market_Price |
-| --- | --- | --- | --- | --- |
-| 1 | Mug | Home | 100 | 100 |
-| 2 | Lamp | Home | 150 | 150 |
-
-### 3. Label and rank the full-price products
-
-**What to do.** Label and rank the full-price products.
-
-**Why.** Every retained product gets the same label before sorting and limiting.
-
-Every remaining row qualifies for the constant `Full price` label. Sort by sale price descending and use product ID ascending for ties. Apply the ten-row limit after sorting. Only two rows qualify in this sample.
-
-```sql
-SELECT ProductID, Product, Brand, Sale_Price, Market_Price,
-       'Full price' AS discount_display
-FROM Products
-WHERE Market_Price = Sale_Price
-ORDER BY Sale_Price DESC, ProductID ASC
-LIMIT 10;
-```
-
-| ProductID | Product | Brand | Sale_Price | Market_Price | discount_display |
-| --- | --- | --- | --- | --- | --- |
-| 2 | Lamp | Home | 150 | 150 | Full price |
-| 1 | Mug | Home | 100 | 100 | Full price |
-
-## Learner solution — SQL Server adaptation
-
-```sql
-SELECT TOP (10) ProductID, Product, Brand, Sale_Price, Market_Price,
-       'Full price' AS discount_display
-FROM Products
-WHERE Market_Price = Sale_Price
-ORDER BY Sale_Price DESC, ProductID ASC;
-```
-
-The SQL Server adaptation uses `TOP (10)` and was reviewed by inspection.
-
-## Method 2 — Explicit CASE (SQLite)
+### Alternative method — Method 2 — Explicit CASE (SQLite)
 
 ```sql
 select ProductID, Product, Brand,Sale_Price,Market_Price,
@@ -285,6 +191,100 @@ order by Sale_Price desc , ProductID asc;
 ```
 
 This adaptation uses `TOP (10)` and was reviewed by inspection.
+
+## Visual walkthrough
+
+[Open the Previous / Next walkthrough](../../assets/steps/PNP-P006/01.md)
+
+Follow the sample rows through each query step. **Predict the result.** Does a missing sale price prove the product was sold at full price?
+
+![Most expensive products sold at full price. Lamp costs 150 and Mug costs 100. Only two products qualify for the ten available places.](../../assets/walkthroughs/p006.svg)
+
+[Open the full-size walkthrough](../../assets/walkthroughs/p006.svg?raw=1)
+
+## Step-by-step walkthrough
+
+🟦 **FROM Products · one table is enough** · A product row contains both prices used to decide whether it is full price. That same row supplies its ID, name, brand and sale price for the ranking.
+
+**How to start.** What distinguishes an equal price from a missing price?
+
+Use the same sample throughout and check the output after each step.
+
+### 1. Compare the two prices on each row
+
+**What to do.** Compare the two prices on each row.
+
+**Why.** The comparison can be true, false, or unknown.
+
+This preview shows what SQLite evaluates for each product. It returns 1 for equal prices, 0 for unequal prices, and NULL when either price is missing.
+
+```sql
+SELECT ProductID, Product, Sale_Price, Market_Price,
+       Market_Price = Sale_Price AS prices_match
+FROM Products
+ORDER BY ProductID;
+```
+
+| ProductID | Product | Sale_Price | Market_Price | prices_match |
+| --- | --- | --- | --- | --- |
+| 1 | Mug | 100 | 100 | 1 |
+| 2 | Lamp | 150 | 150 | 1 |
+| 3 | Mystery | `NULL` | 100 | `NULL` |
+| 4 | Bottle | 90 | 100 | 0 |
+
+### 2. Keep products with equal prices
+
+**What to do.** Keep products with equal prices.
+
+**Why.** Only true comparisons qualify.
+
+The `WHERE` clause keeps only comparisons that are true. Mug and Lamp pass. Mystery drops out because its comparison is unknown, and Bottle drops out because its prices differ.
+
+```sql
+SELECT ProductID, Product, Brand, Sale_Price, Market_Price
+FROM Products
+WHERE Market_Price = Sale_Price
+ORDER BY ProductID;
+```
+
+| ProductID | Product | Brand | Sale_Price | Market_Price |
+| --- | --- | --- | --- | --- |
+| 1 | Mug | Home | 100 | 100 |
+| 2 | Lamp | Home | 150 | 150 |
+
+### 3. Label and rank the full-price products
+
+**What to do.** Label and rank the full-price products.
+
+**Why.** Every retained product gets the same label before sorting and limiting.
+
+Every remaining row qualifies for the constant `Full price` label. Sort by sale price descending and use product ID ascending for ties. Apply the ten-row limit after sorting. Only two rows qualify in this sample.
+
+```sql
+SELECT ProductID, Product, Brand, Sale_Price, Market_Price,
+       'Full price' AS discount_display
+FROM Products
+WHERE Market_Price = Sale_Price
+ORDER BY Sale_Price DESC, ProductID ASC
+LIMIT 10;
+```
+
+| ProductID | Product | Brand | Sale_Price | Market_Price | discount_display |
+| --- | --- | --- | --- | --- | --- |
+| 2 | Lamp | Home | 150 | 150 | Full price |
+| 1 | Mug | Home | 100 | 100 | Full price |
+
+## Learner solution — SQL Server adaptation
+
+```sql
+SELECT TOP (10) ProductID, Product, Brand, Sale_Price, Market_Price,
+       'Full price' AS discount_display
+FROM Products
+WHERE Market_Price = Sale_Price
+ORDER BY Sale_Price DESC, ProductID ASC;
+```
+
+The SQL Server adaptation uses `TOP (10)` and was reviewed by inspection.
 
 ## Official solution
 

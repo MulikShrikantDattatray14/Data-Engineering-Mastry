@@ -170,7 +170,7 @@ order by  count(CustomerID) desc, State asc
 | Karnataka | 5 |
 | Unknown | 5 |
 
-## Learner solution — SQL Server (CASE)
+## Learner solution — SQL Server adaptation
 
 ```sql
 select 
@@ -187,24 +187,6 @@ order by  count(CustomerID) desc, State asc;
 ```
 
 This adaptation was reviewed by inspection.
-
-## Alternative — COALESCE (SQLite and SQL Server)
-
-`COALESCE` returns the first non-NULL value. It keeps a known state or uses `Unknown` for SQL NULL. The grouping, threshold, and sort are the same as in the CASE version.
-
-```sql
-select 
-COALESCE(State, 'Unknown') AS State
-
-, count(CustomerID) as customer_count
-from Customers
-group by state
-having count(CustomerID)>=5
-order by  count(CustomerID) desc, State asc;
-
-```
-
-Both expressions returned the same results in SQLite on the original and extended examples. The SQL Server versions were reviewed by inspection.
 
 ## Official solution
 
