@@ -201,7 +201,7 @@
   <line x1="36" y1="1146" x2="924" y2="1146" stroke="#C8D4DF" stroke-width="1" />
   <text x="36" y="1180" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">04</text>
   <text x="81" y="1180" font-size="24" font-weight="700" fill="#14283A">Why does the same average appear three times?</text>
-  <text x="81" y="1208" font-size="16" font-weight="400" fill="#324D63">Outer FROM starts with the customer groups; scalar AVG reads all 3 totals (200) and attaches it to each.</text>
+  <text x="81" y="1208" font-size="16" font-weight="400" fill="#324D63" textLength="855" lengthAdjust="spacingAndGlyphs">Outer FROM starts with the customer groups; scalar AVG reads all 3 totals (200) and attaches it to each.</text>
   <rect x="36" y="1224" width="888" height="34" fill="#F1F4F7" rx="4" />
   <rect x="36" y="1224" width="3" height="34" fill="#687E90" />
   <text x="48" y="1246" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">(SELECT AVG(total_spend) FROM customer_spend) AS avg_customer_spend</text>
@@ -253,7 +253,7 @@
   <line x1="36" y1="1512" x2="924" y2="1512" stroke="#C8D4DF" stroke-width="1" />
   <text x="36" y="1546" font-size="19" font-weight="700" fill="#385369" font-family="DejaVu Sans Mono, monospace">05</text>
   <text x="81" y="1546" font-size="24" font-weight="700" fill="#14283A">Who passes the strict comparison?</text>
-  <text x="81" y="1574" font-size="16" font-weight="400" fill="#324D63">The outer query starts with spend_with_avg. WHERE tests each total against the unrounded average.</text>
+  <text x="81" y="1574" font-size="16" font-weight="400" fill="#324D63" textLength="855" lengthAdjust="spacingAndGlyphs">The outer query starts with spend_with_avg. WHERE tests each total against the unrounded average.</text>
   <rect x="36" y="1590" width="888" height="34" fill="#F1F4F7" rx="4" />
   <rect x="36" y="1590" width="3" height="34" fill="#687E90" />
   <text x="48" y="1612" font-size="15" font-weight="400" fill="#14283A" font-family="DejaVu Sans Mono, monospace">WHERE total_spend &gt; avg_customer_spend</text>
