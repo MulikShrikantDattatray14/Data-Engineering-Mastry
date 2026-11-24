@@ -30,25 +30,25 @@ One output row represents one customer type represented among customers who plac
 
 | 🟦 OrderID | 🟦 CustomerID |
 |---|---|
-| 1 | 10 |
-| 2 | 20 |
-| 3 | 20 |
-| 4 | 30 |
+| 🟦 1 | 🟦 10 |
+| 🟦 2 | 🟦 20 |
+| 🟦 3 | 🟦 20 |
+| 🟦 4 | 🟦 30 |
 
 ### Expected output
 
 | 🟦 customer_type | 🟦 customers | 🟦 pct_of_customers |
 |---|---|---|
-| One-time | 2 | 66.67 |
-| Repeat | 1 | 33.33 |
+| 🟦 One-time | 🟦 2 | 🟦 66.67 |
+| 🟦 Repeat | 🟦 1 | 🟦 33.33 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/p030.svg?raw=1)
 
 ### How the sample produces this output
 
-🟦 Customers **10** and **30** appear on orders **1** and **4**, respectively. Each ordered once. They give `One-time` **2** of the **3** ordering customers, or `2 ÷ 3 × 100 = 66.67%`.
+🟦 Customers **🟦 10** and **🟦 30** appear on orders **🟦 1** and **🟦 4**, respectively. Each ordered once. They give `🟦 One-time` **🟦 2** of the **🟦 3** ordering customers, or `🟦 2 ÷ 🟦 3 × 100 = 🟦 66.67%`.
 
-🟦 Customer **20** placed orders **2** and **3**. That customer contributes once to `Repeat`, giving **1** of the **3** ordering customers, or `1 ÷ 3 × 100 = 33.33%`. The two groups account for all three customers.
+🟦 Customer **🟦 20** placed orders **🟦 2** and **🟦 3**. That customer contributes once to `🟦 Repeat`, giving **🟦 1** of the **🟦 3** ordering customers, or `🟦 1 ÷ 🟦 3 × 100 = 🟦 33.33%`. The two groups account for all three customers.
 
 ## Step 1 · Your approach before writing SQL
 
