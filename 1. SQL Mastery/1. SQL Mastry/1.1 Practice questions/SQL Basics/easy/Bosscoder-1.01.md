@@ -36,20 +36,20 @@ One output row represents one customer with strictly positive 2021 revenue.
 
 | 🟦 customer_id | 🟦 year | 🟦 revenue |
 |---:|---:|---:|
-| 1 | 2018 | 50 |
-| 1 | 2021 | 30 |
-| 1 | 2020 | 70 |
-| 2 | 2021 | -50 |
-| 3 | 2018 | 10 |
-| 3 | 2016 | 50 |
-| 4 | 2021 | 20 |
+| 🟦 1 | 🟦 2018 | 🟦 50 |
+| 🟦 1 | 🟦 2021 | 🟦 30 |
+| 🟦 1 | 🟦 2020 | 🟦 70 |
+| 🟦 2 | 🟦 2021 | 🟦 -50 |
+| 🟦 3 | 🟦 2018 | 🟦 10 |
+| 🟦 3 | 🟦 2016 | 🟦 50 |
+| 🟦 4 | 🟦 2021 | 🟦 20 |
 
 ### Expected output
 
 | 🟦 customer_id |
 |---:|
-| 1 |
-| 4 |
+| 🟦 1 |
+| 🟦 4 |
 
 [View sample inputs and output with colored cells](../../assets/question-samples/b1-01.svg?raw=1)
 
