@@ -245,15 +245,15 @@ The following two rows were added only to test the locked query's label preceden
 
 | 🟦 CustomerID | 🟦 FirstName | 🟦 LastName | 🟦 Email |
 | ---: | --- | --- | --- |
-| 5 | Esha | Patil | `'   '` |
-| 6 | Farid | Khan | `''` |
+| 🟦 5 | 🟦 Esha | 🟦 Patil | 🟦 `'   '` |
+| 🟦 6 | 🟦 Farid | 🟦 Khan | 🟦 `''` |
 
 **SQLite result comparison**
 
 | 🟦 CustomerID | 🟦 Email | 🟦 Locked learner label | 🟦 Course label |
 | ---: | --- | --- | --- |
-| 5 | `'   '` | Contains a space | Missing |
-| 6 | `''` | Missing | Missing |
+| 🟦 5 | 🟦 `'   '` | 🟦 Contains a space | 🟦 Missing |
+| 🟦 6 | 🟦 `''` | 🟦 Missing | 🟦 Missing |
 
 Customer 5 has three spaces: `LENGTH(Email) = 3`, so the learner query reaches the space check and returns `Contains a space`; the official query sees `TRIM(Email) = ''` first and returns `Missing`. Customer 6 is a zero-length string, so both label it `Missing`. Both SQLite queries were executed against these two rows. The SQL Server adaptation remains review-by-inspection, not engine-executed.
 
