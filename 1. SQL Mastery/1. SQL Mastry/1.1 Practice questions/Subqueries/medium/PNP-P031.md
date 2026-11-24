@@ -22,15 +22,17 @@ The course asks for one row per ordering customer whose lifetime spend exceeds t
 
 | # | Output column | Source | Requirement for one result row | Practice example |
 | ---: | --- | --- | --- | --- |
-| 1 | `CustomerID` | ðŸŸ¦ `Orders.CustomerID` | Return the ordering customer's ID. The course excludes orders with a missing ID and preserves known IDs even if their customer record is missing. | 1 |
-| 2 | `customer_name` | ðŸŸ© `Customers.FirstName`, `Customers.LastName` | Look up the name for the ordering ID. The course displays the first and last name or `Unknown customer` when no customer row matches. | Asha Rao |
-| 3 | `total_spend` | ðŸŸ¦ `Orders.Total_Order_Amount` | Sum the gross amount of all orders placed by this customer. Multiple orders still contribute a single customer total to the benchmark. | 300 |
-| 4 | `avg_customer_spend` | ðŸŸ¦ Calculated from the customer totals | Course display rule: two decimals. The locked learner query does not round this benchmark, so it returns the unrounded average of one lifetime total per ordering customer. | 200.0 |
-| 5 | `pct_above_avg` | ðŸŸ¦ Calculated from the customer total and benchmark | Course display rule: two decimals. The locked learner query does not `ROUND` this calculation; it computes 100 Ã— (customer total âˆ’ benchmark) Ã· benchmark and guards against a zero denominator. | 50.0 |
+| 1 | `CustomerID` | ðŸŸ¦ `Orders.CustomerID` | Return the ordering customer's ID. The course excludes orders with a missing ID and preserves known IDs even if their customer record is missing. | í ½ 1 |
+| 2 | `customer_name` | ðŸŸ© `Customers.FirstName`, `Customers.LastName` | Look up the name for the ordering ID. The course displays the first and last name or `Unknown customer` when no customer row matches. | í ½ Asha Rao |
+| 3 | `total_spend` | ðŸŸ¦ `Orders.Total_Order_Amount` | Sum the gross amount of all orders placed by this customer. Multiple orders still contribute a single customer total to the benchmark. | í ½ 300 |
+| 4 | `avg_customer_spend` | ðŸŸ¦ Calculated from the customer totals | Course display rule: two decimals. The locked learner query does not round this benchmark, so it returns the unrounded average of one lifetime total per ordering customer. | í ½ 200.0 |
+| 5 | `pct_above_avg` | ðŸŸ¦ Calculated from the customer total and benchmark | Course display rule: two decimals. The locked learner query does not `ROUND` this calculation; it computes 100 Ã— (customer total âˆ’ benchmark) Ã· benchmark and guards against a zero denominator. | í ½ 50.0 |
 
 **Selection and ordering.** Compare each customer total with the unrounded benchmark using strict greater-than. Equal spend is excluded. Sort by total spend descending. The course answer uses customer ID ascending as its tie-breaker.
 
 ### Practice example Â· Sample input
+
+**Sample table key Â· display order:** ðŸŸ© `Customers` Â· ðŸŸ¦ `Orders`
 
 <a name="sample-input-and-expected-output"></a>
 
@@ -40,23 +42,23 @@ The course asks for one row per ordering customer whose lifetime spend exceeds t
 
 | ðŸŸ© `CustomerID` | ðŸŸ© `FirstName` | ðŸŸ© `LastName` |
 | ---: | --- | --- |
-| 1 | Asha | Rao |
-| 2 | Ben | Das |
-| 3 | Cia | Sen |
+| í ½ 1 | í ½ Asha | í ½ Rao |
+| í ½ 2 | í ½ Ben | í ½ Das |
+| í ½ 3 | í ½ Cia | í ½ Sen |
 
 **ðŸŸ¦ `Orders`**
 
 | ðŸŸ¦ `OrderID` | ðŸŸ¦ `CustomerID` | ðŸŸ¦ `Total_Order_Amount` |
 | ---: | ---: | ---: |
-| 10 | 1 | 300 |
-| 11 | 2 | 100 |
-| 12 | 3 | 200 |
+| í ½ 10 | í ½ 1 | í ½ 300 |
+| í ½ 11 | í ½ 2 | í ½ 100 |
+| í ½ 12 | í ½ 3 | í ½ 200 |
 
 ### Expected output
 
 | ðŸŸ¦ `CustomerID` | ðŸŸ© `customer_name` | ðŸŸ¦ `total_spend` | ðŸŸ¦ `avg_customer_spend` | ðŸŸ¦ `pct_above_avg` |
 | ---: | --- | ---: | ---: | ---: |
-| 1 | Asha Rao | 300 | 200.00 | 50.00 |
+| í ½ 1 | í ½ Asha Rao | í ½ 300 | í ½ 200.00 | í ½ 50.00 |
 
 **Precision note.** The expected table follows the courseâ€™s two-decimal display. The locked learner query returns unrounded numeric values; for this sample SQLite returns `avg_customer_spend = 200.0` and `pct_above_avg = 50.0`. Other inputs can yield additional decimal places. This documented difference is preserved; the selected SQL is unchanged.
 
@@ -66,7 +68,7 @@ The course asks for one row per ordering customer whose lifetime spend exceeds t
 
 ### How the sample produces this output
 
-The three ðŸŸ¦ lifetime amounts are **300**, **100** and **200**. Their average is **(300 + 100 + 200) Ã· 3 = 200.00**. ðŸŸ© **Asha Rao** (ID **1**) spent ðŸŸ¦ **100** above that average, or **(300 âˆ’ 200) Ã· 200 Ã— 100 = 50.00%**. ðŸŸ© **Ben Das** is below the average. ðŸŸ© **Cia Sen** equals it. Only Asha qualifies.
+The three ðŸŸ¦ lifetime amounts are **ðŸŸ¦ 300**, **ðŸŸ¦ 100** and **ðŸŸ¦ 200**. Their average is **(ðŸŸ¦ 300 + ðŸŸ¦ 100 + ðŸŸ¦ 200) Ã· 3 = ðŸŸ¦ 200.00**. ðŸŸ© **Asha Rao** (ID ðŸŸ¦ **1**) spent ðŸŸ¦ **100** above that average, or **(ðŸŸ¦ 300 âˆ’ ðŸŸ¦ 200) Ã· ðŸŸ¦ 200 Ã— 100 = ðŸŸ¦ 50.00%**. ðŸŸ© **Ben Das** is below the average. ðŸŸ© **Cia Sen** equals it. Only Asha qualifies.
 
 ## Step 1 Â· Your approach before writing SQL
 
@@ -132,17 +134,17 @@ SELECT CustomerID, FirstName, LastName FROM Customers ORDER BY CustomerID;
 
 | ðŸŸ¦ OrderID | ðŸŸ¦ CustomerID | ðŸŸ¦ Total_Order_Amount |
 | --- | --- | --- |
-| 10 | 1 | 300 |
-| 11 | 2 | 100 |
-| 12 | 3 | 200 |
+| í ½ 10 | í ½ 1 | í ½ 300 |
+| í ½ 11 | í ½ 2 | í ½ 100 |
+| í ½ 12 | í ½ 3 | í ½ 200 |
 
 **ðŸŸ© Customers**
 
 | ðŸŸ© CustomerID | ðŸŸ© FirstName | ðŸŸ© LastName |
 | --- | --- | --- |
-| 1 | Asha | Rao |
-| 2 | Ben | Das |
-| 3 | Cia | Sen |
+| í ½ 1 | í ½ Asha | í ½ Rao |
+| í ½ 2 | í ½ Ben | í ½ Das |
+| í ½ 3 | í ½ Cia | í ½ Sen |
 
 ### 2. How does each order get a name?
 
@@ -158,9 +160,9 @@ ORDER BY o.OrderID;
 
 | ðŸŸ¦ OrderID | ðŸŸ¦ o.CustomerID | ðŸŸ¦ Total_Order_Amount | ðŸŸ© c.CustomerID | ðŸŸ© FirstName | ðŸŸ© LastName |
 | --- | --- | --- | --- | --- | --- |
-| 10 | 1 | 300 | 1 | Asha | Rao |
-| 11 | 2 | 100 | 2 | Ben | Das |
-| 12 | 3 | 200 | 3 | Cia | Sen |
+| í ½ 10 | í ½ 1 | í ½ 300 | í ½ 1 | í ½ Asha | í ½ Rao |
+| í ½ 11 | í ½ 2 | í ½ 100 | í ½ 2 | í ½ Ben | í ½ Das |
+| í ½ 12 | í ½ 3 | í ½ 200 | í ½ 3 | í ½ Cia | í ½ Sen |
 
 ### 3. What does one customer spend?
 
@@ -178,9 +180,9 @@ GROUP BY o.CustomerID, c.FirstName, c.LastName;
 
 | ðŸŸ¦ CustomerID | ðŸŸ© customer_name | ðŸŸ¦ total_spend |
 | --- | --- | --- |
-| 1 | Asha Rao | 300 |
-| 2 | Ben Das | 100 |
-| 3 | Cia Sen | 200 |
+| í ½ 1 | í ½ Asha Rao | í ½ 300 |
+| í ½ 2 | í ½ Ben Das | í ½ 100 |
+| í ½ 3 | í ½ Cia Sen | í ½ 200 |
 
 In a separate check, replacing order 10 with two orders of 100 and 200 for Asha produced the same total of 300 and the same final row.
 
@@ -197,9 +199,9 @@ FROM customer_spend AS cs;
 
 | ðŸŸ¦ CustomerID | ðŸŸ© customer_name | ðŸŸ¦ total_spend | ðŸŸ¦ avg_customer_spend |
 | --- | --- | --- | --- |
-| 1 | Asha Rao | 300 | 200.0 |
-| 2 | Ben Das | 100 | 200.0 |
-| 3 | Cia Sen | 200 | 200.0 |
+| í ½ 1 | í ½ Asha Rao | í ½ 300 | í ½ 200.0 |
+| í ½ 2 | í ½ Ben Das | í ½ 100 | í ½ 200.0 |
+| í ½ 3 | í ½ Cia Sen | í ½ 200 | í ½ 200.0 |
 
 ### 5. Who passes the filter?
 
@@ -214,9 +216,9 @@ ORDER BY CustomerID;
 
 | ðŸŸ© customer_name | ðŸŸ¦ total_spend | ðŸŸ¦ avg_customer_spend | ðŸŸ¦ qualifies |
 | --- | --- | --- | --- |
-| Asha Rao | 300 | 200.0 | 1 |
-| Ben Das | 100 | 200.0 | 0 |
-| Cia Sen | 200 | 200.0 | 0 |
+| í ½ Asha Rao | í ½ 300 | í ½ 200.0 | í ½ 1 |
+| í ½ Ben Das | í ½ 100 | í ½ 200.0 | í ½ 0 |
+| í ½ Cia Sen | í ½ 200 | í ½ 200.0 | í ½ 0 |
 
 The filter keeps Asha. Ben falls below 200. Cia is exactly at 200, so the strict greater-than comparison excludes her.
 
@@ -239,7 +241,7 @@ ORDER BY total_spend DESC;
 
 | ðŸŸ¦ CustomerID | ðŸŸ© customer_name | ðŸŸ¦ total_spend | ðŸŸ¦ avg_customer_spend | ðŸŸ¦ pct_above_avg |
 | --- | --- | --- | --- | --- |
-| 1 | Asha Rao | 300 | 200.0 | 50.0 |
+| í ½ 1 | í ½ Asha Rao | í ½ 300 | í ½ 200.0 | í ½ 50.0 |
 
 ## Sample verification
 
@@ -247,7 +249,7 @@ Executed in SQLite on the three orders in the practice example. Asha, Ben and Ci
 
 | ðŸŸ¦ CustomerID | ðŸŸ© customer_name | ðŸŸ¦ total_spend | ðŸŸ¦ avg_customer_spend | ðŸŸ¦ pct_above_avg |
 | ---: | --- | ---: | ---: | ---: |
-| 1 | Asha Rao | 300 | 200.0 | 50.0 |
+| í ½ 1 | í ½ Asha Rao | í ½ 300 | í ½ 200.0 | í ½ 50.0 |
 
 ## Comparison with the course answer
 
