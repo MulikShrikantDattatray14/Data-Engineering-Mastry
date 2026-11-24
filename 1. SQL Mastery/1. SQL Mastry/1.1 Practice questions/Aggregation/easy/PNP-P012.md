@@ -82,6 +82,20 @@ ORDER BY CategoryID ASC;
 
 The sample and extended tests passed, including multiple categories, missing and zero market prices, a fractional discount, and a category with no usable discount percentage. COUNT(ProductID) counts every product when ProductID is non-NULL, as with a primary key.
 
+## Important learnings from P012
+
+### 1. Group at the category grain
+Each output row represents one CategoryID. Products already contains CategoryID and both price columns, so one source supplies the complete report.
+
+### 2. Aggregate the sale-price population
+COUNT, MIN, MAX and AVG operate within each category. AVG ignores NULL Sale_Price values; a zero Market_Price does not remove a product from the sale-price average.
+
+### 3. Use conditional aggregation for the full-price count
+The CASE contributes 1 only when Market_Price equals Sale_Price. NULL comparisons do not qualify, and a missing or zero market price is excluded from the discount percentage denominator.
+
+### 4. Guard and round the percentage
+The discount percentage is averaged over rows with a valid nonzero Market_Price, then rounded to two decimals. The category sort is separate from the aggregate calculation.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P012/01.md)
@@ -222,7 +236,7 @@ For this question, a WHERE filter on market price would remove products 3 and 5 
 
 All four stages were checked in SQLite on the extended example. The submitted query also matches the original sample.
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT

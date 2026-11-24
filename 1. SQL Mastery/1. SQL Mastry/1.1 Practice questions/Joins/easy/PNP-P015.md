@@ -73,6 +73,17 @@ ORDER BY COUNT(p.ProductID) ASC, c.CategoryID ASC;
 
 Chat markup and formatting were cleaned up. The SQLite checks covered the sample, tied counts, categories sharing a name, and products without a matching category.
 
+## Important learnings from P015
+
+### 1. Category defines the requested population
+The report needs every category, including one with no products. Starting from Category gives each category a row before the product lookup.
+
+### 2. LEFT JOIN preserves empty categories
+Products is added through CategoryID. A category with no match survives with NULL product columns; an INNER JOIN would remove it.
+
+### 3. Count the product key, not the joined row
+An empty category still contributes one placeholder row after the LEFT JOIN. COUNT(ProductID) ignores that NULL and returns zero; COUNT(*) would incorrectly return one.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P015/01.md)
@@ -146,7 +157,7 @@ ORDER BY COUNT(p.ProductID) ASC, c.CategoryID ASC;
 | 2 | Toys | 0 |
 | 1 | Snacks | 2 |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT c.CategoryID, c.CategoryName, COUNT(p.ProductID) AS product_count
@@ -197,6 +208,10 @@ ORDER BY product_count, cat.CategoryID;
 ```
 
 The answer key runs unchanged in SQLite and passed the extended test. The SQL Server version was reviewed by inspection.
+
+## Comparison with the course answer
+
+Both queries start from Category and LEFT JOIN Products, then count the non-NULL product key so an empty category returns zero. The learner's SQLite query groups only by CategoryID while selecting CategoryName; SQLite permits this, and the category primary key determines its name. The SQL Server adaptation and official answer group by both CategoryID and CategoryName to satisfy SQL Server's grouping rules. The resulting category counts are equivalent under the key constraint.
 
 ## Verification
 

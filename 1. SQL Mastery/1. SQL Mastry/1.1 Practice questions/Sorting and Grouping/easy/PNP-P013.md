@@ -72,6 +72,17 @@ order by  count(CustomerID) desc, State asc
 
 Verified on the original sample and the extended example below. The query assumes non-NULL customer IDs, as with a primary key.
 
+## Important learnings from P013
+
+### 1. One output row represents one reporting state
+GROUP BY forms one group per state value. COUNT(CustomerID) counts identified customers in that group; HAVING applies the minimum of five after the count is known.
+
+### 2. Treat missing state as a reporting label
+The learner's CASE labels NULL state as Unknown. The course answer also trims surrounding spaces before applying the fallback, so whitespace-only values need separate attention.
+
+### 3. Keep the group expression consistent
+Use the same normalized state expression in SELECT and GROUP BY. In SQLite, a GROUP BY name that matches an input column can resolve to that source column rather than a same-named SELECT alias; the stored learner query's behavior is documented in the comparison section.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P013/01.md)
@@ -231,6 +242,10 @@ ORDER BY customer_count DESC, State;
 ```
 
 The answer-key SQL runs unchanged in SQLite and works with SQL Server 2017 or later. Its grouping expression trims state names and maps NULL to Unknown before counting. The learner groups by the stored state and labels NULL for display. Both returned the same results on the original and extended examples. The SQL Server version was reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner labels NULL State as Unknown with CASE, but does not TRIM the stored state. The course answer uses COALESCE(TRIM(State), 'Unknown'), so whitespace-only states also become Unknown. The learner groups by the name State, which in SQLite can resolve to the source column rather than the SELECT alias when both share the same name; a NULL source group and a literal Unknown value can therefore remain separate groups while displaying the same label. The supplied sample still matches the saved output. The learner query is preserved, and the normalization/alias difference remains explicit.
 
 ## Verification
 

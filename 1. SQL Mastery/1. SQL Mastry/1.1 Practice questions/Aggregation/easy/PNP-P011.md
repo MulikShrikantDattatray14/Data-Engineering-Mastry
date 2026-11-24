@@ -78,6 +78,20 @@ LEFT JOIN OrderDetails AS O ON P.ProductID = O.ProductID;
 
 Verified the sample, an order line for an unlisted product, a catalogue with no sales, and an empty catalogue. The submitted SQL was reformatted to remove chat markup.
 
+## Important learnings from P011
+
+### 1. Products defines the catalogue population
+Start with Products because the report asks what share of the full catalogue has sold. A LEFT JOIN keeps a product even when no OrderDetails row matches it.
+
+### 2. One product can repeat after the join
+A product with two order-detail lines appears twice in the joined rows. COUNT(*) or COUNT(OrderDetailID) would count lines, not products; COUNT(DISTINCT ProductID) measures unique products.
+
+### 3. Use the right count for each measure
+COUNT(OrderDetailID) counts matched sale lines, COUNT(DISTINCT OrderDetails.ProductID) counts distinct products sold, and COUNT(DISTINCT Products.ProductID) counts the catalogue denominator. The sold percentage compares the two distinct-product counts.
+
+### 4. Count a nullable side, not the preserved side
+The product row remains after an unmatched LEFT JOIN. Count a non-NULL right-side key to distinguish a real sale line from the placeholder NULL row for an unsold product.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P011/01.md)
@@ -165,7 +179,7 @@ LEFT JOIN OrderDetails AS O ON P.ProductID = O.ProductID;
 | ---: | ---: | ---: | ---: | ---: |
 | 4 | 3 | 3 | 2 | 66.67 |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT COUNT(*) AS rows_after_join,
@@ -223,6 +237,10 @@ LEFT JOIN OrderDetails AS od ON od.ProductID = p.ProductID;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Comparison with the course answer
+
+Both queries start from Products and LEFT JOIN OrderDetails, so unsold catalogue products remain. The learner uses COUNT(O.ProductID) for sale_lines while the course answer uses COUNT(od.OrderDetailID). They agree when every order-detail row has a non-NULL ProductID, as in the supplied sample. If an order-detail row has a NULL ProductID, the course answer still counts that physical line through OrderDetailID while the learner count does not. The learner's distinct-product numerator and the catalogue denominator are otherwise the same. This edge case is documented without changing the locked query.
 
 ## Verification
 

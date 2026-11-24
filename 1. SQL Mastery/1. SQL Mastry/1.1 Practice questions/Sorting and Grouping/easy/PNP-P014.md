@@ -77,6 +77,17 @@ The saved attempt reports months that have at least one order.
 
 </details>
 
+## Important learnings from P014
+
+### 1. Filter to the requested year first
+The WHERE clause removes orders outside 2025 before monthly grouping. A half-open year interval is also suitable for timestamps because it includes all of December 31 and excludes January 1, 2026.
+
+### 2. Group by month, not by individual date
+The month key combines all orders in the same calendar month. The output uses the first day of that month as its label and sums each order amount once.
+
+### 3. Months without orders do not appear
+The query groups existing Orders rows; it does not create a calendar. A month with zero orders therefore has no group and no output row.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P014/01.md)
@@ -181,7 +192,7 @@ ORDER BY strftime('%m', OrderDate) ASC;
 
 January totals 100 + 50 = 150.
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT DATEFROMPARTS(YEAR(OrderDate), MONTH(OrderDate), 1) AS order_month,
@@ -237,6 +248,10 @@ ORDER BY order_month;
 ```
 
 The answer key uses a date range and groups by the full first-of-month date. The SQLite adaptation passed the same checks as the learner's final query. The SQL Server adaptation was reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner filters the year with strftime('%Y', OrderDate) = '2025' and groups by the month number. The course answer uses a half-open date range and groups by the month-start date. Because the learner's filter restricts the input to one year, month number is sufficient to keep January through December separate; the displayed month-start date is still produced by the query. The SQL Server adaptation uses DATEFROMPARTS. Both return the same groups for the supplied ISO-date data.
 
 ## Verification
 
