@@ -101,7 +101,7 @@ Follow the sample rows through each query step. **Predict the result.** Node 5 i
 
 [Open the full-size walkthrough](../../assets/walkthroughs/b1-03.svg?raw=1)
 
-## Progressive walkthrough
+## Step-by-step walkthrough
 
 🟦 **Outer query · FROM BST** · The tree stores one row per node. Its `N` identifies the node and its own `P` reveals whether it has a parent.
 
