@@ -135,9 +135,9 @@ ORDER BY OrderID;
 
 | 🟥 `OrderID` | 🟥 `total_units` |
 | ---: | ---: |
-| 10 | 5 |
-| 11 | 4 |
-| 12 | 1 |
+| 🟥 10 | 🟥 5 |
+| 🟥 11 | 🟥 4 |
+| 🟥 12 | 🟥 1 |
 
 Order 10 contributes 2 + 3 = 5 units. The other orders contribute 4 and 1. All 10 units are accounted for.
 
@@ -155,9 +155,9 @@ SELECT OrderID, ShipperID, Total_Order_Amount FROM Orders ORDER BY OrderID;
 
 | 🟦 `OrderID` | 🟦 `ShipperID` | 🟦 `Total_Order_Amount` |
 | ---: | ---: | ---: |
-| 10 | 1 | 100 |
-| 11 | 1 | 200 |
-| 12 | 2 | 50 |
+| 🟦 10 | 🟦 1 | 🟦 100 |
+| 🟦 11 | 🟦 1 | 🟦 200 |
+| 🟦 12 | 🟦 2 | 🟦 50 |
 
 Order 10 enters with its amount of 100 on a single row. An order can enter even when its shipper or its detail rows are missing.
 
@@ -180,9 +180,9 @@ ORDER BY o.OrderID;
 
 | 🟦 `o.OrderID` | 🟦 `o.ShipperID` | 🟦 `o.Total_Order_Amount` | 🟩 `s.ShipperID` | 🟩 `s.CompanyName` |
 | ---: | ---: | ---: | ---: | --- |
-| 10 | 1 | 100 | 1 | FastShip |
-| 11 | 1 | 200 | 1 | FastShip |
-| 12 | 2 | 50 | 2 | SlowShip |
+| 🟦 10 | 🟦 1 | 🟦 100 | 🟩 1 | 🟩 FastShip |
+| 🟦 11 | 🟦 1 | 🟦 200 | 🟩 1 | 🟩 FastShip |
+| 🟦 12 | 🟦 2 | 🟦 50 | 🟩 2 | 🟩 SlowShip |
 
 Orders 10 and 11 both find FastShip. A missing lookup would leave the green columns NULL. A shipper with no orders supplies no report row.
 
@@ -190,8 +190,8 @@ Orders 10 and 11 both find FastShip. A missing lookup would leave the green colu
 
 | 🟦 `o.OrderID` | 🟦 `o.ShipperID` | 🟦 `o.Total_Order_Amount` | 🟩 `s.ShipperID` | 🟩 `s.CompanyName` |
 | ---: | ---: | ---: | ---: | --- |
-| 15 | 99 | 40 | `NULL` | `NULL` |
-| 17 | `NULL` | 30 | `NULL` | `NULL` |
+| 🟦 15 | 🟦 99 | 🟦 40 | 🟩 `NULL` | 🟩 `NULL` |
+| 🟦 17 | 🟦 `NULL` | 🟦 30 | 🟩 `NULL` | 🟩 `NULL` |
 
 Both shipper names are `NULL`, so the displayed label puts these two orders together. 🟩 `Unknown shipper` receives 🟦 **2 orders** worth **40 + 30 = 70**, and 🟥 **3 + 2 = 5 units**.
 
@@ -224,9 +224,9 @@ ORDER BY o.OrderID;
 
 | 🟦 `o.OrderID` | 🟦 `o.ShipperID` | 🟦 `o.Total_Order_Amount` | 🟩 `s.ShipperID` | 🟩 `s.CompanyName` | 🟥 `od.OrderID` | 🟥 `od.total_units` |
 | ---: | ---: | ---: | ---: | --- | ---: | ---: |
-| 10 | 1 | 100 | 1 | FastShip | 10 | 5 |
-| 11 | 1 | 200 | 1 | FastShip | 11 | 4 |
-| 12 | 2 | 50 | 2 | SlowShip | 12 | 1 |
+| 🟦 10 | 🟦 1 | 🟦 100 | 🟩 1 | 🟩 FastShip | 🟥 10 | 🟥 5 |
+| 🟦 11 | 🟦 1 | 🟦 200 | 🟩 1 | 🟩 FastShip | 🟥 11 | 🟥 4 |
+| 🟦 12 | 🟦 2 | 🟦 50 | 🟩 2 | 🟩 SlowShip | 🟥 12 | 🟥 1 |
 
 Order 10 now carries amount 100 and 5 units. Both joins match directly to Orders, so these two lookups can trade places once the units summary is ready.
 
@@ -236,7 +236,7 @@ Order 10 now carries amount 100 and 5 units. Both joins match directly to Orders
 
 | 🟦 `o.OrderID` | 🟦 `o.ShipperID` | 🟦 `o.Total_Order_Amount` | 🟩 `s.ShipperID` | 🟩 `s.CompanyName` | 🟥 `od.OrderID` | 🟥 `od.total_units` |
 | ---: | ---: | ---: | ---: | --- | ---: | ---: |
-| 16 | 3 | 80 | 3 | OtherShip | `NULL` | `NULL` |
+| 🟦 16 | 🟦 3 | 🟦 80 | 🟩 3 | 🟩 OtherShip | 🟥 `NULL` | 🟥 `NULL` |
 
 The 🟥 `od.OrderID` and `od.total_units` cells are `NULL`. Both come from the missing lookup row. Compare the two unit expressions for the resulting OtherShip group.
 
@@ -263,7 +263,7 @@ ORDER BY order_value DESC;
 
 | 🟩 `shipper_name` | 🟦 `orders` | 🟦 `order_value` | 🟥 `raw_units` | 🟥 `units_shipped` |
 | --- | ---: | ---: | ---: | ---: |
-| OtherShip | 1 | 80 | `NULL` | 0 |
+| 🟩 OtherShip | 🟦 1 | 🟦 80 | 🟥 `NULL` | 🟥 0 |
 
 The raw 🟥 sum is `NULL` because there are no known units to add. The outside `COALESCE` changes the displayed units to **0**. The 🟦 order count stays **1** and the amount stays **80**.
 
@@ -293,9 +293,9 @@ ORDER BY shipper_name, o.OrderID;
 
 | 🟩 `shipper_name` | 🟦 `OrderID` | 🟦 `Total_Order_Amount` | 🟥 `total_units` |
 | --- | ---: | ---: | ---: |
-| FastShip | 10 | 100 | 5 |
-| FastShip | 11 | 200 | 4 |
-| SlowShip | 12 | 50 | 1 |
+| 🟩 FastShip | 🟦 10 | 🟦 100 | 🟥 5 |
+| 🟩 FastShip | 🟦 11 | 🟦 200 | 🟥 4 |
+| 🟩 SlowShip | 🟦 12 | 🟦 50 | 🟥 1 |
 
 FastShip receives orders 10 and 11. SlowShip receives order 12. All three order IDs occur exactly once before the shipper totals are calculated.
 
@@ -307,8 +307,8 @@ Count the order IDs, add each order amount once and add its units total. COALESC
 
 | 🟩 `shipper_name` | 🟦 `Order IDs counted` | 🟦 `Amounts added` | 🟥 `Units added` |
 | --- | ---: | ---: | ---: |
-| FastShip | 10, 11 → 2 | 100 + 200 = 300 | 5 + 4 = 9 |
-| SlowShip | 12 → 1 | 50 | 1 |
+| 🟩 FastShip | 🟦 10, 11 → 2 | 🟦 100 + 200 = 300 | 🟥 5 + 4 = 9 |
+| 🟩 SlowShip | 🟦 12 → 1 | 🟦 50 | 🟥 1 |
 
 ```sql
 WITH OrderDetails_2 AS (
@@ -334,8 +334,8 @@ ORDER BY order_value DESC;
 
 | 🟩 `shipper_name` | 🟦 `orders` | 🟦 `order_value` | 🟥 `units_shipped` |
 | --- | ---: | ---: | ---: |
-| FastShip | 2 | 300 | 9 |
-| SlowShip | 1 | 50 | 1 |
+| 🟩 FastShip | 🟦 2 | 🟦 300 | 🟥 9 |
+| 🟩 SlowShip | 🟦 1 | 🟦 50 | 🟥 1 |
 
 FastShip comes first because 300 exceeds 50. The two rows account for all 3 orders, 350 in order value and 10 units.
 
@@ -349,9 +349,9 @@ FastShip and SlowShip are the two original sample rows. For this check only, add
 
 | 🟩 `shipper_name` | 🟦 `orders` | 🟦 `order_value` | 🟥 Current `units_shipped` | 🟥 Expected `units_shipped` |
 | --- | ---: | ---: | ---: | ---: |
-| FastShip | 2 | 300 | 9 | 9 |
-| OtherShip | 1 | 80 | `NULL` | 0 |
-| SlowShip | 1 | 50 | 1 | 1 |
+| 🟩 FastShip | 🟦 2 | 🟦 300 | 🟥 9 | 🟥 9 |
+| 🟩 OtherShip | 🟦 1 | 🟦 80 | 🟥 `NULL` | 🟥 0 |
+| 🟩 SlowShip | 🟦 1 | 🟦 50 | 🟥 1 | 🟥 1 |
 
 The second `LEFT JOIN` keeps order 16 and supplies `NULL` for its missing units. `SUM` has no numeric units to add for OtherShip. `COALESCE(SUM(od.total_units), 0)` displays zero for that group.
 
