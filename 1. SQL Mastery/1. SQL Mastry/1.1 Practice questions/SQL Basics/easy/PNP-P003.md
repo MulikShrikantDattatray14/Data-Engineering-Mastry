@@ -95,6 +95,17 @@ The saved attempt keeps the displayed city’s original spelling and capitalizat
 
 </details>
 
+## Important learnings from P003
+
+### 1. Normalize for matching, not for display
+TRIM removes surrounding spaces and LOWER makes matching case-insensitive. The source data also uses the supplied aliases Bengaluru/Bangalore, Mumbai/Bombay and Delhi/New Delhi.
+
+### 2. Keep the customer grain
+Customers supplies the requested names, city and state, so one row remains one customer. A join would add no required field.
+
+### 3. Separate the match key from the displayed city
+The output keeps the trimmed source spelling rather than converting every alias to one canonical metro name. Sorting by the normalized value makes case and padding less influential.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P003/01.md)
@@ -192,7 +203,7 @@ order by trim(lower(City)) asc, CustomerID asc
 | 5 | Nisha | Shah | MUMBAI | Maharashtra |
 | 8 | Lea | Singh | New Delhi | Delhi |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 select CustomerID,FirstName,LastName,trim(City) as City,State
@@ -252,6 +263,10 @@ ORDER BY TRIM(c.City), c.CustomerID;
 These adaptations retain the answer key’s collation-dependent sort on the trimmed city. The learner query explicitly sorts case-insensitively.
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Comparison with the course answer
+
+Both queries match the five metro names and the additional dataset aliases after trimming and ignoring case. The learner also sorts by TRIM(LOWER(City)); the course answer sorts by TRIM(City). The eligible customer set is the same, but rows whose stored city values differ only in case can appear in a different order. Both display the trimmed stored spelling rather than a canonical metro label. The locked query is retained.
 
 ## Verification
 

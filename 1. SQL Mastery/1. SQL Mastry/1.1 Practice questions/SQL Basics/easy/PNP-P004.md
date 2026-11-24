@@ -83,6 +83,17 @@ When an address has multiple issues, the saved attempt gives priority to `Missin
 
 </details>
 
+## Important learnings from P004
+
+### 1. Order the CASE checks from specific to general
+Check NULL or empty first, then spaces, then the requested name@domain.tld shape. CASE returns the first matching label, so changing the order can change the issue assigned to a row.
+
+### 2. Filter the same population you label
+The WHERE clause retains only rows that satisfy one of the issue conditions. The CASE expression labels those retained rows; it does not create the eligibility rule by itself.
+
+### 3. Treat the LIKE pattern as the assignment's shape check
+The pattern is a practical SQL pattern for this exercise, not a complete RFC email validator. Preserve the exact validation rule requested by the source.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P004/01.md)
@@ -154,7 +165,7 @@ ORDER BY CustomerID ASC;
 | 2 | Ben | Das | ben das@example.com | Contains a space |
 | 3 | Cia | Sen | cia.example.com | Not in name@domain.tld form |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT CustomerID, FirstName, LastName, Email,
@@ -238,8 +249,11 @@ SQLite adaptation executed on representative fixtures. SQL Server adaptation rev
 
 The locked query labels only `NULL` and zero-length email strings as `Missing`, then labels any email containing a space as `Contains a space`. The course answer treats whitespace-only strings as `Missing` by checking `TRIM(Email) = ''`. A spaces-only email is therefore included by both queries but receives a different label. The original practice sample remains unchanged; this difference is tested separately below.
 
-## Edge-case verification · Branch fixture (Practice example)
+## Verification
 
+The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P004/walkthrough.json). The column names and all 3 expected rows matched in the displayed order.
+
+### Edge-case verification · Branch fixture (Practice example)
 The following two rows were added only to test the locked query's label precedence; they are not part of the assignment's original sample.
 
 **🟦 Customers**
@@ -257,8 +271,3 @@ The following two rows were added only to test the locked query's label preceden
 | 🟦 6 | 🟦 `''` | 🟦 Missing | 🟦 Missing |
 
 Customer 5 has three spaces: `LENGTH(Email) = 3`, so the learner query reaches the space check and returns `Contains a space`; the official query sees `TRIM(Email) = ''` first and returns `Missing`. Customer 6 is a zero-length string, so both label it `Missing`. Both SQLite queries were executed against these two rows. The SQL Server adaptation remains review-by-inspection, not engine-executed.
-
-
-## Verification
-
-The saved learner query ran in SQLite on the [walkthrough fixture](../../assets/steps/PNP-P004/walkthrough.json). The column names and all 3 expected rows matched in the displayed order.

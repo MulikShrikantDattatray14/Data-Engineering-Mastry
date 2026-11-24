@@ -83,6 +83,17 @@ The saved attempt treats padded versions of the same brand as a single displayed
 
 </details>
 
+## Important learnings from P001
+
+### 1. Clean before testing for a usable value
+TRIM removes leading and trailing spaces. The empty-string test must run on the trimmed value, because a value containing only spaces is not a usable brand.
+
+### 2. DISTINCT changes the row grain
+The source table has one row per product, but the requested directory has one row per brand. DISTINCT collapses repeated cleaned brand values into one output row.
+
+### 3. Sort the displayed value
+Ordering by the cleaned brand makes the directory alphabetical on the value the user sees. No join or aggregation is needed because every requested value is already in Products.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P001/01.md)
@@ -201,7 +212,7 @@ ORDER BY TRIM(Brand) ASC;
 | Nike |
 | Puma |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT DISTINCT TRIM(Brand) AS Brand

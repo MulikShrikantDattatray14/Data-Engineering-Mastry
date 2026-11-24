@@ -68,6 +68,17 @@ order by OrderDate asc , OrderID asc
 
 The query passed the sample and additional checks for March 31 timestamps, April 1 at midnight, and equal timestamps ordered by order ID. The SQLite comparisons use ISO-formatted date and timestamp text.
 
+## Important learnings from P005
+
+### 1. Use a half-open quarter interval
+`OrderDate >= '2025-01-01' AND OrderDate < '2025-04-01'` includes every time on March 31 and excludes April 1. It is safer for timestamps than an end value at midnight on March 31.
+
+### 2. Filter rows before sorting
+The date predicate determines which orders belong to Q1. ORDER BY then presents only those eligible rows by OrderDate and OrderID.
+
+### 3. Keep the order grain
+Orders already has one row per order and contains every requested output field, so the single source is sufficient.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P005/01.md)
@@ -127,7 +138,7 @@ order by OrderDate asc , OrderID asc
 | 2 | 11 | 2025-01-01 | 100 |
 | 3 | 12 | 2025-03-31 | 200 |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 select OrderID, CustomerID, OrderDate,Total_Order_Amount
@@ -182,6 +193,10 @@ ORDER BY o.OrderDate, o.OrderID;
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner's half-open text-date interval and the course answer's DATE-literal interval express the same Q1 2025 boundary: include January 1 through March 31 and exclude April 1. The half-open form also handles timestamps throughout March 31 without inventing an end-of-day time. The selected query and its SQL Server adaptation are preserved.
 
 ## Verification
 

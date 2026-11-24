@@ -90,6 +90,17 @@ limit 10
 
 Verified in SQLite on the sample, with fewer than ten priced products including a zero-price row, and with only NULL prices.
 
+## Important learnings from P002
+
+### 1. Filter before taking the top ten
+A NULL Sale_Price cannot be ranked as a valid carousel price, so it is removed before sorting and limiting.
+
+### 2. Make the cutoff deterministic
+Sort by Sale_Price descending, then ProductID ascending. The second key decides which product wins when two prices tie at the tenth slot.
+
+### 3. LIMIT applies after ordering
+The query still has one row per product. LIMIT 10 selects the first ten rows from the fully ordered eligible set; it does not replace the ordering rule.
+
 ## Visual walkthrough
 
 [Open the Previous / Next walkthrough](../../assets/steps/PNP-P002/01.md)
@@ -199,7 +210,7 @@ limit 10
 | 109 | Lamp | Home | 150 |
 | 4 | Mug | Home | 100 |
 
-## Learner solution — SQL Server
+## Learner solution — SQL Server adaptation
 
 ```sql
 SELECT TOP (10) ProductID, Product, Brand, Sale_Price
@@ -256,6 +267,10 @@ ORDER BY p.Sale_Price DESC,
 ```
 
 SQLite adaptation executed on representative fixtures. SQL Server adaptation reviewed by inspection.
+
+## Comparison with the course answer
+
+The learner and course answer both exclude NULL prices, sort Sale_Price descending and use ProductID ascending to break ties before selecting ten rows. SQLite uses LIMIT 10; the SQL Server adaptation uses TOP (10). The selected rows and deterministic cutoff rule are equivalent.
 
 ## Verification
 
