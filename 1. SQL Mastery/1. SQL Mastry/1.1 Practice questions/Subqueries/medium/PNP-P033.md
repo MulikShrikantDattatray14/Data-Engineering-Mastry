@@ -222,16 +222,88 @@ The course answer uses correlated `NOT EXISTS`; the learner uses a `LEFT JOIN` f
 
 [Open the full-size walkthrough SVG](../../assets/walkthroughs/p033.svg?raw=1) · [Open Previous / Next walkthrough, stage 1](../../assets/steps/PNP-P033/01.md) · [Open the walkthrough fixture](../../assets/steps/PNP-P033/walkthrough.json)
 
-### Written step-by-step explanation
+## Step-by-step walkthrough
 
-1. **Start with `Products`.** It supplies every catalogue row because the report must include products even when they have no order history. Starting from `OrderDetails` would lose never-ordered products before they could be tested.
-2. **Add `OrderDetails` second.** `Products.ProductID` is already available, so it can match `OrderDetails.ProductID`. The learner's LEFT JOIN keeps both catalogue rows: Pen matches detail row 10, while Cup has no match and receives NULLs in the green OrderDetails columns.
-3. **Keep only the unmatched row.** `OrderDetailID` is the non-null primary key for a real order line. `OD.OrderDetailID IS NULL` therefore removes Pen and retains Cup. If a product had multiple order lines, it would repeat at the join stage, but every matched copy would be removed.
-4. **Return and sort the required product fields.** The final query keeps the five Products columns and orders by CategoryID, then ProductID, ascending. No DISTINCT is needed because only unmatched left-side products survive, once each.
+The saved query starts with `Products` and adds `OrderDetails` using a LEFT JOIN. The goal is to preserve every catalogue product first, then keep only products for which no order-detail row matched.
+
+### 1. Which rows do we start with?
+
+Start from `Products`, because the output must consider every catalogue product, including products that have never appeared in an order. In the small practice fixture, Products contains Pen (ID 1) and Cup (ID 2).
+
+```sql
+FROM Products P
+```
+
+Starting from `OrderDetails` would be the wrong driving source: a never-ordered product has no order-detail row from which it could enter the query.
+
+### 2. Which table is added, and how are rows matched?
+
+Add `OrderDetails` on the shared ProductID:
+
+```sql
+LEFT JOIN OrderDetails OD
+    ON P.ProductID = OD.ProductID
+```
+
+The LEFT JOIN keeps both left-side Products rows. Pen matches OrderDetails row 10. Cup has no match, so the OrderDetails columns are NULL for Cup.
+
+| Products.ProductID | Products.Product | OrderDetails.OrderDetailID | OrderDetails.ProductID |
+|---:|---|---:|---:|
+| 1 | Pen | 10 | 1 |
+| 2 | Cup | NULL | NULL |
+
+Row count: **2 Products rows → 2 joined rows** in this fixture. If a product had multiple order lines, the intermediate join would contain one matching row per order line; the LEFT JOIN does not collapse those matches.
+
+### 3. Why test OrderDetailID for NULL?
+
+```sql
+WHERE OD.OrderDetailID IS NULL
+```
+
+`OrderDetailID` is the non-null primary key of a real order-detail row. Therefore:
+- Pen has OrderDetailID 10, proving a matching order line exists; it is removed.
+- Cup has NULL in that column, proving no matching order-detail row was found; it is retained.
+
+This is the LEFT ANTI JOIN pattern: keep left-side rows that have no right-side match.
+
+| Product | OrderDetailID | Passes IS NULL? |
+|---|---:|---|
+| Pen | 10 | No |
+| Cup | NULL | Yes |
+
+Row count: **2 joined rows → 1 unmatched product row**.
+
+If Pen had three order-detail matches, all three joined rows would have a non-NULL OrderDetailID and all three would be removed. Cup would still appear once. This is why DISTINCT is not needed for the surviving unmatched Products rows.
+
+### 4. Which columns are returned, and how are they sorted?
+
+The SELECT list returns the five requested columns from Products only:
+
+```sql
+SELECT
+    P.ProductID,
+    P.Product,
+    P.Brand,
+    P.CategoryID,
+    P.Sale_Price
+```
+
+The final ordering is:
+
+```sql
+ORDER BY
+    P.CategoryID ASC,
+    P.ProductID ASC;
+```
+
+The small fixture returns Cup only. In the larger saved practice example, products 202 and 205 have no order-detail matches; products 201, 203, 204 and 206 do have matches and are excluded. The larger result is therefore:
+
+| ProductID | Product | Brand | CategoryID | Sale_Price |
+|---:|---|---|---:|---:|
+| 202 | Python Guide | CodePress | 10 | 600 |
+| 205 | Linux Essentials | CodePress | 20 | 550 |
 
 The final stage in the linked walkthrough reads the exact locked learner SQLite query and is checked against both the small practice fixture and the saved larger verification case.
-
-
 ## Important learnings from P033
 
 ### 1. Identify the driving table from the requested output population
