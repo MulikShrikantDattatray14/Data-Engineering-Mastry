@@ -51,9 +51,9 @@ Employees has integer employee_id (primary key), text name, and integer salary. 
 
 ### How the sample produces this output
 
-🟦 Employees 7 (Addilyn) and 9 (Kannon) have odd IDs and names starting with A and K. They receive their full salaries, **7400** and **7700**.
+🟦 Employees 🟦 7 (Addilyn) and 🟦 9 (Kannon) have odd IDs and names starting with A and K. They receive their full salaries, **🟦 7400** and **🟦 7700**.
 
-🟦 Employee 3 (Michael) has an odd ID but a name beginning with M. Employees 2 (Meir) and 8 (Juan) have even IDs. Those three employees each receive **0**. The output includes all five employees in ID order.
+🟦 Employee 🟦 3 (Michael) has an odd ID but a name beginning with M. Employees 🟦 2 (Meir) and 🟦 8 (Juan) have even IDs. Those three employees each receive **🟦 0**. The output includes all five employees in ID order.
 
 ## Step 1 · Your approach before writing SQL
 
