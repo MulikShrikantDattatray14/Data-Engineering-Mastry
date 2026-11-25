@@ -165,6 +165,10 @@ flowchart TD
 
 The visual and written walkthrough use the same four-row fixture above. The join must retain both the unmatched Gamma supplier row and the unmatched SupplierID 99 order line.
 
+![P034 progressive walkthrough: the same sample rows move from source tables through FULL OUTER JOIN, COALESCE, grouping, aggregation and percentage calculation to the final sorted output.](../../assets/p034-progressive-walkthrough.svg)
+
+[Open the full-size P034 progressive walkthrough](../../assets/p034-progressive-walkthrough.svg?raw=1)
+
 ## Step-by-step walkthrough
 
 ### 1. Calculate the grand total independently
