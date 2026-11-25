@@ -178,6 +178,19 @@ The visual and written walkthrough use the same four-row fixture above. The join
 
 [Open the full-size P034 walkthrough](../../assets/p034-progressive-walkthrough.svg?raw=1)
 
+**Previous / Next walkthrough · six stages**
+
+Use the same four-row fixture and the saved learner query. Each page shows the SQL operation, its input and resulting rows.
+
+- [Stage 1 — Suppliers starting population](../../assets/steps/PNP-P034/01.md)
+- [Stage 2 — FULL OUTER JOIN and row survival](../../assets/steps/PNP-P034/02.md)
+- [Stage 3 — Resolve identity and fallback label](../../assets/steps/PNP-P034/03.md)
+- [Stage 4 — Group and aggregate quantities](../../assets/steps/PNP-P034/04.md)
+- [Stage 5 — Independent denominator CTE](../../assets/steps/PNP-P034/05.md)
+- [Stage 6 — Final percentage and ordering](../../assets/steps/PNP-P034/06.md)
+
+The six stage pages have been added. The shared builder's `--check` and automated regeneration have not yet been run in a local Python environment; the pages are therefore published but not marked builder-verified.
+
 ## Step-by-step walkthrough
 
 ### Why does `Suppliers` come first in the outer `FROM`?
