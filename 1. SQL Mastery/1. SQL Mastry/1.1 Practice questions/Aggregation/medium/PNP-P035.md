@@ -64,7 +64,17 @@ Order 4 is invalid because its ship date is before its order date; it is exclude
 
 ## Step 1 · Your approach before writing SQL
 
-**Learner's approach and progression**
+1. What does one output row represent, and what does each measure tell the logistics team?
+2. Which source would you start from, and why? Which keys connect the sources and which unmatched rows must survive?
+3. How will you classify delivered, late, not-delivered and invalid-date orders?
+4. Which dates must be present before calculating elapsed days, and is the seven-day boundary strict?
+5. How should missing or unknown ShipperID values be labeled and grouped?
+6. How will you calculate the rate when a shipper has zero delivered orders?
+7. Trace FastShip orders 1–4 and QuickShip order 5 through the sample.
+
+## Approach review / agreed approach
+
+**Recorded learner progression (preserved):**
 
 1. Started with `Shippers LEFT JOIN Orders` on `ShipperID`, grouping by shipper ID and company name.
 2. Identified `COALESCE(CompanyName, 'Unknown shipper')` for the output label.
@@ -76,7 +86,9 @@ Order 4 is invalid because its ship date is before its order date; it is exclude
 8. Revisited join preservation after noticing the source explicitly requires missing or unknown ShipperID orders to appear as Unknown shipper. Changed the join to `FULL OUTER JOIN`.
 9. Refactored the nested conditional aggregates into a CTE that classifies each order with 0/1 flags, then aggregates those flags.
 
-**Approach review:** The initial LEFT JOIN was reasonable for retaining every shipper, but insufficient for retaining unmatched Orders rows. The revised FULL OUTER JOIN satisfies both row-preservation requirements. The final CTE makes row classification separate from shipper-level aggregation.
+**Review:** The initial LEFT JOIN retained every shipper but lost order rows with NULL or unmatched ShipperID. FULL OUTER JOIN retains both input populations. The CTE separates per-row classification from shipper-level aggregation.
+
+**Approach score:** Not recorded in the saved learner history; no retrospective score has been invented.
 
 ## Final learner solution — SQLite
 
@@ -229,23 +241,168 @@ The query groups by both the resolved ShipperID and shipper_name. Keeping the ID
 
 ## Learner solution — SQL Server adaptation
 
-**Pending.** The saved query is SQLite-specific because it uses `julianday()`. A SQL Server adaptation must use an appropriate date-difference expression and be reviewed separately. No SQL Server execution is claimed.
+**Learner-query SQL Server adaptation (not executed on SQL Server):**
+
+This keeps the locked flag conditions and grouping. It assumes the date columns represent calendar dates. SQL Server `DATEDIFF(day, ...)` counts date boundaries; if the columns are DATETIME values, that can differ from SQLite's elapsed-day `julianday()` difference.
+
+```sql
+WITH order_classification AS (
+    SELECT
+        COALESCE(S.ShipperID, O.ShipperID) AS ShipperID,
+        COALESCE(S.CompanyName, 'Unknown shipper') AS shipper_name,
+        CASE
+            WHEN O.DeliveryDate IS NOT NULL
+             AND NOT (
+                 O.OrderDate IS NOT NULL AND O.ShipDate IS NOT NULL AND O.DeliveryDate IS NOT NULL
+                 AND NOT (O.OrderDate <= O.ShipDate AND O.ShipDate <= O.DeliveryDate)
+             ) THEN 1 ELSE 0
+        END AS is_delivered,
+        CASE
+            WHEN O.OrderDate IS NOT NULL AND O.ShipDate IS NOT NULL AND O.DeliveryDate IS NOT NULL
+             AND O.OrderDate <= O.ShipDate AND O.ShipDate <= O.DeliveryDate
+             AND DATEDIFF(day, O.OrderDate, O.DeliveryDate) > 7
+            THEN 1 ELSE 0
+        END AS is_late,
+        CASE WHEN O.DeliveryDate IS NULL THEN 1 ELSE 0 END AS not_delivered,
+        CASE
+            WHEN O.OrderDate IS NOT NULL AND O.ShipDate IS NOT NULL AND O.DeliveryDate IS NOT NULL
+             AND NOT (O.OrderDate <= O.ShipDate AND O.ShipDate <= O.DeliveryDate)
+            THEN 1 ELSE 0
+        END AS invalid_dates
+    FROM Shippers AS S
+    FULL OUTER JOIN Orders AS O ON S.ShipperID = O.ShipperID
+)
+SELECT shipper_name,
+       SUM(is_delivered) AS delivered_orders,
+       SUM(is_late) AS late_orders,
+       ROUND(SUM(is_late) * 100.0 / NULLIF(SUM(is_delivered), 0), 2) AS late_rate_pct,
+       SUM(not_delivered) AS not_delivered,
+       SUM(invalid_dates) AS invalid_dates
+FROM order_classification
+GROUP BY ShipperID, shipper_name
+ORDER BY CASE WHEN SUM(is_delivered) = 0 THEN 1 ELSE 0 END,
+         late_rate_pct DESC;
+```
+
+No SQL Server execution is claimed. The explicit NULL-last expression matches the SQLite display intent; ties remain unspecified.
 
 ## Official solution
 
-**Pending source extraction.** The official answer is retained in the supplied PDF / source archive. It has not yet been transcribed here, so no official SQL is invented.
+### Original course answer — PostgreSQL
+
+**Source:** [`all_100_solutions.sql`, Q35, lines 435–459](../../../2.PNP-%20foundations%20and%20practice/Source%20Materials/PrepNPlaced_SQL_100_v2/sql/all_100_solutions.sql#L435-L459). Transcribed from the supplied repository source; PostgreSQL syntax is preserved.
+
+```sql
+WITH classified AS (
+    SELECT COALESCE(sh.CompanyName, 'Unknown shipper') AS shipper_name,
+           CASE
+               WHEN o.DeliveryDate IS NULL THEN 'Not delivered'
+               WHEN o.DeliveryDate < o.OrderDate
+                 OR o.ShipDate < o.OrderDate
+                 OR o.DeliveryDate < o.ShipDate THEN 'Invalid dates'
+               WHEN o.DeliveryDate::date - o.OrderDate::date > 7 THEN 'Late'
+               ELSE 'On time'
+           END AS delivery_status
+    FROM Orders AS o
+    LEFT JOIN Shippers AS sh ON sh.ShipperID = o.ShipperID
+)
+SELECT shipper_name,
+       COUNT(*) FILTER (WHERE delivery_status IN ('Late', 'On time')) AS delivered_orders,
+       COUNT(*) FILTER (WHERE delivery_status = 'Late') AS late_orders,
+       ROUND(100.0 * COUNT(*) FILTER (WHERE delivery_status = 'Late')
+             / NULLIF(COUNT(*) FILTER (WHERE delivery_status IN ('Late', 'On time')), 0), 2) AS late_rate_pct,
+       COUNT(*) FILTER (WHERE delivery_status = 'Not delivered') AS not_delivered,
+       COUNT(*) FILTER (WHERE delivery_status = 'Invalid dates') AS invalid_dates
+FROM classified
+GROUP BY shipper_name
+ORDER BY late_rate_pct DESC NULLS LAST, shipper_name;
+```
+
+### Official-answer SQLite adaptation
+
+```sql
+WITH classified AS (
+    SELECT COALESCE(sh.CompanyName, 'Unknown shipper') AS shipper_name,
+           CASE
+               WHEN o.DeliveryDate IS NULL THEN 'Not delivered'
+               WHEN date(o.DeliveryDate) < date(o.OrderDate)
+                 OR date(o.ShipDate) < date(o.OrderDate)
+                 OR date(o.DeliveryDate) < date(o.ShipDate) THEN 'Invalid dates'
+               WHEN julianday(o.DeliveryDate) - julianday(o.OrderDate) > 7 THEN 'Late'
+               ELSE 'On time'
+           END AS delivery_status
+    FROM Orders AS o
+    LEFT JOIN Shippers AS sh ON sh.ShipperID = o.ShipperID
+)
+SELECT shipper_name,
+       SUM(CASE WHEN delivery_status IN ('Late', 'On time') THEN 1 ELSE 0 END) AS delivered_orders,
+       SUM(CASE WHEN delivery_status = 'Late' THEN 1 ELSE 0 END) AS late_orders,
+       ROUND(100.0 * SUM(CASE WHEN delivery_status = 'Late' THEN 1 ELSE 0 END)
+             / NULLIF(SUM(CASE WHEN delivery_status IN ('Late', 'On time') THEN 1 ELSE 0 END), 0), 2) AS late_rate_pct,
+       SUM(CASE WHEN delivery_status = 'Not delivered' THEN 1 ELSE 0 END) AS not_delivered,
+       SUM(CASE WHEN delivery_status = 'Invalid dates' THEN 1 ELSE 0 END) AS invalid_dates
+FROM classified
+GROUP BY shipper_name
+ORDER BY late_rate_pct DESC NULLS LAST, shipper_name;
+```
+
+### Official-answer SQL Server adaptation
+
+```sql
+WITH classified AS (
+    SELECT COALESCE(sh.CompanyName, 'Unknown shipper') AS shipper_name,
+           CASE
+               WHEN o.DeliveryDate IS NULL THEN 'Not delivered'
+               WHEN CAST(o.DeliveryDate AS date) < CAST(o.OrderDate AS date)
+                 OR CAST(o.ShipDate AS date) < CAST(o.OrderDate AS date)
+                 OR CAST(o.DeliveryDate AS date) < CAST(o.ShipDate AS date) THEN 'Invalid dates'
+               WHEN DATEDIFF(day, CAST(o.OrderDate AS date), CAST(o.DeliveryDate AS date)) > 7 THEN 'Late'
+               ELSE 'On time'
+           END AS delivery_status
+    FROM Orders AS o
+    LEFT JOIN Shippers AS sh ON sh.ShipperID = o.ShipperID
+)
+SELECT shipper_name,
+       SUM(CASE WHEN delivery_status IN ('Late', 'On time') THEN 1 ELSE 0 END) AS delivered_orders,
+       SUM(CASE WHEN delivery_status = 'Late' THEN 1 ELSE 0 END) AS late_orders,
+       ROUND(100.0 * SUM(CASE WHEN delivery_status = 'Late' THEN 1 ELSE 0 END)
+             / NULLIF(SUM(CASE WHEN delivery_status IN ('Late', 'On time') THEN 1 ELSE 0 END), 0), 2) AS late_rate_pct,
+       SUM(CASE WHEN delivery_status = 'Not delivered' THEN 1 ELSE 0 END) AS not_delivered,
+       SUM(CASE WHEN delivery_status = 'Invalid dates' THEN 1 ELSE 0 END) AS invalid_dates
+FROM classified
+GROUP BY shipper_name
+ORDER BY CASE WHEN SUM(CASE WHEN delivery_status IN ('Late', 'On time') THEN 1 ELSE 0 END) = 0 THEN 1 ELSE 0 END,
+         late_rate_pct DESC, shipper_name;
+```
+
+The dialect adaptations assume date-valued columns. No SQL Server execution is claimed.
 
 ## Comparison with the course answer
 
-**Pending** until the exact official answer is extracted and compared with the learner's query. Preserve the learner solution and official answer as separate artifacts.
+The learner's locked SQLite query remains verbatim; the course answer is a separate PostgreSQL query.
+
+| Area | Locked learner query | Course answer |
+|---|---|---|
+| Starting population | Shippers FULL OUTER JOIN Orders | Orders LEFT JOIN Shippers |
+| Row preservation | Retains shippers and all orders, including NULL/unmatched ShipperID orders | Retains orders but omits shippers with no orders |
+| Unknown IDs | Groups by resolved ShipperID and label, so unknown IDs remain distinct | Groups by label only, merging unmatched and NULL IDs |
+| Output grain | One row per resolved ShipperID + shipper_name | One row per shipper_name |
+| Date classification | Independent flags; late requires all dates and a valid sequence | Status CASE: not delivered, invalid comparisons, late > 7 days, else on time |
+| Missing ShipDate with present DeliveryDate | Delivered, but not late | Can be Late when DeliveryDate − OrderDate > 7 and no invalid comparison is true |
+| Zero-order shipper | Preserved, but currently miscounted as one not-delivered order by the NULL-extended row | Not represented because Orders drives the query |
+| Ordering | Rate descending only; ties unspecified | Rate descending NULLS LAST, then shipper_name |
+
+**Discovered locked-query defect:** the FULL OUTER JOIN creates a NULL-extended Orders row for a shipper with no orders. Since `not_delivered` tests only `O.DeliveryDate IS NULL`, it counts that synthetic row as one order. The learner query is preserved; this edge case is not marked passed. The course answer has a different population and grouping grain, so the two answers should not be silently normalized.
 
 ## Verification
 
-- **Learner query:** saved verbatim; not yet executed in a SQLite engine.
-- **Sample arithmetic:** manually traced against the illustrative five-order fixture; FastShip has 2 valid delivered orders, 1 late, 1 not delivered and 1 invalid; QuickShip has 1 delivered and 0 late.
-- **FULL OUTER JOIN:** SQLite requires version 3.39.0 or later. Confirm the actual runtime version during execution.
-- **Unknown / NULL ShipperID:** required by the source task but absent from the current illustrative fixture; add a dedicated test before verification.
-- **Zero delivered orders:** test that late_rate_pct returns NULL through NULLIF.
-- **Missing OrderDate / ShipDate:** test and explicitly agree whether a delivered row with incomplete date sequence belongs in delivered_orders and whether it can be late.
-- **Ties:** ORDER BY late_rate_pct DESC does not define a secondary order for equal rates; add a tie-breaker only if the source requires deterministic tie ordering.
-- **Status:** solution saved; full verification and PNP-P026 completion gate pending.
+- **Learner SQLite query:** executed verbatim with SQLite 3.46.1 against the five-order practice fixture. Output matched: FastShip (2 delivered, 1 late, 50.00%, 1 not delivered, 1 invalid) and QuickShip (1, 0, 0.00%, 0, 0).
+- **Unknown/NULL ShipperID edge fixture:** executed. Unmatched ID 99 and NULL ID survive as separate Unknown shipper groups. A delivered row with missing ShipDate is counted as delivered but not late.
+- **Discovered defect:** a shipper with no Orders row receives `not_delivered = 1` because the FULL OUTER JOIN's NULL-extended row satisfies the flag. The locked query remains unchanged; this case is not passed.
+- **Zero delivered orders:** percentage returns NULL through NULLIF. The no-order shipper still exposes the not_delivered defect.
+- **Strict boundary:** exactly seven days is not late; the saved condition is `> 7`.
+- **Official SQLite adaptation:** executed on the five-order sample and matched its expected output.
+- **SQL Server adaptations:** written separately; not executed on SQL Server.
+- **Visuals and progressive stages:** still pending. No flowchart, progressive SVG or generated Previous/Next pages are claimed.
+- **Approach score:** absent from saved history; not invented.
+- **Status:** learner solution and source comparison saved; full PNP-P026 completion gate remains pending.
