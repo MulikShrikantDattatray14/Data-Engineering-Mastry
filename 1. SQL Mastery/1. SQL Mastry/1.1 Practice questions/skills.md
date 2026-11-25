@@ -104,3 +104,59 @@ Immediately after a question is solved, its final learner solution is reviewed a
 - After the index write, fetch the updated index file(s) from GitHub and verify the entry, link, category, counts, and absence of duplicates.
 - Treat the question and its index entry as one completion transaction: if the index cannot be updated or verified, report the question as solution-complete but index-pending; do not claim full completion.
 - Apply this to every future PNP and Bosscoder question and when repairing historical records whose index entries are missing or incorrect.
+
+## Mandatory dual-visual standard — overview flowchart + progressive walkthrough
+
+Every completed PNP and Bosscoder solution record must contain **both** visual types below. They serve different purposes and must not replace one another.
+
+### A. Row-preservation / query-flow overview (flowchart)
+
+Include a compact, readable flowchart similar to the P034 row-preservation map:
+
+- Show the source tables as separate inputs, using the same source-color key as the question and sample tables.
+- Show the JOIN operation(s), including the JOIN type and the order in which tables enter the query.
+- Show key transformations such as COALESCE/fallback labels, filtering, grouping, aggregation, window calculations, percentage/metric calculation, and final sorting, as applicable.
+- Show parallel branches when a denominator, lookup, CTE, or independent aggregate is computed separately, and where the branches combine.
+- Make row-preservation intent explicit: which unmatched rows survive and why.
+- Keep labels concise and ensure the flow is readable at normal viewing size.
+- Use a native, editable text-based diagram format in the Markdown source (Mermaid is acceptable); do not rely only on a raster screenshot.
+- The flowchart is an overview of query architecture. It does **not** count as the progressive visual walkthrough.
+
+### B. Progressive visual walkthrough (P026-style)
+
+Include a second visual that demonstrates **how the actual sample rows move and change progressively through the saved learner query**, stage by stage. This is the P026-style teaching visual and is mandatory.
+
+- Start from the exact sample input rows and show each meaningful query stage in SQL execution/logical transformation order.
+- Show intermediate result tables after each important operation: source selection, each JOIN, row classification/labeling, filters, grouping, aggregation, calculations, and sorting, as applicable.
+- Preserve the source-color convention in headers, values, NULLs, keys, derived columns and explanations: 🟥/🟩/🟦 for source-specific data and 🟪 for combined/calculated values. Match the question's own color key.
+- Track concrete row IDs and values across stages. Make added rows, removed rows, unmatched rows, duplicate/group membership and NULL introduction visible.
+- Explain what changed at each stage and why the corresponding clause is required. The reader must be able to trace a final output row backwards to its source rows.
+- Use the exact same fixture and business rules as the question's expected output and the saved learner SQL. Do not introduce a second inconsistent sample.
+- The final stage must match the saved learner query's expected output exactly, including output columns, row values, NULL/zero behavior and sort order.
+- Include a full-size/open link to the visual asset where the repository's asset convention supports it. Keep the visual source/editable asset in the repository; do not commit only a flattened screenshot when a source format is available.
+- For multi-step visuals, provide Previous/Next stage navigation or a numbered sequence of stage files where the established P026 asset convention is used. Ensure all links resolve.
+- If the question has no joins, show the equivalent progressive stages (input → filtering/derivation → grouping/window/set operation → calculation → final result); never omit the progressive visual merely because there is no JOIN.
+
+### Distinguishing the two visuals
+
+- **Flowchart:** answers “What is the query architecture and why are these operations connected this way?”
+- **Progressive walkthrough:** answers “What happens to these exact rows at every stage until the final result?”
+- A flowchart alone is insufficient. A written walkthrough alone is insufficient. A single diagram is acceptable only if it genuinely contains both the architecture overview and the full row-by-row progressive transformations at readable detail; prefer two separate visuals as in this standard.
+
+### Historical and future coverage
+
+- Apply this dual-visual standard to every new question and every solution record created from now on.
+- Audit all previously saved PNP and Bosscoder solution records against this standard and PNP-P026. Preserve existing valid visuals and assets; add whichever visual type is missing or repair whichever is inaccurate. Do not mark a historical record compliant until both visuals and their links have been fetched and checked.
+- Maintain an explicit audit status for historical question IDs: flowchart present/verified, progressive visual present/verified, written walkthrough aligned, final visual output aligned, repair pending/completed.
+- When repairing a historical question, use its own saved learner query and sample fixture. Do not copy P026's content or fabricate generic visuals.
+- Do not claim every previous record has been retrofitted merely because this requirement was added to skills.md. Report the exact question IDs audited/repaired and the remaining backlog.
+
+### Additions to the pre-save and audit checklist
+
+- [ ] Row-preservation/query-flow overview flowchart is present, readable, source-colored and aligned to the actual query.
+- [ ] Separate P026-style progressive visual shows the exact sample rows through every meaningful query stage.
+- [ ] Progressive stages preserve row IDs, source colors, NULLs, grouping, calculations and ordering.
+- [ ] Final progressive visual output exactly matches the saved learner query and expected output.
+- [ ] Visual source assets and Previous/Next/full-size links exist and have been re-fetched/verified.
+- [ ] Both visual types are present for any historical record claimed as repaired or compliant.
+
