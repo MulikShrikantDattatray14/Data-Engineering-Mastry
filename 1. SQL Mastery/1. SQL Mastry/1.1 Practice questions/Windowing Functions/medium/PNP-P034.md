@@ -148,6 +148,15 @@ A supplier with no lines has a valid supplier identity and zero activity. An unm
 
 ## Visual walkthrough
 
+### Question-only sample view
+
+This compact view contains only the named practice inputs and expected output. It deliberately excludes SQL, intermediate joins and tutor hints so it can be used before Step 1.
+
+![PNP-P034 practice inputs and expected output, with Suppliers in green, OrderDetails in blue and combined output in purple.](../../assets/p034-question-sample.svg)
+
+[Open the full-size P034 question-only sample view](../../assets/p034-question-sample.svg?raw=1)
+
+
 **Row-preservation map**
 
 ```mermaid
