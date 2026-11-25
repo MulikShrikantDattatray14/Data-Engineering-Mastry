@@ -79,91 +79,91 @@ Show which rows form each group before calculating its measures. For each aggreg
 
 ### SQL Basics
 
-| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P001 | [Brand directory](SQL%20Basics/easy/PNP-P001.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P002 | [Ten highest-priced products](SQL%20Basics/easy/PNP-P002.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P003 | [Customers in metro cities](SQL%20Basics/easy/PNP-P003.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P004 | [Customer emails that cannot be delivered](SQL%20Basics/easy/PNP-P004.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P005 | [Orders placed in Q1 2025](SQL%20Basics/easy/PNP-P005.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P006 | [Most expensive products that are never discounted](SQL%20Basics/easy/PNP-P006.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P007 | [Discount amount and percentage per product](SQL%20Basics/easy/PNP-P007.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P008 | [Price band labels](SQL%20Basics/easy/PNP-P008.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P009 | [Check how Active and Allowed are encoded](SQL%20Basics/easy/PNP-P009.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P010 | [Headline order KPIs](SQL%20Basics/easy/PNP-P010.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P020 | [Days to ship and days to deliver](SQL%20Basics/easy/PNP-P020.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P023 | [Chocolate or cookie products under 250, excluding sugar-free](SQL%20Basics/easy/PNP-P023.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P024 | [Suppliers outside India or with no email](SQL%20Basics/easy/PNP-P024.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| B1.01 | [Find Customers With Positive Revenue This Year](SQL%20Basics/easy/Bosscoder-1.01.md) | Bosscoder | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| B1.02 | [Calculate Special Bonus](SQL%20Basics/easy/Bosscoder-1.02.md) | Bosscoder | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| B1.04 | [Rearrange Products Table](SQL%20Basics/easy/Bosscoder-1.04.md) | Bosscoder | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| B1.05 | [Type Of Triangle](SQL%20Basics/easy/Bosscoder-1.05.md) | Bosscoder | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| B1.03 | [Binary Tree Nodes](SQL%20Basics/medium/Bosscoder-1.03.md) | Bosscoder | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification | Question, source & color key | Output contract | Sample inputs | Expected output | Worked sample explanation | Learner approach & review | SQLite solution | Important learnings | Query-flow flowchart | Progressive visual | Visual navigation & assets | Detailed step-by-step walkthrough | SQL Server adaptation | Official source answer | Official SQLite adaptation | Official SQL Server adaptation | Course comparison | Verification | Final audit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| P001 | [Brand directory](SQL%20Basics/easy/PNP-P001.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P002 | [Ten highest-priced products](SQL%20Basics/easy/PNP-P002.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P003 | [Customers in metro cities](SQL%20Basics/easy/PNP-P003.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P004 | [Customer emails that cannot be delivered](SQL%20Basics/easy/PNP-P004.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P005 | [Orders placed in Q1 2025](SQL%20Basics/easy/PNP-P005.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P006 | [Most expensive products that are never discounted](SQL%20Basics/easy/PNP-P006.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P007 | [Discount amount and percentage per product](SQL%20Basics/easy/PNP-P007.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P008 | [Price band labels](SQL%20Basics/easy/PNP-P008.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P009 | [Check how Active and Allowed are encoded](SQL%20Basics/easy/PNP-P009.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P010 | [Headline order KPIs](SQL%20Basics/easy/PNP-P010.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P020 | [Days to ship and days to deliver](SQL%20Basics/easy/PNP-P020.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P023 | [Chocolate or cookie products under 250, excluding sugar-free](SQL%20Basics/easy/PNP-P023.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P024 | [Suppliers outside India or with no email](SQL%20Basics/easy/PNP-P024.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| B1.01 | [Find Customers With Positive Revenue This Year](SQL%20Basics/easy/Bosscoder-1.01.md) | Bosscoder | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| B1.02 | [Calculate Special Bonus](SQL%20Basics/easy/Bosscoder-1.02.md) | Bosscoder | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| B1.04 | [Rearrange Products Table](SQL%20Basics/easy/Bosscoder-1.04.md) | Bosscoder | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| B1.05 | [Type Of Triangle](SQL%20Basics/easy/Bosscoder-1.05.md) | Bosscoder | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| B1.03 | [Binary Tree Nodes](SQL%20Basics/medium/Bosscoder-1.03.md) | Bosscoder | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ### Aggregation
 
-| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P011 | [How much of the catalogue has ever sold?](Aggregation/easy/PNP-P011.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P012 | [Price and discount statistics per category ID](Aggregation/easy/PNP-P012.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification | Question, source & color key | Output contract | Sample inputs | Expected output | Worked sample explanation | Learner approach & review | SQLite solution | Important learnings | Query-flow flowchart | Progressive visual | Visual navigation & assets | Detailed step-by-step walkthrough | SQL Server adaptation | Official source answer | Official SQLite adaptation | Official SQL Server adaptation | Course comparison | Verification | Final audit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| P011 | [How much of the catalogue has ever sold?](Aggregation/easy/PNP-P011.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P012 | [Price and discount statistics per category ID](Aggregation/easy/PNP-P012.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ### Sorting and Grouping
 
-| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P013 | [States with at least five customers](Sorting%20and%20Grouping/easy/PNP-P013.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P014 | [Orders per month in 2025](Sorting%20and%20Grouping/easy/PNP-P014.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P022 | [Orders with more than eight line items](Sorting%20and%20Grouping/easy/PNP-P022.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P025 | [Customer sign-ups by year and quarter](Sorting%20and%20Grouping/easy/PNP-P025.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification | Question, source & color key | Output contract | Sample inputs | Expected output | Worked sample explanation | Learner approach & review | SQLite solution | Important learnings | Query-flow flowchart | Progressive visual | Visual navigation & assets | Detailed step-by-step walkthrough | SQL Server adaptation | Official source answer | Official SQLite adaptation | Official SQL Server adaptation | Course comparison | Verification | Final audit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| P013 | [States with at least five customers](Sorting%20and%20Grouping/easy/PNP-P013.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P014 | [Orders per month in 2025](Sorting%20and%20Grouping/easy/PNP-P014.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P022 | [Orders with more than eight line items](Sorting%20and%20Grouping/easy/PNP-P022.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P025 | [Customer sign-ups by year and quarter](Sorting%20and%20Grouping/easy/PNP-P025.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ### Joins
 
-| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P015 | [Product count for every category](Joins/easy/PNP-P015.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P016 | [December 2025 orders with customer names](Joins/easy/PNP-P016.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P017 | [Orders with payment type and shipper](Joins/easy/PNP-P017.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P018 | [Customers with no order in the last 90 days](Joins/easy/PNP-P018.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P019 | [Units sold per product](Joins/easy/PNP-P019.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P021 | [Top five customers by number of orders](Joins/easy/PNP-P021.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P026 | [List-price value by category](Joins/medium/PNP-P026.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P027 | [Average order value by customer state](Joins/medium/PNP-P027.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P029 | [Order value and units by shipper without double counting](Joins/medium/PNP-P029.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification | Question, source & color key | Output contract | Sample inputs | Expected output | Worked sample explanation | Learner approach & review | SQLite solution | Important learnings | Query-flow flowchart | Progressive visual | Visual navigation & assets | Detailed step-by-step walkthrough | SQL Server adaptation | Official source answer | Official SQLite adaptation | Official SQL Server adaptation | Course comparison | Verification | Final audit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| P015 | [Product count for every category](Joins/easy/PNP-P015.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P016 | [December 2025 orders with customer names](Joins/easy/PNP-P016.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P017 | [Orders with payment type and shipper](Joins/easy/PNP-P017.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P018 | [Customers with no order in the last 90 days](Joins/easy/PNP-P018.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P019 | [Units sold per product](Joins/easy/PNP-P019.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P021 | [Top five customers by number of orders](Joins/easy/PNP-P021.md) | PNP | ![EASY](../_badges/easy.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P026 | [List-price value by category](Joins/medium/PNP-P026.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P027 | [Average order value by customer state](Joins/medium/PNP-P027.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P029 | [Order value and units by shipper without double counting](Joins/medium/PNP-P029.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ### Subqueries
 
-| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P028 | [Payment mix: share of orders and value](Subqueries/medium/PNP-P028.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P031 | [Customers who spend more than the average customer](Subqueries/medium/PNP-P031.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P032 | [Products priced above their category average](Subqueries/medium/PNP-P032.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P033 | [Products that have never been ordered](Subqueries/medium/PNP-P033.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P034 | [Each supplier's share of units supplied](Windowing%20Functions/medium/PNP-P034.md) · saved; SQLite fixture + 3 edge cases checked; Previous/Next pending | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification | Question, source & color key | Output contract | Sample inputs | Expected output | Worked sample explanation | Learner approach & review | SQLite solution | Important learnings | Query-flow flowchart | Progressive visual | Visual navigation & assets | Detailed step-by-step walkthrough | SQL Server adaptation | Official source answer | Official SQLite adaptation | Official SQL Server adaptation | Course comparison | Verification | Final audit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| P028 | [Payment mix: share of orders and value](Subqueries/medium/PNP-P028.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P031 | [Customers who spend more than the average customer](Subqueries/medium/PNP-P031.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P032 | [Products priced above their category average](Subqueries/medium/PNP-P032.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P033 | [Products that have never been ordered](Subqueries/medium/PNP-P033.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P034 | [Each supplier's share of units supplied](Windowing%20Functions/medium/PNP-P034.md) · saved; SQLite fixture + 3 edge cases checked; Previous/Next pending | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ### CTEs
 
-| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P030 | [Repeat versus one-time customers](CTEs/medium/PNP-P030.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| ID | Question | Set | Difficulty | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification | Question, source & color key | Output contract | Sample inputs | Expected output | Worked sample explanation | Learner approach & review | SQLite solution | Important learnings | Query-flow flowchart | Progressive visual | Visual navigation & assets | Detailed step-by-step walkthrough | SQL Server adaptation | Official source answer | Official SQLite adaptation | Official SQL Server adaptation | Course comparison | Verification | Final audit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| P030 | [Repeat versus one-time customers](CTEs/medium/PNP-P030.md) | PNP | ![MEDIUM](../_badges/medium.svg) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 Add each verified question to its topic, in difficulty order (Easy, Medium, Hard), then by source ID within each difficulty. Use the set column to distinguish PNP practice from Bosscoder reattempts.
 
 ## Historical record audit tracker
 
-This tracker is separate from the solved-question index. A tick means the corresponding content was inspected in the saved question record and meets the requirement; a blank box means not yet verified. A heading or placeholder alone does not earn a tick. `N/A` is allowed only with a recorded reason in that question's file.
+This tracker is separate from solved status. A tick means the requirement was checked in the saved question record and meets the P026 standard. A heading or placeholder alone does not earn a tick. `N/A` is permitted only with a reason recorded in that question's file.
 
-| ID | Record | Output & sample | Approach | SQLite | SQL Server | Learnings | Flowchart | Progressive visual | Written walkthrough | Official answer | Comparison | Verification |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P035 | [Late-delivery rate by shipper](Aggregation/medium/PNP-P035.md) | ☑️ | ☑️ | ☑️ | ⬜ | ☑️ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| P036 | Practice record not found at expected path; source question exists | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| ID | Record | Question, source & color key | Output contract | Sample inputs | Expected output | Worked sample explanation | Learner approach & review | SQLite solution | Important learnings | Query-flow flowchart | Progressive visual | Visual navigation & assets | Detailed step-by-step walkthrough | SQL Server adaptation | Official source answer | Official SQLite adaptation | Official SQL Server adaptation | Course comparison | Verification | Final audit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| P035 | [Late-delivery rate by shipper](Aggregation/medium/PNP-P035.md) | ⬜ | ⬜ | ☑️ | ☑️ | ☑️ | ⬜ | ☑️ | ☑️ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| P036 | Practice record not found at expected path; source question exists | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
-**Audit note:** P035 ticks reflect content visibly present in the fetched record only; they do not mean the full completion gate has passed. Its learner approach, saved SQLite query and learnings are present, while the remaining sections are pending. P036 has no practice record at the expected Aggregation/medium path, so no content is marked complete. Neither question is marked solved.
+**Audit note:** P035's current file contains sample input, expected output, a worked sample explanation, the locked learner SQLite query and question-specific learnings. Other checks remain blank where content is missing or not yet proven to meet the complete requirement. In particular, the approach review has no recorded /10 score. P036's practice record was not found at the expected Aggregation/medium path. Neither question is marked fully complete.
 
 ### Tracker legend
 
-- ☑️ Checked and verified in the saved Markdown record.
-- ⬜ Not yet checked, missing, or not yet verified.
-- `N/A` Only when genuinely inapplicable and explained in the record.
+- ☑️ Checked and verified against the P026 requirement.
+- ⬜ Missing, incomplete, or not yet verified.
+- `N/A` Only when genuinely inapplicable and explained in the question record.
 
 
 ## Difficulty rubric
