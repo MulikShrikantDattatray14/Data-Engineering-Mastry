@@ -171,6 +171,10 @@ The visual and written walkthrough use the same four-row fixture above. The join
 
 ## Step-by-step walkthrough
 
+### Why does `Suppliers` come first in the outer `FROM`?
+
+`Suppliers AS S` is the master list of every supplier that must appear, including suppliers with no order lines (Gamma, ID 3). It is therefore a necessary starting source for the zero-activity rows. The subsequent `FULL OUTER JOIN OrderDetails AS OD ON S.SupplierID = OD.SupplierID` also preserves order-line identities that have no supplier master row (ID 99); reversing the two inputs would preserve the same matched pairs and both unmatched sets, so the order is not a dependency for this FULL OUTER JOIN. The independent `sum_quantity` CTE reads all `OrderDetails` rows separately for the denominator and does not depend on the join.
+
 ### 1. Calculate the grand total independently
 
 ```sql
