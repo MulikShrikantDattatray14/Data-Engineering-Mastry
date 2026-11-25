@@ -393,4 +393,4 @@ ORDER BY units_supplied DESC,
 
 **Preservation note:** the learner's exact submitted SQLite query and the original PostgreSQL-style course answer remain separate. The learner's CASE returns 0.00 for a zero denominator; the official query's NULLIF produces NULL. The source's secondary SupplierID ordering is also retained only in the official adaptation, not silently added to the learner query.
 
-**Visual status:** the existing progressive SVG and its full-size link remain available. A sample-only SVG and generated Previous / Next stages are still pending. The shared Python builder's `--check` command was not executed.
+**Visual status:** the question-only sample SVG and progressive SVG are present, and their relative inline/full-size links resolve. All six generated Previous / Next stage pages are present; the first and last pages show disabled navigation at their respective boundaries, and the intermediate pages link one stage backward/forward. The final stage includes the exact saved learner SQLite query. The shared Python builder's `--check` command has not yet been executed, so builder regeneration verification remains pending.
