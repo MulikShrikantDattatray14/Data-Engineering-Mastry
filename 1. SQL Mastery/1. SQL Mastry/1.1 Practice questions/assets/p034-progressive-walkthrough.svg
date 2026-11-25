@@ -7,6 +7,7 @@ text{font-family:Arial,Helvetica,sans-serif;fill:#203047}.h1{font-size:34px;font
 <rect width="1440" height="2380" fill="#f7f9fc"/>
 <text x="48" y="58" class="small" font-weight="700" fill="#52677e">PNP P034 / AGGREGATION + FULL OUTER JOIN</text>
 <text x="48" y="105" class="h1">From supplier records to each supplier’s share</text>
+<text x="48" y="170" class="sub">Why Suppliers is first: it is the master list, so zero-order suppliers survive; FULL OUTER JOIN also retains unknown order-line IDs. The independent total CTE reads all OrderDetails.</text>
 <text x="48" y="137" class="sub">Same practice fixture and learner query · follow each row through five transformations</text>
 <rect x="48" y="160" width="190" height="30" rx="6" fill="#0b6b35"/><text x="60" y="181" class="small white">Suppliers · green</text>
 <rect x="252" y="160" width="210" height="30" rx="6" fill="#075bbb"/><text x="264" y="181" class="small white">OrderDetails · blue</text>
