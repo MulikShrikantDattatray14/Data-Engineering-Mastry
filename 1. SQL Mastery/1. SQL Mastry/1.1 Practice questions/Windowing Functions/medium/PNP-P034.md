@@ -51,10 +51,6 @@
 | 🟪 99 | 🟪 Unknown supplier | 🟦 4 | 🟪 28.57 |
 | 🟩 3 | 🟩 Gamma | 🟦 0 | 🟪 0.00 |
 
-![PNP P034 practice input tables and expected output](../../assets/question-samples/p034.svg)
-
-[Open the input-and-expected-output SVG](../../assets/question-samples/p034.svg?raw=1)
-
 Total units = 🟪 2 + 3 + 5 + 4 = 🟪 14. The percentages are 5/14×100 = 35.71%, 5/14×100 = 35.71%, 4/14×100 = 28.57%, and 0/14×100 = 0.00%. Rounded shares sum to 99.99% because of decimal rounding; the unrounded shares sum to 100%.
 
 ### How the sample produces this output
@@ -169,9 +165,7 @@ flowchart TD
 
 The visual and written walkthrough use the same four-row fixture above. The join must retain both the unmatched Gamma supplier row and the unmatched SupplierID 99 order line.
 
-**Previous / Next walkthrough:** [Open stage 1](../../assets/steps/PNP-P034/01.md). Each stage uses the same four-row practice fixture and the exact saved learner query at the final stage.
-
-![P034 source-banded progressive walkthrough showing supplier and order-line row survival, grouping, the independent denominator CTE and final shares.](../../assets/p034-progressive-walkthrough.svg)
+![P034 progressive walkthrough showing supplier and order-line row survival, grouping, the independent denominator CTE and final shares.](../../assets/p034-progressive-walkthrough.svg)
 
 [Open the full-size P034 walkthrough](../../assets/p034-progressive-walkthrough.svg?raw=1)
 
@@ -361,15 +355,15 @@ ORDER BY units_supplied DESC,
 
 | Check | Observed result | Status |
 |---|---|---|
-| Main four-row practice fixture | 4 output groups: Alpha 5 / 35.71, Beta 5 / 35.71, Unknown ID 99 4 / 28.57, Gamma 0 / 0.00 | <badge>Passed</badge> |
-| FULL OUTER JOIN row preservation | 4 OrderDetails rows plus unmatched Gamma = 5 joined rows | <badge>Passed</badge> |
-| Grand total | 2 + 3 + 5 + 4 = 14 | <badge>Passed</badge> |
-| Unknown SupplierID 99 | 4 units retained and included in denominator | <badge>Passed</badge> |
-| Supplier with no lines | Gamma retained with 0 units | <badge>Passed</badge> |
-| Empty OrderDetails | All three suppliers remain with 0 units and 0.00% | <badge>Passed</badge> |
-| All-zero quantities | Suppliers 1, 2, 3 and unknown ID 99 remain with 0 units and 0.00% | <badge>Passed</badge> |
-| Unknown and NULL SupplierIDs | Separate identity groups: ID 99 = 4 / 66.67%; NULL ID = 2 / 33.33%; master suppliers remain at zero | <badge>Passed</badge> |
-| Percentage rounding | Shares round to 35.71, 35.71, 28.57 and 0.00; rounded total 99.99% | <badge>Passed</badge> |
+| Main four-row practice fixture | 4 output groups: Alpha 5 / 35.71, Beta 5 / 35.71, Unknown ID 99 4 / 28.57, Gamma 0 / 0.00 | Passed |
+| FULL OUTER JOIN row preservation | 4 OrderDetails rows plus unmatched Gamma = 5 joined rows | Passed |
+| Grand total | 2 + 3 + 5 + 4 = 14 | Passed |
+| Unknown SupplierID 99 | 4 units retained and included in denominator | Passed |
+| Supplier with no lines | Gamma retained with 0 units | Passed |
+| Empty OrderDetails | All three suppliers remain with 0 units and 0.00% | Passed |
+| All-zero quantities | Suppliers 1, 2, 3 and unknown ID 99 remain with 0 units and 0.00% | Passed |
+| Unknown and NULL SupplierIDs | Separate identity groups: ID 99 = 4 / 66.67%; NULL ID = 2 / 33.33%; master suppliers remain at zero | Passed |
+| Percentage rounding | Shares round to 35.71, 35.71, 28.57 and 0.00; rounded total 99.99% | Passed |
 | SQL Server learner adaptation | Syntax adaptation reviewed; no live SQL Server execution | Not executed |
 | Official SQLite / SQL Server adaptations | Written separately; no live execution claimed | Not executed |
 
@@ -377,4 +371,4 @@ ORDER BY units_supplied DESC,
 
 **Preservation note:** the learner's exact submitted SQLite query and the original PostgreSQL-style course answer remain separate. The learner's CASE returns 0.00 for a zero denominator; the official query's NULLIF produces NULL. The source's secondary SupplierID ordering is also retained only in the official adaptation, not silently added to the learner query.
 
-**Visual checks:** the sample-only SVG and the source-banded progressive SVG were rendered and inspected at full image size. The Previous / Next pages and their links are committed with the record. The shared Python builder's `--check` command was not executed in this environment; the manifest and generated page contents were checked against the same fixture and saved query separately.
+**Visual status:** the existing progressive SVG and its full-size link remain available. A sample-only SVG and generated Previous / Next stages are still pending. The shared Python builder's `--check` command was not executed.
