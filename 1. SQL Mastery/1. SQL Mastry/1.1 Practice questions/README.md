@@ -138,6 +138,7 @@ Show which rows form each group before calculating its measures. For each aggreg
 | P031 | [Customers who spend more than the average customer](Subqueries/medium/PNP-P031.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) |
 | P032 | [Products priced above their category average](Subqueries/medium/PNP-P032.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) |
 | P033 | [Products that have never been ordered](Subqueries/medium/PNP-P033.md) · locked, sample checked | PNP | ![MEDIUM](../_badges/medium.svg) |
+| P034 | [Each supplier's share of units supplied](Windowing%20Functions/medium/PNP-P034.md) · saved; interactive walkthrough pending | PNP | ![MEDIUM](../_badges/medium.svg) |
 
 ### CTEs
 
