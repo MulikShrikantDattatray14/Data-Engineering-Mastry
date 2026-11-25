@@ -16,14 +16,16 @@
 
 ### Required output columns
 
-| Output column | Source / calculation | Meaning and rule |
-|---|---|---|
-| `shipper_name` | 🟥 `Shippers.CompanyName`, fallback 🟪 label | Company name, or `Unknown shipper` for missing/unmatched shipper IDs. |
-| `delivered_orders` | 🟦 `Orders` | Orders with a delivery date, excluding fully populated but impossible date sequences. |
-| `late_orders` | 🟦 `OrderDate`, `ShipDate`, `DeliveryDate` | Valid complete date sequence and delivery more than 7 days after order date. |
-| `late_rate_pct` | 🟪 late / delivered × 100 | Late orders as a percentage of delivered orders, rounded to 2 decimals; zero denominator yields NULL. |
-| `not_delivered` | 🟦 `Orders.DeliveryDate` | Orders with `DeliveryDate IS NULL`. |
-| `invalid_dates` | 🟦 three date columns | All three dates exist, but the sequence does not satisfy `OrderDate <= ShipDate <= DeliveryDate`. |
+| Output column | Source / calculation | Meaning for one output row and applicable rule | Example value |
+|---|---|---|---:|
+| `shipper_name` | 🟥 `Shippers.CompanyName`, fallback 🟪 label | The matched shipper's display name; use `Unknown shipper` when the order-side ShipperID has no matching master row. Groups remain separated by resolved ShipperID even when labels match. | 🟥 FastShip |
+| `delivered_orders` | 🟦 `Orders` row-level `is_delivered` flag, summed by shipper | Number of delivered orders in the shipper group. Under the locked expression, a non-NULL DeliveryDate counts unless all three dates are present and their sequence is invalid. | 🟦 2 |
+| `late_orders` | 🟦 `OrderDate`, `ShipDate`, `DeliveryDate` row-level `is_late` flag, summed by shipper | Number of orders with all three dates present, a valid chronological sequence, and elapsed delivery time strictly greater than 7 days. | 🟦 1 |
+| `late_rate_pct` | 🟪 `SUM(is_late) * 100.0 / NULLIF(SUM(is_delivered), 0)` | Late orders as a percentage of delivered orders, rounded to 2 decimals. A zero delivered denominator produces NULL, not zero. | 🟪 50.00 |
+| `not_delivered` | 🟦 `Orders.DeliveryDate` row-level flag, summed by shipper | Number of orders whose DeliveryDate is NULL, regardless of whether other date fields are present. | 🟦 1 |
+| `invalid_dates` | 🟦 `OrderDate`, `ShipDate`, `DeliveryDate` row-level flag, summed by shipper | Number of orders where all three dates exist but `OrderDate <= ShipDate <= DeliveryDate` is false. | 🟦 1 |
+
+**Row eligibility and sorting:** The locked query produces one row per resolved ShipperID and shipper label represented by either input, including shippers with no orders and orders with NULL or unmatched ShipperID. It sorts by `late_rate_pct DESC`; ties have no guaranteed secondary order.
 
 ### Practice example · Sample input
 
