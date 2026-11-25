@@ -1,3 +1,162 @@
+# Task: Explain Code Through a Detailed Progressive Walkthrough Using One Example
+
+I will provide a piece of code. Your task is to explain it in a highly detailed, beginner-friendly, progressive manner using **one single example from beginning to end**.
+
+## 1. Core rules
+
+1. Use exactly ONE example throughout the entire explanation.
+2. Do not introduce new examples or change the input data midway.
+3. Preserve the original code's logic. Do not silently rewrite, optimize, or refactor it.
+4. Explain the code in the actual order in which its operations logically execute.
+5. Break the code into small, meaningful stages.
+6. Every stage must show its intermediate output before moving to the next stage.
+7. Never skip an intermediate transformation.
+8. Explain why each operation is required, not just what it does.
+9. Clearly distinguish actual output from hypothetical or inferred output.
+10. Do not claim code has been executed unless it has actually been run in the relevant environment.
+
+## 2. Start with the original input
+
+- Show the complete input dataset or initial values.
+- Explain what each input column or variable represents.
+- Show the initial row count or input size.
+- Explain what the final program/query is expected to produce.
+
+## 3. Progressive stage-by-stage explanation
+
+For every meaningful operation in the code, follow this exact structure:
+
+### Stage N — [Operation name]
+
+**A. Original code fragment**
+
+
+
+Show only the relevant portion of the original code.
+
+
+
+**B. What happens here?**
+
+
+
+Explain:
+
+- What the operation does.
+- Why it is needed.
+- Which input rows, columns, or variables it uses.
+- How it transforms the data.
+- Any important syntax or language-specific behavior.
+
+**C. Trace the single example**
+
+
+
+Walk through the exact same input values step by step.
+
+
+
+Show calculations, matching conditions, transformations, filtering, grouping, or other operations as applicable.
+
+
+
+**D. Intermediate output**
+
+
+
+Display the complete intermediate result in a properly formatted table or structured output.
+
+
+
+Do not show only the changed rows. Show the full result after that stage.
+
+
+
+**E. Row count / state check**
+
+
+
+State:
+
+- Input row count or state.
+- Output row count or state.
+- Which rows were added, removed, combined, retained, or changed.
+- Why the count or state changed.
+
+
+
+**F. Key takeaway**
+
+
+
+Explain the most important concept learned from this stage.
+
+
+
+Only after completing all six parts should you move to the next stage.
+
+## 4. Special requirements for SQL explanations
+
+When explaining SQL, cover these where applicable:
+
+- FROM: source table and starting rows.
+- JOIN: both input tables, aliases, join condition, matching process, unmatched rows, and row preservation.
+- WHERE: which rows are filtered out and why.
+- GROUP BY: how rows are divided into groups.
+- Aggregate functions: show the calculation for each group.
+- CTEs and subqueries: show their complete intermediate outputs.
+- Window functions: explain partitioning, ordering, frames, and calculations.
+- SELECT: explain every derived output column.
+- NULL and zero behavior: show how they affect calculations and comparisons.
+- ORDER BY: show the final sorting.
+- LIMIT/OFFSET: explain which rows remain, if applicable.
+
+Do not explain SQL clauses merely in the order they appear in the query. Follow the actual logical processing and dependencies.
+
+## 5. Visual presentation
+
+- Use readable tables for every intermediate dataset.
+- Keep column names consistent with the original code.
+- Highlight derived or calculated columns.
+- Show arithmetic explicitly.
+- Use the same row IDs and values throughout.
+- Make it possible to trace every final output row back to the original input.
+- Do not omit NULL values or hide unmatched rows.
+
+## 6. Final result
+
+At the end, provide:
+
+1. The complete original code.
+2. The final output.
+3. A concise summary of the full execution flow.
+4. A stage summary table showing each stage and its output row count.
+5. The most important concepts learned.
+6. Any edge cases or limitations that were not covered by the single example.
+
+## 7. Accuracy requirements
+
+- Do not invent input data or expected results.
+- If sample data is missing, ask me for it or clearly create one illustrative fixture and use it consistently.
+- If a result depends on database dialect, language version, or runtime, state the assumption.
+- If you cannot execute the code, label outputs as manually derived or expected.
+- Preserve the original code exactly when presenting the complete solution.
+- Never skip a stage simply because its output appears unchanged.
+
+## My code
+
+[PASTE CODE HERE]
+
+## My example input
+
+[PASTE INPUT DATA HERE, IF AVAILABLE]
+
+
+
+**Expected teaching style:** Explain as though you are teaching someone who wants to understand exactly how every input becomes the final output, not someone who only wants a summary of the code.
+
+---
+
 # SQL practice questions
 
 > **Canonical record standard:** [skills.md](skills.md) defines the mandatory structure and workflow for every PNP and Bosscoder question. **PNP-P026.md is the reference example.** Read it before starting or updating a question. Existing records must be audited and repaired without deleting their valid content.
