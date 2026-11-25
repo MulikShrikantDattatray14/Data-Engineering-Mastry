@@ -51,6 +51,10 @@
 | 🟪 99 | 🟪 Unknown supplier | 🟦 4 | 🟪 28.57 |
 | 🟩 3 | 🟩 Gamma | 🟦 0 | 🟪 0.00 |
 
+![PNP P034 practice input tables and expected output](../../assets/question-samples/p034.svg)
+
+[Open the input-and-expected-output SVG](../../assets/question-samples/p034.svg?raw=1)
+
 Total units = 🟪 2 + 3 + 5 + 4 = 🟪 14. The percentages are 5/14×100 = 35.71%, 5/14×100 = 35.71%, 4/14×100 = 28.57%, and 0/14×100 = 0.00%. Rounded shares sum to 99.99% because of decimal rounding; the unrounded shares sum to 100%.
 
 ### How the sample produces this output
@@ -63,18 +67,18 @@ Total units = 🟪 2 + 3 + 5 + 4 = 🟪 14. The percentages are 5/14×100 = 35.7
 
 ## Step 1 · Your approach before writing SQL
 
-The final learner query is already recorded below from your submitted attempt. Use these prompts when revisiting or explaining the logic:
+Use these neutral prompts to explain your own plan before reviewing the saved query:
 
-1. What does one output row represent? Which columns together identify one supplier?
-2. Which table should drive the join, and which unmatched rows must survive from each side?
-3. Why is a FULL OUTER JOIN appropriate here? What would a LEFT JOIN lose?
-4. How should the supplier ID and name be resolved for an unmatched order line?
-5. Should the percentage denominator include unknown SupplierIDs? Why?
-6. How should zero total quantity be handled to avoid division by zero?
-7. Why should the grouping use both the resolved ID and resolved name?
-8. How should the output be sorted, including ties?
+1. What does one output row represent, and which columns identify that row?
+2. Which table would you place first in `FROM`, and why? Which table would you add next?
+3. For every join you choose, which join type would you use, which columns would you match, and why?
+4. Which unmatched rows from either input must remain visible in the report?
+5. How should the output represent a supplier identity found on only one side?
+6. Which input rows contribute to the overall unit total used as the percentage denominator?
+7. How should suppliers with no order lines and a zero grand total be represented?
+8. Which expressions identify one group, and what ordering should apply when unit totals tie?
 
-**Approach review.** Your first LEFT JOIN approach was scored 7/10: it preserved suppliers without order lines but would discard order lines with unknown SupplierIDs. You revised to FULL OUTER JOIN, correctly preserving both sides. The final approach uses the resolved supplier ID and label as grouping keys and calculates the denominator from all OrderDetails rows.
+**Saved approach review (after the attempt).** Your first LEFT JOIN approach was scored 7/10: it preserved suppliers without order lines but would discard order lines with unknown SupplierIDs. You revised to FULL OUTER JOIN, preserving unmatched rows from both sources. The final approach groups by the resolved supplier ID and label and calculates the denominator independently from every OrderDetails row.
 
 ## Final learner solution — SQLite
 
@@ -165,9 +169,11 @@ flowchart TD
 
 The visual and written walkthrough use the same four-row fixture above. The join must retain both the unmatched Gamma supplier row and the unmatched SupplierID 99 order line.
 
-![P034 progressive walkthrough: the same sample rows move from source tables through FULL OUTER JOIN, COALESCE, grouping, aggregation and percentage calculation to the final sorted output.](../../assets/p034-progressive-walkthrough.svg)
+**Previous / Next walkthrough:** [Open stage 1](../../assets/steps/PNP-P034/01.md). Each stage uses the same four-row practice fixture and the exact saved learner query at the final stage.
 
-[Open the full-size P034 progressive walkthrough](../../assets/p034-progressive-walkthrough.svg?raw=1)
+![P034 source-banded progressive walkthrough showing supplier and order-line row survival, grouping, the independent denominator CTE and final shares.](../../assets/p034-progressive-walkthrough.svg)
+
+[Open the full-size P034 walkthrough](../../assets/p034-progressive-walkthrough.svg?raw=1)
 
 ## Step-by-step walkthrough
 
@@ -304,6 +310,42 @@ ORDER BY units_supplied DESC, SupplierID NULLS LAST;
 
 The source uses a window aggregate over grouped sums for the grand total and NULLIF to protect division by zero.
 
+### Official solution — SQLite adaptation
+
+SQLite 3.39.0 or later supports the FULL OUTER JOIN used by the source answer; SQLite 3.30.0 or later supports `NULLS LAST`. This adaptation preserves the official window-aggregate denominator and its NULL result when the total is zero.
+
+```sql
+SELECT COALESCE(s.SupplierID, od.SupplierID)                         AS SupplierID,
+       COALESCE(s.CompanyName, 'Unknown supplier')                   AS CompanyName,
+       COALESCE(SUM(od.Quantity), 0)                                 AS units_supplied,
+       ROUND(100.0 * COALESCE(SUM(od.Quantity), 0)
+             / NULLIF(SUM(SUM(od.Quantity)) OVER (), 0), 2)          AS pct_of_units
+FROM Suppliers AS s
+FULL OUTER JOIN OrderDetails AS od ON od.SupplierID = s.SupplierID
+GROUP BY COALESCE(s.SupplierID, od.SupplierID), s.CompanyName
+ORDER BY units_supplied DESC, SupplierID NULLS LAST;
+```
+
+### Official solution — SQL Server adaptation
+
+SQL Server supports FULL OUTER JOIN and window aggregates. Its ORDER BY syntax does not use `NULLS LAST`, so the final sort uses an explicit CASE expression.
+
+```sql
+SELECT COALESCE(s.SupplierID, od.SupplierID)                         AS SupplierID,
+       COALESCE(s.CompanyName, 'Unknown supplier')                   AS CompanyName,
+       COALESCE(SUM(od.Quantity), 0)                                 AS units_supplied,
+       ROUND(100.0 * COALESCE(SUM(od.Quantity), 0)
+             / NULLIF(SUM(SUM(od.Quantity)) OVER (), 0), 2)          AS pct_of_units
+FROM Suppliers AS s
+FULL OUTER JOIN OrderDetails AS od ON od.SupplierID = s.SupplierID
+GROUP BY COALESCE(s.SupplierID, od.SupplierID), s.CompanyName
+ORDER BY units_supplied DESC,
+         CASE WHEN COALESCE(s.SupplierID, od.SupplierID) IS NULL THEN 1 ELSE 0 END,
+         COALESCE(s.SupplierID, od.SupplierID);
+```
+
+*These are dialect adaptations of the original course query, not executions on those engines in this repair.*
+
 ## Comparison with the course answer
 
 - **Same core logic:** both queries use FULL OUTER JOIN, resolve the ID with COALESCE, label missing supplier records as Unknown supplier, sum units per supplier, calculate percentage of the grand total, and sort by units descending.
@@ -315,21 +357,24 @@ The source uses a window aggregate over grouped sums for the grand total and NUL
 
 ## Verification
 
-**Verification status:** sample arithmetic independently checked from the fixture; live SQLite and SQL Server execution not performed in this repair.
+**SQLite execution:** verified with SQLite 3.46.1 on the saved learner query extracted verbatim from this record.
 
-| Check | Expected / observed from fixture | Status |
+| Check | Observed result | Status |
 |---|---|---|
-| Joined row preservation | 4 order lines + unmatched supplier Gamma = 5 rows | Checked by manual trace |
-| Supplier 1 units | 2 + 3 = 5 | Checked |
-| Supplier 2 units | 5 | Checked |
-| Unknown SupplierID 99 | 4 units retained | Checked |
-| Supplier 3 with no lines | 0 units | Checked |
-| Grand total | 2 + 3 + 5 + 4 = 14 | Checked |
-| Percentage arithmetic | 35.71, 35.71, 28.57, 0.00 | Checked |
-| Rounded percentage sum | 99.99% due to rounding; unrounded = 100% | Checked |
-| Zero denominator | Learner CASE returns 0.00 | Logic reviewed; no empty-table execution |
-| SQLite execution | Not run in this repair | Pending |
-| SQL Server execution | Not run | Pending |
-| Official answer source | Q34 in source SQL file | Inspected |
+| Main four-row practice fixture | 4 output groups: Alpha 5 / 35.71, Beta 5 / 35.71, Unknown ID 99 4 / 28.57, Gamma 0 / 0.00 | <badge>Passed</badge> |
+| FULL OUTER JOIN row preservation | 4 OrderDetails rows plus unmatched Gamma = 5 joined rows | <badge>Passed</badge> |
+| Grand total | 2 + 3 + 5 + 4 = 14 | <badge>Passed</badge> |
+| Unknown SupplierID 99 | 4 units retained and included in denominator | <badge>Passed</badge> |
+| Supplier with no lines | Gamma retained with 0 units | <badge>Passed</badge> |
+| Empty OrderDetails | All three suppliers remain with 0 units and 0.00% | <badge>Passed</badge> |
+| All-zero quantities | Suppliers 1, 2, 3 and unknown ID 99 remain with 0 units and 0.00% | <badge>Passed</badge> |
+| Unknown and NULL SupplierIDs | Separate identity groups: ID 99 = 4 / 66.67%; NULL ID = 2 / 33.33%; master suppliers remain at zero | <badge>Passed</badge> |
+| Percentage rounding | Shares round to 35.71, 35.71, 28.57 and 0.00; rounded total 99.99% | <badge>Passed</badge> |
+| SQL Server learner adaptation | Syntax adaptation reviewed; no live SQL Server execution | Not executed |
+| Official SQLite / SQL Server adaptations | Written separately; no live execution claimed | Not executed |
 
-**Completion note:** the record structure and saved content have been repaired. Do not mark this question fully execution-verified until the SQL is run against the intended SQLite fixture and SQL Server execution is tested or explicitly waived.
+**Ordering note:** the learner query sorts only by `units_supplied DESC`. Alpha and Beta tie at 5 units, so their relative order is not guaranteed. The fixture's expected rows are compared as an unordered set while still checking the descending unit bands.
+
+**Preservation note:** the learner's exact submitted SQLite query and the original PostgreSQL-style course answer remain separate. The learner's CASE returns 0.00 for a zero denominator; the official query's NULLIF produces NULL. The source's secondary SupplierID ordering is also retained only in the official adaptation, not silently added to the learner query.
+
+**Visual checks:** the sample-only SVG and the source-banded progressive SVG were rendered and inspected at full image size. The Previous / Next pages and their links are committed with the record. The shared Python builder's `--check` command was not executed in this environment; the manifest and generated page contents were checked against the same fixture and saved query separately.
