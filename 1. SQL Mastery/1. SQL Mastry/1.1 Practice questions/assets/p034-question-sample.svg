@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">PNP-P034 practice fixture and expected output</title>
+<desc id="desc">Question-only view of the Suppliers and OrderDetails practice inputs and the expected four supplier rows. No SQL or solution steps are shown.</desc>
+<style>
+ text{font-family:Arial,Helvetica,sans-serif;fill:#172033}.title{font-size:30px;font-weight:700}.sub{font-size:17px;fill:#475569}.band{font-size:20px;font-weight:700;fill:#fff}.head{font-size:16px;font-weight:700}.cell{font-size:17px}.note{font-size:15px;fill:#475569}.green{fill:#2f855a}.blue{fill:#2563eb}.purple{fill:#6b46c1}.lightg{fill:#e8f5ec}.lightb{fill:#eaf1ff}.lightp{fill:#f1eafe}.line{stroke:#cbd5e1;stroke-width:1}
+</style>
+<rect width="1200" height="900" fill="#fff"/>
+<text x="48" y="58" class="title">PNP-P034 · Practice example</text>
+<text x="48" y="88" class="sub">Question-only view · given inputs and expected output · no solution or approach hints</text>
+<text x="48" y="142" class="band green">🟩 Input table · Suppliers</text>
+<rect x="48" y="158" width="520" height="44" class="lightg"/><rect x="48" y="158" width="520" height="44" fill="none" stroke="#2f855a" stroke-width="2"/>
+<text x="74" y="186" class="head">SupplierID</text><text x="300" y="186" class="head">CompanyName</text>
+<rect x="48" y="202" width="520" height="46" fill="#fff" stroke="#cbd5e1"/><text x="74" y="232" class="cell">1</text><text x="300" y="232" class="cell">Alpha</text><rect x="48" y="248" width="520" height="46" fill="#fff" stroke="#cbd5e1"/><text x="74" y="278" class="cell">2</text><text x="300" y="278" class="cell">Beta</text><rect x="48" y="294" width="520" height="46" fill="#fff" stroke="#cbd5e1"/><text x="74" y="324" class="cell">3</text><text x="300" y="324" class="cell">Gamma</text>
+<text x="630" y="142" class="band blue">🟦 Input table · OrderDetails</text>
+<rect x="630" y="158" width="522" height="44" class="lightb"/><rect x="630" y="158" width="522" height="44" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="650" y="186" class="head">OrderDetailID</text><text x="850" y="186" class="head">SupplierID</text><text x="1030" y="186" class="head">Quantity</text>
+<rect x="630" y="202" width="522" height="46" fill="#fff" stroke="#cbd5e1"/><text x="650" y="232" class="cell">1</text><text x="850" y="232" class="cell">1</text><text x="1030" y="232" class="cell">2</text><rect x="630" y="248" width="522" height="46" fill="#fff" stroke="#cbd5e1"/><text x="650" y="278" class="cell">2</text><text x="850" y="278" class="cell">1</text><text x="1030" y="278" class="cell">3</text><rect x="630" y="294" width="522" height="46" fill="#fff" stroke="#cbd5e1"/><text x="650" y="324" class="cell">3</text><text x="850" y="324" class="cell">2</text><text x="1030" y="324" class="cell">5</text><rect x="630" y="340" width="522" height="46" fill="#fff" stroke="#cbd5e1"/><text x="650" y="370" class="cell">4</text><text x="850" y="370" class="cell">99</text><text x="1030" y="370" class="cell">4</text>
+<rect x="48" y="430" width="1104" height="2" fill="#94a3b8"/>
+<text x="48" y="482" class="band purple">🟪 Expected output</text>
+<rect x="48" y="500" width="1104" height="48" class="lightp" stroke="#6b46c1" stroke-width="2"/>
+<text x="74" y="531" class="head">SupplierID</text><text x="300" y="531" class="head">CompanyName</text><text x="650" y="531" class="head">units_supplied</text><text x="900" y="531" class="head">pct_of_units</text>
+<rect x="48" y="548" width="1104" height="48" fill="#fff" stroke="#cbd5e1"/><text x="74" y="579" class="cell">1</text><text x="300" y="579" class="cell">Alpha</text><text x="650" y="579" class="cell">5</text><text x="900" y="579" class="cell">35.71</text><rect x="48" y="596" width="1104" height="48" fill="#fff" stroke="#cbd5e1"/><text x="74" y="627" class="cell">2</text><text x="300" y="627" class="cell">Beta</text><text x="650" y="627" class="cell">5</text><text x="900" y="627" class="cell">35.71</text><rect x="48" y="644" width="1104" height="48" fill="#fff" stroke="#cbd5e1"/><text x="74" y="675" class="cell">99</text><text x="300" y="675" class="cell">Unknown supplier</text><text x="650" y="675" class="cell">4</text><text x="900" y="675" class="cell">28.57</text><rect x="48" y="692" width="1104" height="48" fill="#fff" stroke="#cbd5e1"/><text x="74" y="723" class="cell">3</text><text x="300" y="723" class="cell">Gamma</text><text x="650" y="723" class="cell">0</text><text x="900" y="723" class="cell">0.00</text>
+<text x="48" y="800" class="note">Table color key · 🟩 Suppliers · 🟦 OrderDetails · 🟪 combined/calculated output</text>
+<text x="48" y="830" class="note">Practice data: the source task specifies the requirements, not these sample rows. SupplierID 99 is intentionally unmatched.</text>
+<text x="48" y="860" class="note">Expected shares use total units 14; values are rounded to two decimal places.</text>
+</svg>
