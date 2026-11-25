@@ -1,0 +1,469 @@
+{
+  "question": "PNP-P034",
+  "solution_heading": "Final learner solution — SQLite",
+  "tables": [
+    {
+      "name": "Suppliers",
+      "label": "🟩 Suppliers",
+      "color": "🟩",
+      "columns": [
+        [
+          "SupplierID",
+          "INTEGER"
+        ],
+        [
+          "CompanyName",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "Alpha"
+        ],
+        [
+          2,
+          "Beta"
+        ],
+        [
+          3,
+          "Gamma"
+        ]
+      ]
+    },
+    {
+      "name": "OrderDetails",
+      "label": "🟦 OrderDetails",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderDetailID",
+          "INTEGER"
+        ],
+        [
+          "SupplierID",
+          "INTEGER"
+        ],
+        [
+          "Quantity",
+          "INTEGER"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          3,
+          2,
+          5
+        ],
+        [
+          4,
+          99,
+          4
+        ]
+      ]
+    }
+  ],
+  "column_colors": {
+    "SupplierID": "🟪",
+    "CompanyName": "🟪",
+    "units_supplied": "🟦",
+    "pct_of_units": "🟪",
+    "OrderDetailID": "🟦",
+    "Quantity": "🟦",
+    "supplier_id": "🟪",
+    "company_name": "🟪",
+    "total_quantity": "🟦"
+  },
+  "expected": {
+    "columns": [
+      "SupplierID",
+      "CompanyName",
+      "units_supplied",
+      "pct_of_units"
+    ],
+    "rows": [
+      [
+        1,
+        "Alpha",
+        5,
+        35.71
+      ],
+      [
+        2,
+        "Beta",
+        5,
+        35.71
+      ],
+      [
+        99,
+        "Unknown supplier",
+        4,
+        28.57
+      ],
+      [
+        3,
+        "Gamma",
+        0,
+        0
+      ]
+    ]
+  },
+  "unordered": true,
+  "steps": [
+    {
+      "id": "suppliers",
+      "title": "Start with every supplier on file",
+      "change": "`Suppliers` is the first `FROM` source because every supplier on file must appear, including Gamma even though it has no order lines. These three master rows are the report's required supplier population; the later FULL OUTER JOIN adds unknown IDs found only in order lines.",
+      "added_sql": "FROM Suppliers AS S",
+      "inputs": [
+        "Suppliers"
+      ],
+      "expected_count": 3,
+      "sql": "SELECT S.SupplierID, S.CompanyName\nFROM Suppliers AS S\nORDER BY S.SupplierID;"
+    },
+    {
+      "id": "full-join",
+      "title": "Preserve order lines as well as suppliers",
+      "change": "Add `OrderDetails` second because its `SupplierID` is the key needed to attach quantities and expose IDs missing from the supplier master. The key is available directly in both sources. FULL OUTER JOIN is required: IDs 1 and 2 match; order-line ID 99 survives with NULL supplier columns; Gamma survives with NULL order-line columns. The two Alpha lines repeat its supplier columns because two details match.",
+      "added_sql": "FULL OUTER JOIN OrderDetails AS OD\n    ON S.SupplierID = OD.SupplierID",
+      "inputs": [
+        "suppliers",
+        "OrderDetails"
+      ],
+      "expected_count": 5,
+      "sql": "SELECT S.SupplierID AS supplier_id, S.CompanyName AS company_name,\n       OD.OrderDetailID, OD.SupplierID AS order_supplier_id, OD.Quantity\nFROM Suppliers AS S\nFULL OUTER JOIN OrderDetails AS OD\n    ON S.SupplierID = OD.SupplierID\nORDER BY COALESCE(S.SupplierID, OD.SupplierID), OD.OrderDetailID;"
+    },
+    {
+      "id": "resolve",
+      "title": "Resolve the identity and fallback label",
+      "change": "The joined rows still have two possible identity columns. `COALESCE` chooses the master SupplierID when present and otherwise the order-line SupplierID; it also supplies `Unknown supplier` for ID 99. This is a row-preserving projection: five joined rows remain five.",
+      "added_sql": "COALESCE(S.SupplierID, OD.SupplierID) AS SupplierID,\nCOALESCE(S.CompanyName, 'Unknown supplier') AS CompanyName",
+      "inputs": [
+        "full-join"
+      ],
+      "expected_count": 5,
+      "sql": "SELECT COALESCE(S.SupplierID, OD.SupplierID) AS SupplierID,\n       COALESCE(S.CompanyName, 'Unknown supplier') AS CompanyName,\n       OD.OrderDetailID, OD.Quantity\nFROM Suppliers AS S\nFULL OUTER JOIN OrderDetails AS OD\n    ON S.SupplierID = OD.SupplierID\nORDER BY COALESCE(S.SupplierID, OD.SupplierID), OD.OrderDetailID;"
+    },
+    {
+      "id": "aggregate",
+      "title": "Group detail rows into one supplier result",
+      "change": "Group by the resolved identity and display name. The two Alpha detail rows contribute 2 + 3 = 5; Beta contributes 5; unknown ID 99 contributes 4. Gamma's preserved unmatched row has NULL Quantity, so SUM is NULL before the learner's COALESCE changes the displayed units to zero. Four supplier groups remain.",
+      "added_sql": "COALESCE(SUM(OD.Quantity), 0) AS units_supplied\nGROUP BY resolved SupplierID, resolved CompanyName",
+      "inputs": [
+        "full-join"
+      ],
+      "expected_count": 4,
+      "sql": "SELECT COALESCE(S.SupplierID, OD.SupplierID) AS SupplierID,\n       COALESCE(S.CompanyName, 'Unknown supplier') AS CompanyName,\n       COALESCE(SUM(OD.Quantity), 0) AS units_supplied\nFROM Suppliers AS S\nFULL OUTER JOIN OrderDetails AS OD\n    ON S.SupplierID = OD.SupplierID\nGROUP BY COALESCE(S.SupplierID, OD.SupplierID),\n         COALESCE(S.CompanyName, 'Unknown supplier')\nORDER BY units_supplied DESC;"
+    },
+    {
+      "id": "denominator",
+      "title": "Prepare the all-order-line denominator",
+      "change": "The `sum_quantity` CTE is an independent one-row aggregate over every OrderDetails row. Its one CTE row represents the grand total (2 + 3 + 5 + 4 = 14), not a supplier. The outer query still starts from the four supplier groups; its scalar subquery attaches the same denominator to each group. This branch is independent of the supplier lookup and can be prepared separately.",
+      "added_sql": "WITH sum_quantity AS (\n    SELECT COALESCE(SUM(Quantity), 0) AS total_quantity\n    FROM OrderDetails\n)\n-- scalar lookup: (SELECT total_quantity FROM sum_quantity)",
+      "inputs": [
+        "aggregate",
+        "OrderDetails"
+      ],
+      "expected_count": 4,
+      "sql": "WITH sum_quantity AS (\n    SELECT COALESCE(SUM(Quantity), 0) AS total_quantity\n    FROM OrderDetails\n)\nSELECT SupplierID, CompanyName, units_supplied,\n       (SELECT total_quantity FROM sum_quantity) AS total_quantity\nFROM (\n    SELECT COALESCE(S.SupplierID, OD.SupplierID) AS SupplierID,\n           COALESCE(S.CompanyName, 'Unknown supplier') AS CompanyName,\n           COALESCE(SUM(OD.Quantity), 0) AS units_supplied\n    FROM Suppliers AS S\n    FULL OUTER JOIN OrderDetails AS OD ON S.SupplierID = OD.SupplierID\n    GROUP BY COALESCE(S.SupplierID, OD.SupplierID),\n             COALESCE(S.CompanyName, 'Unknown supplier')\n) AS supplier_totals\nORDER BY units_supplied DESC;"
+    },
+    {
+      "id": "final",
+      "title": "Calculate shares and apply the requested order",
+      "change": "The exact saved learner query calculates each group's units × 100 ÷ 14, rounds to two decimals, returns 0.00 when the denominator is zero, and sorts by units descending. The four rows reconcile to 14 units. Alpha and Beta tie at five, so their relative order is intentionally not asserted.",
+      "added_sql": "ROUND(units_supplied * 100.0 / total_quantity, 2)\n-- CASE returns 0.00 when total_quantity = 0\nORDER BY units_supplied DESC",
+      "final": true,
+      "expected_count": 4
+    }
+  ],
+  "record": "../../../Windowing Functions/medium/PNP-P034.md",
+  "validation_cases": [
+    {
+      "name": "No order lines: all suppliers remain at zero",
+      "tables": [
+        {
+          "name": "Suppliers",
+          "color": "🟩",
+          "columns": [
+            [
+              "SupplierID",
+              "INTEGER"
+            ],
+            [
+              "CompanyName",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Alpha"
+            ],
+            [
+              2,
+              "Beta"
+            ],
+            [
+              3,
+              "Gamma"
+            ]
+          ]
+        },
+        {
+          "name": "OrderDetails",
+          "color": "🟦",
+          "columns": [
+            [
+              "OrderDetailID",
+              "INTEGER"
+            ],
+            [
+              "SupplierID",
+              "INTEGER"
+            ],
+            [
+              "Quantity",
+              "INTEGER"
+            ]
+          ],
+          "rows": []
+        }
+      ],
+      "expected": {
+        "columns": [
+          "SupplierID",
+          "CompanyName",
+          "units_supplied",
+          "pct_of_units"
+        ],
+        "rows": [
+          [
+            1,
+            "Alpha",
+            0,
+            0
+          ],
+          [
+            2,
+            "Beta",
+            0,
+            0
+          ],
+          [
+            3,
+            "Gamma",
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Unknown and NULL supplier IDs both survive as distinct groups",
+      "tables": [
+        {
+          "name": "Suppliers",
+          "color": "🟩",
+          "columns": [
+            [
+              "SupplierID",
+              "INTEGER"
+            ],
+            [
+              "CompanyName",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Alpha"
+            ],
+            [
+              2,
+              "Beta"
+            ],
+            [
+              3,
+              "Gamma"
+            ]
+          ]
+        },
+        {
+          "name": "OrderDetails",
+          "color": "🟦",
+          "columns": [
+            [
+              "OrderDetailID",
+              "INTEGER"
+            ],
+            [
+              "SupplierID",
+              "INTEGER"
+            ],
+            [
+              "Quantity",
+              "INTEGER"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              2,
+              99,
+              4
+            ],
+            [
+              3,
+              null,
+              2
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "SupplierID",
+          "CompanyName",
+          "units_supplied",
+          "pct_of_units"
+        ],
+        "rows": [
+          [
+            1,
+            "Alpha",
+            2,
+            25
+          ],
+          [
+            99,
+            "Unknown supplier",
+            4,
+            50
+          ],
+          [
+            null,
+            "Unknown supplier",
+            2,
+            25
+          ],
+          [
+            2,
+            "Beta",
+            0,
+            0
+          ],
+          [
+            3,
+            "Gamma",
+            0,
+            0
+          ]
+        ]
+      },
+      "unordered": true
+    },
+    {
+      "name": "All quantities zero: denominator guard returns zero shares",
+      "tables": [
+        {
+          "name": "Suppliers",
+          "color": "🟩",
+          "columns": [
+            [
+              "SupplierID",
+              "INTEGER"
+            ],
+            [
+              "CompanyName",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "Alpha"
+            ],
+            [
+              2,
+              "Beta"
+            ]
+          ]
+        },
+        {
+          "name": "OrderDetails",
+          "color": "🟦",
+          "columns": [
+            [
+              "OrderDetailID",
+              "INTEGER"
+            ],
+            [
+              "SupplierID",
+              "INTEGER"
+            ],
+            [
+              "Quantity",
+              "INTEGER"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              99,
+              0
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "SupplierID",
+          "CompanyName",
+          "units_supplied",
+          "pct_of_units"
+        ],
+        "rows": [
+          [
+            1,
+            "Alpha",
+            0,
+            0
+          ],
+          [
+            2,
+            "Beta",
+            0,
+            0
+          ],
+          [
+            99,
+            "Unknown supplier",
+            0,
+            0
+          ]
+        ]
+      },
+      "unordered": true
+    }
+  ]
+}
