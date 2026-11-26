@@ -27,10 +27,6 @@
         [
           2,
           "QuickShip"
-        ],
-        [
-          3,
-          "NoOrders"
         ]
       ]
     },
@@ -95,20 +91,6 @@
           "2025-01-01",
           "2025-01-02",
           "2025-01-03"
-        ],
-        [
-          6,
-          99,
-          "2025-02-01",
-          "2025-02-02",
-          "2025-02-10"
-        ],
-        [
-          7,
-          null,
-          "2025-02-01",
-          "2025-02-02",
-          "2025-02-05"
         ]
       ]
     }
@@ -148,26 +130,10 @@
         1
       ],
       [
-        "Unknown shipper",
-        2,
-        1,
-        50,
-        0,
-        0
-      ],
-      [
         "QuickShip",
         1,
         0,
         0,
-        0,
-        0
-      ],
-      [
-        "NoOrders",
-        0,
-        0,
-        null,
         0,
         0
       ]
@@ -185,7 +151,7 @@
       "inputs": [
         "Shippers"
       ],
-      "expected_count": 3,
+      "expected_count": 2,
       "sql": "SELECT S.ShipperID, S.CompanyName\nFROM Shippers AS S\nORDER BY S.ShipperID;"
     },
     {
@@ -197,13 +163,13 @@
         "Shippers",
         "Orders"
       ],
-      "expected_count": 8,
+      "expected_count": 5,
       "sql": "SELECT S.ShipperID AS shipper_id, S.CompanyName,\n       O.OrderID, O.ShipperID AS order_shipper_id,\n       O.OrderDate, O.ShipDate, O.DeliveryDate\nFROM Shippers AS S\nFULL OUTER JOIN Orders AS O ON S.ShipperID = O.ShipperID\nORDER BY COALESCE(S.ShipperID, O.ShipperID), O.OrderID;"
     },
     {
       "id": "classify-orders",
       "title": "Classify each joined shipper/order row",
-      "change": "The CTE prepares one row per FULL OUTER JOIN result, not one row per shipper. It resolves the ID and label and computes four 0/1 flags from the order dates. The unmatched NoOrders row has zero flags; order 6 and order 7 both receive the Unknown shipper label.",
+      "change": "The CTE prepares one row per FULL OUTER JOIN result, not one row per shipper. It resolves the ID and label and computes four 0/1 flags from the order dates. On this five-order fixture, all five joined rows remain; the CTE changes their columns, not their count.",
       "with": [
         "order_classification"
       ],
@@ -212,13 +178,13 @@
         "Shippers",
         "Orders"
       ],
-      "expected_count": 8,
+      "expected_count": 5,
       "sql": "SELECT ShipperID, shipper_name, is_delivered, is_late,\n       not_delivered, invalid_dates\nFROM order_classification\nORDER BY ShipperID, shipper_name;"
     },
     {
       "id": "aggregate-by-shipper",
       "title": "Collapse classified rows into shipper groups",
-      "change": "The outer query groups the nine classified rows by resolved ShipperID and shipper_name. FastShip's four orders become one group; the two unmatched orders become one Unknown group; QuickShip and NoOrders each remain one group. SUM adds the row-level flags. NoOrders has zero delivered rows, so its delivered total is zero.",
+      "change": "The outer query groups the five classified rows by resolved ShipperID and shipper_name. FastShip's four orders become one group and QuickShip's one order becomes the other. SUM adds each row-level flag. The CTE row grain is still one joined shipper/order row; this outer GROUP BY changes the grain to one row per shipper key.",
       "with": [
         "order_classification"
       ],
@@ -226,24 +192,24 @@
       "inputs": [
         "classify-orders"
       ],
-      "expected_count": 4,
+      "expected_count": 2,
       "sql": "SELECT ShipperID, shipper_name,\n       SUM(is_delivered) AS delivered_orders,\n       SUM(is_late) AS late_orders,\n       SUM(not_delivered) AS not_delivered,\n       SUM(invalid_dates) AS invalid_dates\nFROM order_classification\nGROUP BY ShipperID, shipper_name\nORDER BY ShipperID;"
     },
     {
       "id": "final",
       "title": "Calculate the rate and sort the report",
-      "change": "The final stage is the exact saved learner query. Each group's late count is divided by its delivered count; NULLIF makes the zero-order shipper's rate NULL rather than dividing by zero. The four groups remain. The zero-order shipper's 0/0 classification is a known defect in the locked query's business interpretation and is deliberately preserved, not silently corrected.",
+      "change": "The final stage is the exact saved learner query. Each group's late count is divided by its delivered count; NULLIF protects a zero denominator. The five input orders become two shipper rows. The separate no-orders validation case intentionally records the locked query's synthetic NULL-extended row defect rather than silently correcting it.",
       "added_sql": "ROUND(SUM(is_late) * 100.0 /\n      NULLIF(SUM(is_delivered), 0), 2)\nORDER BY late_rate_pct DESC",
       "inputs": [
         "aggregate-by-shipper"
       ],
-      "expected_count": 4,
+      "expected_count": 2,
       "final": true
     }
   ],
   "validation_cases": [
     {
-      "name": "All shippers but no orders — zero-denominator behavior",
+      "name": "All shippers but no orders — exposes synthetic not-delivered counts",
       "tables": [
         {
           "name": "Shippers",
@@ -316,7 +282,7 @@
             0,
             0,
             null,
-            0,
+            1,
             0
           ],
           [
@@ -324,7 +290,7 @@
             0,
             0,
             null,
-            0,
+            1,
             0
           ],
           [
@@ -332,6 +298,102 @@
             0,
             0,
             null,
+            1,
+            0
+          ]
+        ]
+      },
+      "unordered": true
+    },
+    {
+      "name": "Unknown and NULL ShipperID — separate resolved-key groups",
+      "tables": [
+        {
+          "name": "Shippers",
+          "color": "🟥",
+          "columns": [
+            [
+              "ShipperID",
+              "INTEGER"
+            ],
+            [
+              "CompanyName",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "FastShip"
+            ]
+          ]
+        },
+        {
+          "name": "Orders",
+          "color": "🟦",
+          "columns": [
+            [
+              "OrderID",
+              "INTEGER"
+            ],
+            [
+              "ShipperID",
+              "INTEGER"
+            ],
+            [
+              "OrderDate",
+              "TEXT"
+            ],
+            [
+              "ShipDate",
+              "TEXT"
+            ],
+            [
+              "DeliveryDate",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              6,
+              99,
+              "2025-02-01",
+              "2025-02-02",
+              "2025-02-10"
+            ],
+            [
+              7,
+              null,
+              "2025-02-01",
+              "2025-02-02",
+              "2025-02-05"
+            ]
+          ]
+        }
+      ],
+      "expected": {
+        "columns": [
+          "shipper_name",
+          "delivered_orders",
+          "late_orders",
+          "late_rate_pct",
+          "not_delivered",
+          "invalid_dates"
+        ],
+        "rows": [
+          [
+            "Unknown shipper",
+            1,
+            1,
+            100,
+            0,
+            0
+          ],
+          [
+            "Unknown shipper",
+            1,
+            0,
+            0,
             0,
             0
           ]
