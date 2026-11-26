@@ -197,7 +197,7 @@
         "Shippers",
         "Orders"
       ],
-      "expected_count": 9,
+      "expected_count": 8,
       "sql": "SELECT S.ShipperID AS shipper_id, S.CompanyName,\n       O.OrderID, O.ShipperID AS order_shipper_id,\n       O.OrderDate, O.ShipDate, O.DeliveryDate\nFROM Shippers AS S\nFULL OUTER JOIN Orders AS O ON S.ShipperID = O.ShipperID\nORDER BY COALESCE(S.ShipperID, O.ShipperID), O.OrderID;"
     },
     {
@@ -212,7 +212,7 @@
         "Shippers",
         "Orders"
       ],
-      "expected_count": 9,
+      "expected_count": 8,
       "sql": "SELECT ShipperID, shipper_name, is_delivered, is_late,\n       not_delivered, invalid_dates\nFROM order_classification\nORDER BY ShipperID, shipper_name;"
     },
     {
