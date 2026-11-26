@@ -1,0 +1,343 @@
+{
+  "question": "PNP-P035",
+  "record": "../../../Aggregation/medium/PNP-P035.md",
+  "solution_heading": "Final learner solution — SQLite",
+  "solution_block": 0,
+  "unordered": true,
+  "tables": [
+    {
+      "name": "Shippers",
+      "label": "🟥 Shippers",
+      "color": "🟥",
+      "columns": [
+        [
+          "ShipperID",
+          "INTEGER"
+        ],
+        [
+          "CompanyName",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          "FastShip"
+        ],
+        [
+          2,
+          "QuickShip"
+        ],
+        [
+          3,
+          "NoOrders"
+        ]
+      ]
+    },
+    {
+      "name": "Orders",
+      "label": "🟦 Orders",
+      "color": "🟦",
+      "columns": [
+        [
+          "OrderID",
+          "INTEGER"
+        ],
+        [
+          "ShipperID",
+          "INTEGER"
+        ],
+        [
+          "OrderDate",
+          "TEXT"
+        ],
+        [
+          "ShipDate",
+          "TEXT"
+        ],
+        [
+          "DeliveryDate",
+          "TEXT"
+        ]
+      ],
+      "rows": [
+        [
+          1,
+          1,
+          "2025-01-01",
+          "2025-01-02",
+          "2025-01-10"
+        ],
+        [
+          2,
+          1,
+          "2025-01-01",
+          "2025-01-02",
+          "2025-01-05"
+        ],
+        [
+          3,
+          1,
+          "2025-01-01",
+          null,
+          null
+        ],
+        [
+          4,
+          1,
+          "2025-01-05",
+          "2025-01-04",
+          "2025-01-06"
+        ],
+        [
+          5,
+          2,
+          "2025-01-01",
+          "2025-01-02",
+          "2025-01-03"
+        ],
+        [
+          6,
+          99,
+          "2025-02-01",
+          "2025-02-02",
+          "2025-02-10"
+        ],
+        [
+          7,
+          null,
+          "2025-02-01",
+          "2025-02-02",
+          "2025-02-05"
+        ]
+      ]
+    }
+  ],
+  "column_colors": {
+    "ShipperID": "🟪",
+    "shipper_name": "🟪",
+    "CompanyName": "🟥",
+    "OrderID": "🟦",
+    "OrderDate": "🟦",
+    "ShipDate": "🟦",
+    "DeliveryDate": "🟦",
+    "is_delivered": "🟦",
+    "is_late": "🟦",
+    "not_delivered": "🟦",
+    "invalid_dates": "🟦",
+    "delivered_orders": "🟦",
+    "late_orders": "🟦",
+    "late_rate_pct": "🟪"
+  },
+  "expected": {
+    "columns": [
+      "shipper_name",
+      "delivered_orders",
+      "late_orders",
+      "late_rate_pct",
+      "not_delivered",
+      "invalid_dates"
+    ],
+    "rows": [
+      [
+        "FastShip",
+        2,
+        1,
+        50,
+        1,
+        1
+      ],
+      [
+        "Unknown shipper",
+        2,
+        1,
+        50,
+        0,
+        0
+      ],
+      [
+        "QuickShip",
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        "NoOrders",
+        0,
+        0,
+        null,
+        0,
+        0
+      ]
+    ]
+  },
+  "ctes": {
+    "order_classification": "SELECT\n    COALESCE(S.ShipperID, O.ShipperID) AS ShipperID,\n    COALESCE(S.CompanyName, 'Unknown shipper') AS shipper_name,\n    CASE\n        WHEN O.DeliveryDate IS NOT NULL\n         AND NOT (\n             O.OrderDate IS NOT NULL\n             AND O.ShipDate IS NOT NULL\n             AND O.DeliveryDate IS NOT NULL\n             AND NOT (O.OrderDate <= O.ShipDate AND O.ShipDate <= O.DeliveryDate)\n         )\n        THEN 1 ELSE 0\n    END AS is_delivered,\n    CASE\n        WHEN O.OrderDate IS NOT NULL\n         AND O.ShipDate IS NOT NULL\n         AND O.DeliveryDate IS NOT NULL\n         AND O.OrderDate <= O.ShipDate\n         AND O.ShipDate <= O.DeliveryDate\n         AND julianday(O.DeliveryDate) - julianday(O.OrderDate) > 7\n        THEN 1 ELSE 0\n    END AS is_late,\n    CASE WHEN O.DeliveryDate IS NULL THEN 1 ELSE 0 END AS not_delivered,\n    CASE\n        WHEN O.OrderDate IS NOT NULL\n         AND O.ShipDate IS NOT NULL\n         AND O.DeliveryDate IS NOT NULL\n         AND NOT (O.OrderDate <= O.ShipDate AND O.ShipDate <= O.DeliveryDate)\n        THEN 1 ELSE 0\n    END AS invalid_dates\nFROM Shippers AS S\nFULL OUTER JOIN Orders AS O ON S.ShipperID = O.ShipperID"
+  },
+  "steps": [
+    {
+      "id": "from-shippers",
+      "title": "Start with the shipper population",
+      "change": "Shippers is the first FROM source because the report must retain every registered shipper, including a shipper with no orders. Its three master rows define that population; the order source is added next to attach activity and reveal unknown IDs.",
+      "added_sql": "FROM Shippers AS S",
+      "inputs": [
+        "Shippers"
+      ],
+      "expected_count": 3,
+      "sql": "SELECT S.ShipperID, S.CompanyName\nFROM Shippers AS S\nORDER BY S.ShipperID;"
+    },
+    {
+      "id": "full-outer-join",
+      "title": "Add every order without losing unmatched shippers",
+      "change": "Orders is added second because Orders.ShipperID is the available relationship key. FULL OUTER JOIN is necessary for both populations: NoOrders survives with NULL order fields, while order IDs 99 and NULL survive with NULL shipper fields. FastShip repeats once per matching order. This is a necessary relationship, not an interchangeable lookup.",
+      "added_sql": "FULL OUTER JOIN Orders AS O\n    ON S.ShipperID = O.ShipperID",
+      "inputs": [
+        "Shippers",
+        "Orders"
+      ],
+      "expected_count": 9,
+      "sql": "SELECT S.ShipperID AS shipper_id, S.CompanyName,\n       O.OrderID, O.ShipperID AS order_shipper_id,\n       O.OrderDate, O.ShipDate, O.DeliveryDate\nFROM Shippers AS S\nFULL OUTER JOIN Orders AS O ON S.ShipperID = O.ShipperID\nORDER BY COALESCE(S.ShipperID, O.ShipperID), O.OrderID;"
+    },
+    {
+      "id": "classify-orders",
+      "title": "Classify each joined shipper/order row",
+      "change": "The CTE prepares one row per FULL OUTER JOIN result, not one row per shipper. It resolves the ID and label and computes four 0/1 flags from the order dates. The unmatched NoOrders row has zero flags; order 6 and order 7 both receive the Unknown shipper label.",
+      "with": [
+        "order_classification"
+      ],
+      "added_sql": "order_classification AS (...)\nSELECT ShipperID, shipper_name, is_delivered, is_late,\n       not_delivered, invalid_dates\nFROM order_classification",
+      "inputs": [
+        "Shippers",
+        "Orders"
+      ],
+      "expected_count": 9,
+      "sql": "SELECT ShipperID, shipper_name, is_delivered, is_late,\n       not_delivered, invalid_dates\nFROM order_classification\nORDER BY ShipperID, shipper_name;"
+    },
+    {
+      "id": "aggregate-by-shipper",
+      "title": "Collapse classified rows into shipper groups",
+      "change": "The outer query groups the nine classified rows by resolved ShipperID and shipper_name. FastShip's four orders become one group; the two unmatched orders become one Unknown group; QuickShip and NoOrders each remain one group. SUM adds the row-level flags. NoOrders has zero delivered rows, so its delivered total is zero.",
+      "with": [
+        "order_classification"
+      ],
+      "added_sql": "SUM(is_delivered), SUM(is_late),\nSUM(not_delivered), SUM(invalid_dates)\nGROUP BY ShipperID, shipper_name",
+      "inputs": [
+        "classify-orders"
+      ],
+      "expected_count": 4,
+      "sql": "SELECT ShipperID, shipper_name,\n       SUM(is_delivered) AS delivered_orders,\n       SUM(is_late) AS late_orders,\n       SUM(not_delivered) AS not_delivered,\n       SUM(invalid_dates) AS invalid_dates\nFROM order_classification\nGROUP BY ShipperID, shipper_name\nORDER BY ShipperID;"
+    },
+    {
+      "id": "final",
+      "title": "Calculate the rate and sort the report",
+      "change": "The final stage is the exact saved learner query. Each group's late count is divided by its delivered count; NULLIF makes the zero-order shipper's rate NULL rather than dividing by zero. The four groups remain. The zero-order shipper's 0/0 classification is a known defect in the locked query's business interpretation and is deliberately preserved, not silently corrected.",
+      "added_sql": "ROUND(SUM(is_late) * 100.0 /\n      NULLIF(SUM(is_delivered), 0), 2)\nORDER BY late_rate_pct DESC",
+      "inputs": [
+        "aggregate-by-shipper"
+      ],
+      "expected_count": 4,
+      "final": true
+    }
+  ],
+  "validation_cases": [
+    {
+      "name": "All shippers but no orders — zero-denominator behavior",
+      "tables": [
+        {
+          "name": "Shippers",
+          "color": "🟥",
+          "columns": [
+            [
+              "ShipperID",
+              "INTEGER"
+            ],
+            [
+              "CompanyName",
+              "TEXT"
+            ]
+          ],
+          "rows": [
+            [
+              1,
+              "FastShip"
+            ],
+            [
+              2,
+              "QuickShip"
+            ],
+            [
+              3,
+              "NoOrders"
+            ]
+          ]
+        },
+        {
+          "name": "Orders",
+          "color": "🟦",
+          "columns": [
+            [
+              "OrderID",
+              "INTEGER"
+            ],
+            [
+              "ShipperID",
+              "INTEGER"
+            ],
+            [
+              "OrderDate",
+              "TEXT"
+            ],
+            [
+              "ShipDate",
+              "TEXT"
+            ],
+            [
+              "DeliveryDate",
+              "TEXT"
+            ]
+          ],
+          "rows": []
+        }
+      ],
+      "expected": {
+        "columns": [
+          "shipper_name",
+          "delivered_orders",
+          "late_orders",
+          "late_rate_pct",
+          "not_delivered",
+          "invalid_dates"
+        ],
+        "rows": [
+          [
+            "FastShip",
+            0,
+            0,
+            null,
+            0,
+            0
+          ],
+          [
+            "QuickShip",
+            0,
+            0,
+            null,
+            0,
+            0
+          ],
+          [
+            "NoOrders",
+            0,
+            0,
+            null,
+            0,
+            0
+          ]
+        ]
+      },
+      "unordered": true
+    }
+  ]
+}
