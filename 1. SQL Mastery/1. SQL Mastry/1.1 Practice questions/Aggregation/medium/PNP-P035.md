@@ -233,7 +233,17 @@ The query groups by both the resolved ShipperID and shipper_name. Keeping the ID
 
 ## Visual walkthrough
 
-**Pending.** Required dual visuals have not yet been created: (A) a query architecture / row-preservation flowchart and (B) a progressive visual walkthrough tracing the exact fixture through the saved CTE query. They must be added and verified before this record can be marked complete.
+**Question-only input/output view:** [Open the sample SVG](../../assets/p035-question-sample.svg) · [Full-size SVG](../../assets/p035-question-sample.svg?raw=1)
+
+![PNP-P035 practice inputs and expected output](../../assets/p035-question-sample.svg)
+
+**Worked sample flow:** [Open the worked flow SVG](../../assets/p035-worked-flow.svg) · [Full-size SVG](../../assets/p035-worked-flow.svg?raw=1)
+
+![PNP-P035 worked trace from Shippers through classification and aggregation](../../assets/p035-worked-flow.svg)
+
+The worked diagram follows the saved query's actual row grain: one joined shipper/order row enters the classification CTE, then the outer query groups by resolved ShipperID and shipper_name. The first FROM source is Shippers because every registered shipper belongs in the report, including a shipper with no orders. Orders is added through the necessary ShipperID relationship; the FULL OUTER JOIN preserves both shipper-only and order-only rows. The CTE classifies each joined row; it does not yet represent one row per shipper. The outer aggregation creates that shipper-level grain.
+
+**Known verification limitation:** the diagram records the zero-order-shipper defect already documented below. The locked learner query is preserved unchanged. The generated Previous/Next pages and execution checks are still pending; these two static diagrams do not claim to replace them.
 
 ## Step-by-step walkthrough
 
