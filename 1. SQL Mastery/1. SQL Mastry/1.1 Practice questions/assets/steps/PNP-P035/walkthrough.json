@@ -382,6 +382,14 @@
         ],
         "rows": [
           [
+            "FastShip",
+            0,
+            0,
+            null,
+            1,
+            0
+          ],
+          [
             "Unknown shipper",
             1,
             1,
