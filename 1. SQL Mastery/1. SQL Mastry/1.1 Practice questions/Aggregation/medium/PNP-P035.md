@@ -2,7 +2,7 @@
 
 **Topic** Aggregation, conditional aggregation and CTEs · **Difficulty** Medium
 
-> **Record status:** The learner's locked SQLite solution, recorded approach progression, SQL Server adaptation, sourced PostgreSQL course answer, SQLite/SQL Server course adaptations, course comparison and SQLite verification are present below. The approach score remains unrecorded. The two required visuals, generated Previous/Next walkthrough and final completion audit remain pending. Preserve the documented zero-order-shipper counting defect; do not silently change the locked query or mark that edge case passed.
+> **Record status:** The learner's locked SQLite solution, recorded approach progression, SQL Server adaptation, sourced PostgreSQL course answer, SQLite/SQL Server course adaptations, course comparison and SQLite verification are present below. Both static SVGs (question-only input/output and worked sample flow) are present and linked. The approach score remains unrecorded. The generated Previous/Next walkthrough and final completion audit remain pending. Preserve the documented zero-order-shipper counting defect; do not silently change the locked query or mark that edge case passed.
 
 ## Question
 
@@ -243,7 +243,7 @@ The query groups by both the resolved ShipperID and shipper_name. Keeping the ID
 
 The worked diagram follows the saved query's actual row grain: one joined shipper/order row enters the classification CTE, then the outer query groups by resolved ShipperID and shipper_name. The first FROM source is Shippers because every registered shipper belongs in the report, including a shipper with no orders. Orders is added through the necessary ShipperID relationship; the FULL OUTER JOIN preserves both shipper-only and order-only rows. The CTE classifies each joined row; it does not yet represent one row per shipper. The outer aggregation creates that shipper-level grain.
 
-**Known verification limitation:** the diagram records the zero-order-shipper defect already documented below. The locked learner query is preserved unchanged. The generated Previous/Next pages and execution checks are still pending; these two static diagrams do not claim to replace them.
+**Known verification limitation:** both static diagrams are present and linked; the worked diagram records the zero-order-shipper defect documented below. The locked learner query is preserved unchanged. Generated Previous/Next pages are still pending; the two static diagrams do not claim to replace them.
 
 ## Step-by-step walkthrough
 
@@ -413,6 +413,6 @@ The learner's locked SQLite query remains verbatim; the course answer is a separ
 - **Strict boundary:** exactly seven days is not late; the saved condition is `> 7`.
 - **Official SQLite adaptation:** executed on the five-order sample and matched its expected output.
 - **SQL Server adaptations:** written separately; not executed on SQL Server.
-- **Visuals and progressive stages:** still pending. No flowchart, progressive SVG or generated Previous/Next pages are claimed.
+- **Static visuals:** the question-only input/output SVG and worked-flow SVG are present and linked. **Progressive stages:** pending; no generated Previous/Next pages are claimed.
 - **Approach score:** absent from saved history; not invented.
 - **Status:** learner solution and source comparison saved; full PNP-P026 completion gate remains pending.
