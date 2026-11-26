@@ -98,3 +98,14 @@ For every index update:
 ## Historical records
 
 Apply this standard when creating or repairing any PNP or Bosscoder record. Reorganize existing content under the six sections without losing valid details. Track exactly which records have been audited and repaired; never claim the historical backlog is complete based only on this standard being updated.
+
+
+## Exact question presentation and Markdown formatting
+
+- When presenting a practice question to the learner in chat, preserve that exact question content and presentation in Section 1, **Question — Business Scenario & Task**, of its Markdown record.
+- Copy the question as shown in chat: same wording, order, headings, subheadings, numbered/bulleted lists, tables, labels, examples, code formatting and emphasis. Do not paraphrase, compress, reorder, or silently rewrite the question when saving it.
+- Preserve the readable spacing used in chat. Use blank lines between paragraphs, headings, list blocks, tables and code blocks; keep lists and table rows properly separated and aligned. Do not compress distinct statements into dense paragraphs or remove intentional whitespace for compactness.
+- The Markdown file must render with the same clear visual hierarchy and reading flow as the question shown in chat. The chat version is the source of truth for the question presentation.
+- Keep the source's original question wording intact. Any additional business context, clarification, approach review or teaching notes must be clearly separated from the original question and must not be presented as part of the source question.
+- Before committing, compare the chat-presented question against Section 1 of the Markdown file for exact wording, structure, formatting and spacing.
+- In the index, tick each of the six structure-checkpoint columns only when the corresponding section is present and has been reviewed for completeness. These checkpoint ticks do not mean the question is solved; keep solved/pending status separate.
