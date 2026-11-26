@@ -2,7 +2,7 @@
 
 **Topic** Aggregation, conditional aggregation and CTEs · **Difficulty** Medium
 
-> **Record status:** Learner solution and learning notes saved. Full PNP-P026 completion audit, both required visuals, SQL Server adaptation, official-answer comparison and execution verification remain pending. Do not mark this question solved or add it to the solved index yet.
+> **Record status:** The learner's locked SQLite solution, recorded approach progression, SQL Server adaptation, sourced PostgreSQL course answer, SQLite/SQL Server course adaptations, course comparison and SQLite verification are present below. The approach score remains unrecorded. The two required visuals, generated Previous/Next walkthrough and final completion audit remain pending. Preserve the documented zero-order-shipper counting defect; do not silently change the locked query or mark that edge case passed.
 
 ## Question
 
