@@ -1,15 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
-<rect width="1200" height="700" fill="#fff"/>
-<style>text{font-family:Arial,sans-serif;fill:#172033}.h{font-size:28px;font-weight:bold}.t{font-size:19px}.s{font-size:16px}.b{stroke:#344054;stroke-width:2;rx:14}.g{fill:#e8f5e9}.u{fill:#e8eaf6}.p{fill:#f3e5f5}.o{fill:#fff3e0}</style>
-<text x="60" y="55" class="h">PNP Q047 · Query architecture</text>
-<rect x="70" y="100" width="300" height="110" class="b g"/><text x="95" y="145" class="h">Products</text><text x="95" y="180" class="t">Catalogue defines population</text>
-<rect x="830" y="100" width="300" height="110" class="b u"/><text x="855" y="145" class="h">OrderDetails</text><text x="855" y="180" class="t">Order lines + quantities</text>
-<path d="M370 155 H830" stroke="#344054" stroke-width="3"/><text x="530" y="140" class="t">LEFT JOIN</text><text x="530" y="180" class="s">ProductID</text>
-<rect x="350" y="275" width="500" height="100" class="b p"/><text x="385" y="318" class="h">Normalize brand label</text><text x="385" y="350" class="t">COALESCE(NULLIF(TRIM(Brand), ''), 'Unbranded')</text>
-<path d="M600 210 V275" stroke="#344054" stroke-width="3"/>
-<rect x="350" y="430" width="500" height="110" class="b o"/><text x="385" y="475" class="h">GROUP BY normalized brand</text><text x="385" y="510" class="t">Distinct product counts · SUM quantities · SUM line value</text>
-<path d="M600 375 V430" stroke="#344054" stroke-width="3"/>
-<rect x="70" y="590" width="450" height="80" class="b g"/><text x="95" y="638" class="t">HAVING COUNT(DISTINCT ProductID) ≥ 3</text>
-<rect x="680" y="590" width="450" height="80" class="b u"/><text x="710" y="638" class="t">ORDER BY list_price_value DESC, Brand</text>
-<path d="M500 540 V565 H295 V590 M700 540 V565 H905 V590" fill="none" stroke="#344054" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+<title id="title">Q047 query architecture</title><desc id="desc">Products is the preserved catalogue side of a left join to OrderDetails, followed by brand normalization, brand grouping, aggregates, having filter, and descending sort.</desc>
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12Z" fill="#475467"/></marker></defs>
+<style>text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:32px;font-weight:700}.head{font-size:23px;font-weight:700}.body{font-size:18px}.small{font-size:15px}.box{stroke:#475467;stroke-width:2;rx:18}.green{fill:#e8f5e9}.blue{fill:#e8eaf6}.purple{fill:#f3e5f5}.amber{fill:#fff3e0}.line{stroke:#475467;stroke-width:3;fill:none;marker-end:url(#arrow)}</style>
+<rect width="1400" height="900" fill="#fff"/>
+<text x="60" y="62" class="title">PNP Q047 · Query architecture and row preservation</text>
+<rect x="70" y="115" width="440" height="145" class="box green"/>
+<text x="100" y="158" class="head">🟩 Products · driving table</text><text x="100" y="198" class="body">One catalogue row per ProductID</text><text x="100" y="230" class="small">Must retain unsold products (3, 6, 7, 8)</text>
+<rect x="890" y="115" width="440" height="145" class="box blue"/>
+<text x="920" y="158" class="head">🟦 OrderDetails · optional matches</text><text x="920" y="198" class="body">One row per order line</text><text x="920" y="230" class="small">Repeated lines are retained (ProductID 1)</text>
+<path d="M510 185 H890" class="line"/><text x="620" y="165" class="head">LEFT JOIN</text><text x="635" y="208" class="body">P.ProductID = OD.ProductID</text>
+<rect x="260" y="330" width="880" height="125" class="box purple"/>
+<text x="300" y="375" class="head">🟪 Joined row set · 10 rows in the teaching fixture</text><text x="300" y="414" class="body">One row per matching order line; one NULL-extended row for each unsold product</text>
+<path d="M700 260 V330" class="line"/>
+<rect x="260" y="520" width="400" height="125" class="box amber"/>
+<text x="290" y="565" class="head">Normalize brand label</text><text x="290" y="605" class="body">COALESCE(Brand, 'Unbranded')</text>
+<rect x="740" y="520" width="400" height="125" class="box purple"/>
+<text x="770" y="565" class="head">GROUP BY brand</text><text x="770" y="605" class="body">One group per normalized label</text>
+<path d="M700 455 V485 H460 V520" class="line"/><path d="M660 582 H740" class="line"/>
+<rect x="70" y="710" width="390" height="130" class="box green"/>
+<text x="100" y="752" class="head">Distinct product counts</text><text x="100" y="790" class="body">COUNT(DISTINCT P.ProductID)</text><text x="100" y="817" class="small">COUNT(DISTINCT OD.ProductID)</text>
+<rect x="505" y="710" width="390" height="130" class="box blue"/>
+<text x="535" y="752" class="head">Sales measures</text><text x="535" y="790" class="body">SUM(Quantity)</text><text x="535" y="817" class="small">SUM(Quantity × Sale_Price)</text>
+<rect x="940" y="710" width="390" height="130" class="box amber"/>
+<text x="970" y="752" class="head">HAVING + ORDER BY</text><text x="970" y="790" class="body">products_listed ≥ 3</text><text x="970" y="817" class="small">list_price_value DESC</text>
+<path d="M940 645 V680 H265 V710" class="line"/><path d="M940 645 V680 H700 V710" class="line"/><path d="M940 645 V680 H1135 V710" class="line"/>
 </svg>
