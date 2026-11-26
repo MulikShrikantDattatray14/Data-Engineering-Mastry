@@ -45,7 +45,7 @@ This file is the single source of truth for every PNP and Bosscoder question rec
    - Show the complete intermediate result after each stage, not only changed rows. Explain why the operation is required, its inputs, transformations and relevant dialect behavior.
    - Cover applicable SQL behavior: FROM, JOIN and row preservation, WHERE, GROUP BY, aggregates, CTEs/subqueries, windows, SELECT-derived columns, NULL/zero, ORDER BY and LIMIT/OFFSET.
    - Preserve concrete IDs and values throughout. Make every final row traceable to source rows.
-   - Include both visuals when applicable: (a) query-architecture/row-preservation flowchart and (b) progressive row-by-row walkthrough. Keep visuals, source assets and Previous/Next/full-size links inside this section. A visual never replaces the written A–F explanation.
+   - Do not create or include visuals: no SVGs, diagrams, flowcharts, screenshots, image-based walkthroughs, or Previous/Next visual pages. Use written explanations and readable Markdown tables only.
    - End this section with complete original query reference, final output, execution-flow summary, stage/row-count summary, edge cases and verification status. Clearly distinguish executed results from manually derived or expected results. State engine/version assumptions and never claim execution that did not occur.
 
 6. **My New Learnings**
@@ -62,10 +62,13 @@ This file is the single source of truth for every PNP and Bosscoder question rec
 - Do not fabricate missing source data, query output, execution evidence, engine/version, or verification.
 - A completed walkthrough must show each meaningful transformation and complete intermediate output with A–F. If a stage does not change the rows, still show and explain its state.
 - Use source colors consistently across question, input, expected output, written walkthrough and visuals.
-- The flowchart explains query architecture; the progressive visual explains how the exact sample rows change. They are different deliverables.
-- Keep Previous/Next pages, SVGs, diagrams and other assets linked from Section 5. Verify every link and fetched asset after changes.
+- Keep the walkthrough entirely text-and-table based. Do not add visual assets or visual navigation.
 - If a requirement is genuinely inapplicable, retain the relevant nested subsection and state why. Do not invent content to fill it.
 - Never mark a question solved while its final learner query, expected output, six-section structure, walkthrough, official answer and verification status have not been checked.
+
+## Detailed walkthrough prompt (mandatory)
+
+Use the user's full prompt titled **“Task: Explain Code Through a Detailed Progressive Walkthrough Using One Example”** as the governing template for Section 5 of every question record. Preserve all of its requirements: one consistent example; complete inputs and meanings; initial counts; logical execution order; meaningful stages with A–F; complete intermediate outputs; SQL-specific clause behavior; complete original code and final output; stage summary; learnings; edge cases; explicit distinction between executed and manually derived results; dialect/version assumptions; and exact preservation of learner code. Do not omit any stage, including unchanged stages. Use readable Markdown tables for intermediate datasets. Do not create visuals of any kind.
 
 ## Index-page standard
 
@@ -85,7 +88,7 @@ For every index update:
 - [ ] Learner SQLite and SQL Server solutions are separate; submitted SQL preserved verbatim.
 - [ ] Official source answer is verbatim and sourced.
 - [ ] One-fixture walkthrough has every meaningful stage with A–F and complete intermediate outputs.
-- [ ] Query architecture and progressive visuals are present where applicable and match the saved learner SQL.
+- [ ] No diagrams, SVGs, screenshots, or other visuals are included; the walkthrough uses written stages and complete tables only.
 - [ ] Learnings are question-specific and useful.
 - [ ] Execution, dialect, edge-case and verification status are stated honestly.
 - [ ] All assets and links have been fetched and checked.
