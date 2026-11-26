@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<rect width="1200" height="700" fill="#fff"/>
+<style>text{font-family:Arial,sans-serif;fill:#172033}.h{font-size:28px;font-weight:bold}.t{font-size:19px}.s{font-size:16px}.b{stroke:#344054;stroke-width:2;rx:14}.g{fill:#e8f5e9}.u{fill:#e8eaf6}.p{fill:#f3e5f5}.o{fill:#fff3e0}</style>
+<text x="60" y="55" class="h">PNP Q047 · Query architecture</text>
+<rect x="70" y="100" width="300" height="110" class="b g"/><text x="95" y="145" class="h">Products</text><text x="95" y="180" class="t">Catalogue defines population</text>
+<rect x="830" y="100" width="300" height="110" class="b u"/><text x="855" y="145" class="h">OrderDetails</text><text x="855" y="180" class="t">Order lines + quantities</text>
+<path d="M370 155 H830" stroke="#344054" stroke-width="3"/><text x="530" y="140" class="t">LEFT JOIN</text><text x="530" y="180" class="s">ProductID</text>
+<rect x="350" y="275" width="500" height="100" class="b p"/><text x="385" y="318" class="h">Normalize brand label</text><text x="385" y="350" class="t">COALESCE(NULLIF(TRIM(Brand), ''), 'Unbranded')</text>
+<path d="M600 210 V275" stroke="#344054" stroke-width="3"/>
+<rect x="350" y="430" width="500" height="110" class="b o"/><text x="385" y="475" class="h">GROUP BY normalized brand</text><text x="385" y="510" class="t">Distinct product counts · SUM quantities · SUM line value</text>
+<path d="M600 375 V430" stroke="#344054" stroke-width="3"/>
+<rect x="70" y="590" width="450" height="80" class="b g"/><text x="95" y="638" class="t">HAVING COUNT(DISTINCT ProductID) ≥ 3</text>
+<rect x="680" y="590" width="450" height="80" class="b u"/><text x="710" y="638" class="t">ORDER BY list_price_value DESC, Brand</text>
+<path d="M500 540 V565 H295 V590 M700 540 V565 H905 V590" fill="none" stroke="#344054" stroke-width="3"/>
+</svg>
