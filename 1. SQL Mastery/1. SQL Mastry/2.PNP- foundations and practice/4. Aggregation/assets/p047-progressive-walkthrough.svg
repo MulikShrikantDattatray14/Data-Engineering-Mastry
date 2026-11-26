@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1200" viewBox="0 0 1400 1200">
+<rect width="1400" height="1200" fill="#fff"/><style>text{font-family:Arial,sans-serif;fill:#172033}.h{font-size:26px;font-weight:bold}.t{font-size:17px}.s{font-size:14px}.box{stroke:#475467;stroke-width:2;rx:12}.g{fill:#e8f5e9}.u{fill:#e8eaf6}.p{fill:#f3e5f5}.o{fill:#fff3e0}</style>
+<text x="50" y="50" class="h">PNP Q047 · Progressive sample walkthrough</text>
+<text x="50" y="85" class="t">Illustrative fixture. Brand NULLs are normalized to Unbranded for this teaching trace.</text>
+<rect x="50" y="120" width="610" height="245" class="box g"/><text x="75" y="160" class="h">Stage 1 · Products (catalogue)</text>
+<text x="75" y="205" class="t">ID | Brand | Sale_Price</text><text x="75" y="240" class="t">1 | Nova | 10</text><text x="75" y="275" class="t">2 | Nova | 20</text><text x="75" y="310" class="t">3 | Nova | 30</text><text x="75" y="345" class="t">4 | NULL | 5 · 5 | NULL | 6 · 6 | NULL | 7</text>
+<rect x="720" y="120" width="630" height="245" class="box u"/><text x="745" y="160" class="h">Stage 2 · OrderDetails</text>
+<text x="745" y="205" class="t">Line | ProductID | Quantity</text><text x="745" y="240" class="t">10 | 1 | 2</text><text x="745" y="275" class="t">11 | 1 | 1</text><text x="745" y="310" class="t">12 | 2 | 1</text><text x="745" y="345" class="t">13 | 4 | 2 · 14 | 5 | 1</text>
+<path d="M350 365 V420 H1050 V365" fill="none" stroke="#344054" stroke-width="3"/><text x="550" y="410" class="t">LEFT JOIN on ProductID · unsold products remain</text>
+<rect x="50" y="450" width="1300" height="190" class="box p"/><text x="75" y="490" class="h">Stage 3 · Joined rows and brand grouping</text>
+<text x="75" y="535" class="t">Nova: product 1 appears twice (two order lines); product 2 once; product 3 has NULL order columns.</text><text x="75" y="575" class="t">Unbranded: products 4, 5, 6; products 4 and 5 have order lines; product 6 remains unsold.</text><text x="75" y="615" class="t">DISTINCT ProductID prevents repeated order lines inflating products_listed / products_sold.</text>
+<rect x="50" y="690" width="1300" height="190" class="box o"/><text x="75" y="730" class="h">Stage 4 · Aggregate metrics</text>
+<text x="75" y="775" class="t">Brand | listed | sold | units | list_price_value</text><text x="75" y="815" class="t">Nova | 3 | 2 | 4 | (2×10 + 1×10 + 1×20) = 50</text><text x="75" y="855" class="t">Unbranded | 3 | 2 | 3 | (2×5 + 1×6) = 16</text>
+<rect x="50" y="930" width="1300" height="210" class="box g"/><text x="75" y="970" class="h">Stage 5 · HAVING and final ordering</text><text x="75" y="1015" class="t">Both groups qualify: products_listed ≥ 3. Solo with only two products would be excluded.</text><text x="75" y="1055" class="t">Final order: Nova (50), then Unbranded (16). Zero-sale products still count in listed.</text><text x="75" y="1100" class="s">COALESCE converts missing SUM values to 0 for qualifying groups with no order lines.</text>
+</svg>
